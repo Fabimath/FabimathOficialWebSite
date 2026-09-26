@@ -2,7 +2,7 @@
 
 # Fabimath — sitio web oficial
 
-Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadística. Versión verde, derivada del sitio original en [fabimath.github.io/Fabimath](https://fabimath.github.io/Fabimath/).
+Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadística. Versión naranja, derivada del sitio original en [fabimath.github.io/Fabimath](https://fabimath.github.io/Fabimath/).
 
 ## Contenido
 

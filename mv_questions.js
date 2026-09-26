@@ -1,5 +1,5 @@
-// Banco de 219 ejercicios de Medidas de Variabilidad - Datos Cuantitativos Discretos (guia oficial Fabimath)
-// Parte I (80): rango, varianza, desviacion estandar y CV desde datos sin tabular
+// Banco de 219 ejercicios de Medidas de Variabilidad - Datos Cuantitativos Discretos (guía oficial Fabimath)
+// Parte I (80): rango, varianza, desviación estándar y CV desde datos sin tabular
 // Parte II (80): mismas medidas desde tabla (x_i, f_i)
 // Parte III (59): comparacion de homogeneidad entre variables via CV
 const MV_QUESTIONS = [

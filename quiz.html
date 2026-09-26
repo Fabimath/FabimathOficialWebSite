@@ -6,10 +6,11 @@
 <meta name="theme-color" content="#d9650f">
 <title>Gatos de Estadística — Fabimath</title>
 <meta name="description" content="Quiz interactivo de estadística: Clasificación de Variables, Datos Cualitativos Nominales, Intervalos de Confianza, Test de Hipótesis, Normal, Condicional y Bayes. 5 ejercicios al azar con alternativas y pauta completa.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 <script src="vc_questions.js"></script>
 <script src="ic_questions.js"></script>
 <script src="th_questions.js"></script>
@@ -68,6 +69,7 @@
   .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
   .topic-card {
     background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    color: var(--text); font-family: inherit;
     border: 2px solid #6b4324; border-radius: 20px; padding: 26px 22px; text-align: center;
     cursor: pointer; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
     display: flex; flex-direction: column; align-items: center;
@@ -315,7 +317,7 @@ const TOPICS = [
   },
   {
     id:'nm', title:'Gato de la Normal', name:'Probabilidades con la Normal',
-    desc:'Estandariza X ~ N(μ,σ) y calcula P(X<x), P(X>x) o P(x₁<X<x₂) con la tabla Φ(z).',
+    desc:'Estandariza X ~ N(μ,σ) y calcula P(X&lt;x), P(X&gt;x) o P(x₁&lt;X&lt;x₂) con la tabla Φ(z).',
     bank: (typeof NM_QUESTIONS!=='undefined') ? NM_QUESTIONS : [],
     body:'#a78bfa', shade:'#7c5cf0', accent:'#c4b5fd',
     guide:'Guía 4 — Distribución Normal'
@@ -357,7 +359,7 @@ const TOPICS = [
   },
   {
     id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos',
-    desc:'Tablas con clases $[L_i,L_s)$ y marca de clase: lectura, promedio, mediana y moda interpoladas, varianza y CV.',
+    desc:'Tablas con clases [Lᵢ, Lₛ) y marca de clase: lectura, promedio, mediana y moda interpoladas, varianza y CV.',
     bank: (typeof CC_QUESTIONS!=='undefined') ? CC_QUESTIONS : [],
     body:'#2dd4bf', shade:'#0d9488', accent:'#5eead4',
     guide:'Guía — Tablas de Frecuencia (Datos Cuantitativos Continuos)'
@@ -494,7 +496,7 @@ function answer(pos) {
   const good = chosenOrig === q.correct;
   if (good) { score++; document.getElementById('scoreLabel').textContent = `${score} correctas`; }
   else btns[pos].classList.add('wrong');
-  drawChar(document.getElementById('quizCatGrid'), 6, topic, good ? 'exito' : 'tristesa');
+  drawChar(document.getElementById('quizCatGrid'), 6, topic, good ? 'exito' : 'tristeza');
   pauta.classList.add(good ? 'good' : 'bad');
   document.getElementById('pFlag').textContent = good ? '✓ ¡Correcto, miau!' : '✗ Incorrecto — revisa la pauta:';
   document.getElementById('pHead').innerHTML = `$${q.pautaHead}$`;
@@ -522,7 +524,7 @@ function next() {
 function showFinal() {
   quizScreen.classList.add('hidden');
   finalScreen.classList.remove('hidden');
-  drawChar(document.getElementById('finalCatGrid'), 6, topic, (score / N_QUIZ >= 0.6) ? 'exito' : 'tristesa');
+  drawChar(document.getElementById('finalCatGrid'), 6, topic, (score / N_QUIZ >= 0.6) ? 'exito' : 'tristeza');
   document.getElementById('finalScore').textContent = `${score}/${N_QUIZ}`;
   document.getElementById('ring').style.setProperty('--deg', `${score/N_QUIZ*360}deg`);
   const pct = score / N_QUIZ;

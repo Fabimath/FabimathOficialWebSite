@@ -1,4 +1,4 @@
-// Banco de 32 ejercicios de Probabilidad Total y Teorema de Bayes (guia oficial Fabimath)
+// Banco de 32 ejercicios de Probabilidad Total y Teorema de Bayes (guía oficial Fabimath)
 const BT_QUESTIONS = [
 {
 "tipo": "Probabilidad total",

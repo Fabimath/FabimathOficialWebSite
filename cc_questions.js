@@ -1,9 +1,9 @@
-// Banco de 210 ejercicios de Tablas de Frecuencia para Datos Cuantitativos Continuos (guia oficial Fabimath)
+// Banco de 210 ejercicios de Tablas de Frecuencia para Datos Cuantitativos Continuos (guía oficial Fabimath)
 // Parte I (100): lectura de tabla completa (m_i,f_i,F_i,h_i,H_i%)
 // Parte II (30): marca de clase y promedio muestral
 // Parte III (20): clase mediana y mediana interpolada
 // Parte IV (20): clase modal y moda interpolada
-// Parte V (40): rango, varianza, desviacion estandar y CV
+// Parte V (40): rango, varianza, desviación estándar y CV
 const CC_QUESTIONS = [
  {
   "tipo": "Lectura de tabla · menores a",
