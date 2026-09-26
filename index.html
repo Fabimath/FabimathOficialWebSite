@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f8a4b">
+<meta name="theme-color" content="#d9650f">
 <title>Fabimath — Fabián Ramírez · Profesor de Matemáticas</title>
 <meta name="description" content="Sitio oficial de Fabián Ramírez (Fabimath). Profesor universitario de matemáticas, videos de ejercicios resueltos de estadística, material de clases gratuito.">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
@@ -12,18 +12,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --royal: #0f8a4b;
-    --azure: #22a85f;
-    --sky: #5fd69a;
-    --ice: #edf9f2;
-    --ink: #0b1f17;
-    --ink-2: #3f5a4c;
-    --ink-3: #86988e;
+    --royal: #d9650f;
+    --azure: #f07c1e;
+    --sky: #ffb15c;
+    --ice: #fff4ea;
+    --ink: #2a1a0e;
+    --ink-2: #5c4636;
+    --ink-3: #9a8b7f;
     --paper: #ffffff;
     --coral: #e8342a;
     --radius: 20px;
-    --shadow: 0 2px 16px rgba(11,31,23,0.06);
-    --shadow-hover: 0 14px 34px rgba(15,138,75,0.14);
+    --shadow: 0 2px 16px rgba(40,22,8,0.06);
+    --shadow-hover: 0 14px 34px rgba(217,101,15,0.14);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -44,7 +44,7 @@
     backdrop-filter: saturate(180%) blur(18px);
     -webkit-backdrop-filter: saturate(180%) blur(18px);
     background: rgba(255,255,255,0.8);
-    border-bottom: 1px solid rgba(11,31,23,0.07);
+    border-bottom: 1px solid rgba(40,22,8,0.07);
   }
   .nav-inner {
     max-width: 1020px; margin: 0 auto;
@@ -123,7 +123,7 @@
   .hero-inner { position: relative; z-index: 1; }
   .hero-logo {
     width: 96px; height: 96px; border-radius: 24px; object-fit: cover;
-    box-shadow: 0 10px 30px rgba(15,138,75,0.25);
+    box-shadow: 0 10px 30px rgba(217,101,15,0.25);
     margin-bottom: 26px;
   }
   h1 {
@@ -144,9 +144,9 @@
     font-family: 'Baloo 2', sans-serif; font-size: 16px; font-weight: 700;
     transition: all .22s ease;
   }
-  .btn-primary { background: var(--royal); color: #fff; box-shadow: 0 6px 18px rgba(15,138,75,0.3); }
-  .btn-primary:hover { background: #0b6e3b; transform: translateY(-2px); text-decoration: none; }
-  .btn-ghost { color: var(--royal); border: 2px solid rgba(15,138,75,0.3); }
+  .btn-primary { background: var(--royal); color: #fff; box-shadow: 0 6px 18px rgba(217,101,15,0.3); }
+  .btn-primary:hover { background: #b35208; transform: translateY(-2px); text-decoration: none; }
+  .btn-ghost { color: var(--royal); border: 2px solid rgba(217,101,15,0.3); }
   .btn-ghost:hover { background: var(--ice); text-decoration: none; }
 
   /* ---------- SECTIONS ---------- */
@@ -170,20 +170,20 @@
   .card {
     background: var(--paper); border-radius: var(--radius); padding: 32px 28px;
     box-shadow: var(--shadow);
-    border: 1px solid rgba(11,31,23,0.04);
+    border: 1px solid rgba(40,22,8,0.04);
     transition: transform .22s ease, box-shadow .22s ease;
   }
   .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .card .icon {
     width: 46px; height: 46px; border-radius: 13px;
-    background: linear-gradient(135deg, var(--ice), #d6f2e2);
+    background: linear-gradient(135deg, var(--ice), #ffe4c7);
     display: flex; align-items: center; justify-content: center;
     font-size: 22px; margin-bottom: 16px;
   }
   .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
   .card p { color: var(--ink-2); font-size: 15px; }
   .card ul { list-style: none; margin-top: 12px; }
-  .card ul li { padding: 8px 0; border-top: 1px solid rgba(11,31,23,0.06); font-size: 14.5px; }
+  .card ul li { padding: 8px 0; border-top: 1px solid rgba(40,22,8,0.06); font-size: 14.5px; }
   .card ul li:first-child { border-top: none; }
 
   /* ---------- STATS ---------- */
@@ -200,7 +200,7 @@
   .stat .lbl { color: var(--ink-3); font-size: 14px; margin-top: 4px; }
 
   /* ---------- TIMELINE ---------- */
-  .timeline { margin-top: 46px; border-left: 3px solid #cfeedd; padding-left: 30px; }
+  .timeline { margin-top: 46px; border-left: 3px solid #ffe0c2; padding-left: 30px; }
   .t-item { position: relative; padding-bottom: 32px; }
   .t-item:last-child { padding-bottom: 0; }
   .t-item::before {
@@ -218,7 +218,7 @@
     font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 14.5px;
     padding: 10px 20px; border-radius: 100px; cursor: pointer;
     background: var(--paper); color: var(--ink-2);
-    border: 2px solid rgba(11,31,23,0.1);
+    border: 2px solid rgba(40,22,8,0.1);
     transition: all .18s ease;
   }
   .filter-btn:hover { border-color: var(--azure); color: var(--royal); }
@@ -226,7 +226,7 @@
   .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; margin-top: 28px; }
   .video {
     background: var(--paper); border-radius: var(--radius); overflow: hidden;
-    box-shadow: var(--shadow); border: 1px solid rgba(11,31,23,0.04);
+    box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.04);
     transition: transform .22s ease, box-shadow .22s ease;
   }
   .video:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
@@ -238,9 +238,9 @@
   .v-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .v-thumb .play {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: rgba(11,31,23,0.18); transition: background .2s ease;
+    background: rgba(40,22,8,0.18); transition: background .2s ease;
   }
-  .v-thumb:hover .play { background: rgba(11,31,23,0.32); }
+  .v-thumb:hover .play { background: rgba(40,22,8,0.32); }
   .v-thumb .play span {
     width: 58px; height: 58px; border-radius: 50%;
     background: rgba(255,255,255,0.94); color: var(--royal);
@@ -288,7 +288,7 @@
 
   /* ---------- FOOTER ---------- */
   footer {
-    background: var(--ink); color: #9fc4b1;
+    background: var(--ink); color: #d4b9a3;
     padding: 64px 24px 42px; text-align: center; font-size: 14px;
     position: relative; overflow: hidden;
   }
@@ -297,11 +297,11 @@
   footer .f-name { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; color: #fff; }
   footer .f-name b { color: var(--sky); }
   footer .f-links { margin: 24px 0 18px; display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; }
-  footer .f-links a { color: #cfe6d9; font-size: 14px; }
+  footer .f-links a { color: #ead9c9; font-size: 14px; }
   footer .f-links a:hover { color: var(--sky); text-decoration: none; }
-  footer .copy { color: #6b8a79; font-size: 12.5px; margin-top: 8px; }
+  footer .copy { color: #8c7663; font-size: 12.5px; margin-top: 8px; }
   :focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
-  .version { position: fixed; top: 4px; left: 8px; z-index: 999; font-size: 11px; color: #6b8a79; pointer-events: none; }
+  .version { position: fixed; top: 4px; left: 8px; z-index: 999; font-size: 11px; color: #8c7663; pointer-events: none; }
 </style>
 </head>
 <body>
@@ -321,7 +321,7 @@
       <a href="#videos">Videos</a>
       <a href="#galeria">Galería</a>
       <a href="#redes">Redes</a>
-      <a class="cat-link" href="paes.html">📗 PAES</a>
+      <a class="cat-link" href="paes.html">📙 PAES</a>
       <a class="cat-link" href="quiz.html">🐱 Gatos Quiz</a>
       <a class="cat-link" href="aes.html">🐱 Gatito AES</a>
     </div>
@@ -330,21 +330,21 @@
 
 <header id="inicio">
   <div class="mosaic" aria-hidden="true">
-    <i style="left:6%;  top:18%; width:38px; height:38px; background:#d7f0e2; animation-delay:0s"></i>
-    <i style="left:13%; top:58%; width:26px; height:26px; background:#bfe8d0; animation-delay:-3s"></i>
-    <i style="left:22%; top:32%; width:18px; height:18px; background:#97dcb6; animation-delay:-6s"></i>
-    <i style="right:7%;  top:22%; width:44px; height:44px; background:#d0eedd; animation-delay:-2s"></i>
-    <i style="right:16%; top:62%; width:24px; height:24px; background:#aae2c3; animation-delay:-8s"></i>
-    <i style="right:26%; top:40%; width:16px; height:16px; background:#7fd3a6; animation-delay:-4s"></i>
-    <i style="left:38%;  top:12%; width:20px; height:20px; background:#c8ecd8; animation-delay:-5s"></i>
-    <i style="right:38%; top:78%; width:30px; height:30px; background:#d7f0e2; animation-delay:-7s"></i>
+    <i style="left:6%;  top:18%; width:38px; height:38px; background:#ffe6cf; animation-delay:0s"></i>
+    <i style="left:13%; top:58%; width:26px; height:26px; background:#ffd7b3; animation-delay:-3s"></i>
+    <i style="left:22%; top:32%; width:18px; height:18px; background:#ffc48f; animation-delay:-6s"></i>
+    <i style="right:7%;  top:22%; width:44px; height:44px; background:#ffe2c9; animation-delay:-2s"></i>
+    <i style="right:16%; top:62%; width:24px; height:24px; background:#ffcf9e; animation-delay:-8s"></i>
+    <i style="right:26%; top:40%; width:16px; height:16px; background:#ffb877; animation-delay:-4s"></i>
+    <i style="left:38%;  top:12%; width:20px; height:20px; background:#ffdcbd; animation-delay:-5s"></i>
+    <i style="right:38%; top:78%; width:30px; height:30px; background:#ffe6cf; animation-delay:-7s"></i>
   </div>
   <div class="hero-inner">
     <img class="hero-logo" src="logo/fabimath_logo.png" alt="Logo oficial Fabimath">
     <h1>Hola, soy <span class="grad">Fabimath</span></h1>
     <p class="hero-sub">Fabián Ramírez — profesor universitario de matemáticas y creador de contenido. Estadística, probabilidad y ejercicios resueltos, gratis y para todos.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="paes.html">📗 Estudiar probabilidad para la PAES</a>
+      <a class="btn btn-primary" href="paes.html">📙 Estudiar probabilidad para la PAES</a>
       <a class="btn btn-ghost" href="#videos">▶ Videos para ejercitar</a>
     </div>
   </div>
@@ -377,7 +377,7 @@
         </ul>
       </div>
       <div class="card">
-        <div class="icon">💚</div>
+        <div class="icon">🧡</div>
         <h3>Vocación social</h3>
         <ul>
           <li>Preuniversitario Solidario Santa María (desde 2017)</li>
@@ -444,7 +444,7 @@
         </ul>
       </div>
       <div class="card">
-        <div class="icon">📗</div>
+        <div class="icon">📙</div>
         <h3>Guías de ejercicios — Probabilidad y Estadística</h3>
         <p>Guías de práctica con enunciado y respuestas, clasificadas por tema.</p>
         <ul>
@@ -552,7 +552,7 @@
   <div class="f-inner">
     <img class="f-logo" src="logo/fabimath_logo.png" alt="">
     <div class="f-name">Fabi<b>math</b></div>
-    <p style="margin-top:12px; max-width:420px; margin-left:auto; margin-right:auto;">¿Clases, colaboraciones o consultas? Escríbeme a<br><a href="mailto:fabian.ramirez.di@gmail.com" style="color:#5fd69a">fabian.ramirez.di@gmail.com</a></p>
+    <p style="margin-top:12px; max-width:420px; margin-left:auto; margin-right:auto;">¿Clases, colaboraciones o consultas? Escríbeme a<br><a href="mailto:fabian.ramirez.di@gmail.com" style="color:#ffb15c">fabian.ramirez.di@gmail.com</a></p>
     <div class="f-links">
       <a href="https://youtube.com/c/fabimath/" target="_blank" rel="noopener">YouTube</a>
       <a href="https://twitch.tv/fabimath/" target="_blank" rel="noopener">Twitch</a>

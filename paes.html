@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f8a4b">
+<meta name="theme-color" content="#d9650f">
 <title>PAES Estadística y Probabilidad — Fabimath</title>
 <meta name="description" content="Estudia Probabilidad y Estadística para la PAES M1 con Fabimath: diapositivas por tema, preguntas tipo PAES con pauta y un ensayo final de 20 preguntas.">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
@@ -16,12 +16,12 @@
 <script src="paes_data.js"></script>
 <style>
   :root {
-    --royal: #0f8a4b; --azure: #22a85f; --sky: #5fd69a; --ice: #edf9f2;
-    --ink: #0b1f17; --ink-2: #3f5a4c; --ink-3: #86988e; --paper: #ffffff;
+    --royal: #d9650f; --azure: #f07c1e; --sky: #ffb15c; --ice: #fff4ea;
+    --ink: #2a1a0e; --ink-2: #5c4636; --ink-3: #9a8b7f; --paper: #ffffff;
     --coral: #e8342a; --gold: #c98a00; --mint: #17a673;
     --radius: 20px;
-    --shadow: 0 2px 16px rgba(11,31,23,0.06);
-    --shadow-hover: 0 14px 34px rgba(15,138,75,0.14);
+    --shadow: 0 2px 16px rgba(40,22,8,0.06);
+    --shadow-hover: 0 14px 34px rgba(217,101,15,0.14);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -36,7 +36,7 @@
   .hidden { display: none !important; }
 
   /* ---------- NAV ---------- */
-  nav { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(18px); background: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(11,31,23,0.07); }
+  nav { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(18px); background: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(40,22,8,0.07); }
   .nav-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 58px; gap: 12px; }
   .nav-brand { display: flex; align-items: center; gap: 10px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px; color: var(--ink); }
   .nav-brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; }
@@ -56,7 +56,7 @@
   .unit-lbl { font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 14px; color: var(--royal); margin: 34px 0 10px; display: flex; align-items: center; gap: 8px; }
   .unit-lbl::before { content: ""; width: 10px; height: 10px; border-radius: 3px; background: linear-gradient(135deg, var(--royal), var(--sky)); }
   .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 16px; }
-  .topic-card { text-align: left; background: var(--paper); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); border: 1px solid rgba(11,31,23,0.05); cursor: pointer; transition: transform .22s ease, box-shadow .22s ease; display: flex; flex-direction: column; gap: 6px; }
+  .topic-card { text-align: left; background: var(--paper); border-radius: var(--radius); padding: 24px 22px; box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.05); cursor: pointer; transition: transform .22s ease, box-shadow .22s ease; display: flex; flex-direction: column; gap: 6px; }
   .topic-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
   .topic-card .ic { font-size: 26px; }
   .topic-card h3 { font-size: 19px; font-weight: 700; }
@@ -64,16 +64,16 @@
   .topic-card .meta { margin-top: auto; padding-top: 10px; font-size: 12.5px; color: var(--ink-3); display: flex; justify-content: space-between; align-items: center; }
   .badge { font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 100px; background: var(--ice); color: var(--royal); }
   .badge.done { background: rgba(23,166,115,.12); color: #0d6b4a; }
-  .ensayo-card { margin-top: 36px; background: linear-gradient(135deg, var(--royal), var(--azure)); color: #fff; border-radius: var(--radius); padding: 30px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; box-shadow: 0 10px 30px rgba(15,138,75,0.25); }
+  .ensayo-card { margin-top: 36px; background: linear-gradient(135deg, var(--royal), var(--azure)); color: #fff; border-radius: var(--radius); padding: 30px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; box-shadow: 0 10px 30px rgba(217,101,15,0.25); }
   .ensayo-card h3 { font-size: 24px; font-weight: 800; }
   .ensayo-card p { opacity: .92; font-size: 15px; max-width: 520px; }
   .ensayo-card .best { font-size: 13px; opacity: .85; margin-top: 6px; }
 
   /* ---------- BUTTONS ---------- */
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 100px; font-family: 'Baloo 2', sans-serif; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: all .2s ease; }
-  .btn-primary { background: var(--royal); color: #fff; box-shadow: 0 6px 18px rgba(15,138,75,0.3); }
-  .btn-primary:hover { background: #0b6e3b; transform: translateY(-2px); }
-  .btn-ghost { background: transparent; color: var(--royal); border: 2px solid rgba(15,138,75,0.3); }
+  .btn-primary { background: var(--royal); color: #fff; box-shadow: 0 6px 18px rgba(217,101,15,0.3); }
+  .btn-primary:hover { background: #b35208; transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--royal); border: 2px solid rgba(217,101,15,0.3); }
   .btn-ghost:hover { background: var(--ice); }
   .btn-white { background: #fff; color: var(--royal); }
   .btn-white:hover { transform: translateY(-2px); }
@@ -91,7 +91,7 @@
   .step.ok .n { background: var(--mint); color: #fff; }
 
   /* ---------- SLIDES (ppt) ---------- */
-  .deck { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(11,31,23,0.05); overflow: hidden; }
+  .deck { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.05); overflow: hidden; }
   .slide { min-height: 380px; padding: 34px 38px 30px; display: flex; flex-direction: column; animation: slidein .35s ease; }
   @keyframes slidein { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
   .slide.back { animation-name: slideback; }
@@ -105,17 +105,17 @@
   .slide .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
   @media (max-width: 640px) { .slide .cols { grid-template-columns: 1fr; } .slide { padding: 26px 22px; } }
   .box { background: var(--ice); border-left: 4px solid var(--royal); border-radius: 10px; padding: 12px 16px; margin: 10px 0; }
-  .box.alert { background: #fff6e5; border-left-color: var(--gold); }
+  .box.alert { background: #eef4ff; border-left-color: #3b7dd8; }
   .box b:first-child { color: var(--royal); }
-  .box.alert b:first-child { color: var(--gold); }
+  .box.alert b:first-child { color: #2f62b8; }
   .katex-display { margin: 10px 0; }
-  .deck-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; border-top: 1px solid rgba(11,31,23,0.06); background: #fafdfb; }
+  .deck-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; border-top: 1px solid rgba(40,22,8,0.06); background: #fffaf5; }
   .dots { display: flex; gap: 6px; }
-  .dots i { width: 8px; height: 8px; border-radius: 50%; background: #cfeedd; display: block; transition: all .2s; }
+  .dots i { width: 8px; height: 8px; border-radius: 50%; background: #ffe0c2; display: block; transition: all .2s; }
   .dots i.on { background: var(--royal); width: 22px; border-radius: 100px; }
 
   /* ---------- QUESTION ---------- */
-  .qcard { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(11,31,23,0.05); padding: 28px 30px; }
+  .qcard { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.05); padding: 28px 30px; }
   @media (max-width: 640px) { .qcard { padding: 22px 18px; } }
   .qtop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 13px; color: var(--ink-3); }
   .qtag { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--royal); background: var(--ice); padding: 4px 10px; border-radius: 100px; }
@@ -125,21 +125,21 @@
   .qenun p { margin-bottom: 10px; }
   .qfig { margin: 6px 0 16px; overflow-x: auto; }
   .qfig table, .slide table, .review table { border-collapse: collapse; font-size: 14.5px; margin: 4px 0; }
-  .qfig th, .qfig td, .slide th, .slide td, .review th, .review td { border: 1px solid #cfeedd; padding: 7px 14px; text-align: center; }
+  .qfig th, .qfig td, .slide th, .slide td, .review th, .review td { border: 1px solid #ffe0c2; padding: 7px 14px; text-align: center; }
   .qfig thead th, .slide thead th, .review thead th { background: var(--ice); color: var(--royal); font-weight: 700; }
   .slide table { font-size: 14px; margin: 6px 0 10px; }
   .qfig .cap { font-size: 12.5px; color: var(--ink-3); margin-top: 4px; }
   .qfig svg { max-width: 100%; height: auto; display: block; }
   .alts { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
-  .alt { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: #fff; border: 2px solid #d9efe3; border-radius: 14px; padding: 13px 16px; font-size: 15.5px; cursor: pointer; transition: border-color .15s, background .15s, transform .1s; color: var(--ink); }
-  .alt:hover:not(:disabled) { border-color: var(--azure); background: #f6fcf8; transform: translateX(2px); }
+  .alt { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: #fff; border: 2px solid #f5dcc4; border-radius: 14px; padding: 13px 16px; font-size: 15.5px; cursor: pointer; transition: border-color .15s, background .15s, transform .1s; color: var(--ink); }
+  .alt:hover:not(:disabled) { border-color: var(--azure); background: #fff8f1; transform: translateX(2px); }
   .alt:disabled { cursor: default; }
   .alt .key { flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; background: var(--ice); color: var(--royal); font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; }
   .alt.correct { border-color: var(--mint); background: rgba(23,166,115,.08); }
   .alt.correct .key { background: var(--mint); color: #fff; }
   .alt.wrong { border-color: var(--coral); background: rgba(232,52,42,.06); }
   .alt.wrong .key { background: var(--coral); color: #fff; }
-  .pauta { display: none; margin-top: 18px; border-radius: 14px; padding: 18px 20px; border: 1px solid #d9efe3; background: #fafdfb; animation: slidein .3s ease; }
+  .pauta { display: none; margin-top: 18px; border-radius: 14px; padding: 18px 20px; border: 1px solid #f5dcc4; background: #fffaf5; animation: slidein .3s ease; }
   .pauta.show { display: block; }
   .pauta .flag { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 17px; margin-bottom: 8px; }
   .pauta.good .flag { color: #0d6b4a; }
@@ -162,7 +162,7 @@
   .bytopic b { color: var(--royal); }
   .review { margin-top: 26px; text-align: left; }
   .review h4 { font-family: 'Baloo 2', sans-serif; font-size: 18px; margin-bottom: 10px; }
-  .review details { border: 1px solid #d9efe3; border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; background: #fff; }
+  .review details { border: 1px solid #f5dcc4; border-radius: 12px; padding: 10px 14px; margin-bottom: 8px; background: #fff; }
   .review summary { cursor: pointer; font-weight: 600; font-size: 14.5px; }
   .review summary.ok { color: #0d6b4a; } .review summary.ko { color: #b3261e; }
   .review .sol { font-size: 14px; margin-top: 8px; line-height: 1.65; }
@@ -178,7 +178,7 @@
   <div class="nav-inner">
     <a class="nav-brand" href="index.html"><img src="logo/fabimath_logo.png" alt="">Fabi<b>math</b></a>
     <div class="nav-right">
-      <button class="pill" id="homeBtn">📗 Temas</button>
+      <button class="pill" id="homeBtn">📙 Temas</button>
       <a class="pill" href="index.html">Inicio</a>
     </div>
   </div>
@@ -272,7 +272,7 @@ function renderMath(el) {
 const num = v => String(v).replace('.', ',');
 
 /* ---------------- figures (SVG) ---------------- */
-const PAL = ['#0f8a4b', '#5fd69a', '#c98a00', '#e8342a', '#7c5cf0', '#22a85f', '#f0883e', '#38bdf8'];
+const PAL = ['#d9650f', '#ffb15c', '#c98a00', '#e8342a', '#7c5cf0', '#f07c1e', '#f0883e', '#38bdf8'];
 function fig(f) {
   if (!f) return '';
   if (f.type === 'table') {
@@ -285,21 +285,21 @@ function fig(f) {
     const step = Math.pow(10, Math.floor(Math.log10(max))) * (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 2 : 1);
     const ymax = Math.ceil(max / step) * step, bw = (W - L - 10) / n;
     let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Gráfico de barras">`;
-    for (let v = 0; v <= ymax; v += step) { const y = H - B - (v / ymax) * (H - B - T); s += `<line x1="${L}" x2="${W - 6}" y1="${y}" y2="${y}" stroke="#e3f2ea"/><text x="${L - 6}" y="${y + 4}" font-size="11" text-anchor="end" fill="#86988e">${num(v)}</text>`; }
+    for (let v = 0; v <= ymax; v += step) { const y = H - B - (v / ymax) * (H - B - T); s += `<line x1="${L}" x2="${W - 6}" y1="${y}" y2="${y}" stroke="#f8e9dc"/><text x="${L - 6}" y="${y + 4}" font-size="11" text-anchor="end" fill="#9a8b7f">${num(v)}</text>`; }
     f.values.forEach((v, i) => { const h = (v / ymax) * (H - B - T), x = L + i * bw + bw * 0.2, y = H - B - h;
-      s += `<rect x="${x}" y="${y}" width="${bw * 0.6}" height="${h}" rx="4" fill="${f.mono ? PAL[0] : PAL[i % PAL.length]}"/><text x="${x + bw * 0.3}" y="${y - 5}" font-size="12" font-weight="700" text-anchor="middle" fill="#0b1f17">${num(v)}</text><text x="${x + bw * 0.3}" y="${H - B + 16}" font-size="11.5" text-anchor="middle" fill="#3f5a4c">${f.labels[i]}</text>`; });
-    s += `<line x1="${L}" x2="${W - 6}" y1="${H - B}" y2="${H - B}" stroke="#86988e"/>`;
-    if (f.ylab) s += `<text x="${L - 30}" y="${T - 6}" font-size="11" fill="#86988e">${f.ylab}</text>`;
+      s += `<rect x="${x}" y="${y}" width="${bw * 0.6}" height="${h}" rx="4" fill="${f.mono ? PAL[0] : PAL[i % PAL.length]}"/><text x="${x + bw * 0.3}" y="${y - 5}" font-size="12" font-weight="700" text-anchor="middle" fill="#2a1a0e">${num(v)}</text><text x="${x + bw * 0.3}" y="${H - B + 16}" font-size="11.5" text-anchor="middle" fill="#5c4636">${f.labels[i]}</text>`; });
+    s += `<line x1="${L}" x2="${W - 6}" y1="${H - B}" y2="${H - B}" stroke="#9a8b7f"/>`;
+    if (f.ylab) s += `<text x="${L - 30}" y="${T - 6}" font-size="11" fill="#9a8b7f">${f.ylab}</text>`;
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
   if (f.type === 'line') {
     const W = 460, H = 230, L = 44, B = 40, T = 20, n = f.values.length, max = Math.max(...f.values), min = Math.min(0, ...f.values);
     const ymax = Math.ceil(max / 10) * 10 || 10, xs = i => L + 12 + i * ((W - L - 30) / (n - 1)), ys = v => H - B - ((v - min) / (ymax - min)) * (H - B - T);
     let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Gráfico de líneas">`;
-    for (let v = min; v <= ymax; v += ymax / 5) s += `<line x1="${L}" x2="${W - 6}" y1="${ys(v)}" y2="${ys(v)}" stroke="#e3f2ea"/><text x="${L - 6}" y="${ys(v) + 4}" font-size="11" text-anchor="end" fill="#86988e">${num(Math.round(v))}</text>`;
+    for (let v = min; v <= ymax; v += ymax / 5) s += `<line x1="${L}" x2="${W - 6}" y1="${ys(v)}" y2="${ys(v)}" stroke="#f8e9dc"/><text x="${L - 6}" y="${ys(v) + 4}" font-size="11" text-anchor="end" fill="#9a8b7f">${num(Math.round(v))}</text>`;
     s += `<polyline fill="none" stroke="${PAL[0]}" stroke-width="2.5" points="${f.values.map((v, i) => xs(i) + ',' + ys(v)).join(' ')}"/>`;
-    f.values.forEach((v, i) => s += `<circle cx="${xs(i)}" cy="${ys(v)}" r="4" fill="#fff" stroke="${PAL[0]}" stroke-width="2.5"/><text x="${xs(i)}" y="${ys(v) - 9}" font-size="11.5" font-weight="700" text-anchor="middle" fill="#0b1f17">${num(v)}</text><text x="${xs(i)}" y="${H - B + 16}" font-size="11.5" text-anchor="middle" fill="#3f5a4c">${f.labels[i]}</text>`);
-    s += `<line x1="${L}" x2="${W - 6}" y1="${H - B}" y2="${H - B}" stroke="#86988e"/>`;
+    f.values.forEach((v, i) => s += `<circle cx="${xs(i)}" cy="${ys(v)}" r="4" fill="#fff" stroke="${PAL[0]}" stroke-width="2.5"/><text x="${xs(i)}" y="${ys(v) - 9}" font-size="11.5" font-weight="700" text-anchor="middle" fill="#2a1a0e">${num(v)}</text><text x="${xs(i)}" y="${H - B + 16}" font-size="11.5" text-anchor="middle" fill="#5c4636">${f.labels[i]}</text>`);
+    s += `<line x1="${L}" x2="${W - 6}" y1="${H - B}" y2="${H - B}" stroke="#9a8b7f"/>`;
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
   if (f.type === 'pie') {
@@ -308,20 +308,20 @@ function fig(f) {
       const x0 = cx + R * Math.cos(a0), y0 = cy + R * Math.sin(a0), x1 = cx + R * Math.cos(a1), y1 = cy + R * Math.sin(a1), big = p > 50 ? 1 : 0;
       s += `<path d="M${cx},${cy} L${x0},${y0} A${R},${R} 0 ${big} 1 ${x1},${y1} Z" fill="${PAL[i % PAL.length]}" stroke="#fff" stroke-width="2"/>`;
       const am = (a0 + a1) / 2; if (f.showPct !== false) s += `<text x="${cx + R * 0.62 * Math.cos(am)}" y="${cy + R * 0.62 * Math.sin(am) + 4}" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">${num(p)}%</text>`;
-      s += `<rect x="215" y="${28 + i * 24}" width="14" height="14" rx="3" fill="${PAL[i % PAL.length]}"/><text x="236" y="${40 + i * 24}" font-size="13" fill="#0b1f17">${f.labels[i]}${f.showPct === false ? '' : ' · ' + num(p) + '%'}</text>`; });
+      s += `<rect x="215" y="${28 + i * 24}" width="14" height="14" rx="3" fill="${PAL[i % PAL.length]}"/><text x="236" y="${40 + i * 24}" font-size="13" fill="#2a1a0e">${f.labels[i]}${f.showPct === false ? '' : ' · ' + num(p) + '%'}</text>`; });
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
   if (f.type === 'box') {
     const W = 480, rowH = 64, H = 40 + f.series.length * rowH, L = 60, Rr = 20, lo = f.scale[0], hi = f.scale[1];
     const x = v => L + (v - lo) / (hi - lo) * (W - L - Rr);
     let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Diagrama de cajón">`;
-    const ticks = f.ticks || 5; for (let k = 0; k <= ticks; k++) { const v = lo + (hi - lo) * k / ticks; s += `<line x1="${x(v)}" x2="${x(v)}" y1="14" y2="${H - 26}" stroke="#e3f2ea"/><text x="${x(v)}" y="${H - 10}" font-size="11.5" text-anchor="middle" fill="#86988e">${num(Math.round(v * 10) / 10)}</text>`; }
+    const ticks = f.ticks || 5; for (let k = 0; k <= ticks; k++) { const v = lo + (hi - lo) * k / ticks; s += `<line x1="${x(v)}" x2="${x(v)}" y1="14" y2="${H - 26}" stroke="#f8e9dc"/><text x="${x(v)}" y="${H - 10}" font-size="11.5" text-anchor="middle" fill="#9a8b7f">${num(Math.round(v * 10) / 10)}</text>`; }
     f.series.forEach((b, i) => { const cy = 30 + i * rowH + 14, h = 30, c = PAL[i % PAL.length];
       s += `<line x1="${x(b.min)}" x2="${x(b.q1)}" y1="${cy}" y2="${cy}" stroke="${c}" stroke-width="2"/><line x1="${x(b.q3)}" x2="${x(b.max)}" y1="${cy}" y2="${cy}" stroke="${c}" stroke-width="2"/>`;
       s += `<line x1="${x(b.min)}" x2="${x(b.min)}" y1="${cy - 9}" y2="${cy + 9}" stroke="${c}" stroke-width="2"/><line x1="${x(b.max)}" x2="${x(b.max)}" y1="${cy - 9}" y2="${cy + 9}" stroke="${c}" stroke-width="2"/>`;
       s += `<rect x="${x(b.q1)}" y="${cy - h / 2}" width="${x(b.q3) - x(b.q1)}" height="${h}" fill="${c}" fill-opacity=".18" stroke="${c}" stroke-width="2" rx="3"/><line x1="${x(b.me)}" x2="${x(b.me)}" y1="${cy - h / 2}" y2="${cy + h / 2}" stroke="${c}" stroke-width="3"/>`;
-      if (b.name) s += `<text x="${L - 8}" y="${cy + 4}" font-size="12.5" font-weight="700" text-anchor="end" fill="#0b1f17">${b.name}</text>`;
-      if (f.labels !== false) [b.min, b.q1, b.me, b.q3, b.max].forEach(v => s += `<text x="${x(v)}" y="${cy - h / 2 - 5}" font-size="11" text-anchor="middle" fill="#3f5a4c">${num(v)}</text>`); });
+      if (b.name) s += `<text x="${L - 8}" y="${cy + 4}" font-size="12.5" font-weight="700" text-anchor="end" fill="#2a1a0e">${b.name}</text>`;
+      if (f.labels !== false) [b.min, b.q1, b.me, b.q3, b.max].forEach(v => s += `<text x="${x(v)}" y="${cy - h / 2 - 5}" font-size="11" text-anchor="middle" fill="#5c4636">${num(v)}</text>`); });
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
   if (f.type === 'picto') {
