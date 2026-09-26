@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f8a4b">
+<title>Gatito AES — Fabimath</title>
+<meta name="description" content="El gatito de Fabimath calcula tu eximición y la nota que necesitas en el examen de AES519.">
+<link rel="icon" type="image/png" href="logo/fabimath_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --royal: #0f8a4b;
+    --azure: #22a85f;
+    --sky: #5fd69a;
+    --ice: #edf9f2;
+    --ink: #0b1f17;
+    --ink-2: #3f5a4c;
+    --ink-3: #86988e;
+    --paper: #ffffff;
+    --coral: #e8342a;
+    --mint: #17a673;
+    --gold: #c98a00;
+    --radius: 20px;
+    --shadow: 0 2px 16px rgba(11,31,23,0.06);
+    --shadow-hover: 0 14px 34px rgba(15,138,75,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: linear-gradient(180deg, var(--ice) 0%, #ffffff 62%);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 22px 20px 60px;
+    overflow-x: hidden;
+  }
+  h1, .display { font-family: 'Baloo 2', 'Inter', sans-serif; }
+
+  /* mosaic blocks — signature from the logo */
+  .mosaic { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .mosaic i {
+    position: absolute; display: block; border-radius: 6px;
+    animation: drift 14s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-16px) rotate(2deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mosaic i, .cat-stage, #tail, .paw, .cursor::after { animation: none !important; }
+  }
+
+  .topbar {
+    width: 100%; max-width: 660px; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 34px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; }
+
+  h1 {
+    z-index: 1;
+    font-size: clamp(34px, 6.6vw, 52px); font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.05; text-align: center;
+  }
+  h1 .grad {
+    background: linear-gradient(100deg, var(--royal) 15%, var(--sky) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .subtitle {
+    z-index: 1; margin: 10px 0 30px; text-align: center;
+    color: var(--ink-2); font-size: 16px;
+  }
+  .subtitle b { color: var(--royal); font-weight: 600; }
+
+  .game { z-index: 1; width: 100%; max-width: 620px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+
+  /* ---------- PAW PROGRESS ---------- */
+  .paws { display: flex; gap: 10px; min-height: 20px; }
+  .paw { font-size: 16px; filter: grayscale(1) opacity(.32); transition: all .3s ease; }
+  .paw.on { filter: none; transform: scale(1.18); }
+
+  /* ---------- CAT ---------- */
+  .cat-stage { position: relative; height: 172px; display: flex; align-items: flex-end; animation: idle 3.2s ease-in-out infinite; }
+  @keyframes idle { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-5px);} }
+  .cat-stage.talking { animation: hop .4s steps(2) infinite; }
+  @keyframes hop { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+  #cat { display: grid; grid-template-columns: repeat(20, 8px); grid-auto-rows: 8px; position: relative; z-index: 2; }
+  #cat div { width: 8px; height: 8px; }
+  #tail {
+    position: absolute; right: -26px; bottom: 16px; z-index: 1;
+    display: grid; grid-template-columns: repeat(4, 8px); grid-auto-rows: 8px;
+    transform-origin: left bottom;
+    animation: wag 1.4s ease-in-out infinite;
+  }
+  @keyframes wag { 0%,100% { transform: rotate(0deg);} 50% { transform: rotate(-18deg);} }
+  #tail div { width: 8px; height: 8px; }
+  .shadow {
+    position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+    width: 130px; height: 14px; border-radius: 50%;
+    background: rgba(15,138,75,0.16); filter: blur(4px);
+  }
+  .zzz { position: absolute; right: -48px; top: -4px; color: var(--sky); font-size: 15px; font-weight: 600; animation: blink 1.2s steps(2) infinite; display: none; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .heart { position: absolute; left: -36px; top: 6px; font-size: 18px; display: none; animation: floatup 1.6s ease infinite; }
+  @keyframes floatup { 0% { transform: translateY(0); opacity: 1;} 100% { transform: translateY(-24px); opacity: 0;} }
+
+  /* ---------- DIALOG ---------- */
+  .dialog {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid rgba(11,31,23,0.08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 30px 26px 26px;
+    min-height: 132px;
+    position: relative;
+  }
+  .dialog::after {
+    content: ""; position: absolute; top: -8px; left: 46px;
+    width: 15px; height: 15px;
+    background: var(--paper);
+    border-left: 1px solid rgba(11,31,23,0.08); border-top: 1px solid rgba(11,31,23,0.08);
+    transform: rotate(45deg); border-radius: 3px 0 0 0;
+  }
+  .dialog .speaker {
+    position: absolute; top: -14px; right: 20px;
+    background: var(--royal); color: #fff;
+    font-family: 'Baloo 2', sans-serif; font-weight: 700;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    padding: 4px 14px; border-radius: 100px;
+    box-shadow: 0 6px 18px rgba(15,138,75,0.28);
+  }
+  #text { font-size: 17px; line-height: 1.7; white-space: pre-wrap; word-wrap: break-word; color: var(--ink); }
+  .cursor::after { content: "▌"; animation: blink .8s steps(2) infinite; color: var(--sky); }
+
+  /* ---------- COURSE MENU ---------- */
+  .menu { width: 100%; display: none; flex-direction: column; gap: 12px; }
+  .menu button {
+    width: 100%; text-align: left; cursor: pointer;
+    background: var(--paper);
+    border: 2px solid rgba(15,138,75,0.18);
+    border-radius: 16px;
+    padding: 16px 20px;
+    font-family: 'Inter', sans-serif;
+    transition: all .2s ease;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  }
+  .menu button:hover { border-color: var(--royal); box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .menu .t { font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 19px; color: var(--ink); display: block; }
+  .menu .d { font-size: 13.5px; color: var(--ink-3); }
+  .menu .arrow { color: var(--royal); font-size: 18px; font-weight: 600; }
+
+  /* ---------- INPUT ---------- */
+  .input-row { width: 100%; display: none; gap: 12px; }
+  #answer {
+    flex: 1; min-width: 0;
+    background: var(--paper);
+    border: 2px solid rgba(15,138,75,0.18);
+    border-radius: 100px;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    padding: 14px 22px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  #answer:focus { border-color: var(--royal); box-shadow: 0 0 0 4px rgba(15,138,75,0.10); }
+  #answer::placeholder { color: var(--ink-3); }
+  #enterBtn {
+    background: var(--royal); color: #fff;
+    border: none; border-radius: 100px;
+    font-family: 'Baloo 2', sans-serif; font-size: 16px; font-weight: 700;
+    padding: 14px 28px; cursor: pointer;
+    box-shadow: 0 6px 18px rgba(15,138,75,0.3);
+    transition: all .22s ease;
+  }
+  #enterBtn:hover { background: #0b6e3b; transform: translateY(-2px); }
+  .hint { font-size: 13px; color: var(--ink-3); text-align: center; display: none; }
+
+  /* ---------- RESULT ---------- */
+  .result {
+    display: none;
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid rgba(11,31,23,0.08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 26px 24px;
+    font-size: 15px;
+  }
+  .result .row { display: flex; justify-content: space-between; gap: 14px; border-bottom: 1px solid rgba(11,31,23,0.07); padding: 11px 0; color: var(--ink-2); }
+  .result .row:last-of-type { border-bottom: none; }
+  .result .row b { font-family: 'Baloo 2', sans-serif; font-size: 19px; font-weight: 700; color: var(--royal); }
+  .result .ok { color: var(--mint); }
+  .result .bad { color: var(--coral); }
+  .result .gold { color: var(--gold); }
+  .verdict {
+    margin-top: 18px; padding: 20px; border-radius: 16px; text-align: center;
+    font-size: 16px; line-height: 1.6;
+  }
+  .verdict .big { font-family: 'Baloo 2', sans-serif; font-size: 30px; font-weight: 800; display: block; margin: 6px 0; }
+  .verdict.win { background: rgba(23,166,115,.08); border: 2px solid var(--mint); color: #0d6b4a; }
+  .verdict.fight { background: var(--ice); border: 2px solid rgba(15,138,75,.28); color: var(--ink); }
+  .verdict.lose { background: rgba(232,52,42,.06); border: 2px solid rgba(232,52,42,.35); color: #93211b; }
+  #again {
+    display: none;
+    background: transparent; color: var(--royal);
+    border: 2px solid rgba(15,138,75,0.3); border-radius: 100px;
+    font-family: 'Baloo 2', sans-serif; font-size: 16px; font-weight: 700;
+    padding: 13px 30px; cursor: pointer;
+    transition: all .22s ease;
+  }
+  #again:hover { background: var(--ice); }
+  :focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+  .version { position: fixed; top: 4px; left: 8px; z-index: 999; font-size: 11px; color: #6b8a79; pointer-events: none; }
+</style>
+</head>
+<body>
+<span class="version">v2.00</span>
+<div class="mosaic" aria-hidden="true">
+  <i style="left:6%;  top:18%; width:38px; height:38px; background:#d7f0e2; animation-delay:0s"></i>
+  <i style="left:13%; top:58%; width:26px; height:26px; background:#bfe8d0; animation-delay:-3s"></i>
+  <i style="left:22%; top:32%; width:18px; height:18px; background:#97dcb6; animation-delay:-6s"></i>
+  <i style="right:7%;  top:22%; width:44px; height:44px; background:#d0eedd; animation-delay:-2s"></i>
+  <i style="right:16%; top:62%; width:24px; height:24px; background:#aae2c3; animation-delay:-8s"></i>
+  <i style="right:26%; top:40%; width:16px; height:16px; background:#7fd3a6; animation-delay:-4s"></i>
+  <i style="left:38%;  top:12%; width:20px; height:20px; background:#c8ecd8; animation-delay:-5s"></i>
+  <i style="right:38%; top:78%; width:30px; height:30px; background:#d7f0e2; animation-delay:-7s"></i>
+</div>
+
+<div class="topbar">
+  <span class="brand"><img src="logo/fabimath_logo.png" alt="">Fabimath</span>
+</div>
+
+<h1>Gatito <span class="grad">AES</span></h1>
+<div class="subtitle">Calculadora de eximición · <b>AES519</b></div>
+
+<div class="game">
+  <div class="paws" id="paws" aria-hidden="true"></div>
+
+  <div class="cat-stage" id="catStage">
+    <div id="cat" aria-label="Gatito pixelado de Fabimath" role="img"></div>
+    <div id="tail"></div>
+    <div class="shadow"></div>
+    <div class="zzz" id="zzz">Z z z</div>
+    <div class="heart" id="heart">💚</div>
+  </div>
+
+  <div class="dialog">
+    <div class="speaker">Gatito</div>
+    <div id="text" class="cursor"></div>
+  </div>
+
+  <div class="menu" id="menu">
+    <button data-mode="normal">
+      <span><span class="t">AES519</span><span class="d">Semestre normal · 3 ejercicios, 2 cátedras y recuperativa</span></span>
+      <span class="arrow">▶</span>
+    </button>
+    <button data-mode="invierno">
+      <span><span class="t">AES519 Invierno</span><span class="d">Sin recuperativa · 2 ejercicios y 2 cátedras</span></span>
+      <span class="arrow">▶</span>
+    </button>
+  </div>
+
+  <div class="input-row" id="inputRow">
+    <input id="answer" autocomplete="off" placeholder="escribe tu nota aquí..." aria-label="Tu respuesta" />
+    <button id="enterBtn">Enviar</button>
+  </div>
+  <div class="hint" id="hint">Notas de 1,0 a 7,0 — sirve coma o punto</div>
+
+  <div class="result" id="result"></div>
+  <button id="again">▶ Jugar de nuevo</button>
+</div>
+
+<script>
+/* ---------- palette ---------- */
+const P = {
+  '.': null,
+  'K': '#0a1a12',   // outline
+  'B': '#3ec272',   // body
+  'b': '#2a9c58',   // body shade
+  'S': '#1f7f47',   // stripes
+  'W': '#ffffff',   // muzzle/chest
+  'w': '#dcf5e6',   // fur light shade
+  'E': '#0a1a12',   // pupil
+  'G': '#9fe8c2',   // eye shine
+  'P': '#ff9ecb',   // inner ear / nose
+  'Y': '#ffd75e',   // collar
+  'R': '#e8342a'    // collar tag (logo red)
+};
+
+/* 20-wide cat, eyes open */
+const CAT_OPEN = [
+"...KK..........KK...",
+"..KBBK........KBBK..",
+".KBPPBK......KBPPBK.",
+".KBPPBBKKKKKKBBPPBK.",
+".KBBBBBBBBBBBBBBBBK.",
+".KBBSBBBBBBBBBBSBBK.",
+"KBBBBBBBBBBBBBBBBBBK",
+"KBBKEGKBBBBBBKEGKBBK",
+"KBBKEEKBbBBbBKEEKBBK",
+"KBBBBBBBWWWWBBBBBBBK",
+"KBbBBBBWWPPWWBBBBbBK",
+"KBbBBBBWWWWWWBBBBbBK",
+".KBBBBBBWWWWBBBBBBK.",
+".KBBYYYYYYYYYYYYBBK.",
+".KBBYYYYRRYYYYYYBBK.",
+".KBBBBBBBBBBBBBBBBK.",
+".KBbBBBBBBBBBBBBbBK.",
+".KBbBBBBBBBBBBBBbBK.",
+"..KBBKKBBBBBBKKBBK..",
+"...KK..KKKKKK..KK..."
+];
+/* eyes closed (blink) — rows 7-8 replaced */
+const CAT_BLINK = CAT_OPEN.map((r, i) => {
+  if (i === 7) return "KBBKKKKBBBBBBKKKKBBK";
+  if (i === 8) return "KBBBBBBBBbBBbBBBBBBK";
+  return r;
+});
+const TAIL = [
+"..KK",
+".KBK",
+"KBBK",
+"KBK."
+];
+
+const catEl = document.getElementById('cat');
+function renderCat(sprite) {
+  catEl.innerHTML = '';
+  sprite.forEach(row => {
+    for (const ch of row) {
+      const d = document.createElement('div');
+      if (P[ch]) d.style.background = P[ch];
+      catEl.appendChild(d);
+    }
+  });
+}
+renderCat(CAT_OPEN);
+const tailEl = document.getElementById('tail');
+TAIL.forEach(row => {
+  for (const ch of row) {
+    const d = document.createElement('div');
+    if (P[ch]) d.style.background = P[ch];
+    tailEl.appendChild(d);
+  }
+});
+/* blink loop */
+setInterval(() => {
+  renderCat(CAT_BLINK);
+  setTimeout(() => renderCat(CAT_OPEN), 160);
+}, 3800);
+
+/* ---------- typewriter ---------- */
+const textEl = document.getElementById('text');
+const stage = document.getElementById('catStage');
+let typing = false;
+function say(msg) {
+  return new Promise(res => {
+    typing = true;
+    stage.classList.add('talking');
+    textEl.textContent = '';
+    let i = 0;
+    const t = setInterval(() => {
+      textEl.textContent += msg[i++];
+      if (i >= msg.length) {
+        clearInterval(t);
+        typing = false;
+        stage.classList.remove('talking');
+        res();
+      }
+    }, 22);
+  });
+}
+
+/* ---------- game ---------- */
+const input = document.getElementById('answer');
+const inputRow = document.getElementById('inputRow');
+const hint = document.getElementById('hint');
+const menu = document.getElementById('menu');
+const btn = document.getElementById('enterBtn');
+const resultEl = document.getElementById('result');
+const heart = document.getElementById('heart');
+const againBtn = document.getElementById('again');
+const pawsEl = document.getElementById('paws');
+
+const fmt = n => n.toFixed(2).replace('.', ',');
+const fmt1 = n => n.toFixed(1).replace('.', ',');
+function parseNota(s) {
+  const v = parseFloat(s.trim().replace(',', '.'));
+  if (isNaN(v) || v < 1.0 || v > 7.0) return null;
+  return v;
+}
+
+/* preguntas por curso — mismo cálculo, distinta cantidad de notas */
+const FLOWS = {
+  normal: {
+    label: 'AES519',
+    steps: [
+      { k: 'e', q: "¿Qué nota sacaste en el EJERCICIO 1?" },
+      { k: 'e', q: "¿Y en el EJERCICIO 2?" },
+      { k: 'e', q: "¿Y en el EJERCICIO 3?" },
+      { k: 'c', q: "¿Qué nota sacaste en la CÁTEDRA 1?" },
+      { k: 'c', q: "¿Y en la CÁTEDRA 2?" },
+      { k: 'rec', q: "¿Diste la RECUPERATIVA?\nEscribe la nota, o \"no\" si no la diste.", opt: true }
+    ]
+  },
+  invierno: {
+    label: 'AES519 Invierno',
+    steps: [
+      { k: 'e', q: "¿Qué nota sacaste en el EJERCICIO 1?" },
+      { k: 'e', q: "¿Y en el EJERCICIO 2?" },
+      { k: 'c', q: "¿Qué nota sacaste en la CÁTEDRA 1?" },
+      { k: 'c', q: "¿Y en la CÁTEDRA 2?" }
+    ]
+  }
+};
+
+let flow = null, idx = 0;
+const notas = { e: [], c: [], rec: null };
+
+function paint() {
+  pawsEl.innerHTML = '';
+  flow.steps.forEach((_, i) => {
+    const s = document.createElement('span');
+    s.className = 'paw' + (i < idx ? ' on' : '');
+    s.textContent = '🐾';
+    pawsEl.appendChild(s);
+  });
+}
+
+async function start() {
+  await say("miau~ hola! soy el gatito de Fabimath (◕ᴥ◕)\n\n¿Qué curso estás dando?");
+  menu.style.display = 'flex';
+}
+
+menu.addEventListener('click', async e => {
+  const b = e.target.closest('button[data-mode]');
+  if (!b || typing) return;
+  flow = FLOWS[b.dataset.mode];
+  menu.style.display = 'none';
+  inputRow.style.display = 'flex';
+  hint.style.display = 'block';
+  paint();
+  heart.style.display = 'block'; setTimeout(() => heart.style.display = 'none', 1800);
+  await say("purrfecto, " + flow.label + "! te ayudo con tus notas (=^･ω･^=)\n\n" + flow.steps[0].q);
+  input.focus();
+});
+
+async function handle(raw) {
+  if (!flow || idx >= flow.steps.length) return;
+  const cur = flow.steps[idx];
+  const val = raw.trim().toLowerCase();
+
+  if (cur.opt && ['no', 'n', ''].includes(val)) {
+    notas.rec = null;
+  } else {
+    const n = parseNota(val);
+    if (n === null) {
+      await say(cur.opt
+        ? "miau?? escribe una nota entre 1,0 y 7,0... o \"no\""
+        : "esa nota no existe miau! debe estar entre 1,0 y 7,0");
+      return;
+    }
+    if (cur.k === 'rec') notas.rec = n; else notas[cur.k].push(n);
+  }
+
+  idx++; paint();
+  if (idx < flow.steps.length) {
+    const pre = cur.k === 'rec' ? '' : "anotado ✓\n\n";
+    await say(pre + flow.steps[idx].q);
+  } else {
+    await finish();
+  }
+}
+
+async function finish() {
+  input.disabled = true; btn.disabled = true;
+  inputRow.style.display = 'none'; hint.style.display = 'none';
+
+  let [c1, c2] = notas.c;
+  let recMsg = '';
+  if (notas.rec !== null) {
+    const worst = Math.min(c1, c2);
+    if (notas.rec > worst) {
+      if (c1 <= c2) c1 = notas.rec; else c2 = notas.rec;
+      recMsg = 'Reemplazó tu peor cátedra (' + fmt(worst) + ')';
+    } else {
+      recMsg = 'No supera tu peor cátedra (' + fmt(worst) + ') — sin cambios';
+    }
+  }
+
+  const PE = notas.e.reduce((a, b) => a + b, 0) / notas.e.length;
+  const PC = (c1 + c2) / 2;
+  const present = (0.2 * PE + 0.5 * PC) / 0.7;
+  const exime = present >= 5.45;
+
+  let html = '<div class="row"><span>Curso</span><span>' + flow.label + '</span></div>';
+  if (recMsg) html += '<div class="row"><span class="gold">Recuperativa (' + fmt(notas.rec) + ')</span><span>' + recMsg + '</span></div>';
+  html += '<div class="row"><span>Promedio ejercicios (PE)</span><b>' + fmt(PE) + '</b></div>';
+  html += '<div class="row"><span>Promedio cátedras (PC)</span><b>' + fmt(PC) + '</b></div>';
+  html += '<div class="row"><span>Nota de presentación (≥ 5,45 exime)</span><b>' + fmt(present) + '</b></div>';
+
+  if (exime) {
+    html += '<div class="verdict win">★ Te eximes del examen ★<span class="big">' + fmt(present) + '</span>miau felicidades!! ᕕ(=^･ω･^=)ᕗ</div>';
+    heart.style.display = 'block';
+    await say("miré tus notas con mis ojitos de gato...\n\nMIAAAU!! TE EXIMES!! ★\n\nnota final: " + fmt(present) + "\nfelicidades!! (=^･ω･^=)ノ彡☆");
+  } else {
+    /* las notas van de décima en décima: se sube al siguiente décimo alcanzable */
+    const need = Math.ceil((3.95 - 0.2 * PE - 0.5 * PC) / 0.3 * 10 - 1e-9) / 10;
+    if (need <= 1.0) {
+      /* ausente al examen se califica 1,0: igual aprueba, pero le baja el promedio */
+      const sinExamen = 0.2 * PE + 0.5 * PC + 0.3;
+      html += '<div class="verdict fight">No te eximes, pero apruebas pase lo que pase: incluso con un <span class="ok">1,0</span> en el examen quedas sobre 3,95 miau!'
+            + '<br><br>Si no te presentas al examen apruebas igual, con nota<span class="big">' + fmt(sinExamen) + '</span>'
+            + 'pero te baja el promedio: presentándote bien puedes llegar hasta <span class="ok">' + fmt(0.2 * PE + 0.5 * PC + 0.3 * 7) + '</span>.</div>';
+      await say("no te eximes miau... PERO tranqui:\nincluso con un 1,0 en el examen apruebas!\n\nsi no te presentas quedas con " + fmt(sinExamen) + ",\nasí que te bajaría el promedio.\n\n(=^-ω-^=) tú decides");
+    } else if (need > 7.0) {
+      html += '<div class="verdict lose">No te eximes, y necesitarías un <span class="bad">' + fmt1(need) + '</span> en el examen (más que 7,0).<br>No es posible aprobar (╥﹏╥)</div>';
+      await say("miau... no te eximes y necesitarías\nmás de un 7,0 en el examen...\n\nno se puede aprobar (╥﹏╥) lo siento michi...");
+    } else {
+      html += '<div class="verdict fight">No te eximes. Para aprobar (final ≥ 3,95) necesitas en el examen:<span class="big">' + fmt1(need) + '</span>o más — tú puedes miau!! ᕙ(=^･ω･^=)ᕗ</div>';
+      await say("no te eximes miau...\n\npara aprobar necesitas un " + fmt1(need) + " o más\nen el examen.\n\ntú puedes!! ᕙ(=^･ω･^=)ᕗ");
+    }
+  }
+  resultEl.innerHTML = html;
+  resultEl.style.display = 'block';
+  againBtn.style.display = 'block';
+}
+
+async function submit() {
+  if (typing || input.disabled) return;
+  const v = input.value; input.value = '';
+  await handle(v);
+  input.focus();
+}
+btn.addEventListener('click', submit);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+againBtn.addEventListener('click', () => location.reload());
+
+start();
+</script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f8a4b">
+<title>Gatos de Estadística — Fabimath</title>
+<meta name="description" content="Quiz interactivo de estadística: Clasificación de Variables, Datos Cualitativos Nominales, Intervalos de Confianza, Test de Hipótesis, Normal, Condicional y Bayes. 5 ejercicios al azar con alternativas y pauta completa.">
+<link rel="icon" type="image/png" href="logo/fabimath_logo.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+<script src="vc_questions.js"></script>
+<script src="ic_questions.js"></script>
+<script src="th_questions.js"></script>
+<script src="nm_questions.js"></script>
+<script src="pc_questions.js"></script>
+<script src="bt_questions.js"></script>
+<script src="cn_questions.js"></script>
+<script src="cd_questions.js"></script>
+<script src="mv_questions.js"></script>
+<script src="cc_questions.js"></script>
+<style>
+  :root {
+    --royal: #0f8a4b;
+    --azure: #22a85f;
+    --sky: #5fd69a;
+    --ink: #0b1f17;
+    --panel: #123528;
+    --panel-2: #0e2a20;
+    --text: #eafaf1;
+    --gold: #ffd75e;
+    --mint: #4ade80;
+    --coral: #ff6b61;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+    --accent: var(--sky);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: radial-gradient(900px 500px at 50% -10%, #174a33 0%, transparent 60%), var(--ink);
+    color: var(--text); font-family: var(--sans);
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 18px 16px 60px; overflow-x: hidden; line-height: 1.5;
+  }
+  .mosaic { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .mosaic i { position: absolute; display: block; border-radius: 4px; opacity: .5; animation: drift 16s ease-in-out infinite; }
+  @keyframes drift { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-18px);} }
+  @media (prefers-reduced-motion: reduce) { .mosaic i, .cat-box, .topic-card .tc-cat { animation: none !important; } }
+
+  .topbar { width: 100%; max-width: 820px; z-index: 1; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .topbar a { color: var(--sky); font-size: 13px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .topbar a img { width: 28px; height: 28px; border-radius: 8px; }
+  .topbar a:hover { color: #fff; }
+
+  .header { z-index: 1; text-align: center; margin-bottom: 24px; }
+  .header h1 {
+    font-size: clamp(26px, 5vw, 40px); font-weight: 800; letter-spacing: -0.02em;
+    background: linear-gradient(100deg, var(--sky), #a6ecc6);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .header .sub { font-size: 13px; color: #7fbf9d; margin-top: 6px; }
+
+  .screen { z-index: 1; width: 100%; max-width: 820px; }
+  .hidden { display: none !important; }
+
+  /* ---------- TOPIC MENU ---------- */
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+  .topic-card {
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border: 2px solid #2a5e44; border-radius: 20px; padding: 26px 22px; text-align: center;
+    cursor: pointer; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .topic-card:hover, .topic-card:focus-visible { transform: translateY(-5px); border-color: var(--tc-accent, var(--sky)); box-shadow: 0 14px 34px rgba(0,0,0,.34); }
+  .topic-card .tc-cat { animation: idle 3.4s ease-in-out infinite; margin-bottom: 14px; }
+  @keyframes idle { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-5px);} }
+  .topic-card h3 { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .topic-card .tc-name { font-size: 12.5px; color: var(--tc-accent, var(--sky)); font-weight: 600; margin-bottom: 10px; }
+  .topic-card p { font-size: 13.5px; color: #b8dcc8; }
+  .topic-card .tc-count { font-size: 11.5px; color: #6f9c84; margin-top: 12px; }
+  .topic-card.soon { opacity: .5; cursor: default; }
+  .topic-card.soon:hover { transform: none; border-color: #2a5e44; box-shadow: none; }
+  .menu-hint { font-size: 12.5px; color: #6f9c84; text-align: center; margin-top: 20px; }
+
+  /* ---------- CAT ---------- */
+  .cat-box { position: relative; display: flex; justify-content: center; margin-bottom: 18px; animation: idle 3.4s ease-in-out infinite; }
+  .cat-box.talking { animation: hop .4s steps(2) infinite; }
+  @keyframes hop { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-6px);} }
+  .char-img { display: block; image-rendering: pixelated; }
+  .char-img.pop { animation: pop .38s ease; }
+  @keyframes pop { 0% { transform: scale(.9);} 55% { transform: scale(1.07);} 100% { transform: scale(1);} }
+  .catgrid { display: grid; }
+  .catgrid div { }
+
+  /* ---------- QUIZ ---------- */
+  .quiz-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .quiz-top .qt-name { font-size: 14px; font-weight: 700; color: var(--accent); }
+  .progress-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 13px; color: #8fb9a4; }
+  .progress-row .score { color: var(--gold); font-weight: 700; }
+  .pbar { height: 6px; background: #1a3f2e; border-radius: 100px; overflow: hidden; margin-bottom: 20px; }
+  .pbar > div { height: 100%; background: linear-gradient(90deg, var(--azure), var(--accent)); transition: width .3s ease; }
+
+  .card { background: linear-gradient(180deg, var(--panel), var(--panel-2)); border: 1px solid #2a5e44; border-radius: 18px; padding: 22px 22px 24px; box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+  .quiz-body { display: flex; gap: 18px; align-items: flex-start; }
+  @media (max-width: 640px) { .quiz-body { flex-direction: column; align-items: center; } }
+  .quiz-cat { flex-shrink: 0; }
+  .quiz-q { flex: 1; width: 100%; }
+  .qtype { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .04em; color: var(--royal); background: #dcf5e6; padding: 5px 12px; border-radius: 100px; margin-bottom: 6px; }
+  .qctx { font-size: 12.5px; color: #8fb9a4; margin-bottom: 12px; }
+  .qenun { font-size: 15.5px; color: #eafaf1; line-height: 1.65; margin-bottom: 14px; }
+  .qtable { margin: 0 0 16px; overflow-x: auto; }
+  .qtable table { border-collapse: collapse; font-size: 13.5px; min-width: 240px; }
+  .qtable th, .qtable td { border: 1px solid #2c5c45; padding: 8px 14px; text-align: center; }
+  .qtable thead th { background: #1a3f2e; color: var(--sky); font-weight: 700; }
+  .qtable tbody th { background: #143527; color: #cdebd9; font-weight: 600; text-align: left; }
+  .qtable tbody td { color: #eafaf1; }
+
+  /* ---------- CHART (barras / torta) ---------- */
+  .qchart { margin: 0 0 16px; }
+  .bar-chart { display: flex; align-items: flex-end; gap: 14px; height: 150px; padding: 6px 4px 0; overflow-x: auto; }
+  .bar-chart .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1 0 auto; min-width: 44px; height: 100%; }
+  .bar-chart .bar-val { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+  .bar-chart .bar-rect { width: 30px; border-radius: 6px 6px 0 0; background: linear-gradient(180deg, var(--accent), var(--azure)); }
+  .bar-chart .bar-lbl { font-size: 11px; color: #9fc4b1; margin-top: 6px; text-align: center; max-width: 64px; }
+  .pie-wrap { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .pie-circle { width: 130px; height: 130px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 1px #2c5c45; }
+  .pie-legend { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+  .pie-legend .pl-row { display: flex; align-items: center; gap: 8px; color: #eafaf1; }
+  .pie-legend .pl-sw { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+  .pie-legend .pl-pct { color: #9fc4b1; margin-left: auto; padding-left: 10px; }
+  .qchart-n { font-size: 12px; color: #8fb9a4; margin-top: 8px; }
+  .qask { font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 14px; }
+
+  .alts { display: flex; flex-direction: column; gap: 11px; }
+  .alt-btn { background: #0c2118; border: 2px solid #2a5e44; border-radius: 13px; color: var(--text); font-family: var(--sans); font-size: 15px; padding: 15px 16px; cursor: pointer; text-align: left; display: flex; gap: 13px; align-items: center; transition: border-color .15s, background .15s, transform .1s; }
+  .alt-btn:hover:not(:disabled) { border-color: var(--accent); background: #0f2c20; transform: translateX(2px); }
+  .alt-btn:disabled { cursor: default; }
+  .alt-btn .key { flex-shrink: 0; width: 30px; height: 30px; border-radius: 8px; background: #1a3f2e; color: var(--accent); font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .alt-btn.correct { border-color: var(--mint); background: rgba(74,222,128,.13); }
+  .alt-btn.correct .key { background: var(--mint); color: #06331b; }
+  .alt-btn.wrong { border-color: var(--coral); background: rgba(255,107,97,.12); }
+  .alt-btn.wrong .key { background: var(--coral); color: #3a0806; }
+
+  .pauta { display: none; margin-top: 18px; background: #ffffff; color: #14261d; border-radius: 14px; padding: 20px 20px 18px; box-shadow: 0 8px 24px rgba(0,0,0,.28); }
+  .pauta .p-flag { font-size: 14px; font-weight: 800; margin-bottom: 12px; }
+  .pauta.good .p-flag { color: #10893e; }
+  .pauta.bad .p-flag { color: #d33328; }
+  .pauta .p-head { font-size: 14px; color: #2a4a3a; margin-bottom: 12px; line-height: 1.7; }
+  .pauta .p-steps { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 14px; }
+  .pauta .p-step { background: #f2faf5; border-left: 3px solid var(--royal); border-radius: 8px; padding: 11px 14px; overflow-x: auto; }
+  .pauta .p-conc { font-size: 13.5px; color: #14261d; background: #edf9f2; border-radius: 8px; padding: 12px 14px; line-height: 1.6; }
+  .pauta .p-conc b { color: var(--royal); }
+
+  .nav-row { margin-top: 18px; display: flex; gap: 10px; justify-content: space-between; }
+  .btn { background: linear-gradient(180deg, var(--azure), var(--royal)); border: none; border-radius: 13px; color: #fff; font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 14px 26px; cursor: pointer; box-shadow: 0 6px 18px rgba(15,138,75,.34); transition: transform .15s ease, filter .2s; }
+  .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .btn.ghost { background: transparent; color: var(--accent); border: 2px solid var(--royal); box-shadow: none; }
+  .btn.ghost:hover { background: var(--royal); color: #fff; }
+
+  .final { text-align: center; }
+  .final .ring { width: 130px; height: 130px; border-radius: 50%; margin: 6px auto 16px; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--accent) var(--deg,0deg), #1a3f2e 0deg); }
+  .final .ring .inner { width: 106px; height: 106px; border-radius: 50%; background: var(--panel-2); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  .final .ring .big { font-size: 30px; font-weight: 800; color: #fff; }
+  .final .ring .lbl { font-size: 11px; color: #8fb9a4; }
+  .final h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  .final p { font-size: 15px; color: #c7e4d4; max-width: 520px; margin: 0 auto 6px; }
+  :focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .katex { font-size: 1.05em; }
+</style>
+</head>
+<body>
+<div class="mosaic" aria-hidden="true">
+  <i style="left:5%;  top:14%; width:30px; height:30px; background:#175a3a; animation-delay:0s"></i>
+  <i style="left:12%; top:64%; width:20px; height:20px; background:#1c6e45; animation-delay:-4s"></i>
+  <i style="right:8%;  top:20%; width:36px; height:36px; background:#144d33; animation-delay:-2s"></i>
+  <i style="right:18%; top:70%; width:22px; height:22px; background:#1c6e45; animation-delay:-7s"></i>
+  <i style="left:30%;  top:8%;  width:16px; height:16px; background:#227f50; animation-delay:-5s"></i>
+  <i style="right:34%; top:86%; width:26px; height:26px; background:#175a3a; animation-delay:-9s"></i>
+</div>
+
+<div class="topbar">
+  <a href="index.html"><img src="logo/fabimath_logo.png" alt="">Fabimath</a>
+  <a href="aes.html">Gatito AES →</a>
+</div>
+
+<div class="header">
+  <h1>Gatos de Estadística</h1>
+  <div class="sub">Elige un gato para practicar · 5 ejercicios al azar · con pauta completa</div>
+</div>
+
+<!-- TOPIC MENU -->
+<div class="screen" id="menuScreen">
+  <div class="topic-grid" id="topicGrid"></div>
+  <div class="menu-hint">Cada gato practica un tema distinto. Responde con clic o teclas A · B · C · D — Enter para continuar.</div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen hidden" id="quizScreen">
+  <div class="progress-row">
+    <span id="qCounter">Pregunta 1 de 5</span>
+    <span class="score" id="scoreLabel">0 correctas</span>
+  </div>
+  <div class="pbar"><div id="pbarFill" style="width:20%"></div></div>
+  <div class="card">
+    <div class="quiz-body">
+      <div class="quiz-cat cat-box" id="quizCatBox"><div class="catgrid" id="quizCatGrid"></div></div>
+      <div class="quiz-q">
+        <span class="qtype" id="qType"></span>
+        <div class="qctx" id="qCtx"></div>
+        <div class="qenun" id="qEnun"></div>
+        <div class="qtable" id="qTable"></div>
+        <div class="qask" id="qAsk"></div>
+        <div class="alts" id="alts"></div>
+      </div>
+    </div>
+    <div class="pauta" id="pauta">
+      <div class="p-flag" id="pFlag"></div>
+      <div class="p-head" id="pHead"></div>
+      <div class="p-steps" id="pSteps"></div>
+      <div class="p-conc" id="pConc"></div>
+    </div>
+    <div class="nav-row">
+      <button class="btn ghost" id="quitBtn">◀ Temas</button>
+      <button class="btn hidden" id="nextBtn">Siguiente ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL -->
+<div class="screen hidden" id="finalScreen">
+  <div class="card final">
+    <div class="cat-box" style="margin-bottom:6px"><div class="catgrid" id="finalCatGrid"></div></div>
+    <div class="ring" id="ring"><div class="inner"><span class="big" id="finalScore">0/5</span><span class="lbl">correctas</span></div></div>
+    <h2 id="finalTitle"></h2>
+    <p id="finalMsg"></p>
+    <div class="nav-row" style="justify-content:center; margin-top:22px;">
+      <button class="btn ghost" id="homeBtn">◀ Elegir otro gato</button>
+      <button class="btn" id="retryBtn">↻ Otras 5 preguntas</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------- pixel cat sprite (scholar w/ glasses) ---------------- */
+const SPRITE = [
+"...KK..........KK...",
+"..KBBK........KBBK..",
+".KBPPBK......KBPPBK.",
+".KBPPBBKKKKKKBBPPBK.",
+".KBBBBBBBBBBBBBBBBK.",
+"KBBBBBBBBBBBBBBBBBBK",
+"KBAAAAABBBBAAAAAABK",
+"KBAEGAABbBBAAEGAABK",
+"KBAAAABWWWWBAAAAABK",
+"KBbBBBWWPPWWBBBBbBK",
+".KBBBBBWWWWBBBBBBK.",
+".KBBYYYYYRYYYYYBBK.",
+".KBBBBBBBBBBBBBBBBK.",
+".KBbBBBBBBBBBBBBbBK.",
+"..KBBKKBBBBBBKKBBK..",
+"...KK..KKKKKK..KK..."
+];
+function palette(body, shade) {
+  return { '.':null,'K':'#0a1a12','B':body,'b':shade,'W':'#ffffff','w':'#dcf5e6',
+           'E':'#0a1a12','G':'#d2f3e2','P':'#ff9ecb','Y':'#ffd75e','A':'#12261c','R':'#e8342a' };
+}
+function drawCat(el, cell, pal) {
+  el.innerHTML = '';
+  el.style.gridTemplateColumns = `repeat(20, ${cell}px)`;
+  el.style.gridAutoRows = `${cell}px`;
+  SPRITE.forEach(row => { for (const ch of row) {
+    const d = document.createElement('div');
+    d.style.width = cell+'px'; d.style.height = cell+'px';
+    if (pal[ch]) d.style.background = pal[ch];
+    el.appendChild(d);
+  }});
+}
+
+/* Draws the topic mascot: image sprite with mood (if the topic has one) or the pixel cat. */
+function drawChar(el, cell, t, mood) {
+  if (t.imgs) {
+    const size = cell * 22;
+    el.style.gridTemplateColumns = 'none';
+    el.innerHTML = `<img class="char-img pop" src="${t.imgs[mood] || t.imgs.neutro}" alt="${t.name}" width="${size}" height="${size}">`;
+    const img = el.firstChild;
+    img.addEventListener('animationend', () => img.classList.remove('pop'), { once: true });
+  } else {
+    drawCat(el, cell, palette(t.body, t.shade));
+  }
+}
+
+/* ---------------- topics (extensible) ---------------- */
+const TOPICS = [
+  {
+    id:'vc', title:'Gato de las Variables', name:'Clasificación de Variables',
+    desc:'Identifica la variable de estudio y clasifícala: nominal, ordinal, discreta o continua.',
+    bank: (typeof VC_QUESTIONS!=='undefined') ? VC_QUESTIONS : [],
+    body:'#eab308', shade:'#b98a06', accent:'#fde047',
+    guide:'Guía 0 — Identificación y Clasificación de Variables'
+  },
+  {
+    id:'ic', title:'Gato de Intervalos', name:'Intervalos de Confianza',
+    desc:'Media (z y t) y proporción. Elige el intervalo correcto entre 4 alternativas.',
+    bank: (typeof IC_QUESTIONS!=='undefined') ? IC_QUESTIONS : [],
+    body:'#3ec272', shade:'#2a9c58', accent:'#5fd69a',
+    guide:'Guía 5 — Intervalos de Confianza'
+  },
+  {
+    id:'th', title:'Gato de Test', name:'Test de Hipótesis',
+    desc:'Media con σ conocida (Z) y desconocida (t). Calcula el estadístico y decide sobre H₀.',
+    bank: (typeof TH_QUESTIONS!=='undefined') ? TH_QUESTIONS : [],
+    body:'#f0883e', shade:'#d96f22', accent:'#ffb066',
+    guide:'Guía 6 — Test de Hipótesis'
+  },
+  {
+    id:'nm', title:'Gato de la Normal', name:'Probabilidades con la Normal',
+    desc:'Estandariza X ~ N(μ,σ) y calcula P(X<x), P(X>x) o P(x₁<X<x₂) con la tabla Φ(z).',
+    bank: (typeof NM_QUESTIONS!=='undefined') ? NM_QUESTIONS : [],
+    body:'#a78bfa', shade:'#7c5cf0', accent:'#c4b5fd',
+    guide:'Guía 4 — Distribución Normal'
+  },
+  {
+    id:'pc', title:'Gato Condicional', name:'Probabilidad Condicional',
+    desc:'Tablas de contingencia: probabilidad conjunta P(A∩B), unión P(A∪B) y condicional P(A|B).',
+    bank: (typeof PC_QUESTIONS!=='undefined') ? PC_QUESTIONS : [],
+    body:'#f472b6', shade:'#db2f8f', accent:'#f9a8d4',
+    guide:'Guía de Probabilidad Condicional'
+  },
+  {
+    id:'bt', title:'Gato de Bayes', name:'Probabilidad Total y Bayes',
+    desc:'Diagramas de árbol: calcula la probabilidad total de un resultado y actualiza la causa con Bayes.',
+    bank: (typeof BT_QUESTIONS!=='undefined') ? BT_QUESTIONS : [],
+    body:'#34d399', shade:'#0ea371', accent:'#6ee7b7',
+    guide:'Guía de Probabilidad Total y Bayes'
+  },
+  {
+    id:'cn', title:'Gato Nominal', name:'Datos Cualitativos Nominales',
+    desc:'Tablas de frecuencia (f_i, h_i, h_i%): constrúyelas desde datos crudos, léelas o interprétalas desde un gráfico.',
+    bank: (typeof CN_QUESTIONS!=='undefined') ? CN_QUESTIONS : [],
+    body:'#38bdf8', shade:'#0ea5c7', accent:'#7dd3fc',
+    guide:'Guía — Tablas de Frecuencia (Datos Cualitativos Nominales)'
+  },
+  {
+    id:'cd', title:'Gato Discreto', name:'Datos Cuantitativos Discretos',
+    desc:'Tablas con acumuladas (F_i, H_i), lectura "a lo más / más de", y media, mediana y moda desde datos o tablas.',
+    bank: (typeof CD_QUESTIONS!=='undefined') ? CD_QUESTIONS : [],
+    body:'#a3e635', shade:'#7bb418', accent:'#bef264',
+    guide:'Guía — Tablas de Frecuencia (Datos Cuantitativos Discretos)'
+  },
+  {
+    id:'mv', title:'Gato Variable', name:'Medidas de Variabilidad',
+    desc:'Rango, varianza s², desviación estándar y coeficiente de variación; compara homogeneidad entre variables con el CV.',
+    bank: (typeof MV_QUESTIONS!=='undefined') ? MV_QUESTIONS : [],
+    body:'#fb923c', shade:'#d9701c', accent:'#fdba74',
+    guide:'Guía — Medidas de Variabilidad (Datos Cuantitativos Discretos)'
+  },
+  {
+    id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos',
+    desc:'Tablas con clases $[L_i,L_s)$ y marca de clase: lectura, promedio, mediana y moda interpoladas, varianza y CV.',
+    bank: (typeof CC_QUESTIONS!=='undefined') ? CC_QUESTIONS : [],
+    body:'#2dd4bf', shade:'#0d9488', accent:'#5eead4',
+    guide:'Guía — Tablas de Frecuencia (Datos Cuantitativos Continuos)'
+  }
+];
+
+/* ---------------- chart renderer (barras / torta) ---------------- */
+const CHART_PALETTE = ['#5fd69a','#4ade80','#ffd75e','#ff6b61','#a78bfa','#f472b6','#34d399','#f0883e'];
+function renderChart(chart) {
+  if (chart.type === 'bar') {
+    const max = Math.max(...chart.values) || 1;
+    const cols = chart.labels.map((lbl, i) => {
+      const v = chart.values[i];
+      const hpct = Math.max(6, Math.round(v / max * 88));
+      return `<div class="bar-col"><span class="bar-val">${v}</span><div class="bar-rect" style="height:${hpct}%;background:${CHART_PALETTE[i % CHART_PALETTE.length]}"></div><span class="bar-lbl">${lbl}</span></div>`;
+    }).join('');
+    return `<div class="bar-chart">${cols}</div><div class="qchart-n">${chart.unit || ''}</div>`;
+  }
+  if (chart.type === 'pie') {
+    let acc = 0;
+    const stops = chart.labels.map((lbl, i) => {
+      const start = acc; acc += chart.pct[i];
+      return `${CHART_PALETTE[i % CHART_PALETTE.length]} ${start}% ${acc}%`;
+    }).join(', ');
+    const legend = chart.labels.map((lbl, i) =>
+      `<div class="pl-row"><span class="pl-sw" style="background:${CHART_PALETTE[i % CHART_PALETTE.length]}"></span>${lbl}<span class="pl-pct">${chart.pct[i]}%</span></div>`
+    ).join('');
+    return `<div class="pie-wrap"><div class="pie-circle" style="background:conic-gradient(${stops})"></div><div class="pie-legend">${legend}</div></div><div class="qchart-n">Total N = ${chart.N}</div>`;
+  }
+  return '';
+}
+
+/* ---------------- KaTeX ---------------- */
+function renderMath(el) {
+  if (window.renderMathInElement) {
+    renderMathInElement(el, { delimiters:[
+      {left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}
+    ], throwOnError:false });
+  }
+}
+
+/* ---------------- build menu ---------------- */
+const topicGrid = document.getElementById('topicGrid');
+TOPICS.forEach((t, i) => {
+  const card = document.createElement('button');
+  card.className = 'topic-card';
+  card.style.setProperty('--tc-accent', t.accent);
+  card.innerHTML = `<div class="tc-cat"><div class="catgrid" id="menuCat${i}"></div></div>
+    <h3>${t.title}</h3><div class="tc-name">${t.name}</div><p>${t.desc}</p>
+    <div class="tc-count">${t.bank.length} ejercicios · 5 por ronda</div>`;
+  card.addEventListener('click', () => startTopic(i));
+  topicGrid.appendChild(card);
+  drawChar(card.querySelector(`#menuCat${i}`), 6, t, 'saludo');
+});
+
+/* ---------------- game state ---------------- */
+const menuScreen = document.getElementById('menuScreen');
+const quizScreen = document.getElementById('quizScreen');
+const finalScreen = document.getElementById('finalScreen');
+const altsEl = document.getElementById('alts');
+const pauta = document.getElementById('pauta');
+const nextBtn = document.getElementById('nextBtn');
+const quizCatBox = document.getElementById('quizCatBox');
+
+const N_QUIZ = 5;
+let topic = null, round = [], idx = 0, score = 0, answered = false, order = [];
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function startTopic(i) {
+  topic = TOPICS[i];
+  document.documentElement.style.setProperty('--accent', topic.accent);
+  drawChar(document.getElementById('quizCatGrid'), 6, topic, 'neutro');
+  const pool = shuffle([...Array(topic.bank.length).keys()]).slice(0, N_QUIZ);
+  round = pool.map(k => topic.bank[k]);
+  idx = 0; score = 0;
+  menuScreen.classList.add('hidden');
+  finalScreen.classList.add('hidden');
+  quizScreen.classList.remove('hidden');
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = round[idx];
+  answered = false;
+  pauta.style.display = 'none'; pauta.className = 'pauta';
+  nextBtn.classList.add('hidden');
+  document.getElementById('qCounter').textContent = `Pregunta ${idx+1} de ${N_QUIZ}`;
+  document.getElementById('scoreLabel').textContent = `${score} correctas`;
+  document.getElementById('pbarFill').style.width = `${idx/N_QUIZ*100}%`;
+  document.getElementById('qType').textContent = q.tipo;
+  document.getElementById('qCtx').textContent = q.ctx;
+  document.getElementById('qEnun').textContent = q.enun;
+  const tEl = document.getElementById('qTable');
+  if (q.chart) {
+    tEl.innerHTML = renderChart(q.chart);
+    tEl.className = 'qchart';
+  } else if (q.table) {
+    tEl.className = 'qtable';
+    let html = '<table><thead><tr>' + q.table.head.map(h => `<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+    q.table.rows.forEach(r => {
+      html += '<tr><th>' + r[0] + '</th>' + r.slice(1).map(c => `<td>${c}</td>`).join('') + '</tr>';
+    });
+    html += '</tbody></table>';
+    if (q.table.N) html += `<div style="font-size:12px;color:#8fb9a4;margin-top:6px">Total N = ${q.table.N}</div>`;
+    tEl.innerHTML = html;
+  } else { tEl.className = 'qtable'; tEl.innerHTML = ''; }
+  document.getElementById('qAsk').textContent = q.ask;
+  order = shuffle([...q.alts.keys()]);
+  const letters = ['A','B','C','D'];
+  altsEl.innerHTML = '';
+  order.forEach((origIdx, pos) => {
+    const b = document.createElement('button');
+    b.className = 'alt-btn'; b.dataset.orig = origIdx;
+    b.innerHTML = `<span class="key">${letters[pos]}</span><span>${q.alts[origIdx]}</span>`;
+    b.addEventListener('click', () => answer(pos));
+    altsEl.appendChild(b);
+  });
+  renderMath(document.querySelector('.quiz-q'));
+  drawChar(document.getElementById('quizCatGrid'), 6, topic, 'neutro');
+  quizCatBox.classList.add('talking');
+  setTimeout(() => quizCatBox.classList.remove('talking'), 500);
+}
+
+function answer(pos) {
+  if (answered) return;
+  answered = true;
+  const q = round[idx];
+  const btns = [...altsEl.querySelectorAll('.alt-btn')];
+  btns.forEach(b => b.disabled = true);
+  const chosenOrig = parseInt(btns[pos].dataset.orig, 10);
+  const correctPos = order.indexOf(q.correct);
+  btns[correctPos].classList.add('correct');
+  const good = chosenOrig === q.correct;
+  if (good) { score++; document.getElementById('scoreLabel').textContent = `${score} correctas`; }
+  else btns[pos].classList.add('wrong');
+  drawChar(document.getElementById('quizCatGrid'), 6, topic, good ? 'exito' : 'tristesa');
+  pauta.classList.add(good ? 'good' : 'bad');
+  document.getElementById('pFlag').textContent = good ? '✓ ¡Correcto, miau!' : '✗ Incorrecto — revisa la pauta:';
+  document.getElementById('pHead').innerHTML = `$${q.pautaHead}$`;
+  const steps = document.getElementById('pSteps');
+  steps.innerHTML = '';
+  q.pautaSteps.forEach(s => {
+    const d = document.createElement('div'); d.className = 'p-step';
+    d.innerHTML = `\\(${s}\\)`; steps.appendChild(d);
+  });
+  document.getElementById('pConc').innerHTML = q.conc;
+  renderMath(pauta);
+  pauta.style.display = 'block';
+  nextBtn.classList.remove('hidden');
+  nextBtn.textContent = (idx+1 < N_QUIZ) ? 'Siguiente ▶' : 'Ver resultado ★';
+  document.getElementById('pbarFill').style.width = `${(idx+1)/N_QUIZ*100}%`;
+  nextBtn.focus();
+}
+
+function next() {
+  idx++;
+  if (idx < N_QUIZ) showQuestion();
+  else showFinal();
+}
+
+function showFinal() {
+  quizScreen.classList.add('hidden');
+  finalScreen.classList.remove('hidden');
+  drawChar(document.getElementById('finalCatGrid'), 6, topic, (score / N_QUIZ >= 0.6) ? 'exito' : 'tristesa');
+  document.getElementById('finalScore').textContent = `${score}/${N_QUIZ}`;
+  document.getElementById('ring').style.setProperty('--deg', `${score/N_QUIZ*360}deg`);
+  const pct = score / N_QUIZ;
+  let t, m;
+  if (pct === 1) { t = '¡Purrfecto! ✦'; m = `Dominas ${topic.name}. ᕕ(=^･ω･^=)ᕗ`; }
+  else if (pct >= 0.6) { t = '¡Muy bien, miau!'; m = 'Buen manejo. Repasa la pauta de las que fallaste y quedas listo.'; }
+  else if (pct >= 0.4) { t = 'Vas por buen camino'; m = `A mitad de camino, miau. Descarga la ${topic.guide} en la sección Material del sitio y vuelve a intentarlo.`; }
+  else { t = 'A practicar, michi'; m = `Este tema necesita más repaso. Estudia la ${topic.guide} en el sitio, revisa cada pauta y vuelve: yo te espero. (=^-ω-^=)`; }
+  document.getElementById('finalTitle').textContent = t;
+  document.getElementById('finalMsg').textContent = m;
+}
+
+document.getElementById('nextBtn').addEventListener('click', next);
+document.getElementById('retryBtn').addEventListener('click', () => startTopic(TOPICS.indexOf(topic)));
+document.getElementById('quitBtn').addEventListener('click', backMenu);
+document.getElementById('homeBtn').addEventListener('click', backMenu);
+function backMenu() {
+  quizScreen.classList.add('hidden');
+  finalScreen.classList.add('hidden');
+  menuScreen.classList.remove('hidden');
+}
+
+document.addEventListener('keydown', e => {
+  if (!quizScreen.classList.contains('hidden')) {
+    const i = ['a','b','c','d'].indexOf(e.key.toLowerCase());
+    const n = ['1','2','3','4'].indexOf(e.key);
+    const pos = i>=0 ? i : n;
+    if (!answered && pos>=0 && pos<order.length) answer(pos);
+    else if (answered && e.key === 'Enter') next();
+  }
+});
+</script>
+</body>
+</html>

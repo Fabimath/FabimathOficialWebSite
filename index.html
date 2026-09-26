@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f8a4b">
+<title>Fabimath — Fabián Ramírez · Profesor de Matemáticas</title>
+<meta name="description" content="Sitio oficial de Fabián Ramírez (Fabimath). Profesor universitario de matemáticas, videos de ejercicios resueltos de estadística, material de clases gratuito.">
+<link rel="icon" type="image/png" href="logo/fabimath_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --royal: #0f8a4b;
+    --azure: #22a85f;
+    --sky: #5fd69a;
+    --ice: #edf9f2;
+    --ink: #0b1f17;
+    --ink-2: #3f5a4c;
+    --ink-3: #86988e;
+    --paper: #ffffff;
+    --coral: #e8342a;
+    --radius: 20px;
+    --shadow: 0 2px 16px rgba(11,31,23,0.06);
+    --shadow-hover: 0 14px 34px rgba(15,138,75,0.14);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  a { color: var(--royal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, .display { font-family: 'Baloo 2', 'Inter', sans-serif; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    background: rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(11,31,23,0.07);
+  }
+  .nav-inner {
+    max-width: 1020px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 22px; height: 58px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; }
+  .nav-brand img {
+    width: 34px; height: 34px; border-radius: 9px; object-fit: cover;
+  }
+  .nav-brand span {
+    font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 19px;
+    color: var(--ink); letter-spacing: -0.01em;
+  }
+  .nav-brand span b { color: var(--royal); }
+  .nav-links { display: flex; gap: 24px; align-items: center; }
+  .nav-links a { color: var(--ink-2); font-size: 13.5px; font-weight: 500; }
+  .nav-links a:hover { color: var(--royal); text-decoration: none; }
+  .nav-links a.cat-link {
+    background: var(--ice); color: var(--royal); font-weight: 600;
+    padding: 7px 14px; border-radius: 100px;
+  }
+  .nav-links a.cat-link:hover { background: var(--royal); color: #fff; }
+  @media (max-width: 720px) {
+    .nav-links { gap: 14px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { white-space: nowrap; }
+  }
+
+  /* ---------- HERO ---------- */
+  header {
+    position: relative; overflow: hidden;
+    text-align: center;
+    padding: 100px 24px 110px;
+    background: linear-gradient(180deg, var(--ice) 0%, #ffffff 100%);
+  }
+  /* mosaic blocks — signature from the logo */
+  .mosaic { position: absolute; inset: 0; pointer-events: none; }
+  .mosaic i {
+    position: absolute; display: block; border-radius: 6px;
+    animation: drift 14s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-16px) rotate(2deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mosaic i, .cat-wrap { animation: none !important; }
+  }
+  .hero-inner { position: relative; z-index: 1; }
+  .hero-logo {
+    width: 96px; height: 96px; border-radius: 24px; object-fit: cover;
+    box-shadow: 0 10px 30px rgba(15,138,75,0.25);
+    margin-bottom: 26px;
+  }
+  h1 {
+    font-size: clamp(42px, 7.5vw, 72px);
+    font-weight: 800; letter-spacing: -0.02em; line-height: 1.04;
+  }
+  h1 .grad {
+    background: linear-gradient(100deg, var(--royal) 15%, var(--sky) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero-sub {
+    max-width: 620px; margin: 22px auto 0;
+    font-size: clamp(17px, 2.4vw, 21px); color: var(--ink-2); font-weight: 400;
+  }
+  .hero-cta { margin-top: 36px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 14px 30px; border-radius: 100px;
+    font-family: 'Baloo 2', sans-serif; font-size: 16px; font-weight: 700;
+    transition: all .22s ease;
+  }
+  .btn-primary { background: var(--royal); color: #fff; box-shadow: 0 6px 18px rgba(15,138,75,0.3); }
+  .btn-primary:hover { background: #0b6e3b; transform: translateY(-2px); text-decoration: none; }
+  .btn-ghost { color: var(--royal); border: 2px solid rgba(15,138,75,0.3); }
+  .btn-ghost:hover { background: var(--ice); text-decoration: none; }
+
+  /* ---------- SECTIONS ---------- */
+  section { padding: 92px 24px; }
+  .wrap { max-width: 1020px; margin: 0 auto; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--royal); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+  .eyebrow::before {
+    content: ""; width: 10px; height: 10px; border-radius: 3px;
+    background: linear-gradient(135deg, var(--royal), var(--sky));
+  }
+  h2 { font-size: clamp(30px, 4.6vw, 44px); font-weight: 800; letter-spacing: -0.015em; line-height: 1.1; margin-bottom: 16px; }
+  .lead { font-size: 18px; color: var(--ink-2); max-width: 660px; }
+  .alt { background: var(--ice); }
+
+  /* ---------- CARDS ---------- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 46px; }
+  .card {
+    background: var(--paper); border-radius: var(--radius); padding: 32px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(11,31,23,0.04);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .card .icon {
+    width: 46px; height: 46px; border-radius: 13px;
+    background: linear-gradient(135deg, var(--ice), #d6f2e2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 16px;
+  }
+  .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+  .card p { color: var(--ink-2); font-size: 15px; }
+  .card ul { list-style: none; margin-top: 12px; }
+  .card ul li { padding: 8px 0; border-top: 1px solid rgba(11,31,23,0.06); font-size: 14.5px; }
+  .card ul li:first-child { border-top: none; }
+
+  /* ---------- STATS ---------- */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin-top: 46px; }
+  .stat {
+    background: var(--paper); border-radius: var(--radius); padding: 32px 24px; text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat .num {
+    font-family: 'Baloo 2', sans-serif; font-size: 40px; font-weight: 800;
+    background: linear-gradient(100deg, var(--royal), var(--sky));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .stat .lbl { color: var(--ink-3); font-size: 14px; margin-top: 4px; }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline { margin-top: 46px; border-left: 3px solid #cfeedd; padding-left: 30px; }
+  .t-item { position: relative; padding-bottom: 32px; }
+  .t-item:last-child { padding-bottom: 0; }
+  .t-item::before {
+    content: ""; position: absolute; left: -39px; top: 6px;
+    width: 13px; height: 13px; border-radius: 4px;
+    background: var(--royal); box-shadow: 0 0 0 4px var(--ice);
+  }
+  .t-item .when { color: var(--royal); font-weight: 600; font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .t-item h3 { font-size: 19px; font-weight: 700; margin: 4px 0; }
+  .t-item p { color: var(--ink-2); font-size: 15px; max-width: 640px; }
+
+  /* ---------- VIDEOS ---------- */
+  .filter-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; }
+  .filter-btn {
+    font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 14.5px;
+    padding: 10px 20px; border-radius: 100px; cursor: pointer;
+    background: var(--paper); color: var(--ink-2);
+    border: 2px solid rgba(11,31,23,0.1);
+    transition: all .18s ease;
+  }
+  .filter-btn:hover { border-color: var(--azure); color: var(--royal); }
+  .filter-btn.active { background: var(--royal); color: #fff; border-color: var(--royal); }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; margin-top: 28px; }
+  .video {
+    background: var(--paper); border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow); border: 1px solid rgba(11,31,23,0.04);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .video:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .video.hidden { display: none; }
+  .v-thumb {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    border: none; padding: 0; cursor: pointer; display: block; background: var(--ink);
+  }
+  .v-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .v-thumb .play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(11,31,23,0.18); transition: background .2s ease;
+  }
+  .v-thumb:hover .play { background: rgba(11,31,23,0.32); }
+  .v-thumb .play span {
+    width: 58px; height: 58px; border-radius: 50%;
+    background: rgba(255,255,255,0.94); color: var(--royal);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; padding-left: 4px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    transition: transform .2s ease;
+  }
+  .v-thumb:hover .play span { transform: scale(1.08); }
+  .video iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+  .v-body { padding: 16px 18px 18px; }
+  .v-tag {
+    display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--royal);
+    background: var(--ice); padding: 4px 10px; border-radius: 100px; margin-bottom: 8px;
+  }
+  .v-title { font-size: 15px; font-weight: 600; line-height: 1.4; }
+
+  /* ---------- SOCIAL ---------- */
+  .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 46px; }
+  .social {
+    display: flex; align-items: center; gap: 15px;
+    background: var(--paper); border-radius: 18px; padding: 20px 22px;
+    box-shadow: var(--shadow); color: var(--ink);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .social:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); text-decoration: none; }
+  .social img { width: 30px; height: 30px; object-fit: contain; }
+  .social .s-emoji { font-size: 26px; line-height: 1; }
+  .social .s-name { font-weight: 600; font-size: 16px; }
+  .social .s-sub { color: var(--ink-3); font-size: 13px; }
+  .live-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--coral); margin-right: 5px;
+    animation: pulse 1.6s ease infinite;
+  }
+  @keyframes pulse { 50% { opacity: .35; } }
+
+  /* ---------- GALLERY ---------- */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 46px; }
+  .gallery img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    border-radius: var(--radius); display: block;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink); color: #9fc4b1;
+    padding: 64px 24px 42px; text-align: center; font-size: 14px;
+    position: relative; overflow: hidden;
+  }
+  footer .f-inner { position: relative; z-index: 1; }
+  footer img.f-logo { width: 64px; height: 64px; border-radius: 16px; margin-bottom: 14px; }
+  footer .f-name { font-family: 'Baloo 2', sans-serif; font-size: 24px; font-weight: 800; color: #fff; }
+  footer .f-name b { color: var(--sky); }
+  footer .f-links { margin: 24px 0 18px; display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; }
+  footer .f-links a { color: #cfe6d9; font-size: 14px; }
+  footer .f-links a:hover { color: var(--sky); text-decoration: none; }
+  footer .copy { color: #6b8a79; font-size: 12.5px; margin-top: 8px; }
+  :focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
+  .version { position: fixed; top: 4px; left: 8px; z-index: 999; font-size: 11px; color: #6b8a79; pointer-events: none; }
+</style>
+</head>
+<body>
+
+<span class="version">v2.00</span>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#inicio" aria-label="Fabimath inicio">
+      <img src="logo/fabimath_logo.png" alt="Logo Fabimath">
+      <span>Fabi<b>math</b></span>
+    </a>
+    <div class="nav-links">
+      <a href="#sobre">Sobre mí</a>
+      <a href="#logros">Logros</a>
+      <a href="#material">Material</a>
+      <a href="#videos">Videos</a>
+      <a href="#galeria">Galería</a>
+      <a href="#redes">Redes</a>
+      <a class="cat-link" href="quiz.html">🐱 Gatos Quiz</a>
+      <a class="cat-link" href="aes.html">🐱 Gatito AES</a>
+    </div>
+  </div>
+</nav>
+
+<header id="inicio">
+  <div class="mosaic" aria-hidden="true">
+    <i style="left:6%;  top:18%; width:38px; height:38px; background:#d7f0e2; animation-delay:0s"></i>
+    <i style="left:13%; top:58%; width:26px; height:26px; background:#bfe8d0; animation-delay:-3s"></i>
+    <i style="left:22%; top:32%; width:18px; height:18px; background:#97dcb6; animation-delay:-6s"></i>
+    <i style="right:7%;  top:22%; width:44px; height:44px; background:#d0eedd; animation-delay:-2s"></i>
+    <i style="right:16%; top:62%; width:24px; height:24px; background:#aae2c3; animation-delay:-8s"></i>
+    <i style="right:26%; top:40%; width:16px; height:16px; background:#7fd3a6; animation-delay:-4s"></i>
+    <i style="left:38%;  top:12%; width:20px; height:20px; background:#c8ecd8; animation-delay:-5s"></i>
+    <i style="right:38%; top:78%; width:30px; height:30px; background:#d7f0e2; animation-delay:-7s"></i>
+  </div>
+  <div class="hero-inner">
+    <img class="hero-logo" src="logo/fabimath_logo.png" alt="Logo oficial Fabimath">
+    <h1>Hola, soy <span class="grad">Fabimath</span></h1>
+    <p class="hero-sub">Fabián Ramírez — profesor universitario de matemáticas y creador de contenido. Estadística, probabilidad y ejercicios resueltos, gratis y para todos.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#videos">▶ Videos para ejercitar</a>
+      <a class="btn btn-ghost" href="#material">Material de clases</a>
+    </div>
+  </div>
+</header>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="eyebrow">Sobre mí</div>
+    <h2>Matemáticas para todos.</h2>
+    <p class="lead">Magíster en Ciencias mención Matemática e Ingeniero Civil Matemático de la UTFSM, con especialidad en Estadística. Académico Regular del IMFE en la Universidad de las Américas, encargado del área de estadística. Desde 2017 enseño gratis como voluntario y streamer educativo.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🎓</div>
+        <h3>Formación</h3>
+        <ul>
+          <li>Magíster en Ciencias m. Matemática, UTFSM (2022)</li>
+          <li>Ingeniería Civil Matemática, UTFSM (2022)</li>
+          <li>Intercambio CRUV, PUCV (2019)</li>
+          <li>Pedagogía para ingeniería, PREUSM</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon">🏛️</div>
+        <h3>Docencia universitaria</h3>
+        <ul>
+          <li>U. de las Américas — Académico Regular IMFE, encargado del área de estadística (2024–2026)</li>
+          <li>U. Adolfo Ibáñez — Cátedra: probabilidades, optimización, estadística y data science (2020–2024)</li>
+          <li>UTFSM — Cátedra: cálculo, álgebra lineal, estadística y regresión (2023–2024)</li>
+          <li>U. Gabriela Mistral — Asistente: cursos de ingeniería industrial (2020–2024)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon">💚</div>
+        <h3>Vocación social</h3>
+        <ul>
+          <li>Preuniversitario Solidario Santa María (desde 2017)</li>
+          <li>Preuniversitario Fabimath — gratuito por Twitch</li>
+          <li>Contenido educativo abierto en YouTube</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logros" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Logros</div>
+    <h2>Educación que llega lejos.</h2>
+    <div class="stats">
+      <div class="stat"><div class="num">34K+</div><div class="lbl">Seguidores en Instagram</div></div>
+      <div class="stat"><div class="num">9+</div><div class="lbl">Años enseñando</div></div>
+      <div class="stat"><div class="num">4</div><div class="lbl">Universidades</div></div>
+      <div class="stat"><div class="num">100%</div><div class="lbl">Preuniversitario gratuito</div></div>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="when">2020</div>
+        <h3>Visualizador COVID-19 Chile</h3>
+        <p>Programador del proyecto de análisis y proyecciones COVID-19 junto al CMM de la U. de Chile, apoyando la toma de decisiones con indicadores estadísticos diarios. <a href="https://covid-19vis.cmm.uchile.cl/info" target="_blank" rel="noopener">Ver visualizador ↗</a></p>
+      </div>
+      <div class="t-item">
+        <div class="when">Desde 2020</div>
+        <h3>Preuniversitario Fabimath</h3>
+        <p>Fundador del preuniversitario 100% gratuito y público vía Twitch, preparando a jóvenes de todo Chile para la prueba de acceso a la universidad.</p>
+      </div>
+      <div class="t-item">
+        <div class="when">Enero 2024</div>
+        <h3>Publicación científica</h3>
+        <p>«Hybrid Parametric Classes of Isotropic Covariance Functions for Spatial Random Fields», investigación en estadística espacial desarrollada en la UTFSM. <a href="https://link.springer.com/article/10.1007/s11004-023-10123-4" target="_blank" rel="noopener">Ver publicación ↗</a></p>
+      </div>
+      <div class="t-item">
+        <div class="when">Investigación</div>
+        <h3>Estadística espacio-temporal en esferas</h3>
+        <p>Investigación sobre campos aleatorios sobre esferas y el concepto de coherencia entre ellos.</p>
+      </div>
+      <div class="t-item">
+        <div class="when">Podcast</div>
+        <h3>Un Bar a Presión</h3>
+        <p>Conversaciones crudas, entretenidas y románticas desde la mirada de dos estudiantes universitarios. <a href="https://open.spotify.com/show/1IZKJW1L4Nih72CJuMOKAd" target="_blank" rel="noopener">Escuchar en Spotify ↗</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="material">
+  <div class="wrap">
+    <div class="eyebrow">Material de clases</div>
+    <h2>Apuntes y cursos, siempre disponibles.</h2>
+    <p class="lead">Todo el material que uso en mis clases y en el preuniversitario, libre para descargar.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">📗</div>
+        <h3>Guías de ejercicios — Probabilidad y Estadística</h3>
+        <p>Guías de práctica con enunciado y respuestas, clasificadas por tema.</p>
+        <ul>
+          <li><a href="guias/guia0_variables.pdf" target="_blank" rel="noopener">Guía 0 — Identificación y clasificación de variables</a></li>
+          <li><a href="guias/guia1_descriptiva_univariada.pdf" target="_blank" rel="noopener">Guía 1 — Estadística descriptiva univariada</a></li>
+          <li><a href="guias/guia2_bivariada_regresion.pdf" target="_blank" rel="noopener">Guía 2 — Estadística bivariada y regresión</a></li>
+          <li><a href="guias/guia3_probabilidad.pdf" target="_blank" rel="noopener">Guía 3 — Probabilidad clásica y condicional</a></li>
+          <li><a href="guias/guia4_normal.pdf" target="_blank" rel="noopener">Guía 4 — Distribución normal</a></li>
+          <li><a href="guias/guia5_intervalos_confianza.pdf" target="_blank" rel="noopener">Guía 5 — Intervalos de confianza</a></li>
+          <li><a href="guias/guia6_test_hipotesis.pdf" target="_blank" rel="noopener">Guía 6 — Test de hipótesis</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h3>Intensivos en video</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/playlist?list=PLEZl5kuzUiGnb9c53CzfnJ4jwW-H2Gadc" target="_blank" rel="noopener">Intensivo de Geometría</a></li>
+          <li><a href="https://www.youtube.com/playlist?list=PLEZl5kuzUiGmL_e0USeNW2AKi_-Skb3Xx" target="_blank" rel="noopener">Intensivo de Funciones</a></li>
+          <li><a href="https://youtube.com/playlist?list=PLEZl5kuzUiGl7JS9330bb43u757mYIYDl" target="_blank" rel="noopener">Ejercicios resueltos del DEMRE</a></li>
+          <li><a href="https://youtube.com/playlist?list=PLEZl5kuzUiGncajtxmDmBAgVGRIqDPCAH" target="_blank" rel="noopener">Mega-Intensivo PTU — Videos</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon">🐱</div>
+        <h3>Gatito AES</h3>
+        <p>Un gatito calcula tu nota de presentación, si te eximes y qué nota mínima necesitas en el examen. Sirve para AES519 y AES519 Invierno.</p>
+        <ul>
+          <li><a href="aes.html">Calcular mi eximición →</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="icon">🐱</div>
+        <h3>Gatos de Estadística</h3>
+        <p>Elige un gato para practicar: Clasificación de Variables, Intervalos de Confianza, Test de Hipótesis, Probabilidades con la Normal, Probabilidad Condicional o Probabilidad Total y Bayes. Cada uno te toma 5 ejercicios al azar con alternativas y pauta completa.</p>
+        <ul>
+          <li><a href="quiz.html">Elegir gato y practicar →</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="videos" class="alt">
+  <div class="wrap">
+    <div class="eyebrow">Videos para ejercitar</div>
+    <h2>Ejercicios de estadística, resueltos en video.</h2>
+    <p class="lead">Clases y ejercicios paso a paso de mi canal de YouTube, ordenados por tema. Haz clic y practica.</p>
+
+    <div class="filter-row" role="tablist" aria-label="Filtrar videos por tema">
+      <button class="filter-btn active" data-f="all">Todos</button>
+      <button class="filter-btn" data-f="desc">Estadística descriptiva</button>
+      <button class="filter-btn" data-f="prob">Probabilidad</button>
+      <button class="filter-btn" data-f="inf">Inferencia</button>
+      <button class="filter-btn" data-f="reg">Regresión y R</button>
+    </div>
+
+    <div class="video-grid" id="videoGrid"></div>
+  </div>
+</section>
+
+<section id="redes">
+  <div class="wrap">
+    <div class="eyebrow">Redes</div>
+    <h2>Sígueme donde enseño.</h2>
+    <div class="social-grid">
+      <a class="social" href="https://youtube.com/c/fabimath/" target="_blank" rel="noopener">
+        <img src="yt_logo.svg" alt="">
+        <div><div class="s-name">YouTube</div><div class="s-sub">Clases y ejercicios resueltos</div></div>
+      </a>
+      <a class="social" href="https://twitch.tv/fabimath/" target="_blank" rel="noopener">
+        <img src="twitch.svg" alt="">
+        <div><div class="s-name">Twitch</div><div class="s-sub"><span class="live-dot"></span>Preuniversitario en vivo</div></div>
+      </a>
+      <a class="social" href="https://www.instagram.com/fabimath/" target="_blank" rel="noopener">
+        <span class="s-emoji">📸</span>
+        <div><div class="s-name">Instagram</div><div class="s-sub">@fabimath</div></div>
+      </a>
+      <a class="social" href="https://open.spotify.com/show/1IZKJW1L4Nih72CJuMOKAd" target="_blank" rel="noopener">
+        <img src="spotify.svg" alt="">
+        <div><div class="s-name">Spotify</div><div class="s-sub">Podcast Un Bar a Presión</div></div>
+      </a>
+      <a class="social" href="https://www.linkedin.com/in/fabi%C3%A1n-ram%C3%ADrez-d%C3%ADaz-955761189/" target="_blank" rel="noopener">
+        <span class="s-emoji">💼</span>
+        <div><div class="s-name">LinkedIn</div><div class="s-sub">Fabián Ramírez Díaz</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="wrap">
+    <div class="eyebrow">Galería</div>
+    <h2>Detrás de las clases.</h2>
+    <p class="lead">Fotografías por <a href="https://www.instagram.com/deariecuervo/" target="_blank" rel="noopener">Deariecuervo</a>.</p>
+    <div class="gallery">
+      <img src="fot/1.jpg" alt="Fabimath" loading="lazy">
+      <img src="fot/2.jpg" alt="Fabimath" loading="lazy">
+      <img src="fot/4.jpg" alt="Fabimath" loading="lazy">
+      <img src="fot/5.jpg" alt="Fabimath" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="f-inner">
+    <img class="f-logo" src="logo/fabimath_logo.png" alt="">
+    <div class="f-name">Fabi<b>math</b></div>
+    <p style="margin-top:12px; max-width:420px; margin-left:auto; margin-right:auto;">¿Clases, colaboraciones o consultas? Escríbeme a<br><a href="mailto:fabian.ramirez.di@gmail.com" style="color:#5fd69a">fabian.ramirez.di@gmail.com</a></p>
+    <div class="f-links">
+      <a href="https://youtube.com/c/fabimath/" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://twitch.tv/fabimath/" target="_blank" rel="noopener">Twitch</a>
+      <a href="https://www.instagram.com/fabimath/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.linkedin.com/in/fabi%C3%A1n-ram%C3%ADrez-d%C3%ADaz-955761189/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="aes.html">Gatito AES</a>
+      <a href="quiz.html">Gatos Quiz</a>
+    </div>
+    <div class="copy">© 2026 Fabián Ramírez (Fabimath) · Profesor universitario de Matemáticas · Chile</div>
+  </div>
+</footer>
+
+<script>
+/* ---------- video catalog ---------- */
+const TAGS = { desc: 'Descriptiva', prob: 'Probabilidad', inf: 'Inferencia', reg: 'Regresión y R' };
+const VIDEOS = [
+  { id: '0LLz2Yfk0c8', t: 'desc', title: 'Ejercicios resueltos de box-plots y datos acumulados' },
+  { id: 'g_UxW_jj3jw', t: 'desc', title: 'Estadística descriptiva bivariada — ejercicios y formularios' },
+  { id: 'D0TP61lLj6w', t: 'desc', title: 'Cálculo de percentiles en datos agrupados' },
+  { id: 'IX6eHTR--Go', t: 'prob', title: 'Probabilidad total, condicionada y teorema de Bayes' },
+  { id: '-Steux4ue0U', t: 'prob', title: 'Variables aleatorias — ejercicios resueltos' },
+  { id: 'yMl1PsHj9D8', t: 'prob', title: 'Modelos de probabilidad — ejercicios y cálculo en R' },
+  { id: 'FcQTOigmivc', t: 'inf', title: 'Estimación por máxima verosimilitud — ejercicios' },
+  { id: 'jD6Se9yVExQ', t: 'inf', title: 'Propiedades de estimadores e intervalos de confianza' },
+  { id: 'qGdMtZkSe3U', t: 'inf', title: 'Distribución log-normal: estimadores y consistencia' },
+  { id: 'j-Lbm-dvOdM', t: 'reg', title: 'Regresión lineal simple en R' },
+  { id: '9T06_Qc2u1c', t: 'reg', title: 'Ayudantía 0 — Introducción a R (Mat044)' },
+
+  { id: 'wJj1algxLT0', t: 'desc', title: 'Transformaciones de la media y varianza muestral | Ejercicio Resuelto 1' },
+  { id: '1YMsEekEz7w', t: 'desc', title: 'Tabla de frecuencia en datos cualitativos | Ejercicio Resuelto 2' },
+  { id: 'CH9UUacm6sI', t: 'desc', title: 'Análisis de Box-Plot | Ejercicio Resuelto 3 parte 1' },
+  { id: 't8xfLW44psM', t: 'desc', title: 'Transformación del Coeficiente de Variación | Ejercicio Resuelto 3 parte 2' },
+  { id: '842N5ATixZw', t: 'desc', title: 'Moda, Mediana y Percentil en Datos Agrupados | Ejercicio Resuelto 4' },
+  { id: 'K-Dfk8YuzS0', t: 'reg', title: 'Resumen de Estadística Bivariada y Regresión Lineal Simple' },
+  { id: 'hJEW9rvz-50', t: 'reg', title: 'Covarianza y Correlación | Ejercicio Resuelto 5' },
+  { id: 'O9VFEk-VeLI', t: 'reg', title: 'Regresión Lineal Simple - Interpretación | Ejercicio Resuelto 6' },
+  { id: '7UhLeDcVwB8', t: 'reg', title: 'Predicciones con el Modelo de Regresión Lineal | Ejercicio Resuelto 7' },
+  { id: 'C8LzckW0Tv0', t: 'desc', title: 'Ejercicio Avanzado de Estadística | Ejercicio Resuelto 8' },
+  { id: '6Z8amLiFyvQ', t: 'prob', title: 'Resumen de Probabilidad Inicial' },
+  { id: 'rikoA0TRaJ0', t: 'prob', title: 'Ejercicio Inicial de Probabilidad Clásica | Ejercicio Resuelto 9.1' },
+  { id: 'jJ75mIdnVsI', t: 'prob', title: 'Ejercicio Inicial de Probabilidad Clásica | Ejercicio Resuelto 9.2' },
+  { id: 'NHO8FBsBT4I', t: 'prob', title: 'Tablas de datos con probabilidades | Ejercicio Resuelto 10' },
+  { id: 'jLILIKL4BdI', t: 'prob', title: 'Ejercicio Clásico de Probabilidad | Ejercicio Resuelto 11.1' },
+  { id: 'Q8EtJIb7j14', t: 'prob', title: 'Ejercicio Clásico de Probabilidad | Ejercicio Resuelto 11.2' },
+  { id: 'QyAdhzGy5us', t: 'prob', title: 'Ejercicio Clásico de Probabilidad | Ejercicio Resuelto 11.3' },
+  { id: 'fKjB8UPqljA', t: 'prob', title: 'Probabilidad con diagrama de Venn | Ejercicio Resuelto 12' },
+  { id: 'Kbipza3_vaQ', t: 'prob', title: 'Resumen de Probabilidad Condicional' },
+  { id: 'QX_tYWu1ar0', t: 'prob', title: 'Probabilidad Condicional con Tabla | Ejercicio Resuelto 13' },
+  { id: 'JT9hOnx_XbY', t: 'prob', title: 'Probabilidad Condicional - Interpretación | Ejercicio Resuelto 14' },
+  { id: 'PajGJpZHq4c', t: 'prob', title: 'Diagrama de Árbol y Probabilidad Total | Ejercicio Resuelto 15' },
+  { id: 'l8PXUlTedmM', t: 'prob', title: 'Diagrama de Árbol y Probabilidad Total | Ejercicio Resuelto 16' },
+  { id: 'n4FkZ6Fhd1Y', t: 'prob', title: 'Variable Aleatoria Continua | Ejercicio Resuelto 17' },
+  { id: 'eGVBt9SZfG8', t: 'prob', title: 'Variable Aleatoria Discreta (Prob. Acumulada) | Ejercicio Resuelto 18.1' },
+  { id: 'U0JC9Ys10IU', t: 'prob', title: 'Esperanza y Varianza de una V.A. Discreta | Ejercicio Resuelto 18.2' },
+  { id: 'aR1b2L6Cd_8', t: 'prob', title: 'Variable Aleatoria Continua (Probabilidades) | Ejercicio Resuelto 19' },
+  { id: 'ZfIGQ5GXlpg', t: 'prob', title: 'Variable Aleatoria Continua (Probabilidades) | Ejercicio Resuelto 20' },
+  { id: 'FUIH1PMgTAQ', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 21' },
+  { id: 's-MCMzGqOQQ', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 22' },
+  { id: 'Y7lnh_ZPMUA', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 23' },
+  { id: 'M8Chnnx5f3M', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 24' },
+  { id: 'c8pvi4tGnis', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 25' },
+  { id: '0KIMWWi3otk', t: 'prob', title: 'Distribución Normal | Ejercicio Resuelto 26' },
+  { id: 'yQNT4IbW6VQ', t: 'prob', title: 'Resumen de Distribución Normal' }
+];
+
+const grid = document.getElementById('videoGrid');
+VIDEOS.forEach(v => {
+  const el = document.createElement('article');
+  el.className = 'video';
+  el.dataset.t = v.t;
+  el.innerHTML =
+    '<button class="v-thumb" data-id="' + v.id + '" aria-label="Reproducir: ' + v.title + '">' +
+      '<img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" loading="lazy">' +
+      '<span class="play"><span>▶</span></span>' +
+    '</button>' +
+    '<div class="v-body"><span class="v-tag">' + TAGS[v.t] + '</span><div class="v-title">' + v.title + '</div></div>';
+  grid.appendChild(el);
+});
+
+/* click → embed player in place */
+grid.addEventListener('click', e => {
+  const btn = e.target.closest('.v-thumb');
+  if (!btn) return;
+  const iframe = document.createElement('iframe');
+  iframe.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.id + '?autoplay=1&rel=0';
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  btn.replaceWith(iframe);
+});
+
+/* topic filter */
+document.querySelectorAll('.filter-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.f;
+    document.querySelectorAll('.video').forEach(v => {
+      v.classList.toggle('hidden', f !== 'all' && v.dataset.t !== f);
+    });
+  });
+});
+</script>
+</body>
+</html>
