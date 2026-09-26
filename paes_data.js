@@ -73,7 +73,7 @@ const TOPICS = [
   ],
   example: {
     src: 'PAES Invierno 2027, adaptada',
-    enun: r`<p>En la siguiente tabla se presenta el tiempo que las personas han trabajado en un colegio.</p>`,
+    enun: r`<p>En la siguiente tabla se presenta el tiempo que las personas han trabajado en un colegio.</p><p>El colegio entregará un bono a quienes hayan trabajado <b>como mínimo 6 años</b>. ¿Cuántas personas recibirán el bono?</p>`,
     fig: { type: 'table', head: ['Tiempo de trabajo en años', 'Cantidad de personas'], rows: [['1', 2], ['2', 4], ['3', 5], ['4', 4], ['5', 2], ['6', 6], ['7', 2], ['8', 5], ['9', 3], ['10', 2]] },
     alts: ['12', '17', '18', '23'], ok: 2,
     sol: r`<p>"Como mínimo 6 años" significa <b>6 o más</b>: se suman las filas 6, 7, 8, 9 y 10.</p><p>$f_6 + f_7 + f_8 + f_9 + f_{10} = 6 + 2 + 5 + 3 + 2 = 18$ personas.</p><p>Los distractores: 12 es sumar desde 7 (dejar fuera el 6); 17 es sumar de 1 a 5 (los que <b>no</b> reciben bono); 23 es sumar desde 5.</p>`,
