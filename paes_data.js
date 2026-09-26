@@ -191,9 +191,9 @@ const TOPICS = [
     { enun: r`<p>Dos supermercados presentan en gráficos de barras separados el porcentaje de alimentos orgánicos vendidos en tres años. Al mirarlos, una barra del 20 % en el supermercado A se ve más alta que una del 30 % en el supermercado B.</p><p>¿Cuál de los siguientes argumentos explica por qué la comparación visual no es válida?</p>`,
       alts: ['Los gráficos están graduados en distintas escalas.', 'Los porcentajes aumentaron en ambos supermercados.', 'Las barras están una al lado de la otra.', 'Los porcentajes están escritos sobre las barras.'], ok: 0,
       sol: r`<p>Si una barra de 20 % supera en altura a una de 30 %, los ejes verticales <b>no usan la misma escala</b>. Eso invalida comparar alturas entre los dos gráficos; hay que comparar los números.</p><p>Las otras opciones describen aspectos que no afectan la comparación.</p>`, conc: 'Dos gráficos solo se comparan a ojo si comparten escala.' },
-    { enun: r`<p>El gráfico representa la cantidad de horas extras realizadas por 140 trabajadores en un mes. Por cada hora extra se pagan $15 000.</p><p>¿Cuál fue el pago por horas extras <b>más frecuente</b> ese mes?</p>`,
+    { enun: r`<p>El gráfico representa la cantidad de horas extras realizadas por 140 trabajadores en un mes. Por cada hora extra se pagan <span class="peso">$15 000</span>.</p><p>¿Cuál fue el pago por horas extras <b>más frecuente</b> ese mes?</p>`,
       fig: { type: 'bar', labels: ['1 hora', '2 horas', '3 horas', '4 horas'], values: [20, 45, 50, 25], mono: true, ylab: 'trabajadores' },
-      alts: ['$15 000', '$30 000', '$45 000', '$60 000'], ok: 2,
+      alts: ['<span class="peso">$15 000</span>', '<span class="peso">$30 000</span>', '<span class="peso">$45 000</span>', '<span class="peso">$60 000</span>'], ok: 2,
       sol: r`<p>La barra más alta es la de <b>3 horas</b> (50 trabajadores): esa es la moda $Mo$.</p><p>Pago correspondiente: $3 \cdot 15\,000 = 45\,000$ pesos.</p><p>No se pide el promedio ni el total: "más frecuente" es la categoría con mayor $f_i$.</p>`, conc: '"Más frecuente" = moda = barra más alta.' },
     { enun: r`<p>Un estudiante quiere mostrar cómo cambió la temperatura de su ciudad hora a hora durante un día completo.</p><p>¿Cuál es el gráfico más adecuado para representar esa información?</p>`,
       alts: ['Gráfico de barras', 'Gráfico circular', 'Gráfico de líneas', 'Pictograma'], ok: 2,
@@ -258,8 +258,8 @@ const TOPICS = [
   },
   bank: [
     { enun: r`<p>En la siguiente tabla se presenta el gasto diario en almuerzo de una persona durante una semana.</p><p>¿Cuánto dinero gastó en promedio diariamente en almuerzo esa semana?</p>`,
-      fig: { type: 'table', head: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], rows: [['$3200', '$5300', '$7200', '$2500', '$11 400', '$12 000', '$6000']] },
-      alts: ['$2500', '$6000', '$6800', '$9520'], ok: 2,
+      fig: { type: 'table', head: ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'], rows: [['<span class="peso">$3200</span>', '<span class="peso">$5300</span>', '<span class="peso">$7200</span>', '<span class="peso">$2500</span>', '<span class="peso">$11 400</span>', '<span class="peso">$12 000</span>', '<span class="peso">$6000</span>']] },
+      alts: ['<span class="peso">$2500</span>', '<span class="peso">$6000</span>', '<span class="peso">$6800</span>', '<span class="peso">$9520</span>'], ok: 2,
       sol: r`<p>Suma: $3200 + 5300 + 7200 + 2500 + 11\,400 + 12\,000 + 6000 = 47\,600$.</p><p>$\bar{x} = \dfrac{47\,600}{7} = 6800$ pesos.</p><p>2500 es el mínimo, 6000 es la mediana y 9520 es dividir por 5 en vez de por 7.</p>`, conc: 'Divide por la cantidad de datos, incluidos los del fin de semana.' },
     { enun: r`<p>Considera la siguiente tabla, donde $P$, $Q$ y $R$ son frecuencias.</p><p>¿Cuál de las siguientes expresiones permite determinar el promedio de los valores?</p>`,
       fig: { type: 'table', head: ['Valor', 'Frecuencia'], rows: [['0', '$P$'], ['1', '$Q$'], ['2', '$R$']] },
@@ -617,7 +617,7 @@ const TOPICS = [
   ],
   example: {
     src: 'PAES Invierno 2027, adaptada',
-    enun: r`<p>Una ruleta está dividida en nueve partes de igual área: cuatro con estrella, tres con diamante y dos con fantasma. Un juego consiste en realizar 3 giros, pero si en alguno sale fantasma el juego termina. El premio es la suma de lo obtenido: cada estrella vale $50 000 y cada diamante $100 000.</p><p>La probabilidad de ganar exactamente $100 000 se calcula con la expresión</p>$$\frac{4}{9}\cdot\frac{4}{9}\cdot\frac{2}{9} + \frac{3}{9}\cdot\frac{2}{9}$$<p>¿Qué representa el término $\dfrac{4}{9}\cdot\dfrac{4}{9}\cdot\dfrac{2}{9}$ en la expresión anterior?</p>`,
+    enun: r`<p>Una ruleta está dividida en nueve partes de igual área: cuatro con estrella, tres con diamante y dos con fantasma. Un juego consiste en realizar 3 giros, pero si en alguno sale fantasma el juego termina. El premio es la suma de lo obtenido: cada estrella vale <span class="peso">$50 000</span> y cada diamante <span class="peso">$100 000</span>.</p><p>La probabilidad de ganar exactamente <span class="peso">$100 000</span> se calcula con la expresión</p>$$\frac{4}{9}\cdot\frac{4}{9}\cdot\frac{2}{9} + \frac{3}{9}\cdot\frac{2}{9}$$<p>¿Qué representa el término $\dfrac{4}{9}\cdot\dfrac{4}{9}\cdot\dfrac{2}{9}$ en la expresión anterior?</p>`,
     alts: ['La probabilidad de sacar estrella en el primer giro, estrella en el segundo y fantasma en el tercero.', 'La probabilidad de sacar diamante en el primer giro y estrella en el segundo.', 'La probabilidad de sacar diamante en el primer giro y fantasma en el segundo.', 'La probabilidad de sacar dos estrellas en los dos primeros giros y un diamante en el tercero.'], ok: 0,
     sol: r`<p>Cada factor es un giro: $\dfrac{4}{9}$ es estrella, $\dfrac{3}{9}$ diamante y $\dfrac{2}{9}$ fantasma.</p><p>$\dfrac{4}{9}\cdot\dfrac{4}{9}\cdot\dfrac{2}{9}$ = estrella, estrella, fantasma: $50\,000 + 50\,000 = 100\,000$ y el fantasma termina el juego. ✔</p><p>El otro término, $\dfrac{3}{9}\cdot\dfrac{2}{9}$, es diamante y luego fantasma: también suma exactamente $100\,000$.</p>`,
     conc: 'En un producto de probabilidades, cada factor es una etapa del experimento, en orden.'

@@ -267,7 +267,7 @@ const store = {
   set: d => localStorage.setItem('paes_pye', JSON.stringify(d))
 };
 function renderMath(el) {
-  if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], throwOnError: false });
+  if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], ignoredClasses: ['peso'], throwOnError: false });
 }
 const num = v => String(v).replace('.', ',');
 
