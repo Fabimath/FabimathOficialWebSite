@@ -91,8 +91,34 @@
     0%,100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-16px) rotate(2deg); }
   }
+  /* page-load sequence: logo pops, then title, subtitle and buttons rise in turn */
+  .hero-logo, h1, .hero-sub, .hero-cta { opacity: 0; animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-logo { animation-name: pop; animation-delay: .1s; }
+  h1 { animation-delay: .35s; }
+  .hero-sub { animation-delay: .55s; }
+  .hero-cta { animation-delay: .75s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { 0% { opacity: 0; transform: scale(.6) rotate(-8deg); } 70% { opacity: 1; transform: scale(1.08) rotate(2deg); } 100% { opacity: 1; transform: none; } }
+  /* scroll reveal: each section rises once when it enters the viewport */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  /* children stagger in with an animation (fill backwards) so hover transforms keep working afterwards */
+  .reveal:not(.in) .card, .reveal:not(.in) .stat, .reveal:not(.in) .social, .reveal:not(.in) .gallery img, .reveal:not(.in) .t-item { opacity: 0; }
+  .reveal.in .card, .reveal.in .stat, .reveal.in .social, .reveal.in .gallery img, .reveal.in .t-item { animation: rise .6s cubic-bezier(.2,.7,.2,1) backwards; }
+  .reveal.in > * > :nth-child(2) { animation-delay: .08s; }
+  .reveal.in > * > :nth-child(3) { animation-delay: .16s; }
+  .reveal.in > * > :nth-child(4) { animation-delay: .24s; }
+  .reveal.in > * > :nth-child(5) { animation-delay: .32s; }
+  .btn-primary { position: relative; overflow: hidden; }
+  .btn-primary::after {
+    content: ""; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+    transform: skewX(-20deg); animation: shine 4s ease-in-out 1.6s infinite;
+  }
+  @keyframes shine { 0% { left: -80%; } 30%, 100% { left: 130%; } }
   @media (prefers-reduced-motion: reduce) {
-    .mosaic i, .cat-wrap { animation: none !important; }
+    .mosaic i, .cat-wrap, .hero-logo, h1, .hero-sub, .hero-cta, .btn-primary::after { animation: none !important; opacity: 1; }
+    .reveal, .reveal .card, .reveal .stat, .reveal .social, .reveal .gallery img, .reveal .t-item { opacity: 1 !important; transform: none; transition: none; animation: none !important; }
   }
   .hero-inner { position: relative; z-index: 1; }
   .hero-logo {
@@ -607,6 +633,29 @@ grid.addEventListener('click', e => {
   iframe.allowFullscreen = true;
   btn.replaceWith(iframe);
 });
+
+/* scroll reveal + stat count-up */
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('section .wrap').forEach(w => w.classList.add('reveal'));
+const countUp = el => {
+  const m = el.textContent.match(/^(\d+)(.*)$/); if (!m || reduced) return;
+  const end = +m[1], suffix = m[2], t0 = performance.now(), dur = 1200;
+  const step = now => {
+    const p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(end * e) + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    en.target.classList.add('in');
+    en.target.querySelectorAll('.stat .num').forEach(countUp);
+    io.unobserve(en.target);
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(w => reduced ? w.classList.add('in') : io.observe(w));
 
 /* topic filter */
 document.querySelectorAll('.filter-btn').forEach(b => {
