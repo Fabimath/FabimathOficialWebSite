@@ -1,0 +1,1001 @@
+           SELECCIÓN
+           DE PREGUNTAS
+
+PRUEBA DE ACCESO A LA EDUCACIÓN SUPERIOR (PAES)
+
+COMPETENCIA
+MATEMÁTICA 1 (M1)
+
+FORMA 113
+
+En este folleto encontrarás una selección de 45 preguntas
+de la PAES de Competencia Matemática 1 (M1), Admisión
+2026, que se aplicó el 3 de diciembre de 2025.
+
+Para mayor información,
+haz clic aquí.
+                FORMA 113 ­ 2026
+
+EN ESTA PRUEBA SE CONSIDERARÁ LO SIGUIENTE:
+
+1.  Las figuras que aparecen son solo indicativas.
+
+2.  Los gráficos que se presentan están dibujados en un sistema de ejes
+
+    perpendiculares, cuyo origen es el punto (0, 0).
+
+3.  El intervalo [p, q] es el conjunto de todos los números reales mayores o
+
+    iguales que p y menores o iguales que q; el intervalo ]p, q] es el conjunto
+
+    de todos los números reales mayores que p y menores o iguales que q;
+
+    el intervalo [p, q[ es el conjunto de todos los números reales mayores o
+
+    iguales que p y menores que q; y el intervalo ]p, q[ es el conjunto de todos
+
+    los números reales mayores que p y menores que q.
+
+4.  Todas las funciones presentadas tendrán como dominio el conjunto de los
+
+    números reales a menos que se indique lo contrario.
+
+5.  v = (a, b) es un vector que tiene su punto de inicio en el origen del plano
+
+    cartesiano y su punto final en el punto (a, b), a menos que se indique lo
+
+    contrario.
+
+6.  Se entenderá por dado común a aquel que posee 6 caras numeradas del 1
+
+    al 6 y en el experimento de lanzarlo, sus caras son equiprobables de salir.
+
+7.  En el experimento de lanzar una moneda, sus dos opciones son
+
+    equiprobables de salir, a menos que se indique lo contrario.
+
+SÍMBOLOS MATEMÁTICOS
+
+ < es menor que
+ > es mayor que
+  es menor o igual que
+  es mayor o igual que
+
+         ángulo recto
+
+  es semejante con
+ = es distinto de
+ AB trazo AB
+ AB medida del trazo AB
+
+Propiedad Intelectual Universidad de Chile.
+Derechos reservados ©. Prohibida su reproducción total o parcial.
+
+                -2-
+                                    FORMA 113 ­ 2026
+
+1. En un juego hay dos tipos de cartas, unas tienen una estrella y las otras tienen un
+
+       corazón, todas con un número.
+       El puntaje de cada jugador se calcula de la siguiente forma:
+
+          · Primero se extrae una carta al azar (carta inicial) y su valor se considera como
+             puntaje inicial.
+
+          · Luego, se extrae otra carta:
+
+              si esta tiene una estrella, le debe restar el valor de la carta a su puntaje;
+              si esta tiene un corazón, le debe sumar el valor de la carta a su puntaje.
+
+          · El puntaje final se obtiene al repetir el procedimiento anterior, hasta tener diez
+             cartas.
+
+       Un jugador extrae las siguientes cartas, en este orden:
+
+       ¿Cuál es el puntaje final del jugador?
+
+     A) -14
+     B) -4
+     C) 3
+     D) 11
+
+                                               -3-
+                                    FORMA 113 ­ 2026
+
+2. Para preparar una receta, una persona necesita 700 g de carne picada, 1 kg de
+
+     champiñones y 2 cebollas.
+
+Para comprar los ingredientes la persona considera los siguientes precios:
+
+            100 g de carne picada $900
+
+            0,5 kg de champiñón $3500
+
+            1 cebolla       $200
+
+¿Cuánto dinero necesita la persona para comprar los ingredientes para esta receta?
+
+A) $4600
+B) $8100
+C) $10 000
+D) $13 700
+
+                       -4-
+                                    FORMA 113 ­ 2026
+
+3. Un auto recorre 5 km para ir de la ciudad A a la ciudad B y recorre 25 km para ir de
+
+       la ciudad B a la ciudad C.
+
+     Si este auto rinde 10 kilómetros por litro, es decir, recorre 10 km con 1 litro de
+
+       bencina, ¿cuál es la cantidad de litros de bencina que se necesitan para hacer el
+       recorrido de la ciudad A hasta la ciudad C de ida y vuelta, pasando ambas veces por
+       la ciudad B?
+
+     A) 2
+     B) 3
+     C) 4
+     D) 6
+
+4. ¿Cuál es el número cuya tercera parte es 0,09?
+
+     A) 2,7
+     B) 0,3
+     C) 0,27
+     D) 0,03
+
+                                               -5-
+            FORMA 113 ­ 2026
+
+5.  Para resolver la expresión -  48          +         224
+                                    ·-                     + - , una persona
+                                  6 12                  30 60 10
+
+    realiza el siguiente procedimiento, cometiendo un error.
+
+    Paso 1: simplifica una vez por 2 cada fracción de la expresión, obteniendo
+
+    24      1 12
+    - ·- + + - .
+    36      15 30 5
+
+                                                      24
+    Paso 2: desarrolla el primer paréntesis - · - , obteniendo 1.
+
+                                                      36
+
+                                              1 12                 3
+    Paso 3: desarrolla el segundo paréntesis  + - , obteniendo - .
+                                              15 30 5              10
+
+        3                         7
+    Paso 4: desarrolla 1 - , obteniendo .
+        10                        10
+
+    ¿En cuál de los pasos la persona cometió el error?
+
+    A) En el Paso 1
+    B) En el Paso 2
+    C) En el Paso 3
+    D) En el Paso 4
+
+                                  -6-
+                                      FORMA 113 ­ 2026
+
+11. La escalera de un edificio tiene 20 peldaños entre piso y piso. La altura de cada uno
+
+       de estos peldaños es de 15 cm.
+
+         Una persona empieza a subir por la escalera de este edificio, desde el primer peldaño
+         del primer piso.
+
+       Si n es la cantidad de peldaños que la persona ha subido, ¿cuál de las siguientes
+
+         condiciones garantiza que la persona llegó a un nuevo piso?
+
+       A) Que 15 · n es divisible por 20.
+       B) Que 15 + n es divisible por 20.
+       C) Que 15 · n es divisible por 300.
+       D) Que 15 + n es divisible por 300.
+
+                                                 -7-
+                                      FORMA 113 ­ 2026
+
+13. Algunas calculadoras tienen botones que permiten marcar dos ceros o tres ceros a la
+
+         vez, tal como la que se representa en la imagen adjunta.
+
+De esta manera, para marcar el número 1000, basta con presionar los siguientes
+
+botones una vez cada uno:
+
+¿Cuál de las siguientes acciones permite marcar el número 1010?
+
+A) Presionar una vez  y siete veces .
+B) Presionar una vez  y ocho veces .
+C) Presionar una vez  , dos veces y dos veces .
+D) Presionar una vez  , tres veces y una vez .
+
+                      -8-
+                                      FORMA 113 ­ 2026
+
+14. Una persona realiza el siguiente procedimiento para factorizar 12 + 20, cometiendo
+
+         un error.
+         Paso 1: escribe cada sumando como el producto de dos números, obteniendo
+
+                  4 · 3 + 4 · 5.
+       Paso 2: descompone cada factor en números primos, obteniendo 2 · 2 · 3 + 2 · 2 · 5.
+       Paso 3: escribe las potencias correspondientes, obteniendo 22 · 3 + 22 · 5.
+       Paso 4: factoriza la suma, obteniendo 24 (3 + 5).
+
+         ¿En cuál de los pasos la persona cometió el error?
+         A) En el Paso 1
+         B) En el Paso 2
+         C) En el Paso 3
+         D) En el Paso 4
+
+                                                 -9-
+                                      FORMA 113 ­ 2026
+
+15. Leonardo juega el siguiente juego:
+
+         Se elige un número y luego se extraen dos tarjetas con operaciones: la primera de
+         un mazo de color blanco y la segunda de un mazo de color gris. La operación de la
+         tarjeta blanca se aplica sobre el número elegido y la operación de la tarjeta gris sobre
+         el resultado obtenido.
+         Leonardo extrae las siguientes tarjetas:
+
+       Si eligió el número 2, ¿cuál de las siguientes expresiones corresponde a la correcta
+
+         aplicación de las instrucciones de las tarjetas en el orden en que las sacó?
+
+       A) (2 - 5)3
+       B) 3 · (2 - 5)
+       C) 3 · (5 - 2)
+       D) (5 - 2)3
+
+                                                - 10 -
+                                      FORMA 113 ­ 2026
+
+18. Si p es el 25 % de k, ¿cuál de las siguientes expresiones representa el valor de k?
+
+             1·p
+
+         A)
+
+              25
+             1·p
+
+         B)
+
+              75
+             100 · p
+
+         C)
+
+               75
+             100 · p
+
+         D)
+
+               25
+
+19. ¿Cuánto es el 75 % del 75 % de 100?
+
+A) 5625
+
+B) 150
+
+C) 56,25
+
+D)  1,5
+
+          - 11 -
+                                      FORMA 113 ­ 2026
+
+22. Se estimó que en el 2022 la cantidad de personas que les gustaba jugar videojuegos
+
+       era de 3000 millones.
+
+         Si en el 2023 la cantidad de personas que les gustaba jugar videojuegos aumentó en
+
+       120 millones respecto al año anterior, ¿cuál es el porcentaje de aumento de ese año,
+
+         respecto del año anterior?
+
+       A) 2,5 %
+       B) 4 %
+       C) 25 %
+       D) 40 %
+
+                                                - 12 -
+                                      FORMA 113 ­ 2026
+
+23. En el siguiente gráfico se presenta la electricidad total generada por diferentes
+
+         tecnologías en Chile durante 2021.
+
+                               Generadoras de Chile (2022). Cifras destacadas del sector generación en 2021.
+
+¿Cuál de las siguientes expresiones corresponde a la electricidad total generada
+durante 2020?
+
+A)  80 155  GWh
+
+    104,5
+
+B)  80 155 · 100  GWh
+
+    104,5
+
+C)  80 155 · 104,5  GWh
+
+    100
+
+D)  80 155       GWh
+
+    104,5 · 100
+
+                         - 13 -
+                               FORMA 113 ­ 2026
+
+24.  Una tienda vendía un producto a $25 000. Como no se vendía lo suficiente, la tienda
+     rebajó su precio un 20 %. Sin embargo, el precio rebajado no aumentó lo suficiente
+     las ventas, por lo que rebajaron un 25 % el precio ya rebajado.
+
+     ¿Cuál de las siguientes expresiones representa el precio del producto luego de los
+     dos descuentos, en pesos?
+
+     A) 0,2 · 0,25 · 25 000
+     B) (0,2 + 0,25) · 25 000
+     C) 0,8 · 0,75 · 25 000
+     D) (0,8 + 0,75) · 25 000
+
+25. El sueldo líquido mensual de una persona es de $M. Todos los meses, gasta las tres
+
+         quintas partes y el resto lo ahorra.
+
+         Si el sueldo líquido de la persona se mantiene fijo durante doce meses, ¿cuál de las
+         siguientes expresiones representa el ahorro, en pesos, de la persona en ese periodo
+         de tiempo?
+
+              2
+       A) M
+
+              5
+             24
+       B) M
+             5
+             36
+       C) M
+             5
+             57
+       D) M
+             5
+
+                                                - 14 -
+                                      FORMA 113 ­ 2026
+
+26. El ingreso y la ganancia de una empresa, ambos en pesos, se modelan con respecto
+
+       a la cantidad de artículos producidos (x) de la siguiente manera:
+           · Ingreso: I(x) = 1000x + 600 000
+           · Ganancia: G(x) = 750x + 450 000
+
+       Considera que la ganancia al producir x artículos se puede calcular como
+       G(x) = I(x) - C(x), tal que C es la función de costo.
+
+         ¿Cuál es la función costo de la empresa?
+
+       A) C(x) = 250x + 150 000
+       B) C(x) = 250x - 150 000
+       C) C(x) = 1750x - 1 050 000
+       D) C(x) = 1750x + 1 050 000
+
+27. Una pista de baile de forma rectangular tiene dimensiones de (3x + 4) metros de
+
+       largo y (2x - 9) metros de ancho. Se cuenta con (20x + 20) metros de una cinta
+
+         luminosa para demarcar el borde de la pista de baile.
+         ¿Cuántos metros de cinta luminosa sobran luego de demarcar el borde de la pista?
+
+       A) (10x + 30) metros
+       B) (10x + 10) metros
+       C) (15x + 15) metros
+       D) (15x + 25) metros
+
+                                                - 15 -
+            FORMA 113 ­ 2026
+
+28.  Una persona descubrió que para lograr el color que le gusta para el glaseado de
+     galletas, debe mezclar gotas del colorante rojo con gotas del colorante amarillo en la
+
+     razón 3 : 5, respectivamente.
+
+     Si la persona usa 30 gotas de colorante amarillo para preparar el glaseado que le
+
+     gusta, ¿cuántas gotas de color rojo deberá agregar para obtener el color que le gusta?
+
+     A) 18
+     B) 28
+     C) 30
+     D) 32
+
+            - 16 -
+            FORMA 113 ­ 2026
+
+30.  Para cierta marca de alimentos, la cantidad p de kilogramos de comida que
+
+     debe comer un perro adulto, durante el día, se modela mediante la expresión
+
+     p = m · 0,025, tal que m es la masa del perro, en kilogramos.
+
+     ¿Cómo se puede interpretar 0,025 en el modelo anterior?
+
+     A) Que el perro adulto debe consumir 25 gramos de alimento por cada kilogramo
+
+           de su masa.
+
+     B) Que el perro adulto debe consumir 250 gramos de alimento por cada kilogramo
+
+           de su masa.
+
+     C) Que la masa de un perro adulto es 25 veces la cantidad de alimento que debe
+
+           consumir.
+
+     D) Que la masa de un perro adulto es 250 veces la cantidad de alimento que debe
+
+           consumir.
+
+31. En la información nutricional de un paquete de galletas se indica que una porción de
+
+       4 galletas contiene 180 kilocalorías.
+
+     Para calcular cuántas kilocalorías K se ingieren al consumir este tipo de galletas se
+
+     puede utilizar la fórmula K =  180x  , tal que x es la cantidad de galletas consumidas.
+
+                                    4
+
+     Una persona consumió una cantidad de galletas de este tipo junto a un vaso de jugo
+
+     que contiene 90 kilocalorías, ingiriendo en total 405 kilocalorías.
+
+     ¿Cuántas galletas consumió esta persona?
+
+     A) 2
+     B) 7
+     C) 9
+     D) 11
+
+                                          - 17 -
+                         FORMA 113 ­ 2026
+
+32.  Daniela, con el dinero que tiene, compra en un bazar 7 lápices pasta del mismo
+     tipo y le sobran $900. En el mismo bazar, Marcos, con el dinero que tiene, compra
+     6 lápices pasta del mismo tipo que Daniela y le sobran $2330.
+
+     Si Daniela y Marcos tienen la misma cantidad de dinero, ¿cuál es el precio de un
+     lápiz pasta del mismo tipo?
+
+     A) $110
+     B) $248
+     C) $1430
+     D) $3230
+
+33.  En una ciudad se registró la cantidad de nacimientos desde el año 2019 al año 2021.
+
+     Al relacionar estas cantidades con la cantidad x (en miles) de nacimientos del año
+
+     2018, se encontraron las siguientes relaciones:
+
+               Año       Cantidad de nacimientos (en miles)
+               2019
+               2020                     5x + 4
+               2021                     3x + 5
+                                         2-x
+
+     Si en esta ciudad, durante el año 2019 hubo una cantidad menor de nacimientos que
+     la suma de los años 2020 y 2021, ¿cuál de las siguientes relaciones representa la
+     información entregada?
+
+     A) 5x + 4 < 2x + 7
+     B) 5x + 4 < 4x + 7
+     C) 5x + 4 > 2x + 7
+     D) 5x + 4 > 4x + 7
+
+                         - 18 -
+     FORMA 113 ­ 2026
+
+34.  Dos jóvenes quieren iniciar un emprendimiento de fabricación y venta de helados. Las
+     proyecciones de los gastos y de los ingresos, ambos acumulados, que deberían tener
+
+     en los primeros 12 meses, se presentan en el siguiente gráfico:
+
+     ¿Qué representa el punto donde las rectas se intersecan?
+     A) Es el mes donde se obtiene la mayor cantidad de ingresos acumulados.
+     B) Es el mes donde los ingresos acumulados igualan a los gastos acumulados.
+     C) Es el mes desde cuando el emprendimiento no tendrá más gastos acumulados.
+     D) Es el mes donde los ingresos acumulados son iguales a los gastos iniciales del
+
+           emprendimiento.
+
+                                              - 19 -
+                                      FORMA 113 ­ 2026
+
+35. Una persona gasta $13 500 en la compra de 8 kg de fruta entre manzanas y peras,
+
+       pagando $1500 por el kilogramo de manzanas y $1800 por el kilogramo de peras.
+
+         El siguiente sistema de ecuaciones modela la situación anterior:
+
+                                    1500x + 1800y = 13 500
+                                                x+y=8
+
+       ¿Qué representa la variable x en este sistema?
+
+         A) La cantidad de peras compradas
+         B) La cantidad de manzanas compradas
+         C) La cantidad de kilogramos de peras compradas
+         D) La cantidad de kilogramos de manzanas compradas
+
+                                                - 20 -
+                                      FORMA 113 ­ 2026
+
+40. Un estanque contiene 720 litros de agua y, cada vez que se abre la llave, este se
+
+       vacía a razón de 3 litros por minuto.
+
+         ¿Cuál de las siguientes funciones modela la cantidad de agua que queda en el
+
+       estanque por cada minuto que la llave se encuentra abierta, tal que x son los minutos
+
+         transcurridos desde que se abre la llave?
+
+       A) f(x) = -3x + 720
+       B) g(x) = 3x - 720
+
+                      x - 720
+       C) p(x) =
+
+                          3
+                      -x + 720
+       D) h(x) =
+
+                            3
+
+41. Una persona dispone de un terreno de forma rectangular. Se sabe que el terreno
+
+       tiene un área de 192 m2 y que su ancho mide 4 m menos que su largo.
+
+         ¿Cuánto mide el largo del terreno?
+
+       A) 12 m
+       B) 16 m
+       C) 20 m
+       D) 24 m
+
+                                                - 21 -
+                                      FORMA 113 ­ 2026
+
+42. Considera la función cuadrática f con dominio el conjunto de los números reales.
+
+       En la siguiente figura se representa la gráfica de f con su eje de simetría.
+
+                                                Y
+
+                                                 7
+
+       15  X
+
+¿Para cuál de los siguientes valores de x se tiene que f(x) = 7?
+
+A) 4
+B) -3
+C) -4
+D) -5
+
+43. La distancia d, en metros, que recorre un móvil que parte del reposo está dada
+
+                          t2
+       por d(t) = a · , tal que t es el tiempo que demora en recorrer esa distancia, en
+
+                          2
+                                                            m
+
+       segundos, y a es la aceleración del móvil, en s2 .
+                                   m
+
+       Si el móvil acelera a 10 s2 , ¿cuántos segundos tardará en recorrer una distancia de
+       45 metros?
+
+       A) 3
+       B) 4,5
+
+            
+       C) 45
+       D) 9
+
+                                                - 22 -
+                                      FORMA 113 ­ 2026
+
+45. En la figura adjunta se representa un trapecio rectángulo de área 0,76 m2.
+
+         ¿Cuál es la medida de su altura?
+
+       A) 1,444 m
+       B) 0,80 m
+       C) 0,722 m
+       D) 0,40 m
+
+                                                - 23 -
+                                      FORMA 113 ­ 2026
+
+47. En la siguiente imagen se presenta una red de un cubo.
+
+         Se construye el siguiente cuerpo usando algunos cubos como el anterior.
+
+         ¿Cuántos cubos se utilizaron en total para construir el cuerpo anterior?
+
+       A) 6
+       B) 7
+       C) 8
+       D) 9
+
+                                                - 24 -
+                                      FORMA 113 ­ 2026
+
+48. Una empresa fabrica y vende cajas cúbicas de madera fina para almacenar joyas.
+
+       El precio de venta de las cajas se determina como $800 · k, tal que se cobra
+       $800 por cada cm2 del área exterior de las cajas.
+       Considera que el área de una cara exterior de estas cajas es de 25 cm2. ¿Cuál de
+       las siguientes expresiones representa k?
+       A) 6 · 52
+       B) 6 · 54
+       C) 6 · 56
+       D) 6 · 512
+
+                                                - 25 -
+                                      FORMA 113 ­ 2026
+
+49. Considera el siguiente procedimiento:
+
+         ¿Cuál de las siguientes figuras se obtendrá al desdoblarse y estirarse el recorte?
+           A)
+           B)
+           C)
+           D)
+
+                                                - 26 -
+                                      FORMA 113 ­ 2026
+
+50. En el plano cartesiano de la figura adjunta se representan los puntos cardinales.
+
+         ¿En cuál de las siguientes opciones las transformaciones isométricas aplicadas a la
+         flecha negra permite que la imagen obtenida sea una flecha que apunta al oeste?
+
+       A) Una reflexión con respecto al eje X y luego, una reflexión con respecto a la recta
+            y = x.
+
+         B) Una reflexión con respecto al origen del plano cartesiano y luego, una rotación
+
+            en 45 en sentido horario con centro el origen del plano cartesiano.
+       C) Una reflexión con respecto al eje Y.
+       D) Una traslación según el vector (-3, -3).
+
+                                                - 27 -
+                                      FORMA 113 ­ 2026
+
+51. Considera los vectores representados en el plano cartesiano.
+
+       Y
+
+       5             v
+
+               3
+u
+
+          1
+
+-5 -2             2     5X
+
+¿Cuál de las siguientes afirmaciones es verdadera, respecto a los vectores del
+gráfico?
+
+A) Tienen distinta dirección.
+B) Tienen distinto sentido.
+C) Tienen distinta magnitud.
+
+D) Están en el semieje positivo del eje X.
+
+       - 28 -
+                                      FORMA 113 ­ 2026
+
+52. En la cuadrícula de la figura se representa el plano de un videojuego. En ella se ubica
+
+         un tesoro y los pies de una persona, ambos al centro de las casillas.
+
+         ¿Cuál de los siguientes vectores lleva a la persona sobre la casilla del tesoro?
+
+       A) (8, -4)
+       B) (-4, 2)
+       C) (10, -6)
+       D) (2, -2)
+
+                                                - 29 -
+     FORMA 113 ­ 2026
+
+53.  Un tipo de migración exterior corresponde al cambio de residencia hacia un país
+     diferente, por ejemplo, la migración desde Chile hacia España. A aquellas personas
+     migrantes que llegan a habitar un país son considerados inmigrantes, mientras que a
+     aquellas personas que abandonan un país, se les considera emigrantes.
+
+     En el siguiente gráfico se presenta información de las migraciones exteriores en
+     España desde el 2011 hasta el 2021.
+
+             Adaptada de Indicadores demográficos básicos. INE. (2021). Evolución de las migraciones interiores (2008­2021).
+                                 (Reproducido en Atlas Nacional de España, por Instituto Geográfico Nacional (IGN)).
+
+     ¿En qué año hubo mayor cantidad de migrantes exteriores en España?
+
+     A) 2013
+     B) 2015
+     C) 2018
+     D) 2019
+
+                                              - 30 -
+            FORMA 113 ­ 2026
+
+54.  El encargado del personal de una empresa extrae de la ficha de contratación las
+     edades de las personas que trabajan en esta empresa. Luego, resume la distribución
+     de las edades en la siguiente tabla:
+
+            Edad en años Cantidad
+
+            18 - 24   5
+
+            25 - 34   7
+
+            35 - 44   14
+
+            45 - 54   11
+
+            55 o más  13
+
+     La empresa dará un beneficio educacional según la información de la tabla a los
+
+     trabajadores cuya edad no supere los 34 años.
+
+     ¿Cuál es la mayor cantidad de trabajadores que podría acceder a ese beneficio?
+
+     A) 6
+     B) 7
+     C) 9
+     D) 12
+
+            - 31 -
+     FORMA 113 ­ 2026
+
+55.  Una persona está jugando un nuevo juego en línea en el cual se pueden escoger
+
+     distintos personajes. Cada personaje tiene cinco habilidades, con un puntaje de 0 a
+     100 en cada habilidad.
+
+     En el siguiente diagrama se representan las habilidades de uno de los personajes.
+
+     ¿Cuál es la habilidad más débil de este personaje?
+     A) Fuerza mágica
+     B) Defensa mágica
+     C) Defensa física
+     D) Fuerza física
+
+                                              - 32 -
+            FORMA 113 ­ 2026
+
+56.  Se realizó una encuesta a los estudiantes de IV medio de un establecimiento
+     educacional, sobre la cantidad de años que llevan en dicho establecimiento. En la
+     siguiente tabla se presentan los datos de dicha encuesta.
+
+            Cantidad de años Cantidad de
+                                       estudiantes
+
+            1                24
+
+            2                15
+
+            3                12
+
+            4                8
+
+            5                12
+
+            6                29
+
+            7                14
+
+            8                9
+
+            9 o más          16
+
+     ¿Cuántos estudiantes encuestados llevan 5 años o más en el establecimiento
+
+     educacional?
+
+     A) 12
+     B) 35
+     C) 68
+     D) 80
+
+                     - 33 -
+         FORMA 113 ­ 2026
+
+57.  Según la Encuesta Nacional de Empleos se considera como "ocupado" a aquellas
+     personas, en edad de trabajar, que durante la semana de referencia dedicaron al
+     menos una hora para producir bienes o servicios a cambio de una remuneración o
+     beneficio.
+
+     Considera la siguiente información:
+
+     ¿Cuál de las siguientes representaciones gráficas corresponde a la información
+     entregada?
+
+     A)                                           B)
+
+     C)                                           D)
+
+                                          - 34 -
+                                      FORMA 113 ­ 2026
+
+59. Considera la siguiente tabla:
+
+Valor Frecuencia
+
+0  P
+
+1  Q
+
+2  R
+
+¿Cuál de las siguientes expresiones permite determinar el promedio de los valores?
+
+     P+Q+2·R
+
+A)
+
+       P+Q+R
+           R
+
+B)
+
+     P+Q+R
+     0·P+1·Q+2·R
+
+C)
+
+           P+Q+R
+         2·R
+
+D)
+
+     P+Q+R
+
+   - 35 -
+                                      FORMA 113 ­ 2026
+
+60. Una persona plantó un brote de dos centímetros y lo fotografió durante cinco semanas
+
+         para dejar registro de su crecimiento, tal como se representa a continuación:
+
+         ¿Cuántos centímetros, en promedio, creció el brote por semana?
+
+       A) 2 cm
+       B) 2,4 cm
+       C) 3 cm
+       D) 7,5 cm
+
+                                                - 36 -
+     FORMA 113 ­ 2026
+
+61.  En el siguiente gráfico se representa la distribución de la cantidad de horas extras
+
+     realizadas por 140 trabajadores durante el mes de mayor demanda productiva de
+
+     una empresa.
+
+     Por cada hora extra se paga $15 000. ¿Cuál fue el pago más frecuente que realizó
+
+     la empresa por concepto de horas extras en ese mes?
+
+     A) $15 000
+     B) $30 000
+     C) $45 000
+     D) $60 000
+
+                                              - 37 -
+                                      FORMA 113 ­ 2026
+
+62. Considera el experimento descrito en la siguiente infografía para calcular el tiempo
+
+         de reacción, en segundos, de una persona.
+
+                  Ciencianet. (2008). Descubre tu tiempo de reacción. (Reproducido de Mide tu reacción, por C. Torres, en Edumate Perú).
+
+         Una persona efectuó el experimento y en el paso cuatro anotó los siguientes números:
+
+                              10 cm 9 cm 15 cm 8 cm 18 cm
+
+         ¿Cuál es el tiempo de reacción de la persona?
+
+       A) 0,10 s
+       B) 0,14 s
+       C) 0,16 s
+       D) 0,17 s
+
+                                                - 38 -
+     FORMA 113 ­ 2026
+
+64.  El memorice es un juego que está compuesto por varias tarjetas. Cada una de estas
+     tiene una figura que está repetida una sola vez en otra tarjeta, de tal manera que se
+     forman pares de cada una de estas figuras.
+
+     Para jugar, las tarjetas se deben disponer sobre una superficie de manera que
+     ninguna de las figuras de las tarjetas sea visible. Luego, la persona que juega debe
+     voltear una tarjeta y, después, debe dar vuelta una segunda tarjeta con la finalidad
+     de encontrar el par de la primera.
+
+     Una persona dispone sobre la mesa 20 tarjetas de este juego y voltea por primera vez
+
+     una de las tarjetas, en la cual aparece un rayo, tal como se presenta en la siguiente
+     imagen.
+
+     Si esta persona no conoce la figura de ninguna de las otras tarjetas dispuestas, ¿cuál
+     es la probabilidad de que esta persona encuentre el segundo rayo al dar vuelta al
+     azar la segunda tarjeta?
+
+           1
+
+     A)
+
+          20
+           1
+
+     B)
+
+          19
+           2
+
+     C)
+
+          20
+           2
+
+     D)
+
+          19
+
+                                              - 39 -
+          FORMA 113 ­ 2026
+
+          Listado de referencias bibliográficas
+
+Pregunta                                  Cita bibliográfica
+    23    Generadoras de Chile. (2022). Cifras destacadas del sector
+    53    generación en 2021. https://generadoras.cl/reporte-anual-2022/.
+          Instituto Nacional de Estadística (INE). (2021). Evolución de las
+    62    migraciones interiores (2008­2021). Como se cita en Instituto
+          Geográfico Nacional (IGN), Atlas Nacional de España.
+
+          CienciaNet. (2008). Descubre tu tiempo de reacción.
+
+          Recuperado de http://ciencianet.com/treaccion.html.
+
+          - 40 -
+        demre.cl  /demre.uchile   /demre_uchile  /DEMREuchile
+/demre.uchile      @demre.uchile
+                                  DEMRE U.chile  DEMRE Uchile
+

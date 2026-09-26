@@ -9,6 +9,7 @@ Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadí
 | | |
 |---|---|
 | [Inicio](index.html) | Perfil, material de clases y guías |
+| [PAES Estadística y Probabilidad](paes.html) | Curso interactivo del eje: 7 temas con diapositivas, pregunta PAES resuelta, cuestionario y ensayo final de 20 preguntas |
 | [Gatos Quiz](quiz.html) | Ejercicios interactivos de estadística |
 | [Gatito AES](aes.html) | Calculadora de eximición AES519 |
 
@@ -16,6 +17,7 @@ Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadí
 
 - `index.html`, `quiz.html`, `aes.html`: páginas estáticas con CSS y JS embebidos, sin build.
 - `*_questions.js`: bancos de preguntas de los gatos del quiz.
+- `paes.html` + `paes_data.js`: página PAES (motor y contenido). En `paes_data.js` cada tema tiene `slides`, `example` y `bank`; agregar preguntas es agregar objetos al `bank`. Las fuentes oficiales del DEMRE (temario M1 2027 y las tres últimas pruebas con sus claves) están en `paes/fuentes/`.
 - `guias/`: guías en PDF con su fuente `.tex`.
 - `fot/`, `logo/`, `*.svg`: imágenes.
 

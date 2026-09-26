@@ -1,0 +1,349 @@
+PRUEBA OBLIGATORIA  TEMARIO REGULAR
+
+Competencia
+Matemática 1 (M1)
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+INTRODUCCIÓN
+
+El Departamento de Evaluación, Medición y Registro Educacional (DEMRE), como
+organismo técnico responsable de desarrollar la batería de instrumentos de evaluación
+para el proceso de admisión a las universidades chilenas, ha elaborado los temarios para
+las pruebas correspondientes al proceso de Admisión 2027, que serán aplicados a fines
+del segundo semestre del año 2026.
+Esta tarea se hizo en conjunto con los equipos disciplinarios de la Unidad de Currículum y
+Evaluación (UCE) del Ministerio de Educación (Mineduc), con el fin de establecer aquellos
+conocimientos que los y las postulantes habrían tenido oportunidad de aprender, de
+acuerdo con la referencia curricular de las pruebas, los aspectos centrales de la disciplina
+y su importancia para la educación superior.
+Para la definición de las habilidades y los conocimientos se consideraron:
+
+    los criterios de pertinencia, relevancia y equidad para una prueba de altas
+       consecuencias, como lo es la Prueba de Acceso a la Educación Superior (PAES).
+
+    el arrastre de la priorización de los Objetivos de Aprendizaje realizada por la UCE
+       del Mineduc entre los años 2020 y 2022, en el contexto de la pandemia de Covid-19,
+       teniendo como referencia la cohorte que egresa de 4º medio en 2025.
+
+    la implementación progresiva de la actualización curricular establecida por la UCE
+       del Mineduc a partir del año 2023.
+
+Estas pruebas evalúan las habilidades mencionadas en el temario teniendo como
+referencia los conocimientos propios de cada disciplina especificados en él.
+
+                                                                                                      2
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+PRESENTACIÓN
+
+La PAES de Competencia Matemática 1 (M1), correspondiente a la prueba regular
+del proceso de admisión 2027, evalúa el desarrollo de habilidades matemáticas
+universalmente valoradas en la vida, pues se refieren a la forma en que la matemática
+nos ayuda en nuestras actividades cotidianas. Está dirigida a quienes requieren de un
+conocimiento general de la Matemática para su formación universitaria.
+
+En esta prueba se evalúa la Competencia Matemática, es decir, la integración de
+las habilidades y los conocimientos necesarios para resolver problemas en diversos
+contextos de la vida diaria, enfocándose en las habilidades que promueve el curriculum
+de Matemática.
+
+Así, esta prueba evalúa las habilidades referidas a las Bases Curriculares que son:
+
+    Resolver problemas
+    Modelar
+    Representar
+    Argumentar
+
+Por otro lado, la prueba tiene como referencia los conocimientos del plan de formación
+general de 7° básico a 2° medio de las Bases Curriculares agrupados en los siguientes
+ejes temáticos:
+
+    Números
+    Álgebra y funciones
+    Geometría
+    Probabilidad y estadística
+
+Cabe destacar que la competencia matemática es evaluada por preguntas que se
+enmarcan en diversos contextos de la vida cotidiana y por preguntas que consideran
+solo un contexto matemático.
+
+Además, este instrumento está compuesto por 65 preguntas de selección múltiple con
+respuesta única de 4 opciones. De estas preguntas, 60 son consideradas para el cálculo
+del puntaje de selección a las universidades. El tiempo de duración de esta prueba es de
+2 horas y 20 minutos.
+
+A continuación, se presentan las habilidades y los conocimientos que evalúa esta prueba.
+
+                                                                                                      3
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+           HABILIDADES EVALUADAS EN LA PAES DE
+                    COMPETENCIA MATEMÁTICA 1
+
+Habilidad    Descripción                             Criterios de evaluación
+
+Resolver     Es la habilidad que se tiene             Resuelve situaciones
+Problemas
+             para solucionar una situación           rutinarias que requieren la
+
+             problemática dada, contextualizada utilización de operatoria o
+
+             o no, rutinaria o no, con o sin que se  procedimientos básicos.
+
+             le haya indicado un procedimiento  Resuelve situaciones
+
+             a seguir. Para ello, se pueden          problemáticas que requieren
+
+             realizar cálculos, aplicar diversos     la utilización de estrategias
+
+             conocimientos y estrategias,            para su resolución.
+
+             además de interpretar y evaluar sus  Evalúa la validez del resultado
+
+             resultados, a través del pensamiento derivado de un problema.
+
+             reflexivo, crítico y creativo.
+
+Modelar      Es la habilidad que se tiene             Usa modelos matemáticos en
+             para usar, entender y comparar             una situación planteada.
+             expresiones matemáticas que
+             describen las características            Interpreta los parámetros
+             relevantes de una situación de la          y supuestos de un modelo
+             vida diaria o de las ciencias, para        matemático.
+             poder estudiarla, entenderla y
+             obtener soluciones en el ámbito          Ajusta modelos matemáticos
+             matemático que permitan                    de acuerdo con una situación
+             responder preguntas acerca de la           planteada.
+             situación modelada.
+                                                      Evalúa modelos matemáticos
+                                                        de acuerdo con una situación
+                                                        planteada.
+
+Representar  Es la habilidad que se tiene para        Traduce del lenguaje natural
+             transferir información de situaciones      al lenguaje matemático y
+             diversas que involucren datos,             viceversa.
+             procesos y relaciones, mediante
+             el uso de símbolos propios del           Interpreta información
+             lenguaje matemático, utilizando            de diferentes tipos de
+             tablas, gráficos, diagramas, la recta      representaciones de acuerdo
+             numérica o el plano cartesiano             con una situación planteada
+             y transitar entre las diferentes
+             representaciones.                        Transfiere una situación de un
+                                                        sistema de representación a
+                                                        otro.
+
+                                                                                    4
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+Habilidad   Descripción                             Criterios de evaluación
+
+Argumentar  Es la habilidad que se tiene para        Evalúa la validez de
+            reconocer, explicar y justificar           argumentos propuestos en
+            la validez de un procedimiento,            diversos contextos.
+            de pasos deductivos o de una
+            demostración y de estrategias de         Identifica la existencia de
+            solución de diversos problemas;            errores en procedimientos o
+            y, por otro lado, para detectar            demostraciones matemáticas.
+            argumentos erróneos en
+            proposiciones del tipo "si se tiene      Evalúa la validez de una
+            esto, entonces se cumplirá esto otro".     deducción, reconociendo
+                                                       si una afirmación se
+                                                       puede concluir de otras
+                                                       afirmaciones.
+
+                                                                             5
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+                CONOCIMIENTOS EVALUADOS EN LA
+              PAES DE COMPETENCIA MATEMÁTICA 1
+
+¡Atención!
+
+La inclusión de un conocimiento en el temario no significa que necesariamente
+sea preguntado en la prueba, ya que la cantidad de preguntas es menor al listado
+de temas planteados. Sin embargo, la totalidad de las preguntas se desprenden
+de este temario.
+
+                              HABILIDADES
+
+Resolver problemas    Modelar  Representar              Argumentar
+
+     EJE  UNIDADES                         DESCRIPCIÓN
+TEMÁTICO  TEMÁTICAS
+
+          Conjunto de los      Operaciones y orden en el conjunto de los
+          números enteros y      números enteros.
+          racionales
+                               Operaciones y comparación entre números en
+                                 el conjunto de los números racionales.
+
+                               Problemas que involucren el conjunto de los
+                                 números enteros y racionales en diversos
+                                 contextos.
+
+          Porcentaje           Concepto y cálculo de porcentaje.
+                               Problemas que involucren porcentaje en
+NÚMEROS
+                                 diversos contextos.
+
+          Potencias y raíces   Propiedades de las potencias de base racional
+          enésimas               y exponente racional.
+
+                               Descomposición y propiedades de las raíces
+                                 enésimas en los números reales.
+
+                               Problemas que involucren potencias y raíces
+                                 enésimas en los números reales en diversos
+                                 contextos.
+
+                                                                                  6
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+                             HABILIDADES
+
+Resolver problemas     Modelar  Representar  Argumentar
+
+     EJE         UNIDADES                              DESCRIPCIÓN
+TEMÁTICO        TEMÁTICAS
+                              Productos notables.
+           Expresiones        Factorizaciones y desarrollo de expresiones
+           algebraicas
+                                algebraicas.
+           Proporcionalidad   Operatoria con expresiones algebraicas.
+                              Problemas que involucren expresiones
+           Ecuaciones e
+           inecuaciones de      algebraicas en diversos contextos.
+           primer grado
+                              Concepto de proporción directa e inversa con
+ÁLGEBRA Y  Sistemas de          sus diferentes representaciones.
+FUNCIONES  ecuaciones
+           lineales (2x2)     Problemas que involucren proporción directa e
+                                inversa en diversos contextos.
+           Función lineal y
+           af ín              Resolución de ecuaciones lineales.
+                              Problemas que involucren ecuaciones lineales
+           Función
+           cuadrática           en diversos contextos.
+                              Resolución de inecuaciones lineales.
+                              Problemas que involucren inecuaciones
+
+                                lineales en diversos contextos.
+
+                              Resolución de sistemas de ecuaciones lineales.
+                              Problemas que involucren sistemas de
+
+                                ecuaciones lineales en diversos contextos.
+
+                              Concepto de función lineal y función afín.
+                              Tablas y gráficos de función lineal y función
+
+                                afín. Problemas que involucren función lineal y
+                                función afín en diversos contextos.
+
+                              Resolución y problemas de ecuaciones de
+                                segundo grado en diversos contextos.
+
+                              Tablas y gráficos de la función cuadrática,
+                                considerando la variación de sus parámetros.
+
+                              Puntos especiales de la gráfica de la función
+                                cuadrática: vértice, ceros de la función e
+                                intersección con los ejes.
+
+                              Problemas que involucren la función
+                                cuadrática en diversos contextos.
+
+                                                         7
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+                                    HABILIDADES
+
+Resolver problemas  Modelar         Representar               Argumentar
+
+     EJE  UNIDADES                               DESCRIPCIÓN
+TEMÁTICO  TEMÁTICAS
+
+          Figuras                    Problemas que involucren el Teorema de
+          geométricas                  Pitágoras en diversos contextos.
+
+                                     Perímetro y áreas de triángulos,
+                                       paralelogramos, trapecios y círculos.
+
+                                     Problemas que involucren perímetro y áreas de
+                                       triángulos, paralelogramos, trapecios y círculos
+                                       en diversos contextos.
+
+                       Cuerpos       Área de superficies de paralelepípedos, cubos y
+                       geométricos     cilindros.
+
+GEOMETRÍA                            Volumen de paralelepípedos, cubos y cilindros.
+                                     Problemas que involucren área y volumen de
+
+                                       paralelepípedos, cubos y cilindros en diversos
+                                       contextos.
+
+          Transformaciones           Puntos y vectores en el plano cartesiano.
+          isométricas                Rotación, traslación y reflexión de figuras
+
+                                       geométricas.
+                                     Problemas que involucren rotación, traslación y
+
+                                       reflexión en diversos contextos.
+
+          Semejanza y                Aplicar propiedades de semejanza y de
+          proporcionalidad             proporcionalidad a modelos a escala y otras
+          de figuras                   situaciones de la vida diaria y otras asignaturas.
+
+                                                                          8
+TEMARIO PRUEBA OBLIGATORIA DE
+
+COMPETENCIA MATEMÁTICA 1 (M1)
+
+                                       HABILIDADES
+
+Resolver problemas  Modelar            Representar  Argumentar
+
+EJE TEMÁTICO        UNIDADES                        DESCRIPCIÓN
+                    TEMÁTICAS
+
+              Representación de         Tablas de frecuencia absoluta y relativa.
+              datos a través de         Tipos de gráficos que permitan representar
+              tablas y gráficos
+                                          datos.
+                                        Promedio de un conjunto de datos.
+                                        Problemas que involucren tablas y gráficos
+
+                                          en diversos contextos.
+
+                           Medidas de   Cuartiles y percentiles de uno o más grupos
+PROBABILIDAD posición                     de datos.
+Y ESTADÍSTICA
+                                        Diagrama de cajón para representar
+                                          distribución de datos.
+
+                                        Problemas que involucren medidas de
+                                          posición en diversos contextos.
+
+              Reglas de las             Problemas que involucren probabilidad de
+              probabilidades              un evento en diversos contextos.
+
+                                        Problemas que involucren la regla aditiva y
+                                          multiplicativa de probabilidades en diversos
+                                          contextos.
+
+                                                                                        9
+

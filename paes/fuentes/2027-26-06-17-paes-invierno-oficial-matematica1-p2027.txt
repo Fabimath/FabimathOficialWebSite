@@ -1,0 +1,1585 @@
+FORMA 111  Prueba de Acceso a la Educación Superior (PAES)
+
+           COMPETENCIA
+           MATEMÁTICA 1
+
+2 0 2 7 Proceso de Admisión
+
+ 1. Esta prueba contiene 65 preguntas, 60 de las cuales serán consideradas para el cálculo del puntaje final de la
+    prueba. Las preguntas tienen 4 opciones de respuesta (A, B, C y D), donde solo una de ellas es correcta.
+
+ 2. Comprueba que la forma que aparece en tu hoja de respuestas sea la misma de tu folleto. Completa todos los
+    datos solicitados, de acuerdo con las instrucciones contenidas en esa hoja, porque estos son de tu exclusiva
+    responsabilidad. Cualquier omisión o error en ellos impedirá que se entreguen tus resultados. Se te dará tiempo
+    para completar esos datos antes de comenzar la prueba.
+
+ 3. Dispones de 2 horas y 20 minutos para responder las 65 preguntas. Este tiempo comienza después de la lectura de
+    las instrucciones, una vez contestadas las dudas y completados los datos de la hoja de respuestas.
+
+ 4. Las respuestas a las preguntas se marcan en la hoja de respuestas que se te entregó. Marca tu respuesta en la fila
+    de celdillas que corresponda al número de la pregunta que estás contestando. Ennegrece completamente la celdilla,
+    tratando de no salirte de sus márgenes. Hazlo exclusivamente con lápiz de grafito Nº 2 o portaminas HB.
+
+ 5. No se descuenta puntaje por respuestas erradas.
+
+ 6. Contesta directamente en la hoja de respuestas. Puedes usar este folleto como borrador, pero deberás traspasar
+    tus respuestas a la hoja de respuestas. Ten presente que para la evaluación se considerarán exclusivamente las
+    respuestas marcadas en dicha hoja.
+
+ 7. Cuida la hoja de respuestas. No la dobles. No la manipules innecesariamente. Escribe en ella solo los datos pedidos
+    y las respuestas. Evita borrar para no deteriorarla. Si lo haces, límpiala de los residuos de goma.
+
+ 8. El número de serie del folleto no tiene relación con el número del código de barra que aparece en la hoja de respuestas.
+    Por lo tanto, pueden ser iguales o distintos.
+
+ 9. Es obligatorio devolver íntegramente este folleto y la hoja de respuestas antes de abandonar la sala.
+
+10. Recuerda que está prohibido copiar, fotografiar, publicar, compartir en redes sociales y reproducir total o parcialmente,
+    por cualquier medio, las preguntas de esta prueba.
+
+11. Tampoco se permite el uso de teléfono celular, calculadora o cualquier otro dispositivo electrónico durante la
+    rendición de la prueba. Es obligatorio que guardes todos tus dispositivos electrónicos y celulares apagados en
+    la bolsa autosellante que se te entregará, la que deberá permanecer cerrada hasta terminada la aplicación de la
+    prueba. El incumplimiento de lo anterior, o la apertura de la bolsa en cualquier momento de la prueba, implica tu
+    eliminación del proceso de admisión en curso.
+
+12. Finalmente, anota tu número de Cédula de Identidad (o Pasaporte) en los casilleros que se encuentran en la parte
+    inferior de este folleto, lee y firma la declaración correspondiente.
+
+DECLARACIÓN: declaro conocer y aceptar la normativa que rige al Proceso de Admisión a las universidades chilenas y
+soy consciente de que, en caso de colaborar con la reproducción, sustracción, almacenamiento o transmisión, total o
+parcial, de este folleto, a través de cualquier medio, me expongo a la exclusión inmediata de este Proceso, sin perjuicio
+de las demás acciones o sanciones legales.
+
+                                                  --  Firma
+
+Número de cédula de identidad (o pasaporte)
+                      FORMA 111 ­ 2027
+
+EN ESTA PRUEBA SE CONSIDERARÁ LO SIGUIENTE:
+
+1.     Las figuras que aparecen son solo indicativas.
+
+2.     Los gráficos que se presentan están dibujados en un sistema de ejes
+
+       perpendiculares, cuyo origen es el punto (0, 0).
+
+3.     El intervalo [p, q] es el conjunto de todos los números reales mayores o
+
+       iguales que p y menores o iguales que q; el intervalo ]p, q] es el conjunto
+
+       de todos los números reales mayores que p y menores o iguales que q;
+
+       el intervalo [p, q[ es el conjunto de todos los números reales mayores o
+
+       iguales que p y menores que q; y el intervalo ]p, q[ es el conjunto de todos
+
+       los números reales mayores que p y menores que q.
+
+4.     Todas las funciones presentadas tendrán como dominio el conjunto de los
+
+       números reales a menos que se indique lo contrario.
+
+5.     -v = (a, b) es un vector que tiene su punto de inicio en el origen del plano
+
+       cartesiano y su punto final en el punto (a, b), a menos que se indique lo
+
+       contrario.
+
+6.     En el experimento de seleccionar al azar un elemento de un grupo, cada
+
+       elemento del grupo tiene igual probabilidad de ser seleccionado, a menos
+
+       que se indique lo contrario.
+
+7.     Se entenderá por dado común a aquel que posee 6 caras numeradas del 1
+
+       al 6 y en el experimento de lanzarlo, sus caras son equiprobables de salir.
+
+8.     En el experimento de lanzar una moneda, sus dos opciones son
+
+       equiprobables de salir, a menos que se indique lo contrario.
+
+SÍMBOLOS MATEMÁTICOS
+
+    <  es menor que                                      es semejante con
+
+    >  es mayor que                       =              es distinto de
+
+       es menor o igual que               AB trazo AB
+
+       es mayor o igual que               AB medida del trazo AB
+
+       ángulo recto
+
+Propiedad Intelectual Universidad de Chile.
+Derechos reservados ©. Prohibida su reproducción total o parcial.
+
+Queda estrictamente prohibida la reproducción, distribución o uso de este material, total
+o parcial, para entrenar, desarrollar o mejorar modelos de inteligencia artificial (IA) o
+algoritmos de aprendizaje automático, sin autorización expresa y por escrito.
+
+                                     -2-
+                                   FORMA 111 ­ 2027
+
+1. En un juego de mesa se pueden obtener las siguientes tarjetas:
+
+Para determinar el puntaje de cada jugador se debe sumar o restar los puntos de
+cada tarjeta.
+
+Al finalizar una partida, cuatro jugadores habían sacado las siguientes tarjetas:
+
+             Claudio   Diamante  Estrella  Calavera
+              María
+             Angélica      5       10          1
+             Roberto       3       10          0
+                           5         5         2
+                           8         5         1
+
+¿Cuál de los jugadores obtuvo el mayor puntaje en esta partida?
+
+A) Claudio
+B) María
+C) Angélica
+D) Roberto
+
+                       -3-
+                                   FORMA 111 ­ 2027
+
+2. Una persona compra manzanas en cajas de 24 unidades para vender en su local.
+
+     Si esta persona hace un pedido de 45 de estas cajas, pero le llegaron solo 38 cajas,
+
+       ¿cuántas manzanas le faltaron en el pedido?
+
+     A) 42
+     B) 148
+     C) 168
+     D) 278
+
+3. José tiene 90 dulces y se quedará con 18, repartiendo el resto en partes iguales
+
+       entre ocho amigos.
+       ¿Cuántos dulces recibirá cada amigo de José?
+
+     A) 8
+     B) 9
+     C) 10
+     D) 11
+
+                                               -4-
+                                   FORMA 111 ­ 2027
+
+4. Considera el siguiente modelo que permite estimar la estatura, en centímetros, que
+
+       tendrán niñas y niños cuando terminen su desarrollo.
+
+                 Estatura del padre (cm) + estatura de la madre (cm) + 13 · P
+
+                                                                                                           ,
+
+                                                    2
+
+       tal que:
+
+         · P = 1, si su sexo es masculino.
+         · P = -1, si su sexo es femenino.
+
+       ¿Cuál será la estatura estimada de un niño de sexo masculino cuando termine su
+
+     desarrollo si su madre mide 159 cm y su padre mide 168 cm?
+     A) 157 cm
+     B) 163,5 cm
+     C) 170 cm
+     D) 176,5 cm
+
+                                               -5-
+                                   FORMA 111 ­ 2027
+
+5. En la figura adjunta se representa una barra de 20 kg con tres discos distintos en
+
+     cada lado. Los discos de cada lado tienen una masa de 5 kg, 10 kg y 15 kg.
+
+     Si se quiere levantar la misma cantidad de kilogramos usando solo discos de 10 kg,
+
+       ¿cuántos discos se deben colocar a cada lado de la barra?
+
+     A) 3
+     B) 4
+     C) 5
+     D) 6
+
+                                               -6-
+                                   FORMA 111 ­ 2027
+
+6. Sandra y Miguel quieren leer, cada uno por su cuenta, un libro de 175 páginas en
+
+     5 días.
+     Sandra decide leer 40 páginas el primer día, y cada día en adelante leer 3 páginas
+     menos que el día anterior, mientras que Miguel decide leer 25 páginas el primer día,
+     y cada día en adelante leer 5 páginas más que el día anterior.
+
+       Si ambos cumplen con la lectura diaria estipulada, ¿cuál de las siguientes
+       afirmaciones es verdadera con respecto al plazo de lectura de Sandra y Miguel?
+      A) Ambos alcanzaron a leer el libro en el plazo.
+      B) Sandra alcanzó a leer el libro en el plazo, pero Miguel no.
+      C) Miguel alcanzó a leer el libro en el plazo, pero Sandra no.
+      D) Ninguno alcanzó a leer el libro en el plazo.
+
+                                   
+
+7. ¿Cuál es el valor de 2 · (2 3) · 3?
+
+     A) 12
+            
+
+     B) 4 18
+             
+
+     C) 12 3
+     D) 24
+
+                                               -7-
+                                   FORMA 111 ­ 2027
+
+8. Considera las siguientes botellas de agua y sus respectivas capacidades en L.
+
+       ¿Cuál de las siguientes expresiones representa la diferencia de capacidad entre
+       ambas botellas, en litros?
+
+                          11
+     A) (2 - 1) - +
+
+                          48
+                          11
+     B) (2 - 1) + -
+                          48
+                          11
+     C) (2 - 1) + -
+                          84
+                          11
+     D) (2 + 1) - +
+                          84
+
+                                               -8-
+                                   FORMA 111 ­ 2027
+
+9. Una persona necesita comprar 3 kg de azúcar, 6 L de lavaloza, 4 L de leche
+
+     y 1 kg de arroz.
+
+       En la siguiente tabla se registraron los precios de los productos por comprar.
+
+   Producto             Precio unitario Promoción por dos unidades
+
+1 kilogramo de azúcar   $1400                       $2600
+
+1  litro  de  lavaloza  $1600                       $3000
+2                       $1200                       $2200
+
+   1 litro de leche
+
+1 kilogramo de arroz    $1700                       $3300
+
+Para calcular el menor precio por pagar, la persona efectúa el siguiente procedimiento,
+en el cual comete un error.
+
+Paso 1: calcula que en azúcar debe gastar $2600 + $1400 = $4000.
+Paso 2: calcula que en lavaloza debe gastar 3 · $3000 = $9000.
+Paso 3: calcula que en leche debe gastar 2 · $2200 = $4400.
+
+Paso 4: suma a los valores anteriores el precio de un kilogramo de arroz y obtiene
+
+          que el precio final por pagar es $19 100.
+
+¿En cuál de los pasos la persona cometió el error?
+
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+
+                        -9-
+                  FORMA 111 ­ 2027
+
+10.  Para calcular el monto final de dinero que se tendrá por medio de un interés simple
+
+     mensual del i %, después de una cantidad n de meses, se utiliza la siguiente
+
+     expresión:
+
+                           i·n
+                  Cf = Ci  1+                         ,
+                                100
+
+     tal que Cf es el monto final de dinero y Ci es el monto inicial de dinero.
+
+     Considera una inversión con un monto inicial de $100 000 al que se le aplica un
+     interés simple mensual del 20 %.
+
+     ¿Cuánto dinero se tendrá transcurridos 5 meses?
+
+     A) $102 000
+     B) $110 000
+     C) $120 000
+     D) $200 000
+
+                  - 10 -
+                                     FORMA 111 ­ 2027
+
+11. En el siguiente mapa se presenta la hora en cuatro ciudades del mundo en un mismo
+
+         momento del día lunes.
+
+         Una persona viaja en un vuelo directo desde Nueva York hasta Tokio. Su vuelo partió
+
+       a las 05:00 horas de Nueva York de ese día lunes y duró 14,5 horas.
+
+         ¿A qué hora de Tokio aterrizó el vuelo de esta persona?
+         A) A las 19:50 del día lunes
+         B) A las 19:30 del día lunes
+         C) A las 09:30 del día martes
+         D) A las 09:50 del día miércoles
+
+                                                - 11 -
+                                     FORMA 111 ­ 2027
+
+12. En la entrada de una obra de teatro, hay una persona encargada de recibir los tickets
+
+         de entrada de los asistentes.
+
+       Si se estima que la persona encargada recibe 15 tickets cada 60 segundos, ¿cuál
+
+         de las siguientes expresiones permite estimar la cantidad de tickets que recibe cada
+
+       t minutos?
+       A) 15t
+       B) 900t
+       C) 4t
+
+              t
+
+         D)
+
+             900
+
+13. ¿Qué número corresponde al 15 % de 480?
+
+       A) 28,8
+       B) 31,3
+       C) 68
+       D) 72
+
+                                                - 12 -
+             FORMA 111 ­ 2027
+
+14.                                                                                     c
+
+     En una prueba, el índice de dificultad de una pregunta se calcula como , tal que
+
+                                                                                        n
+     c es la cantidad de personas que respondieron correctamente la pregunta y n es el
+
+     total de personas que la respondieron.
+
+     Considera una pregunta que fue respondida correctamente por 280 personas e
+     incorrectamente por 560 personas.
+
+     ¿Cuál es el índice de dificultad de esa pregunta?
+
+          1
+
+     A)
+
+          3
+          1
+
+     B)
+
+          2
+          2
+
+     C)
+
+          3
+     D) 2
+
+15. Una empresa de estacionamientos cobra una tarifa de $25 por cada minuto de uso.
+
+         Por un incremento en los costos, la empresa decide aumentar la tarifa por minuto en
+
+       un 12 %.
+
+       ¿Cuánto se tiene que pagar por usar el estacionamiento 10 minutos, después del
+
+         aumento de la tarifa?
+
+       A) $370
+       B) $300
+       C) $280
+       D) $120
+
+             - 13 -
+         FORMA 111 ­ 2027
+
+16.  Se realizó una encuesta a un grupo de personas respecto a su legumbre preferida
+     y cada persona eligió solo una opción. Los resultados se presentan en la siguiente
+     tabla:
+
+         Tipo de legumbre   Porcentaje de preferencia
+             Lentejas (L)
+                                       20 %
+           Garbanzos (G)               10 %
+             Porotos (P)               45 %
+                                       25 %
+         Otra legumbre (O)
+
+     ¿Cuál de los siguientes gráficos representa mejor esta información?
+
+     A)                             B)
+
+     C)                             D)
+
+                            - 14 -
+                FORMA 111 ­ 2027
+
+17.  Para arrendar botes en una empresa se debe enviar una solicitud. En la siguiente
+     figura se representa una solicitud que está en estado de "Aprobada" y le falta pasar
+     por los últimos tres estados.
+
+     Para calcular el progreso de las últimas 20 solicitudes, la empresa calcula el
+
+     porcentaje de ellas que está o ya ha pasado el estado "Aprobada".
+
+     En la siguiente tabla se presentan las últimas 20 solicitudes:
+
+     Solicitud    Estado    Solicitud    Estado
+         1       Enviada        11     En curso
+         2      En curso        12     En curso
+         3      En curso        13     En curso
+         4      Finalizada      14      Enviada
+         5      Finalizada      15      Enviada
+         6       Pagada         16      Pagada
+         7       Enviada        17     Finalizada
+         8      Aprobada        18     Aprobada
+         9       Enviada        19      Pagada
+                 Pagada         20      Pagada
+        10
+
+     ¿Cuál es el porcentaje de las solicitudes que está o ya ha pasado por el estado
+     "Aprobada"?
+
+     A) 13 %
+     B) 15 %
+     C) 65 %
+     D) 75 %
+
+                - 15 -
+                                     FORMA 111 ­ 2027
+
+18. En la siguiente tabla se presenta la cantidad de licencias de conducir tramitadas a
+
+         mujeres durante el 2021 por clase.
+
+                   Clase  Cantidad
+                     A1
+                     A2        244
+                     A3      3617
+                     A4      1962
+                     A5      1535
+                     B         199
+                     C    248 700
+                     D       5859
+                     E       3734
+                     F
+                   Total          7
+                               687
+                          266 544
+
+¿Cuál de las siguientes expresiones representa el porcentaje de licencias clase
+A1 que se tramitaron, con respecto al total de licencias cuya clase comienza con la
+letra A?
+
+A)  244 · 100  %
+
+    7557
+
+B)  244         %
+
+    7557 · 100
+
+C)  244 · 100  %
+
+    7313
+
+D)  244         %
+
+    7313 · 100
+
+                   - 16 -
+                                     FORMA 111 ­ 2027
+
+19. La Maratón de Santiago, realizada el 28 de abril de 2024 tenía tres categorías 10k,
+
+       21k y 42k, y participaron 31 000 corredores.
+
+       Del total de corredores, un 25 % eran extranjeros y un 12 % de estos compitieron en
+       la categoría 10k.
+
+         ¿Cuál de las siguientes expresiones representa la cantidad de corredores extranjeros
+
+       que compitieron en la categoría 10k?
+
+       A) 25 · 12 · 31 000
+       B) (25 + 12) · 31 000
+       C) 0,25 · 0,12 · 31 000
+       D) (0,25 + 0,12) · 31 000
+
+20.  Una empresa de limpieza de automóviles realiza un cobro base de $20 000 por
+
+     lavado y secado exterior del vehículo. Al agregar otros servicios extras, se cobra un
+
+     adicional de $5000 por cada uno.
+
+     La empresa ofrece un 15 % de descuento en el total a pagar si se realizan más de
+
+     tres tipos de servicios extras.
+
+     Si una persona realiza el lavado y secado exterior con cinco servicios extras, ¿cuánto
+     es el total que debe pagar?
+
+     A) $38 250
+     B) $41 250
+     C) $42 000
+     D) $42 750
+
+                 - 17 -
+                                     FORMA 111 ­ 2027
+
+21. Para promocionar un negocio se contrata a un grupo de personas para que cada una
+
+       pueda captar a un máximo de 20 clientes por día.
+
+         Para calcular el pago diario, en pesos, que recibirá cada persona se utiliza el siguiente
+         modelo:
+
+                                           2000 · C + 10 000 ,
+       tal que C es la cantidad de clientes captados.
+       Si una persona logró captar en un día 16 clientes, ¿qué porcentaje recibió del pago
+
+         máximo diario?
+
+       A) 16 %
+       B) 20 %
+       C) 80 %
+       D) 84 %
+
+                                                - 18 -
+                       FORMA 111 ­ 2027
+
+22.  Un Gúgol es un número muy grande cuyos dígitos son un 1 seguido por cien ceros.
+
+     Por otra parte, un Gúgoplex es un número inmensamente más grande que el anterior
+
+     cuyos dígitos son un 1 seguido por un Gúgol de ceros.
+
+     ¿Cuál de los siguientes números equivale a un Gúgoplex?
+
+     A) 1010100
+     B) 10100 · 10100
+     C) 2 · 10100
+     D) 101099
+
+23. En un laboratorio, a partir de un estudio bajo ciertas condiciones, se determinó que
+
+       un tipo de bacteria se duplica cada 4 minutos.
+
+         Si en un instante se tenía una de estas bacterias, ¿cuánto tiempo transcurrió para
+
+       tener 64 de esas bacterias?
+
+       A) 5 minutos
+       B) 6 minutos
+       C) 20 minutos
+       D) 24 minutos
+
+                       - 19 -
+                                     FORMA 111 ­ 2027
+
+24. El crecimiento de una población de bacterias se modela utilizando la siguiente
+
+         expresión:
+
+                                              F = P(1 + r)t ,
+
+       tal que F es la cantidad final de bacterias transcurrido un tiempo t en horas, P es la
+       cantidad inicial de bacterias y r es la tasa de crecimiento por hora.
+
+Para calcular la cantidad de bacterias que habrá transcurridas 2 horas, en un cultivo
+                                                                                  1
+
+en que inicialmente hay 100 bacterias y tiene una tasa de crecimiento de por hora,
+                                                                                  2
+
+se realiza el siguiente procedimiento cometiéndose un error.
+
+                                                                                       12
+Paso 1: se reemplazan los valores de P, t y r, obteniéndose F = 100 1 + .
+
+                                                                                       2
+
+Paso 2: se calcula la suma dentro del paréntesis, obteniéndose F = 100  32  .
+
+                                                                        2
+
+                                                                 6
+Paso 3: se resuelve la potencia, obteniéndose F = 100 · .
+
+                                                                 4
+Paso 4: se resuelve el producto, obteniéndose F = 150.
+
+¿En cuál de los pasos se cometió el error?
+
+A) En el Paso 1
+B) En el Paso 2
+C) En el Paso 3
+D) En el Paso 4
+
+                 - 20 -
+     FORMA 111 ­ 2027
+
+25.  Para organizar un torneo de ajedrez en dos grupos, se definió un sistema de
+     clasificación por eliminación directa, es decir, un jugador se queda fuera del torneo al
+     perder una partida.
+
+     Se utilizó el siguiente esquema para registrar a las personas participantes y
+     ganadoras en cada ronda, hasta llegar a la final.
+
+     Como la convocatoria al torneo fue exitosa, se decidió inscribir a más personas en
+     el torneo, alcanzándose a completar los cupos para realizar una ronda más por grupo.
+     ¿Cuántas personas participarán en el torneo de ajedrez?
+
+     A) 10
+     B) 16
+     C) 20
+     D) 32
+
+                                              - 21 -
+     FORMA 111 ­ 2027
+
+26.  Martina debe realizar un viaje por una calle recta y para esto revisa un mapa. En la
+     figura adjunta se presenta el mapa y la distancia en el mapa entre los dos puntos que
+
+     tiene que recorrer. Se sabe que 2 cm en el mapa equivalen a 200 m de distancia en
+
+     la realidad.
+
+     ¿Cuál es la distancia que debe recorrer Martina?
+
+     A) 400 m
+     B) 1100 m
+     C) 2200 m
+     D) 4400 m
+
+                                              - 22 -
+                                     FORMA 111 ­ 2027
+
+27. Una persona preparará un postre de frutilla. La receta que tiene indica que por cada
+
+       500 gramos de frutilla deberá usar 200 gramos de azúcar.
+       Para elaborar el postre utilizará 100 gramos más de frutilla de lo indicado en la receta.
+
+         ¿Cuántos gramos de azúcar en total deberá utilizar la persona para mantener la
+         proporción indicada en la receta?
+
+       A) 100
+       B) 140
+       C) 240
+       D) 300
+
+                                                - 23 -
+                      FORMA 111 ­ 2027
+
+28.  En una empresa hay 4 trabajadores para cosechar uvas y estos logran llenar
+     2000 cajas en 20 días de trabajo, todos trabajando todos los días, al mismo ritmo y
+
+     la misma cantidad de horas.
+
+     En la empresa se realiza el siguiente procedimiento para calcular la cantidad de
+
+     trabajadores necesarios para llenar 32 000 cajas en 10 días, bajo las mismas
+
+     condiciones, cometiéndose un error.
+
+     Paso 1: se calcula la cantidad de cajas que llenan diariamente los 4 trabajadores
+
+     iniciales en conjunto como  2000  , obteniéndose que llenan 100 cajas diarias.
+
+                                 20
+
+     Paso 2: se calcula la cantidad de cajas que cada trabajador llena diariamente como
+
+               100 · 4, obteniéndose 400 cajas diarias por trabajador.
+
+     Paso 3: se calcula la cantidad de cajas que se deben llenar diariamente para la
+
+     nueva producción como  32 000   , obteniéndose que deben llenar 3200 cajas
+
+                                 10
+
+     diarias.
+
+     Paso 4: se divide la cantidad de cajas diarias que deben llenar por la cantidad que
+
+     cada trabajador llena diariamente como      3200  , obteniéndose que necesitan
+
+                                                 400
+
+     8 trabajadores.
+
+     ¿En cuál de los pasos se cometió el error?
+
+     A) En el Paso 1
+     B) En el Paso 2
+     C) En el Paso 3
+     D) En el Paso 4
+
+                                 - 24 -
+                 FORMA 111 ­ 2027
+
+29.  Josefa y Francisca asistieron al festival juvenil. La entrada a este evento tiene un
+
+     precio de $20 000 por persona y quienes asistan pueden comprar chapitas para
+     regalar a $500 cada una.
+
+     Josefa gastó en total $30 000 por la entrada y por las chapitas que compró, y por
+     cada 5 chapitas que compró Francisca, Josefa compró 4.
+
+     ¿Cuánto gastó Francisca en chapitas en el festival?
+
+     A) $12 500
+     B) $37 500
+     C) $42 500
+     D) $62 500
+
+30. En una empresa que se dedica a la mantención y reparación de calefont, trabajan
+
+         Pedro, Joaquín, Rosario y Teresa, como técnicos.
+
+         En una semana de trabajo se registra la cantidad de clientes atendidos por los
+
+       técnicos, la cual dio un total de 79 clientes.
+
+       En dicha semana Pedro atendió 18 clientes, Joaquín atendió 8 clientes más que
+       Rosario y Teresa atendió 9 clientes más que Joaquín.
+
+         ¿Cuántos clientes atendió Rosario en esa semana de trabajo?
+
+     A) 12
+     B) 18
+     C) 22
+     D) 36
+
+                 - 25 -
+                                     FORMA 111 ­ 2027
+
+31. En la siguiente infografía se presenta información respecto a la rapidez máxima
+
+         permitida en zonas de escuela.
+
+        Conaset.(2018). Comisión Nacional de Seguridad de Tránsito - ProyectoCATI.
+
+¿En cuál de las siguientes gráficas se representan únicamente todas las posibles
+
+                                km
+
+rapideces de un vehículo, en , con las que puede transitar en zona de escuela en
+
+                                  h
+
+horario de entrada y salida de clases?
+
+A)      30
+        30
+     0
+                   - 26 -
+B)
+
+     0
+
+C)
+
+    30
+
+D)
+
+    30
+                                     FORMA 111 ­ 2027
+
+32. Considera la siguiente oferta:
+
+       Una persona tiene $10 000 para comprar un paquete de tallarines de $800 y la
+
+         máxima cantidad de kilogramos de tomates posible.
+
+       ¿Cuál de las siguientes inecuaciones permite determinar la máxima cantidad x de
+
+         kilogramos de tomates que puede comprar la persona?
+
+       A) 10 000 - 800  1800x
+                                 1800
+
+       B) 10 000 - 800 
+                                   x
+
+       C) 10 000 + 800  1800x
+                                 1800
+
+       D) 10 000 + 800 
+                                   x
+
+                                                - 27 -
+                                     FORMA 111 ­ 2027
+
+33. Para la celebración de un evento familiar, una persona compró velas blancas y
+
+       amarillas. En total, compró 14 velas y pagó $60 000.
+       Si por cada vela blanca pagó $3000 y por cada vela amarilla pagó $6000, ¿cuántas
+
+         velas blancas compró en total la persona?
+
+       A) 2
+       B) 3
+       C) 7
+       D) 8
+
+34. Si (p - 3)2 - 36 = 0, ¿cuál de los siguientes valores puede ser un valor de p?
+
+       A) -15
+       B) -9
+       C) 9
+       D) 15
+
+                                                - 28 -
+                                     FORMA 111 ­ 2027
+
+35. Una empresa contrata a una persona para que publique videos mostrando los
+
+       beneficios de sus productos. La empresa le paga $150 000, más $100 000 por cada
+
+         video publicado.
+
+         ¿Cuál de las siguientes funciones modela el dinero que recibirá la persona tras
+
+       publicar x videos para la empresa?
+
+       A) f(x) = 150 000x + 100 000
+       B) g(x) = 100 000x + 150 000
+       C) h(x) = 100 000 · (x + 150 000)
+       D) k(x) = x · (100 000 + 150 000)
+
+36. En la siguiente tabla se presenta la tarifa a cobrar por minuto para el uso de los
+
+         estacionamientos de dos centros comerciales.
+
+  Estacionamiento   Tarifa por minuto
+Centro comercial R
+Centro comercial Q        $16
+                          $30
+
+Para calcular el valor que se debe pagar por la estadía en estos centros comerciales,
+desde el ingreso por la barrera de entrada al estacionamiento hasta el pago en caja,
+
+utilizan la expresión p · (t - 15), tal que p es la tarifa por minuto y t es la cantidad
+
+de minutos de la estadía.
+
+Considerando una estadía de 55 minutos, ¿cuánto más caro es estacionar en el
+
+estacionamiento Q que en el estacionamiento R?
+
+A) $1200
+B) $770
+C) $640
+D) $560
+
+                                         - 29 -
+                                     FORMA 111 ­ 2027
+
+37. En la siguiente gráfica se representa la posición de un automóvil en distintos tiempos.
+
+         ¿Cuánto tiempo estuvo detenido el automóvil?
+
+       A) 0,5 horas
+       B) 1,5 horas
+       C) 3,5 horas
+       D) 4 horas
+
+                                                - 30 -
+         FORMA 111 ­ 2027
+
+38.  El peso p en newtons (N) de un cuerpo depende de su masa m en kilogramos, y se
+     modela mediante la expresión p = g · m, tal que g es una constante que depende
+
+     del planeta donde se encuentre el cuerpo.
+
+                                                                  m
+     En Mercurio, el valor de g es aproximadamente 3,7 s2 , de manera que se puede
+
+     establecer el siguiente gráfico:
+
+                                                                    m
+     Si el valor de g en la Tierra es aproximadamente 10 s2 , ¿cuál de los siguientes
+
+     gráficos podría representar el peso en función de la masa en Mercurio y en la Tierra?
+
+     A)          B)
+
+     C)          D)
+
+         - 31 -
+                                     FORMA 111 ­ 2027
+
+39. Considera la función f definida por f(x) = 2x2 - 7x + 1.
+
+       ¿Cuál es el valor de f(-3)?
+
+       A) -56
+       B) -38
+       C) 40
+       D) 58
+
+40.  Un proyector de imágenes tiene una proporción de 9 : 16 entre la altura y el ancho
+
+     de su proyección rectangular, siendo su altura el lado menor. Al situar el proyector a
+     cierta distancia de la pared, la longitud de la diagonal del rectángulo de proyección
+
+     será de 100 pulgadas, tal como se representa en la siguiente imagen:
+
+     Para calcular la altura de este rectángulo de proyección, se utiliza el siguiente modelo:
+
+                                      (9x)2 + (16x)2 = 1002
+     ¿Qué representa 16x en el modelo?
+
+     A) El factor de proporcionalidad
+     B) El ancho del rectángulo de proyección
+     C) La altura del rectángulo de proyección
+     D) La distancia desde el proyector hasta la pared
+
+                                              - 32 -
+                      FORMA 111 ­ 2027
+
+41.  En la parte superior de un poste de 3 metros de altura perpendicular al suelo, se
+     atan dos cuerdas de manera tensa, quedando de 4 metros cada una, tal como se
+
+     representa en la figura adjunta.
+
+     Para determinar la distancia x con respecto al poste, se realiza el siguiente
+
+     procedimiento, cometiéndose un error.
+
+     Paso 1: para calcular la longitud x se decide utilizar el teorema de Pitágoras, por lo
+               que se reemplazan los valores, obteniéndose x2 + 32 = 42.
+
+     Paso 2: se calculan las potencias en la ecuación  anterior,  obteniéndose
+
+               x2 + 9 = 16.
+                                                    
+
+     Paso 3: se despeja x, obteniéndose x = 16 + 9.
+
+     Paso 4: se calcula la raíz cuadrada del paso anterior, obteniéndose la distancia de
+
+               5 metros.
+
+     ¿En cuál de los pasos se cometió el error?
+
+     A) En el Paso 1
+     B) En el Paso 2
+     C) En el Paso 3
+     D) En el Paso 4
+
+                      - 33 -
+                                     FORMA 111 ­ 2027
+
+42. Las diagonales de un rombo miden 24 cm y 30 cm.
+
+         ¿Cuál es su área?
+
+       A) 180 cm2
+       B) 360 cm2
+       C) 720 cm2
+       D) 1440 cm2
+
+43.  Una empresa que vende cajas de cereales decide ofrecer una oferta que implica un
+
+     nuevo diseño de caja. Esta es un 10 % más alta que el diseño original, tal como se
+
+     representa a continuación:
+
+     ¿Cuál es el volumen de la caja con oferta si sus medidas originales eran de 20 cm
+     de largo, 5 cm de fondo y 30 cm de alto?
+
+     A) 300 cm3
+     B) 3300 cm3
+     C) 3993 cm3
+     D) 4000 cm3
+
+                                              - 34 -
+     FORMA 111 ­ 2027
+
+44.  Un estanque de agua tiene forma de prisma recto de base rectangular, cuya base
+
+     mide 4 m de ancho y 3 m de largo. Este se debe llenar hasta 2 m de altura con agua
+
+     proveniente de un ducto.
+
+     Para calcular el caudal del agua que sale de un ducto, se puede utilizar la siguiente
+     expresión:
+
+                                                  V
+
+                                                               ,
+
+                                                   t
+
+     tal que V corresponde al volumen de agua que sale del ducto durante t unidades de
+
+     tiempo.
+
+     ¿Cuál de las siguientes expresiones corresponde al caudal de agua que debe salir del
+
+                         m3
+     ducto, medido en , para que el estanque se llene hasta 2 m de altura en 10 horas?
+
+                          h
+
+          4·3·2
+
+     A)
+
+             10
+          4+3+2
+
+     B)
+
+              10
+          2 (4 + 3)
+
+     C)
+
+              10
+          2 (4 · 3 + 2 · 4 + 2 · 3)
+
+     D)
+
+                      10
+
+     - 35 -
+                                     FORMA 111 ­ 2027
+
+45. En la figura adjunta se explican los términos "DAP" y "altura comercial" que se utilizan
+
+         en la industria de producción forestal.
+
+El volumen de madera que se obtiene de un cedro se calcula con la expresión
+
+3 DAP 2  · altura comercial.
+
+42
+
+¿Cuál es el volumen de madera que se obtendrá de un cedro de altura comercial de
+
+6 m y DAP de 0,4 m?
+
+A) 0,72 m3
+B) 0,18 m3
+C) 0,039 m3
+D) 0,156 m3
+
+                              - 36 -
+                                     FORMA 111 ­ 2027
+
+46. En un plano cartesiano se proyecta la sombra de la cara de un gato, como se
+
+         representa a continuación:
+
+         ¿Cuál de los siguientes puntos pertenece a la sombra de la cara del gato?
+
+       A) (2, 4)
+       B) (5, 5)
+       C) (7, -4)
+       D) (-1, 3)
+
+                                                - 37 -
+                                     FORMA 111 ­ 2027
+
+47. Una hoja de papel se dobla dos veces consecutivas y luego se le realiza una
+
+         perforación con forma de triángulo, tal como se presenta a continuación:
+
+¿Cuál de las siguientes imágenes representa las perforaciones que tendrá el papel
+al extenderse?
+
+A)          B)
+
+C)          D)
+
+    - 38 -
+         FORMA 111 ­ 2027
+
+48.  En el siguiente gráfico se representa una simulación bidimensional de una proteína
+
+     con su grupo metilo, localizado en el punto P(6, 2), con el objetivo de estudiar su
+
+     desplazamiento.
+
+     Dicha proteína con su grupo metilo es sometida a una rotación de 90 en sentido
+
+     antihorario con respecto al origen del sistema de coordenadas cartesianas.
+
+     ¿En cuál de los siguientes gráficos se representa la proteína con su grupo metilo
+     después de la rotación?
+
+     A)          B)
+
+     C)          D)
+
+         - 39 -
+                                     FORMA 111 ­ 2027
+
+49. En la figura adjunta se representan los asientos de un teatro, cuya distribución es
+
+         simétrica con respecto a la línea segmentada.
+
+         ¿En cuál de las siguientes opciones la distribución de los asientos ocupados
+         mantiene la simetría?
+         A)
+
+         B)
+
+         C)
+
+         D)
+
+                                                - 40 -
+         FORMA 111 ­ 2027
+
+50.  En una empresa de embalaje, al ingresar una caja a una cinta transportadora se
+     le efectúa suavemente los movimientos para su sellado, tal como se representa a
+     continuación:
+
+     Si los movimientos de la caja en la cinta transportadora son en relación con su cara
+     frontal, ¿en qué posición ingresó la caja a la cinta transportadora?
+
+     A)          B)
+
+     C)          D)
+
+         - 41 -
+                                     FORMA 111 ­ 2027
+
+51. En la siguiente figura se representa un cuadrilátero cuyas medidas están en
+
+         centímetros.
+
+         ¿Cuál de las siguientes expresiones corresponde al perímetro del cuadrilátero?
+
+       A) 22 cm
+              
+
+       B) ( 6 + 15) cm
+       C) 20 cm
+
+              
+       D) ( 29 + 15) cm
+
+                                                - 42 -
+                                     FORMA 111 ­ 2027
+
+52. En la siguiente tabla se presenta el tiempo que las personas han trabajado en un
+
+         colegio.
+
+Tiempo de trabajo  Cantidad de
+
+      en años       personas
+
+         1               2
+         2               4
+         3               5
+         4               4
+         5               2
+         6               6
+         7               2
+         8               5
+         9               3
+        10               2
+
+Si se entrega una bonificación salarial a aquellas personas que lleven como mínimo
+
+6 años trabajando en el colegio, ¿cuántas personas recibirán la bonificación salarial?
+
+A) 12
+B) 17
+C) 18
+D) 23
+
+- 43 -
+                                     FORMA 111 ­ 2027
+
+53. En el siguiente gráfico se presenta la producción mensual de huevos de consumo en
+
+         Chile desde febrero de 2024 a febrero de 2025.
+
+                                    Creación propia con datos de Producción pecuaria (2024): Encuesta de producción de huevos.
+
+         ¿Cuál de las siguientes afirmaciones interpreta de mejor manera la evolución de la
+         producción mensual a lo largo del periodo?
+         A) Hasta agosto la producción aumentó mes a mes.
+         B) En enero de 2024 no hubo producción.
+         C) En junio hubo la menor producción.
+         D) En agosto hubo la mayor producción.
+
+                                                - 44 -
+                 FORMA 111 ­ 2027
+
+54.  Una municipalidad desea implementar un plan de vacunación y esterilización de
+     mascotas, para lo cual realiza una encuesta sobre la cantidad de mascotas que hay
+     en cierto sector.
+
+     Los resultados de la encuesta se presentan en la siguiente tabla:
+
+                 Cantidad de mascotas  Cantidad de familias
+
+                            0                   12
+                            1                   10
+                            2                   15
+                            3                    6
+                            4                    5
+                        5 o más                  2
+
+     Esta municipalidad dará un beneficio a las familias que tengan 3 o más mascotas
+
+     que consiste en vacunación o esterilización gratis.
+
+     ¿Cuál de las siguientes expresiones representa el porcentaje de familias
+     beneficiadas?
+
+           7
+     A) · 100 %
+
+          50
+          13
+     B) · 100 %
+          50
+          37
+     C) · 100 %
+          50
+          43
+     D) · 100 %
+          50
+
+                 - 45 -
+     FORMA 111 ­ 2027
+
+55.  En el siguiente gráfico se presentan los resultados de una encuesta realizada el 2016
+     a un grupo de personas estadounidenses y a un grupo de nutricionistas sobre qué
+     alimentos consideraban saludables.
+
+     Adaptada: The New York Times (2016). ¿Es el sushi "saludable"? ¿Qué pasa con la granola? Donde los estadounidenses y los
+                                                                   nutricionistas no están de acuerdo.
+
+     ¿Para qué alimento existe la mayor diferencia entre los porcentajes según lo que
+     consideran saludable el grupo de nutricionistas versus el grupo de estadounidenses
+     encuestados?
+
+     A) Helado
+     B) Quínoa
+     C) Manzana
+     D) Barra de cereal
+
+                                              - 46 -
+     FORMA 111 ­ 2027
+
+56.  El examen médico de tolerancia a la glucosa consiste en medir la respuesta del
+     cuerpo a la glucosa. Se inicia midiendo la concentración de la glucosa basal y luego
+     se ingiere un líquido con una determinada concentración de glucosa para monitorear
+     su concentración en el cuerpo al transcurrir las horas.
+
+     En el siguiente gráfico se representa la concentración de glucosa en el cuerpo de un
+     paciente al realizarse este examen.
+
+                              SNAQ. (2024). Niveles normales de glucosa en sangre: para personas con y sin diabetes.
+
+     ¿Cuál de las siguientes afirmaciones se puede deducir del gráfico?
+
+     A) El paciente ingiere la glucosa aproximadamente una hora después de iniciar el
+           examen.
+
+     B) La concentración de glucosa se estabiliza en su nivel basal luego de
+
+          aproximadamente 4 horas de ingerir glucosa.
+                                                                                               mg
+
+     C) La concentración de glucosa basal del paciente es de 110 ,
+                                                                                               dL
+
+           aproximadamente.
+
+     D) El punto más alto de la concentración de glucosa sucede 3 horas después de
+
+           ingerir la glucosa.
+
+                                              - 47 -
+                                     FORMA 111 ­ 2027
+
+57. En los siguientes pictogramas se representa la cantidad de personas que hay en cinco
+
+         grupos, tal que cada corresponde a una persona.
+
+         ¿En cuál de los pictogramas hay un mayor promedio de personas por grupo?
+         A) En el pictograma 1
+         B) En el pictograma 2
+         C) En el pictograma 3
+         D) En el pictograma 4
+
+                                                - 48 -
+                                     FORMA 111 ­ 2027
+
+58. El promedio de edad de un grupo A de personas es 30 años, mientras que el
+
+       promedio de edad de un grupo B de personas es 40 años.
+
+         Si se quiere cambiar solo a una persona de grupo, ¿en cuál de los siguientes casos
+         el promedio aumentará en ambos grupos?
+
+       A) Que se cambie una persona de 45 años del grupo B al grupo A.
+       B) Que se cambie una persona de 35 años del grupo B al grupo A.
+       C) Que se cambie una persona de 45 años del grupo A al grupo B.
+       D) Que se cambie una persona de 30 años del grupo A al grupo B.
+
+59. En la siguiente tabla se presenta el gasto diario en almuerzo de una persona durante
+
+         una semana.
+
+                Lunes Martes Miércoles Jueves Viernes Sábado Domingo
+
+             $3200 $5300 $7200 $2500 $11 400 $12 000 $6000
+
+         ¿Cuánto dinero gastó en promedio diariamente en almuerzo esa semana?
+
+       A) $2500
+       B) $6000
+       C) $6800
+       D) $9520
+
+                                                - 49 -
+                                     FORMA 111 ­ 2027
+
+60. En el siguiente gráfico se presenta el promedio de las puntuaciones que ha recibido
+
+         un hotel por parte de sus huéspedes con respecto a seis categorías.
+
+         Si todas las personas contestaron todas las categorías, ¿cuál es el promedio general
+         de puntuación del hotel considerando estas seis categorías?
+
+        A) 4,7 puntos
+        B) 4,8 puntos
+        C) 4,9 puntos
+        D) 5 puntos
+
+                                                - 50 -
+                                     FORMA 111 ­ 2027
+
+61. En el siguiente diagrama de cajón se presenta el tiempo que tardó un grupo de
+
+         personas en completar un circuito deportivo.
+
+       ¿Qué representa el 16 en el diagrama de cajón?
+       A) Que al menos un 75 % de las personas terminó el circuito en 16 minutos o
+
+               menos.
+
+       B) Que un 16 % de las personas terminó el circuito en a lo más 16 minutos.
+       C) Que la dieciseisava persona que terminó el circuito demoró 16 minutos.
+       D) Que la cuarta persona que terminó el circuito demoró 16 minutos.
+
+                                                - 51 -
+     FORMA 111 ­ 2027
+
+62.  Para una tarea de Estadística, una estudiante tiene que representar un conjunto de
+     datos a través de un diagrama de cajón. Los datos que se presentan a continuación
+     corresponden a la cantidad de anotaciones positivas que tuvieron los amigos de esta
+     estudiante el semestre anterior.
+
+     4-0-0-2-3-3-1-0-3
+
+     Para construir el diagrama de cajón, ella realiza los siguientes pasos, cometiendo un
+     error.
+
+     Paso 1: ordena los datos de menor a mayor y determina que el dato central es 2.
+     Paso 2: identifica los valores mínimo y máximo, obteniendo 0 y 4 respectivamente.
+     Paso 3: determina el primer cuartil como 1, ya que se encuentra entre 0 y 2, y el
+
+               tercer cuartil como 3, ya que se encuentra entre 2 y 4.
+
+     Paso 4: construye el diagrama de cajón, obteniendo:
+
+     ¿En cuál de los pasos la estudiante cometió el error?
+     A) En el Paso 1
+     B) En el Paso 2
+     C) En el Paso 3
+     D) En el Paso 4
+
+                                              - 52 -
+                                     FORMA 111 ­ 2027
+
+63. En el gráfico adjunto se presentan las preferencias de un grupo de personas respecto
+
+         a los dispositivos que utilizan para tomar notas durante las reuniones.
+
+         Si se selecciona al azar una persona de este grupo, ¿cuál es la probabilidad de que
+         esta prefiera tomar notas utilizando un computador?
+
+              1
+
+         A)
+
+              9
+              1
+
+         B)
+
+              3
+             9
+
+         C)
+
+             19
+             9
+
+         D)
+
+             28
+
+                                                - 53 -
+                                     FORMA 111 ­ 2027
+
+64. Una ruleta está dividida en nueve partes de igual área, como se representa a
+
+         continuación:
+
+       Un juego consiste en realizar 3 giros de la ruleta, pero si en algunos de esos giros se
+
+         obtiene un fantasma, se termina el juego y no se puede seguir girando la ruleta y el
+         premio es la suma de lo obtenido en cada giro. Por cada estrella que se obtenga se
+
+       ganan $50 000 y por cada diamante que se obtenga se ganan $100 000.
+       La probabilidad de ganar exactamente $100 000 en un juego se calcula con la
+
+         siguiente expresión:
+
+                                             442 32
+                                               ··+·
+
+                                             999 99
+                                       442
+       ¿Qué representa el término · · en la expresión anterior?
+                                       999
+
+         A) La probabilidad de sacar un diamante en el primer lanzamiento y una estrella en
+               el segundo.
+
+         B) La probabilidad de sacar un diamante en el primer lanzamiento y un fantasma en
+               el segundo.
+
+         C) La probabilidad de sacar una estrella en el primer lanzamiento, una estrella en el
+               segundo y un fantasma en el tercero.
+
+         D) La probabilidad de sacar dos estrellas en los dos primeros lanzamientos y un
+               diamante en el tercero.
+
+                                                - 54 -
+     FORMA 111 ­ 2027
+
+65.  De acuerdo al estudio "Profundización de Ocupaciones 2024" de la Subsecretaría
+     del Trabajo, la cantidad de guías de turismo que se han registrado en Chile y en la
+     Región de Valparaíso son:
+
+     Guías de turismo            Cantidad
+     en Chile
+     en la Región de Valparaíso    3621
+                                    441
+
+     Además, las comunas de la Región de Valparaíso con más guías de turismo son:
+
+     Comuna        Cantidad de guías de turismo
+     Rapa Nui
+     Valparaíso                  172
+     Viña del Mar                 64
+                                  51
+
+     Si se escoge al azar a un guía de turismo de la Región de Valparaíso, ¿cuál de
+     las siguientes expresiones representa la probabilidad de que esté registrado en la
+     comuna de Valparaíso o en la de Viña del Mar?
+
+             64
+
+     A)
+
+          64 + 51
+          64 + 51
+
+     B)
+
+             441
+            441
+
+     C)
+
+            3621
+          64 + 51
+
+     D)
+
+            3621
+
+                   - 55 -
+          FORMA 111 ­ 2027
+
+          Listado de referencias bibliográficas
+
+Pregunta                               Cita bibliográfica
+
+31        Conaset.(2018). Comisión Nacional de Seguridad de Tránsito -
+          ProyectoCATI.
+
+53        Creación propia con datos de Producción pecuaria (2024): Encuesta de
+          producción de huevos. Ir a link
+
+          Adaptada: The New York Times (2016). ¿Es el sushi "saludable"? ¿Qué
+
+55        pasa con la granola? Donde los estadounidenses y los nutricionistas no
+
+          están de acuerdo. Ir a link
+
+56        SNAQ. (2024). Niveles normales de glucosa en sangre: para personas con
+          y sin diabetes. Ir a link
+
+                                       - 56 -
+IMPORTANTE
+
+ Este folleto está protegido bajo Registro de Propiedad Intelectual de la
+   Universidad de Chile.
+
+ Está prohibida la reproducción, transmisión total o parcial de este folleto,
+   por cualquier medio o método.
+
+ Es obligatorio devolver íntegramente este folleto antes de abandonar la
+   sala.
+
+ Es obligatorio devolver la hoja de respuestas antes de abandonar la sala.
+
+     2 0 2 7 Proceso de Admisión
+
