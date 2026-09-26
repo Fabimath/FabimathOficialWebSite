@@ -85,7 +85,16 @@
   .topic-head h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; letter-spacing: -0.01em; }
   .topic-head .unit { font-size: 13px; color: var(--ink-3); }
   .steps { display: flex; gap: 6px; margin-bottom: 26px; flex-wrap: wrap; }
-  .step { flex: 1; min-width: 120px; padding: 9px 12px; border-radius: 12px; background: var(--ice); color: var(--ink-2); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .step { flex: 1; min-width: 120px; padding: 9px 12px; border-radius: 12px; border: none; cursor: pointer; background: var(--ice); color: var(--ink-2); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; transition: filter .15s; }
+  .step:hover { filter: brightness(.95); }
+  .hist { margin-top: 30px; background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.05); padding: 22px 24px; }
+  .hist h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .hist .sub { font-size: 13px; color: var(--ink-3); margin-bottom: 12px; }
+  .hist table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .hist th, .hist td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #f5e6d8; }
+  .hist th { color: var(--ink-3); font-weight: 600; font-size: 12.5px; }
+  .hist td b { color: var(--royal); }
+  .hist .del { margin-top: 12px; background: none; border: none; color: var(--ink-3); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
   .step .n { width: 22px; height: 22px; border-radius: 50%; background: #fff; color: var(--royal); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
   .step.on { background: var(--royal); color: #fff; }
   .step.ok { background: rgba(23,166,115,.14); color: #0d6b4a; }
@@ -203,6 +212,7 @@
       </div>
       <button class="btn btn-white" id="ensayoBtn">Rendir ensayo ▶</button>
     </div>
+    <div class="hist" id="hist"></div>
   </div>
 
   <!-- TOPIC -->
@@ -212,9 +222,9 @@
       <div><h2 id="tTitle"></h2><div class="unit" id="tUnit"></div></div>
     </div>
     <div class="steps">
-      <div class="step" id="st0"><span class="n">1</span>Clase</div>
-      <div class="step" id="st1"><span class="n">2</span>Pregunta PAES</div>
-      <div class="step" id="st2"><span class="n">3</span>Cuestionario</div>
+      <button class="step" id="st0" title="Ir a la clase"><span class="n">1</span>Clase</button>
+      <button class="step" id="st1" title="Ir a la pregunta PAES resuelta"><span class="n">2</span>Pregunta PAES</button>
+      <button class="step" id="st2" title="Saltar directo al cuestionario"><span class="n">3</span>Cuestionario</button>
     </div>
 
     <div id="deck" class="deck">
@@ -345,11 +355,26 @@ function renderHome() {
   const units = [...new Set(TOPICS.map(t => t.unit))];
   $('units').innerHTML = units.map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
     TOPICS.filter(t => t.unit === u).map(t => { const p = prog[t.id];
+      const last = (prog.hist || []).find(h => h.id === t.id);
       return `<button class="topic-card" data-id="${t.id}"><span class="ic">${t.icon}</span><h3>${t.title}</h3><p>${t.desc}</p>
-        <div class="meta"><span>${t.slides.length} diapositivas · ${t.bank.length} preguntas</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join('');
+        <div class="meta"><span>${t.slides.length} diapositivas · ${t.bank.length} preguntas${last ? `<br>Último intento: ${fecha(last.d)}` : ''}</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join('');
   document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
-  $('ensayoBest').textContent = prog.ensayo ? `Tu mejor ensayo: ${prog.ensayo.best}/20 correctas.` : 'Aún no rindes un ensayo.';
+  const lastE = (prog.hist || []).find(h => h.id === 'ensayo');
+  $('ensayoBest').textContent = prog.ensayo ? `Tu mejor ensayo: ${prog.ensayo.best}/20 correctas · último el ${fecha(lastE ? lastE.d : '')}.` : 'Aún no rindes un ensayo.';
+  renderHist(prog);
   show('home');
+}
+/* historial local con fecha: queda solo en este navegador, sin cuentas ni servidor */
+const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+function renderHist(prog) {
+  const h = prog.hist || [];
+  const hechos = TOPICS.filter(t => prog[t.id]).length;
+  if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Tu avance se guarda en este navegador, con fecha y hora.</div>'; return; }
+  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${TOPICS.length} temas practicados · ${h.filter(x => x.id === 'ensayo').length} ensayos rendidos · guardado solo en este navegador</div>
+    <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th></tr></thead><tbody>` +
+    h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id === 'ensayo' ? '🎯 Ensayo final' : (TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td></tr>`).join('') +
+    `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
+  $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance guardado en este navegador?')) { localStorage.removeItem('paes_pye'); renderHome(); } });
 }
 function show(id) { ['home', 'topic'].forEach(x => $(x).classList.toggle('hidden', x !== id)); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
@@ -437,6 +462,7 @@ function showResult() {
   const n = round.length, prog = store.get();
   if (mode === 'ensayo') prog.ensayo = { best: Math.max(score, prog.ensayo ? prog.ensayo.best : 0) };
   else prog[cur.id] = { best: Math.max(score, prog[cur.id] ? prog[cur.id].best : 0) };
+  prog.hist = [{ id: mode === 'ensayo' ? 'ensayo' : cur.id, s: score, n, d: new Date().toISOString() }, ...(prog.hist || [])].slice(0, 200);
   store.set(prog);
   $('rScore').textContent = `${score}/${n}`;
   requestAnimationFrame(() => $('ring').style.setProperty('--deg', (score / n * 360) + 'deg'));
@@ -453,6 +479,9 @@ function showResult() {
   rv.classList.remove('hidden'); renderMath(rv);
   $('rRetry').textContent = mode === 'ensayo' ? '↻ Otro ensayo' : '↻ Otras 5 preguntas';
 }
+$('st0').addEventListener('click', () => { sIdx = 0; renderSlide(); });
+$('st1').addEventListener('click', startExample);
+$('st2').addEventListener('click', startQuiz);
 $('rHome').addEventListener('click', renderHome);
 $('rRetry').addEventListener('click', () => mode === 'ensayo' ? startEnsayo() : startQuiz());
 $('homeBtn').addEventListener('click', renderHome);
