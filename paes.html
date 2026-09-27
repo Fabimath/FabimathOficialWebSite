@@ -180,6 +180,28 @@
   footer { text-align: center; color: var(--ink-3); font-size: 12.5px; padding: 30px 20px 40px; }
   :focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 6px; }
   @media (prefers-reduced-motion: reduce) { .slide, .pauta { animation: none; } }
+  /* ---------- RECOMPENSAS: tienda y gato acompañante ---------- */
+  .pts { background: #fff3c4; color: #8a5a00; }
+  .shop { margin-top: 30px; background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(40,22,8,0.05); padding: 22px 24px; }
+  .shop h3 { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+  .shop .sub { font-size: 13px; color: var(--ink-3); margin-bottom: 14px; }
+  .cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .cat-item { border: 2px solid #f5dcc4; border-radius: 16px; padding: 14px 10px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .cat-item.on { border-color: var(--royal); background: #fffaf5; }
+  .cat-item.lock svg { filter: grayscale(1) opacity(.45); }
+  .cat-item b { font-family: 'Baloo 2', sans-serif; font-size: 16px; }
+  .cat-item small { font-size: 12px; color: var(--ink-3); line-height: 1.35; }
+  .cat-item .btn { padding: 7px 14px; font-size: 13.5px; }
+  .buddy { position: fixed; left: 14px; bottom: 14px; z-index: 60; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+  .buddy button { background: none; border: none; cursor: pointer; padding: 0; animation: bob 3s ease-in-out infinite; }
+  .buddy button:hover { transform: scale(1.06); }
+  @keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+  .buddy .uses { font-size: 11.5px; font-weight: 700; color: var(--royal); background: #fff; border-radius: 100px; padding: 2px 9px; box-shadow: var(--shadow); }
+  .bubble { max-width: 220px; background: #fff; border: 2px solid var(--royal); border-radius: 14px 14px 14px 4px; padding: 9px 12px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow-hover); }
+  .plus { position: fixed; left: 70px; bottom: 120px; z-index: 61; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 20px; color: #c98a00; pointer-events: none; animation: plus 1s ease forwards; }
+  @keyframes plus { to { transform: translateY(-30px); opacity: 0; } }
+  @media (max-width: 640px) { .buddy svg { width: 56px; height: 56px; } .bubble { max-width: 170px; font-size: 13px; } }
+  @media (prefers-reduced-motion: reduce) { .buddy button, .plus { animation: none; } }
 </style>
 </head>
 <body>
@@ -188,6 +210,7 @@
   <div class="nav-inner">
     <a class="nav-brand" href="index.html"><img src="logo/fabimath_logo.png" alt=""><span>Fabi<b>math</b></span></a>
     <div class="nav-right">
+      <span class="pill pts" id="ptsPill" title="Puntos: 1 por cada respuesta correcta">⭐ 0</span>
       <button class="pill" id="homeBtn">📙 Temas</button>
       <a class="pill" href="index.html">Inicio</a>
     </div>
@@ -212,6 +235,7 @@
       </div>
       <button class="btn btn-white" id="ensayoBtn">Rendir ensayo ▶</button>
     </div>
+    <div class="shop" id="shop"></div>
     <div class="hist" id="hist"></div>
   </div>
 
@@ -265,6 +289,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="buddy hidden" id="buddy">
+  <div class="bubble hidden" id="bubble" role="status" aria-live="polite"></div>
+  <button id="buddyBtn" aria-label="Pedirle una pista al gato"></button>
+  <span class="uses" id="buddyUses"></span>
 </div>
 
 <footer>Fabimath · Material gratuito para preparar la PAES · Notación: $\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\bar{x}$ promedio, $Q_1$, $Q_2 = Me$, $Q_3$ cuartiles.</footer>
@@ -361,9 +391,75 @@ function renderHome() {
   document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
   const lastE = (prog.hist || []).find(h => h.id === 'ensayo');
   $('ensayoBest').textContent = prog.ensayo ? `Tu mejor ensayo: ${prog.ensayo.best}/20 correctas · último el ${fecha(lastE ? lastE.d : '')}.` : 'Aún no rindes un ensayo.';
-  renderHist(prog);
+  renderHist(prog); renderShop(prog); updPts();
   show('home');
 }
+/* ---------------- recompensas: puntos y gatos con pistas ---------------- */
+/* 1 punto por respuesta correcta. Los gatos se canjean en orden y cada uno da más pistas por ronda.
+   Una pista solo descarta alternativas incorrectas; nunca revela la correcta. */
+const CATS = [
+  { id: 'gato',     name: 'Gato',          cost: 10,  body: '#ff9a3c', shade: '#e07a1f', uses: 1,        drop: 1 },
+  { id: 'oro',      name: 'Gato de oro',   cost: 30,  body: '#f5c542', shade: '#c99a12', uses: 2,        drop: 1 },
+  { id: 'diamante', name: 'Gato diamante', cost: 60,  body: '#9ee8ff', shade: '#43b8e0', uses: 4,        drop: 1 },
+  { id: 'arcoiris', name: 'Gato arcoíris', cost: 100, body: 'url(#rb)', shade: '#b57be0', uses: 4,       drop: 2 },
+  { id: 'platino',  name: 'Gato platino',  cost: 160, body: '#e8e8ec', shade: '#a8a9ad', uses: Infinity, drop: 2 }
+];
+const CAT_PX = [
+  "...KK..........KK...", "..KBBK........KBBK..", ".KBPPBK......KBPPBK.", ".KBPPBBKKKKKKBBPPBK.",
+  ".KBBBBBBBBBBBBBBBBK.", "KBBBBBBBBBBBBBBBBBBK", "KBBKEWKBBBBBBKEWKBBK", "KBBKEEKBbBBbBKEEKBBK",
+  "KBBBBBBBWWWWBBBBBBBK", "KBbBBBBWWPPWWBBBBbBK", ".KBBBBBBWWWWBBBBBBK.", ".KBBYYYYYRRYYYYYBBK.",
+  ".KBBBBBBBBBBBBBBBBK.", ".KBbBBBBBBBBBBBBbBK.", "..KBBKKBBBBBBKKBBK..", "...KK..KKKKKK..KK..."
+];
+function catSVG(c, size) {
+  const col = { K: '#1a1008', B: c.body, b: c.shade, W: '#ffffff', E: '#1a1008', P: '#ff9ecb', Y: '#ffd75e', R: '#e8342a' };
+  let r = '';
+  CAT_PX.forEach((row, y) => [...row].forEach((ch, x) => { if (col[ch]) r += `<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${col[ch]}"/>`; }));
+  const rb = c.id === 'arcoiris' ? '<defs><linearGradient id="rb"><stop offset="0" stop-color="#ff5e5e"/><stop offset=".2" stop-color="#ffa53d"/><stop offset=".4" stop-color="#ffe45c"/><stop offset=".6" stop-color="#5fd97a"/><stop offset=".8" stop-color="#4fa8ff"/><stop offset="1" stop-color="#b57be0"/></linearGradient></defs>' : '';
+  const brillo = c.id === 'diamante' || c.id === 'platino' ? '<path d="M17 4.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="#fff"/>' : '';
+  return `<svg viewBox="0 0 20 16" width="${size}" height="${size * 0.8}" shape-rendering="crispEdges" role="img" aria-label="${c.name}">${rb}${r}${brillo}</svg>`;
+}
+const hintTxt = c => c.drop === 2 ? `descarta 2 alternativas, ${c.uses === Infinity ? 'en cada pregunta' : c.uses + ' veces por ronda'}` : `descarta 1 alternativa, ${c.uses === 1 ? '1 vez' : c.uses + ' veces'} por ronda`;
+function updPts() { $('ptsPill').textContent = '⭐ ' + (store.get().pts || 0); }
+function renderShop(prog) {
+  const pts = prog.pts || 0, own = prog.cats || [];
+  $('shop').innerHTML = `<h3>🐱 Gatos ayudantes</h3><div class="sub">Tienes <b>⭐ ${pts}</b> puntos. Ganas 1 por cada respuesta correcta. Canjéalos en orden: el gato que elijas te acompaña abajo a la izquierda y, si le haces clic, te dice qué alternativa no cree que sea.</div><div class="cats">` +
+    CATS.map((c, i) => {
+      const tiene = own.includes(c.id), puede = i === 0 || own.includes(CATS[i - 1].id), on = prog.cat === c.id;
+      const btn = tiene ? (on ? '<span class="badge done">Te acompaña</span>' : `<button class="btn btn-ghost" data-use="${c.id}">Elegir</button>`)
+        : !puede ? `<span class="badge">🔒 Primero el ${CATS[i - 1].name.toLowerCase()}</span>`
+        : `<button class="btn btn-primary" data-buy="${c.id}" ${pts < c.cost ? 'disabled' : ''}>Canjear ⭐ ${c.cost}</button>`;
+      return `<div class="cat-item ${on ? 'on' : ''} ${!tiene ? 'lock' : ''}">${catSVG(c, 64)}<b>${c.name}</b><small>${hintTxt(c)}</small>${btn}</div>`;
+    }).join('') + '</div>';
+  $('shop').querySelectorAll('[data-buy]').forEach(b => b.addEventListener('click', () => {
+    const p = store.get(), c = CATS.find(x => x.id === b.dataset.buy);
+    if ((p.pts || 0) < c.cost) return;
+    p.pts -= c.cost; p.cats = [...(p.cats || []), c.id]; p.cat = c.id; store.set(p); renderHome();
+  }));
+  $('shop').querySelectorAll('[data-use]').forEach(b => b.addEventListener('click', () => { const p = store.get(); p.cat = b.dataset.use; store.set(p); renderHome(); }));
+}
+let hintsLeft = 0, hinted = false;
+const buddyCat = () => CATS.find(c => c.id === store.get().cat);
+function resetHints() { const c = buddyCat(); hintsLeft = c ? c.uses : 0; }
+function say(msg) { const b = $('bubble'); b.textContent = msg; b.classList.remove('hidden'); clearTimeout(say.t); say.t = setTimeout(() => b.classList.add('hidden'), 4500); }
+function paintBuddy(show) {
+  const c = buddyCat();
+  $('buddy').classList.toggle('hidden', !(show && c));
+  if (!c) return;
+  $('buddyBtn').innerHTML = catSVG(c, 76);
+  $('buddyUses').textContent = hintsLeft === Infinity ? 'pistas: ∞' : `pistas: ${hintsLeft}`;
+}
+function hint() {
+  if (answered) return say('Ya respondiste, miau. Pasa a la siguiente.');
+  if (hinted) return say('Ya te di mi pista en esta pregunta.');
+  if (hintsLeft <= 0) return say('Me quedé sin pistas en esta ronda, miau.');
+  const q = round[qIdx], c = buddyCat();
+  const malas = shuffle(order.map((o, i) => i).filter(i => order[i] !== q.ok)).slice(0, c.drop).sort().map(i => 'ABCD'[i]);
+  hinted = true; hintsLeft--;
+  say(malas.length === 2 ? `No me tincan ni la ${malas[0]} ni la ${malas[1]}.` : `Mmm… no creo que sea la ${malas[0]}.`);
+  paintBuddy(true);
+}
+$('buddyBtn').addEventListener('click', hint);
+
 /* historial local con fecha: queda solo en este navegador, sin cuentas ni servidor */
 const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 function renderHist(prog) {
@@ -391,6 +487,7 @@ function setStage(n) {
   $('deck').classList.toggle('hidden', n !== 0);
   $('qwrap').classList.toggle('hidden', n === 0 || n === 3);
   $('rwrap').classList.toggle('hidden', n !== 3);
+  paintBuddy(n === 1 || n === 2);
 }
 function renderSlide(dir) {
   setStage(0);
@@ -413,18 +510,18 @@ document.addEventListener('keydown', e => {
 });
 
 /* ---------------- questions ---------------- */
-function startExample() { round = [cur.example]; qIdx = 0; score = 0; log = []; setStage(1); showQ(); }
-function startQuiz() { round = shuffle([...cur.bank]).slice(0, 5); qIdx = 0; score = 0; log = []; setStage(2); showQ(); }
+function startExample() { round = [cur.example]; qIdx = 0; score = 0; log = []; resetHints(); setStage(1); showQ(); }
+function startQuiz() { round = shuffle([...cur.bank]).slice(0, 5); qIdx = 0; score = 0; log = []; resetHints(); setStage(2); showQ(); }
 function startEnsayo() {
   mode = 'ensayo'; cur = { id: 'ensayo', title: 'Ensayo final', icon: '🎯', unit: 'Probabilidad y Estadística · PAES M1' };
   const pool = []; TOPICS.forEach(t => pool.push(...shuffle([t.example, ...t.bank]).slice(0, 3).map(q => ({ ...q, topic: t.title }))));
-  round = shuffle(pool).slice(0, 20); qIdx = 0; score = 0; log = [];
+  round = shuffle(pool).slice(0, 20); qIdx = 0; score = 0; log = []; resetHints();
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.steps').classList.add('hidden');
   setStage(2); showQ(); show('topic');
 }
 function showQ() {
-  const q = round[qIdx]; answered = false;
+  const q = round[qIdx]; answered = false; hinted = false; $('bubble').classList.add('hidden');
   const total = round.length;
   $('qTag').textContent = mode === 'ensayo' ? q.topic : (stage === 1 ? 'Pregunta tipo PAES · ' + (q.src || 'ejemplo') : 'Cuestionario · ' + cur.title);
   $('qCount').textContent = total > 1 ? `Pregunta ${qIdx + 1} de ${total} · ${score} correctas` : 'Pregunta resuelta paso a paso';
@@ -440,7 +537,12 @@ function showQ() {
 function answer(pos) {
   if (answered) return; answered = true;
   const q = round[qIdx], chosen = order[pos], ok = chosen === q.ok;
-  if (ok) score++;
+  if (ok) {
+    score++;
+    const p = store.get(); p.pts = (p.pts || 0) + 1; store.set(p); updPts();
+    const f = document.createElement('div'); f.className = 'plus'; f.textContent = '+1 ⭐';
+    document.body.appendChild(f); setTimeout(() => f.remove(), 1000);
+  }
   log.push({ q, chosen, ok });
   document.querySelectorAll('.alt').forEach((b, i) => { b.disabled = true; if (order[i] === q.ok) b.classList.add('correct'); else if (i === pos) b.classList.add('wrong'); });
   const p = $('qPauta'); p.className = 'pauta show ' + (ok ? 'good' : 'bad');
