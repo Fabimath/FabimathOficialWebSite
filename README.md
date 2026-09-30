@@ -19,6 +19,7 @@ Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadí
 - `index.html`, `quiz.html`, `aes.html`: páginas estáticas con CSS y JS embebidos, sin build.
 - `*_questions.js`: bancos de preguntas de los gatos del quiz.
 - `paes.html` + `paes_data.js` + `paes_numeros.js`: página PAES (motor y contenido de cada eje; `paes.html?eje=numeros` abre Números). Los dos ejes comparten puntos, gatos e historial en el mismo `localStorage`. Con el botón «Entrar» el alumno inicia sesión con Google (Firebase, proyecto `fabimath-paes`) y su avance se guarda también en Firestore (`progreso/{uid}`); el correo administrador ve un panel con el avance de todos. En los archivos de datos cada tema tiene `slides`, `example` y `bank`; agregar preguntas es agregar objetos al `bank`. Las fuentes oficiales del DEMRE (temario M1 2027 y las tres últimas pruebas con sus claves) están en `paes/fuentes/`.
+- `version.js`: número de versión que aparece en el pie de cada página. Sube 0.01 solo en cada commit gracias a `.githooks/pre-commit` (activarlo una vez por computador: `git config core.hooksPath .githooks`).
 - `guias/`: guías en PDF con su fuente `.tex`.
 - `fot/`, `logo/`, `*.svg`: imágenes.
 
