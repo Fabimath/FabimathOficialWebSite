@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#d9650f">
 <title>PAES Estadística y Probabilidad — Fabimath</title>
 <meta name="description" content="Estudia Probabilidad y Estadística para la PAES M1 con Fabimath: diapositivas por tema, preguntas tipo PAES con pauta y un ensayo final de 20 preguntas.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.gstatic.com https://apis.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self'; connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com; frame-src https://fabimath-paes.firebaseapp.com https://accounts.google.com; object-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,6 +98,8 @@
   .hist th, .hist td { text-align: left; padding: 8px 6px; border-bottom: 1px solid #f5e6d8; }
   .hist th { color: var(--ink-3); font-weight: 600; font-size: 12.5px; }
   .hist td b { color: var(--royal); }
+  .hist .note { font-size: 12px; color: var(--ink-3); margin-top: 10px; }
+  #panel table { font-size: 13px; }
   .hist .del { margin-top: 12px; background: none; border: none; color: var(--ink-3); font-size: 12.5px; text-decoration: underline; cursor: pointer; }
   .step .n { width: 22px; height: 22px; border-radius: 50%; background: #fff; color: var(--royal); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
   .step.on { background: var(--royal); color: #fff; }
@@ -215,6 +217,7 @@
     <a class="nav-brand" href="index.html"><img src="logo/fabimath_logo.png" alt=""><span>Fabi<b>math</b></span></a>
     <div class="nav-right">
       <span class="pill pts" id="ptsPill" title="Puntos: 1 por cada respuesta correcta">⭐ 0</span>
+      <button class="pill" id="loginBtn" title="Inicia sesión con Google para guardar tu avance en la nube">🔑 Entrar</button>
       <button class="pill" id="homeBtn">📙 Temas</button>
       <a class="pill" href="index.html">Inicio</a>
     </div>
@@ -242,6 +245,7 @@
     </div>
     <div class="shop" id="shop"></div>
     <div class="hist" id="hist"></div>
+    <div class="hist hidden" id="panel"></div>
   </div>
 
   <!-- TOPIC -->
@@ -310,7 +314,7 @@ const $ = id => document.getElementById(id);
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const store = {
   get: () => { try { return JSON.parse(localStorage.getItem('paes_pye') || '{}'); } catch { return {}; } },
-  set: d => localStorage.setItem('paes_pye', JSON.stringify(d))
+  set: d => { localStorage.setItem('paes_pye', JSON.stringify(d)); if (window.cloudSave) cloudSave(d); }
 };
 function renderMath(el) {
   if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], ignoredClasses: ['peso'], throwOnError: false });
@@ -481,17 +485,18 @@ function hint() {
 }
 $('buddyBtn').addEventListener('click', hint);
 
-/* historial local con fecha: queda solo en este navegador, sin cuentas ni servidor */
+/* historial con fecha: en este navegador y, si inició sesión con Google, también en Firestore (script de abajo) */
+const dondeGuarda = () => window.cloudUser ? `guardado en tu cuenta ${cloudUser.email}` : 'guardado solo en este navegador · entra con 🔑 Entrar (Google) para no perderlo; se guarda tu nombre, correo y avance, y solo los ves tú y el profe';
 const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 function renderHist(prog) {
   const h = prog.hist || [];
   const hechos = T.filter(t => prog[t.id]).length;
-  if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Tu avance se guarda en este navegador, con fecha y hora.</div>'; return; }
-  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${T.length} temas de ${EJE.name} practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · guardado solo en este navegador</div>
+  if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Cada intento queda con fecha y hora, ' + dondeGuarda() + '.</div>'; return; }
+  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${T.length} temas de ${EJE.name} practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
     <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th></tr></thead><tbody>` +
     h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td></tr>`).join('') +
     `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
-  $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance guardado en este navegador?')) { localStorage.removeItem('paes_pye'); renderHome(); } });
+  $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance, puntos y gatos? No se puede deshacer.')) { store.set({}); renderHome(); } });
 }
 function show(id) { ['home', 'topic'].forEach(x => $(x).classList.toggle('hidden', x !== id)); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
@@ -611,6 +616,93 @@ $('ensayoBtn').addEventListener('click', startEnsayo);
 
 renderHome();
 window.addEventListener('load', () => renderMath(document.body));
+</script>
+
+<script type="module">
+/* Inicio de sesión con Google (Firebase) y avance en la nube.
+   Firestore: progreso/{uid} = { data: JSON del mismo objeto de localStorage, name, email, updated }.
+   Reglas: cada alumno lee y escribe solo su documento; el correo ADMIN lee todos (panel del profe). */
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+import { getFirestore, doc, getDoc, setDoc, getDocs, collection } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
+
+const app = initializeApp({
+  apiKey: 'AIzaSyDqv_bRMpVaVvgiTXbnKaFdERgqMfjngUk',
+  authDomain: 'fabimath-paes.firebaseapp.com',
+  projectId: 'fabimath-paes',
+  storageBucket: 'fabimath-paes.firebasestorage.app',
+  messagingSenderId: '88805522878',
+  appId: '1:88805522878:web:e980f5506d9fc864ae4def'
+});
+const auth = getAuth(app), db = getFirestore(app);
+const ADMIN = 'chimechotopia@gmail.com';
+const OWNER = 'paes_uid';   // de qué cuenta es la copia en localStorage
+
+/* Une el avance local con el de la nube sin perder nada: historial sin repetidos, mejor nota por tema,
+   gatos de ambos. Los puntos no se suman (se pueden gastar): queda el mayor. */
+function merge(a, b) {
+  const m = { ...b, ...a };
+  for (const k of Object.keys(m)) if (m[k] && m[k].best !== undefined) m[k] = { best: Math.max(a[k]?.best ?? 0, b[k]?.best ?? 0) };
+  const seen = new Set();
+  m.hist = [...(a.hist || []), ...(b.hist || [])].filter(h => !seen.has(h.id + h.d) && seen.add(h.id + h.d))
+    .sort((x, y) => y.d.localeCompare(x.d)).slice(0, 200);
+  m.cats = [...new Set([...(a.cats || []), ...(b.cats || [])])];
+  m.pts = Math.max(a.pts || 0, b.pts || 0);
+  return m;
+}
+
+let timer = null;
+window.cloudSave = d => {
+  const u = auth.currentUser; if (!u) return;
+  clearTimeout(timer);
+  timer = setTimeout(() => setDoc(doc(db, 'progreso', u.uid), { data: JSON.stringify(d), name: u.displayName || '', email: u.email, updated: new Date().toISOString() })
+    .catch(e => console.error('No se pudo guardar en la nube', e)), 1500);
+};
+
+$('loginBtn').addEventListener('click', async () => {
+  if (!auth.currentUser) return signInWithPopup(auth, new GoogleAuthProvider()).catch(e => { if (e.code !== 'auth/popup-closed-by-user') alert('No se pudo iniciar sesión: ' + e.message); });
+  if (!confirm('¿Cerrar sesión? Tu avance queda guardado en tu cuenta y se borra de este navegador.')) return;
+  await signOut(auth);
+  localStorage.removeItem('paes_pye'); localStorage.removeItem(OWNER); renderHome();
+});
+
+onAuthStateChanged(auth, async u => {
+  window.cloudUser = u;
+  $('loginBtn').textContent = u ? '👤 ' + (u.displayName || u.email).split(' ')[0] : '🔑 Entrar';
+  $('loginBtn').title = u ? `Sesión iniciada como ${u.email}. Clic para cerrar sesión.` : 'Inicia sesión con Google para guardar tu avance en la nube';
+  if (u) {
+    try {
+      const snap = await getDoc(doc(db, 'progreso', u.uid));
+      const nube = snap.exists() ? JSON.parse(snap.data().data) : {};
+      const dueno = localStorage.getItem(OWNER);
+      // si lo local es de otra cuenta (computador compartido), no se mezcla
+      const local = !dueno || dueno === u.uid ? store.get() : {};
+      localStorage.setItem(OWNER, u.uid);
+      store.set(merge(local, nube));
+    } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
+  }
+  if (!$('home').classList.contains('hidden')) renderHome();
+  renderPanel(u);
+});
+
+/* Panel del profe: solo el correo ADMIN; las reglas de Firestore niegan la lectura a cualquier otro. */
+async function renderPanel(u) {
+  const el = $('panel');
+  if (!u || u.email !== ADMIN) return el.classList.add('hidden');
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  try {
+    const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
+      .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
+    el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
+      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
+      filas.map(f => { const p = f.p, h = p.hist || [];
+        const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
+        const ens = ['ensayo_num', 'ensayo'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
+      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística.</div>';
+    el.classList.remove('hidden');
+  } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
+}
 </script>
 </body>
 </html>
