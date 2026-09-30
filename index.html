@@ -273,7 +273,7 @@
   footer .f-links a:hover { color: var(--sky); text-decoration: none; }
   footer .copy { color: #86868b; font-size: .75rem; letter-spacing: .01em; margin-top: 8px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); max-width: 980px; margin-left: auto; margin-right: auto; }
   :focus-visible { outline: 3px solid rgba(232,104,12,.4); outline-offset: 2px; border-radius: 6px; }
-  .version { position: fixed; top: 4px; left: 8px; z-index: 999; font-size: .6875rem; letter-spacing: .01em; color: var(--ink-3); pointer-events: none; }
+  .version { font-variant-numeric: tabular-nums; }
 
   @media (max-width: 600px) {
     header { padding: 5rem 20px 5.5rem; }
@@ -308,10 +308,10 @@
     .mosaic { display: none; }
   }
 </style>
+<script src="version.js" defer></script>
 </head>
 <body>
 
-<span class="version">v2.00</span>
 
 <nav>
   <div class="nav-inner">
@@ -569,7 +569,7 @@
       <a href="aes.html">Gatito AES</a>
       <a href="quiz.html">Gatos Quiz</a>
     </div>
-    <div class="copy">© 2026 Fabián Ramírez (Fabimath) · Profesor universitario de Matemáticas · Chile</div>
+    <div class="copy">© 2026 Fabián Ramírez (Fabimath) · Profesor universitario de Matemáticas · Chile · <span class="version"></span></div>
   </div>
 </footer>
 

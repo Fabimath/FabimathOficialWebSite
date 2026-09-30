@@ -245,7 +245,10 @@
     .topic-card, .card, .alt-btn, .pauta { border-color: #1d1d1f; }
     .mosaic { display: none; }
   }
+  .site-foot { text-align: center; color: var(--ink-3); font-size: 12px; letter-spacing: .01em; padding: 32px 20px 40px; }
+  .version { font-variant-numeric: tabular-nums; }
 </style>
+<script src="version.js" defer></script>
 </head>
 <body>
 <div class="mosaic" aria-hidden="true">
@@ -636,5 +639,6 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
+<footer class="site-foot">Fabimath · <span class="version"></span></footer>
 </body>
 </html>

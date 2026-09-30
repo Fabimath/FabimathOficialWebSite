@@ -1,0 +1,10 @@
+#!/bin/sh
+# Sube la versión del sitio en 0.01 en cada commit (se muestra en el pie de cada página).
+# Activar una vez por clon: git config core.hooksPath .githooks
+f=version.js
+v=$(sed -n "s/.*FABIMATH_VERSION = '\([0-9.]*\)'.*/\1/p" "$f")
+[ -z "$v" ] && exit 0
+n=$(awk -v v="$v" 'BEGIN { printf "%.2f", v + 0.01 }')
+sed -i "s/FABIMATH_VERSION = '$v'/FABIMATH_VERSION = '$n'/" "$f"
+git add "$f"
+echo "Version del sitio: v$v -> v$n"
