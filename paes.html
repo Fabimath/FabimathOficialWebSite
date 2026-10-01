@@ -379,7 +379,7 @@
 
 <div class="buddy hidden" id="buddy">
   <div class="bubble hidden" id="bubble" role="status" aria-live="polite"></div>
-  <button id="buddyBtn" aria-label="Pedirle una pista al gato"></button>
+  <button id="buddyBtn" aria-label="Qué hace tu gato"></button>
   <span class="uses" id="buddyUses"></span>
 </div>
 
@@ -505,15 +505,15 @@ function renderHome() {
   renderHist(prog); renderShop(prog); renderGacha(prog); updPts();
   show('home');
 }
-/* ---------------- recompensas: puntos y gatos con pistas ---------------- */
-/* 1 punto por respuesta correcta. Los gatos se canjean en orden y cada uno da más pistas por ronda.
-   Una pista solo descarta alternativas incorrectas; nunca revela la correcta. */
+/* ---------------- recompensas: puntos y gatos multiplicadores ---------------- */
+/* 1 punto por respuesta correcta. Los gatos se canjean en orden; el que acompaña tiene MULT_P de probabilidad
+   de multiplicar cada acierto (×mult). Bonos al final: 5/5 en un cuestionario y 18, 19 o 20 en el ensayo. */
 const CATS = [
-  { id: 'gato',     name: 'Gato',          cost: 10,  body: '#ff9a3c', shade: '#e07a1f', uses: 1,        drop: 1 },
-  { id: 'oro',      name: 'Gato de oro',   cost: 30,  body: '#f5c542', shade: '#c99a12', uses: 2,        drop: 1 },
-  { id: 'diamante', name: 'Gato diamante', cost: 60,  body: '#9ee8ff', shade: '#43b8e0', uses: 4,        drop: 1 },
-  { id: 'arcoiris', name: 'Gato arcoíris', cost: 100, body: 'url(#rb)', shade: '#b57be0', uses: 4,       drop: 2 },
-  { id: 'platino',  name: 'Gato platino',  cost: 160, body: '#e8e8ec', shade: '#a8a9ad', uses: Infinity, drop: 2 }
+  { id: 'gato',     name: 'Gato',          cost: 10,  body: '#ff9a3c', shade: '#e07a1f', mult: 2 },
+  { id: 'oro',      name: 'Gato de oro',   cost: 30,  body: '#f5c542', shade: '#c99a12', mult: 3 },
+  { id: 'diamante', name: 'Gato diamante', cost: 60,  body: '#9ee8ff', shade: '#43b8e0', mult: 5 },
+  { id: 'arcoiris', name: 'Gato arcoíris', cost: 100, body: 'url(#rb)', shade: '#b57be0', mult: 7 },
+  { id: 'platino',  name: 'Gato platino',  cost: 160, body: '#e8e8ec', shade: '#a8a9ad', mult: 10 }
 ];
 const CAT_PX = [
   "...KK..........KK...", "..KBBK........KBBK..", ".KBPPBK......KBPPBK.", ".KBPPBBKKKKKKBBPPBK.",
@@ -529,11 +529,14 @@ function catSVG(c, size) {
   const brillo = c.id === 'diamante' || c.id === 'platino' ? '<path d="M17 4.5l.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5z" fill="#fff"/>' : '';
   return `<svg viewBox="0 0 20 16" width="${size}" height="${size * 0.8}" shape-rendering="crispEdges" role="img" aria-label="${c.name}">${rb}${r}${brillo}</svg>`;
 }
-const hintTxt = c => c.drop === 2 ? `descarta 2 alternativas, ${c.uses === Infinity ? 'en cada pregunta' : c.uses + ' veces por ronda'}` : `descarta 1 alternativa, ${c.uses === 1 ? '1 vez' : c.uses + ' veces'} por ronda`;
+const MULT_P = 0.2;
+const hintTxt = c => `${MULT_P * 100} % de probabilidad de que cada acierto valga ⭐ ${c.mult} en vez de 1`;
+const BONO_ENSAYO = { 20: 200, 19: 150, 18: 100 };
+const bono = () => mode === 'ensayo' ? BONO_ENSAYO[score] || 0 : round.length === 5 && score === 5 ? 50 : 0;
 function updPts() { $('ptsPill').textContent = '⭐ ' + (store.get().pts || 0); }
 function renderShop(prog) {
   const pts = prog.pts || 0, own = prog.cats || [];
-  $('shop').innerHTML = `<h3>🐱 Gatos ayudantes</h3><div class="sub">Tienes <b>⭐ ${pts}</b> puntos. Ganas 1 por cada respuesta correcta. Canjéalos en orden: el gato que elijas te acompaña abajo a la izquierda y, si le haces clic, te dice qué alternativa no cree que sea.</div><div class="cats">` +
+  $('shop').innerHTML = `<h3>🐱 Gatos ayudantes</h3><div class="sub">Tienes <b>⭐ ${pts}</b> puntos. Ganas 1 por cada respuesta correcta. Canjéalos en orden: el gato que elijas te acompaña abajo a la izquierda y puede multiplicar las estrellas de cada acierto. Bonos: 5 de 5 en un cuestionario da ⭐ 50; en el ensayo, 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.</div><div class="cats">` +
     CATS.map((c, i) => {
       const tiene = own.includes(c.id), puede = i === 0 || own.includes(CATS[i - 1].id), on = prog.cat === c.id;
       const btn = tiene ? (on ? '<span class="badge done">Te acompaña</span>' : `<button class="btn btn-ghost" data-use="${c.id}">Elegir</button>`)
@@ -548,28 +551,16 @@ function renderShop(prog) {
   }));
   $('shop').querySelectorAll('[data-use]').forEach(b => b.addEventListener('click', () => { const p = store.get(); p.cat = b.dataset.use; store.set(p); renderHome(); }));
 }
-let hintsLeft = 0, hinted = false;
 const buddyCat = () => CATS.find(c => c.id === store.get().cat);
-function resetHints() { const c = buddyCat(); hintsLeft = c ? c.uses : 0; }
 function say(msg) { const b = $('bubble'); b.textContent = msg; b.classList.remove('hidden'); clearTimeout(say.t); say.t = setTimeout(() => b.classList.add('hidden'), 4500); }
 function paintBuddy(show) {
   const c = buddyCat();
   $('buddy').classList.toggle('hidden', !(show && c));
   if (!c) return;
   $('buddyBtn').innerHTML = catSVG(c, 76);
-  $('buddyUses').textContent = hintsLeft === Infinity ? 'pistas: ∞' : `pistas: ${hintsLeft}`;
+  $('buddyUses').textContent = `×${c.mult} · ${MULT_P * 100} %`;
 }
-function hint() {
-  if (answered) return say('Ya respondiste, miau. Pasa a la siguiente.');
-  if (hinted) return say('Ya te di mi pista en esta pregunta.');
-  if (hintsLeft <= 0) return say('Me quedé sin pistas en esta ronda, miau.');
-  const q = round[qIdx], c = buddyCat();
-  const malas = shuffle(order.map((o, i) => i).filter(i => order[i] !== q.ok)).slice(0, c.drop).sort().map(i => 'ABCD'[i]);
-  hinted = true; hintsLeft--;
-  say(malas.length === 2 ? `No me tincan ni la ${malas[0]} ni la ${malas[1]}.` : `Mmm… no creo que sea la ${malas[0]}.`);
-  paintBuddy(true);
-}
-$('buddyBtn').addEventListener('click', hint);
+$('buddyBtn').addEventListener('click', () => say(`Cada acierto tiene un ${MULT_P * 100} % de probabilidad de valer ⭐ ${buddyCat().mult}, miau.`));
 
 /* historial con fecha: en este navegador y, si inició sesión con Google, también en Firestore (script de abajo) */
 const dondeGuarda = () => window.cloudUser ? `guardado en tu cuenta ${cloudUser.email}` : 'guardado solo en este navegador · entra con 🔑 Entrar (Google) para no perderlo; se guarda tu nombre, correo y avance, y solo los ves tú y el profe';
@@ -627,7 +618,7 @@ document.addEventListener('keydown', e => {
 /* ---------------- questions ---------------- */
 let t0 = 0, tick = null;   // cronómetro: parte con "Iniciar", se guarda en el historial
 function stopClock() { clearInterval(tick); tick = null; }
-function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 0; log = []; resetHints(); setStage(1); showQ(); }
+function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 0; log = []; setStage(1); showQ(); }
 function startQuiz() { round = pick(cur.bank, 5); intro(); }
 function startEnsayo() {
   mode = 'ensayo'; cur = { id: EJE.ensayo, title: 'Ensayo final', icon: '🎯', unit: EJE.name + ' · PAES M1' };
@@ -638,12 +629,13 @@ function startEnsayo() {
   intro(); show('topic');
 }
 function intro() {
-  stopClock(); t0 = 0; qIdx = 0; score = 0; log = []; resetHints(); setStage(2);
+  stopClock(); t0 = 0; qIdx = 0; score = 0; log = []; setStage(2);
   $('qIntro').classList.remove('hidden'); $('qCard').classList.add('hidden'); paintBuddy(false);
   const ens = mode === 'ensayo', h = (store.get().hist || []).filter(x => x.id === cur.id && 't' in x);
   const mejor = h.length ? Math.min(...h.map(x => x.t)) : 0;
   $('iTitle').textContent = (ens ? '🎯 ' : '📝 ') + (ens ? `Ensayo de ${EJE.name}` : `Cuestionario · ${cur.title}`);
-  $('iMsg').textContent = `${round.length} preguntas al azar, primero las que menos has visto. El cronómetro parte cuando presionas Iniciar y el tiempo queda guardado en tu avance.` +
+  $('iMsg').textContent = `${round.length} preguntas al azar, primero las que menos has visto. El cronómetro parte cuando presionas Iniciar y el tiempo queda guardado en tu avance. ` +
+    (ens ? 'Bono: 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.' : 'Bono: 5 de 5 correctas dan ⭐ 50.') +
     (h.length ? ` Último intento: ${h[0].s}/${h[0].n} en ${dur(h[0].t)} · tu mejor tiempo: ${dur(mejor)}.` : '');
   $('iGo').textContent = ens ? '▶ Iniciar ensayo' : '▶ Iniciar cuestionario';
 }
@@ -656,7 +648,7 @@ function begin() {
 $('iGo').addEventListener('click', begin);
 $('iQuit').addEventListener('click', () => mode === 'ensayo' ? renderHome() : startExample());
 function showQ() {
-  const q = round[qIdx]; answered = false; hinted = false; $('bubble').classList.add('hidden');
+  const q = round[qIdx]; answered = false; $('bubble').classList.add('hidden');
   const total = round.length;
   $('qTag').textContent = mode === 'ensayo' ? q.topic : (stage === 1 ? 'Pregunta tipo PAES · ' + (q.src || 'ejemplo') : 'Cuestionario · ' + cur.title);
   $('qCount').textContent = total > 1 ? `Pregunta ${qIdx + 1} de ${total} · ${score} correctas` : 'Pregunta resuelta paso a paso';
@@ -673,11 +665,13 @@ function answer(pos) {
   if (answered) return; answered = true;
   const q = round[qIdx], chosen = order[pos], ok = chosen === q.ok;
   const p0 = store.get(); p0.seen = p0.seen || {}; p0.seen[q.key] = (p0.seen[q.key] || 0) + 1;
-  if (ok) p0.pts = (p0.pts || 0) + 1;
+  const c = buddyCat(), gana = ok ? (c && Math.random() < MULT_P ? c.mult : 1) : 0;
+  p0.pts = (p0.pts || 0) + gana;
   store.set(p0);
   if (ok) {
     score++; updPts();
-    const f = document.createElement('div'); f.className = 'plus'; f.textContent = '+1 ⭐';
+    if (gana > 1) say(`¡Multiplicador ×${gana}, miau!`);
+    const f = document.createElement('div'); f.className = 'plus'; f.textContent = `+${gana} ⭐`;
     document.body.appendChild(f); setTimeout(() => f.remove(), 1000);
   }
   log.push({ q, chosen, ok });
@@ -698,11 +692,12 @@ $('qQuit').addEventListener('click', renderHome);
 /* ---------------- result ---------------- */
 function showResult() {
   stopClock(); setStage(3);
-  const n = round.length, prog = store.get(), t = Math.round((Date.now() - t0) / 1000);
+  const n = round.length, prog = store.get(), t = Math.round((Date.now() - t0) / 1000), b = bono();
+  prog.pts = (prog.pts || 0) + b;
   prog[cur.id] = { best: Math.max(score, prog[cur.id] ? prog[cur.id].best : 0) };
   // q: [clave de la pregunta, alternativa elegida, 1 si acertó] por cada pregunta del intento
   prog.hist = [{ id: cur.id, s: score, n, d: new Date().toISOString(), t, q: log.map(l => [l.q.key, l.chosen, l.ok ? 1 : 0]) }, ...(prog.hist || [])].slice(0, 200);
-  store.set(prog);
+  store.set(prog); updPts();
   $('rScore').textContent = `${score}/${n}`;
   requestAnimationFrame(() => $('ring').style.setProperty('--deg', (score / n * 360) + 'deg'));
   const pct = score / n;
@@ -710,7 +705,7 @@ function showResult() {
   $('rMsg').textContent = mode === 'ensayo'
     ? (pct >= 0.8 ? 'Dominas el eje. Revisa abajo las que fallaste y vuelve a rendirlo otro día para confirmar.' : 'Mira el desglose por tema: el tema con más errores es el que conviene repasar primero en su clase.')
     : (pct >= 0.8 ? 'Tema dominado. Puedes pasar al siguiente o probar el ensayo final.' : 'Vuelve a leer las diapositivas del tema y repite el cuestionario: las preguntas cambian cada vez.');
-  $('rMsg').textContent = `⏱ Tiempo: ${dur(t)}. ` + $('rMsg').textContent;
+  $('rMsg').textContent = (b ? `🎁 Bono: +${b} ⭐. ` : '') + `⏱ Tiempo: ${dur(t)}. ` + $('rMsg').textContent;
   const bt = $('rByTopic');
   if (mode === 'ensayo') { const m = {}; log.forEach(l => { m[l.q.topic] = m[l.q.topic] || [0, 0]; m[l.q.topic][1]++; if (l.ok) m[l.q.topic][0]++; });
     bt.innerHTML = Object.entries(m).map(([t, v]) => `<div><span>${t}</span><b>${v[0]}/${v[1]}</b></div>`).join(''); bt.classList.remove('hidden'); } else bt.classList.add('hidden');
