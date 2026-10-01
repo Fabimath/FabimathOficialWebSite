@@ -76,6 +76,8 @@
   .topic-card .meta { margin-top: auto; padding-top: 14px; font-size: 12px; letter-spacing: 0.01em; color: var(--ink-3); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
   .badge { font-size: 12px; font-weight: 600; letter-spacing: 0.01em; padding: 3px 10px; border-radius: 980px; background: var(--tint); color: #b84f06; white-space: nowrap; }
   .badge.done { background: rgba(23,166,115,.12); color: var(--ok-ink); }
+  .evento { margin-top: 20px; background: linear-gradient(135deg, #7c5cf0, #e85ad2 55%, #ff9a3c); color: #fff; border-radius: 18px; padding: 14px 20px; font-size: 15px; line-height: 1.45; box-shadow: 0 10px 30px rgba(124,92,240,.25); }
+  .evento b { font-size: 17px; }
   .ensayo-card { margin-top: 48px; background: linear-gradient(135deg, #ef7418 0%, var(--royal) 45%, #c4540a 100%); color: #fff; border-radius: 24px; padding: 36px 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 16px 40px rgba(232,104,12,.22); }
   .ensayo-card h3 { font-size: 28px; letter-spacing: -0.02em; }
   .ensayo-card p { font-size: 17px; max-width: 540px; margin-top: 6px; }
@@ -293,6 +295,7 @@
 </nav>
 
 <div class="wrap">
+  <div class="evento hidden" id="evento"></div>
 
   <!-- HOME -->
   <div id="home">
@@ -390,11 +393,13 @@
 const $ = id => document.getElementById(id);
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const ADMIN_PTS = 1e6;
+// avance solo en memoria; se guarda únicamente en la cuenta de Google (script de abajo). Sin sesión se pierde al recargar.
+let MEM = '{}';
 const store = {
   // cuenta del profe (window.esAdmin, lo pone el inicio de sesión): estrellas infinitas para probar; se repone en cada lectura
-  get: () => { let d; try { d = JSON.parse(localStorage.getItem('paes_pye') || '{}'); } catch { d = {}; } if (window.esAdmin) d.pts = ADMIN_PTS; return d; },
+  get: () => { const d = JSON.parse(MEM); if (window.esAdmin) d.pts = ADMIN_PTS; return d; },
   set: d => { if (window.esAdmin) d = { ...d, pts: 0 };   // lo infinito no se guarda: ni en el navegador ni en la nube
-    localStorage.setItem('paes_pye', JSON.stringify(d)); if (window.cloudSave) cloudSave(d); }
+    MEM = JSON.stringify(d); if (window.cloudSave) cloudSave(d); }
 };
 function renderMath(el) {
   if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], ignoredClasses: ['peso'], throwOnError: false });
@@ -402,7 +407,7 @@ function renderMath(el) {
 const num = v => String(v).replace('.', ',');
 
 /* ---------------- eje: paes.html (Probabilidad y Estadística) o paes.html?eje=numeros ----------------
-   Los dos ejes comparten el mismo localStorage: puntos, gatos e historial son uno solo. */
+   Los dos ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
 const EJES = {
   pye: { name: 'Probabilidad y Estadística', topics: TOPICS, ensayo: 'ensayo', tab: 'ejePye',
     nota: ' · Notación: $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_1$, $Q_2 = Me$, $Q_3$ cuartiles.' },
@@ -533,6 +538,19 @@ function catSVG(c, size) {
   return `<svg viewBox="0 0 20 16" width="${size}" height="${size * 0.8}" shape-rendering="crispEdges" role="img" aria-label="${c.name}">${rb}${r}${brillo}</svg>`;
 }
 const MULT_P = 0.5;
+/* Evento por tiempo limitado (horas UTC): ×2 en todas las estrellas, regalo único al entrar con la cuenta
+   y gachapón solo con variantes diamante o superiores (gacha.js). Para otro evento: cambiar id, fechas y nombre. */
+const EVENTO = { id: 'evento_2026-10-01', nombre: 'Evento ×2', inicio: '2026-10-01T22:45:00Z', fin: '2026-10-01T23:50:00Z', regalo: 50 };
+const eventoActivo = () => { const t = Date.now(); return t >= Date.parse(EVENTO.inicio) && t < Date.parse(EVENTO.fin); };
+const xEvento = () => eventoActivo() ? 2 : 1;
+function pintaEvento() {
+  const el = $('evento'), on = eventoActivo();
+  el.classList.toggle('hidden', !on);
+  if (!on) return clearInterval(pintaEvento.t);
+  const s = Math.max(0, Math.round((Date.parse(EVENTO.fin) - Date.now()) / 1000));
+  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</b><br>Todas las estrellas valen el doble (aciertos y bonos), ⭐ ${EVENTO.regalo} de regalo al entrar con tu cuenta y el gachapón solo entrega gatos diamante, arcoíris o platino.`;
+}
+pintaEvento.t = setInterval(pintaEvento, 1000);
 const hintTxt = c => `${MULT_P * 100} % de probabilidad de que cada acierto valga ⭐ ${c.mult} en vez de 1`;
 const BONO_ENSAYO = { 20: 200, 19: 150, 18: 100 };
 const bono = () => mode === 'ensayo' ? BONO_ENSAYO[score] || 0 : round.length === 5 && score === 5 ? 50 : 0;
@@ -567,7 +585,7 @@ function paintBuddy(show) {
 $('buddyBtn').addEventListener('click', () => say(`Cada acierto tiene un ${MULT_P * 100} % de probabilidad de valer ⭐ ${buddyCat().mult}, miau.`));
 
 /* historial con fecha: en este navegador y, si inició sesión con Google, también en Firestore (script de abajo) */
-const dondeGuarda = () => window.cloudUser ? `guardado en tu cuenta ${cloudUser.email}` : 'guardado solo en este navegador · entra con 🔑 Entrar (Google) para no perderlo; se guarda tu nombre, correo y avance, y solo los ves tú y el profe';
+const dondeGuarda = () => window.cloudUser ? `guardado en tu cuenta ${cloudUser.email}` : '⚠️ sin sesión no se guarda nada: entra con 🔑 Entrar (Google) para guardar tu avance; se guarda tu nombre, correo y avance, y solo los ves tú y el profe';
 const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 function renderHist(prog) {
   const h = prog.hist || [];
@@ -669,7 +687,7 @@ function answer(pos) {
   if (answered) return; answered = true;
   const q = round[qIdx], chosen = order[pos], ok = chosen === q.ok;
   const p0 = store.get(); p0.seen = p0.seen || {}; p0.seen[q.key] = (p0.seen[q.key] || 0) + 1;
-  const c = buddyCat(), gana = ok ? (c && Math.random() < MULT_P ? c.mult : 1) : 0;
+  const c = buddyCat(), gana = ok ? (c && Math.random() < MULT_P ? c.mult : 1) * xEvento() : 0;
   p0.pts = (p0.pts || 0) + gana;
   store.set(p0);
   if (ok) {
@@ -696,7 +714,7 @@ $('qQuit').addEventListener('click', renderHome);
 /* ---------------- result ---------------- */
 function showResult() {
   stopClock(); setStage(3);
-  const n = round.length, prog = store.get(), t = Math.round((Date.now() - t0) / 1000), b = bono();
+  const n = round.length, prog = store.get(), t = Math.round((Date.now() - t0) / 1000), b = bono() * xEvento();
   prog.pts = (prog.pts || 0) + b;
   prog[cur.id] = { best: Math.max(score, prog[cur.id] ? prog[cur.id].best : 0) };
   // q: [clave de la pregunta, alternativa elegida, 1 si acertó] por cada pregunta del intento
@@ -726,13 +744,13 @@ $('rRetry').addEventListener('click', () => mode === 'ensayo' ? startEnsayo() : 
 $('homeBtn').addEventListener('click', renderHome);
 $('ensayoBtn').addEventListener('click', startEnsayo);
 
-renderHome();
+renderHome(); pintaEvento();
 window.addEventListener('load', () => renderMath(document.body));
 </script>
 
 <script type="module">
 /* Inicio de sesión con Google (Firebase) y avance en la nube.
-   Firestore: progreso/{uid} = { data: JSON del mismo objeto de localStorage, name, email, updated }.
+   Firestore: progreso/{uid} = { data: JSON del objeto de avance (store), name, email, updated }.
    Reglas: cada alumno lee y escribe solo su documento; el correo ADMIN lee todos (panel del profe). */
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
@@ -748,41 +766,28 @@ const app = initializeApp({
 });
 const auth = getAuth(app), db = getFirestore(app);
 const ADMIN = 'chimechotopia@gmail.com';
-const OWNER = 'paes_uid';   // de qué cuenta es la copia en localStorage
+localStorage.removeItem('paes_pye'); localStorage.removeItem('paes_uid');   // restos de la versión que guardaba en el navegador
 
-/* Une el avance local con el de la nube sin perder nada: historial sin repetidos, mejor nota por tema,
-   gatos de ambos. Los puntos no se suman (se pueden gastar): queda el mayor. */
-function merge(a, b) {
-  const m = { ...b, ...a };
-  for (const k of Object.keys(m)) if (m[k] && m[k].best !== undefined) m[k] = { best: Math.max(a[k]?.best ?? 0, b[k]?.best ?? 0) };
-  const seen = new Set();
-  m.hist = [...(a.hist || []), ...(b.hist || [])].filter(h => !seen.has(h.id + h.d) && seen.add(h.id + h.d))
-    .sort((x, y) => y.d.localeCompare(x.d)).slice(0, 200);
-  m.cats = [...new Set([...(a.cats || []), ...(b.cats || [])])];
-  m.pts = Math.max(a.pts || 0, b.pts || 0);
-  m.col = { ...b.col, ...a.col };
-  for (const k in m.col) m.col[k] = Math.max(a.col?.[k] || 0, b.col?.[k] || 0);
-  m.seen = { ...b.seen, ...a.seen };
-  for (const k in m.seen) m.seen[k] = Math.max(a.seen?.[k] || 0, b.seen?.[k] || 0);
-  return m;
-}
-
-let timer = null;
+/* Solo se guarda en la nube y solo después de haber leído el documento de la cuenta (cloudReady):
+   así una escritura temprana nunca pisa el avance guardado con un objeto vacío. */
+let timer = null, pendiente = null;
+const subir = () => { clearTimeout(timer); if (!pendiente) return; const [u, d] = pendiente; pendiente = null;
+  setDoc(doc(db, 'progreso', u.uid), { data: JSON.stringify(d), name: u.displayName || '', email: u.email, updated: new Date().toISOString() })
+    .catch(e => { console.error('No se pudo guardar en la nube', e); alert('No se pudo guardar tu avance en la nube. Revisa tu conexión.'); }); };
 window.cloudSave = d => {
-  const u = auth.currentUser; if (!u) return;
-  clearTimeout(timer);
-  timer = setTimeout(() => setDoc(doc(db, 'progreso', u.uid), { data: JSON.stringify(d), name: u.displayName || '', email: u.email, updated: new Date().toISOString() })
-    .catch(e => console.error('No se pudo guardar en la nube', e)), 1500);
+  const u = auth.currentUser; if (!u || !window.cloudReady) return;
+  pendiente = [u, d]; clearTimeout(timer); timer = setTimeout(subir, 1000);
 };
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') subir(); });
 
 $('loginBtn').addEventListener('click', async () => {
   if (!auth.currentUser) return signInWithPopup(auth, new GoogleAuthProvider()).catch(e => { if (e.code !== 'auth/popup-closed-by-user') alert('No se pudo iniciar sesión: ' + e.message); });
-  if (!confirm('¿Cerrar sesión? Tu avance queda guardado en tu cuenta y se borra de este navegador.')) return;
-  await signOut(auth);
-  localStorage.removeItem('paes_pye'); localStorage.removeItem(OWNER); renderHome();
+  if (!confirm('¿Cerrar sesión? Tu avance queda guardado en tu cuenta.')) return;
+  subir(); await signOut(auth);
 });
 
 onAuthStateChanged(auth, async u => {
+  subir(); window.cloudReady = false;
   window.cloudUser = u; window.esAdmin = !!u && u.email === ADMIN;
   $('loginBtn').textContent = u ? '👤 ' + (u.displayName || u.email).split(' ')[0] : '🔑 Entrar';
   $('loginBtn').title = u ? `Sesión iniciada como ${u.email}. Clic para cerrar sesión.` : 'Inicia sesión con Google para guardar tu avance en la nube';
@@ -790,13 +795,14 @@ onAuthStateChanged(auth, async u => {
     try {
       const snap = await getDoc(doc(db, 'progreso', u.uid));
       const nube = snap.exists() ? JSON.parse(snap.data().data) : {};
-      const dueno = localStorage.getItem(OWNER);
-      // si lo local es de otra cuenta (computador compartido), no se mezcla
-      const local = !dueno || dueno === u.uid ? store.get() : {};
-      localStorage.setItem(OWNER, u.uid);
-      store.set(merge(local, nube));
+      window.cloudReady = true;
+      store.set(nube);   // la nube manda: lo jugado sin sesión no se mezcla
+      if (eventoActivo() && !(nube.regalos || {})[EVENTO.id]) {
+        const p = store.get(); p.pts = (p.pts || 0) + EVENTO.regalo; p.regalos = { ...p.regalos, [EVENTO.id]: 1 }; store.set(p);
+        alert(`🎉 ${EVENTO.nombre}: te regalamos ⭐ ${EVENTO.regalo}.`);
+      }
     } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
-  }
+  } else store.set({});
   if (!$('home').classList.contains('hidden')) renderHome();
   renderPanel(u);
 });

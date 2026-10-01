@@ -80,7 +80,7 @@ const sortear = list => { let x = Math.random() * list.reduce((s, o) => s + o.w,
 function tirar() {
   const p = store.get();
   if ((p.pts || 0) < G_COST) return null;
-  const rar = sortear(RAR), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(VAR), k = g.id + ':' + v.id;
+  const rar = sortear(RAR), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(eventoActivo() ? VAR.slice(2) : VAR), k = g.id + ':' + v.id;
   p.col = p.col || {};
   const antes = p.col[k] || 0, gatoNuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = antes + 1; p.pts -= G_COST; store.set(p); updPts();   // se guarda antes de la animación: recargar no pierde el gato
@@ -225,7 +225,7 @@ function renderGacha(prog) {
   const f = fusion(fus);
   const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
-    <div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
+    ${eventoActivo() ? '<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: solo salen gatos diamante, arcoíris o platino (60, 33 y 7 %).</div>' : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
