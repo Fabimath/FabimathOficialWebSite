@@ -389,9 +389,12 @@
 /* ---------------- helpers ---------------- */
 const $ = id => document.getElementById(id);
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const ADMIN_PTS = 1e6;
 const store = {
-  get: () => { try { return JSON.parse(localStorage.getItem('paes_pye') || '{}'); } catch { return {}; } },
-  set: d => { localStorage.setItem('paes_pye', JSON.stringify(d)); if (window.cloudSave) cloudSave(d); }
+  // cuenta del profe (window.esAdmin, lo pone el inicio de sesión): estrellas infinitas para probar; se repone en cada lectura
+  get: () => { let d; try { d = JSON.parse(localStorage.getItem('paes_pye') || '{}'); } catch { d = {}; } if (window.esAdmin) d.pts = ADMIN_PTS; return d; },
+  set: d => { if (window.esAdmin) d = { ...d, pts: 0 };   // lo infinito no se guarda: ni en el navegador ni en la nube
+    localStorage.setItem('paes_pye', JSON.stringify(d)); if (window.cloudSave) cloudSave(d); }
 };
 function renderMath(el) {
   if (window.renderMathInElement) renderMathInElement(el, { delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }], ignoredClasses: ['peso'], throwOnError: false });
@@ -533,10 +536,11 @@ const MULT_P = 0.5;
 const hintTxt = c => `${MULT_P * 100} % de probabilidad de que cada acierto valga ⭐ ${c.mult} en vez de 1`;
 const BONO_ENSAYO = { 20: 200, 19: 150, 18: 100 };
 const bono = () => mode === 'ensayo' ? BONO_ENSAYO[score] || 0 : round.length === 5 && score === 5 ? 50 : 0;
-function updPts() { $('ptsPill').textContent = '⭐ ' + (store.get().pts || 0); }
+const verPts = n => window.esAdmin ? '∞' : n;
+function updPts() { $('ptsPill').textContent = '⭐ ' + verPts(store.get().pts || 0); }
 function renderShop(prog) {
   const pts = prog.pts || 0, own = prog.cats || [];
-  $('shop').innerHTML = `<h3>🐱 Gatos ayudantes</h3><div class="sub">Tienes <b>⭐ ${pts}</b> puntos. Ganas 1 por cada respuesta correcta. Canjéalos en orden: el gato que elijas te acompaña abajo a la izquierda y puede multiplicar las estrellas de cada acierto. Bonos: 5 de 5 en un cuestionario da ⭐ 50; en el ensayo, 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.</div><div class="cats">` +
+  $('shop').innerHTML = `<h3>🐱 Gatos ayudantes</h3><div class="sub">Tienes <b>⭐ ${verPts(pts)}</b> puntos. Ganas 1 por cada respuesta correcta. Canjéalos en orden: el gato que elijas te acompaña abajo a la izquierda y puede multiplicar las estrellas de cada acierto. Bonos: 5 de 5 en un cuestionario da ⭐ 50; en el ensayo, 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.</div><div class="cats">` +
     CATS.map((c, i) => {
       const tiene = own.includes(c.id), puede = i === 0 || own.includes(CATS[i - 1].id), on = prog.cat === c.id;
       const btn = tiene ? (on ? '<span class="badge done">Te acompaña</span>' : `<button class="btn btn-ghost" data-use="${c.id}">Elegir</button>`)
@@ -779,7 +783,7 @@ $('loginBtn').addEventListener('click', async () => {
 });
 
 onAuthStateChanged(auth, async u => {
-  window.cloudUser = u;
+  window.cloudUser = u; window.esAdmin = !!u && u.email === ADMIN;
   $('loginBtn').textContent = u ? '👤 ' + (u.displayName || u.email).split(' ')[0] : '🔑 Entrar';
   $('loginBtn').title = u ? `Sesión iniciada como ${u.email}. Clic para cerrar sesión.` : 'Inicia sesión con Google para guardar tu avance en la nube';
   if (u) {
