@@ -337,8 +337,16 @@
     </div>
 
     <div id="qwrap" class="hidden">
-      <div class="qcard">
-        <div class="qtop"><span class="qtag" id="qTag"></span><span id="qCount"></span></div>
+      <div class="qcard result hidden" id="qIntro">
+        <h3 id="iTitle"></h3>
+        <p id="iMsg"></p>
+        <div class="qnav" style="justify-content:center; margin-top:22px;">
+          <button class="btn btn-ghost" id="iQuit">◀ Volver</button>
+          <button class="btn btn-primary" id="iGo">▶ Iniciar cuestionario</button>
+        </div>
+      </div>
+      <div class="qcard" id="qCard">
+        <div class="qtop"><span class="qtag" id="qTag"></span><span><span id="qCount"></span><span id="qClock"> · ⏱ <span id="qTime">0 s</span></span></span></div>
         <div class="pbar"><div id="qBar" style="width:0%"></div></div>
         <div class="qenun" id="qEnun"></div>
         <div class="qfig" id="qFig"></div>
@@ -399,6 +407,14 @@ const EJES = {
 const EJE = EJES[new URLSearchParams(location.search).get('eje')] || EJES.pye;
 const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM];
 const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números' };
+// clave fija por pregunta ("tema:índice", "tema:e" la resuelta) para contar cuántas veces salió cada una
+ALL_TOPICS.forEach(t => { t.example.key = t.id + ':e'; t.bank.forEach((q, i) => q.key = t.id + ':' + i); });
+// al azar, pero primero las que menos ha visto: así cada intento trae preguntas distintas
+function pick(list, n) {
+  const seen = store.get().seen || {};
+  return shuffle([...list]).sort((a, b) => (seen[a.key] || 0) - (seen[b.key] || 0)).slice(0, n);
+}
+const dur = s => s >= 60 ? `${Math.floor(s / 60)} min ${s % 60} s` : `${s} s`;
 document.title = `PAES ${EJE.name} — Fabimath`;
 $('ejeTitle').textContent = EJE.name; $(EJE.tab).classList.add('on');
 $('ensayoTitle').textContent = `🎯 Ensayo final de ${EJE.name}`;
@@ -473,6 +489,7 @@ let mode = 'topic';    // 'topic' | 'ensayo'
 
 /* ---------------- home ---------------- */
 function renderHome() {
+  stopClock();
   const prog = store.get();
   const units = [...new Set(T.map(t => t.unit))];
   $('units').innerHTML = units.map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
@@ -560,8 +577,8 @@ function renderHist(prog) {
   const hechos = T.filter(t => prog[t.id]).length;
   if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Cada intento queda con fecha y hora, ' + dondeGuarda() + '.</div>'; return; }
   $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${T.length} temas de ${EJE.name} practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
-    <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th></tr></thead><tbody>` +
-    h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td></tr>`).join('') +
+    <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th><th>Tiempo</th></tr></thead><tbody>` +
+    h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td><td>${'t' in x ? dur(x.t) : '–'}</td></tr>`).join('') +
     `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
   $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance, puntos y gatos? No se puede deshacer.')) { store.set({}); renderHome(); } });
 }
@@ -580,6 +597,7 @@ function setStage(n) {
   $('deck').classList.toggle('hidden', n !== 0);
   $('qwrap').classList.toggle('hidden', n === 0 || n === 3);
   $('rwrap').classList.toggle('hidden', n !== 3);
+  $('qIntro').classList.add('hidden'); $('qCard').classList.remove('hidden'); $('qClock').classList.toggle('hidden', n !== 2);
   paintBuddy(n === 1 || n === 2);
 }
 function renderSlide(dir) {
@@ -598,21 +616,42 @@ $('prevSlide').addEventListener('click', () => { if (sIdx > 0) { sIdx--; renderS
 $('nextSlide').addEventListener('click', () => { if (sIdx < cur.slides.length - 1) { sIdx++; renderSlide(1); } else startExample(); });
 document.addEventListener('keydown', e => {
   if (stage === 0 && !$('topic').classList.contains('hidden')) { if (e.key === 'ArrowRight') $('nextSlide').click(); if (e.key === 'ArrowLeft') $('prevSlide').click(); }
+  if (stage === 2 && !t0) { if (e.key === 'Enter') begin(); return; }
   if ((stage === 1 || stage === 2) && !answered) { const k = 'ABCD'.indexOf(e.key.toUpperCase()); if (k >= 0 && k < order.length) answer(k); }
   if ((stage === 1 || stage === 2) && answered && e.key === 'Enter') $('qNext').click();
 });
 
 /* ---------------- questions ---------------- */
-function startExample() { round = [cur.example]; qIdx = 0; score = 0; log = []; resetHints(); setStage(1); showQ(); }
-function startQuiz() { round = shuffle([...cur.bank]).slice(0, 5); qIdx = 0; score = 0; log = []; resetHints(); setStage(2); showQ(); }
+let t0 = 0, tick = null;   // cronómetro: parte con "Iniciar", se guarda en el historial
+function stopClock() { clearInterval(tick); tick = null; }
+function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 0; log = []; resetHints(); setStage(1); showQ(); }
+function startQuiz() { round = pick(cur.bank, 5); intro(); }
 function startEnsayo() {
   mode = 'ensayo'; cur = { id: EJE.ensayo, title: 'Ensayo final', icon: '🎯', unit: EJE.name + ' · PAES M1' };
-  const pool = []; T.forEach(t => pool.push(...shuffle([t.example, ...t.bank]).slice(0, 3).map(q => ({ ...q, topic: t.title }))));
-  round = shuffle(pool).slice(0, 20); qIdx = 0; score = 0; log = []; resetHints();
+  const pool = []; T.forEach(t => pool.push(...pick([t.example, ...t.bank], 3).map(q => ({ ...q, topic: t.title }))));
+  round = shuffle(pool).slice(0, 20);
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.steps').classList.add('hidden');
-  setStage(2); showQ(); show('topic');
+  intro(); show('topic');
 }
+function intro() {
+  stopClock(); t0 = 0; qIdx = 0; score = 0; log = []; resetHints(); setStage(2);
+  $('qIntro').classList.remove('hidden'); $('qCard').classList.add('hidden'); paintBuddy(false);
+  const ens = mode === 'ensayo', h = (store.get().hist || []).filter(x => x.id === cur.id && 't' in x);
+  const mejor = h.length ? Math.min(...h.map(x => x.t)) : 0;
+  $('iTitle').textContent = (ens ? '🎯 ' : '📝 ') + (ens ? `Ensayo de ${EJE.name}` : `Cuestionario · ${cur.title}`);
+  $('iMsg').textContent = `${round.length} preguntas al azar, primero las que menos has visto. El cronómetro parte cuando presionas Iniciar y el tiempo queda guardado en tu avance.` +
+    (h.length ? ` Último intento: ${h[0].s}/${h[0].n} en ${dur(h[0].t)} · tu mejor tiempo: ${dur(mejor)}.` : '');
+  $('iGo').textContent = ens ? '▶ Iniciar ensayo' : '▶ Iniciar cuestionario';
+}
+function begin() {
+  $('qIntro').classList.add('hidden'); $('qCard').classList.remove('hidden'); paintBuddy(true);
+  t0 = Date.now(); $('qTime').textContent = '0 s';
+  tick = setInterval(() => $('qTime').textContent = dur(Math.round((Date.now() - t0) / 1000)), 1000);
+  showQ();
+}
+$('iGo').addEventListener('click', begin);
+$('iQuit').addEventListener('click', () => mode === 'ensayo' ? renderHome() : startExample());
 function showQ() {
   const q = round[qIdx]; answered = false; hinted = false; $('bubble').classList.add('hidden');
   const total = round.length;
@@ -630,9 +669,11 @@ function showQ() {
 function answer(pos) {
   if (answered) return; answered = true;
   const q = round[qIdx], chosen = order[pos], ok = chosen === q.ok;
+  const p0 = store.get(); p0.seen = p0.seen || {}; p0.seen[q.key] = (p0.seen[q.key] || 0) + 1;
+  if (ok) p0.pts = (p0.pts || 0) + 1;
+  store.set(p0);
   if (ok) {
-    score++;
-    const p = store.get(); p.pts = (p.pts || 0) + 1; store.set(p); updPts();
+    score++; updPts();
     const f = document.createElement('div'); f.className = 'plus'; f.textContent = '+1 ⭐';
     document.body.appendChild(f); setTimeout(() => f.remove(), 1000);
   }
@@ -653,10 +694,11 @@ $('qQuit').addEventListener('click', renderHome);
 
 /* ---------------- result ---------------- */
 function showResult() {
-  setStage(3);
-  const n = round.length, prog = store.get();
+  stopClock(); setStage(3);
+  const n = round.length, prog = store.get(), t = Math.round((Date.now() - t0) / 1000);
   prog[cur.id] = { best: Math.max(score, prog[cur.id] ? prog[cur.id].best : 0) };
-  prog.hist = [{ id: cur.id, s: score, n, d: new Date().toISOString() }, ...(prog.hist || [])].slice(0, 200);
+  // q: [clave de la pregunta, alternativa elegida, 1 si acertó] por cada pregunta del intento
+  prog.hist = [{ id: cur.id, s: score, n, d: new Date().toISOString(), t, q: log.map(l => [l.q.key, l.chosen, l.ok ? 1 : 0]) }, ...(prog.hist || [])].slice(0, 200);
   store.set(prog);
   $('rScore').textContent = `${score}/${n}`;
   requestAnimationFrame(() => $('ring').style.setProperty('--deg', (score / n * 360) + 'deg'));
@@ -665,6 +707,7 @@ function showResult() {
   $('rMsg').textContent = mode === 'ensayo'
     ? (pct >= 0.8 ? 'Dominas el eje. Revisa abajo las que fallaste y vuelve a rendirlo otro día para confirmar.' : 'Mira el desglose por tema: el tema con más errores es el que conviene repasar primero en su clase.')
     : (pct >= 0.8 ? 'Tema dominado. Puedes pasar al siguiente o probar el ensayo final.' : 'Vuelve a leer las diapositivas del tema y repite el cuestionario: las preguntas cambian cada vez.');
+  $('rMsg').textContent = `⏱ Tiempo: ${dur(t)}. ` + $('rMsg').textContent;
   const bt = $('rByTopic');
   if (mode === 'ensayo') { const m = {}; log.forEach(l => { m[l.q.topic] = m[l.q.topic] || [0, 0]; m[l.q.topic][1]++; if (l.ok) m[l.q.topic][0]++; });
     bt.innerHTML = Object.entries(m).map(([t, v]) => `<div><span>${t}</span><b>${v[0]}/${v[1]}</b></div>`).join(''); bt.classList.remove('hidden'); } else bt.classList.add('hidden');
@@ -715,6 +758,8 @@ function merge(a, b) {
     .sort((x, y) => y.d.localeCompare(x.d)).slice(0, 200);
   m.cats = [...new Set([...(a.cats || []), ...(b.cats || [])])];
   m.pts = Math.max(a.pts || 0, b.pts || 0);
+  m.seen = { ...b.seen, ...a.seen };
+  for (const k in m.seen) m.seen[k] = Math.max(a.seen?.[k] || 0, b.seen?.[k] || 0);
   return m;
 }
 
