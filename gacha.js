@@ -87,6 +87,35 @@ function tirar() {
   return { g, v, veces: antes + 1, gatoNuevo };
 }
 
+/* ---------- venta y fusión ----------
+   Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
+   Un diamante de una rareza ≈ un normal de la siguiente. Valor esperado de una tirada ≈ ⭐ 7, bajo el costo de 10:
+   vender lo que sale nunca da más estrellas de las que se gastaron. */
+const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
+const FUS_COST = [5, 15, 40, 100, 250];   // por rareza de los tres gatos, × VAR_VAL de la variante más baja
+const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c); return { g, v: VAR.findIndex(x => x.id === v), r: RAR.indexOf(g.rar) }; };
+const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[GATOS.indexOf(p.g) % 5])); };
+function quitar(p, k, n = 1) { p.col[k] -= n; if (p.col[k] <= 0) delete p.col[k]; }
+function vender(k) {
+  const p = store.get();
+  if (!p.col || !p.col[k]) return;
+  if (p.col[k] === 1 && !confirm(`Es tu único ${pieza(k).g.name} ${VAR[pieza(k).v].name.toLowerCase()}. ¿Venderlo por ⭐ ${valor(k)}?`)) return;
+  quitar(p, k); p.pts = (p.pts || 0) + valor(k); store.set(p); updPts(); renderGacha(p); renderShop(p);
+}
+// Tres iguales (mismo gato y variante): el mismo gato con la variante siguiente.
+// Tres de la misma rareza (sin ser iguales): un gato al azar de la rareza siguiente, con la variante más baja de los tres.
+function fusion(keys) {
+  if (keys.length < 3) return { err: `Pon ${3 - keys.length} gato${keys.length === 2 ? '' : 's'} más.` };
+  const ps = keys.map(pieza), r = ps[0].r, v = Math.min(...ps.map(p => p.v));
+  if (ps.some(p => p.r !== r)) return { err: 'Los tres gatos deben ser de la misma rareza.' };
+  const cost = Math.round(FUS_COST[r] * VAR_VAL[v]);
+  if (keys.every(k => k === keys[0])) return v === VAR.length - 1 ? { err: 'Platino es la variante más alta: no puede subir más.' } : { tipo: 'var', g: ps[0].g, v: v + 1, cost };
+  if (r === RAR.length - 1) return { err: 'Mítico es la rareza más alta: aquí solo sirven tres iguales para subir la variante.' };
+  return { tipo: 'linea', r: r + 1, v, cost };
+}
+let fus = [];   // claves "gato:variante" puestas en la máquina de fusión
+const libres = (col, k) => (col[k] || 0) - fus.filter(x => x === k).length;
+
 /* ---------- música: chiptune con Web Audio, sin archivos ---------- */
 let AC = null;
 const mudo = () => localStorage.getItem('gacha_mute') === '1';
@@ -154,53 +183,117 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .g-rev p { color: var(--ink-2); margin: 10px 0 16px; }
   .g-rev .pop { animation: g-pop .6s var(--ease) both; display: inline-block; }
   @keyframes g-pop { from { transform: scale(.2) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop { animation: none; } }
+  .g-card .g-dots button { width: 13px; height: 13px; border-radius: 50%; border: 1px solid rgba(0,0,0,.18); cursor: pointer; padding: 0; }
+  .g-card .g-dots button.on { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .g-acts { display: flex; gap: 4px; justify-content: center; margin-top: 8px; }
+  .g-acts button { font: inherit; font-size: 11.5px; font-weight: 600; border: none; border-radius: 99px; padding: 4px 8px; cursor: pointer; background: var(--tint); color: #c4540a; white-space: nowrap; }
+  .g-acts button:disabled { opacity: .4; cursor: default; }
+  .g-fus { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; padding: 16px; margin: 6px 0 10px; }
+  .g-fus h4 { font-size: 17px; margin-bottom: 4px; }
+  .g-fus .sub { margin-bottom: 12px; }
+  .g-slots { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .g-slot { width: 84px; height: 84px; border-radius: 16px; border: 2px dashed #c7c7cc; background: var(--paper); display: grid; place-items: center; cursor: pointer; font: inherit; color: var(--ink-3); }
+  .g-slot.lleno { border-style: solid; border-color: var(--rc); }
+  .g-res { font-size: 14px; color: var(--ink-2); flex: 1; min-width: 180px; }
+  .g-res b { color: var(--ink); }
+  .g-fx { display: flex; justify-content: center; gap: 6px; height: 150px; align-items: center; }
+  .g-fx > div { animation: g-junta 1.6s var(--ease) forwards; }
+  .g-fx > div:nth-child(1) { --dx: 90px; } .g-fx > div:nth-child(3) { --dx: -90px; }
+  @keyframes g-junta { 0% { transform: none; } 60% { transform: translateX(var(--dx, 0)) rotate(360deg) scale(.8); opacity: 1; } 100% { transform: translateX(var(--dx, 0)) scale(0); opacity: 0; } }
+  .g-farm { width: min(960px, 100%); padding: 16px; }
+  .g-park { position: relative; height: min(70vh, 560px); border-radius: 18px; overflow: hidden; cursor: pointer; background: radial-gradient(circle at 30% 20%, #b9ef8f, #7fcf5a 60%, #5fb547); }
+  .g-park .deco { position: absolute; font-size: 34px; pointer-events: none; user-select: none; }
+  .g-park .gt { position: absolute; transition-property: left, top; transition-timing-function: linear; pointer-events: none; }
+  .g-park .gt > div { transition: transform .2s; }
+  .g-park .gt.izq > div { transform: scaleX(-1); }
+  .g-park .gt .cor { position: absolute; left: 50%; top: -10px; font-size: 18px; animation: g-cor 1.2s ease-out forwards; }
+  @keyframes g-cor { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -34px); opacity: 0; } }
+  .g-park .pez { position: absolute; font-size: 22px; transform: translate(-50%, -50%); pointer-events: none; }
+  .g-farm .top { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 12px; text-align: left; }
+  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div { animation: none; } }
 </style>`);
 
-const vista = {};   // gato -> índice de variante mostrada en la galería (clic para cambiar)
+const vista = {};   // gato -> variante mostrada en la galería (se elige con los puntitos)
+const tagVar = v => `<span class="tag" style="background:${v.id === 'normal' ? '#8e8e93' : v.dot};color:${['oro', 'diamante', 'platino'].includes(v.id) ? '#1d1d1f' : '#fff'}">${v.name}</span>`;
 function renderGacha(prog) {
   const el = $('gacha'); if (!el) return;
   const col = prog.col || {}, pts = prog.pts || 0;
+  fus = fus.filter((k, i) => fus.slice(0, i + 1).filter(x => x === k).length <= (col[k] || 0));   // por si vendió lo que estaba en la máquina
   const tiene = g => VAR.filter(v => col[g.id + ':' + v.id]);
   const nGatos = GATOS.filter(g => tiene(g).length).length, nVar = Object.keys(col).length;
   const pctR = r => (r.w / RAR.reduce((s, x) => s + x.w, 0) * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });
+  const f = fusion(fus);
+  const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
-    <div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos.</div>
+    <div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
+      <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
-    <details><summary>Probabilidades</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
+    <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
-      Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.</p></details>` +
+      Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
+      Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
+      Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
+    <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Agrega gatos con «Fusionar» en la galería; clic en una casilla para sacarlo.</div>
+      <div class="g-slots">${[0, 1, 2].map(i => { const k = fus[i]; if (!k) return `<div class="g-slot">+</div>`; const pz = pieza(k);
+        return `<button class="g-slot lleno v-${VAR[pz.v].id}" style="--rc:${pz.g.rar.color}" data-quita="${i}" title="Sacar ${pz.g.name} ${VAR[pz.v].name.toLowerCase()}">${gatoSVG(pz.g, 60)}</button>`; }).join('')}
+        <div class="g-res">${resTxt}${f.cost ? ` Costo: ⭐ ${f.cost}.` : ''}</div>
+        <button class="btn btn-primary" id="gFus" ${f.err || pts < f.cost ? 'disabled' : ''}>Fusionar${f.cost ? ' ⭐ ' + f.cost : ''}</button></div></div>` +
     RAR.map(r => `<div class="g-rar" style="color:${r.color}">${r.name}</div><div class="g-grid">` +
       GATOS.filter(g => g.rar === r).map(g => {
         const vs = tiene(g);
         if (!vs.length) return `<div class="g-card">${gatoSVG(g, 72, true)}<b>???</b><small>sin descubrir</small></div>`;
-        const v = vs[(vista[g.id] || 0) % vs.length], total = vs.reduce((s, x) => s + col[g.id + ':' + x.id], 0);
-        return `<button class="g-card si v-${v.id}" style="--rc:${r.color}" data-g="${g.id}" title="${vs.length > 1 ? 'Clic para ver otra variante' : ''}">${gatoSVG(g, 72)}<b>${g.name}</b><small>${v.name} · tienes ${total}</small>
-          <span class="g-dots">${VAR.map(x => `<i title="${x.name}${col[g.id + ':' + x.id] ? ' ×' + col[g.id + ':' + x.id] : ' (falta)'}" style="${col[g.id + ':' + x.id] ? 'background:' + x.dot : ''}"></i>`).join('')}</span></button>`;
+        const v = vs.find(x => x.id === vista[g.id]) || vs[0], k = g.id + ':' + v.id;
+        return `<div class="g-card si v-${v.id}" style="--rc:${r.color}">${gatoSVG(g, 72)}<b>${g.name}</b><small>${v.name} · tienes ${col[k]}</small>
+          <span class="g-dots">${VAR.map(x => col[g.id + ':' + x.id] ? `<button class="${x === v ? 'on' : ''}" style="background:${x.dot}" data-ver="${g.id}:${x.id}" title="${x.name} ×${col[g.id + ':' + x.id]}" aria-label="Ver ${x.name}"></button>` : `<i title="${x.name} (falta)"></i>`).join('')}</span>
+          <span class="g-acts"><button data-vende="${k}" title="Vender uno">Vender ⭐ ${valor(k)}</button><button data-fus="${k}" ${fus.length >= 3 || libres(col, k) < 1 ? 'disabled' : ''}>Fusionar</button></span></div>`;
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
+  $('gFarm').addEventListener('click', granja);
+  $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
-  el.querySelectorAll('[data-g]').forEach(b => b.addEventListener('click', () => { vista[b.dataset.g] = (vista[b.dataset.g] || 0) + 1; renderGacha(store.get()); }));
+  el.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', () => { const [g, v] = b.dataset.ver.split(':'); vista[g] = v; renderGacha(store.get()); }));
+  el.querySelectorAll('[data-vende]').forEach(b => b.addEventListener('click', () => vender(b.dataset.vende)));
+  el.querySelectorAll('[data-fus]').forEach(b => b.addEventListener('click', () => { fus.push(b.dataset.fus); renderGacha(store.get()); }));
+  el.querySelectorAll('[data-quita]').forEach(b => b.addEventListener('click', () => { fus.splice(+b.dataset.quita, 1); renderGacha(store.get()); }));
 }
 
 const espera = ms => new Promise(r => setTimeout(r, ms));
+const rapido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+function modal(etiqueta, html, clase = '') {
+  const m = document.createElement('div');
+  m.className = 'g-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', etiqueta);
+  m.innerHTML = `<div class="g-box ${clase}">${html}</div>`;
+  document.body.appendChild(m);
+  return m;
+}
+// pantalla final con el gato obtenido; otra = { txt, ok, fn } para el botón de repetir
+function revelar(m, g, v, msg, otra) {
+  musicaPremio(RAR.indexOf(g.rar));
+  m.querySelector('.g-box').innerHTML = `<div class="g-rev"><div class="pop v-${v.id}">${gatoSVG(g, 170)}</div>
+    <h3>${g.name}</h3><span class="tag" style="background:${g.rar.color}">${g.rar.name}</span>${tagVar(v)}
+    <p>${msg}</p>
+    <div class="qnav" style="justify-content:center"><button class="btn btn-ghost" id="gClose">Cerrar</button>${otra ? `<button class="btn btn-primary" id="gAgain" ${otra.ok ? '' : 'disabled'}>${otra.txt}</button>` : ''}</div></div>`;
+  const cerrar = () => { m.remove(); document.removeEventListener('keydown', esc); renderGacha(store.get()); renderShop(store.get()); };
+  const esc = e => { if (e.key === 'Escape') cerrar(); };
+  document.addEventListener('keydown', esc);
+  m.querySelector('#gClose').addEventListener('click', cerrar);
+  if (otra) m.querySelector('#gAgain').addEventListener('click', () => { cerrar(); otra.fn(); });
+  m.querySelector('#gClose').focus();
+}
+
 async function jugar() {
   const res = tirar(); if (!res) return;
   const { g, v, veces, gatoNuevo } = res, nivel = RAR.indexOf(g.rar);
   const capCol = ['#ff9a3c', '#4fa8ff', '#e85ad2', '#5fd97a', '#ffd75e'];
   const pila = Array.from({ length: 14 }, (_, i) => `<div class="g-cap" style="--cc:${capCol[i % 5]};left:${70 + (i % 7) * 34 + (i > 6 ? 17 : 0)}px;bottom:${i > 6 ? 28 : 0}px"></div>`).join('');
-  const m = document.createElement('div');
-  m.className = 'g-modal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true'); m.setAttribute('aria-label', 'Gachapón');
-  m.innerHTML = `<div class="g-box"><div class="g-mach"><div class="g-glass"><div class="g-rail"></div>
+  const m = modal('Gachapón', `<div class="g-mach"><div class="g-glass"><div class="g-rail"></div>
     <div class="g-pile">${pila}</div><div class="g-chute"></div>
     <div class="g-claw" id="gClaw"><div class="cab"></div><div class="hd"></div><i class="l"></i><i class="r"></i></div></div>
-    <div class="g-label">FABI · GACHA</div></div></div>`;
-  document.body.appendChild(m);
-  const claw = m.querySelector('#gClaw'), glass = m.querySelector('.g-glass'), box = m.querySelector('.g-box');
-  const rapido = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!rapido) {
+    <div class="g-label">FABI · GACHA</div></div>`);
+  const claw = m.querySelector('#gClaw'), glass = m.querySelector('.g-glass');
+  if (!rapido()) {
     musicaMaquina(5);
     const objetivo = 90 + Math.random() * (glass.clientWidth - 140);
     await espera(50); claw.style.left = objetivo + 'px'; await espera(950);
@@ -213,15 +306,63 @@ async function jugar() {
     claw.style.left = '38px'; await espera(950);
     claw.classList.remove('cerrada'); cap.style.top = (glass.clientHeight + 20) + 'px'; await espera(650);
   }
-  musicaPremio(nivel);
-  box.innerHTML = `<div class="g-rev"><div class="pop v-${v.id}">${gatoSVG(g, 170)}</div>
-    <h3>${g.name}</h3><span class="tag" style="background:${g.rar.color}">${g.rar.name}</span><span class="tag" style="background:${v.id === 'arcoiris' ? v.dot : v.id === 'normal' ? '#8e8e93' : v.dot};color:${['oro', 'diamante', 'platino'].includes(v.id) ? '#1d1d1f' : '#fff'}">${v.name}</span>
-    <p>${gatoNuevo ? '¡Gato nuevo para tu colección!' : veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${veces} de este gato en ${v.name.toLowerCase()}.`}</p>
-    <div class="qnav" style="justify-content:center"><button class="btn btn-ghost" id="gClose">Cerrar</button><button class="btn btn-primary" id="gAgain" ${(store.get().pts || 0) < G_COST ? 'disabled' : ''}>Otra vez ⭐ ${G_COST}</button></div></div>`;
-  const cerrar = () => { m.remove(); document.removeEventListener('keydown', esc); renderGacha(store.get()); renderShop(store.get()); };
+  revelar(m, g, v, gatoNuevo ? '¡Gato nuevo para tu colección!' : veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${veces} de este gato en ${v.name.toLowerCase()}.`,
+    { txt: `Otra vez ⭐ ${G_COST}`, ok: (store.get().pts || 0) >= G_COST, fn: jugar });
+}
+
+async function fusionar() {
+  const f = fusion(fus), p = store.get();
+  if (f.err || (p.pts || 0) < f.cost) return;
+  const g = f.tipo === 'var' ? f.g : sortear(GATOS.filter(c => c.rar === RAR[f.r])), v = VAR[f.v], k = g.id + ':' + v.id;
+  const entran = fus.map(pieza);
+  fus.forEach(x => quitar(p, x));
+  const nuevo = !p.col[k];
+  p.col[k] = (p.col[k] || 0) + 1; p.pts -= f.cost; store.set(p); updPts();   // guardado antes de la animación
+  fus = [];
+  const m = modal('Fusión', `<div class="g-fx">${entran.map(e => `<div class="v-${VAR[e.v].id}">${gatoSVG(e.g, 90)}</div>`).join('')}</div><p style="color:var(--ink-3)">Fusionando…</p>`);
+  if (!rapido()) { musicaMaquina(1.6); await espera(1700); }
+  revelar(m, g, v, nuevo ? '¡Fusión lista! Es nuevo en tu colección.' : `¡Fusión lista! Ahora tienes ${p.col[k]} de este gato en ${v.name.toLowerCase()}.`);
+}
+
+/* ---------- granja: los gatos que tiene pasean por un parque; clic en el pasto deja un pescado ---------- */
+function granja() {
+  const col = store.get().col || {};
+  // ponytail: tope de 60 gatos en pantalla; con más, el parque se vuelve una masa ilegible
+  const copias = Object.entries(col).flatMap(([k, n]) => Array(n).fill(k)).slice(0, 60);
+  const deco = ['🌳', '🌳', '🌲', '🌷', '🌼', '🌻', '⛲', '🌳', '🌷', '🪨'].map((e, i) => `<span class="deco" style="left:${(i * 37 + 5) % 92}%;top:${(i * 53 + 8) % 85}%">${e}</span>`).join('');
+  const total = Object.values(col).reduce((s, n) => s + n, 0);
+  const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">${copias.length < total ? `${copias.length} de tus ${total}` : copias.length} gatos paseando · clic en el pasto para dejar un pescado.</div></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
+    <div class="g-park" id="gPark">${deco}</div>`, 'g-farm');
+  const park = m.querySelector('#gPark'), W = () => park.clientWidth - 56, H = () => park.clientHeight - 56;
+  const gatos = copias.map(k => {
+    const pz = pieza(k), el = document.createElement('div');
+    el.className = 'gt'; el.title = pz.g.name; el.innerHTML = `<div class="v-${VAR[pz.v].id}">${gatoSVG(pz.g, 52)}</div>`;
+    const c = { el, x: Math.random() * W(), y: Math.random() * H(), ocupado: false };
+    el.style.left = c.x + 'px'; el.style.top = c.y + 'px'; park.appendChild(el);
+    return c;
+  });
+  const ir = (c, x, y) => {   // camina a (x, y) y devuelve los ms que tarda
+    const ms = Math.max(300, Math.hypot(x - c.x, y - c.y) / 70 * 1000);
+    c.el.classList.toggle('izq', x < c.x);
+    c.el.style.transitionDuration = ms + 'ms'; c.x = x; c.y = y; c.el.style.left = x + 'px'; c.el.style.top = y + 'px';
+    return ms;
+  };
+  const comer = (c, x, y) => {
+    const pez = document.createElement('span'); pez.className = 'pez'; pez.textContent = '🐟'; pez.style.left = x + 'px'; pez.style.top = y + 'px'; park.appendChild(pez);
+    c.ocupado = true;
+    setTimeout(() => { pez.remove(); const cor = document.createElement('span'); cor.className = 'cor'; cor.textContent = '❤'; c.el.appendChild(cor); setTimeout(() => cor.remove(), 1200); c.ocupado = false; }, ir(c, x - 26, y - 26));
+  };
+  const paseo = rapido() ? 0 : setInterval(() => gatos.forEach(c => { if (!c.ocupado && Math.random() < 0.35) ir(c, Math.random() * W(), Math.random() * H()); }), 1500);
+  park.addEventListener('click', e => {
+    const r = park.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    const c = gatos.filter(c => !c.ocupado).sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0];
+    if (c) comer(c, x, y);
+  });
+  m.querySelector('#gFeed').addEventListener('click', () => gatos.forEach(c => { if (!c.ocupado) comer(c, 26 + Math.random() * W(), 26 + Math.random() * H()); }));
+  const cerrar = () => { clearInterval(paseo); m.remove(); document.removeEventListener('keydown', esc); };
   const esc = e => { if (e.key === 'Escape') cerrar(); };
   document.addEventListener('keydown', esc);
   m.querySelector('#gClose').addEventListener('click', cerrar);
-  m.querySelector('#gAgain').addEventListener('click', () => { cerrar(); jugar(); });
   m.querySelector('#gClose').focus();
 }
