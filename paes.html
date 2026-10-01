@@ -13,6 +13,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 <script src="paes_data.js"></script>
 <script src="paes_numeros.js"></script>
+<script src="gacha.js"></script>
 <style>
   :root {
     --royal: #c2530a; --azure: #f5822a; --sky: #ffb35c; --ice: #fff3e8;
@@ -312,6 +313,7 @@
     </div>
     <div class="shop" id="shop"></div>
     <div class="hist" id="hist"></div>
+    <div class="shop gacha" id="gacha"></div>
     <div class="hist hidden" id="panel"></div>
   </div>
 
@@ -500,7 +502,7 @@ function renderHome() {
   document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
   const lastE = (prog.hist || []).find(h => h.id === EJE.ensayo);
   $('ensayoBest').textContent = prog[EJE.ensayo] ? `Tu mejor ensayo: ${prog[EJE.ensayo].best}/20 correctas · último el ${fecha(lastE ? lastE.d : '')}.` : 'Aún no rindes un ensayo.';
-  renderHist(prog); renderShop(prog); updPts();
+  renderHist(prog); renderShop(prog); renderGacha(prog); updPts();
   show('home');
 }
 /* ---------------- recompensas: puntos y gatos con pistas ---------------- */
@@ -580,7 +582,7 @@ function renderHist(prog) {
     <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th><th>Tiempo</th></tr></thead><tbody>` +
     h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td><td>${'t' in x ? dur(x.t) : '–'}</td></tr>`).join('') +
     `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
-  $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance, puntos y gatos? No se puede deshacer.')) { store.set({}); renderHome(); } });
+  $('histDel').addEventListener('click', () => { if (confirm('¿Borrar todo tu avance, puntos, gatos y colección? No se puede deshacer.')) { store.set({}); renderHome(); } });
 }
 function show(id) { ['home', 'topic'].forEach(x => $(x).classList.toggle('hidden', x !== id)); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 
@@ -616,6 +618,7 @@ $('prevSlide').addEventListener('click', () => { if (sIdx > 0) { sIdx--; renderS
 $('nextSlide').addEventListener('click', () => { if (sIdx < cur.slides.length - 1) { sIdx++; renderSlide(1); } else startExample(); });
 document.addEventListener('keydown', e => {
   if (stage === 0 && !$('topic').classList.contains('hidden')) { if (e.key === 'ArrowRight') $('nextSlide').click(); if (e.key === 'ArrowLeft') $('prevSlide').click(); }
+  if ($('topic').classList.contains('hidden')) return;
   if (stage === 2 && !t0) { if (e.key === 'Enter') begin(); return; }
   if ((stage === 1 || stage === 2) && !answered) { const k = 'ABCD'.indexOf(e.key.toUpperCase()); if (k >= 0 && k < order.length) answer(k); }
   if ((stage === 1 || stage === 2) && answered && e.key === 'Enter') $('qNext').click();
@@ -758,6 +761,8 @@ function merge(a, b) {
     .sort((x, y) => y.d.localeCompare(x.d)).slice(0, 200);
   m.cats = [...new Set([...(a.cats || []), ...(b.cats || [])])];
   m.pts = Math.max(a.pts || 0, b.pts || 0);
+  m.col = { ...b.col, ...a.col };
+  for (const k in m.col) m.col[k] = Math.max(a.col?.[k] || 0, b.col?.[k] || 0);
   m.seen = { ...b.seen, ...a.seen };
   for (const k in m.seen) m.seen[k] = Math.max(a.seen?.[k] || 0, b.seen?.[k] || 0);
   return m;
