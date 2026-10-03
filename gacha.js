@@ -210,6 +210,10 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   @keyframes g-cor { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -34px); opacity: 0; } }
   .g-park .pez { position: absolute; font-size: 22px; transform: translate(-50%, -50%); pointer-events: none; }
   .g-farm .top { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 12px; text-align: left; }
+  .g-ruleta { position: relative; width: 300px; max-width: 100%; margin: 0 auto 8px; }
+  .g-ruleta svg { max-width: 100%; height: auto; }
+  .g-rueda { transition: transform 4.5s cubic-bezier(.15,.7,.15,1); }
+  .g-flecha { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); z-index: 1; font-size: 26px; color: #e8342a; text-shadow: 0 2px 3px rgba(0,0,0,.3); }
   @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div { animation: none; } }
 </style>`);
 
@@ -322,6 +326,38 @@ async function fusionar() {
   const m = modal('Fusión', `<div class="g-fx">${entran.map(e => `<div class="v-${VAR[e.v].id}">${gatoSVG(e.g, 90)}</div>`).join('')}</div><p style="color:var(--ink-3)">Fusionando…</p>`);
   if (!rapido()) { musicaMaquina(1.6); await espera(1700); }
   revelar(m, g, v, nuevo ? '¡Fusión lista! Es nuevo en tu colección.' : `¡Fusión lista! Ahora tienes ${p.col[k]} de este gato en ${v.name.toLowerCase()}.`);
+}
+
+/* ---------- ruleta del eje mixto: 5 gatos fijos por ruleta, tajadas de 30, 25, 20, 15 y 10 % (CAT_W) ----------
+   Más correctas, ruleta con gatos de más rareza. [mínimo de correctas, nombre, gatos]; la primera que calce manda. */
+const RULETAS = [
+  [10, 'Ruleta mítica', ['faraon', 'fantasma', 'lava', 'cristal', 'fabimath']],
+  [8, 'Ruleta legendaria', ['nube', 'dragon', 'lunar', 'samurai', 'galaxia']],
+  [6, 'Ruleta épica', ['carey', 'astro', 'sakura', 'lima', 'fenix']],
+  [4, 'Ruleta rara', ['atigrado', 'calico', 'siames', 'tuxedo', 'mate']],
+  [0, 'Ruleta común', ['naranjo', 'gris', 'pelusa', 'negrito', 'ruso']]
+].map(([min, name, ids]) => ({ min, name, gs: ids.map((id, i) => ({ g: GATOS.find(x => x.id === id), w: CAT_W[i] })) }));
+const ruletaDe = n => RULETAS.find(r => n >= r.min);
+async function girarRuleta(correctas) {
+  const R = ruletaDe(correctas), sale = sortear(R.gs), g = sale.g, v = VAR[0], k = g.id + ':' + v.id;
+  const p = store.get(); p.col = p.col || {};
+  const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
+  p.col[k] = (p.col[k] || 0) + 1; store.set(p);   // guardado antes de girar: recargar no pierde el gato
+  const C = 150, Rr = 140, pt = (a, r) => `${C + r * Math.sin(a * Math.PI / 180)},${C - r * Math.cos(a * Math.PI / 180)}`;
+  let a = 0, svg = '';
+  const taj = R.gs.map((x, i) => { const a0 = a; a += x.w / 100 * 360; const m = (a0 + a) / 2;
+    svg += `<path d="M${C},${C} L${pt(a0, Rr)} A${Rr},${Rr} 0 0 1 ${pt(a, Rr)} Z" fill="${x.g.rar.color}" fill-opacity="${i % 2 ? .3 : .55}" stroke="#fff" stroke-width="3"/>`;
+    const [cx, cy] = pt(m, Rr * 0.64).split(',').map(Number);
+    svg += `<g transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>`;
+    return { ...x, a0, a1: a }; });
+  const t = taj[R.gs.indexOf(sale)], fin = 360 * 6 - ((t.a0 + t.a1) / 2 + (Math.random() - 0.5) * (t.a1 - t.a0) * 0.7);
+  const m = modal('Ruleta de gatos', `<h3 style="font-size:22px">🎡 ${R.name}</h3><div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">${correctas} correctas · ${R.gs.map(x => `${x.g.name} ${x.w} %`).join(' · ')}</div>
+    <div class="g-ruleta"><div class="g-flecha">▼</div><div class="g-rueda" id="gRueda"><svg viewBox="0 0 300 300" width="300" height="300">${svg}<circle cx="${C}" cy="${C}" r="16" fill="#fff" stroke="#e8680c" stroke-width="4"/></svg></div></div>`);
+  if (!rapido()) {
+    musicaMaquina(4.5);
+    await espera(50); m.querySelector('#gRueda').style.transform = `rotate(${fin}deg)`; await espera(4700);
+  }
+  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en normal.`);
 }
 
 /* ---------- granja: los gatos que tiene pasean por un parque; clic en el pasto deja un pescado ---------- */
