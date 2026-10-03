@@ -13,6 +13,7 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
 <script src="paes_data.js"></script>
 <script src="paes_numeros.js"></script>
+<script src="paes_funciones.js"></script>
 <script src="gacha.js"></script>
 <style>
   :root {
@@ -131,6 +132,7 @@
   @keyframes slideback { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
   .slide .kicker { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--royal); margin-bottom: 8px; }
   .slide h3 { font-size: clamp(26px, 3.6vw, 34px); letter-spacing: -0.022em; line-height: 1.1; margin-bottom: 20px; }
+  .slide .sec + .sec { border-top: 1px solid var(--line); margin-top: 30px; padding-top: 30px; }
   .slide .body { font-size: 17px; color: var(--ink); flex: 1; }
   .slide .body p { margin-bottom: 12px; }
   .slide .body ul { margin: 6px 0 12px 22px; }
@@ -142,10 +144,7 @@
   .box b:first-child { color: #c4540a; }
   .box.alert b:first-child { color: #1f5bb8; }
   .katex-display { margin: 10px 0; }
-  .deck-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 22px; border-top: 1px solid var(--line); background: #fafafc; }
-  .dots { display: flex; gap: 6px; }
-  .dots i { width: 7px; height: 7px; border-radius: 980px; background: rgba(0,0,0,.14); display: block; transition: width .3s var(--ease), background-color .3s var(--ease); }
-  .dots i.on { background: var(--royal); width: 20px; }
+  .deck-nav { display: flex; align-items: center; justify-content: flex-end; gap: 12px; padding: 14px 22px; border-top: 1px solid var(--line); background: #fafafc; }
 
   /* ---------- QUESTION ---------- */
   .qcard { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); padding: 32px 34px; }
@@ -300,9 +299,9 @@
   <!-- HOME -->
   <div id="home">
     <div class="hero">
-      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a></div>
+      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a></div>
       <h1>PAES <span id="ejeTitle"></span></h1>
-      <p>Cada tema tiene una mini clase en diapositivas, una pregunta tipo PAES resuelta paso a paso y un cuestionario de 5 preguntas. Al final, un ensayo de 20 preguntas con todo el eje. Tus puntos y tus gatos sirven en los dos ejes.</p>
+      <p>Cada tema tiene una mini clase en diapositivas, una pregunta tipo PAES resuelta paso a paso y un cuestionario de 5 preguntas. Al final, un ensayo de 20 preguntas con todo el eje. Tus puntos y tus gatos sirven en todos los ejes.</p>
       <div class="src">Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.</div>
     </div>
     <div id="units"></div>
@@ -335,9 +334,7 @@
     <div id="deck" class="deck">
       <div class="slide" id="slide"></div>
       <div class="deck-nav">
-        <button class="btn btn-ghost" id="prevSlide">◀ Anterior</button>
-        <div class="dots" id="dots"></div>
-        <button class="btn btn-primary" id="nextSlide">Siguiente ▶</button>
+        <button class="btn btn-primary" id="nextSlide">Ir a la pregunta PAES ▶</button>
       </div>
     </div>
 
@@ -408,19 +405,21 @@ function renderMath(el) {
 const num = v => String(v).replace('.', ',');
 
 /* ---------------- eje: paes.html (Probabilidad y Estadística) o paes.html?eje=numeros ----------------
-   Los dos ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
+   Todos los ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
 const EJES = {
   pye: { name: 'Probabilidad y Estadística', topics: TOPICS, ensayo: 'ensayo', tab: 'ejePye',
     nota: ' · Notación: $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_1$, $Q_2 = Me$, $Q_3$ cuartiles.' },
   numeros: { name: 'Números', topics: TOPICS_NUM, ensayo: 'ensayo_num', tab: 'ejeNum',
     nota: ' · Notación: $\\mathbb{Z}$ enteros, $\\mathbb{Q}$ racionales, $0{,}\\overline{3}$ decimal periódico.' },
-  // sin temas propios: 10 preguntas, mitad de cada eje, y al final una ruleta de gatos (gacha.js)
-  mixto: { name: 'Mixto', topics: [], mix: [TOPICS, TOPICS_NUM], n: 10, ensayo: 'ensayo_mix', tab: 'ejeMix', ruleta: true, nota: '',
-    desc: '10 preguntas mezcladas de Estadística y Números. Al terminar giras una ruleta de 5 gatos: con 4 correctas sale la ruleta rara, con 6 la épica, con 8 la legendaria y con 10 la mítica.' }
+  funciones: { name: 'Funciones', topics: TOPICS_FUN, ensayo: 'ensayo_fun', tab: 'ejeFun',
+    nota: ' · Notación: $f(x)$ imagen de $x$, $m$ pendiente, $n$ coeficiente de posición, $\\Delta = b^2 - 4ac$ discriminante.' },
+  // sin temas propios: 10 preguntas repartidas entre los ejes, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
+  mixto: { name: 'Mixto', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN], n: 10, x: 3, ensayo: 'ensayo_mix', tab: 'ejeMix', ruleta: true, nota: '',
+    desc: '10 preguntas mezcladas de Estadística, Números y Funciones, y cada acierto vale el triple de estrellas. Al terminar giras una ruleta de 5 gatos: con 4 correctas sale la ruleta rara, con 6 la épica, con 8 la legendaria y con 10 la mítica.' }
 };
 const EJE = EJES[new URLSearchParams(location.search).get('eje')] || EJES.pye;
-const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM];
-const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_mix: 'Desafío mixto' };
+const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN];
+const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_mix: 'Desafío mixto' };
 // clave fija por pregunta ("tema:índice", "tema:e" la resuelta) para contar cuántas veces salió cada una
 ALL_TOPICS.forEach(t => { t.example.key = t.id + ':e'; t.bank.forEach((q, i) => q.key = t.id + ':' + i); });
 // al azar, pero primero las que menos ha visto: así cada intento trae preguntas distintas
@@ -488,6 +487,24 @@ function fig(f) {
       if (f.labels !== false) [b.min, b.q1, b.me, b.q3, b.max].forEach(v => s += `<text x="${x(v)}" y="${cy - h / 2 - 5}" font-size="11" text-anchor="middle" fill="#424245">${num(v)}</text>`); });
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
+  if (f.type === 'plot') {   // plano cartesiano: x e y = [mín, máx, paso]; fns = [{ f: x => … } o { pts: [[x, y], …] }, lab, at]; marks = [[x, y, texto]]; vline = eje de simetría
+    const W = 420, H = 300, L = 30, R = 14, T = 14, B = 24, [x0, x1, sx = 1] = f.x, [y0, y1, sy = 1] = f.y;
+    const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => H - B - (v - y0) / (y1 - y0) * (H - B - T);
+    const ax = X(Math.min(Math.max(0, x0), x1)), ay = Y(Math.min(Math.max(0, y0), y1)), id = 'cp' + Math.random().toString(36).slice(2);
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" role="img" aria-label="Gráfico de una función"><defs><clipPath id="${id}"><rect x="${L}" y="${T}" width="${W - L - R}" height="${H - B - T}"/></clipPath></defs>`;
+    for (let k = 0, v; (v = +(x0 + k * sx).toFixed(6)) <= x1; k++) s += `<line x1="${X(v)}" x2="${X(v)}" y1="${T}" y2="${H - B}" stroke="#ececf0"/>` + (v ? `<text x="${X(v)}" y="${ay + 14}" font-size="11" text-anchor="middle" fill="#6e6e73">${num(v)}</text>` : '');
+    for (let k = 0, v; (v = +(y0 + k * sy).toFixed(6)) <= y1; k++) s += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#ececf0"/>` + (v ? `<text x="${ax - 5}" y="${Y(v) + 4}" font-size="11" text-anchor="end" fill="#6e6e73">${num(v)}</text>` : '');
+    s += `<line x1="${L}" x2="${W - R}" y1="${ay}" y2="${ay}" stroke="#424245" stroke-width="1.3"/><line x1="${ax}" x2="${ax}" y1="${T}" y2="${H - B}" stroke="#424245" stroke-width="1.3"/>`;
+    s += `<text x="${W - R}" y="${ay - 6}" font-size="12" font-style="italic" text-anchor="end" fill="#424245">${f.xlab || 'x'}</text><text x="${ax + 6}" y="${T + 10}" font-size="12" font-style="italic" fill="#424245">${f.ylab || 'y'}</text>`;
+    if (f.vline !== undefined) s += `<line x1="${X(f.vline)}" x2="${X(f.vline)}" y1="${T}" y2="${H - B}" stroke="${PAL[4]}" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+    (f.fns || []).forEach((g, i) => {
+      const pts = g.pts || Array.from({ length: 241 }, (_, k) => { const x = x0 + (x1 - x0) * k / 240; return [x, g.f(x)]; });
+      s += `<polyline clip-path="url(#${id})" fill="none" stroke="${PAL[i % PAL.length]}" stroke-width="2.5" stroke-linejoin="round" points="${pts.map(([x, y]) => X(x) + ',' + Y(Math.max(y0 - (y1 - y0), Math.min(y1 + (y1 - y0), y)))).join(' ')}"/>`;
+      if (g.lab) s += `<text x="${X(g.at[0])}" y="${Y(g.at[1])}" font-size="12.5" font-weight="700" fill="${PAL[i % PAL.length]}">${g.lab}</text>`;
+    });
+    (f.marks || []).forEach(([x, y, t]) => s += `<circle cx="${X(x)}" cy="${Y(y)}" r="4" fill="#fff" stroke="#1d1d1f" stroke-width="2"/>` + (t ? `<text x="${X(x) + 7}" y="${Y(y) - 7}" font-size="11.5" font-weight="700" fill="#1d1d1f">${t}</text>` : ''));
+    return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
+  }
   if (f.type === 'picto') {
     let s = '<table>' + f.labels.map((l, i) => `<tr><th>${l}</th><td style="text-align:left;letter-spacing:2px">${f.icon.repeat(f.counts[i])}</td></tr>`).join('') + '</table>';
     return s + `<div class="cap">Cada ${f.icon} representa ${f.each} ${f.unit || 'unidades'}.</div>`;
@@ -498,7 +515,6 @@ function fig(f) {
 /* ---------------- state ---------------- */
 let cur = null;        // topic object
 let stage = 0;         // 0 slides, 1 example, 2 quiz
-let sIdx = 0;          // slide index
 let round = [], qIdx = 0, score = 0, order = [], answered = false, log = [];
 let mode = 'topic';    // 'topic' | 'ensayo'
 
@@ -609,7 +625,7 @@ function openTopic(id) {
   cur = T.find(t => t.id === id); mode = 'topic';
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.topic-head').classList.remove('hidden'); document.querySelector('.steps').classList.remove('hidden');
-  stage = 0; sIdx = 0; renderSlide(); show('topic');
+  stage = 0; renderSlide(); show('topic');
 }
 function setStage(n) {
   stage = n;
@@ -620,22 +636,16 @@ function setStage(n) {
   $('qIntro').classList.add('hidden'); $('qCard').classList.remove('hidden'); $('qClock').classList.toggle('hidden', n !== 2);
   paintBuddy(n === 1 || n === 2);
 }
-function renderSlide(dir) {
+// la clase completa en una sola página, sección tras sección hacia abajo
+function renderSlide() {
   setStage(0);
-  const s = cur.slides[sIdx], el = $('slide');
-  el.className = 'slide' + (dir < 0 ? ' back' : '');
-  el.innerHTML = `<div class="kicker">${cur.title} · ${sIdx + 1} / ${cur.slides.length}</div><h3>${s.t}</h3><div class="body">${s.b}</div>`;
-  const sf = (typeof SLIDE_FIGS !== 'undefined' && SLIDE_FIGS[cur.id] || {})[sIdx], ph = el.querySelector('.qfig');
-  if (ph && sf) ph.innerHTML = fig(sf);
+  const el = $('slide'), figs = typeof SLIDE_FIGS !== 'undefined' && SLIDE_FIGS[cur.id] || {};
+  el.innerHTML = `<div class="kicker">Clase · ${cur.title}</div>` + cur.slides.map(s => `<section class="sec"><h3>${s.t}</h3><div class="body">${s.b}</div></section>`).join('');
+  el.querySelectorAll('.sec').forEach((sec, i) => { const ph = sec.querySelector('.qfig'); if (ph && figs[i]) ph.innerHTML = fig(figs[i]); });
   renderMath(el);
-  $('dots').innerHTML = cur.slides.map((_, i) => `<i class="${i === sIdx ? 'on' : ''}"></i>`).join('');
-  $('prevSlide').disabled = sIdx === 0;
-  $('nextSlide').textContent = sIdx === cur.slides.length - 1 ? 'Ir a la pregunta PAES ▶' : 'Siguiente ▶';
 }
-$('prevSlide').addEventListener('click', () => { if (sIdx > 0) { sIdx--; renderSlide(-1); } });
-$('nextSlide').addEventListener('click', () => { if (sIdx < cur.slides.length - 1) { sIdx++; renderSlide(1); } else startExample(); });
+$('nextSlide').addEventListener('click', startExample);
 document.addEventListener('keydown', e => {
-  if (stage === 0 && !$('topic').classList.contains('hidden')) { if (e.key === 'ArrowRight') $('nextSlide').click(); if (e.key === 'ArrowLeft') $('prevSlide').click(); }
   if ($('topic').classList.contains('hidden')) return;
   if (stage === 2 && !t0) { if (e.key === 'Enter') begin(); return; }
   if ((stage === 1 || stage === 2) && !answered) { const k = 'ABCD'.indexOf(e.key.toUpperCase()); if (k >= 0 && k < order.length) answer(k); }
@@ -649,8 +659,8 @@ function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 
 function startQuiz() { round = pick(cur.bank, 5); intro(); }
 function startEnsayo() {
   mode = 'ensayo'; cur = { id: EJE.ensayo, title: EJE.ruleta ? 'Desafío mixto' : 'Ensayo final', icon: EJE.ruleta ? '🎡' : '🎯', unit: EJE.name + ' · PAES M1' };
-  const deEje = (ts, n) => shuffle(ts.flatMap(t => pick([t.example, ...t.bank], 3).map(q => ({ ...q, topic: t.title })))).slice(0, n);
-  round = EJE.mix ? shuffle(EJE.mix.flatMap(ts => deEje(ts, EJE.n / EJE.mix.length))) : deEje(T, 20);
+  const deEje = (ts, n) => shuffle(ts.flatMap(t => pick([t.example, ...t.bank], Math.ceil(n / ts.length)).map(q => ({ ...q, topic: t.title })))).slice(0, n);
+  round = EJE.mix ? shuffle(EJE.mix.flatMap(ts => deEje(ts, Math.ceil(EJE.n / EJE.mix.length)))).slice(0, EJE.n) : deEje(T, 20);
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.steps').classList.add('hidden');
   intro(); show('topic');
@@ -662,7 +672,7 @@ function intro() {
   const mejor = h.length ? Math.min(...h.map(x => x.t)) : 0;
   $('iTitle').textContent = (ens ? '🎯 ' : '📝 ') + (ens ? ENSAYOS[EJE.ensayo] : `Cuestionario · ${cur.title}`);
   $('iMsg').textContent = `${round.length} preguntas al azar, primero las que menos has visto. El cronómetro parte cuando presionas Iniciar y el tiempo queda guardado en tu avance. ` +
-    (EJE.ruleta ? 'Premio: al terminar giras una ruleta de gatos; mientras más correctas, más raros los gatos.' : ens ? 'Bono: 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.' : 'Bono: 5 de 5 correctas dan ⭐ 50.') +
+    (EJE.ruleta ? 'Cada acierto vale ×3 estrellas y al terminar giras una ruleta de gatos: mientras más correctas, más raros los gatos.' : ens ? 'Bono: 20 correctas dan ⭐ 200, 19 dan ⭐ 150 y 18 dan ⭐ 100.' : 'Bono: 5 de 5 correctas dan ⭐ 50.') +
     (h.length ? ` Último intento: ${h[0].s}/${h[0].n} en ${dur(h[0].t)} · tu mejor tiempo: ${dur(mejor)}.` : '');
   $('iGo').textContent = ens ? '▶ Iniciar ensayo' : '▶ Iniciar cuestionario';
 }
@@ -692,7 +702,7 @@ function answer(pos) {
   if (answered) return; answered = true;
   const q = round[qIdx], chosen = order[pos], ok = chosen === q.ok;
   const p0 = store.get(); p0.seen = p0.seen || {}; p0.seen[q.key] = (p0.seen[q.key] || 0) + 1;
-  const c = buddyCat(), gana = ok ? (c && Math.random() < MULT_P ? c.mult : 1) * xEvento() : 0;
+  const c = buddyCat(), gana = ok ? (c && Math.random() < MULT_P ? c.mult : 1) * xEvento() * (EJE.x || 1) : 0;
   p0.pts = (p0.pts || 0) + gana;
   store.set(p0);
   if (ok) {
@@ -744,7 +754,7 @@ function showResult() {
   if (EJE.ruleta) sp.textContent = `🎡 Girar ${ruletaDe(score).name.toLowerCase()}`;
 }
 $('rSpin').addEventListener('click', () => { $('rSpin').disabled = true; girarRuleta(score); });   // un giro por intento
-$('st0').addEventListener('click', () => { sIdx = 0; renderSlide(); });
+$('st0').addEventListener('click', () => renderSlide());
 $('st1').addEventListener('click', startExample);
 $('st2').addEventListener('click', startQuiz);
 $('rHome').addEventListener('click', renderHome);
@@ -824,12 +834,12 @@ async function renderPanel(u) {
     const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
     el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
-      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
+      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
       filas.map(f => { const p = f.p, h = p.hist || [];
         const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-        const ens = ['ensayo_num', 'ensayo'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
-      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística.</div>';
+        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
+      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones.</div>';
     el.classList.remove('hidden');
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
 }
