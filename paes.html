@@ -559,17 +559,17 @@ function catSVG(c, size) {
   return `<svg viewBox="0 0 20 16" width="${size}" height="${size * 0.8}" shape-rendering="crispEdges" role="img" aria-label="${c.name}">${rb}${r}${brillo}</svg>`;
 }
 const MULT_P = 0.5;
-/* Evento por tiempo limitado (horas UTC): ×2 en todas las estrellas, regalo único al entrar con la cuenta
-   y gachapón solo con variantes diamante o superiores (gacha.js). Para otro evento: cambiar id, fechas y nombre. */
-const EVENTO = { id: 'evento_2026-10-01', nombre: 'Evento ×2', inicio: '2026-10-01T22:45:00Z', fin: '2026-10-01T23:50:00Z', regalo: 50 };
+/* Evento por tiempo limitado (horas UTC): ×x en todas las estrellas, regalo único al entrar con la cuenta
+   y gachapón solo con variantes diamante o superiores (gacha.js). Para otro evento: cambiar id, fechas, nombre, x y regalo. */
+const EVENTO = { id: 'evento_2026-10-04', nombre: 'Evento ×3', inicio: '2026-10-04T21:20:00Z', fin: '2026-10-04T22:25:00Z', regalo: 300, x: 3 };
 const eventoActivo = () => { const t = Date.now(); return t >= Date.parse(EVENTO.inicio) && t < Date.parse(EVENTO.fin); };
-const xEvento = () => eventoActivo() ? 2 : 1;
+const xEvento = () => eventoActivo() ? EVENTO.x : 1;
 function pintaEvento() {
   const el = $('evento'), on = eventoActivo();
   el.classList.toggle('hidden', !on);
   if (!on) return clearInterval(pintaEvento.t);
   const s = Math.max(0, Math.round((Date.parse(EVENTO.fin) - Date.now()) / 1000));
-  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</b><br>Todas las estrellas valen el doble (aciertos y bonos), ⭐ ${EVENTO.regalo} de regalo al entrar con tu cuenta y el gachapón solo entrega gatos diamante, arcoíris o platino.`;
+  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</b><br>Todas las estrellas valen ×${EVENTO.x} (aciertos y bonos), ⭐ ${EVENTO.regalo} de regalo al entrar con tu cuenta y el gachapón solo entrega gatos diamante, arcoíris o platino.`;
 }
 pintaEvento.t = setInterval(pintaEvento, 1000);
 const hintTxt = c => `${MULT_P * 100} % de probabilidad de que cada acierto valga ⭐ ${c.mult} en vez de 1`;
