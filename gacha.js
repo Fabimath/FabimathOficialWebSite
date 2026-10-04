@@ -77,15 +77,20 @@ function gatoSVG(g, size, oculto) {
 
 /* ---------- sorteo y guardado ---------- */
 const sortear = list => { let x = Math.random() * list.reduce((s, o) => s + o.w, 0); return list.find(o => (x -= o.w) < 0) || list[list.length - 1]; };
-function tirar() {
+// desde = índice de la variante mínima asegurada (las ruletas de variante); el evento ya asegura diamante
+function tirar(cost = G_COST, desde = 0) {
   const p = store.get();
-  if ((p.pts || 0) < G_COST) return null;
-  const rar = sortear(RAR), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(eventoActivo() ? VAR.slice(2) : VAR), k = g.id + ':' + v.id;
+  if ((p.pts || 0) < cost) return null;
+  const vs = VAR.slice(Math.max(desde, eventoActivo() ? 2 : 0));
+  const rar = sortear(RAR), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(vs), k = g.id + ':' + v.id;
   p.col = p.col || {};
   const antes = p.col[k] || 0, gatoNuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
-  p.col[k] = antes + 1; p.pts -= G_COST; store.set(p); updPts();   // se guarda antes de la animación: recargar no pierde el gato
-  return { g, v, veces: antes + 1, gatoNuevo };
+  p.col[k] = antes + 1; p.pts -= cost; store.set(p); updPts();   // se guarda antes de la animación: recargar no pierde el gato
+  return { g, v, vs, veces: antes + 1, gatoNuevo };
 }
+const msgTirada = r => r.gatoNuevo ? '¡Gato nuevo para tu colección!' : r.veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${r.veces} de este gato en ${r.v.name.toLowerCase()}.`;
+// ruletas de variante: [variante mínima, costo]
+const RUL_VAR = [[1, 50], [2, 100]];
 
 /* ---------- venta y fusión ----------
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
@@ -231,12 +236,14 @@ function renderGacha(prog) {
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
     ${eventoActivo() ? '<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: solo salen gatos diamante, arcoíris o platino (60, 33 y 7 %).</div>' : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
+      ${RUL_VAR.map(([d, c]) => `<button class="btn btn-primary" data-rvar="${d}" ${pts < c ? 'disabled' : ''}>🎡 ${VAR[d].name} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
+      Ruletas: ${RUL_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(' y ')}; la variante sale de una ruleta con esas mismas proporciones y la rareza sale igual que en la máquina.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
       Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
     <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Agrega gatos con «Fusionar» en la galería; clic en una casilla para sacarlo.</div>
@@ -254,6 +261,7 @@ function renderGacha(prog) {
           <span class="g-acts"><button data-vende="${k}" title="Vender uno">Vender ⭐ ${valor(k)}</button><button data-fus="${k}" ${fus.length >= 3 || libres(col, k) < 1 ? 'disabled' : ''}>Fusionar</button></span></div>`;
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
+  el.querySelectorAll('[data-rvar]').forEach(b => b.addEventListener('click', () => ruletaVar(RUL_VAR.find(r => r[0] === +b.dataset.rvar))));
   $('gFarm').addEventListener('click', granja);
   $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
@@ -289,7 +297,7 @@ function revelar(m, g, v, msg, otra) {
 
 async function jugar() {
   const res = tirar(); if (!res) return;
-  const { g, v, veces, gatoNuevo } = res, nivel = RAR.indexOf(g.rar);
+  const { g, v } = res, nivel = RAR.indexOf(g.rar);
   const capCol = ['#ff9a3c', '#4fa8ff', '#e85ad2', '#5fd97a', '#ffd75e'];
   const pila = Array.from({ length: 14 }, (_, i) => `<div class="g-cap" style="--cc:${capCol[i % 5]};left:${70 + (i % 7) * 34 + (i > 6 ? 17 : 0)}px;bottom:${i > 6 ? 28 : 0}px"></div>`).join('');
   const m = modal('Gachapón', `<div class="g-mach"><div class="g-glass"><div class="g-rail"></div>
@@ -310,8 +318,18 @@ async function jugar() {
     claw.style.left = '38px'; await espera(950);
     claw.classList.remove('cerrada'); cap.style.top = (glass.clientHeight + 20) + 'px'; await espera(650);
   }
-  revelar(m, g, v, gatoNuevo ? '¡Gato nuevo para tu colección!' : veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${veces} de este gato en ${v.name.toLowerCase()}.`,
-    { txt: `Otra vez ⭐ ${G_COST}`, ok: (store.get().pts || 0) >= G_COST, fn: jugar });
+  revelar(m, g, v, msgTirada(res), { txt: `Otra vez ⭐ ${G_COST}`, ok: (store.get().pts || 0) >= G_COST, fn: jugar });
+}
+
+// ruleta de variante: la rueda muestra las variantes aseguradas; el gato sale como en la máquina
+async function ruletaVar([desde, cost]) {
+  const res = tirar(cost, desde); if (!res) return;
+  const tot = res.vs.reduce((s, x) => s + x.w, 0), pct = x => (x.w / tot * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });
+  const m = await rueda(`Ruleta ${VAR[desde].name.toLowerCase()} o más`, res.vs.map(x => `${x.name} ${pct(x)} %`).join(' · '),
+    res.vs.map(x => ({ w: x.w, fill: x.id === 'arcoiris' ? 'url(#gArc)' : x.dot, op: 1,
+      html: (cx, cy, a) => `<text x="${cx}" y="${cy}" transform="rotate(${a - 90} ${cx} ${cy})" font-size="13" font-weight="800" text-anchor="middle" dominant-baseline="middle" fill="#1d1d1f" font-family="system-ui">${x.name}</text>` })),
+    res.vs.indexOf(res.v));
+  revelar(m, res.g, res.v, msgTirada(res), { txt: `Otra vez ⭐ ${cost}`, ok: (store.get().pts || 0) >= cost, fn: () => ruletaVar([desde, cost]) });
 }
 
 async function fusionar() {
@@ -343,21 +361,28 @@ async function girarRuleta(correctas) {
   const p = store.get(); p.col = p.col || {};
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = (p.col[k] || 0) + 1; store.set(p);   // guardado antes de girar: recargar no pierde el gato
+  const m = await rueda(R.name, `${correctas} correctas · ${R.gs.map(x => `${x.g.name} ${x.w} %`).join(' · ')}`,
+    R.gs.map(x => ({ w: x.w, fill: x.g.rar.color, html: (cx, cy) => `<g transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>` })), R.gs.indexOf(sale));
+  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en normal.`);
+}
+// abre un modal con una rueda de tajadas { w, fill, op?, html(cx, cy, ángulo) } y la gira hasta la tajada i
+async function rueda(titulo, sub, tajadas, i) {
   const C = 150, Rr = 140, pt = (a, r) => `${C + r * Math.sin(a * Math.PI / 180)},${C - r * Math.cos(a * Math.PI / 180)}`;
-  let a = 0, svg = '';
-  const taj = R.gs.map((x, i) => { const a0 = a; a += x.w / 100 * 360; const m = (a0 + a) / 2;
-    svg += `<path d="M${C},${C} L${pt(a0, Rr)} A${Rr},${Rr} 0 0 1 ${pt(a, Rr)} Z" fill="${x.g.rar.color}" fill-opacity="${i % 2 ? .3 : .55}" stroke="#fff" stroke-width="3"/>`;
-    const [cx, cy] = pt(m, Rr * 0.64).split(',').map(Number);
-    svg += `<g transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>`;
-    return { ...x, a0, a1: a }; });
-  const t = taj[R.gs.indexOf(sale)], fin = 360 * 6 - ((t.a0 + t.a1) / 2 + (Math.random() - 0.5) * (t.a1 - t.a0) * 0.7);
-  const m = modal('Ruleta de gatos', `<h3 style="font-size:22px">🎡 ${R.name}</h3><div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">${correctas} correctas · ${R.gs.map(x => `${x.g.name} ${x.w} %`).join(' · ')}</div>
+  const tot = tajadas.reduce((s, x) => s + x.w, 0);
+  let a = 0, svg = '<defs><linearGradient id="gArc"><stop offset="0" stop-color="#ff5e5e"/><stop offset=".25" stop-color="#ffe45c"/><stop offset=".5" stop-color="#5fd97a"/><stop offset=".75" stop-color="#4fa8ff"/><stop offset="1" stop-color="#b57be0"/></linearGradient></defs>';
+  const taj = tajadas.map((x, j) => { const a0 = a; a += x.w / tot * 360; const mid = (a0 + a) / 2;
+    svg += `<path d="M${C},${C} L${pt(a0, Rr)} A${Rr},${Rr} 0 0 1 ${pt(a, Rr)} Z" fill="${x.fill}" fill-opacity="${x.op ?? (j % 2 ? .3 : .55)}" stroke="#fff" stroke-width="3"/>`;
+    const [cx, cy] = pt(mid, Rr * 0.64).split(',').map(Number);
+    svg += x.html(cx, cy, mid);
+    return { a0, a1: a }; });
+  const t = taj[i], fin = 360 * 6 - ((t.a0 + t.a1) / 2 + (Math.random() - 0.5) * (t.a1 - t.a0) * 0.7);
+  const m = modal(titulo, `<h3 style="font-size:22px">🎡 ${titulo}</h3><div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">${sub}</div>
     <div class="g-ruleta"><div class="g-flecha">▼</div><div class="g-rueda" id="gRueda"><svg viewBox="0 0 300 300" width="300" height="300">${svg}<circle cx="${C}" cy="${C}" r="16" fill="#fff" stroke="#e8680c" stroke-width="4"/></svg></div></div>`);
   if (!rapido()) {
     musicaMaquina(4.5);
     await espera(50); m.querySelector('#gRueda').style.transform = `rotate(${fin}deg)`; await espera(4700);
   }
-  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en normal.`);
+  return m;
 }
 
 /* ---------- granja: los gatos que tiene pasean por un parque; clic en el pasto deja un pescado ---------- */
