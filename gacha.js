@@ -89,8 +89,8 @@ function tirar(cost = G_COST, desde = 0) {
   return { g, v, vs, veces: antes + 1, gatoNuevo };
 }
 const msgTirada = r => r.gatoNuevo ? '¡Gato nuevo para tu colección!' : r.veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${r.veces} de este gato en ${r.v.name.toLowerCase()}.`;
-// ruletas de variante: [variante mínima, costo]
-const RUL_VAR = [[1, 50], [2, 100]];
+// gachapones de variante: [variante mínima asegurada, costo]
+const GACHA_VAR = [[1, 50], [2, 100]];
 
 /* ---------- venta y fusión ----------
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
@@ -138,6 +138,16 @@ function musicaMaquina(seg) {
   const mel = [72, 76, 79, 76, 74, 77, 81, 77], baj = [48, 48, 50, 50];
   for (let i = 0; i * 0.15 < seg; i++) { nota(HZ(mel[i % 8]), i * 0.15, 0.12); if (i % 2 === 0) nota(HZ(baj[(i / 2 | 0) % 4]), i * 0.15, 0.25, 'triangle', 0.06); }
 }
+// gachapón especial: melodía menor más lenta, bajo de sierra, moneda, redoble y destello al abrir
+function musicaPrem(seg) {
+  if (mudo()) return;
+  audio();
+  const mel = [69, 72, 76, 81, 79, 76, 72, 74, 77, 81, 84, 81, 77, 74], baj = [45, 45, 41, 41, 43, 43, 40, 40];
+  for (let i = 0; i * 0.18 < seg; i++) { nota(HZ(mel[i % mel.length]), i * 0.18, 0.16, 'triangle', 0.07); if (i % 2 === 0) nota(HZ(baj[(i / 2 | 0) % baj.length]), i * 0.18, 0.34, 'sawtooth', 0.025); }
+}
+const sonMoneda = () => { if (mudo()) return; audio(); nota(HZ(88), 0, 0.09, 'square', 0.05); nota(HZ(95), 0.09, 0.4, 'square', 0.05); };
+const redoble = seg => { if (mudo()) return; audio(); for (let i = 0; i * 0.07 < seg; i++) nota(HZ(60 + i % 12 + (i / 12 | 0) * 2), i * 0.07, 0.06, 'square', 0.03); };
+const sonAbre = () => { if (mudo()) return; audio(); [84, 88, 91, 96, 100, 103, 108].forEach((n, i) => nota(HZ(n), i * 0.04, 0.5, 'triangle', 0.05)); };
 function musicaPremio(nivel) {
   if (mudo()) return;
   audio();
@@ -219,6 +229,34 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .g-ruleta svg { max-width: 100%; height: auto; }
   .g-rueda { transition: transform 4.5s cubic-bezier(.15,.7,.15,1); }
   .g-flecha { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); z-index: 1; font-size: 26px; color: #e8342a; text-shadow: 0 2px 3px rgba(0,0,0,.3); }
+  .g-mach.prem { height: 400px; background: linear-gradient(rgba(255,255,255,.45), rgba(0,0,0,.2)), var(--mc); }
+  .g-mach.prem .g-glass { transition: box-shadow .5s; }
+  .g-mach.prem.luz .g-glass { box-shadow: inset 0 0 0 3px #fff, inset 0 0 30px rgba(255,255,255,.9); }
+  .g-ranura { position: absolute; right: 22px; bottom: 12px; width: 30px; height: 28px; border-radius: 6px; background: #3a3340; }
+  .g-ranura::after { content: ''; position: absolute; left: 13px; top: 5px; width: 4px; height: 18px; border-radius: 2px; background: #000; }
+  .g-moneda { position: absolute; right: 22px; bottom: 140px; width: 30px; height: 30px; border-radius: 50%; z-index: 2; background: radial-gradient(circle at 35% 35%, #fff4b0, #f5c542 55%, #b8860b); box-shadow: 0 0 0 2px #b8860b; animation: g-moneda 1.5s ease-in forwards; }
+  @keyframes g-moneda { 0% { transform: translateY(-40px) rotateY(0); opacity: 0; } 15% { opacity: 1; } 75% { transform: translateY(126px) rotateY(900deg); opacity: 1; } 100% { transform: translateY(132px) rotateY(990deg) scale(.4); opacity: 0; } }
+  .g-open { position: relative; height: 340px; overflow: hidden; border-radius: 18px; background: radial-gradient(circle, #2a2440, #120f1c); }
+  .g-open > div { position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+  .g-ball { width: 120px; height: 120px; animation: g-shake .5s ease-in-out 4; }
+  .g-ball i { position: absolute; left: 0; width: 120px; height: 60px; box-sizing: border-box; border: 3px solid rgba(0,0,0,.3); transition: transform .9s var(--ease), opacity .9s; }
+  .g-ball .t { top: 0; border-radius: 60px 60px 0 0; background: var(--cc); }
+  .g-ball .b { bottom: 0; border-radius: 0 0 60px 60px; background: #fff; }
+  .g-open.abre .g-ball { animation: none; }
+  .g-open.abre .t { transform: translate(-40px, -120px) rotate(-35deg); opacity: 0; }
+  .g-open.abre .b { transform: translate(40px, 120px) rotate(25deg); opacity: 0; }
+  .g-glow { width: 380px; height: 380px; border-radius: 50%; opacity: 0; transform: scale(.1); transition: transform 1.2s var(--ease), opacity .6s; -webkit-mask: radial-gradient(circle, #000 25%, transparent 70%); mask: radial-gradient(circle, #000 25%, transparent 70%); }
+  .g-glow::before, .g-glow::after { content: ''; position: absolute; inset: 0; border-radius: 50%; }
+  .g-glow::before { background: repeating-conic-gradient(var(--rc) 0 10deg, transparent 10deg 20deg); animation: g-gira 6s linear infinite; }
+  .g-glow::after { background: radial-gradient(circle, #fff, var(--rc) 30%, transparent 65%); }
+  .g-open.abre .g-glow { opacity: 1; transform: scale(var(--gs)); }
+  .g-gato { transform: scale(0) translateY(40px); transition: transform .9s var(--ease) .3s; }
+  .g-open.abre .g-gato { transform: none; }
+  .g-open::after { content: ''; position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+  .g-open.abre::after { animation: g-flash .8s ease-out; }
+  @keyframes g-shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+  @keyframes g-gira { to { transform: rotate(360deg); } }
+  @keyframes g-flash { 15% { opacity: .9; } 100% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div { animation: none; } }
 </style>`);
 
@@ -236,14 +274,14 @@ function renderGacha(prog) {
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
     ${eventoActivo() ? '<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: solo salen gatos diamante, arcoíris o platino (60, 33 y 7 %).</div>' : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
-      ${RUL_VAR.map(([d, c]) => `<button class="btn btn-primary" data-rvar="${d}" ${pts < c ? 'disabled' : ''}>🎡 ${VAR[d].name} o más ⭐ ${c}</button>`).join('')}
+      ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>🎰 Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
-      Ruletas: ${RUL_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(' y ')}; la variante sale de una ruleta con esas mismas proporciones y la rareza sale igual que en la máquina.<br>
+      Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(' y ')}; entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
       Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
     <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Agrega gatos con «Fusionar» en la galería; clic en una casilla para sacarlo.</div>
@@ -261,7 +299,7 @@ function renderGacha(prog) {
           <span class="g-acts"><button data-vende="${k}" title="Vender uno">Vender ⭐ ${valor(k)}</button><button data-fus="${k}" ${fus.length >= 3 || libres(col, k) < 1 ? 'disabled' : ''}>Fusionar</button></span></div>`;
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
-  el.querySelectorAll('[data-rvar]').forEach(b => b.addEventListener('click', () => ruletaVar(RUL_VAR.find(r => r[0] === +b.dataset.rvar))));
+  el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => gachaPrem(GACHA_VAR.find(r => r[0] === +b.dataset.gvar))));
   $('gFarm').addEventListener('click', granja);
   $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
@@ -321,15 +359,37 @@ async function jugar() {
   revelar(m, g, v, msgTirada(res), { txt: `Otra vez ⭐ ${G_COST}`, ok: (store.get().pts || 0) >= G_COST, fn: jugar });
 }
 
-// ruleta de variante: la rueda muestra las variantes aseguradas; el gato sale como en la máquina
-async function ruletaVar([desde, cost]) {
+// gachapón especial (~15 s): moneda, garra que pasea y elige una de 36 pelotas, la pelota tiembla, se abre con el brillo de la rareza y sale el gato
+async function gachaPrem([desde, cost]) {
   const res = tirar(cost, desde); if (!res) return;
-  const tot = res.vs.reduce((s, x) => s + x.w, 0), pct = x => (x.w / tot * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });
-  const m = await rueda(`Ruleta ${VAR[desde].name.toLowerCase()} o más`, res.vs.map(x => `${x.name} ${pct(x)} %`).join(' · '),
-    res.vs.map(x => ({ w: x.w, fill: x.id === 'arcoiris' ? 'url(#gArc)' : x.dot, op: 1,
-      html: (cx, cy, a) => `<text x="${cx}" y="${cy}" transform="rotate(${a - 90} ${cx} ${cy})" font-size="13" font-weight="800" text-anchor="middle" dominant-baseline="middle" fill="#1d1d1f" font-family="system-ui">${x.name}</text>` })),
-    res.vs.indexOf(res.v));
-  revelar(m, res.g, res.v, msgTirada(res), { txt: `Otra vez ⭐ ${cost}`, ok: (store.get().pts || 0) >= cost, fn: () => ruletaVar([desde, cost]) });
+  const { g, v } = res, nivel = RAR.indexOf(g.rar), dot = VAR[desde].dot;
+  const bolCol = [dot, '#ff9a3c', '#4fa8ff', '#e85ad2', '#5fd97a', '#ffd75e'];
+  const pila = Array.from({ length: 36 }, (_, i) => `<div class="g-cap" style="--cc:${bolCol[i * 7 % 6]};left:${66 + i % 9 * 28 + (i / 9 | 0) % 2 * 14}px;bottom:${(i / 9 | 0) * 24}px"></div>`).join('');
+  const m = modal('Gachapón ' + VAR[desde].name, `<div class="g-mach prem" style="--mc:${dot}"><div class="g-glass"><div class="g-rail"></div>
+    <div class="g-pile">${pila}</div><div class="g-chute"></div>
+    <div class="g-claw" id="gClaw"><div class="cab"></div><div class="hd"></div><i class="l"></i><i class="r"></i></div></div>
+    <div class="g-label">GACHA ${VAR[desde].name.toUpperCase()}</div><div class="g-ranura"></div></div>`);
+  if (!rapido()) {
+    const claw = m.querySelector('#gClaw'), glass = m.querySelector('.g-glass'), mach = m.querySelector('.g-mach');
+    await espera(500);
+    const coin = document.createElement('div'); coin.className = 'g-moneda'; mach.appendChild(coin);
+    await espera(1100); sonMoneda(); await espera(500); coin.remove();
+    mach.classList.add('luz'); musicaPrem(10); await espera(800);
+    for (let i = 0; i < 3; i++) { claw.style.left = 70 + Math.random() * (glass.clientWidth - 110) + 'px'; await espera(1000); }   // la garra duda
+    const arriba = [...m.querySelectorAll('.g-pile .g-cap')].slice(27), bola = arriba[Math.random() * arriba.length | 0], cc = bola.style.getPropertyValue('--cc');
+    claw.style.left = bola.offsetLeft + 17 + 'px'; await espera(1000);
+    claw.style.top = bola.offsetTop - 22 + 'px'; await espera(1100);
+    claw.classList.add('cerrada');
+    const cap = document.createElement('div'); cap.className = 'g-cap'; cap.style.setProperty('--cc', cc); claw.appendChild(cap); bola.style.visibility = 'hidden';
+    await espera(500); claw.style.top = '4px'; await espera(1100);
+    claw.style.left = '38px'; await espera(1000);
+    claw.classList.remove('cerrada'); cap.style.top = glass.clientHeight + 20 + 'px'; await espera(800);
+    m.querySelector('.g-box').innerHTML = `<div class="g-open" style="--rc:${g.rar.color};--cc:${cc};--gs:${0.6 + nivel * 0.12}"><div class="g-glow"></div>
+      <div class="g-gato v-${v.id}">${gatoSVG(g, 150)}</div><div class="g-ball"><i class="t"></i><i class="b"></i></div></div><p style="color:var(--ink-3);margin-top:12px">¿Qué gatito saldrá?</p>`;
+    redoble(2); await espera(2100);
+    m.querySelector('.g-open').classList.add('abre'); sonAbre(); await espera(3000);
+  }
+  revelar(m, g, v, msgTirada(res), { txt: `Otra vez ⭐ ${cost}`, ok: (store.get().pts || 0) >= cost, fn: () => gachaPrem([desde, cost]) });
 }
 
 async function fusionar() {
@@ -365,15 +425,15 @@ async function girarRuleta(correctas) {
     R.gs.map(x => ({ w: x.w, fill: x.g.rar.color, html: (cx, cy) => `<g transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>` })), R.gs.indexOf(sale));
   revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en normal.`);
 }
-// abre un modal con una rueda de tajadas { w, fill, op?, html(cx, cy, ángulo) } y la gira hasta la tajada i
+// abre un modal con una rueda de tajadas { w, fill, html(cx, cy) } y la gira hasta la tajada i
 async function rueda(titulo, sub, tajadas, i) {
   const C = 150, Rr = 140, pt = (a, r) => `${C + r * Math.sin(a * Math.PI / 180)},${C - r * Math.cos(a * Math.PI / 180)}`;
   const tot = tajadas.reduce((s, x) => s + x.w, 0);
-  let a = 0, svg = '<defs><linearGradient id="gArc"><stop offset="0" stop-color="#ff5e5e"/><stop offset=".25" stop-color="#ffe45c"/><stop offset=".5" stop-color="#5fd97a"/><stop offset=".75" stop-color="#4fa8ff"/><stop offset="1" stop-color="#b57be0"/></linearGradient></defs>';
+  let a = 0, svg = '';
   const taj = tajadas.map((x, j) => { const a0 = a; a += x.w / tot * 360; const mid = (a0 + a) / 2;
-    svg += `<path d="M${C},${C} L${pt(a0, Rr)} A${Rr},${Rr} 0 0 1 ${pt(a, Rr)} Z" fill="${x.fill}" fill-opacity="${x.op ?? (j % 2 ? .3 : .55)}" stroke="#fff" stroke-width="3"/>`;
+    svg += `<path d="M${C},${C} L${pt(a0, Rr)} A${Rr},${Rr} 0 0 1 ${pt(a, Rr)} Z" fill="${x.fill}" fill-opacity="${j % 2 ? .3 : .55}" stroke="#fff" stroke-width="3"/>`;
     const [cx, cy] = pt(mid, Rr * 0.64).split(',').map(Number);
-    svg += x.html(cx, cy, mid);
+    svg += x.html(cx, cy);
     return { a0, a1: a }; });
   const t = taj[i], fin = 360 * 6 - ((t.a0 + t.a1) / 2 + (Math.random() - 0.5) * (t.a1 - t.a0) * 0.7);
   const m = modal(titulo, `<h3 style="font-size:22px">🎡 ${titulo}</h3><div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">${sub}</div>
