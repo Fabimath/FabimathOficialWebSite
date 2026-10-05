@@ -26,6 +26,18 @@ const TOPICS_FUN = [
       <p>$x$ es la <b>variable independiente</b> y $y = f(x)$ la <b>dependiente</b>: depende de lo que valga $x$.</p>
       <p>Ejemplo: si el kilo de pan cuesta <span class="peso">$2000</span>, el precio de $x$ kilos es $f(x) = 2000x$.</p>
       </div><div>
+      <div class="qfig"><svg class="dibujo" viewBox="0 0 360 150" width="360" role="img" aria-label="Máquina de la función: entra x = 2 y sale f(2) = 4000">
+        <line x1="20" y1="70" x2="120" y2="70" stroke="#c7c7cc" stroke-width="3" stroke-dasharray="6 5"/><line x1="240" y1="70" x2="345" y2="70" stroke="#c7c7cc" stroke-width="3" stroke-dasharray="6 5"/>
+        <rect x="120" y="28" width="120" height="84" rx="16" fill="#e8680c"/><circle cx="150" cy="44" r="4" fill="#ffd166"><animate attributeName="opacity" values="1;.2;1" dur="1s" repeatCount="indefinite"/></circle>
+        <text x="180" y="76" font-size="26" font-weight="800" font-style="italic" text-anchor="middle" fill="#fff">f</text><text x="180" y="98" font-size="12" text-anchor="middle" fill="#fff">× 2000</text>
+        <text x="60" y="130" font-size="12" text-anchor="middle" fill="#6e6e73">entra x</text><text x="300" y="130" font-size="12" text-anchor="middle" fill="#6e6e73">sale f(x), en pesos</text>
+        <g><circle r="17" fill="#ffd166" stroke="#c98a00" stroke-width="2"/><text y="6" font-size="17" font-weight="800" text-anchor="middle" fill="#1d1d1f">2</text>
+          <animateTransform attributeName="transform" type="translate" values="35 70;112 70;112 70" keyTimes="0;.42;1" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.42;.47;1" dur="4s" repeatCount="indefinite"/></g>
+        <g><rect x="-32" y="-15" width="64" height="30" rx="15" fill="#fff" stroke="#e8680c" stroke-width="2"/><text y="5" font-size="15" font-weight="800" text-anchor="middle" fill="#1d1d1f">4000</text>
+          <animateTransform attributeName="transform" type="translate" values="248 70;248 70;305 70;305 70" keyTimes="0;.52;.85;1" dur="4s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.52;.57;.93;1" dur="4s" repeatCount="indefinite"/></g>
+      </svg></div>
       <div class="box"><b>Un único valor</b> A cada entrada le corresponde una sola salida. Dos entradas distintas sí pueden tener la misma salida: $(1, 5)$ y $(2, 5)$ está bien; $(1, 5)$ y $(1, 7)$ no es función.</div>
       <div class="box alert"><b>En la PAES</b> Todas las funciones tienen como dominio los números reales, salvo que se diga otra cosa.</div>
       </div></div>` },
@@ -123,6 +135,7 @@ const TOPICS_FUN = [
       <p><b>Función lineal</b>: $f(x) = mx$. Su gráfico es una recta que pasa por el origen. Es una <b>proporcionalidad directa</b>: $\dfrac{f(x)}{x} = m$ siempre.</p>
       <p><b>Función afín</b>: $f(x) = mx + n$, con $n \neq 0$. Recta que corta al eje $Y$ en $(0, n)$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Nombres</b><br>· $m$: <b>pendiente</b>, cuánto cambia $f(x)$ cuando $x$ aumenta en 1.<br>· $n$: <b>coeficiente de posición</b>, el valor inicial $f(0)$.</div>
       <div class="box alert"><b>Ojo</b> $f(x) = 3x + 2$ no es proporcional: si $x$ se duplica, $f(x)$ no se duplica.</div>
       </div></div>` },
@@ -140,6 +153,7 @@ const TOPICS_FUN = [
       <p>1. Calcula $m$ con dos puntos.<br>2. Calcula $n$: es $f(0)$, o despeja de $y = mx + n$ con un punto.</p>
       <p>Tabla $(2, 7)$, $(4, 11)$: $m = \dfrac{4}{2} = 2$; $7 = 2\cdot 2 + n \Rightarrow n = 3$. Entonces $f(x) = 2x + 3$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Corte con el eje X</b> Es el cero de la función: $mx + n = 0 \Rightarrow x = -\dfrac{n}{m}$. Con $f(x) = -2x + 6$: $x = 3$, punto $(3, 0)$.</div>
       <div class="box alert"><b>Puntos</b> El corte con $Y$ es $(0, n)$ y el corte con $X$ es $(x, 0)$: no los inviertas.</div>
       </div></div>` },
@@ -150,6 +164,12 @@ const TOPICS_FUN = [
       </div><div>
       <div class="box"><b>Rectas paralelas</b> Tienen la misma pendiente: $y = 3x - 1$ e $y = 3x + 5$ son paralelas.</div>
       <div class="box">Con $f(x) = mx + n$: si $m < 0$ y $n > 0$, la recta baja y corta al eje $Y$ sobre el origen.</div>
+      </div></div>
+      <div class="cols"><div>
+      <div class="qfig">${''}</div>
+      </div><div>
+      <p><b>Pruébalo tú.</b> Deja $a = 0$ y el graficador dibuja la recta $y = bx + c$: aquí $b$ hace de pendiente $m$ y $c$ de coeficiente de posición $n$. Cambia los valores o aprieta ▶ b para ver cómo gira y ▶ c para ver cómo se traslada.</p>
+      <div class="graf" data-a="0" data-b="2" data-c="1"></div>
       </div></div>` },
     { t: 'Resumen', b: r`
       <table><thead><tr><th>Idea</th><th>Cómo se ve</th></tr></thead><tbody>
@@ -220,6 +240,7 @@ const TOPICS_FUN = [
       $$f(x) = \underbrace{(\text{precio por unidad})}_{m}\cdot x + \underbrace{(\text{cargo fijo})}_{n}$$
       <p>Una imprenta cobra <span class="peso">$115</span> por página más una tarifa fija de <span class="peso">$27.000</span>: $f(x) = 115x + 27.000$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box alert"><b>Errores típicos</b><br>· $(115 + 27.000)x$: multiplica también lo fijo.<br>· $115 + 27.000x$: intercambia lo fijo con lo variable.</div>
       <div class="box">Pregúntate: ¿qué se paga <b>una vez</b> ($n$) y qué se paga <b>por cada</b> unidad ($m$)?</div>
       </div></div>` },
@@ -229,6 +250,7 @@ const TOPICS_FUN = [
       $$f(x) = -3x + 720$$
       <p>La pendiente es negativa porque el agua <b>baja</b>. Se vacía cuando $f(x) = 0$: $x = 240$ minutos.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Variación constante en el tiempo</b> Si en 2021 hubo 57,4 y en 2022 hubo 59,4, el aumento es 2 por año. En 2030 (9 años después de 2021): $57{,}4 + 9\cdot 2 = 75{,}4$.</div>
       </div></div>` },
     { t: 'Costo, ingreso y ganancia', b: r`
@@ -237,6 +259,7 @@ const TOPICS_FUN = [
       <p>Ingreso: lo que entra por vender. Costo: lo que se gasta. Ganancia: la diferencia.</p>
       <p>Si $I(x) = 1000x + 600.000$ y $G(x) = 750x + 450.000$, entonces $C(x) = I(x) - G(x) = 250x + 150.000$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Comparar planes</b> Plan A: $10.000 + 20x$. Plan B: $50x$. Se igualan para hallar dónde cuestan lo mismo: $10.000 + 20x = 50x \Rightarrow x \approx 333{,}3$. Después de ese punto conviene A.</div>
       </div></div>` },
     { t: 'Gráficos de situaciones', b: r`
@@ -244,6 +267,7 @@ const TOPICS_FUN = [
       <p>En un gráfico distancia-tiempo:</p>
       <p>· Tramo <b>horizontal</b>: detenido.<br>· Tramo <b>más inclinado</b>: va más rápido.<br>· La pendiente es la rapidez: $\dfrac{\text{km}}{\text{h}}$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box">Si después de 4 horas se suma una segunda máquina que pinta igual de rápido, la recta sigue pero con el <b>doble</b> de pendiente.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
@@ -317,6 +341,7 @@ const TOPICS_FUN = [
       <p>· $a$ es el número que acompaña a $x^2$.<br>· $b$ es el número que acompaña a $x$.<br>· $c$ es el número solo, sin $x$.</p>
       <p><b>Ejemplo</b> En $2x^2 - 3x - 2 = 0$: $a = 2$, $b = -3$, $c = -2$. El signo va pegado al número: si hay un menos, el número es negativo.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>¿Qué es una solución?</b> Un número que, al reemplazarlo en lugar de $x$, deja la igualdad en $0 = 0$.<br>Con $x^2 - 5x + 6 = 0$ y $x = 2$: $4 - 10 + 6 = 0$. ✔ Entonces $2$ es solución.</div>
       <div class="box"><b>¿Cuántas tiene?</b> Normalmente <b>dos</b>, a veces una y a veces ninguna. Por eso, cuando encuentres una, sigue buscando la otra.</div>
       <div class="box alert"><b>Primer paso siempre</b> Deja todo a un lado del igual y un $0$ al otro. Por ejemplo, $x^2 = 3x$ se escribe $x^2 - 3x = 0$.</div>
@@ -363,6 +388,7 @@ const TOPICS_FUN = [
       <p><b>Paso 4.</b> Reemplaza: $-b = -(-3) = 3$ y $2a = 4$, así que $x = \dfrac{3 \pm 5}{4}$.</p>
       <p><b>Paso 5.</b> Separa en dos cuentas: con $+$, $\dfrac{3 + 5}{4} = 2$; con $-$, $\dfrac{3 - 5}{4} = -\dfrac{1}{2}$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box alert"><b>Tres trampas</b><br>· $-b$ cambia el signo de $b$: si $b = -3$, entonces $-b = +3$.<br>· Los negativos van entre paréntesis: $(-3)^2 = 9$, no $-9$.<br>· El $2a$ divide a <b>todo</b> el numerador, no solo a la raíz.</div>
       <div class="box"><b>¿Cuándo usarla?</b> Cuando no encuentras rápido los dos números, o cuando $a$ no es 1. Es más larga, pero nunca falla.</div>
       </div></div>` },
@@ -371,6 +397,7 @@ const TOPICS_FUN = [
       <p>Sin resolver toda la ecuación, el número $\Delta = b^2 - 4ac$ te dice cuántas soluciones tiene:</p>
       <p>· $\Delta > 0$: <b>dos</b> soluciones distintas (la raíz da un número y el $\pm$ abre dos caminos).<br>· $\Delta = 0$: <b>una</b> solución (sumar o restar 0 da lo mismo).<br>· $\Delta < 0$: <b>ninguna</b> solución real (no existe la raíz de un negativo).</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Ejemplo con Δ = 0</b> $x^2 - 4x + 4 = 0$: $\Delta = 16 - 16 = 0$. Una sola solución, $x = 2$, porque $x^2 - 4x + 4 = (x - 2)^2$.</div>
       <div class="box"><b>Ejemplo con Δ &lt; 0</b> $x^2 + 2x + 5 = 0$: $\Delta = 4 - 20 = -16$. No tiene soluciones reales.</div>
       </div></div>` },
@@ -384,6 +411,13 @@ const TOPICS_FUN = [
       <p><b>Paso 5. Descarta.</b> Un lado no puede medir $-13$: el ancho es $8$ y el largo $13$.</p>
       <p><b>Paso 6. Responde lo pedido.</b> Si piden el perímetro: $2\cdot 8 + 2\cdot 13 = 42$ m.</p>
       </div><div>
+      <div class="qfig"><svg class="dibujo" viewBox="0 0 280 180" width="280" role="img" aria-label="Terreno rectangular de ancho x, largo x + 5 y área 104 metros cuadrados">
+        <rect x="50" y="20" width="200" height="120" rx="4" fill="#fff3e6" stroke="#e8680c" stroke-width="3"/>
+        <text x="72" y="44" font-size="20">🌱</text><text x="214" y="128" font-size="20">🌳</text>
+        <text x="150" y="86" font-size="17" font-weight="800" text-anchor="middle" fill="#b84f06">Área = 104 m²</text>
+        <text x="150" y="166" font-size="15" font-style="italic" text-anchor="middle" fill="#1d1d1f">largo = x + 5</text>
+        <text x="40" y="85" font-size="15" font-style="italic" text-anchor="end" fill="#1d1d1f">x</text>
+      </svg></div>
       <div class="box"><b>Traducciones útiles</b><br>· "5 más que $x$": $x + 5$.<br>· "4 menos que $L$": $L - 4$.<br>· "el doble de $x$": $2x$.<br>· "el cuadrado de $x$": $x^2$.<br>· "dos números consecutivos": $x$ y $x + 1$.</div>
       <div class="box alert"><b>Descarta con criterio</b> Una medida o un tiempo no pueden ser negativos. Pero si la pregunta es por "un número", el negativo sí puede servir.</div>
       </div></div>` },
@@ -468,6 +502,7 @@ const TOPICS_FUN = [
       <tr><td>$2$</td><td>$4 - 4 - 3$</td><td>$-3$</td></tr>
       <tr><td>$3$</td><td>$9 - 6 - 3$</td><td>$0$</td></tr></tbody></table>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Lo que muestra la tabla</b><br>· Donde $f(x) = 0$ ($x = -1$ y $x = 3$) la parábola corta al eje $X$.<br>· Los valores se repiten como en un espejo alrededor de $x = 1$: $-3, -4, -3$. Ese $x = 1$ es el <b>eje de simetría</b> y $(1, -4)$ es el <b>vértice</b>.</div>
       <div class="box alert"><b>Al reemplazar</b> usa paréntesis con los negativos: $(-1)^2 = 1$ y $-2\cdot(-1) = +2$.</div>
       </div></div>` },
@@ -478,6 +513,7 @@ const TOPICS_FUN = [
       <p><b>Paso 2.</b> Resuelve la ecuación como aprendiste: dos números con producto $8$ y suma $-6$ son $-2$ y $-4$, así que $(x - 2)(x - 4) = 0$.</p>
       <p><b>Paso 3.</b> Los ceros son $x = 2$ y $x = 4$; los puntos de corte son $(2, 0)$ y $(4, 0)$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>¿Cuántos cortes? Lo dice el discriminante</b><br>· $\Delta > 0$: corta al eje $X$ en dos puntos.<br>· $\Delta = 0$: lo toca en un solo punto, que es el vértice.<br>· $\Delta < 0$: no lo toca; queda entera arriba o entera abajo.</div>
       <div class="box alert"><b>No confundas</b> El corte con $Y$ es $(0, c)$: la $x$ vale 0. Los cortes con $X$ son $(x, 0)$: la $y$ vale 0.</div>
       </div></div>` },
@@ -502,8 +538,17 @@ const TOPICS_FUN = [
       <p>· $(x - 2)^2 + 1$: vértice $(2, 1)$.<br>· $(x + 3)^2 - 4$: vértice $(-3, -4)$.</p>
       <p><b>¿Por qué?</b> En $(x - 2)^2 + 1$, el paréntesis al cuadrado nunca es negativo y vale $0$ justo cuando $x = 2$. Ahí la función llega a su valor más bajo: $0 + 1 = 1$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Cómo se mueve la parábola</b> (partiendo de $x^2$)<br>· $x^2 + k$: sube $k$ si es positivo, baja si es negativo.<br>· $(x - h)^2$: se corre a la derecha si $h > 0$.<br>· $ax^2$: cambia lo abierta; con $a < 0$ se da vuelta.</div>
       <div class="box alert"><b>Ojo</b> $(x + 3)^2$ se corre a la <b>izquierda</b>, porque $x + 3 = x - (-3)$: $h = -3$.</div>
+      </div></div>` },
+    { t: 'Graficador: pruébalo tú', b: r`
+      <p>Escribe los valores de $a$, $b$ y $c$ y mira cómo queda $f(x) = ax^2 + bx + c$. El graficador marca el vértice, los ceros y el corte con el eje $Y$, y calcula el discriminante.</p>
+      <div class="cols"><div>
+      <div class="graf" data-a="1" data-b="-2" data-c="-3"></div>
+      </div><div>
+      <div class="box"><b>Experimentos</b><br>· Aprieta <b>▶ a</b>: la parábola se cierra, se abre y se da vuelta al pasar por $a = 0$, donde queda una recta.<br>· Aprieta <b>▶ c</b>: sube y baja entera, sin cambiar de forma. Fíjate cuándo deja de cortar al eje $X$: ahí $\Delta$ se vuelve negativo.<br>· Aprieta <b>▶ b</b>: el vértice se mueve por una curva y la parábola siempre pasa por $(0, c)$.</div>
+      <div class="box alert"><b>Desafío</b> Busca valores para que la parábola abra hacia abajo y tenga su vértice en $(1, 4)$. Pista: $a = -1$.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
       <table><thead><tr><th>Quiero saber</th><th>Cómo lo obtengo</th></tr></thead><tbody>
@@ -585,6 +630,7 @@ const TOPICS_FUN = [
       <p><b>¿Qué altura máxima alcanza?</b> Reemplaza ese tiempo: $h(2) = -5\cdot 4 + 20\cdot 2 = -20 + 40 = 20$ m.</p>
       <p><b>¿Cuándo vuelve al suelo?</b> Altura cero: $-5t^2 + 20t = 0 \Rightarrow -5t(t - 4) = 0$, así que $t = 0$ (el lanzamiento) o $t = 4$ s.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>Por qué abre hacia abajo</b> El $-5$ hace que la pelota suba, frene y vuelva a caer: el vértice es el punto más alto.</div>
       <div class="box alert"><b>No confundas</b> 2 s es <b>cuándo</b> llega arriba; 20 m es <b>qué tan alto</b> llega. Las dos suelen aparecer como alternativas.</div>
       </div></div>` },
@@ -596,6 +642,15 @@ const TOPICS_FUN = [
       <p><b>Paso 3.</b> $a = -1$ es negativo: la parábola abre hacia abajo y el vértice es el máximo. $x_v = -\dfrac{20}{2\cdot(-1)} = 10$.</p>
       <p><b>Paso 4.</b> Los lados miden 10 y $20 - 10 = 10$: un cuadrado. Área máxima: $10\cdot 10 = 100$ m².</p>
       </div><div>
+      <div class="qfig">${''}</div>
+      <svg viewBox="0 0 220 230" width="220" style="display:block;margin:0 auto;max-width:100%;height:auto" role="img" aria-label="Rectángulo de perímetro 40 metros que cambia de forma: el área más grande es el cuadrado de lado 10">
+        <rect x="20" y="20" width="9" height="171" fill="#fff3e6" stroke="#e8680c" stroke-width="3">
+          <animate attributeName="width" values="9;90;171;90;9" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="height" values="171;90;9;90;171" dur="8s" repeatCount="indefinite"/>
+          <animate attributeName="fill" values="#fff3e6;#ffd166;#fff3e6;#ffd166;#fff3e6" dur="8s" repeatCount="indefinite"/></rect>
+        <text x="110" y="214" font-size="12.5" text-anchor="middle" fill="#6e6e73">Siempre 40 m de cerca;</text>
+        <text x="110" y="228" font-size="12.5" text-anchor="middle" fill="#6e6e73">se pinta amarillo al ser cuadrado</text>
+      </svg>
       <div class="box alert"><b>Contra un muro</b> Si un lado no lleva cerca, la malla cubre solo tres lados: $2x + y$. El modelo cambia y el máximo ya no es un cuadrado.</div>
       </div></div>` },
     { t: 'Ganancias', b: r`
@@ -605,6 +660,7 @@ const TOPICS_FUN = [
       <p><b>¿Cuál es esa ganancia máxima?</b> $G(20) = -400 + 800 - 300 = 100$ mil pesos.</p>
       <p><b>¿Cuándo no se gana ni se pierde?</b> $G(x) = 0$. Multiplicando por $-1$: $x^2 - 40x + 300 = 0 \Rightarrow (x - 10)(x - 30) = 0$, en $x = 10$ y $x = 30$.</p>
       </div><div>
+      <div class="qfig">${''}</div>
       <div class="box"><b>¿Dónde hay ganancia?</b> La parábola abre hacia abajo, así que está sobre el eje entre los dos ceros: vendiendo entre 10 y 30 unidades la ganancia es positiva.</div>
       <div class="box alert"><b>Qué responder</b> "¿Cuántas unidades?" es la $x$ del vértice. "¿Cuál es la ganancia máxima?" es la $y$ del vértice. No confundirlas es medio punto ganado.</div>
       </div></div>` },
@@ -667,9 +723,33 @@ const TOPICS_FUN = [
 /* Figuras de las diapositivas de funciones */
 Object.assign(SLIDE_FIGS, {
   funcion_concepto: { 3: { type: 'plot', x: [-3, 3], y: [-1, 9], fns: [{ f: x => x * x, lab: 'f(x) = x²', at: [1.1, 8.4] }], marks: [[2, 4, '(2, 4)'], [-2, 4, '(−2, 4)']] } },
-  lineal_afin: { 1: { type: 'plot', x: [-3, 3], y: [-4, 6], fns: [{ f: x => 2 * x, lab: 'm = 2', at: [1.7, 5.4] }, { f: x => -x + 1, lab: 'm = −1', at: [-2.9, 5.4] }, { f: () => 3, lab: 'm = 0', at: [1.9, 3.5] }] } },
+  lineal_afin: {
+    0: { type: 'plot', x: [-3, 3], y: [-4, 8, 2], fns: [{ f: x => 2 * x, lab: 'lineal: 2x', at: [0.6, -2.6] }, { f: x => 2 * x + 3, lab: 'afín: 2x + 3', at: [-2.9, 4.6] }], marks: [[0, 0], [0, 3, '(0, 3)']], cap: 'Misma pendiente: la afín es la lineal subida 3 unidades. Solo la lineal pasa por el origen.' },
+    1: { type: 'plot', x: [-3, 3], y: [-4, 6], fns: [{ f: x => 2 * x, lab: 'm = 2', at: [1.7, 5.4] }, { f: x => -x + 1, lab: 'm = −1', at: [-2.9, 5.4] }, { f: () => 3, lab: 'm = 0', at: [1.9, 3.5] }] },
+    2: { type: 'plot', x: [-1, 5], y: [-2, 8, 2], fns: [{ f: x => -2 * x + 6, lab: 'f(x) = −2x + 6', at: [2.2, 5.4] }], marks: [[0, 6, '(0, 6)'], [3, 0, '(3, 0)']], cap: 'Corta al eje Y en (0, n) y al eje X en el cero x = −n/m.' },
+    3: { type: 'plot', x: [-3, 3], y: [-6, 10, 2], fns: [{ f: x => 3 * x - 1 }, { f: x => 3 * x + 5 }], marks: [[0, -1, '(0, −1)'], [0, 5, '(0, 5)']], cap: 'Paralelas: y = 3x − 1 e y = 3x + 5 tienen la misma pendiente y nunca se cortan.' }
+  },
+  afin_modelos: {
+    0: { type: 'plot', x: [0, 200, 50], y: [0, 60, 10], xlab: 'páginas', ylab: 'miles de pesos', fns: [{ f: x => (115 * x + 27000) / 1000 }], marks: [[0, 27, 'cargo fijo'], [100, 38.5, '100 páginas: 38.500']], cap: 'La recta parte en el cargo fijo (27 mil) y sube 115 pesos por cada página.' },
+    1: { type: 'plot', x: [0, 300, 50], y: [0, 800, 100], xlab: 'minutos', ylab: 'litros', fns: [{ f: x => -3 * x + 720, anim: 5 }], marks: [[0, 720, '720 L al inicio'], [240, 0, '240 min']], cap: 'Pendiente negativa: el estanque pierde 3 litros por minuto hasta quedar vacío.' },
+    2: { type: 'plot', x: [0, 500, 100], y: [0, 25, 5], xlab: 'minutos', ylab: 'miles de pesos', fns: [{ f: x => (10000 + 20 * x) / 1000, lab: 'Plan A', at: [60, 13] }, { f: x => 50 * x / 1000, lab: 'Plan B', at: [200, 6] }], marks: [[333.3, 16.67, 'cuestan igual']], cap: 'Antes del cruce conviene el plan B; después, el plan A.' },
+    3: { type: 'plot', x: [0, 4, 0.5], y: [0, 160, 20], xlab: 't (h)', ylab: 'km', fns: [{ pts: [[0, 0], [1, 60], [2.5, 60], [4, 150]], anim: 6 }], cap: 'El punto rojo es el auto: en el tramo horizontal pasa el tiempo pero no avanza.' }
+  },
+  ec_cuadratica: {
+    0: { type: 'plot', x: [-1, 6], y: [-2, 8, 2], fns: [{ f: x => x * x - 5 * x + 6, lab: 'x² − 5x + 6', at: [4.1, 6.6] }], marks: [[2, 0, 'x = 2'], [3, 0, 'x = 3']], cap: 'Las soluciones de x² − 5x + 6 = 0 son los puntos donde la parábola corta al eje X.' },
+    4: { type: 'plot', x: [-2, 3], y: [-4, 8, 2], fns: [{ f: x => 2 * x * x - 3 * x - 2 }], marks: [[2, 0, 'x = 2'], [-0.5, 0, 'x = −1/2']], cap: '2x² − 3x − 2 = 0: la parábola corta al eje X justo en las dos soluciones de la fórmula.' },
+    5: { type: 'plot', x: [-1, 5], y: [-2, 8, 2], fns: [{ f: x => x * x - 4 * x + 3, lab: 'Δ > 0', at: [1.7, -1.6] }, { f: x => x * x - 4 * x + 4, lab: 'Δ = 0', at: [1.55, 0.9] }, { f: x => x * x - 4 * x + 6, lab: 'Δ < 0', at: [1.7, 3] }], cap: 'x² − 4x + 3 corta al eje X dos veces, x² − 4x + 4 lo toca una vez y x² − 4x + 6 no lo toca.' }
+  },
   cuadratica_grafico: {
     0: { type: 'plot', x: [-3, 3], y: [-5, 9], fns: [{ f: x => x * x, lab: 'x²', at: [2.4, 4.6] }, { f: x => 3 * x * x, lab: '3x²', at: [0.9, 8.4] }, { f: x => -x * x + 4, lab: '−x² + 4', at: [-2.9, -3.6] }] },
-    3: { type: 'plot', x: [-5, 3], y: [-3, 7], fns: [{ f: x => x * x + 2 * x - 1 }], vline: -1, marks: [[-1, -2, 'vértice'], [1, 2], [-3, 2]] }
+    1: { type: 'plot', x: [-2, 4], y: [-5, 6], fns: [{ f: x => x * x - 2 * x - 3 }], vline: 1, marks: [[-1, 0], [0, -3], [1, -4, 'vértice (1, −4)'], [2, -3], [3, 0]], cap: 'Los cinco puntos de la tabla; la línea punteada es el eje de simetría x = 1.' },
+    2: { type: 'plot', x: [0, 6], y: [-2, 8, 2], fns: [{ f: x => x * x - 6 * x + 8 }], marks: [[2, 0, '(2, 0)'], [4, 0, '(4, 0)'], [0, 8, '(0, 8)']], cap: 'Ceros en 2 y 4; el corte con el eje Y es (0, c) = (0, 8).' },
+    3: { type: 'plot', x: [-5, 3], y: [-3, 7], fns: [{ f: x => x * x + 2 * x - 1 }], vline: -1, marks: [[-1, -2, 'vértice'], [1, 2], [-3, 2]] },
+    4: { type: 'plot', x: [-6, 4], y: [-5, 8], fns: [{ f: x => x * x, lab: 'x²', at: [0.15, -0.9] }, { f: x => (x - 2) ** 2 + 1, lab: '(x − 2)² + 1', at: [1.6, 0] }, { f: x => (x + 3) ** 2 - 4, lab: '(x + 3)² − 4', at: [-4.9, -4.8] }], marks: [[0, 0], [2, 1], [-3, -4]], cap: 'La misma parábola trasladada: el vértice (h, k) se lee directo de la forma canónica.' }
+  },
+  cuadratica_problemas: {
+    1: { type: 'plot', x: [0, 4, 0.5], y: [0, 25, 5], xlab: 't (s)', ylab: 'altura (m)', fns: [{ f: t => -5 * t * t + 20 * t, anim: 4 }], marks: [[2, 20, 'altura máxima (2, 20)'], [4, 0]], cap: 'La pelota sube, frena en el vértice y vuelve al suelo a los 4 segundos.' },
+    2: { type: 'plot', x: [0, 20, 5], y: [0, 120, 20], xlab: 'lado x (m)', ylab: 'área (m²)', fns: [{ f: x => -x * x + 20 * x, anim: 6 }], marks: [[10, 100, 'máximo (10, 100)']], cap: 'A(x) = x(20 − x): el área más grande se logra con x = 10.' },
+    3: { type: 'plot', x: [0, 40, 5], y: [-300, 150, 50], xlab: 'unidades', ylab: 'ganancia', fns: [{ f: x => -x * x + 40 * x - 300 }], marks: [[10, 0, '10'], [30, 0, '30'], [20, 100, 'máximo (20, 100)']], cap: 'Entre 10 y 30 unidades la curva está sobre el eje X: hay ganancia.' }
   }
 });

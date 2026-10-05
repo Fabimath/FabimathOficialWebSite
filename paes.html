@@ -161,7 +161,22 @@
   .qfig thead th, .slide thead th, .review thead th { background: var(--ice); color: #b84f06; font-weight: 600; }
   .slide table { font-size: 14px; margin: 6px 0 10px; }
   .qfig .cap { font-size: 13px; letter-spacing: 0.01em; color: var(--ink-3); margin-top: 6px; }
-  .qfig svg { max-width: 100%; height: auto; display: block; font-family: var(--font-text); }
+  .qfig svg, .g-plot svg { max-width: 100%; height: auto; display: block; font-family: var(--font-text); }
+  /* clases: la curva se dibuja al entrar en pantalla */
+  .slide .qfig:not(.ver) polyline { stroke-dashoffset: 1; }
+  .slide .qfig polyline { stroke-dasharray: 1; }
+  .slide .qfig.ver polyline { animation: trazo 1.6s ease-out; }
+  @keyframes trazo { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+  .slide .qfig svg.dibujo { margin: 0 auto; }
+  .graf { background: var(--ice); border-radius: 16px; padding: 14px 16px; margin: 10px 0; }
+  .graf .g-in { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 8px; }
+  .graf label { font-weight: 600; font-style: italic; }
+  .graf input { width: 72px; font: inherit; font-style: normal; padding: 6px 8px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+  .graf .g-anim { display: flex; gap: 6px; }
+  .graf .g-anim button { font: inherit; font-size: 13px; font-weight: 600; border: 1px solid var(--line); border-radius: 99px; padding: 5px 10px; cursor: pointer; background: #fff; color: #c4540a; }
+  .graf .g-anim button.on { background: #e8680c; color: #fff; border-color: #e8680c; }
+  .graf .g-out { font-size: 14.5px; line-height: 1.6; margin-bottom: 6px; }
+  .graf .g-plot { background: #fff; border-radius: 12px; }
   .alts { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
   .alt { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: #fff; border: 2px solid rgba(0,0,0,.08); border-radius: 14px; padding: 13px 16px; font-size: 16px; cursor: pointer; transition: border-color .2s ease, background-color .2s ease, transform .3s var(--ease); color: var(--ink); }
   .alt:hover:not(:disabled) { border-color: rgba(232,104,12,.45); background: #fffaf5; }
@@ -258,6 +273,8 @@
     .slide, .slide.back, .pauta, .bubble, .buddy button { animation: fade .2s ease both; }
     .plus { animation: fade 1s ease reverse forwards; }
     .ring { transition: none; }
+    .slide .qfig polyline { animation: none !important; stroke-dashoffset: 0 !important; }
+    .movil { display: none; }
     *, *::before, *::after { transition-property: opacity, color, background-color, border-color, box-shadow !important; }
     .topic-card:hover, .buddy button:hover { transform: none; }
   }
@@ -487,7 +504,7 @@ function fig(f) {
       if (f.labels !== false) [b.min, b.q1, b.me, b.q3, b.max].forEach(v => s += `<text x="${x(v)}" y="${cy - h / 2 - 5}" font-size="11" text-anchor="middle" fill="#424245">${num(v)}</text>`); });
     return s + '</svg>' + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   }
-  if (f.type === 'plot') {   // plano cartesiano: x e y = [mín, máx, paso]; fns = [{ f: x => … } o { pts: [[x, y], …] }, lab, at]; marks = [[x, y, texto]]; vline = eje de simetría
+  if (f.type === 'plot') {   // plano cartesiano: x e y = [mín, máx, paso]; fns = [{ f: x => … } o { pts: [[x, y], …] }, lab, at, anim = segundos de un punto que recorre la curva]; marks = [[x, y, texto]]; vline = eje de simetría
     const W = 420, H = 300, L = 30, R = 14, T = 14, B = 24, [x0, x1, sx = 1] = f.x, [y0, y1, sy = 1] = f.y;
     const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), Y = v => H - B - (v - y0) / (y1 - y0) * (H - B - T);
     const ax = X(Math.min(Math.max(0, x0), x1)), ay = Y(Math.min(Math.max(0, y0), y1)), id = 'cp' + Math.random().toString(36).slice(2);
@@ -499,7 +516,10 @@ function fig(f) {
     if (f.vline !== undefined) s += `<line x1="${X(f.vline)}" x2="${X(f.vline)}" y1="${T}" y2="${H - B}" stroke="${PAL[4]}" stroke-width="1.5" stroke-dasharray="5 4"/>`;
     (f.fns || []).forEach((g, i) => {
       const pts = g.pts || Array.from({ length: 241 }, (_, k) => { const x = x0 + (x1 - x0) * k / 240; return [x, g.f(x)]; });
-      s += `<polyline clip-path="url(#${id})" fill="none" stroke="${PAL[i % PAL.length]}" stroke-width="2.5" stroke-linejoin="round" points="${pts.map(([x, y]) => X(x) + ',' + Y(Math.max(y0 - (y1 - y0), Math.min(y1 + (y1 - y0), y)))).join(' ')}"/>`;
+      const P = pts.map(([x, y]) => X(x) + ',' + Y(Math.max(y0 - (y1 - y0), Math.min(y1 + (y1 - y0), y))));
+      s += `<polyline clip-path="url(#${id})" fill="none" stroke="${PAL[i % PAL.length]}" stroke-width="2.5" stroke-linejoin="round" pathLength="1" points="${P.join(' ')}"/>`;
+      // calcMode linear: cada tramo dura lo mismo, así el punto avanza parejo en x (tiempo real en un lanzamiento)
+      if (g.anim) s += `<circle class="movil" r="7" fill="${PAL[3]}" stroke="#fff" stroke-width="2"><animateMotion dur="${g.anim}s" repeatCount="indefinite" calcMode="linear" path="M${P.join(' L')}"/></circle>`;
       if (g.lab) s += `<text x="${X(g.at[0])}" y="${Y(g.at[1])}" font-size="12.5" font-weight="700" fill="${PAL[i % PAL.length]}">${g.lab}</text>`;
     });
     (f.marks || []).forEach(([x, y, t]) => s += `<circle cx="${X(x)}" cy="${Y(y)}" r="4" fill="#fff" stroke="#1d1d1f" stroke-width="2"/>` + (t ? `<text x="${X(x) + 7}" y="${Y(y) - 7}" font-size="11.5" font-weight="700" fill="#1d1d1f">${t}</text>` : ''));
@@ -510,6 +530,46 @@ function fig(f) {
     return s + `<div class="cap">Cada ${f.icon} representa ${f.each} ${f.unit || 'unidades'}.</div>`;
   }
   return '';
+}
+
+/* graficador de f(x) = ax² + bx + c en las clases: <div class="graf" data-a="1" data-b="0" data-c="0"></div>.
+   Con a = 0 queda una recta. Los botones ▶ mueven un parámetro de ida y vuelta para ver cómo cambia la curva. */
+function graficador(box) {
+  const d = box.dataset, LIM = { a: 3, b: 6, c: 6 };
+  box.innerHTML = `<div class="g-in">${'abc'.split('').map(k => `<label>${k} = <input type="number" step="0.5" value="${d[k] || 0}" data-k="${k}"></label>`).join('')}
+    <span class="g-anim">${'abc'.split('').map(k => `<button type="button" data-k="${k}" aria-label="Animar ${k}">▶ ${k}</button>`).join('')}</span></div>
+    <div class="g-out"></div><div class="g-plot"></div>`;
+  const ins = [...box.querySelectorAll('input')], val = k => +ins.find(i => i.dataset.k === k).value || 0;
+  const r = v => num(Math.round(v * 100) / 100 || 0).replace('-', '−'), dentro = ([x, y]) => Math.abs(x) <= 8 && Math.abs(y) <= 10;
+  const draw = () => {
+    const a = val('a'), b = val('b'), c = val('c'), f = x => a * x * x + b * x + c, D = b * b - 4 * a * c, xv = -b / (2 * a);
+    const ceros = a ? (D < 0 ? [] : D === 0 ? [xv] : [(-b - Math.sqrt(D)) / (2 * a), (-b + Math.sqrt(D)) / (2 * a)].sort((p, q) => p - q)) : b ? [-c / b] : [];
+    let fx = '';
+    [[a, 'x²'], [b, 'x'], [c, '']].forEach(([k, s]) => { if (!k) return; const m = Math.abs(k); fx += (k < 0 ? (fx ? ' − ' : '−') : fx ? ' + ' : '') + (m === 1 && s ? '' : r(m)) + s; });
+    const marks = [...ceros.map(x => [x, 0]), [0, c], ...(a ? [[xv, f(xv), 'vértice']] : [])].filter(dentro);
+    const zs = ceros.length ? ` (x = ${ceros.map(r).join(' y x = ')})` : '';
+    box.querySelector('.g-out').innerHTML = `<b>f(x) = ${fx || '0'}</b><br>` + (a
+      ? `Abre hacia ${a > 0 ? 'arriba' : 'abajo'} · vértice (${r(xv)}, ${r(f(xv))}) · eje de simetría x = ${r(xv)}<br>Δ = ${r(D)}: ${D > 0 ? 'corta al eje X en dos puntos' : D === 0 ? 'toca al eje X en un punto' : 'no corta al eje X'}${zs}`
+      : `Con a = 0 es una recta de pendiente ${r(b)}${b ? ` · corta al eje X en un punto${zs}` : ''}`) + ` · corta al eje Y en (0, ${r(c)})`;
+    box.querySelector('.g-plot').innerHTML = fig({ type: 'plot', x: [-8, 8, 2], y: [-10, 10, 2], fns: [{ f }], marks, vline: a && Math.abs(xv) <= 8 ? xv : undefined });
+  };
+  ins.forEach(i => i.addEventListener('input', draw));
+  let t = null;
+  box.querySelectorAll('.g-anim button').forEach(btn => btn.addEventListener('click', () => {
+    const on = btn.classList.contains('on');
+    clearInterval(t); box.querySelectorAll('.g-anim button').forEach(x => x.classList.remove('on'));
+    if (on) return;
+    btn.classList.add('on');
+    const k = btn.dataset.k, inp = ins.find(i => i.dataset.k === k);
+    let dir = 1;
+    t = setInterval(() => {
+      if (!box.isConnected) return clearInterval(t);
+      let v = Math.round((+inp.value + 0.1 * dir) * 10) / 10;
+      if (Math.abs(v) >= LIM[k]) { v = Math.sign(v) * LIM[k]; dir = -dir; }
+      inp.value = v; draw();
+    }, 70);
+  }));
+  draw();
 }
 
 /* ---------------- state ---------------- */
@@ -643,6 +703,10 @@ function renderSlide() {
   const el = $('slide'), figs = typeof SLIDE_FIGS !== 'undefined' && SLIDE_FIGS[cur.id] || {};
   el.innerHTML = `<div class="kicker">Clase · ${cur.title}</div>` + cur.slides.map(s => `<section class="sec"><h3>${s.t}</h3><div class="body">${s.b}</div></section>`).join('');
   el.querySelectorAll('.sec').forEach((sec, i) => { const ph = sec.querySelector('.qfig'); if (ph && figs[i]) ph.innerHTML = fig(figs[i]); });
+  el.querySelectorAll('.graf').forEach(graficador);
+  // las curvas se trazan cuando el gráfico aparece en pantalla
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), { threshold: 0.4 });
+  el.querySelectorAll('.qfig').forEach(q => io.observe(q));
   renderMath(el);
 }
 $('nextSlide').addEventListener('click', startExample);
