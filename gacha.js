@@ -77,12 +77,16 @@ function gatoSVG(g, size, oculto) {
 
 /* ---------- sorteo y guardado ---------- */
 const sortear = list => { let x = Math.random() * list.reduce((s, o) => s + o.w, 0); return list.find(o => (x -= o.w) < 0) || list[list.length - 1]; };
-// desde = índice de la variante mínima asegurada (las ruletas de variante); el evento ya asegura diamante
+// mínimos de rareza y variante que asegura el evento (EVENTO en paes.html)
+const evRar = () => eventoActivo() ? EVENTO.rar || 0 : 0, evVar = () => eventoActivo() ? EVENTO.vari || 0 : 0;
+const evTxt = () => `el gachapón y las ruletas solo entregan gatos ${RAR.slice(evRar()).map(r => r.name.toLowerCase()).join(', ')}` +
+  (evVar() ? ` en variante ${VAR.slice(evVar()).map(v => v.name.toLowerCase()).join(', ')}` : '');
+// desde = índice de la variante mínima asegurada (las ruletas de variante); el evento puede subir rareza y variante mínimas
 function tirar(cost = G_COST, desde = 0) {
   const p = store.get();
   if ((p.pts || 0) < cost) return null;
-  const vs = VAR.slice(Math.max(desde, eventoActivo() ? 2 : 0));
-  const rar = sortear(RAR), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(vs), k = g.id + ':' + v.id;
+  const vs = VAR.slice(Math.max(desde, evVar()));
+  const rar = sortear(RAR.slice(evRar())), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(vs), k = g.id + ':' + v.id;
   p.col = p.col || {};
   const antes = p.col[k] || 0, gatoNuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = antes + 1; p.pts -= cost; store.set(p); updPts();   // se guarda antes de la animación: recargar no pierde el gato
@@ -290,7 +294,7 @@ function renderGacha(prog) {
   const f = fusion(fus);
   const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
-    ${eventoActivo() ? '<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: solo salen gatos diamante, arcoíris o platino (60, 33 y 7 %).</div>' : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
+    ${eventoActivo() ? `<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: ${evTxt()}.</div>` : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>🎰 Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
@@ -433,15 +437,17 @@ const RULETAS = [
   [4, 'Ruleta rara', ['atigrado', 'calico', 'siames', 'tuxedo', 'mate']],
   [0, 'Ruleta común', ['naranjo', 'gris', 'pelusa', 'negrito', 'ruso']]
 ].map(([min, name, ids]) => ({ min, name, gs: ids.map((id, i) => ({ g: GATOS.find(x => x.id === id), w: CAT_W[i] })) }));
-const ruletaDe = n => RULETAS.find(r => n >= r.min);
-async function girarRuleta(correctas) {
-  const R = ruletaDe(correctas), sale = sortear(R.gs), g = sale.g, v = VAR[0], k = g.id + ':' + v.id;
+// RULETAS[i] es de rareza 4 - i: el evento corta en la ruleta de su rareza mínima
+const ruletaDe = n => RULETAS.find((r, i) => n >= r.min || 4 - i <= evRar());
+// correctas = null: giro de regalo del evento; vi = variante con que sale el gato
+async function girarRuleta(correctas, vi = 0) {
+  const R = ruletaDe(correctas), sale = sortear(R.gs), g = sale.g, v = VAR[Math.max(vi, evVar())], k = g.id + ':' + v.id;
   const p = store.get(); p.col = p.col || {};
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = (p.col[k] || 0) + 1; store.set(p);   // guardado antes de girar: recargar no pierde el gato
-  const m = await rueda(R.name, `${correctas} correctas · ${R.gs.map(x => `${x.g.name} ${x.w} %`).join(' · ')}`,
-    R.gs.map(x => ({ w: x.w, fill: x.g.rar.color, html: (cx, cy) => `<g transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>` })), R.gs.indexOf(sale));
-  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en normal.`);
+  const m = await rueda(R.name + (v.id === 'normal' ? '' : ' ' + v.name.toLowerCase()), `${correctas === null ? 'Regalo del evento' : correctas + ' correctas'} · ${R.gs.map(x => `${x.g.name} ${x.w} %`).join(' · ')}`,
+    R.gs.map(x => ({ w: x.w, fill: x.g.rar.color, html: (cx, cy) => `<g class="v-${v.id}" transform="translate(${cx - 22},${cy - 22})">${gatoSVG(x.g, 44)}</g>` })), R.gs.indexOf(sale));
+  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${p.col[k]} de este gato en ${v.name.toLowerCase()}.`);
 }
 // abre un modal con una rueda de tajadas { w, fill, html(cx, cy) } y la gira hasta la tajada i
 async function rueda(titulo, sub, tajadas, i) {

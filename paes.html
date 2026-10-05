@@ -560,8 +560,9 @@ function catSVG(c, size) {
 }
 const MULT_P = 0.5;
 /* Evento por tiempo limitado (horas UTC): ×x en todas las estrellas, regalo único al entrar con la cuenta
-   y gachapón solo con variantes diamante o superiores (gacha.js). Para otro evento: cambiar id, fechas, nombre, x y regalo. */
-const EVENTO = { id: 'evento_2026-10-04', nombre: 'Evento ×3', inicio: '2026-10-04T21:20:00Z', fin: '2026-10-04T22:25:00Z', regalo: 300, x: 3 };
+   (estrellas y, si giro, un giro de ruleta con esa variante), y gachapón/ruletas desde la rareza rar y la variante vari (índices de RAR y VAR en gacha.js).
+   Para otro evento: cambiar id, fechas, nombre, x, regalo, giro, rar y vari. */
+const EVENTO = { id: 'evento_2026-10-05', nombre: 'Evento épico ×2', inicio: '2026-10-05T19:18:00Z', fin: '2026-10-05T19:58:00Z', regalo: 100, giro: 3, x: 2, rar: 2, vari: 0 };
 const eventoActivo = () => { const t = Date.now(); return t >= Date.parse(EVENTO.inicio) && t < Date.parse(EVENTO.fin); };
 const xEvento = () => eventoActivo() ? EVENTO.x : 1;
 function pintaEvento() {
@@ -569,7 +570,7 @@ function pintaEvento() {
   el.classList.toggle('hidden', !on);
   if (!on) return clearInterval(pintaEvento.t);
   const s = Math.max(0, Math.round((Date.parse(EVENTO.fin) - Date.now()) / 1000));
-  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</b><br>Todas las estrellas valen ×${EVENTO.x} (aciertos y bonos), ⭐ ${EVENTO.regalo} de regalo al entrar con tu cuenta y el gachapón solo entrega gatos diamante, arcoíris o platino.`;
+  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}</b><br>Todas las estrellas valen ×${EVENTO.x} (aciertos y bonos), ⭐ ${EVENTO.regalo}${EVENTO.giro ? ` y una ruleta ${VAR[EVENTO.giro].name.toLowerCase()}` : ''} de regalo al entrar con tu cuenta, y ${evTxt()}.`;
 }
 pintaEvento.t = setInterval(pintaEvento, 1000);
 const hintTxt = c => `${MULT_P * 100} % de probabilidad de que cada acierto valga ⭐ ${c.mult} en vez de 1`;
@@ -817,7 +818,8 @@ onAuthStateChanged(auth, async u => {
       store.set(nube);   // la nube manda: lo jugado sin sesión no se mezcla
       if (eventoActivo() && !(nube.regalos || {})[EVENTO.id]) {
         const p = store.get(); p.pts = (p.pts || 0) + EVENTO.regalo; p.regalos = { ...p.regalos, [EVENTO.id]: 1 }; store.set(p);
-        alert(`🎉 ${EVENTO.nombre}: te regalamos ⭐ ${EVENTO.regalo}.`);
+        alert(`🎉 ${EVENTO.nombre}: te regalamos ⭐ ${EVENTO.regalo}${EVENTO.giro ? ` y un giro de ruleta donde todos los gatos salen ${VAR[EVENTO.giro].name.toLowerCase()}` : ''}.`);
+        if (EVENTO.giro) girarRuleta(null, EVENTO.giro);
       }
     } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
   } else store.set({});
