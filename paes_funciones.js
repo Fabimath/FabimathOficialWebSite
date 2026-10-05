@@ -308,272 +308,358 @@ const TOPICS_FUN = [
 {
   id: 'ec_cuadratica', unit: 'Unidad 2 · Función cuadrática', icon: '🟰',
   title: 'Ecuaciones de segundo grado',
-  desc: 'Ecuaciones incompletas, factorización, fórmula general, discriminante y problemas de áreas.',
+  desc: 'Paso a paso: qué es una ecuación cuadrática, los casos incompletos, factorizar, fórmula general, discriminante y problemas de áreas.',
   slides: [
-    { t: 'Ecuaciones incompletas', b: r`
+    { t: '¿Qué es una ecuación de segundo grado?', b: r`
       <div class="cols"><div>
-      <p>Forma general: $ax^2 + bx + c = 0$, con $a \neq 0$.</p>
-      <p><b>Sin término en $x$</b>: $x^2 = k$ con $k > 0$ tiene <b>dos</b> soluciones, $\pm\sqrt{k}$.<br>$2x^2 = 50 \Rightarrow x^2 = 25 \Rightarrow x = 5$ o $x = -5$.</p>
+      <p>Es una ecuación donde la incógnita aparece <b>al cuadrado</b> ($x^2$) y no hay potencias mayores. Siempre se puede ordenar así:</p>
+      $$ax^2 + bx + c = 0, \quad a \neq 0$$
+      <p>· $a$ es el número que acompaña a $x^2$.<br>· $b$ es el número que acompaña a $x$.<br>· $c$ es el número solo, sin $x$.</p>
+      <p><b>Ejemplo</b> En $2x^2 - 3x - 2 = 0$: $a = 2$, $b = -3$, $c = -2$. El signo va pegado al número: si hay un menos, el número es negativo.</p>
       </div><div>
-      <p><b>Sin término independiente</b>: se factoriza $x$.<br>$x^2 = 3x \Rightarrow x^2 - 3x = 0 \Rightarrow x(x - 3) = 0 \Rightarrow x = 0$ o $x = 3$.</p>
-      <div class="box alert"><b>No dividas por x</b> Si divides $x^2 = 3x$ por $x$, pierdes la solución $x = 0$.</div>
+      <div class="box"><b>¿Qué es una solución?</b> Un número que, al reemplazarlo en lugar de $x$, deja la igualdad en $0 = 0$.<br>Con $x^2 - 5x + 6 = 0$ y $x = 2$: $4 - 10 + 6 = 0$. ✔ Entonces $2$ es solución.</div>
+      <div class="box"><b>¿Cuántas tiene?</b> Normalmente <b>dos</b>, a veces una y a veces ninguna. Por eso, cuando encuentres una, sigue buscando la otra.</div>
+      <div class="box alert"><b>Primer paso siempre</b> Deja todo a un lado del igual y un $0$ al otro. Por ejemplo, $x^2 = 3x$ se escribe $x^2 - 3x = 0$.</div>
       </div></div>` },
-    { t: 'Factorizar', b: r`
+    { t: 'Caso 1: falta el término con x', b: r`
       <div class="cols"><div>
-      <p>$x^2 + bx + c = (x + p)(x + q)$ cuando $p + q = b$ y $p\cdot q = c$.</p>
-      <p>$x^2 - 5x + 6$: dos números que sumen $-5$ y multiplicados den $6$: $-2$ y $-3$.</p>
-      $$x^2 - 5x + 6 = (x - 2)(x - 3) = 0 \Rightarrow x = 2 \text{ o } x = 3$$
+      <p>Son ecuaciones como $2x^2 = 50$: solo hay $x^2$ y números. Se resuelven <b>despejando</b>.</p>
+      <p><b>Paso 1.</b> Deja $x^2$ solo. Aquí el 2 multiplica, así que pasa dividiendo:<br>$x^2 = \dfrac{50}{2} = 25$.</p>
+      <p><b>Paso 2.</b> Pregúntate: ¿qué número al cuadrado da 25? Hay <b>dos</b>: $5$ y $-5$, porque $5^2 = 25$ y $(-5)^2 = 25$.</p>
+      <p><b>Paso 3.</b> Respuesta: $x = 5$ o $x = -5$. Se escribe corto $x = \pm 5$.</p>
       </div><div>
-      <div class="box"><b>Producto cero</b> Si $A\cdot B = 0$, entonces $A = 0$ o $B = 0$. Por eso se iguala a cero antes de factorizar.</div>
+      <div class="box alert"><b>El error más común</b> Quedarse solo con el $5$ positivo. Al sacar raíz en una ecuación siempre aparecen el $+$ y el $-$.</div>
+      <div class="box"><b>Casos especiales</b><br>· $x^2 = 0$: una sola solución, $x = 0$.<br>· $x^2 = -9$: ninguna solución real, porque ningún número al cuadrado da negativo.</div>
       </div></div>` },
-    { t: 'Fórmula general y discriminante', b: r`
+    { t: 'Caso 2: falta el número solo', b: r`
+      <div class="cols"><div>
+      <p>Son ecuaciones como $x^2 = 3x$: todos los términos tienen $x$. Se resuelven <b>sacando $x$ como factor común</b>.</p>
+      <p><b>Paso 1.</b> Pasa todo a un lado: $x^2 - 3x = 0$.</p>
+      <p><b>Paso 2.</b> La $x$ está en los dos términos, así que la sacas afuera: $x(x - 3) = 0$. Comprueba multiplicando: $x\cdot x - x\cdot 3 = x^2 - 3x$. ✔</p>
+      <p><b>Paso 3.</b> Una multiplicación da cero solo si uno de los factores es cero: $x = 0$ o $x - 3 = 0$, es decir, $x = 3$.</p>
+      </div><div>
+      <div class="box alert"><b>No dividas por x</b> Si divides $x^2 = 3x$ por $x$ te queda $x = 3$ y pierdes la solución $x = 0$. En este caso una solución es <b>siempre</b> $0$.</div>
+      <div class="box"><b>Regla del producto cero</b> Si $A\cdot B = 0$, entonces $A = 0$ o $B = 0$. Por eso hay que tener un $0$ al otro lado antes de factorizar.</div>
+      </div></div>` },
+    { t: 'Caso 3: factorizar buscando dos números', b: r`
+      <div class="cols"><div>
+      <p>Sirve cuando $a = 1$, como en $x^2 - 5x + 6 = 0$.</p>
+      <p><b>Paso 1.</b> Busca dos números que <b>multiplicados</b> den $c = 6$ y <b>sumados</b> den $b = -5$.</p>
+      <p><b>Paso 2.</b> Prueba parejas que multiplicadas den 6:<br>$1$ y $6$ suman $7$; $2$ y $3$ suman $5$; $-1$ y $-6$ suman $-7$; $-2$ y $-3$ suman $-5$. ✔</p>
+      <p><b>Paso 3.</b> Escribe la factorización con esos números: $(x - 2)(x - 3) = 0$.</p>
+      <p><b>Paso 4.</b> Iguala cada paréntesis a cero: $x - 2 = 0 \Rightarrow x = 2$ y $x - 3 = 0 \Rightarrow x = 3$.</p>
+      </div><div>
+      <div class="box"><b>Truco de los signos</b><br>· Si $c$ es positivo, los dos números tienen el <b>mismo</b> signo, el de $b$.<br>· Si $c$ es negativo, tienen signos <b>distintos</b> y el más grande lleva el signo de $b$.</div>
+      <div class="box alert"><b>Ojo con el signo final</b> Los números de la factorización fueron $-2$ y $-3$, pero las soluciones son $2$ y $3$: el signo se da vuelta al despejar.</div>
+      <div class="box"><b>Comprueba</b> $x = 3$: $9 - 15 + 6 = 0$. ✔</div>
+      </div></div>` },
+    { t: 'Caso 4: la fórmula general, que sirve siempre', b: r`
       <div class="cols"><div>
       $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
-      <p>$2x^2 - 3x - 2 = 0$: $a = 2$, $b = -3$, $c = -2$.<br>$\Delta = 9 + 16 = 25$, $x = \dfrac{3 \pm 5}{4}$: $x = 2$ o $x = -\dfrac{1}{2}$.</p>
+      <p>Ejemplo: $2x^2 - 3x - 2 = 0$.</p>
+      <p><b>Paso 1.</b> Anota los coeficientes con su signo: $a = 2$, $b = -3$, $c = -2$.</p>
+      <p><b>Paso 2.</b> Calcula lo de adentro de la raíz, el <b>discriminante</b>:<br>$\Delta = b^2 - 4ac = (-3)^2 - 4\cdot 2\cdot(-2) = 9 + 16 = 25$.</p>
+      <p><b>Paso 3.</b> Saca la raíz: $\sqrt{25} = 5$.</p>
+      <p><b>Paso 4.</b> Reemplaza: $-b = -(-3) = 3$ y $2a = 4$, así que $x = \dfrac{3 \pm 5}{4}$.</p>
+      <p><b>Paso 5.</b> Separa en dos cuentas: con $+$, $\dfrac{3 + 5}{4} = 2$; con $-$, $\dfrac{3 - 5}{4} = -\dfrac{1}{2}$.</p>
       </div><div>
-      <div class="box"><b>Discriminante</b> $\Delta = b^2 - 4ac$<br>· $\Delta > 0$: dos soluciones reales distintas.<br>· $\Delta = 0$: una solución (doble).<br>· $\Delta < 0$: ninguna solución real.</div>
-      <div class="box alert"><b>Ojo</b> $-b$ cambia el signo de $b$, y el $2a$ divide a <b>todo</b> el numerador.</div>
+      <div class="box alert"><b>Tres trampas</b><br>· $-b$ cambia el signo de $b$: si $b = -3$, entonces $-b = +3$.<br>· Los negativos van entre paréntesis: $(-3)^2 = 9$, no $-9$.<br>· El $2a$ divide a <b>todo</b> el numerador, no solo a la raíz.</div>
+      <div class="box"><b>¿Cuándo usarla?</b> Cuando no encuentras rápido los dos números, o cuando $a$ no es 1. Es más larga, pero nunca falla.</div>
       </div></div>` },
-    { t: 'Problemas', b: r`
+    { t: 'El discriminante: ¿cuántas soluciones hay?', b: r`
+      <div class="cols"><div>
+      <p>Sin resolver toda la ecuación, el número $\Delta = b^2 - 4ac$ te dice cuántas soluciones tiene:</p>
+      <p>· $\Delta > 0$: <b>dos</b> soluciones distintas (la raíz da un número y el $\pm$ abre dos caminos).<br>· $\Delta = 0$: <b>una</b> solución (sumar o restar 0 da lo mismo).<br>· $\Delta < 0$: <b>ninguna</b> solución real (no existe la raíz de un negativo).</p>
+      </div><div>
+      <div class="box"><b>Ejemplo con Δ = 0</b> $x^2 - 4x + 4 = 0$: $\Delta = 16 - 16 = 0$. Una sola solución, $x = 2$, porque $x^2 - 4x + 4 = (x - 2)^2$.</div>
+      <div class="box"><b>Ejemplo con Δ &lt; 0</b> $x^2 + 2x + 5 = 0$: $\Delta = 4 - 20 = -16$. No tiene soluciones reales.</div>
+      </div></div>` },
+    { t: 'Problemas con enunciado', b: r`
       <div class="cols"><div>
       <p>Un terreno rectangular tiene un largo 5 m mayor que el ancho y un área de 104 m².</p>
-      $$x(x + 5) = 104 \Rightarrow x^2 + 5x - 104 = 0 \Rightarrow (x + 13)(x - 8) = 0$$
-      <p>$x = 8$ (se descarta $-13$: una medida no es negativa). Largo 13, perímetro $2(8 + 13) = 42$ m.</p>
+      <p><b>Paso 1. Nombra la incógnita.</b> Ancho $= x$. Como el largo mide 5 más, largo $= x + 5$.</p>
+      <p><b>Paso 2. Plantea la ecuación.</b> Área = largo · ancho: $x(x + 5) = 104$.</p>
+      <p><b>Paso 3. Iguala a cero.</b> $x^2 + 5x - 104 = 0$.</p>
+      <p><b>Paso 4. Resuelve.</b> Dos números que multiplicados den $-104$ y sumados $5$: $13$ y $-8$. Queda $(x + 13)(x - 8) = 0$, así que $x = -13$ o $x = 8$.</p>
+      <p><b>Paso 5. Descarta.</b> Un lado no puede medir $-13$: el ancho es $8$ y el largo $13$.</p>
+      <p><b>Paso 6. Responde lo pedido.</b> Si piden el perímetro: $2\cdot 8 + 2\cdot 13 = 42$ m.</p>
       </div><div>
-      <div class="box"><b>Pasos</b> 1. Nombra la incógnita. 2. Plantea la ecuación. 3. Iguala a cero y resuelve. 4. Descarta lo que no tiene sentido. 5. Responde lo que se pregunta (¿el lado? ¿el perímetro?).</div>
+      <div class="box"><b>Traducciones útiles</b><br>· "5 más que $x$": $x + 5$.<br>· "4 menos que $L$": $L - 4$.<br>· "el doble de $x$": $2x$.<br>· "el cuadrado de $x$": $x^2$.<br>· "dos números consecutivos": $x$ y $x + 1$.</div>
+      <div class="box alert"><b>Descarta con criterio</b> Una medida o un tiempo no pueden ser negativos. Pero si la pregunta es por "un número", el negativo sí puede servir.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
-      <table><thead><tr><th>Ecuación</th><th>Método</th></tr></thead><tbody>
-      <tr><td>$ax^2 = k$</td><td>despeja y saca raíz: $\pm$</td></tr>
-      <tr><td>$ax^2 + bx = 0$</td><td>factoriza $x$: una solución es $0$</td></tr>
-      <tr><td>$x^2 + bx + c = 0$</td><td>busca dos números: suma $b$, producto $c$</td></tr>
-      <tr><td>Cualquiera</td><td>fórmula general</td></tr>
+      <table><thead><tr><th>Si la ecuación se ve así</th><th>Haz esto</th></tr></thead><tbody>
+      <tr><td>$ax^2 = k$ (sin término con $x$)</td><td>despeja $x^2$ y saca raíz: $\pm$</td></tr>
+      <tr><td>$ax^2 + bx = 0$ (sin número solo)</td><td>saca $x$ factor común: una solución es $0$</td></tr>
+      <tr><td>$x^2 + bx + c = 0$</td><td>busca dos números: producto $c$, suma $b$</td></tr>
+      <tr><td>Cualquier otra</td><td>fórmula general</td></tr>
       <tr><td>¿Cuántas soluciones?</td><td>signo de $\Delta = b^2 - 4ac$</td></tr></tbody></table>
-      <div class="box" style="margin-top:14px"><b>Método PAES</b> En las alternativas suelen estar las dos soluciones, la negativa descartable y el dato intermedio. Lee qué piden al final.</div>` }
+      <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Iguala a cero. 2. Elige el caso. 3. Resuelve. 4. Comprueba reemplazando. 5. Lee de nuevo qué te piden: en las alternativas suelen estar la solución negativa descartable y los datos intermedios.</div>` }
   ],
   example: {
     src: 'PAES Regular 2026',
     enun: r`<p>Una persona dispone de un terreno de forma rectangular. Se sabe que el terreno tiene un área de 192 m² y que su ancho mide 4 m menos que su largo.</p><p>¿Cuánto mide el largo del terreno?</p>`,
     alts: ['12 m', '16 m', '20 m', '24 m'], ok: 1,
-    sol: r`<p>Largo $L$, ancho $L - 4$: $L(L - 4) = 192 \Rightarrow L^2 - 4L - 192 = 0 \Rightarrow (L - 16)(L + 12) = 0$.</p><p>$L = 16$ (se descarta $-12$). Comprobación: $16\cdot 12 = 192$. ✔</p><p>12 m es el ancho; 20 y 24 no cumplen el área: $20\cdot 16 = 320$ y $24\cdot 20 = 480$.</p>`,
+    sol: r`<p><b>Paso 1. Nombra la incógnita.</b> Nos preguntan por el largo: largo $= L$. El ancho mide 4 menos, así que ancho $= L - 4$.</p><p><b>Paso 2. Plantea la ecuación.</b> El área de un rectángulo es largo por ancho: $L(L - 4) = 192$.</p><p><b>Paso 3. Iguala a cero.</b> Multiplica: $L^2 - 4L = 192$, y pasa el 192 restando: $L^2 - 4L - 192 = 0$.</p><p><b>Paso 4. Factoriza.</b> Buscamos dos números que multiplicados den $-192$ y sumados den $-4$: son $-16$ y $12$, porque $-16\cdot 12 = -192$ y $-16 + 12 = -4$. Queda $(L - 16)(L + 12) = 0$.</p><p><b>Paso 5. Despeja y descarta.</b> $L = 16$ o $L = -12$. Un largo no puede ser negativo, así que $L = 16$ m.</p><p><b>Paso 6. Comprueba.</b> Ancho $16 - 4 = 12$ y área $16\cdot 12 = 192$. ✔</p><p><b>Por qué no las otras:</b> 12 m es el ancho, no el largo; 20 y 24 no cumplen el área: $20\cdot 16 = 320$ y $24\cdot 20 = 480$.</p>`,
     conc: 'Plantea, iguala a cero, factoriza y descarta lo negativo.'
   },
   bank: [
     { enun: r`<p>¿Cuáles son las soluciones de $x^2 - 7x + 12 = 0$?</p>`,
       alts: [r`$3$ y $4$`, r`$-3$ y $-4$`, r`$2$ y $6$`, r`$1$ y $12$`], ok: 0,
-      sol: r`<p>Dos números que sumen $-7$ y multiplicados den $12$: $-3$ y $-4$. Entonces $(x - 3)(x - 4) = 0$: $x = 3$ o $x = 4$.</p><p>$-3$ y $-4$ son los números de la factorización, no las soluciones; $2$ y $6$, y también $1$ y $12$, multiplican 12 pero no suman 7.</p>`, conc: '(x − p)(x − q) = 0 ⟹ x = p o x = q.' },
+      sol: r`<p><b>Paso 1.</b> Ya está igualada a cero y $a = 1$: buscamos dos números con producto $12$ y suma $-7$.</p><p><b>Paso 2.</b> El producto es positivo y la suma negativa, así que los dos son negativos. Probamos: $-1$ y $-12$ suman $-13$; $-2$ y $-6$ suman $-8$; $-3$ y $-4$ suman $-7$. ✔</p><p><b>Paso 3.</b> Factorizamos: $(x - 3)(x - 4) = 0$.</p><p><b>Paso 4.</b> Cada paréntesis igual a cero: $x = 3$ o $x = 4$.</p><p><b>Comprobación</b> con $x = 3$: $9 - 21 + 12 = 0$. ✔</p><p><b>Por qué no las otras:</b> $-3$ y $-4$ son los números de la factorización, no las soluciones; $2$ y $6$, y también $1$ y $12$, multiplican 12 pero no suman 7.</p>`, conc: '(x − p)(x − q) = 0 ⟹ x = p o x = q.' },
     { enun: r`<p>¿Cuáles son las soluciones de $2x^2 = 50$?</p>`,
       alts: [r`$5$ y $-5$`, r`Solo $5$`, r`$25$ y $-25$`, r`$10$ y $-10$`], ok: 0,
-      sol: r`<p>$x^2 = 25 \Rightarrow x = \pm 5$.</p><p>"Solo 5" olvida la raíz negativa; $\pm 25$ no saca la raíz; $\pm 10$ divide 50 en 5 en vez de sacar la raíz de 25.</p>`, conc: 'x² = k ⟹ x = ±√k.' },
+      sol: r`<p><b>Paso 1.</b> Deja $x^2$ solo: el 2 pasa dividiendo, $x^2 = 25$.</p><p><b>Paso 2.</b> ¿Qué números al cuadrado dan 25? El $5$ y el $-5$, porque $(-5)^2 = 25$ también.</p><p><b>Comprobación:</b> $2\cdot(-5)^2 = 2\cdot 25 = 50$. ✔</p><p><b>Por qué no las otras:</b> "solo 5" olvida la raíz negativa; $\pm 25$ no saca la raíz; $\pm 10$ divide 50 en 5 en vez de sacar la raíz de 25.</p>`, conc: 'x² = k ⟹ x = ±√k.' },
     { enun: r`<p>¿Cuáles son todas las soluciones de $x^2 = 3x$?</p>`,
       alts: [r`$0$ y $3$`, r`Solo $3$`, r`$0$ y $-3$`, r`$3$ y $-3$`], ok: 0,
-      sol: r`<p>$x^2 - 3x = 0 \Rightarrow x(x - 3) = 0 \Rightarrow x = 0$ o $x = 3$.</p><p>"Solo 3" divide por $x$ y pierde el 0; $-3$ equivoca el signo; $3$ y $-3$ la trata como $x^2 = 9$.</p>`, conc: 'No dividas por x: factoriza.' },
+      sol: r`<p><b>Paso 1.</b> Pasa todo a un lado: $x^2 - 3x = 0$.</p><p><b>Paso 2.</b> Saca $x$ como factor común: $x(x - 3) = 0$.</p><p><b>Paso 3.</b> Producto cero: $x = 0$ o $x - 3 = 0$, o sea $x = 3$.</p><p><b>Comprobación</b> con $x = 0$: $0^2 = 3\cdot 0$, es decir $0 = 0$. ✔</p><p><b>Por qué no las otras:</b> "solo 3" divide por $x$ y pierde el 0; $-3$ equivoca el signo; $3$ y $-3$ la trata como si fuera $x^2 = 9$.</p>`, conc: 'No dividas por x: factoriza.' },
     { enun: r`<p>¿Para qué valor de $k$ la ecuación $x^2 - 4x + k = 0$ tiene exactamente una solución real?</p>`,
       alts: [r`$4$`, r`$-4$`, r`$16$`, r`$2$`], ok: 0,
-      sol: r`<p>Una solución: $\Delta = 0$. $(-4)^2 - 4\cdot 1\cdot k = 16 - 4k = 0 \Rightarrow k = 4$. Queda $(x - 2)^2 = 0$.</p><p>$-4$ equivoca el signo; 16 olvida el $4ac$; 2 es la solución, no $k$.</p>`, conc: 'Una solución ⟺ Δ = b² − 4ac = 0.' },
+      sol: r`<p><b>Paso 1. La idea.</b> Una ecuación cuadrática tiene una sola solución cuando el discriminante vale cero: $\Delta = 0$.</p><p><b>Paso 2.</b> Coeficientes: $a = 1$, $b = -4$, $c = k$.</p><p><b>Paso 3.</b> $\Delta = (-4)^2 - 4\cdot 1\cdot k = 16 - 4k$.</p><p><b>Paso 4.</b> Igualamos a cero: $16 - 4k = 0 \Rightarrow 4k = 16 \Rightarrow k = 4$.</p><p><b>Comprobación:</b> $x^2 - 4x + 4 = (x - 2)^2 = 0$ tiene una sola solución, $x = 2$. ✔</p><p><b>Por qué no las otras:</b> $-4$ equivoca el signo; 16 olvida el $4ac$; 2 es la solución de la ecuación, no el valor de $k$.</p>`, conc: 'Una solución ⟺ Δ = b² − 4ac = 0.' },
     { enun: r`<p>La empresa CIELOS construye casas en terrenos rectangulares, en los que siempre el largo mide 5 m más que el ancho.</p><p>Si el área de uno de los terrenos es 104 m², ¿cuál es el perímetro del terreno?</p>`, src: 'PAES Invierno 2026',
       alts: ['62 m', '42 m', '31 m', '21 m'], ok: 1,
-      sol: r`<p>$x(x + 5) = 104 \Rightarrow x^2 + 5x - 104 = 0 \Rightarrow (x - 8)(x + 13) = 0$, $x = 8$. Lados 8 y 13: perímetro $2(8 + 13) = 42$ m.</p><p>21 m es el semiperímetro; 62 m toma 13 como ancho (lados 13 y 18); 31 m es la mitad de ese error.</p>`, conc: 'Responde lo que preguntan: aquí el perímetro, no el lado.' },
+      sol: r`<p><b>Paso 1.</b> Ancho $= x$ y largo $= x + 5$.</p><p><b>Paso 2.</b> Área: $x(x + 5) = 104$.</p><p><b>Paso 3.</b> Igualamos a cero: $x^2 + 5x - 104 = 0$.</p><p><b>Paso 4.</b> Dos números con producto $-104$ y suma $5$: $13$ y $-8$. Queda $(x + 13)(x - 8) = 0$, así que $x = 8$ (el $-13$ se descarta, es una medida).</p><p><b>Paso 5.</b> Lados: ancho 8 y largo 13. Comprobación: $8\cdot 13 = 104$. ✔</p><p><b>Paso 6.</b> Lo que piden es el perímetro, la suma de los cuatro lados: $8 + 13 + 8 + 13 = 42$ m.</p><p><b>Por qué no las otras:</b> 21 m es el semiperímetro (solo dos lados); 62 m toma 13 como ancho (lados 13 y 18); 31 m es la mitad de ese error.</p>`, conc: 'Responde lo que preguntan: aquí el perímetro, no el lado.' },
     { enun: r`<p>¿Cuáles son las soluciones de $3x^2 - 5x - 2 = 0$?</p>`,
       alts: [r`$2$ y $-\dfrac{1}{3}$`, r`$-2$ y $\dfrac{1}{3}$`, r`$4$ y $-\dfrac{2}{3}$`, r`$6$ y $-1$`], ok: 0,
-      sol: r`<p>$\Delta = 25 + 24 = 49$. $x = \dfrac{5 \pm 7}{6}$: $x = 2$ o $x = -\dfrac{1}{3}$.</p><p>$-2$ y $\dfrac{1}{3}$ no cambian el signo de $b$; $4$ y $-\dfrac{2}{3}$ dividen por $a$ y no por $2a$; $6$ y $-1$ dividen por 2.</p>`, conc: 'x = (−b ± √Δ) / 2a: ojo con −b y con 2a.' },
+      sol: r`<p><b>Paso 1.</b> Como $a = 3$, usamos la fórmula general. Coeficientes: $a = 3$, $b = -5$, $c = -2$.</p><p><b>Paso 2.</b> $\Delta = (-5)^2 - 4\cdot 3\cdot(-2) = 25 + 24 = 49$.</p><p><b>Paso 3.</b> $\sqrt{49} = 7$.</p><p><b>Paso 4.</b> $-b = 5$ y $2a = 6$: $x = \dfrac{5 \pm 7}{6}$.</p><p><b>Paso 5.</b> Con $+$: $\dfrac{12}{6} = 2$. Con $-$: $\dfrac{-2}{6} = -\dfrac{1}{3}$.</p><p><b>Por qué no las otras:</b> $-2$ y $\dfrac{1}{3}$ no cambian el signo de $b$; $4$ y $-\dfrac{2}{3}$ dividen por $a$ y no por $2a$; $6$ y $-1$ dividen por 2.</p>`, conc: 'x = (−b ± √Δ) / 2a: ojo con −b y con 2a.' },
     { enun: r`<p>¿Cuántas soluciones reales tiene la ecuación $x^2 + 2x + 5 = 0$?</p>`,
       alts: ['Ninguna', 'Una', 'Dos', 'Infinitas'], ok: 0,
-      sol: r`<p>$\Delta = 2^2 - 4\cdot 1\cdot 5 = 4 - 20 = -16 < 0$: ninguna solución real.</p>`, conc: 'Δ < 0 ⟹ sin soluciones reales.' },
+      sol: r`<p><b>Paso 1.</b> No hace falta resolverla: basta el discriminante. Coeficientes: $a = 1$, $b = 2$, $c = 5$.</p><p><b>Paso 2.</b> $\Delta = 2^2 - 4\cdot 1\cdot 5 = 4 - 20 = -16$.</p><p><b>Paso 3.</b> $\Delta$ es negativo, y no existe ningún número real que al cuadrado dé $-16$: la ecuación no tiene soluciones reales.</p>`, conc: 'Δ < 0 ⟹ sin soluciones reales.' },
     { enun: r`<p>La distancia $d$, en metros, que recorre un móvil que parte del reposo está dada por $d(t) = a\cdot\dfrac{t^2}{2}$, donde $t$ es el tiempo en segundos y $a$ la aceleración en m/s².</p><p>Si el móvil acelera a 10 m/s², ¿cuántos segundos tardará en recorrer 45 metros?</p>`, src: 'PAES Regular 2026',
       alts: ['3', '4,5', '9', r`$\sqrt{4{,}5}$`], ok: 0,
-      sol: r`<p>$10\cdot\dfrac{t^2}{2} = 45 \Rightarrow 5t^2 = 45 \Rightarrow t^2 = 9 \Rightarrow t = 3$ (el tiempo no es negativo).</p><p>4,5 es $\dfrac{45}{10}$, sin el cuadrado; 9 es $t^2$, falta la raíz; $\sqrt{4{,}5}$ olvida dividir por 2.</p>`, conc: 'Despeja t² y después saca raíz.' },
+      sol: r`<p><b>Paso 1.</b> Reemplazamos los datos: $a = 10$ y $d = 45$, así que $10\cdot\dfrac{t^2}{2} = 45$.</p><p><b>Paso 2.</b> Simplificamos: $\dfrac{10}{2} = 5$, queda $5t^2 = 45$.</p><p><b>Paso 3.</b> Dividimos por 5: $t^2 = 9$.</p><p><b>Paso 4.</b> Raíz: $t = 3$ o $t = -3$. El tiempo no es negativo, así que $t = 3$ segundos.</p><p><b>Comprobación:</b> $10\cdot\dfrac{9}{2} = 45$. ✔</p><p><b>Por qué no las otras:</b> 4,5 es $\dfrac{45}{10}$, sin el cuadrado; 9 es $t^2$, falta la raíz; $\sqrt{4{,}5}$ olvida dividir por 2.</p>`, conc: 'Despeja t² y después saca raíz.' },
     { enun: r`<p>El cuadrado de un número más el doble del mismo número es 48.</p><p>¿Cuáles son los números que cumplen esta condición?</p>`,
       alts: [r`$6$ y $-8$`, r`$-6$ y $8$`, r`Solo $6$`, r`$4$ y $-12$`], ok: 0,
-      sol: r`<p>$x^2 + 2x = 48 \Rightarrow x^2 + 2x - 48 = 0 \Rightarrow (x + 8)(x - 6) = 0$: $x = 6$ o $x = -8$.</p><p>$-6$ y $8$ invierten los signos; "solo 6" descarta el negativo, que aquí sí sirve (es un número, no una medida); $4$ y $-12$ multiplican $-48$ pero suman $-8$.</p>`, conc: 'Descarta negativos solo si el contexto lo exige.' },
+      sol: r`<p><b>Paso 1. Traduce.</b> El número es $x$; su cuadrado, $x^2$; su doble, $2x$. La ecuación es $x^2 + 2x = 48$.</p><p><b>Paso 2.</b> Igualamos a cero: $x^2 + 2x - 48 = 0$.</p><p><b>Paso 3.</b> Dos números con producto $-48$ y suma $2$: $8$ y $-6$. Queda $(x + 8)(x - 6) = 0$.</p><p><b>Paso 4.</b> $x = -8$ o $x = 6$. Aquí no se descarta nada: es "un número", no una medida.</p><p><b>Comprobación:</b> $6^2 + 2\cdot 6 = 36 + 12 = 48$ ✔ y $(-8)^2 + 2\cdot(-8) = 64 - 16 = 48$. ✔</p><p><b>Por qué no las otras:</b> $-6$ y $8$ invierten los signos; "solo 6" descarta el negativo, que aquí sí sirve; $4$ y $-12$ multiplican $-48$ pero suman $-8$.</p>`, conc: 'Descarta negativos solo si el contexto lo exige.' },
     { enun: r`<p>El producto de dos números enteros positivos consecutivos es 132.</p><p>¿Cuál es la suma de ambos números?</p>`,
       alts: [r`$23$`, r`$25$`, r`$21$`, r`$66$`], ok: 0,
-      sol: r`<p>$x(x + 1) = 132 \Rightarrow x^2 + x - 132 = 0 \Rightarrow (x + 12)(x - 11) = 0$, $x = 11$. Los números son 11 y 12: suman 23.</p><p>25 es $12 + 13$; 21 es $10 + 11$; 66 es la mitad de 132.</p>`, conc: 'Consecutivos: x y x + 1.' },
+      sol: r`<p><b>Paso 1. Traduce.</b> Consecutivos significa uno detrás del otro: $x$ y $x + 1$.</p><p><b>Paso 2.</b> Su producto es 132: $x(x + 1) = 132$, o sea $x^2 + x - 132 = 0$.</p><p><b>Paso 3.</b> Dos números con producto $-132$ y suma $1$: $12$ y $-11$. Queda $(x + 12)(x - 11) = 0$.</p><p><b>Paso 4.</b> $x = 11$ (el $-12$ se descarta, porque piden positivos). Los números son 11 y 12.</p><p><b>Paso 5.</b> Lo que piden es la suma: $11 + 12 = 23$. Comprobación: $11\cdot 12 = 132$. ✔</p><p><b>Por qué no las otras:</b> 25 es $12 + 13$; 21 es $10 + 11$; 66 es la mitad de 132.</p>`, conc: 'Consecutivos: x y x + 1.' },
     { enun: r`<p>Para resolver $x^2 - 6x + 5 = 0$ con la fórmula general se realizó el siguiente procedimiento, cometiéndose un error.</p><p>Paso 1: se identifican $a = 1$, $b = -6$ y $c = 5$.<br>Paso 2: se calcula el discriminante, obteniéndose $36 - 20 = 16$.<br>Paso 3: se reemplaza en la fórmula, obteniéndose $x = \dfrac{-6 \pm 4}{2}$.<br>Paso 4: se calculan las soluciones, obteniéndose $x = -1$ y $x = -5$.</p><p>¿En cuál de los pasos se cometió el error?</p>`,
       alts: ['En el Paso 1', 'En el Paso 2', 'En el Paso 3', 'En el Paso 4'], ok: 2,
-      sol: r`<p>Paso 1 y Paso 2 son correctos. En el Paso 3, $-b = -(-6) = 6$, no $-6$: debió quedar $x = \dfrac{6 \pm 4}{2}$.</p><p>El Paso 4 opera bien lo que recibió. Lo correcto es $x = 5$ o $x = 1$; comprobación: $25 - 30 + 5 = 0$. ✔</p>`, conc: '−b con b negativo da positivo.' },
+      sol: r`<p>Revisamos cada paso, uno por uno.</p><p><b>Paso 1:</b> $a = 1$, $b = -6$, $c = 5$. Correcto.</p><p><b>Paso 2:</b> $(-6)^2 - 4\cdot 1\cdot 5 = 36 - 20 = 16$. Correcto.</p><p><b>Paso 3:</b> la fórmula empieza con $-b$, y $-b = -(-6) = +6$. Se escribió $-6$: <b>aquí está el error</b>. Debió quedar $x = \dfrac{6 \pm 4}{2}$.</p><p><b>Paso 4:</b> opera bien con lo que recibió, $\dfrac{-6 + 4}{2} = -1$ y $\dfrac{-6 - 4}{2} = -5$; el problema venía de antes.</p><p>Lo correcto es $x = 5$ o $x = 1$. Comprobación: $25 - 30 + 5 = 0$. ✔</p>`, conc: '−b con b negativo da positivo.' },
     { enun: r`<p>Una de las soluciones de $x^2 + bx - 10 = 0$ es $x = 2$.</p><p>¿Cuál es la otra solución?</p>`,
       alts: [r`$-5$`, r`$5$`, r`$-2$`, r`$3$`], ok: 0,
-      sol: r`<p>Con $x = 2$: $4 + 2b - 10 = 0 \Rightarrow b = 3$. Queda $x^2 + 3x - 10 = (x + 5)(x - 2) = 0$: la otra es $-5$.</p><p>Otra forma: el producto de las soluciones es $c = -10$, así que $2\cdot x_2 = -10$. 5 tiene el signo al revés; 3 es $b$; $-2$ supone que las soluciones son opuestas.</p>`, conc: 'Reemplaza la solución conocida para hallar el coeficiente que falta.' }
+      sol: r`<p><b>Paso 1.</b> Si $x = 2$ es solución, al reemplazarlo la ecuación se cumple: $2^2 + 2b - 10 = 0$, o sea $4 + 2b - 10 = 0$.</p><p><b>Paso 2.</b> Despejamos $b$: $2b = 6 \Rightarrow b = 3$.</p><p><b>Paso 3.</b> La ecuación completa es $x^2 + 3x - 10 = 0$. Dos números con producto $-10$ y suma $3$: $5$ y $-2$. Queda $(x + 5)(x - 2) = 0$.</p><p><b>Paso 4.</b> Las soluciones son $2$, que ya conocíamos, y $-5$.</p><p><b>Atajo:</b> cuando $a = 1$, las dos soluciones multiplicadas dan $c$. Entonces $2\cdot x_2 = -10$ y $x_2 = -5$.</p><p><b>Por qué no las otras:</b> 5 tiene el signo al revés; 3 es el valor de $b$; $-2$ supone que las soluciones son opuestas.</p>`, conc: 'Reemplaza la solución conocida para hallar el coeficiente que falta.' }
   ]
 },
 
 {
   id: 'cuadratica_grafico', unit: 'Unidad 2 · Función cuadrática', icon: '⛰️',
   title: 'Gráfico de la función cuadrática',
-  desc: 'Concavidad, intersección con los ejes, vértice, eje de simetría y cómo cambia la parábola al variar sus parámetros.',
+  desc: 'Paso a paso: hacia dónde abre la parábola, tabla de valores, cortes con los ejes, vértice, eje de simetría y cómo cambia al variar sus parámetros.',
   slides: [
     { t: 'La parábola', b: r`
       <div class="cols"><div>
-      <p>$f(x) = ax^2 + bx + c$, con $a \neq 0$, tiene por gráfico una <b>parábola</b>.</p>
-      <p>· $a > 0$: abre hacia <b>arriba</b> (tiene mínimo).<br>· $a < 0$: abre hacia <b>abajo</b> (tiene máximo).<br>· Mayor $|a|$: más angosta.</p>
-      <p>Corta al eje $Y$ en $(0, c)$, porque $f(0) = c$.</p>
+      <p>La función $f(x) = ax^2 + bx + c$, con $a \neq 0$, se dibuja como una curva en forma de U llamada <b>parábola</b>.</p>
+      <p><b>¿Hacia dónde abre?</b> Mira solo el signo de $a$:<br>· $a > 0$: abre hacia <b>arriba</b>, como una U. Tiene un punto más bajo: un <b>mínimo</b>.<br>· $a < 0$: abre hacia <b>abajo</b>, como una U dada vuelta. Tiene un punto más alto: un <b>máximo</b>.</p>
+      <p><b>¿Qué tan abierta?</b> Mientras más grande es $a$ (sin mirar el signo), más angosta es.</p>
+      <p><b>¿Dónde corta al eje Y?</b> Reemplaza $x = 0$: todo se anula menos $c$, así que el corte es $(0, c)$.</p>
       </div><div>
       <div class="qfig">${''}</div>
+      <div class="box">En el dibujo: $x^2$ y $3x^2$ abren hacia arriba ($a > 0$) y $3x^2$ es más angosta; $-x^2 + 4$ abre hacia abajo ($a < 0$) y corta al eje $Y$ en $4$.</div>
       </div></div>` },
-    { t: 'Ceros: cortes con el eje X', b: r`
+    { t: 'Tabla de valores', b: r`
       <div class="cols"><div>
-      <p>Los <b>ceros</b> son las $x$ con $f(x) = 0$: se resuelve $ax^2 + bx + c = 0$.</p>
-      <p>$f(x) = x^2 - 6x + 8 = (x - 2)(x - 4)$: corta al eje $X$ en $(2, 0)$ y $(4, 0)$.</p>
+      <p>Para ver cómo es una parábola, se eligen algunos valores de $x$ y se calcula $f(x)$ para cada uno. Ejemplo: $f(x) = x^2 - 2x - 3$.</p>
+      <table><thead><tr><th>$x$</th><th>cuenta</th><th>$f(x)$</th></tr></thead><tbody>
+      <tr><td>$-1$</td><td>$1 + 2 - 3$</td><td>$0$</td></tr>
+      <tr><td>$0$</td><td>$0 - 0 - 3$</td><td>$-3$</td></tr>
+      <tr><td>$1$</td><td>$1 - 2 - 3$</td><td>$-4$</td></tr>
+      <tr><td>$2$</td><td>$4 - 4 - 3$</td><td>$-3$</td></tr>
+      <tr><td>$3$</td><td>$9 - 6 - 3$</td><td>$0$</td></tr></tbody></table>
       </div><div>
-      <div class="box"><b>Según el discriminante</b><br>· $\Delta > 0$: corta al eje $X$ en dos puntos.<br>· $\Delta = 0$: lo toca en uno (el vértice).<br>· $\Delta < 0$: no lo corta.</div>
+      <div class="box"><b>Lo que muestra la tabla</b><br>· Donde $f(x) = 0$ ($x = -1$ y $x = 3$) la parábola corta al eje $X$.<br>· Los valores se repiten como en un espejo alrededor de $x = 1$: $-3, -4, -3$. Ese $x = 1$ es el <b>eje de simetría</b> y $(1, -4)$ es el <b>vértice</b>.</div>
+      <div class="box alert"><b>Al reemplazar</b> usa paréntesis con los negativos: $(-1)^2 = 1$ y $-2\cdot(-1) = +2$.</div>
+      </div></div>` },
+    { t: 'Ceros: dónde corta al eje X', b: r`
+      <div class="cols"><div>
+      <p>Los <b>ceros</b> son los valores de $x$ donde la parábola toca el eje $X$, es decir, donde la altura es $0$.</p>
+      <p><b>Paso 1.</b> Iguala la función a cero: $x^2 - 6x + 8 = 0$.</p>
+      <p><b>Paso 2.</b> Resuelve la ecuación como aprendiste: dos números con producto $8$ y suma $-6$ son $-2$ y $-4$, así que $(x - 2)(x - 4) = 0$.</p>
+      <p><b>Paso 3.</b> Los ceros son $x = 2$ y $x = 4$; los puntos de corte son $(2, 0)$ y $(4, 0)$.</p>
+      </div><div>
+      <div class="box"><b>¿Cuántos cortes? Lo dice el discriminante</b><br>· $\Delta > 0$: corta al eje $X$ en dos puntos.<br>· $\Delta = 0$: lo toca en un solo punto, que es el vértice.<br>· $\Delta < 0$: no lo toca; queda entera arriba o entera abajo.</div>
+      <div class="box alert"><b>No confundas</b> El corte con $Y$ es $(0, c)$: la $x$ vale 0. Los cortes con $X$ son $(x, 0)$: la $y$ vale 0.</div>
       </div></div>` },
     { t: 'Vértice y eje de simetría', b: r`
       <div class="cols"><div>
+      <p>El <b>vértice</b> es la punta de la parábola: su punto más bajo o más alto. Se calcula en dos pasos.</p>
       $$x_v = -\frac{b}{2a} \qquad y_v = f(x_v)$$
-      <p>$f(x) = x^2 + 2x - 1$: $x_v = -\dfrac{2}{2} = -1$, $y_v = 1 - 2 - 1 = -2$. Vértice $(-1, -2)$.</p>
-      <p>El <b>eje de simetría</b> es la recta $x = x_v$.</p>
-      <div class="box">Si $f(p) = f(q)$, el eje está justo al medio: $x_v = \dfrac{p + q}{2}$.</div>
+      <p>Ejemplo: $f(x) = x^2 + 2x - 1$.</p>
+      <p><b>Paso 1.</b> Coeficientes: $a = 1$, $b = 2$.</p>
+      <p><b>Paso 2.</b> $x_v = -\dfrac{2}{2\cdot 1} = -1$.</p>
+      <p><b>Paso 3.</b> Reemplaza ese valor en la función: $y_v = (-1)^2 + 2(-1) - 1 = 1 - 2 - 1 = -2$.</p>
+      <p><b>Paso 4.</b> Vértice $(-1, -2)$. El <b>eje de simetría</b> es la recta vertical que pasa por él: $x = -1$.</p>
       </div><div>
       <div class="qfig">${''}</div>
+      <div class="box"><b>Atajo del espejo</b> La parábola es simétrica: si dos puntos tienen la misma altura, $f(p) = f(q)$, el eje está justo al medio: $x_v = \dfrac{p + q}{2}$. En el dibujo, $(-3, 2)$ y $(1, 2)$ tienen el eje en $\dfrac{-3 + 1}{2} = -1$.</div>
       </div></div>` },
     { t: 'Forma canónica y traslaciones', b: r`
       <div class="cols"><div>
+      <p>A veces la función viene escrita así, y el vértice se lee directo:</p>
       $$f(x) = a(x - h)^2 + k \quad \Rightarrow \quad \text{vértice } (h, k)$$
-      <p>$(x - 2)^2 + 1$ tiene vértice $(2, 1)$: es $x^2$ trasladada 2 a la derecha y 1 hacia arriba.</p>
+      <p><b>Cómo leerlo:</b> el número de <b>adentro</b> del paréntesis se toma con el signo <b>cambiado</b>; el de <b>afuera</b>, tal cual.</p>
+      <p>· $(x - 2)^2 + 1$: vértice $(2, 1)$.<br>· $(x + 3)^2 - 4$: vértice $(-3, -4)$.</p>
+      <p><b>¿Por qué?</b> En $(x - 2)^2 + 1$, el paréntesis al cuadrado nunca es negativo y vale $0$ justo cuando $x = 2$. Ahí la función llega a su valor más bajo: $0 + 1 = 1$.</p>
       </div><div>
-      <div class="box"><b>Variar parámetros</b><br>· $x^2 + k$: sube ($k > 0$) o baja ($k < 0$).<br>· $(x - h)^2$: se mueve a la derecha si $h > 0$.<br>· $ax^2$: cambia la apertura; con $a < 0$ se da vuelta.</div>
-      <div class="box alert"><b>Ojo</b> $(x + 3)^2$ se mueve a la <b>izquierda</b>: $h = -3$.</div>
+      <div class="box"><b>Cómo se mueve la parábola</b> (partiendo de $x^2$)<br>· $x^2 + k$: sube $k$ si es positivo, baja si es negativo.<br>· $(x - h)^2$: se corre a la derecha si $h > 0$.<br>· $ax^2$: cambia lo abierta; con $a < 0$ se da vuelta.</div>
+      <div class="box alert"><b>Ojo</b> $(x + 3)^2$ se corre a la <b>izquierda</b>, porque $x + 3 = x - (-3)$: $h = -3$.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
-      <table><thead><tr><th>Elemento</th><th>Cómo se obtiene</th></tr></thead><tbody>
-      <tr><td>Concavidad</td><td>signo de $a$</td></tr>
-      <tr><td>Corte con $Y$</td><td>$(0, c)$</td></tr>
-      <tr><td>Ceros</td><td>resolver $f(x) = 0$</td></tr>
-      <tr><td>Vértice</td><td>$x_v = -\dfrac{b}{2a}$, $y_v = f(x_v)$</td></tr>
-      <tr><td>Eje de simetría</td><td>$x = x_v$; también el punto medio entre dos $x$ con igual imagen</td></tr></tbody></table>
-      <div class="box" style="margin-top:14px"><b>Método PAES</b> Para reconocer una parábola en un gráfico, revisa en este orden: hacia dónde abre, dónde corta al eje $Y$ y dónde están el vértice o los ceros.</div>` }
+      <table><thead><tr><th>Quiero saber</th><th>Cómo lo obtengo</th></tr></thead><tbody>
+      <tr><td>Hacia dónde abre</td><td>signo de $a$: positivo arriba, negativo abajo</td></tr>
+      <tr><td>Corte con el eje $Y$</td><td>$(0, c)$</td></tr>
+      <tr><td>Cortes con el eje $X$ (ceros)</td><td>resolver $f(x) = 0$</td></tr>
+      <tr><td>Vértice</td><td>$x_v = -\dfrac{b}{2a}$ y después $y_v = f(x_v)$</td></tr>
+      <tr><td>Vértice en $a(x - h)^2 + k$</td><td>$(h, k)$, con el signo de adentro cambiado</td></tr>
+      <tr><td>Eje de simetría</td><td>$x = x_v$; o el punto medio entre dos $x$ con igual altura</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Método PAES</b> Para reconocer una parábola en un gráfico, revisa en este orden y ve descartando alternativas: 1. hacia dónde abre; 2. dónde corta al eje $Y$; 3. dónde están el vértice o los ceros.</div>` }
   ],
   example: {
     src: 'PAES Regular 2026, adaptada',
     enun: r`<p>Considera la función cuadrática $f$, con dominio el conjunto de los números reales. En la figura se representa su gráfica, con su eje de simetría $x = -1$, y el punto $(2, 7)$.</p><p>¿Para cuál de los siguientes valores de $x$ se tiene que $f(x) = 7$?</p>`,
     fig: { type: 'plot', x: [-6, 4], y: [-3, 9], fns: [{ f: x => x * x + 2 * x - 1, lab: 'f', at: [2.6, 8.6] }], vline: -1, marks: [[2, 7, '(2, 7)']] },
     alts: [r`$4$`, r`$-3$`, r`$-4$`, r`$-5$`], ok: 2,
-    sol: r`<p>La parábola es simétrica respecto de $x = -1$. El punto $x = 2$ está 3 unidades a la derecha del eje, así que su gemelo está 3 a la izquierda: $-1 - 3 = -4$. Entonces $f(-4) = 7$.</p><p>4 refleja respecto del eje $Y$ y no del eje de simetría $x = -1$; $-3$ cuenta solo 2 unidades desde el eje; $-5$ cuenta 4.</p>`,
+    sol: r`<p><b>Paso 1. La idea.</b> La parábola es como un espejo respecto de su eje $x = -1$: cada punto tiene un gemelo a la misma altura, al otro lado y a la misma distancia del eje.</p><p><b>Paso 2.</b> Ya conocemos un punto con altura 7: $x = 2$. Su distancia al eje es $2 - (-1) = 3$ unidades, hacia la derecha.</p><p><b>Paso 3.</b> El gemelo está 3 unidades hacia la izquierda del eje: $-1 - 3 = -4$.</p><p><b>Paso 4.</b> Entonces $f(-4) = 7$.</p><p><b>Por qué no las otras:</b> 4 refleja respecto del eje $Y$ y no del eje de simetría $x = -1$; $-3$ cuenta solo 2 unidades desde el eje; $-5$ cuenta 4.</p>`,
     conc: 'Puntos con igual altura están a la misma distancia del eje de simetría.'
   },
   bank: [
     { enun: r`<p>¿Cuál es el vértice de la parábola $f(x) = -2x^2 + 8x - 3$?</p>`,
       alts: [r`$(2, 5)$`, r`$(-2, -27)$`, r`$(4, -3)$`, r`$(2, 21)$`], ok: 0,
-      sol: r`<p>$x_v = -\dfrac{8}{2\cdot(-2)} = 2$ e $y_v = f(2) = -8 + 16 - 3 = 5$.</p><p>$(-2, -27)$ olvida el signo de $a$ en $x_v$; $(4, -3)$ usa $-\dfrac{b}{a}$ sin el 2; $(2, 21)$ calcula $-2\cdot 2^2$ como $+8$.</p>`, conc: 'x_v = −b/(2a) y luego evalúa.' },
+      sol: r`<p><b>Paso 1.</b> Coeficientes: $a = -2$, $b = 8$.</p><p><b>Paso 2.</b> $x_v = -\dfrac{b}{2a} = -\dfrac{8}{2\cdot(-2)} = -\dfrac{8}{-4} = 2$.</p><p><b>Paso 3.</b> Reemplaza $x = 2$: $y_v = -2\cdot 2^2 + 8\cdot 2 - 3 = -8 + 16 - 3 = 5$.</p><p><b>Paso 4.</b> Vértice $(2, 5)$.</p><p><b>Por qué no las otras:</b> $(-2, -27)$ olvida el signo de $a$ en $x_v$; $(4, -3)$ usa $-\dfrac{b}{a}$ sin el 2; $(2, 21)$ calcula $-2\cdot 2^2$ como $+8$.</p>`, conc: 'x_v = −b/(2a) y luego evalúa.' },
     { enun: r`<p>¿En qué valores de $x$ la gráfica de $f(x) = x^2 - 6x + 8$ corta al eje $X$?</p>`,
       alts: [r`$2$ y $4$`, r`$-2$ y $-4$`, r`$0$ y $8$`, r`Solo en $3$`], ok: 0,
-      sol: r`<p>$x^2 - 6x + 8 = (x - 2)(x - 4) = 0$: $x = 2$ y $x = 4$.</p><p>$-2$ y $-4$ invierten los signos; 8 es el corte con el eje $Y$; 3 es la $x$ del vértice.</p>`, conc: 'Ceros: resuelve f(x) = 0.' },
+      sol: r`<p><b>Paso 1.</b> Cortar al eje $X$ significa altura cero: $x^2 - 6x + 8 = 0$.</p><p><b>Paso 2.</b> Dos números con producto $8$ y suma $-6$: $-2$ y $-4$. Queda $(x - 2)(x - 4) = 0$.</p><p><b>Paso 3.</b> $x = 2$ y $x = 4$: los cortes son $(2, 0)$ y $(4, 0)$.</p><p><b>Por qué no las otras:</b> $-2$ y $-4$ invierten los signos; 8 es el corte con el eje $Y$; 3 es la $x$ del vértice.</p>`, conc: 'Ceros: resuelve f(x) = 0.' },
     { enun: r`<p>¿Cuál de las siguientes afirmaciones describe la gráfica de $f(x) = -x^2 + 3x + 4$?</p>`,
       alts: ['Abre hacia abajo y corta al eje Y en (0, 4).', 'Abre hacia arriba y corta al eje Y en (0, 4).', 'Abre hacia abajo y corta al eje Y en (0, 3).', 'Abre hacia arriba y corta al eje Y en (4, 0).'], ok: 0,
-      sol: r`<p>$a = -1 < 0$: abre hacia abajo. $f(0) = 4$: corta al eje $Y$ en $(0, 4)$.</p><p>3 es $b$, no el corte; $(4, 0)$ está en el eje $X$ (de hecho $f(4) = 0$, es un cero).</p>`, conc: 'Signo de a = apertura; c = corte con Y.' },
+      sol: r`<p><b>Paso 1. ¿Hacia dónde abre?</b> El número que acompaña a $x^2$ es $a = -1$, negativo: abre hacia abajo. Eso ya descarta dos alternativas.</p><p><b>Paso 2. ¿Dónde corta al eje Y?</b> Reemplaza $x = 0$: $f(0) = 0 + 0 + 4 = 4$. El punto es $(0, 4)$.</p><p><b>Por qué no las otras:</b> 3 es $b$, no el corte; $(4, 0)$ está en el eje $X$ (de hecho $f(4) = 0$, es un cero).</p>`, conc: 'Signo de a = apertura; c = corte con Y.' },
     { enun: r`<p>En el gráfico se representa una función cuadrática $f$.</p><p>¿Cuál de las siguientes expresiones corresponde a $f(x)$?</p>`,
       fig: { type: 'plot', x: [-3, 5], y: [-5, 6], fns: [{ f: x => x * x - 2 * x - 3, lab: 'f', at: [4.2, 5.4] }], marks: [[-1, 0], [3, 0], [0, -3], [1, -4]] },
       alts: [r`$f(x) = x^2 - 2x - 3$`, r`$f(x) = -x^2 + 2x + 3$`, r`$f(x) = x^2 + 2x - 3$`, r`$f(x) = (x - 1)^2 + 4$`], ok: 0,
-      sol: r`<p>Abre hacia arriba, corta al eje $Y$ en $-3$ y sus ceros son $-1$ y $3$: $f(x) = (x + 1)(x - 3) = x^2 - 2x - 3$.</p><p>$-x^2 + 2x + 3$ abre hacia abajo; $x^2 + 2x - 3$ tiene ceros $1$ y $-3$; $(x - 1)^2 + 4$ tiene vértice $(1, 4)$, no $(1, -4)$.</p>`, conc: 'Con los ceros p y q: f(x) = a(x − p)(x − q).' },
+      sol: r`<p><b>Paso 1. ¿Hacia dónde abre?</b> Hacia arriba, así que $a > 0$. Se descarta $-x^2 + 2x + 3$.</p><p><b>Paso 2. Lee los ceros.</b> Corta al eje $X$ en $-1$ y $3$. Una parábola con esos ceros se escribe $f(x) = (x + 1)(x - 3)$.</p><p><b>Paso 3. Multiplica.</b> $(x + 1)(x - 3) = x^2 - 3x + x - 3 = x^2 - 2x - 3$.</p><p><b>Paso 4. Comprueba con otros puntos del gráfico.</b> Corte con $Y$: $f(0) = -3$ ✔. Vértice: $f(1) = 1 - 2 - 3 = -4$ ✔.</p><p><b>Por qué no las otras:</b> $x^2 + 2x - 3$ tiene ceros $1$ y $-3$; $(x - 1)^2 + 4$ tiene vértice $(1, 4)$, no $(1, -4)$.</p>`, conc: 'Con los ceros p y q: f(x) = a(x − p)(x − q).' },
     { enun: r`<p>Considera las funciones $f(x) = x^2$ y $g(x) = x^2 + 3$.</p><p>¿Cómo se obtiene la gráfica de $g$ a partir de la de $f$?</p>`,
       alts: ['Trasladándola 3 unidades hacia arriba.', 'Trasladándola 3 unidades hacia abajo.', 'Trasladándola 3 unidades a la derecha.', 'Trasladándola 3 unidades a la izquierda.'], ok: 0,
-      sol: r`<p>Sumar 3 fuera del cuadrado sube cada punto en 3: el vértice pasa de $(0, 0)$ a $(0, 3)$.</p><p>Moverla a la derecha sería $(x - 3)^2$; a la izquierda, $(x + 3)^2$.</p>`, conc: '+k afuera: vertical; dentro del paréntesis: horizontal.' },
+      sol: r`<p><b>Paso 1. Compara con números.</b> Con $x = 0$: $f(0) = 0$ y $g(0) = 3$. Con $x = 1$: $f(1) = 1$ y $g(1) = 4$.</p><p><b>Paso 2.</b> Para la misma $x$, $g$ siempre da 3 más: cada punto sube 3. El vértice pasa de $(0, 0)$ a $(0, 3)$.</p><p><b>Por qué no las otras:</b> moverla a la derecha sería $(x - 3)^2$; a la izquierda, $(x + 3)^2$; hacia abajo, $x^2 - 3$.</p>`, conc: '+k afuera: vertical; dentro del paréntesis: horizontal.' },
     { enun: r`<p>¿Cuál es el vértice de la parábola $h(x) = (x - 2)^2 + 1$?</p>`,
       alts: [r`$(2, 1)$`, r`$(-2, 1)$`, r`$(2, -1)$`, r`$(1, 2)$`], ok: 0,
-      sol: r`<p>Forma $a(x - h)^2 + k$ con $h = 2$ y $k = 1$: vértice $(2, 1)$.</p><p>$(-2, 1)$ toma el signo que se ve; $(2, -1)$ cambia el signo de $k$; $(1, 2)$ invierte las coordenadas.</p>`, conc: '(x − h)² + k ⟹ vértice (h, k).' },
+      sol: r`<p><b>Paso 1.</b> Está en la forma $a(x - h)^2 + k$: adentro hay $-2$, así que $h = 2$ (signo cambiado); afuera hay $+1$, así que $k = 1$.</p><p><b>Paso 2.</b> Vértice $(2, 1)$.</p><p><b>Para entenderlo:</b> $(x - 2)^2$ nunca es negativo y vale 0 cuando $x = 2$. Ahí $h$ alcanza su valor más bajo, $0 + 1 = 1$.</p><p><b>Por qué no las otras:</b> $(-2, 1)$ toma el signo que se ve; $(2, -1)$ cambia el signo de $k$; $(1, 2)$ invierte las coordenadas.</p>`, conc: '(x − h)² + k ⟹ vértice (h, k).' },
     { enun: r`<p>Se compara la gráfica de $f(x) = x^2$ con la de $g(x) = 3x^2$.</p><p>¿Cuál de las siguientes afirmaciones es verdadera?</p>`,
       alts: ['La de g es más angosta y tiene el mismo vértice.', 'La de g es más ancha y tiene el mismo vértice.', 'La de g está trasladada 3 unidades hacia arriba.', 'La de g abre hacia abajo.'], ok: 0,
-      sol: r`<p>Con $|a|$ mayor, la parábola crece más rápido: es más angosta. Ambas tienen vértice $(0, 0)$.</p><p>Trasladar hacia arriba sería $x^2 + 3$; abrir hacia abajo requiere $a < 0$.</p>`, conc: 'Mayor |a| = más angosta.' },
+      sol: r`<p><b>Paso 1. Compara con números.</b> Con $x = 1$: $f = 1$ y $g = 3$. Con $x = 2$: $f = 4$ y $g = 12$. La de $g$ sube el triple de rápido, así que se ve más cerrada: más angosta.</p><p><b>Paso 2. Vértice.</b> Con $x = 0$ las dos valen 0: ambas tienen vértice $(0, 0)$.</p><p><b>Por qué no las otras:</b> trasladar hacia arriba sería $x^2 + 3$; abrir hacia abajo requiere $a < 0$, y aquí $a = 3$.</p>`, conc: 'Mayor |a| = más angosta.' },
     { enun: r`<p>¿Para qué valores de $c$ la gráfica de $f(x) = x^2 - 4x + c$ <b>no</b> corta al eje $X$?</p>`,
       alts: [r`$c > 4$`, r`$c < 4$`, r`$c = 4$`, r`$c > 16$`], ok: 0,
-      sol: r`<p>No corta $\Leftrightarrow \Delta < 0$: $16 - 4c < 0 \Rightarrow c > 4$.</p><p>$c < 4$ da dos cortes; $c = 4$ da un solo punto de contacto; $c > 16$ olvida dividir por 4.</p>`, conc: 'No corta al eje X ⟺ Δ < 0.' },
+      sol: r`<p><b>Paso 1. La idea.</b> No cortar al eje $X$ significa que $f(x) = 0$ no tiene solución, y eso pasa cuando $\Delta < 0$.</p><p><b>Paso 2.</b> Coeficientes: $a = 1$, $b = -4$, $c = c$. Entonces $\Delta = (-4)^2 - 4\cdot 1\cdot c = 16 - 4c$.</p><p><b>Paso 3.</b> $16 - 4c < 0 \Rightarrow 16 < 4c \Rightarrow 4 < c$, es decir, $c > 4$.</p><p><b>Por qué no las otras:</b> $c < 4$ da dos cortes; $c = 4$ da un solo punto de contacto; $c > 16$ olvida dividir por 4.</p>`, conc: 'No corta al eje X ⟺ Δ < 0.' },
     { enun: r`<p>La siguiente gráfica de una función cuadrática representa la altura, en cm, que alcanza un chorro de agua según la distancia horizontal, en cm, recorrida desde el punto en que emerge.</p><p>¿Cuál de las siguientes afirmaciones es verdadera?</p>`, src: 'PAES Invierno 2026, adaptada',
       fig: { type: 'plot', x: [0, 60, 10], y: [0, 30, 5], xlab: 'distancia', ylab: 'altura', fns: [{ f: x => -x * (x - 60) / 36 }] },
       alts: ['La distancia horizontal máxima recorrida es 25 cm.', 'La altura máxima alcanzada es 60 cm.', 'La altura a los 10 cm horizontales es igual a la altura a los 50 cm.', 'La altura máxima se alcanza a los 60 cm horizontales.'], ok: 2,
-      sol: r`<p>La parábola es simétrica respecto de $x = 30$ (punto medio entre los ceros 0 y 60). 10 y 50 están ambos a 20 del eje: tienen la misma altura. ✔</p><p>25 cm es la altura máxima, no la distancia; 60 cm es la distancia máxima, no la altura; la altura máxima se alcanza a los 30 cm.</p>`, conc: 'Eje de simetría = punto medio de los ceros.' },
+      sol: r`<p><b>Paso 1. Lee el gráfico.</b> El chorro sale en $0$ y cae en $60$: esos son los ceros. La punta llega a 25 cm de altura.</p><p><b>Paso 2. Eje de simetría.</b> Está justo al medio de los ceros: $\dfrac{0 + 60}{2} = 30$. Ahí se alcanza la altura máxima.</p><p><b>Paso 3. Revisa la alternativa correcta.</b> 10 está 20 a la izquierda del eje ($30 - 10 = 20$) y 50 está 20 a la derecha ($50 - 30 = 20$). Como la parábola es simétrica, tienen la misma altura. ✔</p><p><b>Por qué no las otras:</b> 25 cm es la altura máxima, no la distancia; 60 cm es la distancia máxima, no la altura; la altura máxima se alcanza a los 30 cm, no a los 60.</p>`, conc: 'Eje de simetría = punto medio de los ceros.' },
     { enun: r`<p>¿En qué punto la gráfica de $f(x) = 2x^2 - 3x - 5$ corta al eje $Y$?</p>`,
       alts: [r`$(0, -5)$`, r`$(-5, 0)$`, r`$(0, 2)$`, r`$\left(\dfrac{5}{2}, 0\right)$`], ok: 0,
-      sol: r`<p>Corte con $Y$: $x = 0$, $f(0) = -5$. Punto $(0, -5)$.</p><p>$(-5, 0)$ invierte las coordenadas; 2 es $a$; $\left(\dfrac{5}{2}, 0\right)$ es un cero, el corte con el eje $X$.</p>`, conc: 'Corte con Y = (0, c).' },
+      sol: r`<p><b>Paso 1.</b> En el eje $Y$ la $x$ vale 0, así que reemplazamos $x = 0$.</p><p><b>Paso 2.</b> $f(0) = 2\cdot 0 - 3\cdot 0 - 5 = -5$. El punto es $(0, -5)$: siempre es $(0, c)$.</p><p><b>Por qué no las otras:</b> $(-5, 0)$ invierte las coordenadas; 2 es $a$; $\left(\dfrac{5}{2}, 0\right)$ es un cero, un corte con el eje $X$.</p>`, conc: 'Corte con Y = (0, c).' },
     { enun: r`<p>Considera la función $f(x) = -(x + 1)^2 + 4$.</p><p>¿Cuál(es) de las siguientes afirmaciones es (son) verdadera(s)?</p><p>I) Su vértice es $(-1, 4)$.<br>II) Su valor máximo es 4.<br>III) Sus ceros son $-3$ y $1$.</p>`,
       alts: ['Solo I', 'Solo I y II', 'Solo II y III', 'I, II y III'], ok: 3,
-      sol: r`<p>I) $(x + 1)^2 = (x - (-1))^2$: vértice $(-1, 4)$. Verdadera.</p><p>II) $a = -1 < 0$: abre hacia abajo y el máximo es $y_v = 4$. Verdadera.</p><p>III) $(x + 1)^2 = 4 \Rightarrow x + 1 = \pm 2 \Rightarrow x = 1$ o $x = -3$. Verdadera.</p>`, conc: 'Con a < 0, el vértice es el punto más alto.' },
+      sol: r`<p>Revisamos cada afirmación por separado.</p><p><b>I)</b> Adentro hay $+1$, así que $h = -1$ (signo cambiado); afuera hay $+4$, así que $k = 4$. Vértice $(-1, 4)$. Verdadera.</p><p><b>II)</b> El signo de adelante es negativo ($a = -1$): abre hacia abajo y el vértice es el punto más alto. El máximo es $y_v = 4$. Verdadera.</p><p><b>III)</b> Igualamos a cero: $-(x + 1)^2 + 4 = 0 \Rightarrow (x + 1)^2 = 4$. Sacamos raíz con $\pm$: $x + 1 = 2$ o $x + 1 = -2$, así que $x = 1$ o $x = -3$. Verdadera.</p><p>Las tres son verdaderas.</p>`, conc: 'Con a < 0, el vértice es el punto más alto.' },
     { enun: r`<p>Una función cuadrática $f$ cumple que $f(1) = f(7)$.</p><p>¿Cuál es la ecuación de su eje de simetría?</p>`,
       alts: [r`$x = 4$`, r`$x = 3$`, r`$x = 6$`, r`$x = 8$`], ok: 0,
-      sol: r`<p>Puntos con igual imagen están a la misma distancia del eje: $x = \dfrac{1 + 7}{2} = 4$.</p><p>3 es la mitad de la distancia; 6 es $7 - 1$; 8 es $1 + 7$, sin dividir.</p>`, conc: 'f(p) = f(q) ⟹ eje x = (p + q)/2.' }
+      sol: r`<p><b>Paso 1. La idea.</b> $f(1) = f(7)$ dice que en $x = 1$ y en $x = 7$ la parábola tiene la misma altura: son puntos gemelos.</p><p><b>Paso 2.</b> Los gemelos están a igual distancia del eje, así que el eje está justo al medio: $x = \dfrac{1 + 7}{2} = 4$.</p><p><b>Comprobación:</b> de 1 a 4 hay 3 y de 4 a 7 hay 3. ✔</p><p><b>Por qué no las otras:</b> 3 es la mitad de la distancia; 6 es $7 - 1$; 8 es $1 + 7$ sin dividir.</p>`, conc: 'f(p) = f(q) ⟹ eje x = (p + q)/2.' }
   ]
 },
 
 {
   id: 'cuadratica_problemas', unit: 'Unidad 2 · Función cuadrática', icon: '🏀',
   title: 'Problemas con función cuadrática',
-  desc: 'Lanzamientos, áreas máximas, ganancias y otros contextos: qué significan el vértice, los ceros y el corte con el eje Y.',
+  desc: 'Paso a paso: lanzamientos, áreas máximas, ganancias y otros contextos; qué significan el vértice, los ceros y el corte con el eje Y.',
   slides: [
+    { t: 'Primero: ¿me piden una x o una y?', b: r`
+      <div class="cols"><div>
+      <p>En los problemas, cada parte de la parábola tiene un significado. Antes de calcular, decide qué te están pidiendo:</p>
+      <p>· "¿<b>Cuándo</b>...?", "¿<b>cuántas</b> unidades...?", "¿<b>qué medida</b>...?": es una $x$.<br>· "¿<b>Qué altura</b>...?", "¿<b>cuánta</b> área o ganancia...?": es una $y$, el valor de la función.</p>
+      </div><div>
+      <div class="box"><b>Las tres preguntas típicas</b><br>· "¿Cuál es el valor inicial?": reemplaza $x = 0$.<br>· "¿Cuál es el máximo (o mínimo)?": calcula el vértice.<br>· "¿Cuándo llega al suelo o se hace cero?": iguala la función a cero.</div>
+      </div></div>` },
     { t: 'Lanzamientos', b: r`
       <div class="cols"><div>
-      <p>La altura de un objeto lanzado hacia arriba se modela con</p>
-      $$h(t) = -5t^2 + v_0 t + h_0$$
-      <p>· $h(0) = h_0$: altura inicial.<br>· Vértice: altura máxima y el momento en que se alcanza.<br>· Cero positivo: cuándo toca el suelo.</p>
+      <p>La altura de un objeto lanzado hacia arriba se modela con $h(t) = -5t^2 + v_0 t + h_0$. Ejemplo: $h(t) = -5t^2 + 20t$.</p>
+      <p><b>¿Desde qué altura parte?</b> $h(0) = 0$: sale desde el suelo.</p>
+      <p><b>¿Cuándo llega a lo más alto?</b> Es la $x$ del vértice: $t_v = -\dfrac{20}{2\cdot(-5)} = -\dfrac{20}{-10} = 2$ s.</p>
+      <p><b>¿Qué altura máxima alcanza?</b> Reemplaza ese tiempo: $h(2) = -5\cdot 4 + 20\cdot 2 = -20 + 40 = 20$ m.</p>
+      <p><b>¿Cuándo vuelve al suelo?</b> Altura cero: $-5t^2 + 20t = 0 \Rightarrow -5t(t - 4) = 0$, así que $t = 0$ (el lanzamiento) o $t = 4$ s.</p>
       </div><div>
-      <div class="box"><b>Ejemplo</b> $h(t) = -5t^2 + 20t$. $t_v = -\dfrac{20}{2\cdot(-5)} = 2$ s y $h(2) = -20 + 40 = 20$ m. Toca el suelo cuando $-5t(t - 4) = 0$: a los 4 s.</div>
+      <div class="box"><b>Por qué abre hacia abajo</b> El $-5$ hace que la pelota suba, frene y vuelva a caer: el vértice es el punto más alto.</div>
+      <div class="box alert"><b>No confundas</b> 2 s es <b>cuándo</b> llega arriba; 20 m es <b>qué tan alto</b> llega. Las dos suelen aparecer como alternativas.</div>
       </div></div>` },
     { t: 'Áreas máximas', b: r`
       <div class="cols"><div>
-      <p>Con 40 m de cerca se arma un rectángulo. Si un lado mide $x$, el otro mide $20 - x$:</p>
-      $$A(x) = x(20 - x) = -x^2 + 20x$$
-      <p>Máximo en $x_v = 10$: un cuadrado de 10 × 10, área 100 m².</p>
+      <p>Con 40 m de cerca se arma un rectángulo. ¿Qué medidas dan el área más grande?</p>
+      <p><b>Paso 1.</b> Un lado mide $x$. Los dos lados distintos suman la mitad del perímetro: $x + y = 20$, así que el otro lado mide $20 - x$.</p>
+      <p><b>Paso 2.</b> Área = lado por lado: $A(x) = x(20 - x) = -x^2 + 20x$.</p>
+      <p><b>Paso 3.</b> $a = -1$ es negativo: la parábola abre hacia abajo y el vértice es el máximo. $x_v = -\dfrac{20}{2\cdot(-1)} = 10$.</p>
+      <p><b>Paso 4.</b> Los lados miden 10 y $20 - 10 = 10$: un cuadrado. Área máxima: $10\cdot 10 = 100$ m².</p>
       </div><div>
-      <div class="box alert"><b>Contra un muro</b> Si un lado no lleva cerca, el perímetro usado es $2x + y$: cambia el modelo y el máximo ya no es un cuadrado.</div>
+      <div class="box alert"><b>Contra un muro</b> Si un lado no lleva cerca, la malla cubre solo tres lados: $2x + y$. El modelo cambia y el máximo ya no es un cuadrado.</div>
       </div></div>` },
     { t: 'Ganancias', b: r`
       <div class="cols"><div>
-      <p>Si la ganancia es $G(x) = -x^2 + 40x - 300$ (en miles de pesos, $x$ unidades vendidas):</p>
-      <p>· Máxima en $x_v = 20$: $G(20) = 100$ mil pesos.<br>· $G(x) = 0$ en $x = 10$ y $x = 30$: entre esos valores hay ganancia positiva.</p>
+      <p>Si la ganancia es $G(x) = -x^2 + 40x - 300$ (en miles de pesos, con $x$ unidades vendidas):</p>
+      <p><b>¿Cuántas unidades dan la ganancia máxima?</b> $x_v = -\dfrac{40}{2\cdot(-1)} = 20$ unidades.</p>
+      <p><b>¿Cuál es esa ganancia máxima?</b> $G(20) = -400 + 800 - 300 = 100$ mil pesos.</p>
+      <p><b>¿Cuándo no se gana ni se pierde?</b> $G(x) = 0$. Multiplicando por $-1$: $x^2 - 40x + 300 = 0 \Rightarrow (x - 10)(x - 30) = 0$, en $x = 10$ y $x = 30$.</p>
       </div><div>
-      <div class="box"><b>Qué responder</b> "¿Cuántas unidades?" es la $x$ del vértice. "¿Cuál es la ganancia máxima?" es la $y$ del vértice. No confundirlas es medio punto ganado.</div>
+      <div class="box"><b>¿Dónde hay ganancia?</b> La parábola abre hacia abajo, así que está sobre el eje entre los dos ceros: vendiendo entre 10 y 30 unidades la ganancia es positiva.</div>
+      <div class="box alert"><b>Qué responder</b> "¿Cuántas unidades?" es la $x$ del vértice. "¿Cuál es la ganancia máxima?" es la $y$ del vértice. No confundirlas es medio punto ganado.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
-      <table><thead><tr><th>En el contexto</th><th>En la parábola</th></tr></thead><tbody>
-      <tr><td>Valor inicial</td><td>$f(0) = c$</td></tr>
-      <tr><td>Máximo o mínimo</td><td>$y_v$</td></tr>
-      <tr><td>Cuándo o con cuánto se logra</td><td>$x_v = -\dfrac{b}{2a}$</td></tr>
-      <tr><td>Llega al suelo, se anula</td><td>ceros: $f(x) = 0$</td></tr></tbody></table>
-      <div class="box" style="margin-top:14px"><b>Método PAES</b> Antes de calcular, identifica si te piden una $x$ (tiempo, cantidad, medida) o una $y$ (altura, área, ganancia).</div>` }
+      <table><thead><tr><th>En el contexto</th><th>En la parábola</th><th>Cómo se calcula</th></tr></thead><tbody>
+      <tr><td>Valor inicial</td><td>corte con el eje $Y$</td><td>$f(0) = c$</td></tr>
+      <tr><td>Cuándo o con cuánto se logra el máximo</td><td>$x$ del vértice</td><td>$x_v = -\dfrac{b}{2a}$</td></tr>
+      <tr><td>Máximo o mínimo</td><td>$y$ del vértice</td><td>$f(x_v)$</td></tr>
+      <tr><td>Llega al suelo, se anula</td><td>ceros</td><td>resolver $f(x) = 0$</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Subraya qué te preguntan. 2. Decide si es una $x$ o una $y$. 3. Elige la herramienta de la tabla. 4. Revisa que la respuesta tenga sentido: un tiempo o una medida no pueden ser negativos.</div>` }
   ],
   example: {
     src: 'Ejemplo tipo PAES',
     enun: r`<p>La altura $h$, en metros, de una pelota lanzada verticalmente hacia arriba está dada por $h(t) = -5t^2 + 20t$, con $t$ en segundos.</p><p>¿Cuál es la altura máxima que alcanza la pelota?</p>`,
     alts: ['20 m', '2 m', '40 m', '15 m'], ok: 0,
-    sol: r`<p>Vértice: $t_v = -\dfrac{20}{2\cdot(-5)} = 2$ s. Altura: $h(2) = -5\cdot 4 + 40 = 20$ m.</p><p>2 es el tiempo, no la altura; 40 m olvida el término $-5t^2$; 15 m es $h(1)$.</p>`,
+    sol: r`<p><b>Paso 1. ¿Qué piden?</b> Una altura, o sea una $y$: la del vértice, porque es la más alta.</p><p><b>Paso 2. Cuándo llega arriba.</b> Con $a = -5$ y $b = 20$: $t_v = -\dfrac{20}{2\cdot(-5)} = -\dfrac{20}{-10} = 2$ s.</p><p><b>Paso 3. Qué altura tiene en ese momento.</b> $h(2) = -5\cdot 2^2 + 20\cdot 2 = -5\cdot 4 + 40 = -20 + 40 = 20$ m.</p><p><b>Por qué no las otras:</b> 2 es el tiempo, no la altura; 40 m olvida el término $-5t^2$; 15 m es $h(1)$, la altura al primer segundo.</p>`,
     conc: 'Altura máxima = y del vértice.'
   },
   bank: [
     { enun: r`<p>La altura de una pelota, en metros, es $h(t) = -5t^2 + 20t$, con $t$ en segundos.</p><p>¿Después de cuántos segundos vuelve a tocar el suelo?</p>`,
       alts: ['4 s', '2 s', '20 s', '5 s'], ok: 0,
-      sol: r`<p>$h(t) = 0 \Rightarrow -5t(t - 4) = 0 \Rightarrow t = 0$ o $t = 4$. En $t = 0$ es el lanzamiento: vuelve al suelo a los 4 s.</p><p>2 s es cuando alcanza la altura máxima; 20 s divide 20 por 1; 5 s confunde el coeficiente.</p>`, conc: 'Toca el suelo: cero positivo de h.' },
+      sol: r`<p><b>Paso 1.</b> Tocar el suelo es altura cero: $-5t^2 + 20t = 0$.</p><p><b>Paso 2.</b> Saca factor común $-5t$: $-5t(t - 4) = 0$. Comprueba: $-5t\cdot t = -5t^2$ y $-5t\cdot(-4) = 20t$. ✔</p><p><b>Paso 3.</b> $t = 0$ o $t = 4$. En $t = 0$ la pelota recién se lanza, así que vuelve al suelo a los 4 s.</p><p><b>Por qué no las otras:</b> 2 s es cuando alcanza la altura máxima; 20 s divide 20 por 1; 5 s confunde el coeficiente.</p>`, conc: 'Toca el suelo: cero positivo de h.' },
     { enun: r`<p>La altura de un objeto lanzado desde un edificio es $h(t) = -5t^2 + 10t + 15$, en metros, con $t$ en segundos.</p><p>¿Desde qué altura se lanzó?</p>`,
       alts: ['15 m', '10 m', '20 m', '3 m'], ok: 0,
-      sol: r`<p>Altura inicial: $h(0) = 15$ m.</p><p>10 es la velocidad inicial; 20 m es la altura máxima ($h(1)$); 3 es el tiempo en que llega al suelo.</p>`, conc: 'Valor inicial = f(0) = c.' },
+      sol: r`<p><b>Paso 1.</b> "Desde qué altura se lanzó" es la altura al comienzo, cuando $t = 0$.</p><p><b>Paso 2.</b> $h(0) = -5\cdot 0 + 10\cdot 0 + 15 = 15$ m. Es el número solo, $c$.</p><p><b>Por qué no las otras:</b> 10 es la velocidad inicial; 20 m es la altura máxima, $h(1)$; 3 es el tiempo en que llega al suelo.</p>`, conc: 'Valor inicial = f(0) = c.' },
     { enun: r`<p>La altura de un objeto es $h(t) = -5t^2 + 10t + 15$, en metros, con $t$ en segundos.</p><p>¿Cuál es la altura máxima que alcanza?</p>`,
       alts: ['20 m', '15 m', '1 m', '30 m'], ok: 0,
-      sol: r`<p>$t_v = -\dfrac{10}{2\cdot(-5)} = 1$ s y $h(1) = -5 + 10 + 15 = 20$ m.</p><p>15 m es la altura inicial; 1 es el tiempo del vértice; 30 m suma $5 + 10 + 15$.</p>`, conc: 'Máximo = h(t_v).' },
+      sol: r`<p><b>Paso 1.</b> Altura máxima = $y$ del vértice. Primero el tiempo: $a = -5$, $b = 10$, $t_v = -\dfrac{10}{2\cdot(-5)} = -\dfrac{10}{-10} = 1$ s.</p><p><b>Paso 2.</b> Altura en ese instante: $h(1) = -5 + 10 + 15 = 20$ m.</p><p><b>Por qué no las otras:</b> 15 m es la altura inicial; 1 es el tiempo del vértice; 30 m suma $5 + 10 + 15$ sin respetar el signo.</p>`, conc: 'Máximo = h(t_v).' },
     { enun: r`<p>Con 40 m de cerca se quiere cercar un terreno rectangular.</p><p>¿Cuál es el área máxima que se puede cercar?</p>`,
       alts: ['100 m²', '400 m²', '40 m²', '96 m²'], ok: 0,
-      sol: r`<p>Lados $x$ y $20 - x$: $A(x) = -x^2 + 20x$, con máximo en $x = 10$. $A(10) = 100$ m².</p><p>400 m² usa lado 20 (todo el perímetro en dos lados); 40 m² confunde área con perímetro; 96 m² ($8\cdot 12$) es posible, pero no es el máximo.</p>`, conc: 'Perímetro fijo, área máxima: cuadrado.' },
+      sol: r`<p><b>Paso 1.</b> Un lado mide $x$; como dos lados distintos suman la mitad de 40, el otro mide $20 - x$.</p><p><b>Paso 2.</b> Área: $A(x) = x(20 - x) = -x^2 + 20x$.</p><p><b>Paso 3.</b> Abre hacia abajo, así que el vértice es el máximo: $x_v = -\dfrac{20}{2\cdot(-1)} = 10$.</p><p><b>Paso 4.</b> Lados 10 y 10: $A(10) = 100$ m².</p><p><b>Por qué no las otras:</b> 400 m² usa lado 20 (todo el perímetro en dos lados); 40 m² confunde área con perímetro; 96 m² ($8\cdot 12$) es posible, pero no es el máximo.</p>`, conc: 'Perímetro fijo, área máxima: cuadrado.' },
     { enun: r`<p>Se quiere cercar un corral rectangular junto a un muro, con 60 m de malla para los otros tres lados. Si los lados perpendiculares al muro miden $x$, el área es $A(x) = x(60 - 2x)$.</p><p>¿Cuál es el área máxima?</p>`,
       alts: ['450 m²', '225 m²', '900 m²', '400 m²'], ok: 0,
-      sol: r`<p>$A(x) = -2x^2 + 60x$, $x_v = -\dfrac{60}{2\cdot(-2)} = 15$. Lados 15 y 30: $A = 450$ m².</p><p>225 m² es un cuadrado de 15; 900 m² es un cuadrado de 30; 400 m² ($x = 20$, lados 20 y 20) no es el máximo.</p>`, conc: 'Junto a un muro el máximo no es cuadrado.' },
+      sol: r`<p><b>Paso 1.</b> Multiplica para ver $a$ y $b$: $A(x) = 60x - 2x^2 = -2x^2 + 60x$.</p><p><b>Paso 2.</b> Vértice: $x_v = -\dfrac{60}{2\cdot(-2)} = -\dfrac{60}{-4} = 15$.</p><p><b>Paso 3.</b> Los lados miden 15 y $60 - 2\cdot 15 = 30$.</p><p><b>Paso 4.</b> Área máxima: $15\cdot 30 = 450$ m².</p><p><b>Por qué no las otras:</b> 225 m² es un cuadrado de 15; 900 m² es un cuadrado de 30; 400 m² ($x = 20$, lados 20 y 20) no es el máximo.</p>`, conc: 'Junto a un muro el máximo no es cuadrado.' },
     { enun: r`<p>La ganancia de una empresa, en miles de pesos, al vender $x$ unidades es $G(x) = -x^2 + 40x - 300$.</p><p>¿Cuántas unidades debe vender para obtener la ganancia máxima?</p>`,
       alts: ['20', '100', '10', '40'], ok: 0,
-      sol: r`<p>$x_v = -\dfrac{40}{2\cdot(-1)} = 20$ unidades.</p><p>100 es la ganancia máxima, $G(20)$; 10 es un cero; 40 es $-\dfrac{b}{a}$, sin el 2.</p>`, conc: '¿Cuántas unidades? = x del vértice.' },
+      sol: r`<p><b>Paso 1.</b> "¿Cuántas unidades?" pide una $x$: la del vértice.</p><p><b>Paso 2.</b> $a = -1$, $b = 40$: $x_v = -\dfrac{40}{2\cdot(-1)} = -\dfrac{40}{-2} = 20$ unidades.</p><p><b>Por qué no las otras:</b> 100 es la ganancia máxima, $G(20)$, una $y$; 10 es un cero; 40 es $-\dfrac{b}{a}$, sin el 2.</p>`, conc: '¿Cuántas unidades? = x del vértice.' },
     { enun: r`<p>La ganancia de una empresa, en miles de pesos, al vender $x$ unidades es $G(x) = -x^2 + 40x - 300$.</p><p>¿Para qué cantidades de unidades vendidas la ganancia es positiva?</p>`,
       alts: ['Entre 10 y 30 unidades, sin incluirlas.', 'Menos de 10 unidades.', 'Más de 30 unidades.', 'Solo con 20 unidades.'], ok: 0,
-      sol: r`<p>$G(x) = 0 \Rightarrow x^2 - 40x + 300 = 0 \Rightarrow (x - 10)(x - 30) = 0$. Como la parábola abre hacia abajo, está sobre el eje entre los ceros: $10 < x < 30$.</p><p>Fuera de ese intervalo la ganancia es negativa; con 20 unidades es máxima, pero no es la única positiva.</p>`, conc: 'a < 0: positiva entre los ceros.' },
+      sol: r`<p><b>Paso 1. Busca los ceros.</b> $-x^2 + 40x - 300 = 0$. Multiplicando todo por $-1$: $x^2 - 40x + 300 = 0$.</p><p><b>Paso 2.</b> Dos números con producto $300$ y suma $-40$: $-10$ y $-30$. Queda $(x - 10)(x - 30) = 0$: $x = 10$ y $x = 30$.</p><p><b>Paso 3. Mira la forma.</b> $a = -1$: abre hacia abajo, como una colina. La colina está sobre el eje $X$ entre los dos ceros: $10 < x < 30$.</p><p><b>Comprobación:</b> $G(20) = 100 > 0$ ✔ y $G(5) = -25 + 200 - 300 = -125 < 0$ ✔.</p><p><b>Por qué no las otras:</b> fuera de ese intervalo la ganancia es negativa; con 20 unidades es máxima, pero no es la única positiva.</p>`, conc: 'a < 0: positiva entre los ceros.' },
     { enun: r`<p>La trayectoria de un chorro de agua se modela con $h(x) = -0{,}1x^2 + 2x$, donde $x$ es la distancia horizontal y $h$ la altura, ambas en metros.</p><p>¿A qué distancia horizontal cae el agua al suelo?</p>`,
       alts: ['20 m', '10 m', '2 m', '40 m'], ok: 0,
-      sol: r`<p>$h(x) = 0 \Rightarrow x(-0{,}1x + 2) = 0 \Rightarrow x = 0$ o $x = 20$. Cae a los 20 m.</p><p>10 m es donde alcanza la altura máxima; 2 es el coeficiente $b$; 40 m duplica el resultado.</p>`, conc: 'Alcance = cero distinto de 0.' },
+      sol: r`<p><b>Paso 1.</b> Caer al suelo es altura cero: $-0{,}1x^2 + 2x = 0$.</p><p><b>Paso 2.</b> Saca $x$ factor común: $x(-0{,}1x + 2) = 0$.</p><p><b>Paso 3.</b> $x = 0$ (donde sale el chorro) o $-0{,}1x + 2 = 0 \Rightarrow 0{,}1x = 2 \Rightarrow x = 20$.</p><p><b>Paso 4.</b> Cae a los 20 m.</p><p><b>Por qué no las otras:</b> 10 m es donde alcanza la altura máxima (la mitad del camino); 2 es el coeficiente $b$; 40 m duplica el resultado.</p>`, conc: 'Alcance = cero distinto de 0.' },
     { enun: r`<p>El área de un cuadrado de lado $\ell$ es $A(\ell) = \ell^2$.</p><p>Si el lado se triplica, ¿qué le ocurre al área?</p>`,
       alts: ['Se multiplica por 9.', 'Se multiplica por 3.', 'Se multiplica por 6.', 'Se multiplica por 27.'], ok: 0,
-      sol: r`<p>$A(3\ell) = (3\ell)^2 = 9\ell^2$: se multiplica por 9.</p><p>Por 3 supone que es lineal; por 6 multiplica $3\cdot 2$; por 27 es lo que pasa con el volumen de un cubo.</p>`, conc: 'Cuadrática: si x se multiplica por k, f se multiplica por k².' },
+      sol: r`<p><b>Paso 1.</b> El nuevo lado es $3\ell$. Su área: $A(3\ell) = (3\ell)^2 = 3\ell\cdot 3\ell = 9\ell^2$.</p><p><b>Paso 2.</b> Comparando con $\ell^2$, el área se multiplicó por 9.</p><p><b>Con números:</b> lado 2 da área 4; lado 6 da área 36, y $36 = 9\cdot 4$. ✔</p><p><b>Por qué no las otras:</b> por 3 supone que es lineal; por 6 multiplica $3\cdot 2$; por 27 es lo que pasa con el volumen de un cubo.</p>`, conc: 'Cuadrática: si x se multiplica por k, f se multiplica por k².' },
     { enun: r`<p>La distancia de frenado de un auto, en metros, es aproximadamente $d(v) = \dfrac{v^2}{100}$, con $v$ en km/h.</p><p>¿Cuál es la distancia de frenado a 80 km/h?</p>`,
       alts: ['64 m', '0,8 m', '6,4 m', '160 m'], ok: 0,
-      sol: r`<p>$d(80) = \dfrac{6400}{100} = 64$ m.</p><p>0,8 m olvida el cuadrado; 6,4 m divide por 1000; 160 m es $2\cdot 80$.</p>`, conc: 'Evalúa primero la potencia.' },
+      sol: r`<p><b>Paso 1.</b> Reemplaza $v = 80$ y calcula primero la potencia: $80^2 = 6400$.</p><p><b>Paso 2.</b> Divide: $\dfrac{6400}{100} = 64$ m.</p><p><b>Por qué no las otras:</b> 0,8 m olvida el cuadrado; 6,4 m divide por 1000; 160 m es $2\cdot 80$.</p>`, conc: 'Evalúa primero la potencia.' },
     { enun: r`<p>Un objeto se deja caer desde 80 m de altura. Su altura es $h(t) = 80 - 5t^2$, con $t$ en segundos.</p><p>¿Cuánto tarda en llegar al suelo?</p>`,
       alts: ['4 s', '16 s', '8 s', '15 s'], ok: 0,
-      sol: r`<p>$80 - 5t^2 = 0 \Rightarrow t^2 = 16 \Rightarrow t = 4$ (el tiempo es positivo).</p><p>16 s es $t^2$, falta la raíz; 8 s divide 80 por 10; 15 s resta 5 y divide por 5.</p>`, conc: 'Despeja t² y saca raíz positiva.' },
+      sol: r`<p><b>Paso 1.</b> Llegar al suelo es altura cero: $80 - 5t^2 = 0$.</p><p><b>Paso 2.</b> Pasa el $5t^2$ al otro lado: $5t^2 = 80$.</p><p><b>Paso 3.</b> Divide por 5: $t^2 = 16$.</p><p><b>Paso 4.</b> Raíz: $t = 4$ o $t = -4$. El tiempo es positivo: 4 s.</p><p><b>Por qué no las otras:</b> 16 s es $t^2$, falta la raíz; 8 s divide 80 por 10; 15 s resta 5 y divide por 5.</p>`, conc: 'Despeja t² y saca raíz positiva.' },
     { enun: r`<p>En una reunión, cada persona saluda una vez a cada una de las demás. Con $n$ personas, la cantidad de saludos es $S(n) = \dfrac{n(n - 1)}{2}$.</p><p>Si hubo 45 saludos, ¿cuántas personas había?</p>`,
       alts: ['10', '9', '15', '90'], ok: 0,
-      sol: r`<p>$\dfrac{n(n - 1)}{2} = 45 \Rightarrow n^2 - n - 90 = 0 \Rightarrow (n - 10)(n + 9) = 0$, $n = 10$.</p><p>9 es $n - 1$; 15 es $\dfrac{45}{3}$; 90 es $n(n - 1)$, el doble de los saludos.</p>`, conc: 'Plantea la ecuación cuadrática y descarta la solución negativa.' }
+      sol: r`<p><b>Paso 1.</b> Nos dan el resultado, así que igualamos: $\dfrac{n(n - 1)}{2} = 45$.</p><p><b>Paso 2.</b> El 2 pasa multiplicando: $n(n - 1) = 90$, o sea $n^2 - n - 90 = 0$.</p><p><b>Paso 3.</b> Dos números con producto $-90$ y suma $-1$: $-10$ y $9$. Queda $(n - 10)(n + 9) = 0$.</p><p><b>Paso 4.</b> $n = 10$ o $n = -9$. No hay personas negativas: había 10.</p><p><b>Comprobación:</b> $\dfrac{10\cdot 9}{2} = 45$. ✔</p><p><b>Por qué no las otras:</b> 9 es $n - 1$; 15 es $\dfrac{45}{3}$; 90 es $n(n - 1)$, el doble de los saludos.</p>`, conc: 'Plantea la ecuación cuadrática y descarta la solución negativa.' }
   ]
 }
 ];
@@ -584,6 +670,6 @@ Object.assign(SLIDE_FIGS, {
   lineal_afin: { 1: { type: 'plot', x: [-3, 3], y: [-4, 6], fns: [{ f: x => 2 * x, lab: 'm = 2', at: [1.7, 5.4] }, { f: x => -x + 1, lab: 'm = −1', at: [-2.9, 5.4] }, { f: () => 3, lab: 'm = 0', at: [1.9, 3.5] }] } },
   cuadratica_grafico: {
     0: { type: 'plot', x: [-3, 3], y: [-5, 9], fns: [{ f: x => x * x, lab: 'x²', at: [2.4, 4.6] }, { f: x => 3 * x * x, lab: '3x²', at: [0.9, 8.4] }, { f: x => -x * x + 4, lab: '−x² + 4', at: [-2.9, -3.6] }] },
-    2: { type: 'plot', x: [-5, 3], y: [-3, 7], fns: [{ f: x => x * x + 2 * x - 1 }], vline: -1, marks: [[-1, -2, 'vértice'], [1, 2], [-3, 2]] }
+    3: { type: 'plot', x: [-5, 3], y: [-3, 7], fns: [{ f: x => x * x + 2 * x - 1 }], vline: -1, marks: [[-1, -2, 'vértice'], [1, 2], [-3, 2]] }
   }
 });
