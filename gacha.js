@@ -173,7 +173,25 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .g-dots i { width: 9px; height: 9px; border-radius: 50%; background: #ececf0; border: 1px solid rgba(0,0,0,.12); }
   .v-oro svg { filter: sepia(1) saturate(4) hue-rotate(-12deg) brightness(1.08) drop-shadow(0 0 5px #f5c542); }
   .v-diamante svg { filter: sepia(1) saturate(3) hue-rotate(150deg) brightness(1.18) drop-shadow(0 0 5px #7fe0ff); }
-  .v-platino svg { filter: grayscale(1) brightness(1.7) contrast(1.05) drop-shadow(0 0 5px #9a9aa2); }
+  .v-platino svg { filter: grayscale(1) brightness(1.8) contrast(1.1) drop-shadow(0 0 3px #fff) drop-shadow(0 0 9px #e4e9ff) drop-shadow(0 0 18px #b8c3ff); animation: g-pt 1.8s ease-in-out infinite; }
+  svg[aria-label="Gato platino"] { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 9px #e4e9ff) drop-shadow(0 0 18px #b8c3ff); }
+  @keyframes g-pt { 50% { filter: grayscale(1) brightness(2.1) contrast(1.1) drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px #eef1ff) drop-shadow(0 0 30px #c6ceff); } }
+  /* aura que gira detrás del gato y destellos que titilan alrededor */
+  .v-platino:not(.g-gato) { position: relative; }
+  .v-platino { isolation: isolate; }
+  .v-platino::before, .v-platino::after { content: ''; position: absolute; pointer-events: none; z-index: -1; }
+  .v-platino::before { inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.95), rgba(225,232,255,.55) 30%, transparent 62%), repeating-conic-gradient(rgba(255,255,255,.7) 0 6deg, transparent 6deg 24deg); -webkit-mask: radial-gradient(circle, #000 30%, transparent 70%); mask: radial-gradient(circle, #000 30%, transparent 70%); animation: g-gira 7s linear infinite; }
+  .v-platino::after { inset: -6%; z-index: 1; background:
+      radial-gradient(circle at 14% 20%, #fff 0 2px, rgba(230,236,255,.7) 3px, transparent 7px),
+      radial-gradient(circle at 86% 16%, #fff 0 2.5px, rgba(230,236,255,.7) 4px, transparent 8px),
+      radial-gradient(circle at 78% 82%, #fff 0 2px, rgba(230,236,255,.7) 3px, transparent 7px),
+      radial-gradient(circle at 20% 78%, #fff 0 1.5px, rgba(230,236,255,.7) 2.5px, transparent 6px),
+      radial-gradient(circle at 50% 4%, #fff 0 1.5px, rgba(230,236,255,.7) 2.5px, transparent 6px),
+      radial-gradient(circle at 96% 50%, #fff 0 1.5px, rgba(230,236,255,.7) 2.5px, transparent 6px),
+      radial-gradient(circle at 4% 50%, #fff 0 2px, rgba(230,236,255,.7) 3px, transparent 7px);
+    animation: g-chispa 1.1s ease-in-out infinite alternate; }
+  @keyframes g-chispa { from { opacity: .25; transform: scale(.94) rotate(-3deg); } to { opacity: 1; transform: scale(1.06) rotate(3deg); } }
+  .g-card.v-platino { background: linear-gradient(160deg, #fff, #eef1fa); box-shadow: inset 0 0 0 1px var(--rc), 0 0 16px rgba(200,210,255,.9); }
   .v-arcoiris svg { animation: g-rb 2.5s linear infinite; }
   @keyframes g-rb { from { filter: saturate(1.8) hue-rotate(0deg) drop-shadow(0 0 5px #ff7ae0); } to { filter: saturate(1.8) hue-rotate(360deg) drop-shadow(0 0 5px #ff7ae0); } }
   .g-modal { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.55); display: grid; place-items: center; padding: 16px; }
@@ -257,7 +275,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   @keyframes g-shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
   @keyframes g-gira { to { transform: rotate(360deg); } }
   @keyframes g-flash { 15% { opacity: .9; } 100% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div, .v-platino svg, .v-platino::before, .v-platino::after { animation: none; } }
 </style>`);
 
 const vista = {};   // gato -> variante mostrada en la galería (se elige con los puntitos)
