@@ -18,7 +18,8 @@ const VAR = [
   { id: 'oro',      name: 'Oro',      w: 15, dot: '#f5c542' },
   { id: 'diamante', name: 'Diamante', w: 9,  dot: '#7fe0ff' },
   { id: 'arcoiris', name: 'Arcoíris', w: 5,  dot: 'linear-gradient(90deg,#ff5e5e,#ffe45c,#5fd97a,#4fa8ff,#b57be0)' },
-  { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' }
+  { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' },
+  { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' }   // estilo en tamagotchi.js
 ];
 // [id, nombre, cuerpo, sombra, patrón]; patrón: liso, rayas, manchas, calico, siames, tuxedo
 const GATOS = [
@@ -100,7 +101,7 @@ const GACHA_VAR = [[1, 50], [2, 100]];
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
    Un diamante de una rareza ≈ un normal de la siguiente. Valor esperado de una tirada ≈ ⭐ 7, bajo el costo de 10:
    vender lo que sale nunca da más estrellas de las que se gastaron. */
-const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
+const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
 const FUS_COST = [5, 15, 40, 100, 250];   // por rareza de los tres gatos, × VAR_VAL de la variante más baja
 const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c); return { g, v: VAR.findIndex(x => x.id === v), r: RAR.indexOf(g.rar) }; };
 const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[GATOS.indexOf(p.g) % 5])); };
@@ -118,12 +119,58 @@ function fusion(keys) {
   const ps = keys.map(pieza), r = ps[0].r, v = Math.min(...ps.map(p => p.v));
   if (ps.some(p => p.r !== r)) return { err: 'Los tres gatos deben ser de la misma rareza.' };
   const cost = Math.round(FUS_COST[r] * VAR_VAL[v]);
-  if (keys.every(k => k === keys[0])) return v === VAR.length - 1 ? { err: 'Platino es la variante más alta: no puede subir más.' } : { tipo: 'var', g: ps[0].g, v: v + 1, cost };
+  if (keys.every(k => k === keys[0])) return v === VAR.length - 1 ? { err: `${VAR[VAR.length - 1].name} es la variante más alta: no puede subir más.` } : { tipo: 'var', g: ps[0].g, v: v + 1, cost };
   if (r === RAR.length - 1) return { err: 'Mítico es la rareza más alta: aquí solo sirven tres iguales para subir la variante.' };
   return { tipo: 'linea', r: r + 1, v, cost };
 }
 let fus = [];   // claves "gato:variante" puestas en la máquina de fusión
 const libres = (col, k) => (col[k] || 0) - fus.filter(x => x === k).length;
+
+/* ---------- gatos que te acompañan: hasta ACOMP_MAX de la colección, abajo a la izquierda ----------
+   Cada uno tiene ACOMP_P de probabilidad de multiplicar un acierto por multGato: crece con rareza + variante
+   (r + v de 0 a 9), de ×2 (común normal) a ×100 (mítico galáctico), 2 · 50^((r + v) / 9).
+   Si salen los dos, se multiplican entre sí, con tope ×MULT_MAX. */
+const ACOMP_MAX = 2, ACOMP_P = 0.5, MULT_MAX = 100;
+const multGato = k => { const p = pieza(k); return Math.round(2 * 50 ** ((p.r + p.v) / 9)); };
+const acompanantes = p => (p.acomp || []).filter(k => p.col && p.col[k]);   // vendido o fusionado ya no acompaña
+// estrellas de un acierto (antes del ×evento); anima a los gatos que multiplicaron
+function estrellasAcierto() {
+  const sale = acompanantes(store.get()).filter(() => Math.random() < ACOMP_P);
+  sale.forEach(k => {
+    const el = document.querySelector(`#gAcomp [data-k="${k}"]`); if (!el) return;
+    el.animate([{ transform: 'none' }, { transform: 'translateY(-16px) scale(1.15)' }, { transform: 'none' }], { duration: 500 });
+    el.insertAdjacentHTML('beforeend', `<span class="g-x">×${multGato(k)}</span>`); setTimeout(() => el.querySelector('.g-x')?.remove(), 1200);
+  });
+  return Math.min(MULT_MAX, sale.reduce((m, k) => m * multGato(k), 1));
+}
+function renderAcomp() {
+  let el = $('gAcomp');
+  if (!el) { el = document.createElement('div'); el.id = 'gAcomp'; el.className = 'g-acomp'; document.body.appendChild(el); }
+  el.innerHTML = acompanantes(store.get()).map(k => { const pz = pieza(k);
+    return `<div class="g-ac v-${VAR[pz.v].id}" data-k="${k}" title="${pz.g.name} ${VAR[pz.v].name.toLowerCase()}: ${ACOMP_P * 100} % de que un acierto valga ×${multGato(k)}">${gatoSVG(pz.g, 60)}<b>×${multGato(k)}</b></div>`; }).join('');
+}
+// clic en un gato de la colección: acompañar, vender o llevar a la fusión
+function menuGato(k) {
+  const p = store.get(), pz = pieza(k), v = VAR[pz.v], ac = acompanantes(p), esta = ac.includes(k);
+  const m = modal(pz.g.name, `<div class="g-rev"><div class="pop v-${v.id}">${gatoSVG(pz.g, 130)}</div><h3>${pz.g.name}</h3>
+    <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}
+    <p>Tienes ${p.col[k]}. Si te acompaña, cada acierto tiene ${ACOMP_P * 100} % de probabilidad de valer <b>×${multGato(k)}</b>.</p>
+    <div class="g-menu"><button class="btn btn-primary" data-a="acomp">${esta ? '🐾 Dejar de acompañar' : ac.length >= ACOMP_MAX ? `🐾 Acompañar (sale ${pieza(ac[0]).g.name})` : '🐾 Acompañar'}</button>
+      <button class="btn btn-ghost" data-a="vende">Vender ⭐ ${valor(k)}</button>
+      <button class="btn btn-ghost" data-a="fus" ${fus.length >= 3 || libres(p.col, k) < 1 ? 'disabled' : ''}>⚗️ Fusionar</button>
+      <button class="btn btn-ghost" data-a="x">Cerrar</button></div></div>`);
+  const cerrar = () => { m.remove(); document.removeEventListener('keydown', esc); };
+  const esc = e => { if (e.key === 'Escape') cerrar(); };
+  document.addEventListener('keydown', esc);
+  m.addEventListener('click', e => { if (e.target === m) cerrar(); });
+  m.querySelectorAll('[data-a]').forEach(b => b.addEventListener('click', () => {
+    cerrar();
+    if (b.dataset.a === 'acomp') { const q = store.get(); q.acomp = esta ? ac.filter(x => x !== k) : [...ac, k].slice(-ACOMP_MAX); store.set(q); renderGacha(q); }
+    if (b.dataset.a === 'vende') vender(k);
+    if (b.dataset.a === 'fus') { fus.push(k); renderGacha(store.get()); }
+  }));
+  m.querySelector('[data-a="acomp"]').focus();
+}
 
 /* ---------- música: chiptune con Web Audio, sin archivos ---------- */
 let AC = null;
@@ -222,6 +269,13 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   @keyframes g-pop { from { transform: scale(.2) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
   .g-card .g-dots button { width: 13px; height: 13px; border-radius: 50%; border: 1px solid rgba(0,0,0,.18); cursor: pointer; padding: 0; }
   .g-card .g-dots button.on { outline: 2px solid var(--ink); outline-offset: 1px; }
+  .g-card.ac { background: #fff7f0; }
+  .g-acbadge { display: inline-block; margin-top: 6px; font-size: 11.5px; font-weight: 700; color: #c4540a; background: var(--tint); padding: 2px 8px; border-radius: 99px; }
+  .g-menu { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .g-acomp { position: fixed; left: 14px; bottom: 14px; z-index: 55; display: flex; gap: 10px; }
+  .g-ac { position: relative; background: rgba(255,255,255,.85); border: 1px solid var(--line); border-radius: 16px; padding: 6px 6px 4px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+  .g-ac b { display: block; font-size: 13px; color: #c4540a; }
+  .g-x { position: absolute; left: 50%; top: -8px; translate: -50% 0; font-weight: 800; font-size: 20px; color: #e8680c; text-shadow: 0 1px 0 #fff; animation: t-sube 1.2s ease-out forwards; }
   .g-acts { display: flex; gap: 4px; justify-content: center; margin-top: 8px; }
   .g-acts button { font: inherit; font-size: 11.5px; font-weight: 600; border: none; border-radius: 99px; padding: 4px 8px; cursor: pointer; background: var(--tint); color: #c4540a; white-space: nowrap; }
   .g-acts button:disabled { opacity: .4; cursor: default; }
@@ -294,7 +348,7 @@ function renderGacha(prog) {
   const f = fusion(fus);
   const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
-    ${eventoActivo() ? `<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: ${evTxt()}.</div>` : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Son solo de colección: no dan pistas. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
+    ${eventoActivo() ? `<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: ${evTxt()}.</div>` : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Clic en un gato de tu colección para que te acompañe (hasta ${ACOMP_MAX}), venderlo o fusionarlo. Cada respuesta correcta da ⭐ 1 (multiplicada por los gatos que te acompañan); bonos: 5 de 5 en un cuestionario da ⭐ 50, y en el ensayo 20, 19 y 18 correctas dan ⭐ 200, 150 y 100. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>🎰 Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
@@ -305,8 +359,8 @@ function renderGacha(prog) {
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
       Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(' y ')}; entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
-      Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
-    <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Agrega gatos con «Fusionar» en la galería; clic en una casilla para sacarlo.</div>
+      Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino → galáctico). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
+    <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Clic en un gato de la galería y «Fusionar» para agregarlo; clic en una casilla para sacarlo.</div>
       <div class="g-slots">${[0, 1, 2].map(i => { const k = fus[i]; if (!k) return `<div class="g-slot">+</div>`; const pz = pieza(k);
         return `<button class="g-slot lleno v-${VAR[pz.v].id}" style="--rc:${pz.g.rar.color}" data-quita="${i}" title="Sacar ${pz.g.name} ${VAR[pz.v].name.toLowerCase()}">${gatoSVG(pz.g, 60)}</button>`; }).join('')}
         <div class="g-res">${resTxt}${f.cost ? ` Costo: ⭐ ${f.cost}.` : ''}</div>
@@ -316,18 +370,18 @@ function renderGacha(prog) {
         const vs = tiene(g);
         if (!vs.length) return `<div class="g-card">${gatoSVG(g, 72, true)}<b>???</b><small>sin descubrir</small></div>`;
         const v = vs.find(x => x.id === vista[g.id]) || vs[0], k = g.id + ':' + v.id;
-        return `<div class="g-card si v-${v.id}" style="--rc:${r.color}">${gatoSVG(g, 72)}<b>${g.name}</b><small>${v.name} · tienes ${col[k]}</small>
+        return `<div class="g-card si v-${v.id} ${acompanantes(prog).includes(k) ? 'ac' : ''}" style="--rc:${r.color}" data-card="${k}" role="button" tabindex="0" aria-label="${g.name} ${v.name}: opciones">${gatoSVG(g, 72)}<b>${g.name}</b><small>${v.name} · tienes ${col[k]} · ×${multGato(k)}</small>
           <span class="g-dots">${VAR.map(x => col[g.id + ':' + x.id] ? `<button class="${x === v ? 'on' : ''}" style="background:${x.dot}" data-ver="${g.id}:${x.id}" title="${x.name} ×${col[g.id + ':' + x.id]}" aria-label="Ver ${x.name}"></button>` : `<i title="${x.name} (falta)"></i>`).join('')}</span>
-          <span class="g-acts"><button data-vende="${k}" title="Vender uno">Vender ⭐ ${valor(k)}</button><button data-fus="${k}" ${fus.length >= 3 || libres(col, k) < 1 ? 'disabled' : ''}>Fusionar</button></span></div>`;
+          ${acompanantes(prog).includes(k) ? '<span class="g-acbadge">🐾 te acompaña</span>' : ''}</div>`;
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
   el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => gachaPrem(GACHA_VAR.find(r => r[0] === +b.dataset.gvar))));
   $('gFarm').addEventListener('click', granja);
   $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
-  el.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', () => { const [g, v] = b.dataset.ver.split(':'); vista[g] = v; renderGacha(store.get()); }));
-  el.querySelectorAll('[data-vende]').forEach(b => b.addEventListener('click', () => vender(b.dataset.vende)));
-  el.querySelectorAll('[data-fus]').forEach(b => b.addEventListener('click', () => { fus.push(b.dataset.fus); renderGacha(store.get()); }));
+  el.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); const [g, v] = b.dataset.ver.split(':'); vista[g] = v; renderGacha(store.get()); }));
+  el.querySelectorAll('[data-card]').forEach(c => { const abre = () => menuGato(c.dataset.card); c.addEventListener('click', abre); c.addEventListener('keydown', e => { if (e.key === 'Enter') abre(); }); });
+  renderAcomp();
   el.querySelectorAll('[data-quita]').forEach(b => b.addEventListener('click', () => { fus.splice(+b.dataset.quita, 1); renderGacha(store.get()); }));
 }
 
