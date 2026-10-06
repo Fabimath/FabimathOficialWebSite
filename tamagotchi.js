@@ -147,9 +147,9 @@ document.body.insertAdjacentHTML('beforeend', `<div class="tama" id="tama" aria-
     <div class="btns t-borde"><button class="pxc" id="tCome" title="Darle churu" aria-label="Darle churu">${pxSVG(CHURU, C_CHURU, 2.4)}</button><button class="pxc" id="tLimpia" title="Limpiar popó" aria-label="Limpiar popó">${pxSVG(ESCOBA, C_ESCOBA, 2.4)}</button><button class="pxc" id="tGuarda" title="Guardar en la colección (da 🐟 según su rareza)" aria-label="Guardar gatito">${pxSVG(CAJA, C_CAJA, 3)}</button></div></div>
   <div class="info-w t-borde"><div class="info pxc" id="tInfo"></div></div><div id="tGlobo"></div></div>`);
 
-/* racha: cada RACHA correctas seguidas suma 1 al contador de evolución; con evoMeta(v) el gato sube a la variante siguiente.
-   La meta se duplica en cada variante: normal → oro 10, oro → diamante 20, … platino → galáctico 160. */
-const RACHA = 10, evoMeta = v => 10 * 2 ** v;
+/* racha: cada RACHA correctas seguidas suma 1 al contador de evolución; con evoMeta(v) rachas el gato sube a la variante siguiente.
+   Las rachas que pide se duplican en cada variante: normal → oro 10, oro → diamante 20, … platino → galáctico 160. */
+const RACHA = 2, evoMeta = v => 10 * 2 ** v;
 const MSG_BIEN = ['¡Miau! Así se hace 🐾', '¡Eres un crack!', '¡Purrfecto!', '¡Esa estuvo buenísima!', '¡Sigue así, humano!', '¡Me tienes orgulloso!', '¡Bien ahí, otra más!', '¡Cerebro de gato galáctico!'];
 const MSG_MAL = ['Tranqui, de los errores se aprende 🐾', '¡Tú puedes! La próxima sale', 'Respira y lee con calma', 'Casi… revisa la pauta y sigue', 'Yo creo en ti, miau', 'Equivocarse también es practicar', 'Ánimo, que yo te acompaño'];
 const azar = a => a[Math.random() * a.length | 0];

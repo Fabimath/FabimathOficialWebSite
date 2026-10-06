@@ -14,6 +14,7 @@
 <script src="paes_data.js"></script>
 <script src="paes_numeros.js"></script>
 <script src="paes_funciones.js"></script>
+<script src="paes_variantes.js"></script>
 <script src="gacha.js"></script>
 <style>
   :root {
@@ -584,8 +585,8 @@ const CAT_PX = [
 const AYUDANTES = { gato: 10, oro: 30, diamante: 60, arcoiris: 100, platino: 160 };
 /* Evento por tiempo limitado (horas UTC): ×x en todas las estrellas, regalo único al entrar con la cuenta
    (estrellas y, si giro, un giro de ruleta con esa variante), y gachapón/ruletas desde la rareza rar y la variante vari (índices de RAR y VAR en gacha.js).
-   Para otro evento: cambiar id, fechas, nombre, desc (opcional), x, regalo, giro, rar y vari. */
-const EVENTO = { id: 'evento_2026-10-06_galacticos', nombre: 'Gatitos galácticos: ¡nueva rareza!', inicio: '2026-10-06T14:00:00Z', fin: '2026-10-10T02:59:00Z', regalo: 50, giro: 5, x: 2, rar: 0, vari: 0,
+   Para otro evento: cambiar id, fechas, nombre, desc (opcional), x, regalo, pez (pescados de regalo, opcional), giro, rar y vari. */
+const EVENTO = { id: 'evento_2026-10-06_galacticos', nombre: 'Gatitos galácticos: ¡nueva rareza!', inicio: '2026-10-06T14:00:00Z', fin: '2026-10-10T02:59:00Z', regalo: 50, pez: 30, giro: 5, x: 2, rar: 0, vari: 0,
   desc: 'Llegó la variante Galáctica: gatos morados con estrellas y aura rosa que pueden valer hasta ×100. Nacen de los huevos de la nueva consola de gatitos (a la derecha), evolucionan con rachas de respuestas correctas y te pueden acompañar.' };
 const eventoActivo = () => { const t = Date.now(); return t >= Date.parse(EVENTO.inicio) && t < Date.parse(EVENTO.fin); };
 const xEvento = () => eventoActivo() ? EVENTO.x : 1;
@@ -595,7 +596,7 @@ function pintaEvento() {
   if (!on) return clearInterval(pintaEvento.t);
   const s = Math.max(0, Math.round((Date.parse(EVENTO.fin) - Date.now()) / 1000));
   const queda = s >= 86400 ? `${s / 86400 | 0} d ${(s / 3600 | 0) % 24} h` : s >= 3600 ? `${s / 3600 | 0} h ${(s / 60 | 0) % 60} min` : `${s / 60 | 0}:${String(s % 60).padStart(2, '0')}`;
-  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${queda}</b><br>${EVENTO.desc ? EVENTO.desc + '<br>' : ''}Todas las estrellas valen ×${EVENTO.x} (aciertos y bonos), ⭐ ${EVENTO.regalo}${EVENTO.giro ? ` y una ruleta ${VAR[EVENTO.giro].name.toLowerCase()}` : ''} de regalo al entrar con tu cuenta${evRar() || evVar() ? `, y ${evTxt()}` : ''}.`;
+  el.innerHTML = `<b>🎉 ${EVENTO.nombre} · termina en ${queda}</b><br>${EVENTO.desc ? EVENTO.desc + '<br>' : ''}Todas las estrellas valen ×${EVENTO.x} (aciertos y bonos), ⭐ ${EVENTO.regalo}${EVENTO.pez ? `, 🐟 ${EVENTO.pez}` : ''}${EVENTO.giro ? ` y una ruleta ${VAR[EVENTO.giro].name.toLowerCase()}` : ''} de regalo al entrar con tu cuenta${evRar() || evVar() ? `, y ${evTxt()}` : ''}.`;
 }
 pintaEvento.t = setInterval(pintaEvento, 1000);
 const BONO_ENSAYO = { 20: 200, 19: 150, 18: 100 };
@@ -824,9 +825,14 @@ onAuthStateChanged(auth, async u => {
         p.pts = (p.pts || 0) + n; delete p.cats; delete p.cat; store.set(p);
         alert(`Los gatos ayudantes se retiraron: te devolvimos ⭐ ${n}. Ahora puedes elegir hasta 2 gatos de tu colección para que te acompañen.`);
       }
+      // los pescados van con su propia marca: así también los recibe quien ya cobró las estrellas del evento
+      if (eventoActivo() && EVENTO.pez && !(nube.regalos || {})[EVENTO.id + ':pez']) {
+        const p = store.get(); sumaPez(p, EVENTO.pez); p.regalos = { ...p.regalos, [EVENTO.id + ':pez']: 1 }; store.set(p);
+        if ((nube.regalos || {})[EVENTO.id]) alert(`🎉 ${EVENTO.nombre}: te regalamos 🐟 ${EVENTO.pez} para comprar huevos.`);
+      }
       if (eventoActivo() && !(nube.regalos || {})[EVENTO.id]) {
         const p = store.get(); p.pts = (p.pts || 0) + EVENTO.regalo; p.regalos = { ...p.regalos, [EVENTO.id]: 1 }; store.set(p);
-        alert(`🎉 ${EVENTO.nombre}: te regalamos ⭐ ${EVENTO.regalo}${EVENTO.giro ? ` y un giro de ruleta donde todos los gatos salen ${VAR[EVENTO.giro].name.toLowerCase()}` : ''}.`);
+        alert(`🎉 ${EVENTO.nombre}: te regalamos ⭐ ${EVENTO.regalo}${EVENTO.pez ? `, 🐟 ${EVENTO.pez}` : ''}${EVENTO.giro ? ` y un giro de ruleta donde todos los gatos salen ${VAR[EVENTO.giro].name.toLowerCase()}` : ''}.`);
         if (EVENTO.giro) girarRuleta(null, EVENTO.giro);
       }
     } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
