@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informe de errores · PAES Fabimath</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<!-- bancos de preguntas: definen TOPICS, TOPICS_NUM, TOPICS_FUN como globales -->
+<script src="../paes_data.js"></script>
+<script src="../paes_numeros.js"></script>
+<script src="../paes_funciones.js"></script>
+<style>
+  :root { --ink:#1b1b1f; --ink-3:#6b6b74; --line:#e3e3ea; --paper:#fff; --royal:#2a4bd7; --coral:#e8342a; --good:#0d6b4a; --soft:#f6f6fb; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; color:var(--ink); background:#ececf2; }
+  .wrap { max-width:900px; margin:0 auto; padding:24px 20px 80px; }
+  .bar { display:flex; gap:10px; align-items:center; flex-wrap:wrap; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:22px; }
+  .bar input, .bar button { font:inherit; padding:8px 12px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+  .bar button { cursor:pointer; background:var(--royal); color:#fff; border-color:var(--royal); }
+  .bar button.ghost { background:#fff; color:var(--ink); }
+  .bar .who { margin-left:auto; color:var(--ink-3); font-size:14px; }
+  .doc { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:34px 38px; }
+  h1 { font-size:26px; margin:0 0 2px; }
+  .meta { color:var(--ink-3); font-size:14px; margin-bottom:22px; }
+  h2 { font-size:19px; margin:30px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--line); }
+  table { width:100%; border-collapse:collapse; font-size:14px; margin:6px 0 10px; }
+  th,td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-3); }
+  td.num, th.num { text-align:right; white-space:nowrap; }
+  .barcell { position:relative; }
+  .barcell .fill { position:absolute; inset:0; background:rgba(232,52,42,.12); border-radius:4px; z-index:0; }
+  .barcell span { position:relative; z-index:1; }
+  .q { border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin:12px 0; }
+  .q .top { display:flex; justify-content:space-between; gap:12px; font-size:12px; color:var(--ink-3); margin-bottom:6px; }
+  .q .enun { margin:4px 0 10px; }
+  .q .ans { font-size:14px; margin:3px 0; }
+  .q .ans.her { color:var(--coral); }
+  .q .ans.ok { color:var(--good); }
+  .q .fig { margin:8px 0; }
+  .q .fig svg, .q .fig img { max-width:100%; }
+  .tag { display:inline-block; background:var(--soft); border:1px solid var(--line); border-radius:999px; padding:1px 9px; font-size:12px; }
+  .muted { color:var(--ink-3); }
+  .big { font-size:30px; font-weight:700; }
+  .cards { display:flex; gap:14px; flex-wrap:wrap; margin:6px 0 4px; }
+  .card { flex:1 1 140px; background:var(--soft); border:1px solid var(--line); border-radius:12px; padding:12px 14px; }
+  .card .k { font-size:12px; color:var(--ink-3); text-transform:uppercase; letter-spacing:.04em; }
+  .note { font-size:13px; color:var(--ink-3); margin-top:8px; }
+  #msg { padding:40px; text-align:center; color:var(--ink-3); }
+  @media print {
+    body { background:#fff; }
+    .bar { display:none; }
+    .wrap { max-width:none; padding:0; }
+    .doc { border:none; border-radius:0; padding:0; }
+    .q, table, .card { break-inside:avoid; }
+    h2 { break-after:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <button id="login">Entrar con Google</button>
+    <input id="q" placeholder="Nombre o correo (ej: Iris)" value="iris" size="22">
+    <button id="gen" class="ghost">Generar informe</button>
+    <button id="pdf" class="ghost">Guardar PDF (imprimir)</button>
+    <span class="who" id="who">sin sesión</span>
+  </div>
+  <div class="doc" id="doc"><div id="msg">Entra con tu cuenta de profesor y pulsa «Generar informe».</div></div>
+</div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js';
+import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js';
+import { getFirestore, getDocs, collection } from 'https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js';
+
+// misma config pública y mismo admin que paes.html; las reglas de Firestore sólo dejan leer todo al admin
+const app = initializeApp({
+  apiKey: 'AIzaSyDqv_bRMpVaVvgiTXbnKaFdERgqMfjngUk',
+  authDomain: 'fabimath-paes.firebaseapp.com',
+  projectId: 'fabimath-paes',
+  storageBucket: 'fabimath-paes.firebasestorage.app',
+  messagingSenderId: '88805522878',
+  appId: '1:88805522878:web:e980f5506d9fc864ae4def'
+});
+const auth = getAuth(app), db = getFirestore(app);
+const ADMIN = 'chimechotopia@gmail.com';
+
+const $ = id => document.getElementById(id);
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+// índice clave -> pregunta, replicando el esquema de paes.html (tema:e para el ejemplo, tema:i para el banco i)
+const ALL = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN];
+const QMAP = {};
+ALL.forEach(t => {
+  const reg = (q, key) => { QMAP[key] = { q, topic: t.title, unit: t.unit || t.title, icon: t.icon || '' }; };
+  if (t.example) reg(t.example, t.id + ':e');
+  (t.bank || []).forEach((q, i) => reg(q, t.id + ':' + i));
+});
+
+$('login').addEventListener('click', async () => {
+  if (auth.currentUser) { await signOut(auth); return; }
+  try { await signInWithPopup(auth, new GoogleAuthProvider()); }
+  catch (e) { if (e.code !== 'auth/popup-closed-by-user') alert('No se pudo iniciar sesión: ' + e.message); }
+});
+onAuthStateChanged(auth, u => {
+  $('who').textContent = u ? u.email + (u.email === ADMIN ? ' · admin' : ' · SIN permiso de panel') : 'sin sesión';
+  $('login').textContent = u ? 'Salir' : 'Entrar con Google';
+});
+$('pdf').addEventListener('click', () => window.print());
+$('gen').addEventListener('click', generar);
+
+async function generar() {
+  const u = auth.currentUser;
+  if (!u) return alert('Primero entra con tu cuenta de profesor.');
+  if (u.email !== ADMIN) return alert('Esta cuenta no es el administrador del panel; las reglas de Firestore no la dejan leer el avance de otros.');
+  $('doc').innerHTML = '<div id="msg">Leyendo avance…</div>';
+  let docs;
+  try { docs = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data() })); }
+  catch (e) { $('doc').innerHTML = '<div id="msg">No se pudo leer Firestore: ' + esc(e.message) + '</div>'; return; }
+
+  const needle = $('q').value.trim().toLowerCase();
+  const cand = docs.filter(d => !needle || (d.name || '').toLowerCase().includes(needle) || (d.email || '').toLowerCase().includes(needle));
+  if (!cand.length) { $('doc').innerHTML = '<div id="msg">Nadie coincide con «' + esc($('q').value) + '». Prueba otro nombre o correo.</div>'; return; }
+  if (cand.length > 1) {
+    $('doc').innerHTML = '<div id="msg">Hay varias coincidencias, afina el nombre:<br><br>' +
+      cand.map(d => '· ' + esc(d.name || '(sin nombre)') + ' — ' + esc(d.email || '')).join('<br>') + '</div>';
+    return;
+  }
+  render(cand[0]);
+}
+
+function render(row) {
+  const prog = JSON.parse(row.data || '{}');
+  const hist = (prog.hist || []).filter(h => Array.isArray(h.q));
+
+  // acumuladores
+  const porTema = {}, porUnidad = {}, fallos = {};   // fallos: clave -> {info, veces, vistas, elegidas:{idx:n}, fechas:[]}
+  let vistas = 0, aciertos = 0;
+  for (const h of hist) {
+    for (const [key, chosen, ok] of h.q) {
+      const info = QMAP[key]; if (!info) continue;   // pregunta retirada del banco
+      vistas++; if (ok) aciertos++;
+      const T = porTema[info.topic] = porTema[info.topic] || { unit: info.unit, icon: info.icon, seen: 0, bad: 0 };
+      T.seen++; if (!ok) T.bad++;
+      const U = porUnidad[info.unit] = porUnidad[info.unit] || { seen: 0, bad: 0 };
+      U.seen++; if (!ok) U.bad++;
+      if (!ok) {
+        const f = fallos[key] = fallos[key] || { info, veces: 0, vistas: 0, elegidas: {}, fechas: [] };
+        f.veces++; f.elegidas[chosen] = (f.elegidas[chosen] || 0) + 1; if (h.d) f.fechas.push(h.d);
+      }
+    }
+  }
+  // vistas de cada pregunta fallada = todas las veces que apareció (incluye intentos acertados)
+  for (const key in fallos) { let v = 0; for (const h of hist) for (const [k] of h.q) if (k === key) v++; fallos[key].vistas = v; }
+
+  const errores = Object.values(fallos).sort((a, b) => b.veces - a.veces);
+  const totalFallos = errores.reduce((s, f) => s + f.veces, 0);
+
+  const fecha = iso => iso ? new Date(iso).toLocaleDateString('es-CL', { day:'numeric', month:'short', year:'numeric' }) : '';
+  const rango = () => {
+    const ds = hist.map(h => h.d).filter(Boolean).sort();
+    return ds.length ? fecha(ds[0]) + ' – ' + fecha(ds.at(-1)) : '—';
+  };
+  const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+
+  const filaTrend = (nombre, v, max) => {
+    const p = pct(v.bad, v.seen);
+    return `<tr><td class="barcell"><div class="fill" style="width:${max ? Math.round(v.bad / max * 100) : 0}%"></div><span>${esc(nombre)}</span></td>
+      <td class="num">${v.bad}</td><td class="num">${v.seen}</td><td class="num">${p}%</td></tr>`;
+  };
+  const temasOrd = Object.entries(porTema).sort((a, b) => b[1].bad - a[1].bad);
+  const unidOrd = Object.entries(porUnidad).sort((a, b) => b[1].bad - a[1].bad);
+  const maxTemaBad = Math.max(1, ...temasOrd.map(([, v]) => v.bad));
+  const maxUnidBad = Math.max(1, ...unidOrd.map(([, v]) => v.bad));
+
+  const altLetra = (q, idx) => q.alts && q.alts[idx] != null ? q.alts[idx] : '(alternativa ' + idx + ')';
+
+  const bloqueErrores = errores.map((f, i) => {
+    const q = f.info.q;
+    const elegidasTxt = Object.entries(f.elegidas).sort((a, b) => b[1] - a[1])
+      .map(([idx, n]) => `${altLetra(q, +idx)}${n > 1 ? ` <span class="muted">(×${n})</span>` : ''}`).join('<br>');
+    return `<div class="q">
+      <div class="top"><span>${i + 1}. ${esc(f.info.icon)} ${esc(f.info.topic)} · <span class="muted">${esc(f.info.unit)}</span></span>
+        <span>errada ${f.veces} de ${f.vistas} ${f.vistas === 1 ? 'vez' : 'veces'}${f.fechas.length ? ' · ' + fecha(f.fechas.sort().at(-1)) : ''}</span></div>
+      <div class="enun">${q.enun || '<span class="muted">(enunciado no disponible)</span>'}</div>
+      ${q.fig ? `<div class="fig">${q.fig}</div>` : ''}
+      <div class="ans her">Respondió: ${elegidasTxt}</div>
+      <div class="ans ok">Correcta: ${q.alts ? altLetra(q, q.ok) : '—'}</div>
+      ${q.conc ? `<div class="ans muted">Clave: ${q.conc}</div>` : ''}
+    </div>`;
+  }).join('') || '<p class="muted">No hay respuestas erradas registradas. 🎉</p>';
+
+  $('doc').innerHTML = `
+    <h1>Informe de errores · ${esc(row.name || '(sin nombre)')}</h1>
+    <div class="meta">${esc(row.email || '')} · intentos entre ${rango()} · generado ${new Date().toLocaleDateString('es-CL', { day:'numeric', month:'long', year:'numeric' })}</div>
+
+    <div class="cards">
+      <div class="card"><div class="k">Intentos</div><div class="big">${hist.length}</div></div>
+      <div class="card"><div class="k">Preguntas respondidas</div><div class="big">${vistas}</div></div>
+      <div class="card"><div class="k">Aciertos</div><div class="big">${pct(aciertos, vistas)}%</div></div>
+      <div class="card"><div class="k">Errores totales</div><div class="big">${totalFallos}</div></div>
+      <div class="card"><div class="k">Preguntas distintas falladas</div><div class="big">${errores.length}</div></div>
+    </div>
+
+    <h2>Tendencia por unidad</h2>
+    <table><thead><tr><th>Unidad</th><th class="num">Errores</th><th class="num">Vistas</th><th class="num">% error</th></tr></thead>
+      <tbody>${unidOrd.map(([n, v]) => filaTrend(n, v, maxUnidBad)).join('') || '<tr><td colspan="4" class="muted">Sin datos.</td></tr>'}</tbody></table>
+
+    <h2>Tendencia por tema</h2>
+    <table><thead><tr><th>Tema</th><th class="num">Errores</th><th class="num">Vistas</th><th class="num">% error</th></tr></thead>
+      <tbody>${temasOrd.map(([n, v]) => filaTrend(n, v, maxTemaBad)).join('') || '<tr><td colspan="4" class="muted">Sin datos.</td></tr>'}</tbody></table>
+    <div class="note">La barra es proporcional a la cantidad de errores; el % error es errores sobre veces que vio esa categoría. El tema de arriba es el que más conviene reforzar.</div>
+
+    <h2>Todas las preguntas erradas (${errores.length})</h2>
+    ${bloqueErrores}`;
+
+  if (window.renderMathInElement)
+    renderMathInElement($('doc'), { delimiters: [{ left:'$', right:'$', display:false }, { left:'$$', right:'$$', display:true }], throwOnError:false });
+}
+</script>
+</body>
+</html>
