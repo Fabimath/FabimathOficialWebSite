@@ -95,7 +95,7 @@ function tirar(cost = G_COST, desde = 0) {
 }
 const msgTirada = r => r.gatoNuevo ? '¡Gato nuevo para tu colección!' : r.veces === 1 ? '¡Variante nueva de este gato!' : `Repetido: ya tienes ${r.veces} de este gato en ${r.v.name.toLowerCase()}.`;
 // gachapones de variante: [variante mínima asegurada, costo]
-const GACHA_VAR = [[1, 50], [2, 100]];
+const GACHA_VAR = [[1, 50], [2, 100], [3, 1000]];   // desde arcoíris (3) es el gacha épico interactivo: gachaEpico
 
 /* ---------- venta y fusión ----------
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
@@ -350,14 +350,14 @@ function renderGacha(prog) {
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
     ${eventoActivo() ? `<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: ${evTxt()}.</div>` : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Clic en un gato de tu colección para que te acompañe (hasta ${ACOMP_MAX}), venderlo o fusionarlo. Cada respuesta correcta da ⭐ 1 (multiplicada por los gatos que te acompañan); bonos: 5 de 5 en un cuestionario da ⭐ 50, y en el ensayo 20, 19 y 18 correctas dan ⭐ 200, 150 y 100. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
-      ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>🎰 Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
+      ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary ${d >= 3 ? 'g-btn-arco' : ''}" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>${d >= 3 ? '🌈' : '🎰'} Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
-      Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(' y ')}; entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
+      Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(', ')} (este último es interactivo); entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
       Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino → galáctico). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
     <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Clic en un gato de la galería y «Fusionar» para agregarlo; clic en una casilla para sacarlo.</div>
@@ -375,7 +375,7 @@ function renderGacha(prog) {
           ${acompanantes(prog).includes(k) ? '<span class="g-acbadge">🐾 te acompaña</span>' : ''}</div>`;
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
-  el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => gachaPrem(GACHA_VAR.find(r => r[0] === +b.dataset.gvar))));
+  el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => { const r = GACHA_VAR.find(x => x[0] === +b.dataset.gvar); (r[0] >= 3 ? gachaEpico : gachaPrem)(r); }));
   $('gFarm').addEventListener('click', granja);
   $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
@@ -466,6 +466,158 @@ async function gachaPrem([desde, cost]) {
     m.querySelector('.g-open').classList.add('abre'); sonAbre(); await espera(3000);
   }
   revelar(m, g, v, msgTirada(res), { txt: `Otra vez ⭐ ${cost}`, ok: (store.get().pts || 0) >= cost, fn: () => gachaPrem([desde, cost]) });
+}
+
+/* ---------- gacha épico (arcoíris o más): el jugador lo hace andar a clics ----------
+   moneda → 5 cristales → manivela ×3 → cápsula que se rompe con 5 toques → explosión y gato.
+   Tiene su propia música en loop y un botón «Saltar». Corre aunque el sistema pida menos movimiento:
+   las animaciones van con cada clic del jugador. */
+function bombo(t) {
+  const o = AC.createOscillator(), g = AC.createGain(), t0 = AC.currentTime + t;
+  o.frequency.setValueAtTime(150, t0); o.frequency.exponentialRampToValueAtTime(40, t0 + 0.25);
+  g.gain.setValueAtTime(0.22, t0); g.gain.exponentialRampToValueAtTime(0.001, t0 + 0.3);
+  o.connect(g).connect(AC.destination); o.start(t0); o.stop(t0 + 0.32);
+}
+// la menor – fa – do – sol con arpegio, bajo de sierra, bombo en cada pulso y campanas; devuelve la función que la detiene
+function musicaEpica() {
+  if (mudo()) return () => {};
+  audio();
+  const acordes = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]], paso = 0.13;
+  let c = 0;
+  const compas = () => {
+    const ac = acordes[c++ % 4];
+    for (let i = 0; i < 16; i++) {
+      const t = i * paso;
+      nota(HZ(ac[i % 3] + (i % 6 < 3 ? 12 : 24)), t, 0.11, 'square', 0.028);
+      if (i % 4 === 0) { bombo(t); nota(HZ(ac[0] - 24), t, paso * 3.6, 'sawtooth', 0.035); }
+      if (i === 6 || i === 14) nota(HZ(ac[2] + 24), t, 0.35, 'triangle', 0.045);
+    }
+  };
+  compas(); const id = setInterval(compas, 16 * paso * 1000);
+  return () => clearInterval(id);
+}
+const sonCristal = n => { if (mudo()) return; audio(); nota(HZ(84 + n * 3), 0, 0.3, 'triangle', 0.07); nota(HZ(91 + n * 3), 0.05, 0.3, 'square', 0.03); };
+const sonManivela = n => { if (mudo()) return; audio(); [0, 1, 2].forEach(i => nota(HZ(48 + n * 5 + i * 4), i * 0.05, 0.12, 'sawtooth', 0.05)); };
+const sonGrieta = n => { if (mudo()) return; audio(); nota(HZ(40 + n * 6), 0, 0.12, 'sawtooth', 0.09); nota(HZ(96 - n * 2), 0.02, 0.08, 'square', 0.03); };
+
+document.head.insertAdjacentHTML('beforeend', `<style>
+  .g-btn-arco { background: linear-gradient(90deg, #ff5e5e, #ffa53d, #ffe45c, #5fd97a, #4fa8ff, #b57be0, #ff5e5e) 0 0 / 200% 100%; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.45); animation: g-arco 3s linear infinite; }
+  .g-btn-arco:disabled { animation: none; }
+  @keyframes g-arco { to { background-position: 200% 0; } }
+  .g-box.g-epbox { background: radial-gradient(circle at 50% 25%, #3a1a78, #120a2a 60%, #07040f); color: #fff; width: min(500px, 100%); position: relative; overflow: hidden;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.15), 0 0 40px rgba(181,123,224,.7), 0 0 90px rgba(255,122,224,.45); }
+  .g-ep { position: relative; height: 400px; user-select: none; }
+  .g-ep .cielo { position: absolute; inset: -40%; opacity: .8; animation: g-gira 80s linear infinite; background:
+    radial-gradient(1.5px 1.5px at 10% 20%, #fff, transparent), radial-gradient(1px 1px at 30% 80%, #fff, transparent), radial-gradient(2px 2px at 55% 35%, #ffe9a8, transparent),
+    radial-gradient(1px 1px at 70% 60%, #fff, transparent), radial-gradient(1.5px 1.5px at 85% 15%, #cfe0ff, transparent), radial-gradient(1px 1px at 45% 55%, #fff, transparent),
+    radial-gradient(2px 2px at 20% 50%, #ffc8f0, transparent), radial-gradient(1px 1px at 90% 85%, #fff, transparent), radial-gradient(1.5px 1.5px at 62% 92%, #fff, transparent); }
+  .g-ep h3 { position: relative; font-size: 26px; letter-spacing: .08em; background: linear-gradient(90deg, #ff5e5e, #ffa53d, #ffe45c, #5fd97a, #4fa8ff, #b57be0, #ff5e5e) 0 0 / 200% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-arco 2.5s linear infinite; }
+  .g-ep .barra { position: relative; height: 10px; margin: 10px 30px 0; border-radius: 99px; background: rgba(255,255,255,.12); overflow: hidden; }
+  .g-ep .barra i { display: block; height: 100%; width: 0; border-radius: 99px; transition: width .4s; background: linear-gradient(90deg, #ff5e5e, #ffe45c, #5fd97a, #4fa8ff, #b57be0); box-shadow: 0 0 12px #fff; }
+  .g-ep .paso { position: absolute; left: 0; right: 0; bottom: 6px; font-weight: 800; font-size: 17px; text-shadow: 0 0 10px #b57be0; animation: g-latido 1s ease-in-out infinite; }
+  @keyframes g-latido { 50% { scale: 1.06; } }
+  .g-ep .obj { position: absolute; translate: -50% -50%; border: none; background: none; padding: 0; cursor: pointer; }
+  .g-ep .moneda { width: 88px; height: 88px; border-radius: 50%; font-size: 38px; background: radial-gradient(circle at 35% 35%, #fff4b0, #f5c542 55%, #b8860b);
+    box-shadow: 0 0 0 4px #b8860b, 0 0 30px #ffd75e; animation: g-flota 1.6s ease-in-out infinite; }
+  @keyframes g-flota { 50% { translate: -50% calc(-50% - 10px); } }
+  .g-ep .cristal { animation: g-flota 1.4s ease-in-out infinite; animation-delay: var(--d); filter: drop-shadow(0 0 10px var(--c)) drop-shadow(0 0 4px #fff); }
+  .g-ep .cristal i { display: block; width: 44px; height: 58px; clip-path: polygon(50% 0, 100% 40%, 50% 100%, 0 40%); background: linear-gradient(135deg, #fff, var(--c) 45%, #1a0f30 130%); }
+  .g-ep .maquina { position: absolute; left: 50%; top: 52%; translate: -50% -50%; width: 150px; height: 150px; border-radius: 50%;
+    background: conic-gradient(#ff5e5e, #ffa53d, #ffe45c, #5fd97a, #4fa8ff, #b57be0, #ff5e5e); box-shadow: 0 0 40px rgba(255,255,255,.5); }
+  .g-ep .maquina::after { content: ''; position: absolute; inset: 14px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #3a2a6a, #120a2a); }
+  .g-ep .manivela { left: 50%; top: 52%; width: 150px; height: 150px; z-index: 2; transition: rotate .5s cubic-bezier(.3,1.6,.5,1); }
+  .g-ep .manivela::before { content: ''; position: absolute; left: 50%; top: 50%; width: 64px; height: 12px; translate: 0 -50%; border-radius: 6px; background: #e8e8ec; box-shadow: 0 0 8px #fff; }
+  .g-ep .manivela::after { content: ''; position: absolute; left: calc(50% + 52px); top: 50%; width: 30px; height: 30px; translate: 0 -50%; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #ff7ae0); box-shadow: 0 0 14px #ff7ae0; }
+  .g-ep .capsula { left: 50%; top: 52%; width: 140px; height: 140px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 calc(20px + var(--k, 0) * 14px) rgba(255,255,255,.9);
+    background: linear-gradient(transparent 48%, #3a2a6a 48% 52%, transparent 52%), linear-gradient(#fff 50%, #fff 50%) 0 100% / 100% 50% no-repeat, conic-gradient(#ff5e5e, #ffe45c, #5fd97a, #4fa8ff, #b57be0, #ff5e5e); }
+  .g-ep .capsula svg { position: absolute; inset: 0; }
+  .g-ep .capsula path { opacity: 0; transition: opacity .15s; }
+  .g-ep .rayos { position: absolute; left: 50%; top: 52%; width: 700px; height: 700px; translate: -50% -50%; border-radius: 50%; scale: 0; pointer-events: none;
+    background: repeating-conic-gradient(var(--r1) 0 8deg, transparent 8deg 16deg, var(--r2) 16deg 24deg, transparent 24deg 32deg);
+    -webkit-mask: radial-gradient(circle, #000 15%, transparent 65%); mask: radial-gradient(circle, #000 15%, transparent 65%); }
+  .g-ep .confeti { position: absolute; left: 50%; top: 52%; width: 9px; height: 14px; border-radius: 2px; pointer-events: none; }
+  .g-saltar { position: absolute; top: 12px; right: 14px; z-index: 5; border: none; border-radius: 99px; padding: 4px 12px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; background: rgba(255,255,255,.15); color: #fff; }
+</style>`);
+
+async function gachaEpico([desde, cost]) {
+  const res = tirar(cost, desde); if (!res) return;   // el gato ya quedó guardado
+  const { g, v } = res, gal = v.id === 'galactico';
+  const m = modal('Gacha ' + VAR[desde].name.toLowerCase() + ' épico', `<div class="g-ep"><div class="cielo"></div><h3>✦ GACHA ${VAR[desde].name.toUpperCase()} ✦</h3>
+    <div class="barra"><i id="gEn"></i></div><div id="gEsc"></div><div class="paso" id="gPaso" role="status" aria-live="polite"></div></div><button class="g-saltar" id="gSalta">Saltar ⏭</button>`, 'g-epbox');
+  const esc = m.querySelector('#gEsc'), ep = m.querySelector('.g-ep');
+  const paso = t => m.querySelector('#gPaso').textContent = t, energia = f => m.querySelector('#gEn').style.width = f * 100 + '%';
+  const obj = (html, x, y, clase, etiqueta) => {
+    const b = document.createElement('button'); b.className = 'obj ' + clase; b.innerHTML = html; b.setAttribute('aria-label', etiqueta);
+    b.style.left = x + '%'; b.style.top = y + '%'; esc.appendChild(b); return b;
+  };
+  const clic = el => new Promise(r => el.addEventListener('click', r, { once: true }));
+  const sacude = (fuerza, ms = 350) => ep.animate([0, 1, 2, 3, 4].map(i => ({ transform: `translate(${(i % 2 ? 1 : -1) * fuerza}px, ${(i % 3 - 1) * fuerza}px)` })).concat({ transform: 'none' }), { duration: ms });
+  const parar = musicaEpica();
+  let saltado = false;
+  const salto = new Promise(r => m.querySelector('#gSalta').addEventListener('click', () => { saltado = true; r(); }, { once: true }));
+
+  const escena = async () => {
+    // 1 · moneda a la ranura
+    paso('Toca la moneda para insertarla');
+    const mon = obj('⭐', 50, 50, 'moneda', 'Insertar moneda'); mon.focus();
+    await clic(mon); if (saltado) return;
+    sonMoneda(); mon.style.animation = 'none';
+    await mon.animate([{ transform: 'none' }, { transform: 'translateY(-60px) rotateY(720deg) scale(.3)', opacity: 0 }], { duration: 700, easing: 'ease-in', fill: 'forwards' }).finished;
+    mon.remove(); energia(0.1);
+    // 2 · cinco cristales arcoíris
+    paso('¡Rompe los 5 cristales arcoíris!');
+    const cols = gal ? ['#b57be0', '#ff7ae0', '#9b5de5', '#e0b8ff', '#ff5ec4'] : ['#ff5e5e', '#ffa53d', '#ffe45c', '#5fd97a', '#4fa8ff'];
+    const pos = shuffle([[18, 38], [82, 34], [26, 76], [74, 74], [50, 58]]);
+    let rotos = 0;
+    await Promise.all(cols.map((c, i) => {
+      const b = obj('<i></i>', pos[i][0], pos[i][1], 'cristal', 'Romper cristal'); b.style.setProperty('--c', c); b.style.setProperty('--d', i * 0.2 + 's');
+      return clic(b).then(() => {
+        sonCristal(rotos++); energia(0.1 + rotos * 0.12); sacude(4, 200);
+        b.style.animation = 'none';
+        return b.animate([{ scale: 1, opacity: 1 }, { scale: 2.2, opacity: 0, rotate: '45deg' }], { duration: 350, fill: 'forwards' }).finished.then(() => b.remove());
+      });
+    }));
+    if (saltado) return;
+    // 3 · manivela, tres vueltas
+    paso('¡Gira la manivela 3 veces!');
+    const maq = document.createElement('div'); maq.className = 'maquina'; esc.appendChild(maq);
+    const man = obj('', 50, 52, 'manivela', 'Girar manivela'); man.focus();
+    for (let i = 1; i <= 3; i++) {
+      await clic(man); if (saltado) return;
+      man.style.rotate = i * 360 + 'deg'; sonManivela(i); sacude(3 + i * 3, 450); energia(0.7 + i * 0.1);
+      maq.animate([{ filter: 'brightness(1)' }, { filter: `brightness(${1.4 + i * 0.3})` }, { filter: 'brightness(1)' }], { duration: 450 });
+    }
+    await espera(400); man.remove(); maq.remove();
+    // 4 · cápsula que se rompe a toques
+    paso('¡Toca la cápsula hasta romperla!');
+    const grietas = ['M70 8 L62 30 L74 44 L64 60', 'M20 52 L40 60 L36 78 L52 88', 'M118 40 L100 58 L112 74 L96 92', 'M60 132 L66 110 L54 96 L70 82', 'M30 104 L50 98 L58 112 L80 106'];
+    const cap = obj(`<svg viewBox="0 0 140 140">${grietas.map(d => `<path d="${d}" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>`).join('')}</svg>`, 50, 52, 'capsula', 'Romper cápsula');
+    await cap.animate([{ transform: 'translateY(-260px)' }, { transform: 'translateY(12px)' }, { transform: 'none' }], { duration: 650, easing: 'ease-in' }).finished;
+    cap.focus();
+    for (let k = 1; k <= 5; k++) {
+      await clic(cap); if (saltado) return;
+      sonGrieta(k); cap.querySelectorAll('path')[k - 1].style.opacity = 1; cap.style.setProperty('--k', k); sacude(2 + k * 2);
+      cap.animate([{ rotate: '0deg' }, { rotate: `${-6 - k * 3}deg` }, { rotate: `${6 + k * 3}deg` }, { rotate: '0deg' }], { duration: 300 });
+    }
+    // 5 · explosión
+    redoble(1.2); await espera(1200); if (saltado) return;
+    sonAbre(); cap.remove(); paso('');
+    const rayos = document.createElement('div'); rayos.className = 'rayos';
+    rayos.style.setProperty('--r1', gal ? '#b57be0' : '#ffe45c'); rayos.style.setProperty('--r2', gal ? '#ff7ae0' : '#4fa8ff'); esc.appendChild(rayos);
+    rayos.animate([{ scale: 0, rotate: '0deg' }, { scale: 1, rotate: '90deg' }], { duration: 1400, easing: 'ease-out', fill: 'forwards' });
+    ep.animate([{ background: '#fff' }, { background: 'transparent' }], { duration: 700 });
+    for (let i = 0; i < 46; i++) {
+      const c = document.createElement('i'); c.className = 'confeti'; c.style.background = cols[i % 5]; esc.appendChild(c);
+      const a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 180;
+      c.animate([{ transform: 'translate(-50%, -50%)', opacity: 1 }, { transform: `translate(${Math.cos(a) * d}px, ${Math.sin(a) * d + 80}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }],
+        { duration: 1300 + Math.random() * 700, easing: 'cubic-bezier(.1,.7,.3,1)', fill: 'forwards' });
+    }
+    await espera(1600);
+  };
+  await Promise.race([escena(), salto]);
+  parar(); m.querySelector('.g-box').classList.remove('g-epbox');
+  revelar(m, g, v, msgTirada(res), { txt: `Otra vez ⭐ ${cost}`, ok: (store.get().pts || 0) >= cost, fn: () => gachaEpico([desde, cost]) });
 }
 
 async function fusionar() {
