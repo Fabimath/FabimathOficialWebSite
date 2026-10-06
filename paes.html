@@ -689,7 +689,7 @@ function begin() {
 $('iGo').addEventListener('click', begin);
 $('iQuit').addEventListener('click', () => mode === 'ensayo' ? renderHome() : startExample());
 function showQ() {
-  const q = round[qIdx]; answered = false; $('bubble').classList.add('hidden');
+  const q = round[qIdx]; answered = false;
   const total = round.length;
   $('qTag').textContent = mode === 'ensayo' ? q.topic : (stage === 1 ? 'Pregunta tipo PAES · ' + (q.src || 'ejemplo') : 'Cuestionario · ' + cur.title);
   $('qCount').textContent = total > 1 ? `Pregunta ${qIdx + 1} de ${total} · ${score} correctas` : 'Pregunta resuelta paso a paso';
