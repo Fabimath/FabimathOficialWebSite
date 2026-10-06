@@ -6,8 +6,8 @@
    Con el gato en la consola, cada respuesta (tamaRespuesta) da un mensaje y las rachas de 10 correctas lo hacen evolucionar de variante. */
 
 const T_HUEVO = r => 30 * 60e3 * 2 ** r, T_CLIC = 5e3;   // común 30 min, raro 1 h, épico 2 h, legendario 4 h, mítico 8 h
-const T_HAMBRE = 120e3;               // pierde un corazón cada 2 min (de 4)
-const POPO_P = 1 / 60, POPO_MAX = 3;  // por segundo
+// pierde un corazón (de 4) y hace popó (hasta POPO_MAX) cada 5 a 10 min, al azar: t.ritmo se sortea al comer, t.proxPopo tras cada popó
+const azarMs = () => (5 + Math.random() * 5) * 60e3, POPO_MAX = 3;
 const HUEVO_COST = [2, 5, 12, 30, 80];
 const PEZ_GUARDA = r => r + 1, PEZ_EVO = 2, PEZ_CUIDA = 1;   // común 1 … mítico 5
 const PEZ_GRANJA = 0.3;               // cada 3 s, prob. de que un gato de la granja suelte un pescado
@@ -154,7 +154,7 @@ const MSG_BIEN = ['¡Miau! Así se hace 🐾', '¡Eres un crack!', '¡Purrfecto!
 const MSG_MAL = ['Tranqui, de los errores se aprende 🐾', '¡Tú puedes! La próxima sale', 'Respira y lee con calma', 'Casi… revisa la pauta y sigue', 'Yo creo en ti, miau', 'Equivocarse también es practicar', 'Ánimo, que yo te acompaño'];
 const azar = a => a[Math.random() * a.length | 0];
 
-const hambre = t => Math.max(0, 4 - Math.floor((Date.now() - t.comio) / T_HAMBRE));
+const hambre = t => Math.max(0, 4 - Math.floor((Date.now() - t.comio) / (t.ritmo || 7.5 * 60e3)));
 const mmss = ms => { const s = Math.ceil(ms / 1000), d = n => String(n).padStart(2, '0'); return s >= 3600 ? `${s / 3600 | 0}:${d((s / 60 | 0) % 60)}:${d(s % 60)}` : `${s / 60 | 0}:${d(s % 60)}`; };
 let firma = '';   // el LCD solo se redibuja cuando cambia lo que se ve: así no se cortan las animaciones
 let ocupado = false;   // mientras corre la animación de comer o limpiar
@@ -185,7 +185,7 @@ function pinta() {
 }
 function nacer() {
   const p = store.get(), t = p.tama, g = sortear(GATOS.filter(c => c.rar === RAR[t.huevo])), v = sortear(VAR);
-  p.tama = { gato: g.id + ':' + v.id, comio: Date.now(), popo: 0, racha: 0, evo: 0 }; store.set(p);
+  p.tama = { gato: g.id + ':' + v.id, comio: Date.now(), ritmo: azarMs(), popo: 0, proxPopo: Date.now() + azarMs(), racha: 0, evo: 0 }; store.set(p);
   firma = ''; pinta(); destello();
   if (window.musicaPremio) musicaPremio(RAR.indexOf(g.rar));
 }
@@ -223,7 +223,7 @@ async function darComida() {
   const g = gatoEl(); if (g) await g.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.15, .88)' }, { transform: 'scale(1)' }], { duration: 250, iterations: 3, easing: 'steps(3)' }).finished;
   ch.remove(); nam.remove();
   ocupado = false; b.style.animationPlayState = '';
-  cambia(t => t.comio = Date.now()); if (necesita) premio($('tCome'));
+  cambia(t => { t.comio = Date.now(); t.ritmo = azarMs(); }); if (necesita) premio($('tCome'));
   document.querySelectorAll('#tLcd .vida svg').forEach((h, i) => h.animate([{ transform: 'scale(.2)' }, { transform: 'scale(1.5)' }, { transform: 'scale(1)' }], { duration: 360, delay: i * 110, easing: 'steps(4)', fill: 'backwards' }));
 }
 async function limpiar() {
@@ -241,7 +241,7 @@ async function limpiar() {
     }, d + 150);
   });
   await espera(dur + 150);
-  esc.remove(); ocupado = false; cambia(t => t.popo = 0); premio($('tLimpia'));
+  esc.remove(); ocupado = false; cambia(t => { t.popo = 0; t.proxPopo = Date.now() + azarMs(); }); premio($('tLimpia'));
 }
 
 /* ---------- respuestas: mensaje, racha y evolución. paes.html llama tamaRespuesta(bien) en cada respuesta ---------- */
@@ -283,7 +283,7 @@ $('tGuarda').addEventListener('click', e => {
 });
 setInterval(() => {
   const t = store.get().tama;
-  if (!ocupado && t && t.gato && t.popo < POPO_MAX && Math.random() < POPO_P) cambia(t => t.popo++);
+  if (!ocupado && t && t.gato && t.popo < POPO_MAX && Date.now() >= (t.proxPopo || 0)) cambia(t => { if (t.proxPopo) t.popo++; t.proxPopo = Date.now() + azarMs(); });   // gatos de antes: solo agenda
   else pinta();
 }, 1000);
 
