@@ -587,7 +587,7 @@ const AYUDANTES = { gato: 10, oro: 30, diamante: 60, arcoiris: 100, platino: 160
    (estrellas y, si giro, un giro de ruleta con esa variante), y gachapón/ruletas desde la rareza rar y la variante vari (índices de RAR y VAR en gacha.js).
    Para otro evento: cambiar id, fechas, nombre, desc (opcional), x, regalo, pez (pescados de regalo, opcional), giro, rar y vari. */
 const EVENTO = { id: 'evento_2026-10-06_galacticos', nombre: 'Gatitos galácticos: ¡nueva rareza!', inicio: '2026-10-06T14:00:00Z', fin: '2026-10-10T02:59:00Z', regalo: 50, pez: 30, giro: 5, x: 2, rar: 0, vari: 0,
-  desc: 'Llegó la variante Galáctica: gatos morados con estrellas y aura rosa que pueden valer hasta ×100. Nacen de los huevos de la nueva consola de gatitos (a la derecha), evolucionan con rachas de respuestas correctas y te pueden acompañar.' };
+  desc: 'Llegó la variante Galáctica: gatos morados con estrellas y aura rosa que pueden valer hasta ×100. Nacen de los huevos de la nueva consola de gatitos (abajo a la derecha), evolucionan con rachas de respuestas correctas y te pueden acompañar.' };
 const eventoActivo = () => { const t = Date.now(); return t >= Date.parse(EVENTO.inicio) && t < Date.parse(EVENTO.fin); };
 const xEvento = () => eventoActivo() ? EVENTO.x : 1;
 function pintaEvento() {

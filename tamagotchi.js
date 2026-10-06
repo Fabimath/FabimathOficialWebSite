@@ -9,7 +9,7 @@ const T_HUEVO = r => 30 * 60e3 * 2 ** r, T_CLIC = 5e3;   // común 30 min, raro 
 const T_HAMBRE = 120e3;               // pierde un corazón cada 2 min (de 4)
 const POPO_P = 1 / 60, POPO_MAX = 3;  // por segundo
 const HUEVO_COST = [2, 5, 12, 30, 80];
-const PEZ_GUARDA = r => r + 1, PEZ_EVO = 2;   // común 1 … mítico 5
+const PEZ_GUARDA = r => r + 1, PEZ_EVO = 2, PEZ_CUIDA = 1;   // común 1 … mítico 5
 const PEZ_GRANJA = 0.3;               // cada 3 s, prob. de que un gato de la granja suelte un pescado
 
 const pez = p => window.esAdmin ? Infinity : p.pez || 0;
@@ -55,7 +55,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
     100% calc(100% - var(--p) * 2), calc(100% - var(--p)) calc(100% - var(--p) * 2), calc(100% - var(--p)) calc(100% - var(--p)), calc(100% - var(--p) * 2) calc(100% - var(--p)),
     calc(100% - var(--p) * 2) 100%, calc(var(--p) * 2) 100%, calc(var(--p) * 2) calc(100% - var(--p)), var(--p) calc(100% - var(--p)), var(--p) calc(100% - var(--p) * 2), 0 calc(100% - var(--p) * 2)); }
   .t-borde { filter: drop-shadow(2px 0 0 #3a1a05) drop-shadow(-2px 0 0 #3a1a05) drop-shadow(0 2px 0 #3a1a05) drop-shadow(0 -2px 0 #3a1a05); }
-  .tama { position: fixed; right: 10px; top: 50%; translate: 0 -50%; z-index: 50; width: 224px; user-select: none;
+  .tama { position: fixed; right: 10px; bottom: 10px; scale: .8; transform-origin: right bottom; z-index: 50; width: 224px; user-select: none;
     font-family: ui-monospace, "Cascadia Mono", Consolas, "Courier New", monospace; font-weight: 700; }
   .tama .cascara { position: relative; height: 304px; }
   .tama .t-svg { position: absolute; inset: 0; filter: drop-shadow(4px 6px 0 rgba(58,26,5,.25)); }
@@ -93,7 +93,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .tama .globo > div { --p: 3px; background: var(--gc); padding: 8px 10px; font-size: 12px; line-height: 1.35; color: #3a3340; }
   .tama .globo::after { content: ''; position: absolute; right: -8px; top: 20px; width: 8px; height: 8px; background: var(--gc); }
   @keyframes t-globo { from { scale: .3; opacity: 0; } }
-  @media (max-width: 760px) { .tama { scale: .5; transform-origin: right bottom; top: auto; bottom: 6px; translate: none; right: 4px; } .g-acomp { scale: .8; transform-origin: left bottom; } }
+  @media (max-width: 760px) { .tama { scale: .5; bottom: 6px; right: 4px; } .g-acomp { scale: .8; transform-origin: left bottom; } }
   .t-flota { position: fixed; z-index: 200; font-weight: 800; font-size: 16px; color: #c2530a; pointer-events: none; translate: -50% -50%; animation: t-sube 1s ease-out forwards; text-shadow: 0 1px 0 #fff; }
   @keyframes t-sube { to { translate: -50% -180%; opacity: 0; } }
   .t-pez { position: absolute; z-index: 5; font-size: 24px; background: none; border: none; cursor: pointer; padding: 0; animation: t-cae .5s var(--ease); }
@@ -201,9 +201,15 @@ function globo(txt, bien) {
   clearTimeout(globo.t); globo.t = setTimeout(() => $('tGlobo').innerHTML = '', 3500);
 }
 
-/* ---------- animaciones de comer y limpiar: cortas y pedidas a propósito, así que corren aunque el sistema pida menos movimiento ---------- */
+/* ---------- animaciones de comer y limpiar: cortas y pedidas a propósito, así que corren aunque el sistema pida menos movimiento ----------
+   Cuidarlo cuando lo necesita da PEZ_CUIDA 🐟: comer con algún corazón vacío, o limpiar popó (el botón solo se activa si hay). */
+function premio(boton) {
+  const p = store.get(); sumaPez(p, PEZ_CUIDA); store.set(p); updPez(); renderHuevos();
+  const r = boton.getBoundingClientRect(); flota(`+${PEZ_CUIDA} 🐟`, r.left + r.width / 2, r.top - 10);
+}
 async function darComida() {
   if (ocupado) return;
+  const necesita = hambre(store.get().tama) < 4;
   ocupado = true; pinta();
   const b = $('tBicho'), fx = $('tFx').getBoundingClientRect(), r = b.getBoundingClientRect();
   b.style.animationPlayState = 'paused';
@@ -217,7 +223,7 @@ async function darComida() {
   const g = gatoEl(); if (g) await g.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.15, .88)' }, { transform: 'scale(1)' }], { duration: 250, iterations: 3, easing: 'steps(3)' }).finished;
   ch.remove(); nam.remove();
   ocupado = false; b.style.animationPlayState = '';
-  cambia(t => t.comio = Date.now());
+  cambia(t => t.comio = Date.now()); if (necesita) premio($('tCome'));
   document.querySelectorAll('#tLcd .vida svg').forEach((h, i) => h.animate([{ transform: 'scale(.2)' }, { transform: 'scale(1.5)' }, { transform: 'scale(1)' }], { duration: 360, delay: i * 110, easing: 'steps(4)', fill: 'backwards' }));
 }
 async function limpiar() {
@@ -235,7 +241,7 @@ async function limpiar() {
     }, d + 150);
   });
   await espera(dur + 150);
-  esc.remove(); ocupado = false; cambia(t => t.popo = 0);
+  esc.remove(); ocupado = false; cambia(t => t.popo = 0); premio($('tLimpia'));
 }
 
 /* ---------- respuestas: mensaje, racha y evolución. paes.html llama tamaRespuesta(bien) en cada respuesta ---------- */
@@ -286,7 +292,7 @@ function renderHuevos() {
   const el = $('huevos'); if (!el) return;
   const p = store.get(), ocupada = !!p.tama;
   el.innerHTML = `<h3>🥚 Tienda de huevos</h3><div class="sub">Se pagan con 🐟 pescados. El huevo va a la consola de la derecha; cada clic le quita 5 segundos.
-    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2) y en la granja, donde los gatos los sueltan al azar.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
+    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2), al cuidarlo (+1 por darle churu cuando tiene hambre o limpiar su popó) y en la granja, donde los gatos los sueltan al azar.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
     <div class="g-grid">${RAR.map((r, i) => `<div class="g-card si" style="--rc:${r.color}">${huevoSVG(i, 0, 56)}<b>Huevo ${r.name.toLowerCase()}</b>
       <small>gato ${r.name.toLowerCase()} al azar<br>abre en ${i ? 2 ** (i - 1) + (i > 1 ? ' horas' : ' hora') : '30 min'}</small><button class="btn btn-primary" data-huevo="${i}" ${ocupada || pez(p) < HUEVO_COST[i] ? 'disabled' : ''}>🐟 ${HUEVO_COST[i]}</button></div>`).join('')}</div>`;
   el.querySelectorAll('[data-huevo]').forEach(b => b.addEventListener('click', () => {
