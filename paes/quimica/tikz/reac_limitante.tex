@@ -1,0 +1,60 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}
+\draw[gris,line width=0.8pt,rounded corners=4pt,fill=white] (0.0,0.00) rectangle (3.90,3.25);
+\node[font=\sffamily\small\bfseries,text=tinta] at (1.95,3.60) {Antes};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (0.54,2.53) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (0.54,2.53) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (0.80,2.53) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (0.80,2.53) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (1.69,2.64) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (1.69,2.64) {N};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (2.05,2.64) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (2.05,2.64) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (2.94,2.53) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (2.94,2.53) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (3.20,2.53) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (3.20,2.53) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (0.69,1.58) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (0.69,1.58) {N};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (1.05,1.58) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (1.05,1.58) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (1.94,1.69) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (1.94,1.69) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (2.20,1.69) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (2.20,1.69) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (3.09,1.58) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (3.09,1.58) {N};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (3.45,1.58) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (3.45,1.58) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (0.54,0.63) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (0.54,0.63) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (0.80,0.63) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (0.80,0.63) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (1.74,0.74) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (1.74,0.74) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (2.00,0.74) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (2.00,0.74) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (2.94,0.63) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (2.94,0.63) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (3.20,0.63) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (3.20,0.63) {H};
+\node[font=\sffamily\footnotesize,text=gris,align=center] at (1.95,-0.4) {3 N$_2$ y 6 H$_2$};
+\draw[-{Stealth[length=7pt]},line width=1.4pt,nar] (4.10,1.62) -- (4.80,1.62);
+\draw[gris,line width=0.8pt,rounded corners=4pt,fill=white] (5.0,0.47) rectangle (8.90,2.77);
+\node[font=\sffamily\small\bfseries,text=tinta] at (6.95,3.12) {Después};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (5.67,2.37) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.67,2.37) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (5.40,1.90) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.40,1.90) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (5.94,1.90) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.94,1.90) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (5.67,2.06) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.67,2.06) {N};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (6.69,2.17) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (6.69,2.17) {N};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (7.05,2.17) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (7.05,2.17) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (8.07,2.37) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (8.07,2.37) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (7.80,1.90) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (7.80,1.90) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (8.34,1.90) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (8.34,1.90) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (8.07,2.06) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (8.07,2.06) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (5.87,1.42) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.87,1.42) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (5.60,0.95) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.60,0.95) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (6.14,0.95) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (6.14,0.95) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (5.87,1.11) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (5.87,1.11) {N};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (7.07,1.53) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (7.07,1.53) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (6.80,1.06) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (6.80,1.06) {H};
+\filldraw[fill=hielo,draw=tinta,line width=0.5pt] (7.34,1.06) circle (0.15);\node[text=tinta,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (7.34,1.06) {H};
+\filldraw[fill=azul,draw=tinta,line width=0.5pt] (7.07,1.22) circle (0.2);\node[text=white,font=\sffamily\bfseries\fontsize{6.5}{7}\selectfont,inner sep=0] at (7.07,1.22) {N};
+\node[font=\sffamily\footnotesize,text=gris,align=center] at (6.95,-0.4) {4 NH$_3$ y sobra 1 N$_2$};
+\end{tikzpicture}
+\end{document}

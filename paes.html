@@ -16,6 +16,11 @@
 <script src="paes_funciones.js"></script>
 <script src="paes_algebra.js"></script>
 <script src="paes_variantes.js"></script>
+<script src="paes_quimica_atomo.js"></script>
+<script src="paes_quimica_organica.js"></script>
+<script src="paes_quimica_reacciones.js"></script>
+<script src="paes_quimica_soluciones.js"></script>
+<script src="paes_quimica_habilidades.js"></script>
 <script src="gacha.js"></script>
 <style>
   :root {
@@ -164,6 +169,9 @@
   .slide table { font-size: 14px; margin: 6px 0 10px; }
   .qfig .cap { font-size: 13px; letter-spacing: 0.01em; color: var(--ink-3); margin-top: 6px; }
   .qfig svg, .g-plot svg { max-width: 100%; height: auto; display: block; font-family: var(--font-text); }
+  img.tikz { display: block; max-width: 100%; height: auto; margin: 4px auto; }
+  .beta { font-size: .45em; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; vertical-align: super; color: #7c5cf0; }
+  .ejes .beta { font-size: 10px; vertical-align: 1px; margin-left: 2px; }
   /* clases: la curva se dibuja al entrar en pantalla */
   .slide .qfig:not(.ver) polyline { stroke-dashoffset: 1; }
   .slide .qfig polyline { stroke-dasharray: 1; }
@@ -301,10 +309,10 @@
   <!-- HOME -->
   <div id="home">
     <div class="hero">
-      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=algebra" id="ejeAlg">🧮 Álgebra y ecuaciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a></div>
+      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=algebra" id="ejeAlg">🧮 Álgebra y ecuaciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a><a href="paes.html?eje=quimica" id="ejeQui">🧪 Química <span class="beta">beta</span></a></div>
       <h1>PAES <span id="ejeTitle"></span></h1>
       <p>Cada tema tiene una mini clase en diapositivas, una pregunta tipo PAES resuelta paso a paso y un cuestionario de 5 preguntas. Al final, un ensayo de 20 preguntas con todo el eje. Tus puntos y tus gatos sirven en todos los ejes.</p>
-      <div class="src">Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.</div>
+      <div class="src" id="ejeSrc">Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.</div>
     </div>
     <div id="units"></div>
     <div class="ensayo-card">
@@ -402,6 +410,7 @@ const num = v => String(v).replace('.', ',');
 
 /* ---------------- eje: paes.html (Probabilidad y Estadística) o paes.html?eje=numeros ----------------
    Todos los ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
+const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES];
 const EJES = {
   pye: { name: 'Probabilidad y Estadística', topics: TOPICS, ensayo: 'ensayo', tab: 'ejePye',
     nota: ' · Notación: $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_1$, $Q_2 = Me$, $Q_3$ cuartiles.' },
@@ -413,11 +422,15 @@ const EJES = {
     nota: ' · Notación: $x$ incógnita, $<$, $>$, $\leq$, $\geq$ desigualdades, $]a, b[$ intervalo abierto y $[a, b]$ cerrado.' },
   // sin temas propios: 10 preguntas repartidas entre los ejes, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
   mixto: { name: 'Mixto', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG], n: 10, x: 3, ensayo: 'ensayo_mix', tab: 'ejeMix', ruleta: true, nota: '',
-    desc: '10 preguntas mezcladas de Estadística, Números, Funciones y Álgebra, y cada acierto vale el triple de estrellas. Al terminar giras una ruleta de 5 gatos: con 4 correctas sale la ruleta rara, con 6 la épica, con 8 la legendaria y con 10 la mítica.' }
+    desc: '10 preguntas mezcladas de Estadística, Números, Funciones y Álgebra, y cada acierto vale el triple de estrellas. Al terminar giras una ruleta de 5 gatos: con 4 correctas sale la ruleta rara, con 6 la épica, con 8 la legendaria y con 10 la mítica.' },
+  // beta: PAES de Ciencias, módulo de Química (no entra al desafío mixto, que es de M1)
+  quimica: { name: 'Química', beta: true, topics: TOPICS_QUI, ensayo: 'ensayo_qui', tab: 'ejeQui',
+    src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Química (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
+    nota: ' · Notación: $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.' }
 };
 const EJE = EJES[new URLSearchParams(location.search).get('eje')] || EJES.pye;
-const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG];
-const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto' };
+const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...TOPICS_QUI];
+const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Ensayo de Química' };
 // clave fija por pregunta ("tema:índice", "tema:e" la resuelta) para contar cuántas veces salió cada una
 ALL_TOPICS.forEach(t => { t.example.key = t.id + ':e'; t.bank.forEach((q, i) => q.key = t.id + ':' + i); });
 // al azar, pero primero las que menos ha visto: así cada intento trae preguntas distintas
@@ -431,11 +444,15 @@ $('ejeTitle').textContent = EJE.name; $(EJE.tab).classList.add('on');
 $('ensayoTitle').textContent = EJE.ruleta ? '🎡 Desafío mixto' : `🎯 Ensayo final de ${EJE.name}`;
 if (EJE.desc) { $('ensayoDesc').textContent = EJE.desc; $('ensayoBtn').textContent = 'Jugar desafío ▶'; }
 $('notacion').textContent = EJE.nota;
+if (EJE.src) $('ejeSrc').textContent = EJE.src;
+if (EJE.beta) $('ejeTitle').insertAdjacentHTML('afterend', ' <span class="beta">beta</span>');
 
 /* ---------------- figures (SVG) ---------------- */
 const PAL = ['#e8680c', '#ffb35c', '#c98a00', '#e8342a', '#7c5cf0', '#f07c1e', '#f0883e', '#38bdf8'];
 function fig(f) {
   if (!f) return '';
+  // figura TikZ ya compilada a SVG (paes/quimica/build_figs.py): { type: 'img', src, alt, cap }
+  if (f.type === 'img') return `<img class="tikz" src="${f.src}" alt="${f.alt || ''}">` + (f.cap ? `<div class="cap">${f.cap}</div>` : '');
   if (f.type === 'table') {
     let h = '<table><thead><tr>' + f.head.map(x => `<th>${x}</th>`).join('') + '</tr></thead><tbody>';
     f.rows.forEach(r => { h += '<tr>' + r.map((c, i) => i === 0 ? `<th>${c}</th>` : `<td>${c}</td>`).join('') + '</tr>'; });
@@ -853,12 +870,12 @@ async function renderPanel(u) {
     const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
     el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
-      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
+      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Química</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
       filas.map(f => { const p = f.p, h = p.hist || [];
         const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun', 'ensayo_alg'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
-      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones · Álgebra.</div>';
+        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun', 'ensayo_alg', 'ensayo_qui'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${hechos(TOPICS_QUI)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
+      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones · Álgebra · Química.</div>';
     el.classList.remove('hidden');
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
 }

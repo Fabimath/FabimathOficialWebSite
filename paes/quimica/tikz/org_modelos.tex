@@ -1,0 +1,23 @@
+\documentclass[border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\setchemfig{atom sep=2em,bond style={line width=0.8pt}}
+\tikzset{lab/.style={font=\small\bfseries,text=nar},pie/.style={font=\footnotesize,text=tinta,align=center}}
+\begin{document}
+\scalebox{0.8}{\begin{tikzpicture}
+\draw[line width=2.4pt,gris!70] (0,0)--(-0.75,-0.75);\draw[line width=2.4pt,gris!70] (0,0)--(-0.85,0.55);\draw[line width=2.4pt,gris!70] (0,0)--(0.35,-0.85);\draw[line width=2.4pt,gris!70] (0,0)--(1.3,0.55);\draw[line width=2.4pt,gris!70] (1.3,0.55)--(1.15,1.35);\draw[line width=2.4pt,gris!70] (1.3,0.55)--(2,1.15);\draw[line width=2.4pt,gris!70] (1.3,0.55)--(2.5,-0.05);\draw[line width=2.4pt,gris!70] (2.5,-0.05)--(3.25,0.5);\filldraw[fill=white,draw=tinta] (-0.75,-0.75) circle (0.2cm);\filldraw[fill=white,draw=tinta] (-0.85,0.55) circle (0.2cm);\filldraw[fill=gris!85!black,draw=tinta] (0,0) circle (0.3cm);\filldraw[fill=white,draw=tinta] (0.35,-0.85) circle (0.2cm);\filldraw[fill=white,draw=tinta] (1.15,1.35) circle (0.2cm);\filldraw[fill=white,draw=tinta] (2,1.15) circle (0.2cm);\filldraw[fill=gris!85!black,draw=tinta] (1.3,0.55) circle (0.3cm);\filldraw[fill=coral,draw=tinta] (2.5,-0.05) circle (0.3cm);\filldraw[fill=white,draw=tinta] (3.25,0.5) circle (0.2cm);\filldraw[fill=white,draw=tinta] (4.85,-0.75) circle (0.52cm);\filldraw[fill=white,draw=tinta] (4.75,0.55) circle (0.52cm);\filldraw[fill=gris!85!black,draw=tinta] (5.6,0) circle (0.78cm);\filldraw[fill=white,draw=tinta] (5.95,-0.85) circle (0.52cm);\filldraw[fill=white,draw=tinta] (6.75,1.35) circle (0.52cm);\filldraw[fill=white,draw=tinta] (7.6,1.15) circle (0.52cm);\filldraw[fill=gris!85!black,draw=tinta] (6.9,0.55) circle (0.78cm);\filldraw[fill=coral,draw=tinta] (8.1,-0.05) circle (0.72cm);\filldraw[fill=white,draw=tinta] (8.85,0.5) circle (0.52cm);
+\node[pie] at (1.25,-1.9) {\textbf{Esferas y varillas}\\muestra ángulos y forma 3D};
+\node[pie] at (6.85,-1.9) {\textbf{Modelo compacto}\\muestra el volumen ocupado};
+\node[pie] at (4.05,-2.85) {Etanol, CH$_3$CH$_2$OH · \textcolor{gris}{gris: C} · blanco: H · \textcolor{coral}{rojo: O}};
+\end{tikzpicture}}
+\end{document}
