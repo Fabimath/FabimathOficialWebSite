@@ -292,7 +292,7 @@ function renderHuevos() {
   const el = $('huevos'); if (!el) return;
   const p = store.get(), ocupada = !!p.tama;
   el.innerHTML = `<h3>🥚 Tienda de huevos</h3><div class="sub">Se pagan con 🐟 pescados. El huevo va a la consola de la derecha; cada clic le quita 5 segundos.
-    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2), al cuidarlo (+1 por darle churu cuando tiene hambre o limpiar su popó) en la granja, donde los gatos los sueltan al azar, y en 🏢 Michi operaciones, donde tus gatos trabajan.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
+    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2), al cuidarlo (+1 por darle churu cuando tiene hambre o limpiar su popó) en la granja, donde los gatos los sueltan al azar, y en Michi operaciones, donde tus gatos trabajan.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
     <div class="g-grid">${RAR.map((r, i) => `<div class="g-card si" style="--rc:${r.color}">${huevoSVG(i, 0, 56)}<b>Huevo ${r.name.toLowerCase()}</b>
       <small>gato ${r.name.toLowerCase()} al azar<br>abre en ${i ? 2 ** (i - 1) + (i > 1 ? ' horas' : ' hora') : '30 min'}</small><button class="btn btn-primary" data-huevo="${i}" ${ocupada || pez(p) < HUEVO_COST[i] ? 'disabled' : ''}>🐟 ${HUEVO_COST[i]}</button></div>`).join('')}</div>`;
   el.querySelectorAll('[data-huevo]').forEach(b => b.addEventListener('click', () => {

@@ -27,7 +27,7 @@ const OFICIO = {
   obrero: ['negrito', 'atigrado', 'carey', 'astro', 'lima', 'fenix', 'dragon', 'lava'],
   oficinista: ['gris', 'siames', 'tuxedo', 'ruso', 'nube', 'samurai', 'faraon', 'fantasma']
 };
-const OF_TXT = { estudiante: '🎒 Estudiante', obrero: '🔧 Obrero', oficinista: '💼 Oficinista' };
+const OF_TXT = { estudiante: 'Estudiante', obrero: 'Obrero', oficinista: 'Oficinista' };
 // [id, nombre, cuerpo, sombra, patrón]; patrón: liso, rayas, manchas, calico, siames, tuxedo
 const GATOS = [
   ['naranjo', 'Michi Naranjo', '#ff9a3c', '#e07a1f', 'liso'],
@@ -359,7 +359,7 @@ function renderGacha(prog) {
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary ${d >= 3 ? 'g-btn-arco' : ''}" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>${d >= 3 ? '🌈' : '🎰'} Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
-      <button class="btn btn-ghost" id="gOps">🏢 Michi operaciones</button>
+      <button class="btn btn-ghost" id="gOps">${gatoSVG(GATOS[0], 20)} Michi operaciones</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
@@ -692,7 +692,7 @@ function granja() {
   const deco = ['🌳', '🌳', '🌲', '🌷', '🌼', '🌻', '⛲', '🌳', '🌷', '🪨'].map((e, i) => `<span class="deco" style="left:${(i * 37 + 5) % 92}%;top:${(i * 53 + 8) % 85}%">${e}</span>`).join('');
   const total = Object.values(col).reduce((s, n) => s + n, 0);
   const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">${copias.length < total ? `${copias.length} de tus ${total}` : copias.length} gatos paseando · clic en el pasto para dejar un pescado.</div></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gOpsF">🏢 Michi operaciones</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gOpsF">${gatoSVG(GATOS[0], 20)} Michi operaciones</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
     <div class="g-park" id="gPark">${deco}</div>`, 'g-farm');
   const park = m.querySelector('#gPark'), W = () => park.clientWidth - 56, H = () => park.clientHeight - 56;
   const gatos = copias.map(k => {
