@@ -1,6 +1,6 @@
 /* Tamagotchi de gatitos (beta): consola fija a la derecha con un huevo que tarda de 30 min (común) a 8 h (mítico) en abrir
    (cada clic le quita 5 s). Al nacer el gato hace popó y pide churu; «Guardar» lo manda a la colección
-   del gachapón y da 🐟 según su rareza (PEZ_GUARDA); cada evolución da PEZ_EVO 🐟. Pescados (p.pez) solo salen de aquí y de la granja, y compran huevos.
+   del gachapón y da 🐟 según su rareza (PEZ_GUARDA); cada evolución da PEZ_EVO 🐟. Pescados (p.pez) salen de aquí, de la granja y de Michi operaciones (operaciones.js); compran huevos, escenarios y puestos.
    También tiene el estilo de la variante Galáctico de gacha.js (morada, estrellas moradas y aura rosa).
    Se carga después de gacha.js; estado en p.tama = { huevo, nace } o { gato, comio, popo, racha, evo }.
    Con el gato en la consola, cada respuesta (tamaRespuesta) da un mensaje y las rachas de 10 correctas lo hacen evolucionar de variante. */
@@ -292,7 +292,7 @@ function renderHuevos() {
   const el = $('huevos'); if (!el) return;
   const p = store.get(), ocupada = !!p.tama;
   el.innerHTML = `<h3>🥚 Tienda de huevos</h3><div class="sub">Se pagan con 🐟 pescados. El huevo va a la consola de la derecha; cada clic le quita 5 segundos.
-    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2), al cuidarlo (+1 por darle churu cuando tiene hambre o limpiar su popó) y en la granja, donde los gatos los sueltan al azar.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
+    Los pescados salen al guardar un gatito (de 1 el común a 5 el mítico), cuando evoluciona (+2), al cuidarlo (+1 por darle churu cuando tiene hambre o limpiar su popó) en la granja, donde los gatos los sueltan al azar, y en 🏢 Michi operaciones, donde tus gatos trabajan.${ocupada ? ' <b>La consola ya tiene un michi: guárdalo para comprar otro huevo.</b>' : ''}</div>
     <div class="g-grid">${RAR.map((r, i) => `<div class="g-card si" style="--rc:${r.color}">${huevoSVG(i, 0, 56)}<b>Huevo ${r.name.toLowerCase()}</b>
       <small>gato ${r.name.toLowerCase()} al azar<br>abre en ${i ? 2 ** (i - 1) + (i > 1 ? ' horas' : ' hora') : '30 min'}</small><button class="btn btn-primary" data-huevo="${i}" ${ocupada || pez(p) < HUEVO_COST[i] ? 'disabled' : ''}>🐟 ${HUEVO_COST[i]}</button></div>`).join('')}</div>`;
   el.querySelectorAll('[data-huevo]').forEach(b => b.addEventListener('click', () => {

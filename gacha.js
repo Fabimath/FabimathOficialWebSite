@@ -21,6 +21,13 @@ const VAR = [
   { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' },
   { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' }   // estilo en tamagotchi.js
 ];
+// oficio de cada gato: en qué escenario de Michi operaciones (operaciones.js) puede trabajar
+const OFICIO = {
+  estudiante: ['naranjo', 'pelusa', 'calico', 'mate', 'sakura', 'lunar', 'galaxia', 'cristal', 'fabimath'],
+  obrero: ['negrito', 'atigrado', 'carey', 'astro', 'lima', 'fenix', 'dragon', 'lava'],
+  oficinista: ['gris', 'siames', 'tuxedo', 'ruso', 'nube', 'samurai', 'faraon', 'fantasma']
+};
+const OF_TXT = { estudiante: '🎒 Estudiante', obrero: '🔧 Obrero', oficinista: '💼 Oficinista' };
 // [id, nombre, cuerpo, sombra, patrón]; patrón: liso, rayas, manchas, calico, siames, tuxedo
 const GATOS = [
   ['naranjo', 'Michi Naranjo', '#ff9a3c', '#e07a1f', 'liso'],
@@ -48,7 +55,7 @@ const GATOS = [
   ['lava', 'Gato Lava', '#3a0d0d', '#ff5a1f', 'rayas'],
   ['cristal', 'Gato Cristal', '#bff6ff', '#ffffff', 'manchas'],
   ['fabimath', 'Gato Fabimath', '#e8680c', '#ffd166', 'rayas']
-].map(([id, name, body, shade, pat], i) => ({ id, name, body, shade, pat, rar: RAR[Math.floor(i / 5)], w: CAT_W[i % 5] }));
+].map(([id, name, body, shade, pat], i) => ({ id, name, body, shade, pat, rar: RAR[Math.floor(i / 5)], w: CAT_W[i % 5], of: Object.keys(OFICIO).find(o => OFICIO[o].includes(id)) }));
 
 /* ---------- dibujo: el mismo gato pixel de la tienda, con patrón y accesorio según la rareza ---------- */
 function gatoSVG(g, size, oculto) {
@@ -153,7 +160,7 @@ function renderAcomp() {
 function menuGato(k) {
   const p = store.get(), pz = pieza(k), v = VAR[pz.v], ac = acompanantes(p), esta = ac.includes(k);
   const m = modal(pz.g.name, `<div class="g-rev"><div class="pop v-${v.id}">${gatoSVG(pz.g, 130)}</div><h3>${pz.g.name}</h3>
-    <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}
+    <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}<span class="tag" style="background:#6e6e73">${OF_TXT[pz.g.of]}</span>
     <p>Tienes ${p.col[k]}. Si te acompaña, cada acierto tiene ${ACOMP_P * 100} % de probabilidad de valer <b>×${multGato(k)}</b>.</p>
     <div class="g-menu"><button class="btn btn-primary" data-a="acomp">${esta ? '🐾 Dejar de acompañar' : ac.length >= ACOMP_MAX ? `🐾 Acompañar (sale ${pieza(ac[0]).g.name})` : '🐾 Acompañar'}</button>
       <button class="btn btn-ghost" data-a="vende">Vender ⭐ ${valor(k)}</button>
@@ -352,6 +359,7 @@ function renderGacha(prog) {
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary ${d >= 3 ? 'g-btn-arco' : ''}" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>${d >= 3 ? '🌈' : '🎰'} Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
+      <button class="btn btn-ghost" id="gOps">🏢 Michi operaciones</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
@@ -376,7 +384,8 @@ function renderGacha(prog) {
       }).join('') + '</div>').join('');
   $('gPlay').addEventListener('click', jugar);
   el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => { const r = GACHA_VAR.find(x => x[0] === +b.dataset.gvar); (r[0] >= 3 ? gachaEpico : gachaPrem)(r); }));
-  $('gFarm').addEventListener('click', granja);
+  $('gFarm').addEventListener('click', () => granja());   // tamagotchi.js la reemplaza después del primer dibujo
+  $('gOps').addEventListener('click', () => operaciones());
   $('gFus').addEventListener('click', fusionar);
   $('gMute').addEventListener('click', () => { localStorage.setItem('gacha_mute', mudo() ? '0' : '1'); renderGacha(store.get()); });
   el.querySelectorAll('[data-ver]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); const [g, v] = b.dataset.ver.split(':'); vista[g] = v; renderGacha(store.get()); }));
@@ -683,7 +692,7 @@ function granja() {
   const deco = ['🌳', '🌳', '🌲', '🌷', '🌼', '🌻', '⛲', '🌳', '🌷', '🪨'].map((e, i) => `<span class="deco" style="left:${(i * 37 + 5) % 92}%;top:${(i * 53 + 8) % 85}%">${e}</span>`).join('');
   const total = Object.values(col).reduce((s, n) => s + n, 0);
   const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">${copias.length < total ? `${copias.length} de tus ${total}` : copias.length} gatos paseando · clic en el pasto para dejar un pescado.</div></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
+    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gOpsF">🏢 Michi operaciones</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
     <div class="g-park" id="gPark">${deco}</div>`, 'g-farm');
   const park = m.querySelector('#gPark'), W = () => park.clientWidth - 56, H = () => park.clientHeight - 56;
   const gatos = copias.map(k => {
@@ -715,5 +724,6 @@ function granja() {
   const esc = e => { if (e.key === 'Escape') cerrar(); };
   document.addEventListener('keydown', esc);
   m.querySelector('#gClose').addEventListener('click', cerrar);
+  m.querySelector('#gOpsF').addEventListener('click', () => { cerrar(); operaciones(); });
   m.querySelector('#gClose').focus();
 }
