@@ -914,6 +914,14 @@ onAuthStateChanged(auth, async u => {
         const p = store.get(); sumaPez(p, BONO.pez); p.pts = (p.pts || 0) + BONO.pts; p.regalos = { ...p.regalos, [BONO.id]: 1 }; store.set(p);
         alert(`Perdón por el avance que se perdió al actualizar la página. Ya lo arreglamos para que no vuelva a pasar, y te regalamos 🐟 ${BONO.pez} y ⭐ ${BONO.pts}.`);
       }
+      // regalo especial, una sola vez por cuenta: el 4.º gato legendario (Samurái) en platino y un giro de ruleta galáctica
+      const ESPECIAL = { id: 'especial_2026-10-09', gato: 'samurai', vari: 'platino', giro: 5, hasta: '2026-10-31T03:00:00Z' };
+      if (Date.now() < Date.parse(ESPECIAL.hasta) && !(store.get().regalos || {})[ESPECIAL.id]) {
+        const p = store.get(), k = ESPECIAL.gato + ':' + ESPECIAL.vari, g = GATOS.find(x => x.id === ESPECIAL.gato);
+        p.col = p.col || {}; p.col[k] = (p.col[k] || 0) + 1; p.regalos = { ...p.regalos, [ESPECIAL.id]: 1 }; store.set(p);
+        alert(`🎁 Regalo especial: ${g.name} ${VAR.find(v => v.id === ESPECIAL.vari).name.toLowerCase()} (legendario) para tu colección, y un giro de ruleta ${VAR[ESPECIAL.giro].name.toLowerCase()}.`);
+        girarRuleta(null, ESPECIAL.giro);
+      }
       }
     } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
   } else store.set({});
