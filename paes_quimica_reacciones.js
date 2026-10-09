@@ -102,12 +102,7 @@ const QUI_REACCIONES = [
       <tr><td>Proust</td><td>cada compuesto tiene una proporción en masa fija</td><td>regla de tres con la proporción; lo que no calza, sobra</td></tr>
       <tr><td>Dalton</td><td>con una masa fija de un elemento, las masas del otro están en razón entera</td><td>fija un elemento y divide las masas del otro</td></tr>
       <tr><td>Balance</td><td>mismos átomos a ambos lados</td><td>cambia coeficientes, nunca subíndices</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error típico</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Sumar lo que sobró</td><td>9 g de Mg + 4 g de O dan 13 g de óxido</td><td>reaccionan 6 g + 4 g: 10 g de óxido y sobran 3 g de Mg</td></tr>
-      <tr><td>Sistema abierto</td><td>«la masa bajó: no se cumple Lavoisier»</td><td>la masa que falta es el gas que escapó</td></tr>
-      <tr><td>Contar átomos</td><td>en 2 H<sub>2</sub>O hay 2 H</td><td>hay $2\cdot 2 = 4$ H</td></tr>
-      <tr><td>Balancear con subíndices</td><td>H<sub>2</sub> + O<sub>2</sub> → H<sub>2</sub>O<sub>2</sub></td><td>2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O</td></tr>
-      <tr><td>Diagramas de partículas</td><td>escribir átomos sueltos (2 X) si las partículas son moléculas X<sub>2</sub></td><td>escribe las moléculas tal como aparecen y no cuentes las que sobran</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Lo que sobra no forma producto: con 9 g de Mg y 4 g de O reaccionan 6 g + 4 g, se forman 10 g de óxido y sobran 3 g de Mg.<br>· Si en un sistema abierto la masa baja, la que falta es el gas que escapó: Lavoisier se cumple.<br>· En 2 H<sub>2</sub>O hay $2\cdot 2 = 4$ H.<br>· Se balancea con coeficientes, nunca con subíndices: 2 H<sub>2</sub> + O<sub>2</sub> → 2 H<sub>2</sub>O.<br>· En los diagramas de partículas, escribe las moléculas tal como aparecen (X<sub>2</sub>) y no cuentes las que sobran.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Escribe qué reacciona y qué se forma. 2. Si hay masas, usa Lavoisier (suma o resta) y Proust (proporción fija). 3. Si hay coeficientes, cuenta átomos elemento por elemento con una tabla izquierda/derecha. 4. En un diagrama, cuenta moléculas antes y después, descuenta las que sobran y simplifica. 5. Comprueba que la masa total, o los átomos, sean iguales a ambos lados.</div>` }
   ],
   example: {
@@ -261,12 +256,7 @@ const QUI_REACCIONES = [
       <tr><td>mol</td><td>masa (g)</td><td>$m = n\cdot M$</td></tr>
       <tr><td>mol</td><td>moléculas</td><td>$N = n\cdot 6{,}02\cdot 10^{23}$</td></tr>
       <tr><td>moléculas</td><td>átomos de un elemento</td><td>multiplico por el subíndice de ese elemento</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error típico</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Paréntesis</td><td>$M$ de Ca(OH)<sub>2</sub> = 57 g/mol</td><td>$40 + 2\cdot 17 = 74$ g/mol</td></tr>
-      <tr><td>Dividir al revés</td><td>$n = \dfrac{44}{88} = 0{,}5$ mol</td><td>$n = \dfrac{88}{44} = 2$ mol</td></tr>
-      <tr><td>Moléculas por átomos</td><td>en 1 mol de NH<sub>3</sub> hay $6{,}02\cdot 10^{23}$ átomos de H</td><td>hay $3\cdot 6{,}02\cdot 10^{23}$ átomos de H</td></tr>
-      <tr><td>Más átomos = más masa</td><td>el CH<sub>4</sub> (5 átomos) pesa más que el HCl</td><td>$M$: 16 contra 36,5 g/mol</td></tr>
-      <tr><td>Misma masa, mismos mol</td><td>32 g de O<sub>2</sub> y de CH<sub>4</sub> tienen igual $n$</td><td>1 mol contra 2 mol</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· $M$ de Ca(OH)<sub>2</sub> = $40 + 2\cdot 17 = 74$ g/mol.<br>· $n = \dfrac{m}{M}$: 88 g de una sustancia de 44 g/mol son $\dfrac{88}{44} = 2$ mol.<br>· En 1 mol de NH<sub>3</sub> hay $3\cdot 6{,}02\cdot 10^{23}$ átomos de H.<br>· La masa la decide $M$, no el número de átomos: CH<sub>4</sub> tiene 16 g/mol y HCl 36,5 g/mol.<br>· Igual masa no es igual cantidad: 32 g de O<sub>2</sub> son 1 mol y 32 g de CH<sub>4</sub> son 2 mol.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Calcula la masa molar con cuidado (paréntesis y todos los H). 2. Pasa todo a mol: es la moneda común de la química. 3. Si piden partículas, multiplica por $N_A$, y si piden átomos, también por el subíndice. 4. Revisa las unidades y si el resultado tiene sentido (menos masa que $M$ es menos de 1 mol).</div>` }
   ],
   example: {
@@ -408,12 +398,7 @@ const QUI_REACCIONES = [
       <tr><td>Tengo gramos, busco gramos</td><td>g → mol (÷ $M$) → razón molar → mol → g (× $M$)</td></tr>
       <tr><td>Me dan cantidades de dos reactivos</td><td>busco el limitante: menor cociente mol / coeficiente</td></tr>
       <tr><td>Preguntan cuánto sobra</td><td>inicial − lo que reaccionó con el limitante</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error típico</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Razón molar con gramos</td><td>2 H<sub>2</sub> + O<sub>2</sub>: «2 g de H<sub>2</sub> con 1 g de O<sub>2</sub>»</td><td>2 mol de H<sub>2</sub> (4 g) con 1 mol de O<sub>2</sub> (32 g)</td></tr>
-      <tr><td>Fracción dada vuelta</td><td>4 mol de HNO<sub>3</sub> piden $4\cdot\dfrac{2}{1} = 8$ mol de N<sub>2</sub>O<sub>5</sub></td><td>$4\cdot\dfrac{1}{2} = 2$ mol</td></tr>
-      <tr><td>Limitante = el que hay menos</td><td>con 3 N<sub>2</sub> y 6 H<sub>2</sub>, limita el N<sub>2</sub></td><td>$\dfrac{6}{3} = 2 < \dfrac{3}{1} = 3$: limita el H<sub>2</sub></td></tr>
-      <tr><td>Calcular con el exceso</td><td>producto calculado con el reactivo que sobra</td><td>el producto siempre se calcula con el limitante</td></tr>
-      <tr><td>Sumar todo como producto</td><td>masa de producto = suma de todo lo que se puso</td><td>solo lo que reaccionó; lo que sobra no es producto</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· La razón molar es en mol: 2 H<sub>2</sub> + O<sub>2</sub> son 2 mol de H<sub>2</sub> (4 g) con 1 mol de O<sub>2</sub> (32 g).<br>· En N<sub>2</sub>O<sub>5</sub> + H<sub>2</sub>O → 2 HNO<sub>3</sub>, formar 4 mol de HNO<sub>3</sub> requiere $4\cdot\dfrac{1}{2} = 2$ mol de N<sub>2</sub>O<sub>5</sub>.<br>· El limitante se elige dividiendo por los coeficientes: en N<sub>2</sub> + 3 H<sub>2</sub>, con 3 mol de N<sub>2</sub> y 6 mol de H<sub>2</sub>, $\dfrac{6}{3} = 2 < \dfrac{3}{1} = 3$: limita el H<sub>2</sub>.<br>· El producto siempre se calcula con el reactivo limitante.<br>· La masa de producto es solo lo que reaccionó; lo que sobra no es producto.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Revisa que la ecuación esté balanceada. 2. Pasa todos los datos a mol. 3. Si hay dos reactivos, divide por los coeficientes y elige el limitante. 4. Usa la razón molar con el limitante. 5. Vuelve a gramos si te los piden. 6. Comprueba con la conservación de la masa.</div>` }
   ],
   example: {
@@ -568,12 +553,7 @@ const QUI_REACCIONES = [
       <tr><td>fórmula empírica desde % o masas</td><td>gramos → mol (÷ masa atómica) → ÷ el menor → enteros</td></tr>
       <tr><td>fórmula molecular</td><td>$n = \dfrac{M}{M_{\text{empírica}}}$ y multiplico todos los subíndices</td></tr>
       <tr><td>fórmula empírica desde la molecular</td><td>divido los subíndices por su máximo común divisor</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error típico</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Porcentajes como subíndices</td><td>80 % C y 20 % H → C<sub>4</sub>H</td><td>C $\dfrac{80}{12}$, H $\dfrac{20}{1}$: razón 1 : 3, CH<sub>3</sub></td></tr>
-      <tr><td>Olvidar el subíndice</td><td>% H en H<sub>2</sub>O $= \dfrac{1}{18}$</td><td>$\dfrac{2}{18}\approx 11{,}1\,\%$</td></tr>
-      <tr><td>Redondear 1,5</td><td>Fe 1 : O 1,5 → FeO</td><td>× 2 → Fe<sub>2</sub>O<sub>3</sub></td></tr>
-      <tr><td>Contar mal los H en una estructura</td><td>ácido butanoico C<sub>4</sub>H<sub>7</sub>O<sub>2</sub></td><td>C<sub>4</sub>H<sub>8</sub>O<sub>2</sub> (incluye el H del OH)</td></tr>
-      <tr><td>Porcentaje que «cambia» con la muestra</td><td>la muestra más grande tiene mayor % de Mg</td><td>mismo %; cambia la masa de Mg</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Los porcentajes se pasan a moles: C $\dfrac{80}{12}$, H $\dfrac{20}{1}$, razón 1 : 3, fórmula CH<sub>3</sub>.<br>· % H en H<sub>2</sub>O $= \dfrac{2}{18}\approx 11{,}1\,\%$: cuenta el subíndice.<br>· Una razón 1 : 1,5 se multiplica por 2: Fe<sub>2</sub>O<sub>3</sub>.<br>· El ácido butanoico es C<sub>4</sub>H<sub>8</sub>O<sub>2</sub> (incluye el H del OH).<br>· La composición porcentual no depende de la muestra: cambia la masa de Mg, no su %.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Calcula la masa molar con cuidado. 2. Para porcentajes, divide la masa del elemento en un mol por $M$; para comparar, mira cuánto acompaña a cada átomo del elemento. 3. Para fórmulas, trabaja siempre en mol: divide por la masa atómica, luego por el menor, y lleva a enteros. 4. Comprueba: los porcentajes suman 100 y la masa molar de tu fórmula coincide con la del enunciado.</div>` }
   ],
   example: {

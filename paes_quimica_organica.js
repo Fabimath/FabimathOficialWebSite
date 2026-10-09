@@ -77,7 +77,7 @@ const QUI_ORGANICA = [
       <tr><td>1 doble + 2 simples</td><td>sp<sup>2</sup></td><td>trigonal plana, 120°</td><td>doble: 1 $\sigma$ + 1 $\pi$</td><td>C=C: intermedia</td></tr>
       <tr><td>1 triple + 1 simple (o 2 dobles)</td><td>sp</td><td>lineal, 180°</td><td>triple: 1 $\sigma$ + 2 $\pi$</td><td>C≡C: la más corta, la más fuerte</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box alert"><b>Así no / así sí</b><br>✘ "El triple tiene 3 enlaces $\sigma$." ✔ Tiene 1 $\sigma$ y 2 $\pi$.<br>✘ "Los C–H no cuentan." ✔ Cada C–H es un $\sigma$.<br>✘ "El C=O no cambia la hibridación." ✔ El C de un C=O es sp².<br>✘ "Más enlaces, más largo." ✔ Más enlaces, más corto y más fuerte.</div>
+      <div class="box"><b>Recuerda</b><br>· El triple enlace tiene 1 $\sigma$ y 2 $\pi$.<br>· Cada C–H es un enlace $\sigma$.<br>· El C de un C=O es sp².<br>· Más enlaces entre dos átomos: enlace más corto y más fuerte.</div>
       </div><div>
       <div class="box"><b>Método PAES</b> 1. Completa los H que faltan (4 enlaces por C). 2. Para hibridación, mira cada carbono por separado y cuenta sus átomos vecinos. 3. Para $\sigma$: un $\sigma$ por cada enlace (o átomos − 1, más 1 por anillo). Para $\pi$: 1 por doble, 2 por triple. 4. Revisa si te piden el total o solo los C–C.</div>
       </div></div>` }
@@ -340,7 +340,7 @@ const QUI_ORGANICA = [
       <tr><td>Topológica</td><td>zig-zag de 4 vértices</td><td>vértices y extremos = C; H implícitos</td></tr>
       <tr><td>Esferas y varillas / compacto</td><td>modelo 3D</td><td>ángulos / volumen</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box alert"><b>Así no / así sí</b><br>✘ "En la topológica, los extremos no son carbonos." ✔ Cada extremo es un CH<sub>3</sub> (si no hay otro átomo escrito).<br>✘ "C<sub>8</sub>H<sub>8</sub>O<sub>3</sub> se simplifica a CHO." ✔ El MCD de 8, 8 y 3 es 1: ya es empírica.<br>✘ "Misma masa molar = isómeros." ✔ Isómeros = misma fórmula molecular.</div>
+      <div class="box"><b>Recuerda</b><br>· En la fórmula topológica, cada extremo es un CH<sub>3</sub> (si no hay otro átomo escrito).<br>· C<sub>8</sub>H<sub>8</sub>O<sub>3</sub> ya es empírica: el MCD de 8, 8 y 3 es 1.<br>· Isómeros = misma fórmula molecular.</div>
       </div><div>
       <div class="box"><b>Método PAES para contar</b> 1. Marca cada vértice y extremo (C). 2. Para cada C: H = 4 − enlaces dibujados (doble cuenta 2, triple cuenta 3). 3. Suma los H de OH, NH<sub>2</sub>, CHO escritos. 4. Escribe C, H y luego los demás átomos. 5. Si piden la empírica, divide por el MCD.</div>
       </div></div>` }
@@ -616,7 +616,7 @@ const QUI_ORGANICA = [
       <tr><td>Cicloalcano</td><td>anillo, simples</td><td>C<sub>n</sub>H<sub>2n</sub></td><td>ciclo-…-ano</td><td>ciclohexano</td></tr>
       <tr><td>Aromático</td><td>anillo bencénico</td><td>C<sub>6</sub>H<sub>6</sub> (benceno)</td><td>-benceno</td><td>metilbenceno</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box alert"><b>Así no / así sí</b><br>✘ La cadena principal es la horizontal. ✔ Es la más larga, aunque doble.<br>✘ 2-metil-4-etilhexano. ✔ 4-etil-2-metilhexano (orden alfabético).<br>✘ pent-3-eno. ✔ pent-2-eno (número más bajo al doble).<br>✘ Misma masa molar = isómeros. ✔ Misma fórmula molecular = isómeros.</div>
+      <div class="box"><b>Recuerda</b><br>· La cadena principal es la más larga, aunque se doble.<br>· Los sustituyentes van en orden alfabético: 4-etil-2-metilhexano.<br>· El doble enlace lleva el número más bajo: pent-2-eno.<br>· Isómeros = misma fórmula molecular.</div>
       </div><div>
       <div class="box"><b>Método PAES para nombrar</b> 1. Busca la cadena más larga que contenga el doble o triple. 2. Numera para que el enlace múltiple (o, si no hay, las ramas) tenga el número más bajo. 3. Identifica ramas y su posición. 4. Escribe en orden alfabético: localizador-rama + prefijo + localizador + sufijo. 5. Revisa: ¿el total de C del nombre coincide con el dibujo?</div>
       </div></div>` }
@@ -880,7 +880,7 @@ const QUI_ORGANICA = [
       <tr><td>Amina</td><td>R–NH<sub>2</sub></td><td>metanamina (metilamina)</td><td>básicas, olor a pescado, alcaloides</td></tr>
       <tr><td>Nitrilo</td><td>R–C≡N</td><td>etanonitrilo (acetonitrilo)</td><td>solventes, fibras acrílicas</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box alert"><b>Así no / así sí</b><br>✘ C=O siempre es cetona. ✔ Mira sus vecinos: H (aldehído), 2 C (cetona), OH (ácido), O–C (éster), N (amida).<br>✘ N–C=O es amina. ✔ Es amida.<br>✘ Etanoato de propilo = propanoato de etilo. ✔ Son distintos: "-ato" es la parte del ácido (con el C=O) y "-ilo" la del alcohol.</div>
+      <div class="box"><b>Recuerda</b><br>· En un C=O mira los vecinos: H (aldehído), 2 C (cetona), OH (ácido), O–C (éster), N (amida).<br>· N–C=O es una amida.<br>· Etanoato de propilo y propanoato de etilo son distintos: "-ato" es la parte del ácido (con el C=O) y "-ilo" la del alcohol.</div>
       </div><div>
       <div class="box"><b>Método PAES</b> 1. Encierra cada heteroátomo. 2. Mira sus vecinos y usa la tabla de la sección anterior. 3. Si te piden el nombre, busca el grupo de mayor prioridad: da el sufijo y fija la numeración (C1 en el CHO o el COOH). 4. Si te piden un uso, asocia: éster–aroma, amida–proteínas, cetona–acetona, ácido–vinagre, amina–olor a pescado.</div>
       </div></div>` }

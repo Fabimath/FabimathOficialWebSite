@@ -99,11 +99,7 @@ const QUI_SOLUCIONES = [
       <tr><td>Factores</td><td>Naturaleza (semejante disuelve a semejante); temperatura (sólidos: casi siempre sube; gases: baja); presión (solo gases: sube).</td></tr>
       <tr><td>Curva</td><td>En la curva, saturada; debajo, insaturada. Cristaliza = lo disuelto antes − lo que cabe después, escalado a la masa de agua.</td></tr></tbody></table>
       </div><div>
-      <div class="box alert"><b>Errores típicos</b><br>
-      · Así no: "quedó sal en el fondo, está sobresaturada". Así sí: está saturada; la sobresaturada no deja sólido.<br>
-      · Así no: leer la curva y usar ese número tal cual con 200 g de agua. Así sí: multiplica por (g de agua)/100.<br>
-      · Así no: "agitar aumenta la solubilidad". Así sí: agitar solo hace que se disuelva más rápido.<br>
-      · Así no: "al calentar, el gas se disuelve más". Así sí: al calentar se disuelve menos; al subir la presión, más.</div>
+      <div class="box"><b>Recuerda</b><br>· Si queda sal en el fondo, la solución está saturada; la sobresaturada no deja sólido.<br>· La curva de solubilidad es por 100 g de agua: multiplica por (g de agua)/100.<br>· Agitar solo hace que se disuelva más rápido; no cambia la solubilidad.<br>· Los gases se disuelven menos al calentar y más al subir la presión.</div>
       <div class="box"><b>Método para la PAES</b> 1. Identifica soluto, solvente y temperatura. 2. Si te dan la solubilidad, escálala a la masa de agua y compara. 3. En curvas, lee los dos puntos, escala y resta. 4. En experimentos, busca qué variable cambia entre ensayos y cuáles se mantienen.</div>
       </div></div>` }
   ],
@@ -399,11 +395,7 @@ const QUI_SOLUCIONES = [
       <tr><td>ppm</td><td>mg soluto / L solución</td><td>3 mg en 2 L → 1,5 ppm</td></tr>
       <tr><td>Densidad</td><td>m = d · V</td><td>200 mL · 1,2 g/mL = 240 g</td></tr></tbody></table>
       </div><div>
-      <div class="box alert"><b>Errores típicos</b><br>
-      · Así no: dividir por la masa de agua. Así sí: dividir por soluto + agua.<br>
-      · Así no: tomar el % como si fueran gramos totales ("15 % = 15 g"). Así sí: 15 g por cada 100 g de solución; escala a la masa real.<br>
-      · Así no: ppm con mL o con gramos. Así sí: mg por L.<br>
-      · Así no: usar mL de solución como si fueran gramos cuando d ≠ 1. Así sí: m = d · V.</div>
+      <div class="box"><b>Recuerda</b><br>· % m/m: divide por la masa de solución (soluto + agua).<br>· 15 % m/m son 15 g por cada 100 g de solución; escala a la masa real.<br>· ppm = mg por L.<br>· Si d ≠ 1, pasa de mL a gramos con m = d · V.</div>
       <div class="box"><b>Método para la PAES</b> 1. Anota qué es soluto y qué es solución, con unidades. 2. Elige la fórmula según la unidad pedida. 3. Pasa las unidades (mL ↔ L, g ↔ mg, volumen ↔ masa con la densidad). 4. Comprueba al revés: con tu resultado, ¿vuelves al dato?</div>
       </div></div>` }
   ],
@@ -664,11 +656,7 @@ const QUI_SOLUCIONES = [
       <tr><td>Fracción molar</td><td>$n_i$ / $n_{\text{total}}$, sin unidades</td><td>1 mol etanol + 4 mol agua → 0,2</td></tr>
       <tr><td>% m/v → mol/L</td><td>% m/v · 10 / M</td><td>4 % de NaOH → 1 mol/L</td></tr></tbody></table>
       </div><div>
-      <div class="box alert"><b>Errores típicos</b><br>
-      · Así no: dividir los gramos por el volumen. Así sí: primero pasa a moles ($m/M$).<br>
-      · Así no: volumen en mL. Así sí: en litros (molar) y masa de solvente en kg (molal).<br>
-      · Así no: en molal, dividir por la masa de solución. Así sí: solo el solvente.<br>
-      · Así no: disolver en V mL de agua para tener V mL de solución. Así sí: completar hasta V mL en un matraz aforado.</div>
+      <div class="box"><b>Recuerda</b><br>· Molaridad: primero pasa los gramos a moles ($m/M$).<br>· Volumen en litros (molar) y masa de solvente en kg (molal).<br>· Molalidad: divide solo por la masa del solvente.<br>· Para preparar V mL de solución, completa hasta V mL en un matraz aforado.</div>
       <div class="box"><b>Método para la PAES</b> 1. Pasa la masa a moles. 2. Mira el denominador que pide la unidad (L de solución, kg de solvente o moles totales). 3. Convierte unidades. 4. Comprueba al revés: $n = C\cdot V$ debe devolverte los moles.</div>
       </div></div>` }
   ],
@@ -938,11 +926,7 @@ const QUI_SOLUCIONES = [
       <tr><td>Mezcla del mismo soluto</td><td>$C_f = (C_1V_1 + C_2V_2)/(V_1 + V_2)$; queda entre las dos.</td></tr>
       <tr><td>Evaporar solvente</td><td>Sube la concentración; los moles no cambian.</td></tr></tbody></table>
       </div><div>
-      <div class="box alert"><b>Errores típicos</b><br>
-      · Así no: responder $V_2$ cuando piden el agua. Así sí: agua = $V_2 - V_1$.<br>
-      · Así no: despejar al revés ($V_2 = C_2V_1/C_1$). Así sí: el volumen final es mayor que el inicial; si te sale menor, revisa.<br>
-      · Así no: promediar concentraciones al mezclar. Así sí: suma moles, suma volúmenes.<br>
-      · Así no: "al diluir disminuyen los moles". Así sí: solo baja la concentración.</div>
+      <div class="box"><b>Recuerda</b><br>· El agua agregada es $V_2 - V_1$.<br>· Al diluir, el volumen final es mayor que el inicial.<br>· Al mezclar soluciones, suma moles y suma volúmenes.<br>· Al diluir, los moles de soluto no cambian; solo baja la concentración.</div>
       <div class="box"><b>Método para la PAES</b> 1. Escribe qué es 1 (inicial) y qué es 2 (final). 2. Iguala moles. 3. Fíjate si piden volumen final o agua agregada. 4. Comprueba: la concentración diluida debe ser menor y la de una mezcla, intermedia.</div>
       </div></div>` }
   ],

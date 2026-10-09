@@ -84,12 +84,7 @@ const QUI_ATOMO = [
       <tr><td>Decantación</td><td>líquidos inmiscibles, o sólido que sedimenta</td><td>densidad</td><td>agua y aceite, floculantes</td></tr>
       <tr><td>Destilación</td><td>líquidos miscibles, o líquido de su soluto</td><td>temperatura de ebullición</td><td>petróleo, pisco, agua destilada</td></tr>
       <tr><td>Evaporación</td><td>sólido disuelto de su solvente</td><td>volatilidad del solvente</td><td>sal de mar, litio</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>O<sub>2</sub> es un compuesto porque tiene dos átomos</td><td>O<sub>2</sub> es un elemento: sus átomos son iguales</td></tr>
-      <tr><td>Un diagrama con dos colores es un compuesto</td><td>Solo si los colores están unidos en partículas iguales; si hay dos tipos de partículas, es mezcla</td></tr>
-      <tr><td>Lo transparente es sustancia pura</td><td>El agua con sal es transparente y es mezcla homogénea</td></tr>
-      <tr><td>Filtrar para sacar la sal disuelta</td><td>La sal disuelta se separa evaporando o destilando</td></tr>
-      <tr><td>Decantar dos líquidos miscibles</td><td>Si forman una sola fase, se destilan</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· O<sub>2</sub> es un elemento: todos sus átomos son iguales.<br>· Un compuesto tiene partículas iguales formadas por átomos distintos; si hay dos tipos de partículas, es mezcla.<br>· El agua con sal es transparente y es una mezcla homogénea.<br>· La sal disuelta se separa evaporando o destilando.<br>· Dos líquidos miscibles (una sola fase) se separan por destilación.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Cuenta los tipos de partículas o de sustancias: uno → sustancia pura; varios → mezcla. 2. Pregunta si es uniforme (homogénea o heterogénea). 3. Para separar, identifica en qué se diferencian los componentes (tamaño, densidad, temperatura de ebullición) y elige el método que usa esa diferencia. 4. Si hay tres componentes, ordena los pasos: primero lo que no está disuelto, al final lo disuelto.</div>` }
   ],
   example: {
@@ -252,12 +247,7 @@ const QUI_ATOMO = [
       <tr><td>Densidad</td><td>intensiva</td><td>$d = \dfrac{m}{V}$; pendiente del gráfico masa-volumen</td></tr>
       <tr><td>Temperatura de fusión</td><td>intensiva</td><td>primera meseta de la curva de calentamiento</td></tr>
       <tr><td>Temperatura de ebullición</td><td>intensiva</td><td>segunda meseta; depende de la presión</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Si parto un objeto, su densidad baja a la mitad</td><td>La densidad es intensiva: no cambia</td></tr>
-      <tr><td>$m = \dfrac{d}{V}$</td><td>$m = d\cdot V$ (revisa las unidades)</td></tr>
-      <tr><td>Volumen de la piedra = lectura final</td><td>Volumen = lectura final − lectura inicial</td></tr>
-      <tr><td>En la meseta no entra calor</td><td>Entra calor, pero se usa en el cambio de estado</td></tr>
-      <tr><td>−35 °C es más que 25 °C</td><td>−35 °C es menos: a 25 °C esa sustancia ya hirvió</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· La densidad es intensiva: si partes un objeto, no cambia.<br>· $m = d\cdot V$ (revisa las unidades).<br>· Volumen de la piedra = lectura final − lectura inicial.<br>· En la meseta el calor que entra se usa en el cambio de estado.<br>· Si una sustancia hierve a −35 °C, a 25 °C ya es gas.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Anota los datos con sus unidades. 2. Elige la fórmula: $d = \dfrac{m}{V}$, $m = d\cdot V$ o $V = \dfrac{m}{d}$. 3. Revisa que las unidades den lo pedido. 4. Para el estado físico, ubica la temperatura entre la de fusión y la de ebullición. 5. En gráficos, lee primero los ejes y sus unidades; en tablas de datos, busca qué variable cambia junto con cuál.</div>` }
   ],
   example: {
@@ -411,12 +401,7 @@ const QUI_ATOMO = [
       <tr><td>Thomson (1904)</td><td>rayos catódicos</td><td>electrones (−) en una esfera positiva</td><td>no explica los rebotes de partículas alfa</td></tr>
       <tr><td>Rutherford (1911)</td><td>lámina de oro y partículas alfa</td><td>núcleo pequeño, denso y positivo; espacio vacío</td><td>el electrón caería al núcleo; no explica los espectros</td></tr>
       <tr><td>Bohr (1913)</td><td>espectros de líneas</td><td>niveles de energía fijos; absorción y emisión</td><td>solo funciona bien para el hidrógeno</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Thomson propuso el núcleo</td><td>Thomson descubrió el electrón; Rutherford propuso el núcleo</td></tr>
-      <tr><td>Las partículas rebotan porque el átomo es vacío</td><td>Pasan derecho porque es vacío; rebotan porque chocan con el núcleo, denso y positivo</td></tr>
-      <tr><td>Las partículas alfa se desvían por los electrones</td><td>Se desvían por la repulsión del núcleo positivo; los electrones son muy livianos</td></tr>
-      <tr><td>El electrón emite luz al subir de nivel</td><td>Absorbe al subir y emite al bajar</td></tr>
-      <tr><td>Los electrones lejanos son los más difíciles de arrancar</td><td>Son los más fáciles: están más lejos del núcleo</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Thomson descubrió el electrón; Rutherford propuso el núcleo.<br>· Casi todas las partículas alfa pasan derecho porque el átomo es casi vacío; unas pocas rebotan al chocar con el núcleo, denso y positivo.<br>· Las partículas alfa se desvían por la repulsión del núcleo positivo; los electrones son muy livianos para desviarlas.<br>· El electrón absorbe energía al subir de nivel y emite luz al bajar.<br>· Los electrones más lejanos son los más fáciles de arrancar.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Identifica de qué modelo habla el texto por su experimento o su idea clave (rayos catódicos → Thomson; lámina de oro → Rutherford; niveles y espectros → Bohr). 2. Une cada observación con la conclusión que permite. 3. Descarta las alternativas que mezclan ideas de modelos distintos o que son ciertas pero no salen de lo descrito.</div>` }
   ],
   example: {
@@ -569,12 +554,7 @@ const QUI_ATOMO = [
       <tr><td>Neutrones</td><td>A − Z</td><td>56 − 26 = 30</td></tr>
       <tr><td>Electrones</td><td>Z − carga</td><td>26 − 3 = 23</td></tr>
       <tr><td>¿Mismo elemento?</td><td>mismo Z</td><td>todo átomo con 26 protones es hierro</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Neutrones = A</td><td>Neutrones = A − Z</td></tr>
-      <tr><td>Fe<sup>3+</sup> tiene 29 electrones</td><td>Carga + significa que perdió electrones: 23</td></tr>
-      <tr><td>Un ion cambia sus protones</td><td>Solo cambian los electrones; los protones definen el elemento</td></tr>
-      <tr><td>Los isótopos tienen distinto número de protones</td><td>Igual Z, distinto número de neutrones</td></tr>
-      <tr><td>Neutrones = protones siempre</td><td>Pueden ser distintos: $\,{}^{35}_{17}\text{Cl}$ tiene 18 neutrones</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Neutrones = A − Z.<br>· Una carga positiva indica electrones perdidos: Fe<sup>3+</sup> tiene 26 − 3 = 23 electrones.<br>· En un ion solo cambian los electrones; los protones definen el elemento.<br>· Los isótopos tienen igual Z y distinto número de neutrones.<br>· Neutrones y protones pueden ser distintos: $\,{}^{35}_{17}\text{Cl}$ tiene 18 neutrones.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Haz una tablita con p, n y e de cada especie antes de leer las alternativas. 2. Protones = Z; neutrones = A − Z; electrones = Z − carga. 3. Para comparar especies, resta fila por fila. 4. Para «mismo elemento» o «isótopos», mira solo Z.</div>` }
   ],
   example: {

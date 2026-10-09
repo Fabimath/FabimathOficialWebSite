@@ -105,12 +105,7 @@ const QUI_HABILIDADES = [
       <tr><td>Variables controladas</td><td>Las que se mantienen iguales.</td></tr>
       <tr><td>Grupo control</td><td>Ensayo sin el factor estudiado, para comparar.</td></tr>
       <tr><td>Ley / teoría / modelo</td><td>Qué pasa / por qué pasa / representación simplificada.</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Invertir las variables</td><td>«La masa de compuesto es la independiente porque está en la tabla»</td><td>Independiente = lo que se decidió antes; dependiente = lo que se midió.</td></tr>
-      <tr><td>Hipótesis sobre una variable fija</td><td>«La temperatura afecta el color» (si la temperatura no cambió)</td><td>La hipótesis habla de la variable que sí cambió.</td></tr>
-      <tr><td>Comparar ensayos que difieren en dos cosas</td><td>Ensayos 1 y 4, con distinta temperatura y concentración</td><td>Ensayos que solo difieren en la variable estudiada.</td></tr>
-      <tr><td>Confundir resultado con conclusión</td><td>«El pH fue 5,2» es una conclusión</td><td>Es un resultado; la conclusión interpreta y responde la pregunta.</td></tr>
-      <tr><td>Instrumento equivocado</td><td>Termómetro para medir la variable dependiente «volumen»</td><td>Cada variable con su instrumento.</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Variable independiente: la que se decide antes; dependiente: la que se mide.<br>· La hipótesis habla de la variable que cambia en el experimento.<br>· Para estudiar una variable, compara ensayos que solo difieren en esa variable.<br>· «El pH fue 5,2» es un resultado; la conclusión lo interpreta y responde la pregunta.<br>· Cada variable se mide con su instrumento: la temperatura con termómetro, el volumen con probeta.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Subraya qué se cambió, qué se midió y qué se dejó igual. 2. Con eso, nombra las tres variables. 3. Si preguntan por la hipótesis o la pregunta, elige la que relaciona exactamente esas dos variables. 4. Si preguntan por un componente, busca las pistas («si… entonces», «se obtuvo», «se agregó»). 5. Descarta las alternativas que hablan de variables que no cambiaron.</div>` }
   ],
   example: {
@@ -284,12 +279,7 @@ const QUI_HABILIDADES = [
       <tr><td>Una predicción</td><td>Sigue la tendencia (diferencias entre valores seguidos), sin extrapolar lejos.</td></tr>
       <tr><td>Una conclusión o inferencia</td><td>Que salga de los datos, hable solo de lo medido y no agregue nada.</td></tr>
       <tr><td>Eficiencia, rendimiento o porcentaje</td><td>Calcula un cociente para cada fila y compara.</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Leer la relación al revés</td><td>«La temperatura de fusión disminuye al disminuir X» (si es inversa)</td><td>Si es inversa, al disminuir X la temperatura aumenta.</td></tr>
-      <tr><td>Llamar proporcional a cualquier relación directa</td><td>«La temperatura de ebullición es proporcional al número de C»</td><td>Revisa si el cociente es constante.</td></tr>
-      <tr><td>Olvidar la base del gráfico</td><td>110 g de KNO<sub>3</sub> en 50 g de agua</td><td>Es por 100 g de agua: en 50 g caben 55 g.</td></tr>
-      <tr><td>Generalizar</td><td>«Todas las sales son más solubles en caliente»</td><td>«En el rango estudiado, la solubilidad del KNO<sub>3</sub> aumenta».</td></tr>
-      <tr><td>Comparar totales</td><td>El método que más produce es el más eficiente</td><td>Compara lo producido por unidad de lo gastado.</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· En una relación inversa, cuando una variable disminuye, la otra aumenta.<br>· Una relación es proporcional solo si el cociente entre las variables es constante.<br>· Las curvas de solubilidad se leen por 100 g de agua: si caben 110 g de KNO<sub>3</sub> en 100 g, en 50 g caben 55 g.<br>· La conclusión se limita a lo estudiado: «en el rango estudiado, la solubilidad del KNO<sub>3</sub> aumenta con la temperatura».<br>· La eficiencia se compara con lo producido por unidad de lo gastado.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Lee encabezados, ejes y unidades. 2. Identifica qué cambió y qué se midió. 3. Describe en tu cabeza la tendencia antes de leer las alternativas. 4. Si hay números, calcula el cociente, la diferencia o el producto que corresponda. 5. Descarta lo que no sale de los datos, lo que generaliza y lo que habla de variables que no se midieron.</div>` }
   ],
   example: {
@@ -466,12 +456,7 @@ const QUI_HABILIDADES = [
       <tr><td>Reproducibilidad</td><td>¿Lo que se cambia altera una propiedad intensiva del sistema?</td></tr>
       <tr><td>Alcance tecnológico</td><td>¿La aplicación se limita a las condiciones estudiadas?</td></tr>
       <tr><td>Comunicar</td><td>¿Qué recurso muestra mejor lo que quiero mostrar?</td></tr></tbody></table>
-      <table style="margin-top:14px"><thead><tr><th>Error</th><th>Así no</th><th>Así sí</th></tr></thead><tbody>
-      <tr><td>Aceptar una conclusión sin comparación</td><td>«Probé el reactivo con aldehídos: diferencia aldehídos de alquenos»</td><td>Hay que probarlo con ambos tipos de compuestos.</td></tr>
-      <tr><td>Confundir diseño con datos</td><td>«El diseño está mal, así que los datos tienen errores»</td><td>Los datos pueden ser correctos aunque no respondan la pregunta.</td></tr>
-      <tr><td>Creer que la cantidad de muestra cambia la densidad</td><td>«Con 50 mL saldrá otra concentración»</td><td>Densidad y concentración son intensivas.</td></tr>
-      <tr><td>Generalizar el alcance</td><td>«Servirá para cualquier tipo de cáncer»</td><td>«Podría servir en condiciones similares a las estudiadas».</td></tr>
-      <tr><td>Gráfico equivocado</td><td>Gráfico de líneas para la composición del aire</td><td>Gráfico circular: partes de un todo.</td></tr></tbody></table>
+      <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Para afirmar que un reactivo diferencia dos tipos de compuestos, hay que probarlo con ambos.<br>· Los datos pueden ser correctos aunque el diseño no responda la pregunta.<br>· Densidad y concentración son intensivas: no cambian con la cantidad de muestra.<br>· El alcance de una conclusión se limita a condiciones similares a las estudiadas.<br>· Las partes de un todo, como la composición del aire, se muestran en un gráfico circular.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Escribe en una línea el objetivo de la investigación. 2. Revisa si el diseño cambia solo la variable independiente, tiene control y repeticiones. 3. Para una conclusión o un alcance, descarta lo que afirma más de lo medido. 4. Para una mejora, elige la que corrige el defecto que impide cumplir el objetivo. 5. Para comunicar, elige el recurso según lo que se quiere mostrar: cambio continuo, categorías, partes de un todo o forma en el espacio.</div>` }
   ],
   example: {
