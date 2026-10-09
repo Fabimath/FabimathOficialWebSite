@@ -1,0 +1,28 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\tikzset{cel/.style={draw=gris,fill=hielo,line width=0.9pt},nuc/.style={draw=gris!70,line width=0.6pt},
+fib/.style={gris!55,line width=0.35pt},eti/.style={font=\footnotesize,text=tinta,align=center},
+num/.style={circle,draw=nar,fill=white,text=nar,font=\small\bfseries,inner sep=1.2pt,minimum size=13pt},
+fl/.style={-{Stealth[length=2.6mm]},gris,line width=0.9pt}}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+\begin{axis}[width=9cm,height=5.6cm,ybar,bar width=14pt,ymin=0,ymax=100,axis lines=left,enlarge x limits=0.25,
+symbolic x coords={G1,S,G2 y M},xtick=data,ylabel={Células (\%)},ylabel style={font=\footnotesize},xlabel={Etapa del ciclo celular},xlabel style={font=\footnotesize},
+ymajorgrids,grid style={gray!20},nodes near coords,nodes near coords style={font=\scriptsize},legend style={font=\scriptsize,draw=none,at={(0.98,0.98)},anchor=north east},legend cell align=left]
+\addplot[fill=narc,draw=nar] coordinates {(G1,52) (S,28) (G2 y M,20)};
+\addplot[fill=azul!45,draw=azul] coordinates {(G1,84) (S,9) (G2 y M,7)};
+\legend{Cultivo sin fármaco,Cultivo con fármaco}
+\end{axis}
+\end{tikzpicture}
+\end{document}

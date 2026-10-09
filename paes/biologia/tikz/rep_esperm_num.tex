@@ -1,0 +1,32 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\tikzset{nb/.style={circle,draw=nar,fill=white,text=nar,font=\small\bfseries,inner sep=1.5pt}}
+\begin{tikzpicture}[font=\small,scale=1.25]
+\draw[tinta,thick] plot[domain=-2.6:0.9,samples=90,smooth] (\x,{0.28*sin(deg(3.2*(\x-0.9)))*(0.9-\x)/3.5});
+\draw[nar,fill=narc!60] (0.9,-0.14) rectangle (1.7,0.14);
+\foreach \x in {1.0,1.2,1.4} \draw[nar!80!black] (\x,-0.14) -- (\x+0.2,0.14);
+\begin{scope}
+\clip (2.45,0) ellipse (0.78 and 0.5);
+\fill[hielo] (1.6,-0.6) rectangle (3.3,0.6);
+\fill[coral!45] (2.72,-0.6) rectangle (3.3,0.6);
+\end{scope}
+\draw[tinta,thick] (2.45,0) ellipse (0.78 and 0.5);
+\draw[azul,fill=azul!30] (2.25,0) ellipse (0.48 and 0.34);
+\draw[gris] (3.05,0.3) -- (3.4,0.9) node[nb,anchor=south] {1};
+\draw[gris] (2.2,-0.15) -- (2.4,-0.9) node[nb,anchor=north] {2};
+\draw[gris] (1.3,0.14) -- (1.3,0.9) node[nb,anchor=south] {3};
+\draw[gris] (-1.4,-0.15) -- (-1.4,-0.9) node[nb,anchor=north] {4};
+\end{tikzpicture}
+\end{document}

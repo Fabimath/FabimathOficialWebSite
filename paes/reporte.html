@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
-<!-- bancos de preguntas: definen TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG y los QUI_* de Química como globales -->
+<!-- bancos de preguntas: definen TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG y los QUI_* de Química y BIO_* de Biología como globales -->
 <script src="../paes_data.js"></script>
 <script src="../paes_numeros.js"></script>
 <script src="../paes_funciones.js"></script>
@@ -19,6 +19,13 @@
 <script src="../paes_quimica_reacciones.js"></script>
 <script src="../paes_quimica_soluciones.js"></script>
 <script src="../paes_quimica_habilidades.js"></script>
+<script src="../paes_biologia_celula.js"></script>
+<script src="../paes_biologia_nervioso.js"></script>
+<script src="../paes_biologia_reproduccion.js"></script>
+<script src="../paes_biologia_division.js"></script>
+<script src="../paes_biologia_evolucion.js"></script>
+<script src="../paes_biologia_ambiente.js"></script>
+<script src="../paes_biologia_habilidades.js"></script>
 <style>
   :root { --ink:#1b1b1f; --ink-3:#6b6b74; --line:#e3e3ea; --paper:#fff; --royal:#2a4bd7; --coral:#e8342a; --good:#0d6b4a; --soft:#f6f6fb; }
   * { box-sizing: border-box; }
@@ -99,7 +106,7 @@ const $ = id => document.getElementById(id);
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
 
 // índice clave -> pregunta, replicando el esquema de paes.html (tema:e para el ejemplo, tema:i para el banco i)
-const ALL = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES];
+const ALL = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES, ...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
 const QMAP = {};
 ALL.forEach(t => {
   const reg = (q, key) => { QMAP[key] = { q, topic: t.title, unit: t.unit || t.title, icon: t.icon || '' }; };

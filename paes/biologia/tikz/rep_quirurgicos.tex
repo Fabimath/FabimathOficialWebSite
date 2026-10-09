@@ -1,0 +1,45 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\tikzset{tx/.style={execute at begin node={\hyphenpenalty=10000},text=tinta,font=\footnotesize,align=center},nudo/.style={coral,line width=2pt}}
+\begin{tikzpicture}[font=\small]
+% ---- vasectomía (un lado)
+\node[font=\small\bfseries,text=tinta] at (0.6,3.4) {Vasectomía};
+\draw[nar,thick,fill=narc!45] (0,-1.2) ellipse (0.55 and 0.75);
+\draw[nar!80!black,thick,fill=nar!55] (0.42,-0.55) .. controls (0.85,-0.85) and (0.85,-1.75) .. (0.3,-1.95) .. controls (0.55,-1.5) and (0.55,-0.95) .. (0.3,-0.62) -- cycle;
+\draw[nar!80!black,line width=1.8pt] (0.42,-0.55) .. controls (0.75,0.2) and (0.85,0.6) .. (0.85,0.9);
+\draw[nar!80!black,line width=1.8pt] (0.85,1.5) .. controls (0.85,2.2) and (1.2,2.6) .. (1.6,2.9);
+\draw[nudo] (0.72,0.9) -- (0.98,0.9); \draw[nudo] (0.72,1.5) -- (0.98,1.5);
+\draw[gris] (1.0,1.2) -- (1.8,1.2) node[tx,anchor=west,align=left] {corte y ligadura del\\conducto deferente};
+\draw[gris] (-0.5,-1.2) -- (-1.0,-1.6) node[tx,anchor=north east] {testículo};
+\draw[gris] (0.75,-1.3) -- (1.4,-1.6) node[tx,anchor=west] {epidídimo};
+\node[tx,text width=4.6cm] at (0.9,-3.0) {Los testículos siguen produciendo espermatozoides y testosterona, pero el semen ya no lleva espermatozoides.};
+% ---- ligadura de trompas
+\begin{scope}[shift={(8.4,0)}]
+\node[font=\small\bfseries,text=tinta] at (0,3.4) {Ligadura de trompas};
+\foreach \s in {1,-1}{
+\draw[line width=7pt,narc!80,line cap=round] (\s*0.95,1.2) .. controls (\s*1.6,1.7) and (\s*1.9,1.7) .. (\s*2.05,1.65);
+\draw[line width=7pt,narc!80,line cap=round] (\s*2.45,1.55) .. controls (\s*2.9,1.4) and (\s*2.95,0.9) .. (\s*2.9,0.6);
+\draw[nudo] (\s*2.05,1.45) -- (\s*2.05,1.85); \draw[nudo] (\s*2.45,1.35) -- (\s*2.45,1.75);
+\draw[nar,thick,fill=hielo] (\s*2.3,-0.05) ellipse (0.5 and 0.32);
+}
+\draw[nar,thick,fill=narc!40] (-1.05,1.15) .. controls (-1.15,2.0) and (1.15,2.0) .. (1.05,1.15) .. controls (0.95,0.1) and (0.5,-0.5) .. (0.38,-0.85) -- (0.35,-1.5) -- (-0.35,-1.5) -- (-0.38,-0.85) .. controls (-0.5,-0.5) and (-0.95,0.1) .. (-1.05,1.15) -- cycle;
+\draw[coral,fill=coral!30] (-0.65,1.2) .. controls (-0.4,1.45) and (0.4,1.45) .. (0.65,1.2) .. controls (0.4,0.5) and (0.15,0) .. (0.08,-0.5) -- (-0.08,-0.5) .. controls (-0.15,0) and (-0.4,0.5) .. (-0.65,1.2) -- cycle;
+\draw[gris] (2.45,1.85) -- (2.9,2.5) node[tx,anchor=south] {corte y ligadura de la trompa};
+\draw[gris] (2.3,-0.37) -- (2.6,-1.0) node[tx,anchor=north] {ovario};
+\draw[gris] (-0.6,0.2) -- (-1.6,-0.7) node[tx,anchor=north east] {útero};
+\node[tx,text width=5.2cm] at (0,-3.0) {Los ovarios siguen ovulando y produciendo hormonas, y hay menstruación, pero el ovocito y los espermatozoides no se encuentran.};
+\end{scope}
+\end{tikzpicture}
+\end{document}

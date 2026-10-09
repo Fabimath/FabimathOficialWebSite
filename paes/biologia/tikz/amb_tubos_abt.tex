@@ -1,0 +1,40 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\definecolor{bazul}{HTML}{3B7DD8}\definecolor{bverde}{HTML}{6DBB5A}\definecolor{bamar}{HTML}{F2CF3A}
+\begin{tikzpicture}[font=\small]
+\tikzset{elodea/.pic={
+  \draw[menta!60!black,thick] (0,0) .. controls (-0.08,0.5) and (0.08,0.9) .. (0,1.5);
+  \foreach \y/\s in {0.3/1,0.55/-1,0.8/1,1.05/-1,1.3/1} \draw[menta!70!black,fill=menta!60] (0.12*\s,\y) ellipse (0.14 and 0.05);}}
+\tikzset{caracol/.pic={
+  \fill[gris!50] (-0.32,0) ellipse (0.3 and 0.07);
+  \draw[nar!70!black,fill=narc] (0,0.18) circle (0.2);
+  \draw[nar!70!black] (0,0.18) circle (0.1);}}
+\foreach \i/\x/\col/\que/\cond/\fin in {1/0/bazul/Elodea/luz/azul,2/2.6/bamar/Elodea/oscuridad/amarillo,3/5.2/bamar/caracol/luz/amarillo,4/7.8/bverde/sin organismo/luz/verde}{
+  \fill[\col] (\x-0.45,0.45) -- (\x-0.45,3.0) -- (\x+0.45,3.0) -- (\x+0.45,0.45) arc (0:-180:0.45);
+  \fill[white] (\x-0.45,3.0) rectangle (\x+0.45,3.4);
+  \draw[tinta,thick] (\x-0.45,3.6) -- (\x-0.45,0.45) arc (180:360:0.45) -- (\x+0.45,3.6);
+  \fill[gris] (\x-0.55,3.45) rectangle (\x+0.55,3.95);
+  \node[font=\small\bfseries] at (\x,4.3) {Tubo \i};
+  \node[align=center,font=\footnotesize] at (\x,-0.55) {\que\\\cond};
+  \node[align=center,font=\footnotesize\bfseries] at (\x,-1.45) {\fin};
+}
+\pic at (0,0.35) {elodea};
+\pic at (2.6,0.35) {elodea};
+\pic at (5.2,0.5) {caracol};
+\node[anchor=east,font=\footnotesize,text=gris,align=right] at (-0.8,-0.55) {contenido\\condición};
+\node[anchor=east,font=\footnotesize,text=gris,align=right] at (-0.8,-1.45) {color a las 24 h};
+\node[font=\footnotesize,text=gris] at (3.9,-2.2) {color inicial de los cuatro tubos: verde};
+\end{tikzpicture}
+\end{document}

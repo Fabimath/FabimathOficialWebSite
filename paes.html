@@ -21,6 +21,13 @@
 <script src="paes_quimica_reacciones.js"></script>
 <script src="paes_quimica_soluciones.js"></script>
 <script src="paes_quimica_habilidades.js"></script>
+<script src="paes_biologia_celula.js"></script>
+<script src="paes_biologia_nervioso.js"></script>
+<script src="paes_biologia_reproduccion.js"></script>
+<script src="paes_biologia_division.js"></script>
+<script src="paes_biologia_evolucion.js"></script>
+<script src="paes_biologia_ambiente.js"></script>
+<script src="paes_biologia_habilidades.js"></script>
 <script src="gacha.js"></script>
 <style>
   :root {
@@ -163,9 +170,9 @@
   .qenun { font-size: 17px; line-height: 1.55; margin-bottom: 16px; }
   .qenun p { margin-bottom: 10px; }
   .qfig { margin: 6px 0 18px; overflow-x: auto; }
-  .qfig table, .slide table, .review table { border-collapse: collapse; font-size: 15px; margin: 4px 0; }
-  .qfig th, .qfig td, .slide th, .slide td, .review th, .review td { border: 1px solid var(--line); padding: 8px 14px; text-align: center; }
-  .qfig thead th, .slide thead th, .review thead th { background: var(--ice); color: #b84f06; font-weight: 600; }
+  .qfig table, .slide table, .review table, .qenun table { border-collapse: collapse; font-size: 15px; margin: 4px 0; }
+  .qfig th, .qfig td, .slide th, .slide td, .review th, .review td, .qenun th, .qenun td { border: 1px solid var(--line); padding: 8px 14px; text-align: center; }
+  .qfig thead th, .slide thead th, .review thead th, .qenun thead th { background: var(--ice); color: #b84f06; font-weight: 600; }
   .slide table { font-size: 14px; margin: 6px 0 10px; }
   .qfig .cap { font-size: 13px; letter-spacing: 0.01em; color: var(--ink-3); margin-top: 6px; }
   .qfig svg, .g-plot svg { max-width: 100%; height: auto; display: block; font-family: var(--font-text); }
@@ -309,7 +316,7 @@
   <!-- HOME -->
   <div id="home">
     <div class="hero">
-      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=algebra" id="ejeAlg">🧮 Álgebra y ecuaciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a><a href="paes.html?eje=quimica" id="ejeQui">🧪 Química <span class="beta">beta</span></a></div>
+      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=algebra" id="ejeAlg">🧮 Álgebra y ecuaciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a><a href="paes.html?eje=quimica" id="ejeQui">🧪 Química <span class="beta">beta</span></a><a href="paes.html?eje=biologia" id="ejeBio">🧬 Biología <span class="beta">beta</span></a></div>
       <h1>PAES <span id="ejeTitle"></span></h1>
       <p>Cada tema tiene una mini clase en diapositivas, una pregunta tipo PAES resuelta paso a paso y un cuestionario de 5 preguntas. Al final, un ensayo de 20 preguntas con todo el eje. Tus puntos y tus gatos sirven en todos los ejes.</p>
       <div class="src" id="ejeSrc">Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.</div>
@@ -410,6 +417,7 @@ const num = v => String(v).replace('.', ',');
 
 /* ---------------- eje: paes.html (Probabilidad y Estadística) o paes.html?eje=numeros ----------------
    Todos los ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
+const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
 const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES];
 const EJES = {
   pye: { name: 'Probabilidad y Estadística', topics: TOPICS, ensayo: 'ensayo', tab: 'ejePye',
@@ -426,11 +434,14 @@ const EJES = {
   // beta: PAES de Ciencias, módulo de Química (no entra al desafío mixto, que es de M1)
   quimica: { name: 'Química', beta: true, topics: TOPICS_QUI, ensayo: 'ensayo_qui', tab: 'ejeQui',
     src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Química (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
-    nota: ' · Notación: $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.' }
+    nota: ' · Notación: $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.' },
+  biologia: { name: 'Biología', beta: true, topics: TOPICS_BIO, ensayo: 'ensayo_bio', tab: 'ejeBio',
+    src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Biología (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
+    nota: ' · Notación: $2n$ diploide y $n$ haploide (juegos de cromosomas), ADN y ARN, FSH, LH, estrógeno y progesterona, CO₂ y O₂.' }
 };
 const EJE = EJES[new URLSearchParams(location.search).get('eje')] || EJES.pye;
-const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...TOPICS_QUI];
-const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Ensayo de Química' };
+const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...TOPICS_QUI, ...TOPICS_BIO];
+const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Ensayo de Química', ensayo_bio: 'Ensayo de Biología' };
 // clave fija por pregunta ("tema:índice", "tema:e" la resuelta) para contar cuántas veces salió cada una
 ALL_TOPICS.forEach(t => { t.example.key = t.id + ':e'; t.bank.forEach((q, i) => q.key = t.id + ':' + i); });
 // al azar, pero primero las que menos ha visto: así cada intento trae preguntas distintas
@@ -682,7 +693,7 @@ function stopClock() { clearInterval(tick); tick = null; }
 function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 0; log = []; setStage(1); showQ(); }
 function startQuiz() { round = pick(cur.bank, 5); intro(); }
 function startEnsayo() {
-  mode = 'ensayo'; cur = { id: EJE.ensayo, title: EJE.ruleta ? 'Desafío mixto' : 'Ensayo final', icon: EJE.ruleta ? '🎡' : '🎯', unit: EJE.name + ' · PAES M1' };
+  mode = 'ensayo'; cur = { id: EJE.ensayo, title: EJE.ruleta ? 'Desafío mixto' : 'Ensayo final', icon: EJE.ruleta ? '🎡' : '🎯', unit: EJE.name + (EJE.beta ? ' · PAES Ciencias' : ' · PAES M1') };
   const deEje = (ts, n) => shuffle(ts.flatMap(t => pick([t.example, ...t.bank], Math.ceil(n / ts.length)).map(q => ({ ...q, topic: t.title })))).slice(0, n);
   round = EJE.mix ? shuffle(EJE.mix.flatMap(ts => deEje(ts, Math.ceil(EJE.n / EJE.mix.length)))).slice(0, EJE.n) : deEje(T, 20);
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
@@ -871,12 +882,12 @@ async function renderPanel(u) {
     const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
     el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
-      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Química</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
+      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Química</th><th>Biología</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
       filas.map(f => { const p = f.p, h = p.hist || [];
         const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun', 'ensayo_alg', 'ensayo_qui'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${hechos(TOPICS_QUI)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
-      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones · Álgebra · Química.</div>';
+        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun', 'ensayo_alg', 'ensayo_qui', 'ensayo_bio'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
+      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones · Álgebra · Química · Biología.</div>';
     el.classList.remove('hidden');
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
 }

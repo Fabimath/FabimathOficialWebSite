@@ -1,0 +1,75 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\newcommand{\dedo}[5]{\foreach \i in {1,...,#4}{\draw[lila,line width=2.6pt,line cap=round] ($(#1,#2)+(#3:{(\i-1)*#5+0.05})$) -- ($(#1,#2)+(#3:{\i*#5-0.05})$);}}
+\newcommand{\hueso}[4][4pt]{\draw[#2,line width=#1,line cap=round] #3 -- #4;}
+\begin{tikzpicture}[font=\small]
+% humano
+\begin{scope}[shift={(0,0)}]
+\hueso[7pt]{nar}{(0,0)}{(0,-2.1)}
+\hueso{azul}{(-0.17,-2.32)}{(-0.3,-4.0)}
+\hueso{azul}{(0.15,-2.32)}{(0.15,-4.0)}
+\foreach \p in {(-0.3,-4.22),(-0.08,-4.22),(0.14,-4.22),(-0.22,-4.42),(0,-4.42),(0.2,-4.42)} \fill[menta] \p circle (0.09);
+\dedo{-0.36}{-4.48}{-118}{3}{0.27}
+\dedo{-0.2}{-4.62}{-97}{4}{0.36}
+\dedo{0}{-4.62}{-90}{4}{0.38}
+\dedo{0.18}{-4.62}{-84}{4}{0.36}
+\dedo{0.34}{-4.6}{-76}{4}{0.3}
+\end{scope}
+% gato
+\begin{scope}[shift={(3,0)}]
+\hueso[7pt]{nar}{(0,0)}{(0,-1.9)}
+\hueso{azul}{(-0.13,-2.1)}{(-0.16,-3.8)}
+\hueso{azul}{(0.13,-2.1)}{(0.13,-3.8)}
+\foreach \p in {(-0.2,-4.0),(0,-4.0),(0.2,-4.0),(-0.1,-4.2),(0.1,-4.2)} \fill[menta] \p circle (0.09);
+\dedo{-0.3}{-4.32}{-112}{2}{0.24}
+\dedo{-0.17}{-4.38}{-96}{4}{0.27}
+\dedo{-0.02}{-4.38}{-91}{4}{0.29}
+\dedo{0.13}{-4.38}{-87}{4}{0.29}
+\dedo{0.27}{-4.36}{-82}{4}{0.26}
+\end{scope}
+% ballena
+\begin{scope}[shift={(6,0)}]
+\fill[gris!15] (0,0.25) .. controls (-0.85,-0.8) and (-0.85,-3.6) .. (0,-5.4) .. controls (0.75,-3.6) and (0.8,-0.8) .. (0,0.25);
+\hueso[10pt]{nar}{(0,0)}{(0,-0.85)}
+\hueso[6pt]{azul}{(-0.17,-1.12)}{(-0.2,-2.0)}
+\hueso[6pt]{azul}{(0.18,-1.12)}{(0.2,-2.0)}
+\foreach \p in {(-0.22,-2.25),(0,-2.25),(0.22,-2.25),(-0.12,-2.47),(0.12,-2.47)} \fill[menta] \p circle (0.1);
+\dedo{-0.3}{-2.7}{-97}{5}{0.3}
+\dedo{-0.1}{-2.72}{-92}{7}{0.33}
+\dedo{0.1}{-2.72}{-88}{6}{0.32}
+\dedo{0.29}{-2.7}{-83}{4}{0.3}
+\end{scope}
+% murcielago
+\begin{scope}[shift={(9.6,0)}]
+\fill[gris!15] (0.1,-1.2) -- (2.1,-3.4) -- ($(0.12,-4.05)+(-45:2.4)$) -- ($(0.04,-4.1)+(-72:2.5)$) -- ($(-0.04,-4.1)+(-100:2.4)$) -- ($(-0.12,-4.05)+(-127:2.3)$) -- (-0.15,-3.9) -- cycle;
+\hueso[6pt]{nar}{(0,0)}{(0,-1.5)}
+\hueso{azul}{(-0.05,-1.72)}{(-0.05,-3.65)}
+\hueso[2pt]{azul}{(0.15,-1.72)}{(0.15,-2.4)}
+\foreach \p in {(-0.12,-3.85),(0.08,-3.85)} \fill[menta] \p circle (0.09);
+\dedo{-0.2}{-3.9}{-160}{2}{0.17}
+\dedo{-0.12}{-4.05}{-127}{4}{0.575}
+\dedo{-0.04}{-4.1}{-100}{4}{0.6}
+\dedo{0.04}{-4.1}{-72}{4}{0.625}
+\dedo{0.12}{-4.05}{-45}{4}{0.6}
+\end{scope}
+\foreach \x/\n/\f in {0/Humano/tomar objetos,3/Gato/caminar,6/Ballena/nadar,10/Murciélago/volar}{
+  \node[font=\bfseries] at (\x,-6.85) {\n};
+  \node[text=gris,font=\footnotesize] at (\x,-7.3) {\f};}
+\begin{scope}[shift={(-0.6,-8.1)}]
+\foreach \x/\c/\t in {0/nar/húmero,2.6/azul/radio y cúbito,6/menta/carpos,8.6/lila/metacarpos y falanges}{
+  \fill[\c] (\x,0) rectangle ++(0.32,0.32); \node[anchor=west] at (\x+0.4,0.16) {\t};}
+\end{scope}
+\end{tikzpicture}
+\end{document}

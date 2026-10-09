@@ -1,0 +1,65 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\tikzset{cel/.style={draw=gris,fill=hielo,line width=0.9pt},nuc/.style={draw=gris!70,line width=0.6pt},
+fib/.style={gris!55,line width=0.35pt},eti/.style={font=\footnotesize,text=tinta,align=center},
+num/.style={circle,draw=nar,fill=white,text=nar,font=\small\bfseries,inner sep=1.2pt,minimum size=13pt},
+fl/.style={-{Stealth[length=2.6mm]},gris,line width=0.9pt}}
+\begin{document}
+\begin{tikzpicture}[font=\small]
+\draw[azul,thick] plot[smooth] coordinates {(0,0) (0.05,0.049) (0.1,0.096) (0.15,0.137) (0.2,0.172) (0.25,0.198) (0.3,0.215) (0.35,0.22) (0.4,0.214) (0.45,0.198) (0.5,0.171) (0.55,0.136) (0.6,0.094) (0.65,0.047) (0.7,-0.002) (0.75,-0.051) (0.8,-0.097) (0.85,-0.139) (0.9,-0.173) (0.95,-0.199) (1,-0.215) (1.05,-0.22) (1.1,-0.214) (1.15,-0.197) (1.2,-0.17) (1.25,-0.135) (1.3,-0.092) (1.35,-0.045) (1.4,0.004) (1.45,0.053) (1.5,0.099) (1.55,0.14) (1.6,0.175) (1.65,0.2) (1.7,0.215) (1.75,0.22) (1.8,0.213) (1.85,0.196) (1.9,0.169) (1.95,0.133) (2,0.091)};
+\draw[nar,thick] plot[smooth] coordinates {(0,-0) (0.05,-0.049) (0.1,-0.096) (0.15,-0.137) (0.2,-0.172) (0.25,-0.198) (0.3,-0.215) (0.35,-0.22) (0.4,-0.214) (0.45,-0.198) (0.5,-0.171) (0.55,-0.136) (0.6,-0.094) (0.65,-0.047) (0.7,0.002) (0.75,0.051) (0.8,0.097) (0.85,0.139) (0.9,0.173) (0.95,0.199) (1,0.215) (1.05,0.22) (1.1,0.214) (1.15,0.197) (1.2,0.17) (1.25,0.135) (1.3,0.092) (1.35,0.045) (1.4,-0.004) (1.45,-0.053) (1.5,-0.099) (1.55,-0.14) (1.6,-0.175) (1.65,-0.2) (1.7,-0.215) (1.75,-0.22) (1.8,-0.213) (1.85,-0.196) (1.9,-0.169) (1.95,-0.133) (2,-0.091)};
+\draw[gris!60] (0.15,0.137)--(0.15,-0.137);
+\draw[gris!60] (0.3,0.215)--(0.3,-0.215);
+\draw[gris!60] (0.45,0.198)--(0.45,-0.198);
+\draw[gris!60] (0.6,0.094)--(0.6,-0.094);
+\draw[gris!60] (0.75,-0.051)--(0.75,0.051);
+\draw[gris!60] (0.9,-0.173)--(0.9,0.173);
+\draw[gris!60] (1.05,-0.22)--(1.05,0.22);
+\draw[gris!60] (1.2,-0.17)--(1.2,0.17);
+\draw[gris!60] (1.35,-0.045)--(1.35,0.045);
+\draw[gris!60] (1.5,0.099)--(1.5,-0.099);
+\draw[gris!60] (1.65,0.2)--(1.65,-0.2);
+\draw[gris!60] (1.8,0.213)--(1.8,-0.213);
+\draw[gris!60] (1.95,0.133)--(1.95,-0.133);
+\node[eti] at (1,-1.35) {\textbf{ADN}\\doble hélice};
+\draw[azul,thick] (2.9,0)--(5.1,0);
+\fill[narc,draw=nar] (3.25,0) circle (0.17);\draw[azul,thick] (3.08,0.05) arc (180:-160:0.18);
+\fill[narc,draw=nar] (3.8,0) circle (0.17);\draw[azul,thick] (3.63,0.05) arc (180:-160:0.18);
+\fill[narc,draw=nar] (4.35,0) circle (0.17);\draw[azul,thick] (4.18,0.05) arc (180:-160:0.18);
+\fill[narc,draw=nar] (4.9,0) circle (0.17);\draw[azul,thick] (4.73,0.05) arc (180:-160:0.18);
+\draw[gris] (3.8,0.2)--(3.9,0.7);\node[eti,font=\scriptsize,text=gris] at (3.95,0.88) {histonas};
+\node[eti] at (4,-1.35) {\textbf{Nucleosomas}\\«collar de perlas»};
+\fill[narc,draw=nar] (6.2,-0.16) circle (0.15);
+\fill[narc,draw=nar] (6.4,0.16) circle (0.15);
+\fill[narc,draw=nar] (6.6,-0.16) circle (0.15);
+\fill[narc,draw=nar] (6.8,0.16) circle (0.15);
+\fill[narc,draw=nar] (7,-0.16) circle (0.15);
+\fill[narc,draw=nar] (7.2,0.16) circle (0.15);
+\fill[narc,draw=nar] (7.4,-0.16) circle (0.15);
+\fill[narc,draw=nar] (7.6,0.16) circle (0.15);
+\fill[narc,draw=nar] (7.8,-0.16) circle (0.15);
+\draw[azul,thick] plot[smooth] coordinates {(6.2,-0.16) (6.4,0.16) (6.6,-0.16) (6.8,0.16) (7,-0.16) (7.2,0.16) (7.4,-0.16) (7.6,0.16) (7.8,-0.16)};
+\node[eti] at (7,-1.35) {\textbf{Fibra de cromatina}\\(nucleosomas plegados)};
+\draw[nar,line width=5.58pt,line cap=round] (10.177,0.93) .. controls (10.338,0.248) and (10.35,0.062) .. (10.338,0) .. controls (10.35,-0.062) and (10.338,-0.248) .. (10.177,-0.93);
+\draw[nar,line width=5.58pt,line cap=round] (10.623,0.93) .. controls (10.462,0.248) and (10.45,0.062) .. (10.462,0) .. controls (10.45,-0.062) and (10.462,-0.248) .. (10.623,-0.93);
+\fill[tinta] (10.4,0) ellipse (0.081 and 0.056);
+\draw[gris] (10.1,0.75)--(9.5,1.1);\node[eti,font=\scriptsize,text=gris] at (9.15,1.3) {cromátidas\\hermanas};
+\draw[gris] (10.7,0.75)--(9.55,1.05);\draw[gris] (10.5,0)--(11.15,0);\node[eti,font=\scriptsize,text=gris] at (11.7,0) {centrómero};
+\node[eti] at (10.4,-1.35) {\textbf{Cromosoma duplicado}\\(máxima compactación)};
+\draw[fl] (2.15,0)--(2.8,0);
+\draw[fl] (5.35,0)--(6,0);
+\draw[fl] (8.2,0)--(8.85,0);
+\draw[-{Stealth[length=2.6mm]},nar,thick] (0,-2.0)--(11,-2.0);\node[eti,font=\scriptsize,text=nar] at (5.5,-2.3) {más compactación};
+\end{tikzpicture}
+\end{document}
