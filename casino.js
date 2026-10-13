@@ -1,5 +1,6 @@
 /* Casino de pescados (PAES Fabimath): todo se paga con 🐟 (p.pez).
    · Blackjack michi: tú y cuatro gatos especiales contra la casa. Cada uno apuesta pescados; la casa se planta en 17.
+     La segunda carta de cada gato y de la casa va boca abajo hasta que juega la casa (o hasta que el gato se pasa).
      Blackjack paga 3 a 2, ganar paga 1 a 1, empate devuelve la apuesta. Los gatos especiales juegan con su propio
      montón (solo dura la sesión de la mesa) y compiten contigo en la tabla de ganancias.
    · Ticket de mejora (TICKET_COST): sube un gato de la colección a la variante siguiente, hasta estelar.
@@ -116,7 +117,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .bj-seat.yo { background: rgba(255,215,94,.15); border-color: #ffd75e; }
   .bj-seat.turno { box-shadow: 0 0 0 2px #fff, 0 0 18px rgba(255,255,255,.6); }
   .bj-seat b { font-size: 13.5px; line-height: 1.1; } .bj-seat small { font-size: 11px; color: #c9eed9; }
-  .bj-cartas { display: flex; justify-content: center; min-height: 58px; margin-top: 4px; }
+  .bj-cartas { display: flex; justify-content: center; min-height: 58px; margin-top: 10px; }
   .bj-c { width: 38px; height: 54px; border-radius: 6px; background: #fff; color: #1d1d1f; font-weight: 800; font-size: 15px; line-height: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
     box-shadow: 0 2px 6px rgba(0,0,0,.35); margin-left: -12px; animation: bj-da .35s var(--ease) both; }
   .bj-c:first-child { margin-left: 0; }
@@ -161,7 +162,8 @@ function blackjack() {
         ${j.yo ? `<div style="font-size:34px;line-height:46px">🧑‍🎓</div><b>Tú</b><small>🐟 ${miles(fichas())}</small>`
           : `<div class="v-${j.g.v}">${gatoSVG(j.g, 46)}</div><b>${j.g.name}</b><small>${j.g.apodo} · ${VAR.find(v => v.id === j.g.v).name.toLowerCase()}</small><small>🐟 ${miles(j.s)}</small>`}
         <span class="bj-ficha">${j.a ? '🐟 ' + miles(j.a) : ''}</span>
-        <div class="bj-cartas">${(j.cs || []).map(cartaHTML).join('')}</div><div class="bj-tot">${totTxt(j.cs || [])}</div>
+        <div class="bj-cartas">${(j.cs || []).map((c, k) => k === 1 && j.oculta ? '<div class="bj-c dorso"></div>' : cartaHTML(c)).join('')}</div>
+        <div class="bj-tot">${j.oculta ? (j.cs.length > 2 ? 'cartas ocultas' : '?') : totTxt(j.cs || [])}</div>
         ${j.res ? `<span class="bj-res ${j.res[0]}">${j.res[1]}</span>` : ''}</div>`).join('')}</div>
       <div class="bj-msg" role="status" aria-live="polite">${msg || ''}</div>
       <div class="bj-ctl" id="bjCtl">${jugando ? (turno === 2 ? `<button class="btn btn-white" data-acc="pedir">Pedir carta</button><button class="btn btn-white" data-acc="plantar">Plantarse</button>
@@ -193,7 +195,7 @@ function blackjack() {
       if (d !== 'pedir' && d !== 'doblar') break;
       j.cs.push(carta()); clac(); pinta(`${j.g.name} pide carta.`); await pausa(650);
     }
-    if (mano(j.cs).t > 21) { di(j, al(['¡Me pasé!', '¡Miau, no!', 'Ups…'])); pinta(`${j.g.name} se pasó.`); await pausa(600); }
+    if (mano(j.cs).t > 21) { j.oculta = false; di(j, al(['¡Me pasé!', '¡Miau, no!', 'Ups…'])); pinta(`${j.g.name} se pasó.`); await pausa(600); }
   }
   function turnoMio() {
     const yo = jug[2];
@@ -214,7 +216,7 @@ function blackjack() {
     if (apuesta < BJ_MIN || pez(p) < apuesta) return;
     sumaPez(p, -apuesta); store.set(p); updPez();   // la apuesta se descuenta al repartir
     jugando = true; oculta = true; casa = [];
-    jug.forEach(j => { j.cs = []; j.res = null; j.bur = '';
+    jug.forEach(j => { j.cs = []; j.res = null; j.bur = ''; j.oculta = !j.yo;   // la segunda carta de cada gato va boca abajo hasta el final
       if (j.yo) { j.a = apuesta; return; }
       if (j.s < BJ_MIN) { j.s = BJ_STACK / 2; di(j, 'Me recargo con 500 🐟. ¡Revancha!'); }
       j.a = Math.min(j.s, j.g.apuesta(j.s)); j.s -= j.a; });
@@ -229,7 +231,7 @@ function blackjack() {
       for (const i of [3, 4]) await turnoGato(i);
     }
     // la casa
-    turno = -1; oculta = false; pinta(mano(casa).bj ? '¡La casa tiene blackjack!' : 'Juega la casa…'); await pausa(700);
+    turno = -1; oculta = false; jug.forEach(j => j.oculta = false); pinta(mano(casa).bj ? '¡La casa tiene blackjack!' : 'Juega la casa…'); await pausa(700);
     const vivos = jug.some(j => mano(j.cs).t <= 21 && !mano(j.cs).bj);
     while (vivos && !mano(casa).bj && mano(casa).t < 17) { casa.push(carta()); clac(); pinta('La casa pide carta…'); await pausa(650); }
     // pagos
