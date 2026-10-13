@@ -1,7 +1,7 @@
 /* Michi operaciones: los gatos de la colección trabajan en tres escenarios de pixel art y producen pescados cada minuto.
    Colegio (michis estudiantes, abierto desde el inicio, con el Michi Profesor), Fábrica (obreros) y Oficina (oficinistas):
    estos dos se desbloquean para siempre con pescados, igual que cada puesto extra. El oficio de cada gato está en OFICIO (gacha.js).
-   Producción por minuto = la mitad del multiplicador del gato (multGato: sube con la rareza y la variante), de 1 a 50.
+   Producción por minuto = la mitad del multiplicador del gato (multGato: sube con la rareza y la variante), de 1 a 50 (mítico galáctico) y 77 (mítico estelar).
    Cada puesto guarda { k: "gato:variante", t: última cosecha }: lo producido se calcula con la hora, así que sigue sumando
    con la página cerrada, hasta OPS_TOPE minutos sin recoger. Estado en p.ops = { colegio: { n: puestos, s: [puesto | null] }, … }.
    El escenario es un SVG de 192 × 120 píxeles; gatos, muebles y carteles van encima en HTML, medidos en cqw para escalar juntos.
@@ -96,7 +96,7 @@ const OPS = [
 ];
 const MU = .42;   // cqw por píxel de mueble (el gato mide 8.5 cqw: 20 px de 0.425)
 const OPS_MIN = 60e3, OPS_TOPE = 60, OPS_INI = 2, OPS_MAX = 6;
-const pezMin = k => Math.max(1, Math.round(multGato(k) / 2));   // común normal ×2 → 1 por minuto … mítico galáctico ×100 → 50
+const pezMin = k => Math.max(1, Math.round(multGato(k) / 2));   // común normal ×2 → 1 por minuto … mítico galáctico ×100 → 50 … mítico estelar ×154 → 77
 const costoPuesto = n => 20 * 2 ** (n - OPS_INI);                 // 3.er puesto 20, 4.º 40, 5.º 80, 6.º 160
 const PROFE = { name: 'Michi Profesor', body: '#9c7a5b', shade: '#6b4f3a', pat: 'rayas', rar: RAR[0] };
 
@@ -188,7 +188,7 @@ function operaciones(sel = 'colegio') {
     else encima = (sel === 'colegio' ? `<div class="o-pos o-prof" style="left:88%;top:47%"><div class="o-gato" style="position:relative">${gatoSVG(PROFE, 56)}${ico(S_BIRRETE, { K: '#111', N: '#2b2b33', Y: '#f5c542' }, 'birrete')}</div>
         <div class="o-cartel t-borde"><div class="pxc">Michi Profesor</div></div></div>` : '') +
       Array.from({ length: Math.min(ab.n + 1, OPS_MAX) }, (_, i) => puestoHTML(e, ab, i, p)).join('');
-    box.innerHTML = `<div class="top"><div style="flex:1;min-width:260px"><h3 style="font-size:24px;display:flex;gap:8px;align-items:center">${gatoSVG(GATOS[0], 34)} Michi operaciones</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">Pon a trabajar a tus gatos: cada minuto producen la mitad de su multiplicador en pescados (de 1 a 50, según rareza y variante), aunque cierres la página, hasta ${OPS_TOPE} minutos sin recoger.</div></div>
+    box.innerHTML = `<div class="top"><div style="flex:1;min-width:260px"><h3 style="font-size:24px;display:flex;gap:8px;align-items:center">${gatoSVG(GATOS[0], 34)} Michi operaciones</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">Pon a trabajar a tus gatos: cada minuto producen la mitad de su multiplicador en pescados (de 1 a ${pezMin(GATOS[GATOS.length - 1].id + ":" + VAR[VAR.length - 1].id)}, según rareza y variante), aunque cierres la página, hasta ${OPS_TOPE} minutos sin recoger.</div></div>
       <div style="display:flex;gap:8px;align-items:center"><span class="pill">${window.esAdmin ? '∞' : p.pez || 0} ${PEZ_ICO}</span><button class="btn btn-ghost" data-x>Cerrar</button></div></div>
       <div class="o-tabs">${OPS.map(x => `<button class="o-tab ${x.id === sel ? 'on' : ''}" data-tab="${x.id}">${ico(x.mueble, x.col)}${x.name}${o[x.id] ? '' : ico(S_CANDADO, C_CANDADO, 'o-lk')}</button>`).join('')}</div>
       <div class="o-marco"><div class="o-escena ${ab ? '' : 'cerrada'}"><svg viewBox="0 0 192 120" shape-rendering="crispEdges" aria-hidden="true">${e.fondo()}</svg>${encima}</div></div>

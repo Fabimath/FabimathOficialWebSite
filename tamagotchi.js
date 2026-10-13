@@ -14,7 +14,7 @@ const PEZ_GRANJA = 0.3;               // cada 3 s, prob. de que un gato de la gr
 
 const pez = p => window.esAdmin ? Infinity : p.pez || 0;
 function sumaPez(p, n) { if (!window.esAdmin) p.pez = (p.pez || 0) + n; }
-function updPez() { const el = $('pezPill'); if (el) el.textContent = '🐟 ' + (window.esAdmin ? '∞' : store.get().pez || 0); }
+function updPez() { const el = $('pezPill'); if (el) el.textContent = '🐟 ' + (window.esAdmin ? '∞' : (store.get().pez || 0).toLocaleString('es-CL')); }
 function flota(txt, x, y) {
   const s = document.createElement('span'); s.className = 't-flota'; s.textContent = txt;
   s.style.left = x + 'px'; s.style.top = y + 'px'; document.body.appendChild(s); setTimeout(() => s.remove(), 1000);
@@ -148,7 +148,7 @@ document.body.insertAdjacentHTML('beforeend', `<div class="tama" id="tama" aria-
   <div class="info-w t-borde"><div class="info pxc" id="tInfo"></div></div><div id="tGlobo"></div></div>`);
 
 /* racha: cada RACHA correctas seguidas suma 1 al contador de evolución; con evoMeta(v) rachas el gato sube a la variante siguiente.
-   Las rachas que pide se duplican en cada variante: normal → oro 10, oro → diamante 20, … platino → galáctico 160. */
+   Las rachas que pide se duplican en cada variante: normal → oro 10, oro → diamante 20, … platino → galáctico 160, galáctico → estelar 320. */
 const RACHA = 2, evoMeta = v => 10 * 2 ** v;
 const MSG_BIEN = ['¡Miau! Así se hace 🐾', '¡Eres un crack!', '¡Purrfecto!', '¡Esa estuvo buenísima!', '¡Sigue así, humano!', '¡Me tienes orgulloso!', '¡Bien ahí, otra más!', '¡Cerebro de gato galáctico!'];
 const MSG_MAL = ['Tranqui, de los errores se aprende 🐾', '¡Tú puedes! La próxima sale', 'Respira y lee con calma', 'Casi… revisa la pauta y sigue', 'Yo creo en ti, miau', 'Equivocarse también es practicar', 'Ánimo, que yo te acompaño'];

@@ -1,0 +1,32 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+% \dcl{x}{titulo}{N}{P}{T}{fr}: largos de las flechas (0 = no se dibuja)
+\newcommand{\dcl}[6]{%
+  \begin{scope}[xshift=#1cm]
+  \node[font=\small\bfseries] at (0,2.0) {#2};
+  \draw[gris!50,rounded corners=4pt] (-1.55,-1.55) rectangle (1.55,1.7);
+  \ifdim #3pt>0pt \draw[->,very thick,azul] (0,0) -- (0,#3) node[right,text=tinta] {$\vec N$};\fi
+  \ifdim #4pt>0pt \draw[->,very thick,coral] (0,0) -- (0,-#4) node[right,text=tinta] {$\vec P$};\fi
+  \ifdim #5pt>0pt \draw[->,very thick,menta!70!black] (0,0) -- (#5,0) node[above,text=tinta] {$\vec T$};\fi
+  \ifdim #6pt>0pt \draw[->,very thick,nar] (0,0) -- (-#6,0) node[above,text=tinta] {$\vec f_r$};\fi
+  \fill[tinta] (0,0) circle (2pt);
+  \end{scope}}
+\begin{document}
+\begin{tikzpicture}[font=\footnotesize,>={Stealth[length=2.4mm]}]
+\dcl{0}{Diagrama 1}{1.1}{1.1}{1.25}{0.6}
+\dcl{3.5}{Diagrama 2}{0.55}{1.1}{0.9}{0.9}
+\dcl{7.0}{Diagrama 3}{1.1}{1.1}{0.9}{0.9}
+\dcl{10.5}{Diagrama 4}{1.1}{1.1}{0.9}{0}
+\end{tikzpicture}
+\end{document}

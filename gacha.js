@@ -19,7 +19,8 @@ const VAR = [
   { id: 'diamante', name: 'Diamante', w: 9,  dot: '#7fe0ff' },
   { id: 'arcoiris', name: 'Arcoíris', w: 5,  dot: 'linear-gradient(90deg,#ff5e5e,#ffe45c,#5fd97a,#4fa8ff,#b57be0)' },
   { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' },
-  { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' }   // estilo en tamagotchi.js
+  { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' },   // estilo en tamagotchi.js
+  { id: 'estelar',  name: 'Estelar',  w: 0.1, dot: 'linear-gradient(135deg,#fffbe6,#ffd75e 35%,#c8920a 65%,#fff)' }   // dorado metálico con brillo blanco
 ];
 // oficio de cada gato: en qué escenario de Michi operaciones (operaciones.js) puede trabajar
 const OFICIO = {
@@ -108,7 +109,7 @@ const GACHA_VAR = [[1, 50], [2, 100], [3, 1000]];   // desde arcoíris (3) es el
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
    Un diamante de una rareza ≈ un normal de la siguiente. Valor esperado de una tirada ≈ ⭐ 7, bajo el costo de 10:
    vender lo que sale nunca da más estrellas de las que se gastaron. */
-const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
+const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16, 32], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
 const FUS_COST = [5, 15, 40, 100, 250];   // por rareza de los tres gatos, × VAR_VAL de la variante más baja
 const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c); return { g, v: VAR.findIndex(x => x.id === v), r: RAR.indexOf(g.rar) }; };
 const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[GATOS.indexOf(p.g) % 5])); };
@@ -135,9 +136,9 @@ const libres = (col, k) => (col[k] || 0) - fus.filter(x => x === k).length;
 
 /* ---------- gatos que te acompañan: hasta ACOMP_MAX de la colección, abajo a la izquierda ----------
    Cada uno tiene ACOMP_P de probabilidad de multiplicar un acierto por multGato: crece con rareza + variante
-   (r + v de 0 a 9), de ×2 (común normal) a ×100 (mítico galáctico), 2 · 50^((r + v) / 9).
-   Si salen los dos, se multiplican entre sí, con tope ×MULT_MAX. */
-const ACOMP_MAX = 2, ACOMP_P = 0.5, MULT_MAX = 100;
+   (r + v de 0 a 10), de ×2 (común normal) a ×100 (mítico galáctico) y ×154 (mítico estelar), 2 · 50^((r + v) / 9).
+   Si salen los dos, se multiplican entre sí, con tope ×MULT_MAX: lo que vale solo el mejor gato posible. */
+const ACOMP_MAX = 2, ACOMP_P = 0.5, MULT_MAX = Math.round(2 * 50 ** ((RAR.length + VAR.length - 2) / 9));
 const multGato = k => { const p = pieza(k); return Math.round(2 * 50 ** ((p.r + p.v) / 9)); };
 const acompanantes = p => (p.acomp || []).filter(k => p.col && p.col[k]);   // vendido o fusionado ya no acompaña
 // estrellas de un acierto (antes del ×evento); anima a los gatos que multiplicaron
@@ -163,6 +164,7 @@ function menuGato(k) {
     <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}<span class="tag" style="background:#6e6e73">${OF_TXT[pz.g.of]}</span>
     <p>Tienes ${p.col[k]}. Si te acompaña, cada acierto tiene ${ACOMP_P * 100} % de probabilidad de valer <b>×${multGato(k)}</b>.</p>
     <div class="g-menu"><button class="btn btn-primary" data-a="acomp">${esta ? '🐾 Dejar de acompañar' : ac.length >= ACOMP_MAX ? `🐾 Acompañar (sale ${pieza(ac[0]).g.name})` : '🐾 Acompañar'}</button>
+      ${(p.tickets || 0) > 0 && pz.v < VAR.length - 1 ? `<button class="btn btn-primary g-btn-est" data-a="ticket">🎫 Usar ticket: ${VAR[pz.v + 1].name.toLowerCase()}</button>` : ''}
       <button class="btn btn-ghost" data-a="vende">Vender ⭐ ${valor(k)}</button>
       <button class="btn btn-ghost" data-a="fus" ${fus.length >= 3 || libres(p.col, k) < 1 ? 'disabled' : ''}>⚗️ Fusionar</button>
       <button class="btn btn-ghost" data-a="x">Cerrar</button></div></div>`);
@@ -174,6 +176,7 @@ function menuGato(k) {
     cerrar();
     if (b.dataset.a === 'acomp') { const q = store.get(); q.acomp = esta ? ac.filter(x => x !== k) : [...ac, k].slice(-ACOMP_MAX); store.set(q); renderGacha(q); }
     if (b.dataset.a === 'vende') vender(k);
+    if (b.dataset.a === 'ticket') usarTicket(k);   // casino.js
     if (b.dataset.a === 'fus') { fus.push(k); renderGacha(store.get()); }
   }));
   m.querySelector('[data-a="acomp"]').focus();
@@ -250,6 +253,17 @@ document.head.insertAdjacentHTML('beforeend', `<style>
     animation: g-chispa 1.1s ease-in-out infinite alternate; }
   @keyframes g-chispa { from { opacity: .25; transform: scale(.94) rotate(-3deg); } to { opacity: 1; transform: scale(1.06) rotate(3deg); } }
   .g-card.v-platino { background: linear-gradient(160deg, #fff, #eef1fa); box-shadow: inset 0 0 0 1px var(--rc), 0 0 16px rgba(200,210,255,.9); }
+  /* estelar: dorado metálico que late con brillo blanco, rayos blancos y dorados que giran y destellos de cuatro puntas */
+  .v-estelar svg { filter: sepia(1) saturate(3.2) hue-rotate(-6deg) brightness(1.32) contrast(1.3) drop-shadow(0 0 2px #fff) drop-shadow(0 0 8px #fff7d1) drop-shadow(0 0 20px #ffd75e); animation: g-est 1.6s ease-in-out infinite; }
+  @keyframes g-est { 50% { filter: sepia(1) saturate(2.6) hue-rotate(-6deg) brightness(1.75) contrast(1.3) drop-shadow(0 0 5px #fff) drop-shadow(0 0 16px #fffbe6) drop-shadow(0 0 34px #ffd75e); } }
+  .v-estelar:not(.g-gato) { position: relative; }
+  .v-estelar { isolation: isolate; }
+  .v-estelar::before, .v-estelar::after { content: ''; position: absolute; pointer-events: none; }
+  .v-estelar::before { inset: -22%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, #fff, rgba(255,247,209,.9) 22%, rgba(255,215,94,.5) 42%, transparent 66%), repeating-conic-gradient(rgba(255,255,255,.95) 0 5deg, transparent 5deg 18deg, rgba(255,200,60,.75) 18deg 23deg, transparent 23deg 36deg);
+    -webkit-mask: radial-gradient(circle, #000 32%, transparent 70%); mask: radial-gradient(circle, #000 32%, transparent 70%); animation: g-gira 5s linear infinite; }
+  .v-estelar::after { inset: -10%; z-index: 1; animation: g-chispa .8s ease-in-out infinite alternate; background: url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${[[10, 16, 8], [88, 12, 9], [84, 86, 6], [12, 84, 7], [50, 3, 5], [97, 50, 5], [3, 48, 6], [70, 28, 4], [30, 66, 4]].map(([x, y, r]) => `<path d="M${x} ${y - r}Q${x} ${y} ${x + r} ${y}Q${x} ${y} ${x} ${y + r}Q${x} ${y} ${x - r} ${y}Q${x} ${y} ${x} ${y - r}Z" fill="${r > 6 ? '#ffffff' : '#fff1a8'}"/>`).join('')}</svg>`)}") center / 100% 100% no-repeat; filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px #ffd75e); }
+  .g-card.v-estelar { background: linear-gradient(160deg, #fffdf2, #fff3c4); box-shadow: inset 0 0 0 1px #e0a800, 0 0 22px rgba(255,215,94,.95), 0 0 6px #fff; }
+  .g-btn-est { background: linear-gradient(100deg, #c8920a, #ffd75e 40%, #fff 50%, #ffd75e 60%, #c8920a) 0 0 / 250% 100%; color: #3a2400; animation: g-arco 2.4s linear infinite; }
   .v-arcoiris svg { animation: g-rb 2.5s linear infinite; }
   @keyframes g-rb { from { filter: saturate(1.8) hue-rotate(0deg) drop-shadow(0 0 5px #ff7ae0); } to { filter: saturate(1.8) hue-rotate(360deg) drop-shadow(0 0 5px #ff7ae0); } }
   .g-modal { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.55); display: grid; place-items: center; padding: 16px; }
@@ -340,11 +354,11 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   @keyframes g-shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
   @keyframes g-gira { to { transform: rotate(360deg); } }
   @keyframes g-flash { 15% { opacity: .9; } 100% { opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div, .v-platino svg, .v-platino::before, .v-platino::after { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .v-arcoiris svg { animation: none; filter: saturate(1.8) drop-shadow(0 0 5px #ff7ae0); } .g-rev .pop, .g-fx > div, .v-platino svg, .v-platino::before, .v-platino::after, .v-estelar svg, .v-estelar::before, .v-estelar::after, .g-btn-est { animation: none; } }
 </style>`);
 
 const vista = {};   // gato -> variante mostrada en la galería (se elige con los puntitos)
-const tagVar = v => `<span class="tag" style="background:${v.id === 'normal' ? '#8e8e93' : v.dot};color:${['oro', 'diamante', 'platino'].includes(v.id) ? '#1d1d1f' : '#fff'}">${v.name}</span>`;
+const tagVar = v => `<span class="tag" style="background:${v.id === 'normal' ? '#8e8e93' : v.dot};color:${['oro', 'diamante', 'platino', 'estelar'].includes(v.id) ? '#1d1d1f' : '#fff'}">${v.name}</span>`;
 function renderGacha(prog) {
   const el = $('gacha'); if (!el) return;
   const col = prog.col || {}, pts = prog.pts || 0;
@@ -367,7 +381,7 @@ function renderGacha(prog) {
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
       Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(', ')} (este último es interactivo); entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
-      Fusión: tres iguales dan el mismo gato con la variante siguiente (normal → oro → diamante → arcoíris → platino → galáctico). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
+      Fusión: tres iguales dan el mismo gato con la variante siguiente (${VAR.map(v => v.name.toLowerCase()).join(' → ')}). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
     <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Clic en un gato de la galería y «Fusionar» para agregarlo; clic en una casilla para sacarlo.</div>
       <div class="g-slots">${[0, 1, 2].map(i => { const k = fus[i]; if (!k) return `<div class="g-slot">+</div>`; const pz = pieza(k);
         return `<button class="g-slot lleno v-${VAR[pz.v].id}" style="--rc:${pz.g.rar.color}" data-quita="${i}" title="Sacar ${pz.g.name} ${VAR[pz.v].name.toLowerCase()}">${gatoSVG(pz.g, 60)}</button>`; }).join('')}
@@ -551,7 +565,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
 
 async function gachaEpico([desde, cost]) {
   const res = tirar(cost, desde); if (!res) return;   // el gato ya quedó guardado
-  const { g, v } = res, gal = v.id === 'galactico';
+  const { g, v } = res, gal = v.id === 'galactico', est = v.id === 'estelar';
   const m = modal('Gacha ' + VAR[desde].name.toLowerCase() + ' épico', `<div class="g-ep"><div class="cielo"></div><h3>✦ GACHA ${VAR[desde].name.toUpperCase()} ✦</h3>
     <div class="barra"><i id="gEn"></i></div><div id="gEsc"></div><div class="paso" id="gPaso" role="status" aria-live="polite"></div></div><button class="g-saltar" id="gSalta">Saltar ⏭</button>`, 'g-epbox');
   const esc = m.querySelector('#gEsc'), ep = m.querySelector('.g-ep');
@@ -576,7 +590,7 @@ async function gachaEpico([desde, cost]) {
     mon.remove(); energia(0.1);
     // 2 · cinco cristales arcoíris
     paso('¡Rompe los 5 cristales arcoíris!');
-    const cols = gal ? ['#b57be0', '#ff7ae0', '#9b5de5', '#e0b8ff', '#ff5ec4'] : ['#ff5e5e', '#ffa53d', '#ffe45c', '#5fd97a', '#4fa8ff'];
+    const cols = est ? ['#fff8d6', '#ffd75e', '#f5c542', '#ffffff', '#e0a800'] : gal ? ['#b57be0', '#ff7ae0', '#9b5de5', '#e0b8ff', '#ff5ec4'] : ['#ff5e5e', '#ffa53d', '#ffe45c', '#5fd97a', '#4fa8ff'];
     const pos = shuffle([[18, 38], [82, 34], [26, 76], [74, 74], [50, 58]]);
     let rotos = 0;
     await Promise.all(cols.map((c, i) => {
@@ -613,7 +627,7 @@ async function gachaEpico([desde, cost]) {
     redoble(1.2); await espera(1200); if (saltado) return;
     sonAbre(); cap.remove(); paso('');
     const rayos = document.createElement('div'); rayos.className = 'rayos';
-    rayos.style.setProperty('--r1', gal ? '#b57be0' : '#ffe45c'); rayos.style.setProperty('--r2', gal ? '#ff7ae0' : '#4fa8ff'); esc.appendChild(rayos);
+    rayos.style.setProperty('--r1', est ? '#fff' : gal ? '#b57be0' : '#ffe45c'); rayos.style.setProperty('--r2', est ? '#f5c542' : gal ? '#ff7ae0' : '#4fa8ff'); esc.appendChild(rayos);
     rayos.animate([{ scale: 0, rotate: '0deg' }, { scale: 1, rotate: '90deg' }], { duration: 1400, easing: 'ease-out', fill: 'forwards' });
     ep.animate([{ background: '#fff' }, { background: 'transparent' }], { duration: 700 });
     for (let i = 0; i < 46; i++) {

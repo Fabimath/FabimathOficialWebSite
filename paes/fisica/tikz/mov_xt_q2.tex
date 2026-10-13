@@ -1,0 +1,55 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}[font=\footnotesize,>={Stealth[length=2.4mm]},x=0.75cm,y=0.12cm]
+\draw[gris!25] (0,4) -- (8,4);
+\draw[gris!25] (0,8) -- (8,8);
+\draw[gris!25] (0,12) -- (8,12);
+\draw[gris!25] (0,16) -- (8,16);
+\draw[gris!25] (0,20) -- (8,20);
+\draw[gris!25] (0,24) -- (8,24);
+\draw[gris!25] (0,28) -- (8,28);
+\draw[gris!25] (0,32) -- (8,32);
+\draw[gris!25] (1,0) -- (1,32);
+\draw[gris!25] (2,0) -- (2,32);
+\draw[gris!25] (3,0) -- (3,32);
+\draw[gris!25] (4,0) -- (4,32);
+\draw[gris!25] (5,0) -- (5,32);
+\draw[gris!25] (6,0) -- (6,32);
+\draw[gris!25] (7,0) -- (7,32);
+\draw[gris!25] (8,0) -- (8,32);
+\draw[->,thick,tinta] (0,0) -- (8,0) -- ++(0.45cm,0) node[right] {$t$ (s)};
+\draw[->,thick,tinta] (0,0) -- (0,32) -- ++(0,0.45cm) node[above] {$x$ (m)};
+\draw[tinta] (1,0) -- ++(0,-0.08cm) node[below] {$1$};
+\draw[tinta] (2,0) -- ++(0,-0.08cm) node[below] {$2$};
+\draw[tinta] (3,0) -- ++(0,-0.08cm) node[below] {$3$};
+\draw[tinta] (4,0) -- ++(0,-0.08cm) node[below] {$4$};
+\draw[tinta] (5,0) -- ++(0,-0.08cm) node[below] {$5$};
+\draw[tinta] (6,0) -- ++(0,-0.08cm) node[below] {$6$};
+\draw[tinta] (7,0) -- ++(0,-0.08cm) node[below] {$7$};
+\draw[tinta] (8,0) -- ++(0,-0.08cm) node[below] {$8$};
+\draw[tinta] (0,4) -- ++(-0.08cm,0) node[left] {$4$};
+\draw[tinta] (0,8) -- ++(-0.08cm,0) node[left] {$8$};
+\draw[tinta] (0,12) -- ++(-0.08cm,0) node[left] {$12$};
+\draw[tinta] (0,16) -- ++(-0.08cm,0) node[left] {$16$};
+\draw[tinta] (0,20) -- ++(-0.08cm,0) node[left] {$20$};
+\draw[tinta] (0,24) -- ++(-0.08cm,0) node[left] {$24$};
+\draw[tinta] (0,28) -- ++(-0.08cm,0) node[left] {$28$};
+\draw[tinta] (0,32) -- ++(-0.08cm,0) node[left] {$32$};
+\node[below left] at (0,0) {$0$};
+\draw[very thick,azul] (0,8) -- (8,24);
+\draw[very thick,nar] (0,0) -- (8,32);
+\node[right,font=\small\bfseries,text=azul] at (8,24) {A};\node[right,font=\small\bfseries,text=nar] at (8,32) {B};
+\end{tikzpicture}
+\end{document}

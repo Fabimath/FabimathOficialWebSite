@@ -1,0 +1,25 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}[font=\footnotesize,>={Stealth[length=2.4mm]}]
+\draw[gris] (-6,0) -- (5,0);
+\draw[thick,azul,fill=azul!12] (0,2) .. controls (0.45,1) and (0.45,-1) .. (0,-2) .. controls (-0.45,-1) and (-0.45,1) .. (0,2);
+\foreach \x/\t in {-2/F,2/F,-4/2F,4/2F} {\fill[tinta] (\x,0) circle (0.06); \node[above,text=tinta] at (\x,0.05) {\t};}
+\draw[->,line width=1.6pt,nar] (-5,0) -- (-5,1.2) node[above,text=tinta] {objeto};
+\draw[nar!80!black,thick] (-5,1.2) -- (0,1.2) -- (4.5,-1.5); \draw[->,nar!80!black,thick] (-5,1.2) -- (-2.5,1.2);
+\draw[menta!70!black,thick] (-5,1.2) -- (4.5,-1.08); \draw[->,menta!70!black,thick] (-5,1.2) -- (-2.5,0.6);
+\draw[lila,thick] (-5,1.2) -- (0,-0.8) -- (4.5,-0.8); \draw[->,lila,thick] (-5,1.2) -- (-3.5,0.6);
+\draw[->,line width=1.6pt,coral] (3.333,0) -- (3.333,-0.8);
+\node[text=tinta,align=center,font=\scriptsize] at (3.3,-2.3) {imagen real, invertida\\y de menor tamaño};
+\end{tikzpicture}
+\end{document}
