@@ -32,7 +32,7 @@ async function usarTicket(k) {
 
 /* ---------- súper duper ruleta: pesca estelar ---------- */
 // un lance por cada mejora: vel en barras por segundo (ida o vuelta), zona dorada en % del ancho
-const PESCA = [{ vel: 0.7, zona: 22 }, { vel: 1.2, zona: 15 }];
+const PESCA = [{ vel: 2.2, zona: 22 }, { vel: 3.5, zona: 15 }];
 async function superRuleta() {
   const p = store.get(); if (pez(p) < SUPER_COST) return;
   const vs = VAR.slice(VAR.findIndex(v => v.id === 'platino'));
@@ -219,8 +219,7 @@ function blackjack() {
           <div class="bj-cartas">${yo.cs.map(cartaHTML).join('')}</div><div class="bj-tot">${totTxt(yo.cs, jugando)}</div>
           ${res ? `<span class="bj-res ${res[0]}">${res[1]}</span>` : ''}</div></div>
       <div class="bj-msg" role="status" aria-live="polite">${msg || ''}</div>
-      <div class="bj-ctl">${jugando ? (miTurno ? `<button class="btn btn-white" data-acc="pedir">Pedir carta</button><button class="btn btn-white" data-acc="plantar">Plantarse</button>
-          ${yo.cs.length === 2 && fichas() >= yo.a ? `<button class="btn btn-white" data-acc="doblar">Doblar 🐟 ${miles(yo.a)}</button>` : ''}` : '')
+      <div class="bj-ctl">${jugando ? (miTurno ? `<button class="btn btn-white" data-acc="pedir">Pedir carta</button><button class="btn btn-white" data-acc="plantar">Plantarse</button>` : '')
         : `${CHIPS.map(([n, c]) => `<button class="bj-chip" style="background:${c}" data-chip="${n}" ${apuesta + n > fichas() ? 'disabled' : ''}>+${n >= 1000 ? n / 1000 + 'k' : n}</button>`).join('')}
           <button class="btn btn-ghost" data-ap="min">Mínimo</button><button class="btn btn-ghost" data-ap="max">Todo</button>
           <span class="pill" style="background:#ffd75e;color:#3a2400">Apuesta 🐟 ${miles(apuesta)}</span>
@@ -257,10 +256,8 @@ function blackjack() {
     miTurno = true; pinta('Tu turno: ¿pides carta o te plantas?');
     return new Promise(fin => {
       accion = acc => {
-        const p = store.get();
-        if (acc === 'doblar') { if (pez(p) < yo.a) return; sumaPez(p, -yo.a); store.set(p); updPez(); yo.a *= 2; }
-        if (acc === 'pedir' || acc === 'doblar') { yo.cs.push(carta()); clac(); }
-        if (acc === 'plantar' || acc === 'doblar' || mano(yo.cs).t >= 21) { accion = null; miTurno = false; pinta(); fin(); }
+        if (acc === 'pedir') { yo.cs.push(carta()); clac(); }
+        if (acc === 'plantar' || mano(yo.cs).t >= 21) { accion = null; miTurno = false; pinta(); fin(); }
         else pinta('¿Otra carta?');
       };
     });
