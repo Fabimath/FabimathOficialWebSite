@@ -94,6 +94,9 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .tama .globo::after { content: ''; position: absolute; right: -8px; top: 20px; width: 8px; height: 8px; background: var(--gc); }
   @keyframes t-globo { from { scale: .3; opacity: 0; } }
   @media (max-width: 760px) { .tama { scale: .5; bottom: 6px; right: 4px; } .g-acomp { scale: .8; transform-origin: left bottom; } }
+  .tama .w-min { top: 24px; right: 34px; width: 36px; height: 36px; font-size: 24px; }
+  .tama.mini { scale: .28; }
+  .tama.mini .info-w, .tama.mini #tGlobo { display: none; }
   .t-flota { position: fixed; z-index: 200; font-weight: 800; font-size: 16px; color: #c2530a; pointer-events: none; translate: -50% -50%; animation: t-sube 1s ease-out forwards; text-shadow: 0 1px 0 #fff; }
   @keyframes t-sube { to { translate: -50% -180%; opacity: 0; } }
   .t-pez { position: absolute; z-index: 5; font-size: 24px; background: none; border: none; cursor: pointer; padding: 0; animation: t-cae .5s var(--ease); }
@@ -146,6 +149,7 @@ document.body.insertAdjacentHTML('beforeend', `<div class="tama" id="tama" aria-
     <div class="marco pxc"><div class="marco-in pxc"><div class="lcd" id="tLcd"></div></div></div>
     <div class="btns t-borde"><button class="pxc" id="tCome" title="Darle churu" aria-label="Darle churu">${pxSVG(CHURU, C_CHURU, 2.4)}</button><button class="pxc" id="tLimpia" title="Limpiar popó" aria-label="Limpiar popó">${pxSVG(ESCOBA, C_ESCOBA, 2.4)}</button><button class="pxc" id="tGuarda" title="Guardar en la colección (da 🐟 según su rareza)" aria-label="Guardar gatito">${pxSVG(CAJA, C_CAJA, 3)}</button></div></div>
   <div class="info-w t-borde"><div class="info pxc" id="tInfo"></div></div><div id="tGlobo"></div></div>`);
+minimizable($('tama'), 'paes_mini_tama');   // gacha.js
 
 /* racha: cada RACHA correctas seguidas suma 1 al contador de evolución; con evoMeta(v) rachas el gato sube a la variante siguiente.
    Las rachas que pide se duplican en cada variante: normal → oro 10, oro → diamante 20, … platino → galáctico 160, galáctico → estelar 320. */

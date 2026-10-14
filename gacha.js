@@ -151,10 +151,23 @@ function estrellasAcierto() {
   });
   return Math.min(MULT_MAX, sale.reduce((m, k) => m * multGato(k), 1));
 }
+/* widgets flotantes (gatos acompañantes y consola): el botón – los achica y un clic en el widget chico los agranda.
+   Se recuerda en este navegador. */
+function minimizable(el, key) {
+  const b = document.createElement('button');
+  b.type = 'button'; b.className = 'w-min'; b.textContent = '–'; b.title = 'Minimizar'; b.setAttribute('aria-label', 'Minimizar');
+  const pon = on => { el.classList.toggle('mini', on); el.title = on ? 'Clic para agrandar' : ''; localStorage.setItem(key, on ? '1' : ''); };
+  b.addEventListener('click', e => { e.stopPropagation(); pon(true); });
+  el.addEventListener('click', e => { if (el.classList.contains('mini')) { e.stopPropagation(); e.preventDefault(); pon(false); } }, true);
+  pon(localStorage.getItem(key) === '1');
+  el.prepend(b);
+}
 function renderAcomp() {
   let el = $('gAcomp');
-  if (!el) { el = document.createElement('div'); el.id = 'gAcomp'; el.className = 'g-acomp'; document.body.appendChild(el); }
-  el.innerHTML = acompanantes(store.get()).map(k => { const pz = pieza(k);
+  if (!el) { el = document.createElement('div'); el.id = 'gAcomp'; el.className = 'g-acomp'; el.innerHTML = '<div id="gAcs" class="g-acs"></div>'; document.body.appendChild(el); minimizable(el, 'paes_mini_acomp'); }
+  const ac = acompanantes(store.get());
+  el.classList.toggle('hidden', !ac.length);
+  $('gAcs').innerHTML = ac.map(k => { const pz = pieza(k);
     return `<div class="g-ac v-${VAR[pz.v].id}" data-k="${k}" title="${pz.g.name} ${VAR[pz.v].name.toLowerCase()}: ${ACOMP_P * 100} % de que un acierto valga ×${multGato(k)}">${gatoSVG(pz.g, 60)}<b>×${multGato(k)}</b></div>`; }).join('');
 }
 // clic en un gato de la colección: acompañar, vender o llevar a la fusión
@@ -293,7 +306,13 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .g-card.ac { background: #fff7f0; }
   .g-acbadge { display: inline-block; margin-top: 6px; font-size: 11.5px; font-weight: 700; color: #c4540a; background: var(--tint); padding: 2px 8px; border-radius: 99px; }
   .g-menu { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-  .g-acomp { position: fixed; left: 14px; bottom: 14px; z-index: 55; display: flex; gap: 10px; }
+  .g-acomp { position: fixed; left: 14px; bottom: 14px; z-index: 55; }
+  .g-acs { display: flex; gap: 10px; }
+  .w-min { position: absolute; top: -10px; right: -10px; z-index: 2; width: 26px; height: 26px; padding: 0; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink-2); font: 700 18px/1 var(--font-text); cursor: pointer; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0,0,0,.14); }
+  .w-min:hover { color: var(--ink); }
+  .mini { cursor: zoom-in; }
+  .mini .w-min { display: none; }
+  .g-acomp.mini { scale: .4; transform-origin: left bottom; }
   .g-ac { position: relative; background: rgba(255,255,255,.85); border: 1px solid var(--line); border-radius: 16px; padding: 6px 6px 4px; text-align: center; box-shadow: 0 6px 18px rgba(0,0,0,.08); }
   .g-ac b { display: block; font-size: 13px; color: #c4540a; }
   .g-x { position: absolute; left: 50%; top: -8px; translate: -50% 0; font-weight: 800; font-size: 20px; color: #e8680c; text-shadow: 0 1px 0 #fff; animation: t-sube 1.2s ease-out forwards; }

@@ -104,6 +104,23 @@
   .ensayo-card h3 { font-size: 28px; letter-spacing: -0.02em; }
   .ensayo-card p { font-size: 17px; max-width: 540px; margin-top: 6px; }
   .ensayo-card .best { font-size: 13px; letter-spacing: 0.01em; opacity: .88; margin-top: 10px; }
+  /* menú: Estudiar · Practicar · Gatos, y las cuatro áreas */
+  .menu3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .big { color: var(--ink); background: var(--paper); border: 1px solid rgba(0,0,0,.06); border-radius: 24px; box-shadow: var(--shadow); padding: 34px 20px 28px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; font-family: var(--font-display); font-size: 24px; font-weight: 700; letter-spacing: -0.02em; cursor: pointer; transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .big:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .big .ic { font-size: 44px; line-height: 1.1; }
+  .big small { font-family: var(--font-text); font-size: 14px; font-weight: 500; letter-spacing: -0.005em; color: var(--ink-3); }
+  .big .best { font-family: var(--font-text); font-size: 12px; font-weight: 500; color: var(--ink-3); }
+  .big .btn { margin-top: 10px; font-size: 15px; }
+  .vista-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 26px; }
+  .vista-head h2 { font-size: clamp(28px, 4.4vw, 40px); }
+  .vista-head .ejes { margin-bottom: 0; }
+  .eje-lbl { font-size: 26px; margin: 52px 0 -24px; }
+  .eje-lbl:first-of-type { margin-top: 28px; }
+  .leyenda { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+  .mod { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; }
+  .mod.c { background: rgba(23,166,115,.12); color: var(--ok-ink); }
+  .mod.e { background: rgba(124,92,240,.13); color: #5b3fd0; }
 
   /* ---------- BUTTONS ---------- */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 22px; border-radius: 980px; font-family: var(--font-text); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; border: none; cursor: pointer; transition: background-color .2s ease, color .2s ease, transform .3s var(--ease), opacity .2s ease; }
@@ -311,7 +328,7 @@
       <span class="pill pts" id="ptsPill" title="Estrellas: 1 por cada respuesta correcta, multiplicada por los gatos que te acompañan">⭐ 0</span>
       <span class="pill pts" id="pezPill" title="Pescados: salen de la consola de gatitos, de la granja y de Michi operaciones; compran huevos, escenarios y puestos de trabajo">🐟 0</span>
       <button class="pill" id="loginBtn" title="Inicia sesión con Google para guardar tu avance en la nube">🔑 Entrar</button>
-      <button class="pill" id="homeBtn">📙 Temas</button>
+      <button class="pill" id="homeBtn">📙 PAES</button>
       <a class="pill" href="index.html">Inicio</a>
     </div>
   </div>
@@ -322,26 +339,35 @@
 
   <!-- HOME -->
   <div id="home">
-    <div class="hero">
-      <div class="ejes"><a href="paes.html" id="ejePye">📊 Probabilidad y Estadística</a><a href="paes.html?eje=numeros" id="ejeNum">🔢 Números</a><a href="paes.html?eje=funciones" id="ejeFun">📈 Funciones</a><a href="paes.html?eje=algebra" id="ejeAlg">🧮 Álgebra y ecuaciones</a><a href="paes.html?eje=mixto" id="ejeMix">🎡 Mixto</a><a href="paes.html?eje=quimica" id="ejeQui">🧪 Química <span class="beta">beta</span></a><a href="paes.html?eje=biologia" id="ejeBio">🧬 Biología <span class="beta">beta</span></a><a href="paes.html?eje=fisica" id="ejeFis">🔭 Física <span class="beta">beta</span></a></div>
-      <h1>PAES <span id="ejeTitle"></span></h1>
-      <p>Cada tema tiene una mini clase en diapositivas, una pregunta tipo PAES resuelta paso a paso y un cuestionario de 5 preguntas. Al final, un ensayo de 20 preguntas con todo el eje. Tus puntos y tus gatos sirven en todos los ejes.</p>
-      <div class="src" id="ejeSrc">Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.</div>
-    </div>
-    <div id="units"></div>
-    <div class="ensayo-card">
-      <div>
-        <h3 id="ensayoTitle"></h3>
-        <p id="ensayoDesc">20 preguntas tipo PAES mezclando todos los temas del eje, con pauta completa al terminar.</p>
-        <div class="best" id="ensayoBest"></div>
+    <!-- vistas por hash: # menú · #estudiar · #estudiar/qui · #practicar · #gatos -->
+    <div id="v_menu">
+      <div class="hero">
+        <h1>PAES <span>Fabimath</span></h1>
+        <p>Clases, preguntas tipo PAES y miniensayos de Matemática M1 y Ciencias. Tus estrellas y tus gatos sirven en todo.</p>
       </div>
-      <button class="btn btn-white" id="ensayoBtn">Rendir ensayo ▶</button>
+      <div class="menu3">
+        <a class="big" href="#estudiar"><span class="ic">📚</span>Estudiar<small>Unidades y temas con clase, pregunta resuelta y cuestionario</small></a>
+        <a class="big" href="#practicar"><span class="ic">🎯</span>Practicar<small>Miniensayos de 20 preguntas por área</small></a>
+        <a class="big" href="#gatos"><span class="ic">🐱</span>Gatos<small>Huevos, colección, gachapón y casino</small></a>
+      </div>
+      <div class="hist hidden" id="panel"></div>
     </div>
-    <div class="shop huevos" id="huevos"></div>
-    <div class="shop casino" id="casino"></div>
-    <div class="hist" id="hist"></div>
-    <div class="shop gacha" id="gacha"></div>
-    <div class="hist hidden" id="panel"></div>
+    <div id="v_estudiar" class="hidden">
+      <div class="vista-head"><h2 id="estTitle">Estudiar</h2><div class="ejes hidden" id="areaTabs"></div></div>
+      <div class="src leyenda" id="ejeSrc"></div>
+      <div id="units"></div>
+    </div>
+    <div id="v_practicar" class="hidden">
+      <div class="vista-head"><h2>Practicar</h2></div>
+      <div class="menu3" id="ensayos"></div>
+      <div class="hist" id="hist"></div>
+    </div>
+    <div id="v_gatos" class="hidden">
+      <div class="vista-head"><h2>Gatos</h2></div>
+      <div class="shop huevos" id="huevos"></div>
+      <div class="shop gacha" id="gacha"></div>
+      <div class="shop casino" id="casino"></div>
+    </div>
   </div>
 
   <!-- TOPIC -->
@@ -393,7 +419,7 @@
         <p id="rMsg"></p>
         <div class="bytopic hidden" id="rByTopic"></div>
         <div class="qnav" style="justify-content:center; margin-top:22px;">
-          <button class="btn btn-ghost" id="rHome">◀ Volver a los temas</button>
+          <button class="btn btn-ghost" id="rHome">◀ Volver</button>
           <button class="btn btn-primary" id="rRetry">↻ Repetir</button>
           <button class="btn btn-primary hidden" id="rSpin"></button>
         </div>
@@ -423,37 +449,42 @@ function renderMath(el) {
 }
 const num = v => String(v).replace('.', ',');
 
-/* ---------------- eje: paes.html (Probabilidad y Estadística) o paes.html?eje=numeros ----------------
-   Todos los ejes comparten el mismo avance: puntos, gatos e historial son uno solo. */
+/* ---------------- áreas: M1 (cuatro ejes), Química, Física y Biología ----------------
+   Todas comparten el mismo avance: puntos, gatos e historial son uno solo. */
 const TOPICS_FIS = [...FIS_ONDAS, ...FIS_MOVIMIENTO, ...FIS_FUERZAS, ...FIS_UNIVERSO, ...FIS_TIERRA, ...FIS_ELECTRICIDAD, ...FIS_HABILIDADES];
 const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
 const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES];
-const EJES = {
-  pye: { name: 'Probabilidad y Estadística', topics: TOPICS, ensayo: 'ensayo', tab: 'ejePye',
-    nota: ' · Notación: $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_1$, $Q_2 = Me$, $Q_3$ cuartiles.' },
-  numeros: { name: 'Números', topics: TOPICS_NUM, ensayo: 'ensayo_num', tab: 'ejeNum',
-    nota: ' · Notación: $\\mathbb{Z}$ enteros, $\\mathbb{Q}$ racionales, $0{,}\\overline{3}$ decimal periódico.' },
-  funciones: { name: 'Funciones', topics: TOPICS_FUN, ensayo: 'ensayo_fun', tab: 'ejeFun',
-    nota: ' · Notación: $f(x)$ imagen de $x$, $m$ pendiente, $n$ coeficiente de posición, $\\Delta = b^2 - 4ac$ discriminante.' },
-  algebra: { name: 'Álgebra y ecuaciones', topics: TOPICS_ALG, ensayo: 'ensayo_alg', tab: 'ejeAlg',
-    nota: ' · Notación: $x$ incógnita, $<$, $>$, $\leq$, $\geq$ desigualdades, $]a, b[$ intervalo abierto y $[a, b]$ cerrado.' },
-  // sin temas propios: 10 preguntas repartidas entre los ejes, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
-  mixto: { name: 'Mixto', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG], n: 10, x: 3, ensayo: 'ensayo_mix', tab: 'ejeMix', ruleta: true, nota: '',
-    desc: '10 preguntas mezcladas de Estadística, Números, Funciones y Álgebra, y cada acierto vale el triple de estrellas. Al terminar giras una ruleta de 5 gatos: con 4 correctas sale la ruleta rara, con 6 la épica, con 8 la legendaria y con 10 la mítica.' },
-  // beta: PAES de Ciencias, módulo de Química (no entra al desafío mixto, que es de M1)
-  quimica: { name: 'Química', beta: true, topics: TOPICS_QUI, ensayo: 'ensayo_qui', tab: 'ejeQui',
-    src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Química (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
+// temas de Ciencias que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común
+// (cinemática, MRU y MRUA no salen en ninguna de las tres: quedan como Común por nivel curricular; sinapsis va con neurona)
+const ELECTIVO = new Set(['fis_sistema_solar', 'fis_universo', 'bio_neurona', 'bio_sinapsis']);
+const SRC_CIENCIAS = n => `Versión beta. Basado en el temario oficial de la PAES de Ciencias – ${n} (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE. Común: puede salir en el Módulo Común (54 preguntas de Biología, Física y Química que rinden todos). Electivo: solo sale en las 26 preguntas del Módulo Electivo de ${n}.`;
+const AREAS = {
+  m1: { name: 'Matemática', tab: '📐 M1', prueba: 'PAES M1', ensayo: 'ensayo_m1',
+    ejes: [['🔢 Números', TOPICS_NUM], ['🧮 Álgebra y ecuaciones', TOPICS_ALG], ['📈 Funciones', TOPICS_FUN], ['📊 Probabilidad y Estadística', TOPICS]],
+    src: 'Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.',
+    nota: ' · Notación: $\\mathbb{Z}$ enteros, $\\mathbb{Q}$ racionales, $f(x)$ imagen de $x$, $m$ pendiente, $\\Delta = b^2 - 4ac$, $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_2 = Me$.' },
+  qui: { name: 'Química', tab: '🧪 Química', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_qui', ejes: [['', TOPICS_QUI]], src: SRC_CIENCIAS('Química'),
     nota: ' · Notación: $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.' },
-  biologia: { name: 'Biología', beta: true, topics: TOPICS_BIO, ensayo: 'ensayo_bio', tab: 'ejeBio',
-    src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Biología (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
-    nota: ' · Notación: $2n$ diploide y $n$ haploide (juegos de cromosomas), ADN y ARN, FSH, LH, estrógeno y progesterona, CO₂ y O₂.' },
-  fisica: { name: 'Física', beta: true, topics: TOPICS_FIS, ensayo: 'ensayo_fis', tab: 'ejeFis',
-    src: 'Versión beta. Basado en el temario oficial de la PAES de Ciencias – Física (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE: Invierno 2026, Regular 2026 e Invierno 2027. Las figuras están hechas en TikZ.',
-    nota: ' · Notación: $v$ rapidez, $a$ aceleración, $F$ fuerza (N), $g = 10$ m/s², λ longitud de onda, $f$ frecuencia, $V$ voltaje, $I$ corriente, $R$ resistencia, $P$ potencia.' }
+  fis: { name: 'Física', tab: '🔭 Física', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_fis', ejes: [['', TOPICS_FIS]], src: SRC_CIENCIAS('Física'),
+    nota: ' · Notación: $v$ rapidez, $a$ aceleración, $F$ fuerza (N), $g = 10$ m/s², λ longitud de onda, $f$ frecuencia, $V$ voltaje, $I$ corriente, $R$ resistencia, $P$ potencia.' },
+  bio: { name: 'Biología', tab: '🧬 Biología', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_bio', ejes: [['', TOPICS_BIO]], src: SRC_CIENCIAS('Biología'),
+    nota: ' · Notación: $2n$ diploide y $n$ haploide (juegos de cromosomas), ADN y ARN, FSH, LH, estrógeno y progesterona, CO₂ y O₂.' }
 };
-const EJE = EJES[new URLSearchParams(location.search).get('eje')] || EJES.pye;
-const T = EJE.topics, ALL_TOPICS = [...TOPICS, ...TOPICS_NUM, ...TOPICS_FUN, ...TOPICS_ALG, ...TOPICS_QUI, ...TOPICS_BIO, ...TOPICS_FIS];
-const ENSAYOS = { ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Ensayo de Química', ensayo_bio: 'Ensayo de Biología', ensayo_fis: 'Ensayo de Física' };
+Object.values(AREAS).forEach(a => a.topics = a.ejes.flatMap(e => e[1]));
+// sin temas propios: 10 preguntas repartidas entre los ejes de M1, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
+const MIXTO = { name: 'Mixto', prueba: 'PAES M1', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG], n: 10, x: 3, ensayo: 'ensayo_mix', ruleta: true };
+// el eje activo: lo fija la vista de Estudiar o el miniensayo elegido en Practicar
+let EJE = AREAS.m1, T = EJE.topics;
+const ALL_TOPICS = Object.values(AREAS).flatMap(a => a.topics);
+const ENSAYOS = { ensayo_m1: 'Miniensayo de Matemática M1', ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Miniensayo de Química', ensayo_bio: 'Miniensayo de Biología', ensayo_fis: 'Miniensayo de Física' };
+function setEje(e) {
+  EJE = e; T = e.topics;
+  document.title = `PAES ${e.name} — Fabimath`;
+  $('notacion').textContent = e.nota || ''; renderMath($('notacion'));
+}
+// enlaces viejos paes.html?eje=…: a la vista nueva
+{ const v = { quimica: 'estudiar/qui', fisica: 'estudiar/fis', biologia: 'estudiar/bio', mixto: 'practicar' }, e = new URLSearchParams(location.search).get('eje');
+  if (e && !location.hash) history.replaceState(null, '', 'paes.html#' + (v[e] || 'estudiar/m1')); }
 // clave fija por pregunta ("tema:índice", "tema:e" la resuelta) para contar cuántas veces salió cada una
 ALL_TOPICS.forEach(t => { t.example.key = t.id + ':e'; t.bank.forEach((q, i) => q.key = t.id + ':' + i); });
 // al azar, pero primero las que menos ha visto: así cada intento trae preguntas distintas
@@ -462,13 +493,6 @@ function pick(list, n) {
   return shuffle([...list]).sort((a, b) => (seen[a.key] || 0) - (seen[b.key] || 0)).slice(0, n);
 }
 const dur = s => s >= 60 ? `${Math.floor(s / 60)} min ${s % 60} s` : `${s} s`;
-document.title = `PAES ${EJE.name} — Fabimath`;
-$('ejeTitle').textContent = EJE.name; $(EJE.tab).classList.add('on');
-$('ensayoTitle').textContent = EJE.ruleta ? '🎡 Desafío mixto' : `🎯 Ensayo final de ${EJE.name}`;
-if (EJE.desc) { $('ensayoDesc').textContent = EJE.desc; $('ensayoBtn').textContent = 'Jugar desafío ▶'; }
-$('notacion').textContent = EJE.nota;
-if (EJE.src) $('ejeSrc').textContent = EJE.src;
-if (EJE.beta) $('ejeTitle').insertAdjacentHTML('afterend', ' <span class="beta">beta</span>');
 
 /* ---------------- figures (SVG) ---------------- */
 const PAL = ['#e8680c', '#ffb35c', '#c98a00', '#e8342a', '#7c5cf0', '#f07c1e', '#f0883e', '#38bdf8'];
@@ -600,20 +624,45 @@ let round = [], qIdx = 0, score = 0, order = [], answered = false, log = [];
 let mode = 'topic';    // 'topic' | 'ensayo'
 
 /* ---------------- home ---------------- */
+const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos'];
 function renderHome() {
   stopClock();
-  const prog = store.get();
-  const units = [...new Set(T.map(t => t.unit))];
-  $('units').innerHTML = units.map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
-    T.filter(t => t.unit === u).map(t => { const p = prog[t.id];
-      const last = (prog.hist || []).find(h => h.id === t.id);
-      return `<button class="topic-card" data-id="${t.id}"><span class="ic">${t.icon}</span><h3>${t.title}</h3><p>${t.desc}</p>
-        <div class="meta"><span>${t.slides.length} diapositivas · ${t.bank.length} preguntas${last ? `<br>Último intento: ${fecha(last.d)}` : ''}</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join('');
-  document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
-  const lastE = (prog.hist || []).find(h => h.id === EJE.ensayo);
-  $('ensayoBest').textContent = prog[EJE.ensayo] ? `Tu mejor ensayo: ${prog[EJE.ensayo].best}/${EJE.n || 20} correctas · último el ${fecha(lastE ? lastE.d : '')}.` : 'Aún no rindes un ensayo.';
+  const prog = store.get(), [h, a] = location.hash.slice(1).split('/'), vista = VISTAS.includes(h) ? h : 'menu';
+  VISTAS.forEach(v => $('v_' + v).classList.toggle('hidden', v !== vista));
+  if (vista === 'estudiar') renderEstudiar(prog, AREAS[a]);
+  if (vista === 'practicar') renderPracticar(prog);
+  if (vista !== 'estudiar' || !AREAS[a]) { document.title = 'PAES — Fabimath'; $('notacion').textContent = ''; }
   renderHist(prog); renderShop(prog); renderGacha(prog); updPts();
   show('home');
+}
+window.addEventListener('hashchange', renderHome);
+// sin área: las cuatro para elegir; con área: sus unidades y temas (en M1, agrupados por eje)
+function renderEstudiar(prog, area) {
+  $('areaTabs').classList.toggle('hidden', !area);
+  $('ejeSrc').textContent = area ? area.src : '';
+  if (!area) {
+    $('estTitle').textContent = 'Estudiar';
+    $('units').innerHTML = '<div class="menu3">' + Object.entries(AREAS).map(([k, a]) => `<a class="big" href="#estudiar/${k}"><span class="ic">${a.tab.split(' ')[0]}</span>${a.tab.split(' ')[1]}<small>${a.topics.length} temas${a.beta ? ' · beta' : ''}</small></a>`).join('') + '</div>';
+    return;
+  }
+  setEje(area);
+  $('estTitle').innerHTML = area.name + (area.beta ? ' <span class="beta">beta</span>' : '');
+  $('areaTabs').innerHTML = Object.entries(AREAS).map(([k, a]) => `<a href="#estudiar/${k}" class="${a === area ? 'on' : ''}">${a.tab}</a>`).join('');
+  const ciencias = area.prueba === 'PAES Ciencias';
+  $('units').innerHTML = area.ejes.map(([eje, ts]) => (eje ? `<h3 class="eje-lbl">${eje}</h3>` : '') + [...new Set(ts.map(t => t.unit))].map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
+    ts.filter(t => t.unit === u).map(t => { const p = prog[t.id];
+      const last = (prog.hist || []).find(h => h.id === t.id);
+      return `<button class="topic-card" data-id="${t.id}"><span class="ic">${t.icon}</span>${ciencias ? (ELECTIVO.has(t.id) ? '<span class="mod e">Electivo</span>' : '<span class="mod c">Común</span>') : ''}<h3>${t.title}</h3><p>${t.desc}</p>
+        <div class="meta"><span>${t.slides.length} diapositivas · ${t.bank.length} preguntas${last ? `<br>Último intento: ${fecha(last.d)}` : ''}</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join('')).join('');
+  document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
+}
+// un miniensayo de 20 por área, más el desafío mixto de M1 con ruleta de gatos
+function renderPracticar(prog) {
+  const card = (k, e, ic, t, desc) => { const b = prog[e.ensayo], last = (prog.hist || []).find(h => h.id === e.ensayo);
+    return `<div class="big"><span class="ic">${ic}</span>${t}<small>${desc}</small><span class="best">${b ? `Mejor: ${b.best}/${e.n || 20} · último el ${fecha(last ? last.d : '')}` : 'Aún no lo rindes'}</span><button class="btn btn-primary" data-e="${k}">${e.ruleta ? 'Jugar ▶' : 'Rendir ▶'}</button></div>`; };
+  $('ensayos').innerHTML = Object.entries(AREAS).map(([k, a]) => card(k, a, a.tab.split(' ')[0], a.tab.split(' ')[1], `20 preguntas de toda el área${a.beta ? ' · beta' : ''}`)).join('') +
+    card('mixto', MIXTO, '🎡', 'Desafío mixto', '10 preguntas de M1, cada acierto ×3 y al final una ruleta de gatos');
+  $('ensayos').querySelectorAll('[data-e]').forEach(b => b.addEventListener('click', () => { setEje(AREAS[b.dataset.e] || MIXTO); startEnsayo(); }));
 }
 /* ---------------- recompensas ----------------
    1 estrella por respuesta correcta, multiplicada por los gatos que te acompañan (estrellasAcierto en gacha.js).
@@ -654,9 +703,9 @@ const dondeGuarda = () => window.cloudUser ? `guardado en tu cuenta ${cloudUser.
 const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 function renderHist(prog) {
   const h = prog.hist || [];
-  const hechos = T.filter(t => prog[t.id]).length;
+  const hechos = ALL_TOPICS.filter(t => prog[t.id]).length;
   if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Cada intento queda con fecha y hora, ' + dondeGuarda() + '.</div>'; return; }
-  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${T.length ? `${hechos} de ${T.length} temas de ${EJE.name} practicados · ` : ''}${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
+  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${ALL_TOPICS.length} temas practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
     <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th><th>Tiempo</th></tr></thead><tbody>` +
     h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td><td>${'t' in x ? dur(x.t) : '–'}</td></tr>`).join('') +
     `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
@@ -666,7 +715,7 @@ function show(id) { ['home', 'topic'].forEach(x => $(x).classList.toggle('hidden
 
 /* ---------------- topic ---------------- */
 function openTopic(id) {
-  cur = T.find(t => t.id === id); mode = 'topic';
+  cur = ALL_TOPICS.find(t => t.id === id); mode = 'topic';
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.topic-head').classList.remove('hidden'); document.querySelector('.steps').classList.remove('hidden');
   stage = 0; renderSlide(); show('topic');
@@ -705,7 +754,7 @@ function stopClock() { clearInterval(tick); tick = null; }
 function startExample() { stopClock(); round = [cur.example]; qIdx = 0; score = 0; log = []; setStage(1); showQ(); }
 function startQuiz() { round = pick(cur.bank, 5); intro(); }
 function startEnsayo() {
-  mode = 'ensayo'; cur = { id: EJE.ensayo, title: EJE.ruleta ? 'Desafío mixto' : 'Ensayo final', icon: EJE.ruleta ? '🎡' : '🎯', unit: EJE.name + (EJE.beta ? ' · PAES Ciencias' : ' · PAES M1') };
+  mode = 'ensayo'; cur = { id: EJE.ensayo, title: EJE.ruleta ? 'Desafío mixto' : 'Ensayo final', icon: EJE.ruleta ? '🎡' : '🎯', unit: `${EJE.name} · ${EJE.prueba}` };
   const deEje = (ts, n) => shuffle(ts.flatMap(t => pick([t.example, ...t.bank], Math.ceil(n / ts.length)).map(q => ({ ...q, topic: t.title })))).slice(0, n);
   round = EJE.mix ? shuffle(EJE.mix.flatMap(ts => deEje(ts, Math.ceil(EJE.n / EJE.mix.length)))).slice(0, EJE.n) : deEje(T, 20);
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
@@ -806,8 +855,7 @@ $('st1').addEventListener('click', startExample);
 $('st2').addEventListener('click', startQuiz);
 $('rHome').addEventListener('click', renderHome);
 $('rRetry').addEventListener('click', () => mode === 'ensayo' ? startEnsayo() : startQuiz());
-$('homeBtn').addEventListener('click', renderHome);
-$('ensayoBtn').addEventListener('click', startEnsayo);
+$('homeBtn').addEventListener('click', () => location.hash ? location.hash = '' : renderHome());
 
 renderHome(); pintaEvento();
 window.addEventListener('load', () => renderMath(document.body));
@@ -954,9 +1002,9 @@ async function renderPanel(u) {
       <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
       filas.map(f => { const p = f.p, h = p.hist || [];
         const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-        const ens = ['ensayo_num', 'ensayo', 'ensayo_fun', 'ensayo_alg', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+        const ens = ['ensayo_m1', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
         return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
-      '</tbody></table><div class="note">Temas practicados por eje; ensayos: mejor puntaje en Números · Estadística · Funciones · Álgebra · Química · Biología · Física.</div>';
+      '</tbody></table><div class="note">Temas practicados por eje; miniensayos: mejor puntaje en M1 · Química · Biología · Física.</div>';
     el.classList.remove('hidden');
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
 }
