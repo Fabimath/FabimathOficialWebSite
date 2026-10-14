@@ -21,6 +21,7 @@
 <script src="paes_quimica_reacciones.js"></script>
 <script src="paes_quimica_soluciones.js"></script>
 <script src="paes_quimica_habilidades.js"></script>
+<script src="paes_quimica_electivo.js"></script>
 <script src="paes_biologia_celula.js"></script>
 <script src="paes_biologia_nervioso.js"></script>
 <script src="paes_biologia_reproduccion.js"></script>
@@ -118,6 +119,20 @@
   .eje-lbl { font-size: 26px; margin: 52px 0 -24px; }
   .eje-lbl:first-of-type { margin-top: 28px; }
   .leyenda { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
+  .menu3 + .hist { margin-top: 24px; }
+  .barra { width: 100%; height: 6px; border-radius: 99px; background: rgba(0,0,0,.06); overflow: hidden; margin-top: 4px; }
+  .barra > i { display: block; height: 100%; background: var(--royal); border-radius: 99px; }
+  /* gato consejero de Mis resultados */
+  .consejo { display: flex; gap: 20px; align-items: flex-start; background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); padding: 24px; margin-bottom: 24px; }
+  .consejo .gato { flex-shrink: 0; position: relative; animation: rise .5s var(--ease); }
+  .consejo .globo-c { flex: 1; background: var(--ice); border-radius: 18px; padding: 16px 20px; position: relative; }
+  .consejo .globo-c::before { content: ''; position: absolute; left: -10px; top: 30px; border: 10px solid transparent; border-right-color: var(--ice); border-left: 0; }
+  .consejo h3 { font-size: 19px; margin-bottom: 10px; }
+  .consejo ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .consejo li { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 15px; line-height: 1.45; }
+  .consejo li .btn { padding: 6px 14px; font-size: 14px; }
+  @media (max-width: 640px) { .menu3 { grid-template-columns: 1fr 1fr; gap: 10px; } .big { padding: 20px 10px 18px; font-size: 19px; border-radius: 20px; } .big .ic { font-size: 34px; } .big small { font-size: 13px; } }
+  @media (max-width: 640px) { .consejo { flex-direction: column; align-items: center; padding: 18px; } .consejo .globo-c::before { display: none; } }
   .mod { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; }
   .mod.c { background: rgba(23,166,115,.12); color: var(--ok-ink); }
   .mod.e { background: rgba(124,92,240,.13); color: #5b3fd0; }
@@ -349,6 +364,7 @@
         <a class="big" href="#estudiar"><span class="ic">📚</span>Estudiar<small>Unidades y temas con clase, pregunta resuelta y cuestionario</small></a>
         <a class="big" href="#practicar"><span class="ic">🎯</span>Practicar<small>Miniensayos de 20 preguntas por área</small></a>
         <a class="big" href="#gatos"><span class="ic">🐱</span>Gatos<small>Huevos, colección, gachapón y casino</small></a>
+        <a class="big" href="#resultados"><span class="ic">📈</span>Mis resultados<small>Historial, informe por tema y consejos de qué estudiar</small></a>
       </div>
       <div class="hist hidden" id="panel"></div>
     </div>
@@ -360,6 +376,12 @@
     <div id="v_practicar" class="hidden">
       <div class="vista-head"><h2>Practicar</h2></div>
       <div class="menu3" id="ensayos"></div>
+    </div>
+    <div id="v_resultados" class="hidden">
+      <div class="vista-head"><h2>Mis resultados</h2></div>
+      <div class="consejo" id="consejo"></div>
+      <div class="menu3" id="resAreas"></div>
+      <div class="hist" id="informe"></div>
       <div class="hist" id="hist"></div>
     </div>
     <div id="v_gatos" class="hidden">
@@ -453,10 +475,10 @@ const num = v => String(v).replace('.', ',');
    Todas comparten el mismo avance: puntos, gatos e historial son uno solo. */
 const TOPICS_FIS = [...FIS_ONDAS, ...FIS_MOVIMIENTO, ...FIS_FUERZAS, ...FIS_UNIVERSO, ...FIS_TIERRA, ...FIS_ELECTRICIDAD, ...FIS_HABILIDADES];
 const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
-const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES];
+const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES, ...QUI_ELECTIVO];
 // temas de Ciencias que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común
 // (cinemática, MRU y MRUA no salen en ninguna de las tres: quedan como Común por nivel curricular; sinapsis va con neurona)
-const ELECTIVO = new Set(['fis_sistema_solar', 'fis_universo', 'bio_neurona', 'bio_sinapsis']);
+const ELECTIVO = new Set(['qui_e_moleculas', 'qui_e_isomeros', 'qui_e_estequiometria', 'qui_e_soluciones', 'fis_sistema_solar', 'fis_universo', 'bio_neurona', 'bio_sinapsis']);
 const SRC_CIENCIAS = n => `Versión beta. Basado en el temario oficial de la PAES de Ciencias – ${n} (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE. Común: puede salir en el Módulo Común (54 preguntas de Biología, Física y Química que rinden todos). Electivo: solo sale en las 26 preguntas del Módulo Electivo de ${n}.`;
 const AREAS = {
   m1: { name: 'Matemática', tab: '📐 M1', prueba: 'PAES M1', ensayo: 'ensayo_m1',
@@ -624,13 +646,14 @@ let round = [], qIdx = 0, score = 0, order = [], answered = false, log = [];
 let mode = 'topic';    // 'topic' | 'ensayo'
 
 /* ---------------- home ---------------- */
-const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos'];
+const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos', 'resultados'];
 function renderHome() {
   stopClock();
   const prog = store.get(), [h, a] = location.hash.slice(1).split('/'), vista = VISTAS.includes(h) ? h : 'menu';
   VISTAS.forEach(v => $('v_' + v).classList.toggle('hidden', v !== vista));
   if (vista === 'estudiar') renderEstudiar(prog, AREAS[a]);
   if (vista === 'practicar') renderPracticar(prog);
+  if (vista === 'resultados') renderResultados(prog);
   if (vista !== 'estudiar' || !AREAS[a]) { document.title = 'PAES — Fabimath'; $('notacion').textContent = ''; }
   renderHist(prog); renderShop(prog); renderGacha(prog); updPts();
   show('home');
@@ -663,6 +686,52 @@ function renderPracticar(prog) {
   $('ensayos').innerHTML = Object.entries(AREAS).map(([k, a]) => card(k, a, a.tab.split(' ')[0], a.tab.split(' ')[1], `20 preguntas de toda el área${a.beta ? ' · beta' : ''}`)).join('') +
     card('mixto', MIXTO, '🎡', 'Desafío mixto', '10 preguntas de M1, cada acierto ×3 y al final una ruleta de gatos');
   $('ensayos').querySelectorAll('[data-e]').forEach(b => b.addEventListener('click', () => { setEje(AREAS[b.dataset.e] || MIXTO); startEnsayo(); }));
+}
+
+/* ---------------- mis resultados: resumen por área, informe por tema y el gato consejero ----------------
+   Los aciertos salen de hist[].q ([clave "tema:i", alternativa, 1 si acertó]): cuentan cuestionarios y ensayos. */
+const AREA_DE = {}; Object.entries(AREAS).forEach(([k, a]) => a.topics.forEach(t => AREA_DE[t.id] = k));
+const pct = (a, b) => Math.round(a / b * 100);
+function aciertos(prog) {
+  const m = {};
+  (prog.hist || []).forEach(h => (h.q || []).forEach(([key, , ok]) => {
+    const id = key.slice(0, key.lastIndexOf(':')); m[id] = m[id] || { n: 0, ok: 0 }; m[id].n++; m[id].ok += ok; }));
+  return m;
+}
+function abrirTema(id) { setEje(AREAS[AREA_DE[id]]); openTopic(id); }
+function renderResultados(prog) {
+  const ac = aciertos(prog), corto = a => a.tab.split(' ')[1];
+  $('resAreas').innerHTML = Object.entries(AREAS).map(([k, a]) => {
+    const r = a.topics.reduce((s, t) => ac[t.id] ? { n: s.n + ac[t.id].n, ok: s.ok + ac[t.id].ok } : s, { n: 0, ok: 0 }), hechos = a.topics.filter(t => prog[t.id]).length, e = prog[a.ensayo];
+    return `<a class="big" href="#estudiar/${k}"><span class="ic">${a.tab.split(' ')[0]}</span>${corto(a)}
+      <small>${hechos} de ${a.topics.length} temas practicados</small><span class="barra"><i style="width:${pct(hechos, a.topics.length)}%"></i></span>
+      <span class="best">${r.n ? `${pct(r.ok, r.n)} % de aciertos en ${r.n} preguntas` : 'Sin preguntas respondidas'}<br>Miniensayo: ${e ? e.best + '/20' : 'sin rendir'}</span></a>`; }).join('');
+  // informe: solo temas con respuestas, del que más cuesta al que mejor va
+  const filas = ALL_TOPICS.filter(t => ac[t.id]).sort((a, b) => ac[a.id].ok / ac[a.id].n - ac[b.id].ok / ac[b.id].n);
+  $('informe').innerHTML = '<h3>📋 Informe por tema</h3>' + (filas.length
+    ? '<div class="sub">Del tema que más te cuesta al que mejor te va, contando las preguntas de cuestionarios y ensayos.</div><table><thead><tr><th>Tema</th><th>Área</th><th>Aciertos</th><th>Mejor cuestionario</th></tr></thead><tbody>' +
+      filas.map(t => { const x = ac[t.id]; return `<tr><td>${t.icon} ${t.title}</td><td>${corto(AREAS[AREA_DE[t.id]])}</td><td><b>${pct(x.ok, x.n)} %</b> (${x.ok}/${x.n})</td><td>${prog[t.id] ? prog[t.id].best + '/5' : '–'}</td></tr>`; }).join('') + '</tbody></table>'
+    : '<div class="sub">Cuando respondas preguntas, aquí verás tus aciertos tema por tema.</div>');
+  renderConsejo(prog, ac);
+}
+// hasta 3 consejos con botón: el tema más débil, el siguiente tema del área en que más avanzas, y el miniensayo que toca
+function renderConsejo(prog, ac) {
+  const tips = [], tasa = id => ac[id].ok / ac[id].n, con = ALL_TOPICS.filter(t => ac[t.id] && ac[t.id].n >= 3);
+  const debil = con.filter(t => tasa(t.id) < 0.6).sort((a, b) => tasa(a.id) - tasa(b.id))[0];
+  if (debil) tips.push([`Repasa la clase de <b>${debil.title}</b>: ahí llevas ${pct(ac[debil.id].ok, ac[debil.id].n)} % de aciertos.`, 'Repasar', () => abrirTema(debil.id)]);
+  const avance = a => a.topics.filter(t => prog[t.id]).length, areas = Object.values(AREAS).sort((a, b) => avance(b) - avance(a));
+  const sigue = areas.find(a => avance(a) && a.topics.some(t => !prog[t.id]));
+  if (sigue) { const t = sigue.topics.find(t => !prog[t.id]); tips.push([`En ${sigue.name} vas avanzando: sigue con <b>${t.title}</b>.`, 'Empezar', () => abrirTema(t.id)]); }
+  const ens = areas.find(a => avance(a) >= 3 && !(prog[a.ensayo] && prog[a.ensayo].best >= 16));
+  if (ens) tips.push([prog[ens.ensayo] ? `Tu mejor miniensayo de ${ens.name} es ${prog[ens.ensayo].best}/20. Después de repasar, vuelve a rendirlo.` : `Ya practicaste ${avance(ens)} temas de ${ens.name}: mide cómo vas con el miniensayo.`, 'Rendir', () => { setEje(ens); startEnsayo(); }]);
+  const nada = areas.find(a => !avance(a));
+  if (tips.length < 3 && nada) tips.push([`Aún no abres ${nada.name}. Parte por <b>${nada.topics[0].title}</b>.`, 'Abrir', () => abrirTema(nada.topics[0].id)]);
+  const fuerte = con.filter(t => tasa(t.id) >= 0.8).sort((a, b) => tasa(b.id) - tasa(a.id))[0];
+  const k = acompanantes(prog)[0], pz = k ? pieza(k) : { g: GATOS[0], v: 0 };
+  $('consejo').innerHTML = `<div class="gato v-${VAR[pz.v].id}">${gatoSVG(pz.g, 110)}</div><div class="globo-c"><h3>${pz.g.name} te aconseja</h3><ul>` +
+    tips.slice(0, 3).map(([t, b], i) => `<li><span>${t}</span><button class="btn btn-primary" data-i="${i}">${b} ▶</button></li>`).join('') +
+    (fuerte ? `<li><span>Lo que mejor te va: <b>${fuerte.title}</b> (${pct(ac[fuerte.id].ok, ac[fuerte.id].n)} %). ¡Miau, bien ahí!</span></li>` : '') + '</ul></div>';
+  $('consejo').querySelectorAll('[data-i]').forEach(b => b.addEventListener('click', tips[b.dataset.i][2]));
 }
 /* ---------------- recompensas ----------------
    1 estrella por respuesta correcta, multiplicada por los gatos que te acompañan (estrellasAcierto en gacha.js).
@@ -704,8 +773,8 @@ const fecha = iso => iso ? new Date(iso).toLocaleString('es-CL', { day: 'numeric
 function renderHist(prog) {
   const h = prog.hist || [];
   const hechos = ALL_TOPICS.filter(t => prog[t.id]).length;
-  if (!h.length) { $('hist').innerHTML = '<h3>📈 Tu avance</h3><div class="sub">Aún no hay intentos. Cada intento queda con fecha y hora, ' + dondeGuarda() + '.</div>'; return; }
-  $('hist').innerHTML = `<h3>📈 Tu avance</h3><div class="sub">${hechos} de ${ALL_TOPICS.length} temas practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
+  if (!h.length) { $('hist').innerHTML = '<h3>🕑 Historial</h3><div class="sub">Aún no hay intentos. Cada intento queda con fecha y hora, ' + dondeGuarda() + '.</div>'; return; }
+  $('hist').innerHTML = `<h3>🕑 Historial</h3><div class="sub">${hechos} de ${ALL_TOPICS.length} temas practicados · ${h.filter(x => x.id in ENSAYOS).length} ensayos rendidos · ${dondeGuarda()}</div>
     <table><thead><tr><th>Fecha</th><th>Actividad</th><th>Resultado</th><th>Tiempo</th></tr></thead><tbody>` +
     h.slice(0, 15).map(x => `<tr><td>${fecha(x.d)}</td><td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : (ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title}</td><td><b>${x.s}/${x.n}</b></td><td>${'t' in x ? dur(x.t) : '–'}</td></tr>`).join('') +
     `</tbody></table>${h.length > 15 ? `<div class="sub" style="margin-top:8px">Mostrando los 15 más recientes de ${h.length}.</div>` : ''}<button class="del" id="histDel">Borrar mi avance</button>`;
