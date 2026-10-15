@@ -1,0 +1,27 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath}
+\usepackage{sansmath}\sansmath
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\pgfplotsset{base/.style={axis lines=left,grid=major,grid style={gris!20},tick label style={font=\small},label style={font=\small},axis line style={tinta!80}}}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[base,width=9cm,height=7cm,xmin=0,xmax=360,ymin=0,ymax=25000,xtick={0,50,...,350},ytick={0,4000,...,24000},scaled y ticks=false,xlabel={Minutos al mes},ylabel={Costo (\$)},clip=false]
+\addplot[nar,very thick,domain=0:340] {8000+50*x};
+\addplot[azul,very thick,domain=0:340] {12000+30*x};
+\draw[gris,dashed] (axis cs:200,0) -- (axis cs:200,18000) -- (axis cs:0,18000);
+\addplot[only marks,mark=*,mark options={fill=white,draw=tinta,thick},mark size=3pt] coordinates {(200,18000)};
+\node[tinta,font=\small\bfseries,anchor=north west] at (axis cs:204,17600) {$(200;\ 18.000)$};
+\node[nar,font=\small\bfseries,anchor=south east] at (axis cs:285,22800) {Plan A};
+\node[azul,font=\small\bfseries,anchor=north west] at (axis cs:290,20400) {Plan B};
+\end{axis}
+\end{tikzpicture}
+\end{document}

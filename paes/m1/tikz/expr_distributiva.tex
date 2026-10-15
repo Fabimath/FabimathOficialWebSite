@@ -1,0 +1,26 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,decorations.pathreplacing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}[font=\large,line join=round]
+\def\h{2.6}\def\u{3.4}\def\v{1.9}
+\draw[tinta,thick,fill=narc!45] (0,0) rectangle (\u,\h);
+\draw[tinta,thick,fill=azul!18] (\u,0) rectangle (\u+\v,\h);
+\node at (\u/2,\h/2) {$3a\cdot 2a=6a^2$};
+\node at (\u+\v/2,\h/2) {$12a$};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=5pt}] (0,-0.12) -- (\u,-0.12) node[midway,below=5pt,text=tinta] {$2a$};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=5pt}] (\u,-0.12) -- (\u+\v,-0.12) node[midway,below=5pt,text=tinta] {$4$};
+\draw[gris,decorate,decoration={brace,amplitude=5pt}] (-0.12,0) -- (-0.12,\h) node[midway,left=5pt,text=tinta] {$3a$};
+\draw[nar,very thick,decorate,decoration={brace,amplitude=6pt}] (0,\h+0.12) -- (\u+\v,\h+0.12) node[midway,above=6pt,text=nar] {$2a+4$};
+\end{tikzpicture}
+\end{document}

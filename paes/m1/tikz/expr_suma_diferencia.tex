@@ -1,0 +1,44 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,decorations.pathreplacing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}[font=\large,line join=round,>={Stealth[length=3mm]}]
+\def\a{3}\def\b{1.1}
+\pgfmathsetmacro{\d}{\a-\b}
+% izquierda: a^2 - b^2
+\draw[tinta,thick,fill=narc!45] (0,0) rectangle (\a,\d);
+\draw[tinta,thick,fill=azul!18] (0,\d) rectangle (\d,\a);
+\draw[gris,thick,dashed] (\d,\d) rectangle (\a,\a);
+\node[text=gris] at (\d+\b/2,\d+\b/2) {$b^2$};
+\node at (\a/2,\d/2) {\small\textsf{I}};
+\node at (\d/2,\d+\b/2) {\small\textsf{II}};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=5pt}] (0,-0.12) -- (\a,-0.12) node[midway,below=5pt,text=tinta] {$a$};
+\draw[gris,decorate,decoration={brace,amplitude=5pt}] (-0.12,0) -- (-0.12,\a) node[midway,left=5pt,text=tinta] {$a$};
+\draw[gris,decorate,decoration={brace,amplitude=4pt}] (\d,\a+0.12) -- (\a,\a+0.12) node[midway,above=4pt,text=tinta] {$b$};
+\draw[gris,decorate,decoration={brace,amplitude=4pt}] (\a+0.12,\a) -- (\a+0.12,\d) node[midway,right=4pt,text=tinta] {$b$};
+\node[text=nar] at (\a/2,-1.25) {$a^2-b^2$};
+% flecha
+\draw[nar,very thick,->] (\a+1.0,\d/2) -- (\a+2.1,\d/2);
+% derecha: (a+b)(a-b)
+\begin{scope}[xshift=6.3cm]
+\draw[tinta,thick,fill=narc!45] (0,0) rectangle (\a,\d);
+\draw[tinta,thick,fill=azul!18] (\a,0) rectangle (\a+\b,\d);
+\node at (\a/2,\d/2) {\small\textsf{I}};
+\node at (\a+\b/2,\d/2) {\small\textsf{II}};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=5pt}] (0,-0.12) -- (\a,-0.12) node[midway,below=5pt,text=tinta] {$a$};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=4pt}] (\a,-0.12) -- (\a+\b,-0.12) node[midway,below=5pt,text=tinta] {$b$};
+\draw[gris,decorate,decoration={brace,mirror,amplitude=5pt}] (\a+\b+0.12,0) -- (\a+\b+0.12,\d) node[midway,right=5pt,text=tinta] {$a-b$};
+\node[text=nar] at (\a/2+\b/2,-1.25) {$(a+b)(a-b)$};
+\end{scope}
+\end{tikzpicture}
+\end{document}

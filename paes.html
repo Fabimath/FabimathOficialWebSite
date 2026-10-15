@@ -15,6 +15,10 @@
 <script src="paes_numeros.js"></script>
 <script src="paes_funciones.js"></script>
 <script src="paes_algebra.js"></script>
+<script src="paes_algebra_expresiones.js"></script>
+<script src="paes_algebra_proporcion.js"></script>
+<script src="paes_geometria_figuras.js"></script>
+<script src="paes_geometria_transformaciones.js"></script>
 <script src="paes_variantes.js"></script>
 <script src="paes_quimica_atomo.js"></script>
 <script src="paes_quimica_organica.js"></script>
@@ -475,6 +479,8 @@ const num = v => String(v).replace('.', ',');
    Todas comparten el mismo avance: puntos, gatos e historial son uno solo. */
 const TOPICS_FIS = [...FIS_ONDAS, ...FIS_MOVIMIENTO, ...FIS_FUERZAS, ...FIS_UNIVERSO, ...FIS_TIERRA, ...FIS_ELECTRICIDAD, ...FIS_HABILIDADES];
 const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
+const TOPICS_ALG_M1 = [...TOPICS_ALG, ...ALG_EXPRESIONES, ...ALG_PROPORCION];
+const TOPICS_GEO = [...GEO_FIGURAS, ...GEO_TRANSFORMACIONES];
 const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES, ...QUI_ELECTIVO];
 // temas de Ciencias que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común
 // (cinemática, MRU y MRUA no salen en ninguna de las tres: quedan como Común por nivel curricular; sinapsis va con neurona)
@@ -482,7 +488,7 @@ const ELECTIVO = new Set(['qui_e_moleculas', 'qui_e_isomeros', 'qui_e_estequiome
 const SRC_CIENCIAS = n => `Versión beta. Basado en el temario oficial de la PAES de Ciencias – ${n} (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE. Común: puede salir en el Módulo Común (54 preguntas de Biología, Física y Química que rinden todos). Electivo: solo sale en las 26 preguntas del Módulo Electivo de ${n}.`;
 const AREAS = {
   m1: { name: 'Matemática', tab: '📐 M1', prueba: 'PAES M1', ensayo: 'ensayo_m1',
-    ejes: [['🔢 Números', TOPICS_NUM], ['🧮 Álgebra y ecuaciones', TOPICS_ALG], ['📈 Funciones', TOPICS_FUN], ['📊 Probabilidad y Estadística', TOPICS]],
+    ejes: [['🔢 Números', TOPICS_NUM], ['🧮 Álgebra', TOPICS_ALG_M1], ['📈 Funciones', TOPICS_FUN], ['🔺 Geometría', TOPICS_GEO], ['📊 Probabilidad y Estadística', TOPICS]],
     src: 'Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.',
     nota: ' · Notación: $\\mathbb{Z}$ enteros, $\\mathbb{Q}$ racionales, $f(x)$ imagen de $x$, $m$ pendiente, $\\Delta = b^2 - 4ac$, $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_2 = Me$.' },
   qui: { name: 'Química', tab: '🧪 Química', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_qui', ejes: [['', TOPICS_QUI]], src: SRC_CIENCIAS('Química'),
@@ -494,7 +500,7 @@ const AREAS = {
 };
 Object.values(AREAS).forEach(a => a.topics = a.ejes.flatMap(e => e[1]));
 // sin temas propios: 10 preguntas repartidas entre los ejes de M1, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
-const MIXTO = { name: 'Mixto', prueba: 'PAES M1', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG], n: 10, x: 3, ensayo: 'ensayo_mix', ruleta: true };
+const MIXTO = { name: 'Mixto', prueba: 'PAES M1', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG_M1, TOPICS_GEO], n: 10, x: 3, ensayo: 'ensayo_mix', ruleta: true };
 // el eje activo: lo fija la vista de Estudiar o el miniensayo elegido en Practicar
 let EJE = AREAS.m1, T = EJE.topics;
 const ALL_TOPICS = Object.values(AREAS).flatMap(a => a.topics);
@@ -1068,11 +1074,11 @@ async function renderPanel(u) {
     const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
     el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
-      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
+      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Geometría</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
       filas.map(f => { const p = f.p, h = p.hist || [];
         const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
         const ens = ['ensayo_m1', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
+        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG_M1)}</td><td>${hechos(TOPICS_GEO)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
       '</tbody></table><div class="note">Temas practicados por eje; miniensayos: mejor puntaje en M1 · Química · Biología · Física.</div>';
     el.classList.remove('hidden');
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }

@@ -1,0 +1,65 @@
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{sansmath}\sansmath
+\usepackage{chemfig}
+\usepackage{pgfplots}\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,decorations.pathmorphing,patterns}
+% paleta del sitio
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{hielo}{HTML}{FFF3E8}
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{lila}{HTML}{7C5CF0}
+\definecolor{azul}{HTML}{2F6FD6}\definecolor{menta}{HTML}{17A673}\definecolor{coral}{HTML}{E8342A}
+\begin{document}
+\begin{tikzpicture}[font=\small,x=0.6cm,y=0.6cm,line cap=round,line join=round,step={(1,1)}]
+\filldraw[fill=hielo,draw=nar,thick] (1,4.1) rectangle (8.5,4.8); \node[font=\footnotesize] at (4.75,4.45) {Escenario};
+\node[font=\footnotesize\bfseries] at (-0.2,3) {A};
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (0.6799999999999999,2.7) rectangle (1.32,3.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (1.68,2.7) rectangle (2.32,3.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (2.68,2.7) rectangle (3.32,3.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (3.68,2.7) rectangle (4.32,3.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (5.18,2.7) rectangle (5.82,3.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (6.18,2.7) rectangle (6.82,3.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (7.18,2.7) rectangle (7.82,3.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (8.18,2.7) rectangle (8.82,3.3);
+\node[font=\footnotesize\bfseries] at (-0.2,2) {B};
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (0.6799999999999999,1.7) rectangle (1.32,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (1.68,1.7) rectangle (2.32,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (2.68,1.7) rectangle (3.32,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (3.68,1.7) rectangle (4.32,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (5.18,1.7) rectangle (5.82,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (6.18,1.7) rectangle (6.82,2.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (7.18,1.7) rectangle (7.82,2.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (8.18,1.7) rectangle (8.82,2.3);
+\node[font=\footnotesize\bfseries] at (-0.2,1) {C};
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (0.6799999999999999,0.7) rectangle (1.32,1.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (1.68,0.7) rectangle (2.32,1.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (2.68,0.7) rectangle (3.32,1.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (3.68,0.7) rectangle (4.32,1.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (5.18,0.7) rectangle (5.82,1.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (6.18,0.7) rectangle (6.82,1.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (7.18,0.7) rectangle (7.82,1.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (8.18,0.7) rectangle (8.82,1.3);
+\node[font=\footnotesize\bfseries] at (-0.2,0) {D};
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (0.6799999999999999,-0.3) rectangle (1.32,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (1.68,-0.3) rectangle (2.32,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (2.68,-0.3) rectangle (3.32,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (3.68,-0.3) rectangle (4.32,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (5.18,-0.3) rectangle (5.82,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (6.18,-0.3) rectangle (6.82,0.3);
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (7.18,-0.3) rectangle (7.82,0.3);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (8.18,-0.3) rectangle (8.82,0.3);
+\node[font=\scriptsize,text=gris] at (1,-0.75) {1};
+\node[font=\scriptsize,text=gris] at (2,-0.75) {2};
+\node[font=\scriptsize,text=gris] at (3,-0.75) {3};
+\node[font=\scriptsize,text=gris] at (4,-0.75) {4};
+\node[font=\scriptsize,text=gris] at (5.5,-0.75) {5};
+\node[font=\scriptsize,text=gris] at (6.5,-0.75) {6};
+\node[font=\scriptsize,text=gris] at (7.5,-0.75) {7};
+\node[font=\scriptsize,text=gris] at (8.5,-0.75) {8};
+\draw[coral,very thick,dashed] (4.75,-0.5)--(4.75,3.7);
+\filldraw[fill=nar,draw=nar!70!black,thick,rounded corners=1.5pt] (9.6,2.2) rectangle (10.2,2.8); \node[right,font=\scriptsize] at (10.3,2.5) {ocupado};
+\filldraw[fill=white,draw=gris,thick,rounded corners=1.5pt] (9.6,1.2) rectangle (10.2,1.8); \node[right,font=\scriptsize] at (10.3,1.5) {libre};
+\end{tikzpicture}
+\end{document}
