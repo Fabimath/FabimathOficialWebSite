@@ -1,5 +1,5 @@
 /* Gachapón de gatitos (PAES Fabimath): se canjean 10 ⭐ por un gato al azar sacado de una máquina de garras.
-   Solo coleccionables: no dan pistas. 25 gatos (5 por rareza) y 5 variantes de color por gato.
+   Solo coleccionables: no dan pistas. 50 gatos (10 por rareza; los 5 últimos de cada una llevan accesorio) y 7 variantes de color por gato.
    Colección guardada en el mismo objeto del avance: col = { "idGato:variante": veces }.
    Se carga antes del script principal; usa $, store, CAT_PX y updPts solo al ejecutarse. */
 
@@ -12,7 +12,7 @@ const RAR = [
   { id: 'legendario', name: 'Legendario', w: 5,  color: '#e0a000' },
   { id: 'mitico',     name: 'Mítico',     w: 1,  color: '#e8342a' }
 ];
-const CAT_W = [30, 25, 20, 15, 10];
+const POR_RAR = 10, CAT_W = [18, 16, 14, 12, 10, 9, 7, 6, 5, 3];
 const VAR = [
   { id: 'normal',   name: 'Normal',   w: 70, dot: '#d8d8dc' },
   { id: 'oro',      name: 'Oro',      w: 15, dot: '#f5c542' },
@@ -24,39 +24,98 @@ const VAR = [
 ];
 // oficio de cada gato: en qué escenario de Michi operaciones (operaciones.js) puede trabajar
 const OFICIO = {
-  estudiante: ['naranjo', 'pelusa', 'calico', 'mate', 'sakura', 'lunar', 'galaxia', 'cristal', 'fabimath'],
-  obrero: ['negrito', 'atigrado', 'carey', 'astro', 'lima', 'fenix', 'dragon', 'lava'],
-  oficinista: ['gris', 'siames', 'tuxedo', 'ruso', 'nube', 'samurai', 'faraon', 'fantasma']
+  estudiante: ['naranjo', 'pelusa', 'calico', 'mate', 'sakura', 'lunar', 'galaxia', 'cristal', 'fabimath', 'lector', 'gamer', 'jardin', 'heroe', 'medalla', 'sabio', 'angel', 'cometa'],
+  obrero: ['negrito', 'atigrado', 'carey', 'astro', 'lima', 'fenix', 'dragon', 'lava', 'pintor', 'lana', 'pirata', 'chef', 'rockero', 'ninja', 'cyborg', 'diablo', 'emperador'],
+  oficinista: ['gris', 'siames', 'tuxedo', 'ruso', 'nube', 'samurai', 'faraon', 'fantasma', 'bufanda', 'humita', 'detective', 'bigotes', 'perla', 'vampiro', 'oraculo', 'hechicero']
 };
 const OF_TXT = { estudiante: 'Estudiante', obrero: 'Obrero', oficinista: 'Oficinista' };
-// [id, nombre, cuerpo, sombra, patrón]; patrón: liso, rayas, manchas, calico, siames, tuxedo
+/* Accesorios pixel sobre el gato de CAT_PX (20 × 16; y < 0 es sobre la cabeza):
+   [x, y, colores, filas, simétrico]. '.' es transparente; simétrico repite el dibujo espejado en la otra mitad.
+   Épico, legendario y mítico ya llevan algo en la cabeza (gatoSVG): sus accesorios van en la cara o el cuerpo. */
+const ACC = {
+  gafas:      [2, 5, { F: '#d4a017' }, ['.FFFF...', 'F....FFF', 'F....F..', '.FFFF...'], 1],
+  boina:      [6, 0, { R: '#d63a3a', D: '#9e2323' }, ['....R....', '.RRRRRRR.', 'RRRRRRRRR', '.DDDDDDD.']],
+  gorro:      [5, -3, { P: '#ff6f91', C: '#4fa8ff', c: '#2f7de1' }, ['....PP....', '....PP....', '..CCCCCC..', '.CcCcCcCc.', 'CCCCCCCCCC', 'cccccccccc']],
+  bufanda:    [2, 11, { R: '#e8342a', W: '#ffffff' }, ['RRWWRRWWRRWWRRWW', 'RRWWRRWWRRWWRRWW', '..........RR....', '..........WW....', '..........RR....']],
+  humita:     [6, 10, { R: '#e8342a', D: '#9e1d14' }, ['RR....RR', 'RRRDDRRR', 'RR....RR']],
+  bandana:    [5, 1, { R: '#d63a3a', W: '#ffffff' }, ['..RRRRRR.....', '.RRWRRRWRRR..', 'RRRRRRRRRRRR.', '...........RR']],
+  parche:     [1, 3, { N: '#1a1008' }, ['..........NN', '........NN..', '.NNNNNNN....', 'N.NNNN......', '..NNNN......', '...NN.......']],
+  chef:       [5, -4, { G: '#b9b9bf', W: '#ffffff' }, ['.GGG..GGG.', 'GWWWGGWWWG', 'GWWWWWWWWG', '.GWWWWWWG.', '.GWWWWWWG.', '.GGGGGGGG.', '.GWWWWWWG.']],
+  monoculo:   [12, 5, { M: '#e0a000' }, ['.MMMM.', 'M....M', 'M....M', '.MMMM.', '.....M', '.....M', '....M.']],
+  audifonos:  [0, -1, { D: '#2d2a32', C: '#2fd97a' }, ['...DDDDDDD', '..D.......', '..D.......', '..D.......', '..D.......', 'CCC.......', 'CCC.......', 'CCC.......', 'CCC.......'], 1],
+  flor:       [1, -2, { F: '#ff6fa3', Y: '#ffe45c', L: '#3aa655' }, ['..F..', '.FFF.', 'FFYFF', '.FFF.', '...L.']],
+  lentes_sol: [2, 5, { S: '#111111', W: '#ffffff' }, ['SSSSSSSS', 'SWSSSS..', 'SSSSSS..', '.SSSS...'], 1],
+  bigote:     [3, 8, { M: '#3a2a1a' }, ['M......', '.M.....', '..MMMMM'], 1],
+  ninja:      [1, 4, { N: '#1f2340', P: '#c0c6d0' }, ['NNNNNNNPP', '.........', '.........', '.........', '.NNNNNNNN', '.NNNNNNNN', '..NNNNNNN'], 1],
+  perlas:     [3, 11, { O: '#fbf7f0', o: '#d8cfc0', G: '#ff5ea8' }, ['OoOoOoO', '..OoOoO', '......G'], 1],
+  antifaz:    [1, 5, { A: '#2f5fe0' }, ['.AAAAAAAA', 'AAA..AAAA', 'AAA..AAAA', '.AAAAAA..'], 1],
+  capa:       [0, 10, { C: '#e8342a' }, ['C...', 'CC..', 'CC..', 'CCC.', 'CCC.', 'CCCC'], 1],
+  medalla:    [8, 12, { R: '#e8342a', B: '#2f7de1', G: '#c8920a', Y: '#ffe45c' }, ['RRBB', 'GGGG', 'GYYG', 'GGGG']],
+  vampiro:    [1, 9, { N: '#1b1920', R: '#c0392b', F: '#ffffff' }, ['R........', 'RR.......', 'NNNNNNNFN', 'NN.......', 'NNN......', 'NNN......', 'NNNN.....'], 1],
+  visor:      [12, 5, { M: '#9aa3ad', R: '#ff2a2a', W: '#ffd0d0' }, ['MMMMMM', 'MRRRRM', 'MRWRRM', 'MMMMMM', '.M..M.']],
+  barba:      [6, 10, { W: '#f4f4f4', w: '#c8c8d0' }, ['WWWWWWWW', 'WWWWWWWW', '.WWwwWW.', '.WWWWWW.', '..WWWW..', '...WW...']],
+  gema:       [8, 3, { Y: '#f5c542', C: '#33d6c8', W: '#e0fffb' }, ['.YY.', 'YCCY', 'YCWY', '.YY.']],
+  aretes:     [1, 4, { Y: '#f5c542', C: '#33d6c8' }, ['Y', 'C'], 1],
+  alas:       [0, 3, { G: '#8a9bb8', W: '#ffffff' }, ['G..', 'GG.', 'GWG', 'GWW', 'GWW', 'GWG', 'GG.', '.G.'], 1],
+  cuernos:    [5, -2, { D: '#5a0a0a', R: '#ff3b3b' }, ['D.', 'R.', 'RR', '.R'], 1],
+  estrella:   [7, 3, { Y: '#ffe45c' }, ['..YY..', 'YYYYYY', '.YYYY.', '.Y..Y.']],
+  ojos:       [4, 6, { C: '#59f0ff', W: '#ffffff' }, ['CW', 'CC'], 1],
+  runas:      [1, 8, { C: '#59f0ff' }, ['C.C', '.C.', 'C.C'], 1],
+  armino:     [0, 10, { P: '#6a1b9a', W: '#ffffff', N: '#1d1d1f' }, ['P.........', 'PPWWWNWWWW', 'PPWNWWWWNW', 'PPP.......', 'PPP.......', 'PPPP......'], 1]
+};
+// [id, nombre, cuerpo, sombra, patrón, accesorios]; patrón: liso, rayas, manchas, calico, siames, tuxedo. POR_RAR gatos por rareza, en orden.
 const GATOS = [
   ['naranjo', 'Michi Naranjo', '#ff9a3c', '#e07a1f', 'liso'],
   ['gris', 'Gato Gris', '#a7a7ad', '#7d7d84', 'rayas'],
   ['pelusa', 'Pelusa Blanca', '#f4f1ea', '#d8d2c4', 'liso'],
   ['negrito', 'Negrito', '#3a3340', '#241f29', 'liso'],
   ['atigrado', 'Atigrado', '#c8935a', '#8a5a2b', 'rayas'],
+  ['lector', 'Gato Lector', '#9aa7b8', '#6f7d90', 'liso', ['gafas']],
+  ['pintor', 'Gato Pintor', '#f2e2c4', '#c9a878', 'manchas', ['boina']],
+  ['lana', 'Gato Invierno', '#d9dde3', '#a9b0bb', 'rayas', ['gorro']],
+  ['bufanda', 'Gato Bufanda', '#ffb877', '#e0904a', 'liso', ['bufanda']],
+  ['humita', 'Gato Elegante', '#2d2a32', '#1b1920', 'tuxedo', ['humita']],
   ['calico', 'Calicó', '#f2e6d8', '#e8892c', 'calico'],
   ['siames', 'Siamés', '#efe0c8', '#5b4030', 'siames'],
   ['tuxedo', 'Tuxedo', '#2d2a32', '#1b1920', 'tuxedo'],
   ['carey', 'Carey', '#5a3b2a', '#d98a3a', 'manchas'],
   ['ruso', 'Azul Ruso', '#7f93a8', '#5d7085', 'liso'],
+  ['pirata', 'Gato Pirata', '#9a6b43', '#6b4426', 'rayas', ['bandana', 'parche']],
+  ['chef', 'Gato Chef', '#f6efe4', '#d9cbb5', 'liso', ['chef']],
+  ['detective', 'Gato Detective', '#8d8a84', '#5f5c57', 'manchas', ['monoculo']],
+  ['gamer', 'Gato Gamer', '#5b6cff', '#3d4bd1', 'rayas', ['audifonos']],
+  ['jardin', 'Gato Jardinero', '#d7c49e', '#a8925f', 'liso', ['flor']],
   ['mate', 'Gato Matemático', '#7c5cf0', '#5a3cc9', 'rayas'],
   ['astro', 'Gato Astronauta', '#dfe7f5', '#9fb3d6', 'tuxedo'],
   ['sakura', 'Gato Sakura', '#ffb3cf', '#e98ab0', 'manchas'],
   ['lima', 'Gato Lima', '#9be564', '#62b33a', 'rayas'],
   ['nube', 'Gato Nube', '#cfe9ff', '#9ccbf0', 'manchas'],
+  ['rockero', 'Gato Rockero', '#8a5cc2', '#5e3a8f', 'rayas', ['lentes_sol']],
+  ['bigotes', 'Gato Bigotón', '#f0d9b5', '#c9a77a', 'liso', ['bigote']],
+  ['ninja', 'Gato Ninja', '#e2ddd5', '#b5ada2', 'liso', ['ninja']],
+  ['perla', 'Gato Perla', '#5b5566', '#3e3a47', 'liso', ['perlas']],
+  ['heroe', 'Gato Héroe', '#ffd24d', '#e0a800', 'rayas', ['capa', 'antifaz']],
   ['fenix', 'Gato Fénix', '#ff6a3d', '#ffb400', 'rayas'],
   ['dragon', 'Gato Dragón', '#2fbf8f', '#1b8a65', 'manchas'],
   ['lunar', 'Gato Lunar', '#2b3a67', '#f5e6a8', 'manchas'],
   ['samurai', 'Gato Samurái', '#c0392b', '#7f1d14', 'rayas'],
   ['faraon', 'Gato Faraón', '#e6c27a', '#2c5aa0', 'rayas'],
+  ['medalla', 'Gato Campeón', '#ff8f5a', '#d9622f', 'rayas', ['medalla']],
+  ['vampiro', 'Gato Vampiro', '#d8d0e8', '#a99cc4', 'liso', ['vampiro']],
+  ['cyborg', 'Gato Cyborg', '#5d6b7a', '#3d4654', 'manchas', ['visor']],
+  ['sabio', 'Gato Sabio', '#6a5acd', '#4b3d9e', 'manchas', ['barba', 'gafas']],
+  ['oraculo', 'Gato Oráculo', '#1d5c63', '#5fd3c9', 'liso', ['gema', 'aretes']],
   ['galaxia', 'Gato Galaxia', '#2a1458', '#ff7ae0', 'manchas'],
   ['fantasma', 'Gato Fantasma', '#e9f2ff', '#b8c8e8', 'liso'],
   ['lava', 'Gato Lava', '#3a0d0d', '#ff5a1f', 'rayas'],
   ['cristal', 'Gato Cristal', '#bff6ff', '#ffffff', 'manchas'],
-  ['fabimath', 'Gato Fabimath', '#e8680c', '#ffd166', 'rayas']
-].map(([id, name, body, shade, pat], i) => ({ id, name, body, shade, pat, rar: RAR[Math.floor(i / 5)], w: CAT_W[i % 5], of: Object.keys(OFICIO).find(o => OFICIO[o].includes(id)) }));
+  ['fabimath', 'Gato Fabimath', '#e8680c', '#ffd166', 'rayas'],
+  ['angel', 'Gato Ángel', '#fff6e0', '#ffd98a', 'liso', ['alas']],
+  ['diablo', 'Gato Diablillo', '#8b1a1a', '#ff4d4d', 'rayas', ['cuernos']],
+  ['cometa', 'Gato Cometa', '#101a3a', '#59e0ff', 'manchas', ['estrella']],
+  ['hechicero', 'Gato Hechicero', '#2b1d4e', '#7a5cff', 'rayas', ['ojos', 'runas']],
+  ['emperador', 'Gato Emperador', '#e8c15a', '#b38a1e', 'rayas', ['armino']]
+].map(([id, name, body, shade, pat, acc], i) => ({ id, name, body, shade, pat, acc, pos: i % POR_RAR, rar: RAR[Math.floor(i / POR_RAR)], w: CAT_W[i % POR_RAR], of: Object.keys(OFICIO).find(o => OFICIO[o].includes(id)) }));
 
 /* ---------- dibujo: el mismo gato pixel de la tienda, con patrón y accesorio según la rareza ---------- */
 function gatoSVG(g, size, oculto) {
@@ -80,6 +139,8 @@ function gatoSVG(g, size, oculto) {
   if (!oculto && g.rar.id === 'epico') extra = px([[7, -1], [8, -1], [11, -1], [12, -1], [7, -2], [12, -2], [9, -1], [10, -1]], '#ff5ea8') + px([[9, -2], [10, -2]], '#c2185b');
   if (!oculto && g.rar.id === 'legendario') extra = px([[6, -1], [7, -1], [8, -1], [9, -1], [10, -1], [11, -1], [12, -1], [13, -1], [6, -2], [9, -2], [10, -2], [13, -2], [6, -3], [9, -3], [10, -3], [13, -3]], '#f5c542') + px([[8, -2], [11, -2]], '#e8342a');
   if (!oculto && g.rar.id === 'mitico') extra = px([[7, -3], [8, -3], [9, -3], [10, -3], [11, -3], [12, -3], [6, -2], [13, -2]], '#ffe45c') + px([[2, -2], [17, -1], [1, 2]], '#ffffff');
+  if (!oculto && g.acc) g.acc.forEach(a => { const [x0, y0, pal, filas, sim] = ACC[a];
+    filas.forEach((fila, j) => [...fila].forEach((ch, i) => { if (pal[ch]) extra += px(sim ? [[x0 + i, y0 + j], [19 - x0 - i, y0 + j]] : [[x0 + i, y0 + j]], pal[ch]); })); });
   const q = oculto ? '<text x="10" y="11" font-size="7" font-weight="800" text-anchor="middle" fill="#8e8e93" font-family="system-ui">?</text>' : '';
   return `<svg viewBox="0 -4 20 20" width="${size}" height="${size}" shape-rendering="crispEdges" role="img" aria-label="${oculto ? 'Gato por descubrir' : g.name}">${r}${extra}${q}</svg>`;
 }
@@ -109,10 +170,10 @@ const GACHA_VAR = [[1, 50], [2, 100], [3, 1000]];   // desde arcoíris (3) es el
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
    Un diamante de una rareza ≈ un normal de la siguiente. Valor esperado de una tirada ≈ ⭐ 7, bajo el costo de 10:
    vender lo que sale nunca da más estrellas de las que se gastaron. */
-const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16, 32], CAT_F = [1, 1.1, 1.25, 1.4, 1.6];
+const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16, 32], CAT_F = [1, 1.05, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8];
 const FUS_COST = [5, 15, 40, 100, 250];   // por rareza de los tres gatos, × VAR_VAL de la variante más baja
 const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c); return { g, v: VAR.findIndex(x => x.id === v), r: RAR.indexOf(g.rar) }; };
-const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[GATOS.indexOf(p.g) % 5])); };
+const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[p.g.pos])); };
 function quitar(p, k, n = 1) { p.col[k] -= n; if (p.col[k] <= 0) delete p.col[k]; }
 function vender(k) {
   const p = store.get();
@@ -676,15 +737,16 @@ async function fusionar() {
   revelar(m, g, v, nuevo ? '¡Fusión lista! Es nuevo en tu colección.' : `¡Fusión lista! Ahora tienes ${p.col[k]} de este gato en ${v.name.toLowerCase()}.`);
 }
 
-/* ---------- ruleta del eje mixto: 5 gatos fijos por ruleta, tajadas de 30, 25, 20, 15 y 10 % (CAT_W) ----------
+/* ---------- ruleta del eje mixto: 5 gatos fijos por ruleta, tajadas de 30, 25, 20, 15 y 10 % (RUL_W) ----------
    Más correctas, ruleta con gatos de más rareza. [mínimo de correctas, nombre, gatos]; la primera que calce manda. */
+const RUL_W = [30, 25, 20, 15, 10];
 const RULETAS = [
   [10, 'Ruleta mítica', ['faraon', 'fantasma', 'lava', 'cristal', 'fabimath']],
   [8, 'Ruleta legendaria', ['nube', 'dragon', 'lunar', 'samurai', 'galaxia']],
   [6, 'Ruleta épica', ['carey', 'astro', 'sakura', 'lima', 'fenix']],
   [4, 'Ruleta rara', ['atigrado', 'calico', 'siames', 'tuxedo', 'mate']],
   [0, 'Ruleta común', ['naranjo', 'gris', 'pelusa', 'negrito', 'ruso']]
-].map(([min, name, ids]) => ({ min, name, gs: ids.map((id, i) => ({ g: GATOS.find(x => x.id === id), w: CAT_W[i] })) }));
+].map(([min, name, ids]) => ({ min, name, gs: ids.map((id, i) => ({ g: GATOS.find(x => x.id === id), w: RUL_W[i] })) }));
 // RULETAS[i] es de rareza 4 - i: el evento corta en la ruleta de su rareza mínima
 const ruletaDe = n => RULETAS.find((r, i) => n >= r.min || 4 - i <= evRar());
 // correctas = null: giro de regalo del evento; vi = variante con que sale el gato

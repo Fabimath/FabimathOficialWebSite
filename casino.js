@@ -7,9 +7,11 @@
    · Súper duper ruleta (SUPER_COST): minijuego de pesca. Sale un gato al azar en platino asegurado; un pez recorre
      una barra y, si aprietas justo en la zona dorada, sube a galáctico, y si vuelves a acertar, a estelar.
      Cada lance va más rápido y con la zona más chica (PESCA).
+   · Gacha de gatos nuevos (NUEVOS_COST): solo salen los gatos con accesorio (g.acc). Antes de abrir, cinco luces
+     suben una a una hasta la rareza que salió (el spoiler) y el escenario se tiñe de su color.
    Se carga después de tamagotchi.js: usa pez, sumaPez, updPez (tamagotchi.js) y modal, revelar, gatoSVG, sortear (gacha.js). */
 
-const TICKET_COST = 1e4, SUPER_COST = 1e4, BJ_MIN = 10;
+const TICKET_COST = 1e4, SUPER_COST = 1e4, NUEVOS_COST = 1000, BJ_MIN = 10;
 const miles = n => n === Infinity ? '∞' : Math.round(n).toLocaleString('es-CL');
 
 /* ---------- ticket de mejora ---------- */
@@ -81,6 +83,53 @@ function lance(m, g, v, sig, { vel, zona }, nv) {
   });
 }
 
+/* ---------- gacha de gatos nuevos ---------- */
+async function gachaNuevos() {
+  const p = store.get(); if (pez(p) < NUEVOS_COST) return;
+  const rar = sortear(RAR.slice(evRar())), g = sortear(GATOS.filter(c => c.acc && c.rar === rar)), v = sortear(VAR.slice(evVar())), k = g.id + ':' + v.id;
+  p.col = p.col || {};
+  const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
+  p.col[k] = (p.col[k] || 0) + 1; sumaPez(p, -NUEVOS_COST); store.set(p); updPez();   // guardado antes de la animación
+  const r = RAR.indexOf(rar), nuevos = GATOS.filter(c => c.acc);
+  const m = modal('Gacha de gatos nuevos', `<div class="n-esc"><div class="n-focos"></div><h3>✦ GATOS NUEVOS ✦</h3>
+    <div class="n-desfile">${[...nuevos, ...nuevos].map(c => `<span>${gatoSVG(c, 44)}</span>`).join('')}</div>
+    <div class="n-cap"></div><div class="n-luces">${RAR.map(x => `<i style="--c:${x.color}"><b>${x.name}</b></i>`).join('')}</div>
+    <div class="n-msg" role="status" aria-live="polite">Cargando la máquina…</div></div><button class="g-saltar">Saltar ⏭</button>`, 'n-box');
+  const box = m.querySelector('.g-box'), luces = box.querySelectorAll('.n-luces i'), msg = box.querySelector('.n-msg'), cap = box.querySelector('.n-cap');
+  const tinte = c => box.style.setProperty('--rc', c);
+  let saltado = false;
+  const salto = new Promise(ok => box.querySelector('.g-saltar').addEventListener('click', () => { saltado = true; ok(); }, { once: true }));
+  const w = async ms => { await espera(ms); if (saltado) throw 0; };
+  const parar = rapido() ? () => {} : musicaEpica();
+  const escena = async () => {
+    if (rapido()) return;
+    sonMoneda(); await w(900);
+    msg.textContent = '¿Qué tan raro será?';
+    for (let i = 0; i <= r; i++) {
+      luces[i].classList.add('on'); tinte(RAR[i].color); sonCristal(i * 2);
+      box.animate([{ transform: 'scale(1)' }, { transform: `scale(${1.01 + i * 0.012})` }, { transform: 'scale(1)' }], { duration: 300 });
+      await w(650 + i * 180);
+    }
+    if (r < RAR.length - 1) { luces[r + 1].classList.add('casi'); msg.textContent = '¿Una más…?'; await w(900); luces[r + 1].classList.remove('casi'); }   // casi sube
+    if (r === RAR.length - 1) box.classList.add('mitico');
+    msg.textContent = `¡${rar.name.toUpperCase()}!`; msg.classList.add('grande'); sonAbre(); await w(1400);
+    msg.classList.remove('grande'); msg.textContent = 'Abriendo la cápsula…';
+    cap.classList.add('tiembla'); redoble(1.6); await w(1700);
+    sonAbre(); cap.remove(); box.insertAdjacentHTML('beforeend', '<div class="n-flash"></div>');
+    const cols = [rar.color, '#ffffff', '#ffd75e', '#ff7ae0', '#3dd6ff'], fx = document.createElement('div');
+    fx.className = 'bj-fx';
+    fx.innerHTML = Array.from({ length: 40 + r * 20 }, (_, i) => { const a = Math.random() * Math.PI * 2, d = 120 + Math.random() * 320;
+      return `<i style="--x:${Math.cos(a) * d | 0}px;--y:${Math.sin(a) * d - 160 | 0}px;--r:${Math.random() * 1080 - 540 | 0}deg;background:${cols[i % cols.length]};animation-delay:${Math.random() * .2}s"></i>`; }).join('');
+    m.appendChild(fx); setTimeout(() => fx.remove(), 2000);
+    await w(900);
+  };
+  await Promise.race([escena().catch(() => {}), salto]);
+  parar(); box.classList.remove('n-box', 'mitico'); box.style.removeProperty('--rc');
+  const n = store.get().col[k];
+  revelar(m, g, v, nuevo ? '¡Gato nuevo para tu colección!' : `Repetido: ya tienes ${n} de este gato en ${v.name.toLowerCase()}.`,
+    { txt: `Otra vez 🐟 ${miles(NUEVOS_COST)}`, ok: pez(store.get()) >= NUEVOS_COST, fn: gachaNuevos });
+}
+
 /* ---------- blackjack michi ---------- */
 // gatos superiores que hacen de casa: al sentarte a la mesa te toca uno al azar; no son de la colección
 const BJ_CASAS = [
@@ -126,6 +175,37 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .casino .c-sr { background: radial-gradient(circle at 50% 0%, #3a1a78, #120a2a); color: #fff; border: none; }
   .casino .c-sr p { color: #e6dcff; }
   .casino .c-gatos { display: flex; gap: 4px; }
+  .casino .c-nv { background: linear-gradient(135deg, #ff3d7f, #b26bff 50%, #3dd6ff) 0 0 / 200% 200%; color: #fff; border: none; animation: n-fondo 5s ease-in-out infinite alternate; }
+  .casino .c-nv p { color: #fff; }
+  @keyframes n-fondo { to { background-position: 100% 100%; } }
+  .g-box.n-box { --rc: #b26bff; width: min(520px, 100%); position: relative; overflow: hidden; color: #fff; transition: background .4s, box-shadow .4s;
+    background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--rc) 50%, #1a0a35), #07040f 75%); box-shadow: 0 0 0 3px var(--rc), 0 0 50px var(--rc), 0 0 110px color-mix(in srgb, var(--rc) 60%, transparent); }
+  .g-box.n-box.mitico { animation: n-arco 1.2s linear infinite; }
+  @keyframes n-arco { to { filter: hue-rotate(360deg); } }
+  .n-esc { position: relative; height: 420px; user-select: none; }
+  .n-focos { position: absolute; inset: -50%; pointer-events: none; animation: g-gira 6s linear infinite;
+    background: repeating-conic-gradient(color-mix(in srgb, var(--rc) 55%, transparent) 0 9deg, transparent 9deg 30deg, rgba(255,255,255,.14) 30deg 36deg, transparent 36deg 60deg);
+    -webkit-mask: radial-gradient(circle, #000 10%, transparent 60%); mask: radial-gradient(circle, #000 10%, transparent 60%); }
+  .n-esc h3 { position: relative; font-size: 26px; letter-spacing: .08em; background: linear-gradient(90deg, #ff5e5e, #ffa53d, #ffe45c, #5fd97a, #4fa8ff, #b57be0, #ff5e5e) 0 0 / 200% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent; animation: g-arco 2.5s linear infinite; }
+  .n-desfile { position: relative; display: flex; gap: 10px; width: max-content; margin-top: 10px; animation: n-desfile 16s linear infinite; }
+  .n-desfile span { filter: drop-shadow(0 0 6px var(--rc)); }
+  @keyframes n-desfile { to { transform: translateX(-50%); } }
+  .n-cap { position: absolute; left: 50%; top: 50%; width: 130px; height: 130px; translate: -50% -50%; border-radius: 50%; transition: background .4s, box-shadow .4s; animation: g-flota 1.6s ease-in-out infinite;
+    background: linear-gradient(transparent 47%, #1a0a35 47% 53%, transparent 53%), linear-gradient(#fff 50%, var(--rc) 50%); box-shadow: 0 0 30px var(--rc), 0 0 80px var(--rc); }
+  .n-cap.tiembla { animation: n-tiembla .12s linear infinite; }
+  @keyframes n-tiembla { 25% { rotate: -9deg; } 75% { rotate: 9deg; } }
+  .n-luces { position: absolute; left: 0; right: 0; bottom: 60px; display: flex; justify-content: center; gap: 6px; }
+  .n-luces i { width: 66px; font-style: normal; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10.5px; opacity: .35; transition: opacity .2s; }
+  .n-luces i::before { content: ''; width: 26px; height: 26px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 3px rgba(255,255,255,.3); }
+  .n-luces i.on, .n-luces i.casi { opacity: 1; }
+  .n-luces i.on::before { box-shadow: 0 0 0 3px #fff, 0 0 18px var(--c), 0 0 40px var(--c); animation: g-latido .6s ease-in-out infinite; }
+  .n-luces i.casi::before { animation: n-parpadeo .12s steps(2) infinite; }
+  @keyframes n-parpadeo { 50% { opacity: .15; } }
+  .n-msg { position: absolute; left: 0; right: 0; bottom: 18px; font-weight: 900; font-size: 18px; text-shadow: 0 0 12px var(--rc), 0 0 2px #000; }
+  .n-msg.grande { font-size: 32px; letter-spacing: .06em; animation: g-pop .5s var(--ease); }
+  .n-flash { position: absolute; inset: 0; background: #fff; pointer-events: none; animation: n-flash .8s forwards; }
+  @keyframes n-flash { to { opacity: 0; } }
   .g-modal[aria-label="Súper duper ruleta"] .g-box { background: radial-gradient(circle at 50% 30%, #3a1a78, #120a2a 70%); color: #fff; box-shadow: 0 0 0 3px #f5c542, 0 0 40px #f5c542, 0 0 90px rgba(255,255,255,.5); }
   .g-modal[aria-label="Súper duper ruleta"] .g-box .sub { color: #e6dcff !important; }
   .g-modal[aria-label="Súper duper ruleta"] .g-rev p { color: #e6dcff; }
@@ -297,7 +377,7 @@ function blackjack() {
 /* ---------- vitrina del casino en la página ---------- */
 function renderCasino() {
   const el = $('casino'); if (!el) return;
-  const p = store.get(), f = pez(p);
+  const p = store.get(), f = pez(p), fabi = GATOS.find(g => g.id === 'fabimath');
   el.innerHTML = `<h3>🎰 Casino de pescados</h3><div class="sub">Se juega y se compra con 🐟 pescados. Tienes <b>🐟 ${miles(f)}</b>${p.tickets ? ` y <b>🎫 ${p.tickets} ticket${p.tickets === 1 ? '' : 's'} de mejora</b>` : ''}.</div>
     <div class="c-grid">
       <div class="c-card c-bj"><h4>🃏 Blackjack michi</h4><div class="c-gatos">${BJ_CASAS.map(g => `<span class="v-${g.v}" title="${g.name}">${gatoSVG(g, 40)}</span>`).join('')}</div>
@@ -306,13 +386,17 @@ function renderCasino() {
       <div class="c-card c-tk"><h4>🎫 Ticket de mejora</h4>
         <p>Sube un gato de tu colección a la variante siguiente: ${VAR.slice(1).map(v => v.name.toLowerCase()).join(' → ')}. El tope es <b>estelar</b>, el dorado metálico más brillante. Se usa desde el gachapón: clic en un gato y «Usar ticket».</p>
         <button class="btn btn-primary g-btn-est" data-c="tk" ${f < TICKET_COST ? 'disabled' : ''}>Comprar 🐟 ${miles(TICKET_COST)}</button></div>
-      <div class="c-card c-sr"><h4>🌟 Súper duper ruleta</h4><div class="c-gatos"><span class="v-platino">${gatoSVG(GATOS[24], 40)}</span><span class="v-galactico">${gatoSVG(GATOS[24], 40)}</span><span class="v-estelar">${gatoSVG(GATOS[24], 40)}</span></div>
+      <div class="c-card c-sr"><h4>🌟 Súper duper ruleta</h4><div class="c-gatos"><span class="v-platino">${gatoSVG(fabi, 40)}</span><span class="v-galactico">${gatoSVG(fabi, 40)}</span><span class="v-estelar">${gatoSVG(fabi, 40)}</span></div>
         <p>🎣 Minijuego de pesca: el platino es seguro. Aprieta justo cuando el pez pase por la zona dorada y sube a galáctico; acierta otra vez, más rápido, y es estelar.</p>
         <button class="btn btn-primary g-btn-est" data-c="sr" ${f < SUPER_COST ? 'disabled' : ''}>Pescar 🐟 ${miles(SUPER_COST)}</button></div>
+      <div class="c-card c-nv"><h4>✨ Gacha de gatos nuevos</h4><div class="c-gatos">${RAR.map(r => gatoSVG(GATOS.find(g => g.acc && g.rar === r), 40)).join('')}</div>
+        <p>Solo salen los ${GATOS.filter(g => g.acc).length} gatos nuevos con accesorio. Antes de abrir, las luces te van anunciando la rareza: común, raro, épico, legendario… ¿o mítico?</p>
+        <button class="btn btn-white" data-c="nv" ${f < NUEVOS_COST ? 'disabled' : ''}>Abrir 🐟 ${miles(NUEVOS_COST)}</button></div>
     </div>`;
   el.querySelector('[data-c="bj"]').addEventListener('click', blackjack);
   el.querySelector('[data-c="tk"]').addEventListener('click', comprarTicket);
   el.querySelector('[data-c="sr"]').addEventListener('click', superRuleta);
+  el.querySelector('[data-c="nv"]').addEventListener('click', gachaNuevos);
 }
 // cada vez que cambian los pescados se actualiza la vitrina
 const updPezBase = updPez;
