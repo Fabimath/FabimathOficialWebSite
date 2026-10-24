@@ -126,7 +126,11 @@ $('login').addEventListener('click', async () => {
   try { await signInWithPopup(auth, new GoogleAuthProvider()); }
   catch (e) { if (e.code !== 'auth/popup-closed-by-user') alert('No se pudo iniciar sesión: ' + e.message); }
 });
+// desde el panel admin de paes.html llega ?q=correo: rellena el filtro y genera solo
+const qURL = new URLSearchParams(location.search).get('q');
+if (qURL) $('q').value = qURL;
 onAuthStateChanged(auth, u => {
+  if (qURL && u && u.email === ADMIN) generar();
   $('who').textContent = u ? u.email + (u.email === ADMIN ? ' · admin' : ' · SIN permiso de panel') : 'sin sesión';
   $('login').textContent = u ? 'Salir' : 'Entrar con Google';
 });

@@ -347,6 +347,7 @@
       <span class="pill pts" id="ptsPill" title="Estrellas: 1 por cada respuesta correcta, multiplicada por los gatos que te acompañan">⭐ 0</span>
       <span class="pill pts" id="pezPill" title="Pescados: salen de la consola de gatitos, de la granja y de Michi operaciones; compran huevos, escenarios y puestos de trabajo">🐟 0</span>
       <button class="pill" id="loginBtn" title="Inicia sesión con Google para guardar tu avance en la nube">🔑 Entrar</button>
+      <a class="pill hidden" id="adminBtn" href="#admin" title="Solo el profe: resultados e historial de todos los estudiantes">🛡️ Admin</a>
       <button class="pill" id="homeBtn">📙 PAES</button>
       <a class="pill" href="index.html">Inicio</a>
     </div>
@@ -370,7 +371,18 @@
         <a class="big" href="#gatos"><span class="ic">🐱</span>Gatos<small>Huevos, colección, gachapón y casino</small></a>
         <a class="big" href="#resultados"><span class="ic">📈</span>Mis resultados<small>Historial, informe por tema y consejos de qué estudiar</small></a>
       </div>
-      <div class="hist hidden" id="panel"></div>
+    </div>
+    <div id="v_admin" class="hidden">
+      <div class="vista-head"><h2>🛡️ Admin</h2></div>
+      <div class="hist" id="panel"></div>
+      <div class="hist">
+        <h3>🕑 Historial de todos</h3>
+        <div class="sub">
+          <select id="admFiltro"><option value="ens">Solo ensayos</option><option value="">Todo (ensayos y cuestionarios)</option></select>
+          <input id="admQ" placeholder="Filtrar por nombre o correo" size="26">
+        </div>
+        <div id="adminHist"></div>
+      </div>
     </div>
     <div id="v_estudiar" class="hidden">
       <div class="vista-head"><h2 id="estTitle">Estudiar</h2><div class="ejes hidden" id="areaTabs"></div></div>
@@ -652,7 +664,7 @@ let round = [], qIdx = 0, score = 0, order = [], answered = false, log = [];
 let mode = 'topic';    // 'topic' | 'ensayo'
 
 /* ---------------- home ---------------- */
-const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos', 'resultados'];
+const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos', 'resultados', 'admin'];
 function renderHome() {
   stopClock();
   const prog = store.get(), [h, a] = location.hash.slice(1).split('/'), vista = VISTAS.includes(h) ? h : 'menu';
@@ -660,6 +672,7 @@ function renderHome() {
   if (vista === 'estudiar') renderEstudiar(prog, AREAS[a]);
   if (vista === 'practicar') renderPracticar(prog);
   if (vista === 'resultados') renderResultados(prog);
+  if (vista === 'admin' && window.renderAdmin) renderAdmin();
   if (vista !== 'estudiar' || !AREAS[a]) { document.title = 'PAES — Fabimath'; $('notacion').textContent = ''; }
   renderHist(prog); renderShop(prog); renderGacha(prog); updPts();
   show('home');
@@ -1061,28 +1074,49 @@ onAuthStateChanged(auth, async u => {
       }
     } catch (e) { console.error(e); alert('Iniciaste sesión, pero no se pudo leer tu avance de la nube. Recarga la página.'); }
   } else store.set({});
+  $('adminBtn').classList.toggle('hidden', !window.esAdmin);
   if (!$('home').classList.contains('hidden')) renderHome();
-  renderPanel(u);
 });
 
-/* Panel del profe: solo el correo ADMIN; las reglas de Firestore niegan la lectura a cualquier otro. */
-async function renderPanel(u) {
-  const el = $('panel');
-  if (!u || u.email !== ADMIN) return el.classList.add('hidden');
-  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+/* Vista #admin: solo el correo ADMIN; las reglas de Firestore niegan la lectura a cualquier otro.
+   Arriba el resumen por estudiante; abajo todos los intentos de todos, con fecha y hora, filtrables. */
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let filasAdmin = [];
+window.renderAdmin = async () => {
+  const el = $('panel'), u = auth.currentUser;
+  if (!u || u.email !== ADMIN) { el.innerHTML = '<h3>🛡️ Admin</h3><div class="sub">Solo el administrador ve esta sección. Entra con 🔑 Entrar usando la cuenta del profe.</div>'; $('adminHist').innerHTML = ''; return; }
+  el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">Leyendo el avance de los estudiantes…</div>';
   try {
-    const filas = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
+    filasAdmin = (await getDocs(collection(db, 'progreso'))).docs.map(d => ({ ...d.data(), p: JSON.parse(d.data().data || '{}') }))
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
-    el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filas.length} estudiantes con cuenta · solo tú ves esto</div>
-      <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Geometría</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Intentos</th><th>Última actividad</th></tr></thead><tbody>` +
-      filas.map(f => { const p = f.p, h = p.hist || [];
-        const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-        const ens = ['ensayo_m1', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-        return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG_M1)}</td><td>${hechos(TOPICS_GEO)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.length}</td><td>${fecha(f.updated)}</td></tr>`; }).join('') +
-      '</tbody></table><div class="note">Temas practicados por eje; miniensayos: mejor puntaje en M1 · Química · Biología · Física.</div>';
-    el.classList.remove('hidden');
-  } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; el.classList.remove('hidden'); }
+  } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; return; }
+  el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filasAdmin.length} estudiantes con cuenta · solo tú ves esto</div>
+    <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Geometría</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Ensayos rendidos</th><th>Intentos</th><th>Última actividad</th><th></th></tr></thead><tbody>` +
+    filasAdmin.map(f => { const p = f.p, h = p.hist || [];
+      const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
+      const ens = ['ensayo_m1', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+      return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG_M1)}</td><td>${hechos(TOPICS_GEO)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.filter(x => x.id in ENSAYOS).length}</td><td>${h.length}</td><td>${fecha(f.updated)}</td><td><a href="paes/reporte.html?q=${encodeURIComponent(f.email || '')}" target="_blank">Informe de errores</a></td></tr>`; }).join('') +
+    '</tbody></table><div class="note">Temas practicados por eje; miniensayos: mejor puntaje en M1 · Química · Biología · Física. El informe abre las preguntas que erró cada estudiante.</div>';
+  pintaHistAdmin();
+};
+function pintaHistAdmin() {
+  const solo = $('admFiltro').value === 'ens', needle = $('admQ').value.trim().toLowerCase();
+  // ponytail: cada cuenta guarda sus últimos 200 intentos (slice en showResult); lo más antiguo ya no existe en la nube
+  const todos = filasAdmin.flatMap(f => (f.p.hist || []).map(h => ({ ...h, name: f.name || '', email: f.email || '' })))
+    .filter(h => (!solo || h.id in ENSAYOS) && (!needle || (h.name + ' ' + h.email).toLowerCase().includes(needle)))
+    .sort((a, b) => (b.d || '').localeCompare(a.d || ''));
+  if (!todos.length) { $('adminHist').innerHTML = '<div class="sub">No hay intentos que coincidan.</div>'; return; }
+  const MAX = 500;
+  $('adminHist').innerHTML = `<div class="sub">${todos.length} intentos${todos.length > MAX ? ` · mostrando los ${MAX} más recientes` : ''}</div>
+    <table><thead><tr><th>Fecha y hora</th><th>Estudiante</th><th>Actividad</th><th>Resultado</th><th>Tiempo</th><th>Pregunta a pregunta</th></tr></thead><tbody>` +
+    todos.slice(0, MAX).map(x => `<tr><td>${fecha(x.d)}</td><td>${esc(x.name)}<br><small>${esc(x.email)}</small></td>
+      <td>${x.id in ENSAYOS ? '🎯 ' + ENSAYOS[x.id] : esc((ALL_TOPICS.find(t => t.id === x.id) || { title: x.id }).title)}</td>
+      <td><b>${x.s}/${x.n}</b> <small>(${x.n ? Math.round(x.s / x.n * 100) : 0}%)</small></td><td>${'t' in x ? dur(x.t) : '–'}</td>
+      <td><small>${(x.q || []).map(q => q[2] ? '✅' : '❌').join('')}</small></td></tr>`).join('') +
+    '</tbody></table>';
 }
+$('admFiltro').addEventListener('change', pintaHistAdmin);
+$('admQ').addEventListener('input', pintaHistAdmin);
 </script>
 </body>
 </html>
