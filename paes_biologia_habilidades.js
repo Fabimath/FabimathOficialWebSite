@@ -3,7 +3,7 @@
    investigación, Procesar y analizar la evidencia, Evaluar y Comunicar, siempre en contextos de biología
    (enzimas, crecimiento de plantas, microorganismos, germinación, fotosíntesis, frecuencia cardíaca, poblaciones).
    Tipos de pregunta modelados con las preguntas de habilidad de PAES Invierno 2026, Regular 2026 e Invierno 2027
-   (Módulo Común y Electivo de Biología) en paes/biologia/fuentes/, y con la sección 2 de guia_fabian.txt.
+   de Biología, en paes/biologia/fuentes/, y con la sección 2 de guia_fabian.txt.
    Figuras: paes/biologia/tikz/hab_*.tex → paes/biologia/fig/hab_*.svg. Usa r (String.raw) de paes_data.js. */
 const BIO_HABILIDADES = [
 

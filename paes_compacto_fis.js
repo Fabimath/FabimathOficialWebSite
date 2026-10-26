@@ -1,18 +1,7 @@
-/* Versión compacta de las clases de fis y módulo (Común/Electivo) de cada diapositiva full: ver COMPACTO y MODULO en paes.html. */
-var COMPACTO = COMPACTO || {}, MODULO = MODULO || {};
+/* Versión compacta de las clases de Física (solo Módulo Común): ver COMPACTO en paes.html. */
+var COMPACTO = COMPACTO || {};
 
-/* Versión compacta · Física (Ondas, Movimiento, Fuerzas)
-   Común/Electivo por diapositiva según las pruebas DEMRE Invierno 2026, Regular 2026 e Invierno 2027: en las tres, preguntas 1–54 = MC
-   (Física 1–18) y 55–80 = ME de Física. El efecto Doppler sale solo en el ME (Inv. 2026 n.º 58, Reg. 2026 n.º 58, Inv. 2027 n.º 59);
-   la dispersión, el índice que cambia con el color, solo en el ME (Inv. 2026 n.º 59 y 60, Inv. 2027 n.º 55); los resortes colgados con
-   kΔx = mg y los ascensores, solo en el ME (Inv. 2026 n.º 64 y 66, Reg. 2026 n.º 70, Inv. 2027 n.º 66). Lo demás aparece en el MC
-   (espectro, reflexión, refracción, color, interferencia, espejos y lentes, Newton, tensión, Hooke, roce) o en ninguna prueba
-   (cinemática, MRU, MRUA: Común por defecto). */
-Object.assign(MODULO, {
-  fis_espectro: 'cccecc',
-  fis_luz: 'cccecc',
-  fis_fuerzas: 'ccccec',
-});
+/* Versión compacta · Física (Ondas, Movimiento, Fuerzas), solo lo que entra en la PAES de Ciencias. */
 Object.assign(COMPACTO, {
   fis_ondas_elementos: [
     { t: 'Onda y sus elementos', b: r`
@@ -46,10 +35,6 @@ Object.assign(COMPACTO, {
       <tr><td>Rayos X</td><td>radiografías: los huesos los absorben más que los tejidos blandos</td></tr>
       <tr><td>Gamma</td><td>radioterapia, esterilizar alimentos</td></tr></tbody></table>
       <div class="box alert">Comparar fuera y dentro de la atmósfera dice cuánto retiene en cada rango: retiene la mayor parte del UV.</div>` },
-    { t: 'Efecto Doppler', m: 'e', b: r`
-      <p>Fuente y observador <b>se acercan</b> (frentes más juntos): $f$ percibida mayor, $\lambda$ menor (corrimiento al azul). <b>Se alejan</b>: $f$ percibida menor (corrimiento al rojo).</p>
-      <p>Radar de velocidad: la onda reflejada en un auto que se acerca vuelve con mayor $f$. Galaxias con corrimiento al rojo: se alejan.</p>
-      <div class="box alert">La fuente emite igual y la rapidez de la onda no cambia: el movimiento se detecta por la <b>frecuencia</b> percibida.</div>` },
     { t: 'Interferencia y difracción', b: r`
       <p><b>Interferencia:</b> ondas superpuestas se refuerzan (cresta con cresta) o se anulan (cresta con valle). <b>Young:</b> luz de una frecuencia (láser) por dos rendijas finas, de tamaño comparable a $\lambda$: franjas claras y oscuras.</p>
       <p><b>Difracción:</b> la onda rodea obstáculos o se abre en aberturas de tamaño comparable a $\lambda$. Radio AM ($\lambda$ de cientos de metros) rodea cerros; la luz se difracta en una ranura del grosor de un cabello, no en una ventana. Para mostrarla: un frente de ondas pasando por una abertura pequeña.</p>` }
@@ -68,11 +53,6 @@ Object.assign(COMPACTO, {
       <li>Cambian $v$, $\lambda$ y dirección; la <b>frecuencia (el color) no</b>. Medir la frecuencia de los rayos es comparar su color.</li>
       <li>Cuchara quebrada; piscina menos profunda. Del medio lento al rápido, sobre el ángulo límite: reflexión total interna.</li></ul>
       <div class="box alert">Ordena los medios por rapidez: aire→agua se acerca y vidrio→agua se aleja, entonces el vidrio es el más lento y aire→vidrio se acerca a la normal.</div>` },
-    { t: 'Dispersión', m: 'e', b: r`
-      <div class="cols"><div>
-      <p>El índice de refracción es distinto para cada color: en el vidrio el <b>violeta</b> (mayor $f$) se frena más y se desvía <b>más</b>; el rojo, menos. La luz blanca se separa (prisma, arcoíris en las gotas de lluvia).</p>
-      <div class="box alert">Un láser rojo solo se desvía: tiene un color. Mismo ángulo de incidencia y distinto ángulo de refracción por color: el índice depende de $\lambda$.</div>
-      </div><div><div class="qfig"><img class="tikz" src="paes/fisica/fig/ond_prisma.svg" alt="Un rayo de luz blanca entra por una cara de un prisma triangular y sale por la otra separado en un abanico de colores: el rojo, arriba, se desvía menos y el violeta, abajo, se desvía más"></div></div></div>` },
     { t: 'El color de los objetos', b: r`
       <p>Un objeto se ve del color que refleja (o transmite) y absorbe el resto; si la luz no trae su color, se ve <b>negro</b> (bandera con luz roja: blanco, rojo y estrella rojos; azul negro). Un filtro verde transmite solo verde.</p>
       <p>Mezcla de luces: rojo + verde = amarillo; rojo + azul = magenta; verde + azul = cian; los tres = blanco.</p>
@@ -109,11 +89,11 @@ Object.assign(COMPACTO, {
   fis_dispositivos: [
     { t: 'Comunicación, radar y antenas', b: r`
       <p>Radio, TV, celular, wifi y GPS usan <b>radio y microondas</b>: emisor → antena → receptor que sintoniza una frecuencia (AM o FM). Celular de 1,5 GHz: $\lambda = c/f = 0{,}20$ m.</p>
-      <p><b>Radar:</b> las microondas se <b>propagan y se reflejan</b>; ida y vuelta: $d = \dfrac{c\,t}{2}$. Con Doppler mide la velocidad. Satélite a $d$: la señal vuelve en $t = 2d/c$.</p>
+      <p><b>Radar:</b> las microondas se <b>propagan y se reflejan</b>; ida y vuelta: $d = \dfrac{c\,t}{2}$. Satélite a $d$: la señal vuelve en $t = 2d/c$.</p>
       <p><b>Antena parabólica y radiotelescopio:</b> reflejan y concentran las ondas en el <b>foco</b>, donde va el receptor. ALMA está en Atacama porque el vapor de agua absorbe las ondas milimétricas.</p>` },
     { t: 'Telescopios, prismáticos y fibra', b: r`
       <div class="cols"><div>
-      <ul><li><b>Refractor:</b> lentes (objetivo convergente y ocular). <b>Reflector:</b> espejo cóncavo; los grandes son reflectores: el espejo puede ser enorme, sostenerse por detrás y no separa colores.</li>
+      <ul><li><b>Refractor:</b> lentes (objetivo convergente y ocular). <b>Reflector:</b> espejo cóncavo; los grandes son reflectores: el espejo puede ser enorme y sostenerse por detrás.</li>
       <li><b>Prismáticos:</b> prismas con reflexión total interna que enderezan la imagen y acortan el instrumento.</li>
       <li><b>Fibra óptica:</b> núcleo de mayor índice que el revestimiento; reflexión total interna.</li>
       <li><b>Faro:</b> ampolleta en el foco de un espejo cóncavo; si los rayos no salen paralelos, el espejo tiene irregularidades.</li></ul>
@@ -199,10 +179,7 @@ Object.assign(COMPACTO, {
       <p>$F = k\,\Delta x$, con $\Delta x = L - L_0$. $k$ = pendiente de $F$–$\Delta x$; mayor $k$, más rígido. Proporcional: 30 N estiran 20 cm, para 45 cm hacen falta 67,5 N.</p>
       <p>Cumple Hooke si a iguales aumentos de $F$ hay iguales aumentos de $\Delta x$. Vale hasta el límite elástico: si todos los datos están en una recta, no se sabe dónde está.</p>
       </div><div><div class="qfig"><img class="tikz" src="paes/fisica/fig/fza_hooke_grafico.svg" alt="Gráfico de fuerza en newton en función de la deformación en centímetros para dos resortes. La recta del resorte A pasa por 20 N con 4 cm y llega a 30 N con 6 cm. La recta del resorte B pasa por 20 N con 10 cm y llega a 24 N con 12 cm"></div></div></div>
-      <div class="box alert">Usa la deformación, no la longitud total.</div>` },
-    { t: 'Resortes colgados y ascensores', m: 'e', b: r`
-      <p>Colgado en equilibrio: $k\,\Delta x = m\,g$ (15 cm a 20 cm con 3 kg: $k = 30/5 = 6$ N/cm). Con dos lecturas: $k = \Delta F / \Delta(\text{lectura})$ y luego $L_0 = $ lectura $- F/k$. De $L$ a $2L$ con 1 kg: con 4 kg, deformación $4L$ y longitud $5L$.</p>
-      <p><b>Ascensor:</b> la balanza marca la normal: $N - m\,g = m\,a$, con $a$ positiva hacia arriba. Velocidad constante: como en reposo. Sube frenando ($a$ hacia abajo): $N = m(g - a)$.</p>` }
+      <div class="box alert">Usa la deformación, no la longitud total.</div>` }
   ],
 
   fis_roce: [
@@ -225,66 +202,8 @@ Object.assign(COMPACTO, {
   ]
 });
 
-/* Versión compacta · Física (Universo, Tierra, Electricidad, Habilidades)
-   Común/Electivo por diapositiva según las pruebas DEMRE Invierno 2026, Regular 2026 e Invierno 2027: en los tres cuadernillos
-   1–18 = MC Física (1–6 ondas, 7–12 mecánica, 13–15 Tierra, 16–18 electricidad), 19–36 MC Biología, 37–54 MC Química,
-   55–80 = ME Física. Sistema solar y universo no salen nunca en el MC (solo ME: Inv. 2026 n.º 58 galaxias y Hubble,
-   Inv. 2027 n.º 59 corrimiento al rojo); de ellos solo pasa a común la diapositiva de tipos de conocimiento (dato, evidencia,
-   ley, teoría, inferencia), que sí se pregunta en el MC (Inv. 2026 n.º 9, Inv. 2027 n.º 8). Deriva, límites, dorsales,
-   volcanismo y sismos salen en el MC (Reg. 2026 n.º 13–15, Inv. 2026 n.º 13, Inv. 2027 n.º 13–15); la convección del manto
-   solo en el ME (Inv. 2027 n.º 73 y 74). Corriente, Ohm, serie, paralelo, potencia y medidor salen en el MC (Reg. 2026
-   n.º 16–17, Inv. 2026 n.º 16–18, Inv. 2027 n.º 16–18); eficiencia energética (n.º 80 de las tres pruebas) y sobrecarga
-   con automático (Inv. 2026 n.º 79) solo en el ME. Habilidades: transversales, comunes. */
-Object.assign(MODULO, {
-  fis_sistema_solar: 'eeeeee',
-  fis_universo: 'eeeeece',
-  fis_interior: 'cceccc',
-  fis_potencia: 'ccecec',
-});
+/* Versión compacta · Física (Tierra, Electricidad, Habilidades), solo contenidos del Módulo Común. */
 Object.assign(COMPACTO, {
-  fis_sistema_solar: [
-    { t: 'Geocentrismo y heliocentrismo', b: r`
-      <table><tbody>
-      <tr><td><b>Aristóteles</b></td><td>Tierra inmóvil al centro, esferas concéntricas con movimiento circular uniforme; mundo sublunar cambiante y supralunar <b>perfecto e inmutable</b>.</td></tr>
-      <tr><td><b>Ptolomeo</b></td><td>Tierra al centro; cada planeta gira en un <b>epiciclo</b> cuyo centro recorre un <b>deferente</b>: así explica el <b>movimiento retrógrado</b> (el planeta parece detenerse y retroceder). Predecía bien.</td></tr>
-      <tr><td><b>Copérnico</b> (1543)</td><td>Sol al centro; la Tierra rota (día) y gira en torno al Sol; solo la Luna gira en torno a la Tierra. Retrógrado = perspectiva: la Tierra, interior y más rápida, adelanta a Marte. Mantiene <b>círculos</b>.</td></tr></tbody></table>
-      <div class="box alert">Ptolomeo y Copérnico usan círculos y son anteriores al telescopio; las elipses son de Kepler. Predecir bien no prueba que un modelo sea correcto.</div>` },
-    { t: 'Galileo y Kepler', b: r`
-      <p><b>Galileo</b> (telescopio, 1609) aportó <b>evidencias</b>, no el modelo: lunas de Júpiter → no todo gira en torno a la Tierra; fases completas de Venus (lleno y más pequeño) → Venus orbita al Sol, imposible en Ptolomeo; cráteres lunares y manchas solares → los cielos no son perfectos.</p>
-      <p><b>Kepler</b>, con los datos de Tycho Brahe:</p>
-      <ol><li>Órbitas <b>elípticas</b> con el Sol en un foco: perihelio (más cerca) y afelio (más lejos).</li>
-      <li><b>Áreas iguales en tiempos iguales</b>: más rápido en el perihelio, más lento en el afelio.</li>
-      <li>$\dfrac{T^2}{a^3}$ es igual para todos los planetas de una estrella. En años y UA: $T^2 = a^3$. Con $a = 9$ UA, $T = \sqrt{729} = 27$ años; si $a$ se multiplica por 4, $T$ por $\sqrt{4^3} = 8$.</li></ol>
-      <div class="box alert">Lejos del Sol el área barrida en igual tiempo es <b>igual</b>, no mayor. No es $T \propto a$ ni $T = a^2$; 64 es la razón de los $T^2$: falta la raíz.</div>` },
-    { t: 'Newton y tipo de conocimiento', b: r`
-      <p><b>Newton</b> (1687): la gravedad del Sol <b>explica</b> las leyes de Kepler, que solo <b>describen</b>. Hoy: el Sol es una estrella común; 8 planetas en elipses casi circulares; planetas enanos como Plutón; sistema solar de unos 4600 millones de años.</p>
-      <ul><li><b>Ley</b>: describe una regularidad sin dar la causa (1.ª ley de Kepler). <b>Teoría</b>: explica la causa (gravitación).</li>
-      <li>Un modelo se cambia cuando no calza con datos confiables: Kepler dejó los círculos, no ajustó los datos.</li>
-      <li>«¿El período de las lunas de Júpiter depende de su distancia?»: independiente = distancia; dependiente = período.</li></ul>` }
-  ],
-
-  fis_universo: [
-    { t: 'Big Bang y sus evidencias', m: 'e', b: r`
-      <p>Hace unos <b>13 800 millones de años</b> el universo era muy denso y caliente; desde entonces se <b>expande y enfría</b>. Orden: núcleos de H y He (primeros minutos) → átomos y radiación de fondo (380 000 años) → primeras estrellas y galaxias (unos 200 millones de años) → sistema solar (hace 4600 millones de años).</p>
-      <p><b>Tres evidencias:</b> 1) la expansión (corrimiento al rojo, ley de Hubble); 2) la <b>radiación de fondo de microondas</b>, igual desde todas las direcciones, unos 2,7 K (1965): se emitió visible e infrarroja y la expansión <b>estiró</b> su longitud de onda; 3) la <b>abundancia</b> de cerca de 75 % de H y 25 % de He en masa, como predice la teoría.</p>
-      <div class="box alert">No es una explosión en un punto: es la expansión del propio espacio y <b>no tiene centro</b>. Órbitas, fases de Venus y manchas solares son del sistema solar, no evidencias del Big Bang. Los elementos pesados se forman después, en las estrellas.</div>` },
-    { t: 'Corrimiento al rojo y ley de Hubble', m: 'e', b: r`
-      <p>Las líneas espectrales de casi todas las galaxias aparecen corridas a <b>mayor longitud de onda</b> (menor frecuencia): <b>corrimiento al rojo</b>. Por efecto Doppler, la fuente <b>se aleja</b>; si se acercara, habría corrimiento al azul. El movimiento de una galaxia se mide por el cambio de frecuencia de la luz recibida.</p>
-      <p><b>Ley de Hubble:</b> $v = H_0\,d$, con $H_0 \approx 70$ km/s por Mpc: recta por el origen, más lejos, más rápido se aleja. $d = v/H_0$: $14\,000/70 = 200$ Mpc. En el pasado todo estuvo junto.</p>
-      <div class="box alert">«Rojo» no es el color de la galaxia: la frecuencia <b>recibida</b> es menor que la emitida. No cambian la intensidad ni la rapidez de la luz, que es la misma para toda fuente. No multipliques $v\cdot H_0$.</div>` },
-    { t: 'Destinos y otros modelos', m: 'e', b: r`
-      <ul><li><b>Big Crunch</b>: la gravedad frena y revierte la expansión; colapso final.</li>
-      <li><b>Big Freeze</b>: expansión eterna; las estrellas se apagan, universo frío y oscuro. El más aceptado.</li>
-      <li><b>Big Rip</b>: expansión cada vez más acelerada que desgarra hasta los átomos.</li>
-      <li><b>Estado estacionario</b>: se expande, pero sin comienzo, con creación de materia; descartado por la radiación de fondo.</li></ul>
-      <div class="box alert">Supernovas de 1998: la expansión se <b>acelera</b>, así que el Big Crunch es el <b>menos</b> probable.</div>` },
-    { t: 'Dato, evidencia, ley, teoría y modelo', b: r`
-      <ul><li><b>Dato</b>: lo que se mide. <b>Evidencia</b>: observación que apoya o contradice una explicación (la radiación de fondo, predicha y luego observada).</li>
-      <li><b>Ley</b>: regularidad, a menudo una ecuación, sin la causa ($v = H_0\,d$). <b>Teoría</b>: explicación amplia respaldada por evidencias (Big Bang). <b>Modelo</b>: representación simplificada (un globo que se infla).</li>
-      <li><b>Hipótesis</b>: respuesta tentativa comprobable; se prueba midiendo la variable dependiente en varios valores de la independiente (corrimiento al rojo de varias galaxias de distancia conocida). <b>Inferencia</b>: conclusión sacada de los datos («antes estaban más juntas»).</li></ul>
-      <div class="box alert">Una predicción que se cumple <b>apoya</b> la teoría, no la «demuestra» para siempre. Una teoría no es una suposición.</div>` }
-  ],
-
   fis_deriva: [
     { t: 'Deriva continental', b: r`
       <p><b>Wegener</b> (1912): los continentes formaron <b>Pangea</b> y se desplazaron. Evidencias independientes:</p>
@@ -317,10 +236,6 @@ Object.assign(COMPACTO, {
       <tr><td><b>Modelo dinámico</b> (estado físico)</td><td>litosfera <b>rígida</b> (corteza + manto superior, forma las placas), astenosfera <b>plástica</b> (sólida, fluye lento), mesosfera sólida, núcleo externo <b>líquido</b>, núcleo interno sólido por la presión</td></tr></tbody></table>
       <p>El interior se conoce por las <b>ondas sísmicas</b> (la perforación más profunda llega a unos 12 km). <b>P</b>: longitudinales, las más rápidas, viajan por sólidos y líquidos. <b>S</b>: transversales, más lentas, <b>solo por sólidos</b>. Las S no cruzan de 2900 a 5150 km: el núcleo externo es líquido.</p>
       <div class="box alert">Litosfera ≠ corteza. La astenosfera no es roca fundida. P y S nacen juntas: las P llegan antes por ser más rápidas.</div>` },
-    { t: 'Convección del manto', m: 'e', b: r`
-      <p>El calor interno mueve el manto en <b>corrientes de convección</b>: el material caliente, menos denso, <b>sube</b> bajo las <b>dorsales</b> y las placas se separan; el frío, más denso, <b>baja</b> en la <b>subducción</b>. Las placas se mueven sobre la astenosfera arrastradas por ese flujo.</p>
-      <p>En una zona de subducción se forma magma donde la temperatura de la roca supera su temperatura máxima para seguir sólida.</p>
-      <div class="box alert">El manto es sólido, pero fluye a escala de millones de años; el núcleo externo no sube a la superficie. La hipótesis solo puede usar lo que muestran los datos.</div>` },
     { t: 'Sismos: magnitud e intensidad', b: r`
       <p>Las rocas trabadas en los bordes acumulan <b>energía elástica</b> y la liberan de golpe como ondas sísmicas. <b>Hipocentro</b>: punto interior donde empieza la ruptura; <b>epicentro</b>: punto de la superficie justo encima. Un sismo en el mar puede generar un <b>tsunami</b>, más rápido mientras más profunda es el agua.</p>
       <p>Distancia: $\dfrac{d}{v_S} - \dfrac{d}{v_P} = \Delta t$. Con 6 y 4 km/s y 20 s: $\dfrac{d}{12} = 20$, $d = 240$ km.</p>
@@ -375,13 +290,9 @@ Object.assign(COMPACTO, {
       <div class="box alert">Pasa W a kW y minutos a horas. La potencia no es el consumo: este depende también del tiempo de uso.</div>` },
     { t: 'Instalación domiciliaria', b: r`
       <ul><li><b>Medidor</b>: registra la energía consumida (kWh); con él se conoce el consumo y se calcula la cuenta.</li>
-      <li><b>Automático</b> o <b>fusible</b> (en serie): corta si la corriente supera su máximo. <b>Diferencial</b>: detecta fugas a tierra y protege a las personas. <b>Tierra</b>: une la carcasa metálica con tierra.</li>
+      <li><b>Tablero</b>: reparte la energía en circuitos y contiene las protecciones. <b>Diferencial</b>: detecta fugas a tierra y protege a las personas. <b>Tierra</b>: une la carcasa metálica con tierra.</li>
       <li>Enchufes y ampolletas en <b>paralelo</b> a 220 V; cada interruptor en serie con su ampolleta. Se comprueba el paralelo midiendo el mismo voltaje en cada enchufe; una maqueta se modela con todo en paralelo a la pila.</li>
       <li><b>Transformador</b>: reduce los 220 V para cargadores.</li></ul>` },
-    { t: 'Eficiencia y sobrecarga', m: 'e', b: r`
-      <p>$\eta = \dfrac{E_{\text{útil}}}{E_{\text{consumida}}}\cdot 100\ \%$; el resto se disipa, casi siempre como calor. 60 W que dan 3 J de luz por segundo: 5 %. Una LED da la misma luz que una incandescente con mucha menos potencia: cambiarla por una de <b>igual luminosidad</b> ahorra energía. La etiqueta (clase A–G y kWh al año) sirve para comparar consumos, pero no da el costo (falta el precio) ni la eficiencia en % (falta la energía útil).</p>
-      <p><b>Sobrecarga:</b> por el automático pasa la <b>suma</b> de las corrientes de los artefactos encendidos ($I = P/V$). Tostador 8 A + calefactor 4 A + microondas 10 A = 22 A > 20 A: corta. Límite con 20 A: $220\cdot 20 = 4400$ W.</p>
-      <div class="box alert">LED de «igual potencia» no ahorra: ahorra la de igual luz. Una zapatilla no cambia el límite: todo sigue en paralelo.</div>` }
   ],
 
   fis_hab_investigacion: [
@@ -422,7 +333,7 @@ Object.assign(COMPACTO, {
       <p>En un gráfico mira ejes, forma, zonas donde cambia el comportamiento y huecos. Un resorte con recta por el origen cumple Hooke; donde la deformación crece más rápido, deja de cumplirla (límite elástico).</p>
       <ul><li>Con la misma fuerza, el sistema que más se comprime es el más <b>flexible</b>.</li>
       <li>Tramo horizontal en posición vs tiempo: <b>reposo</b>.</li>
-      <li>Solo se valida lo que relaciona la variable cambiada con la medida: si solo cambia el color y cambia el ángulo de refracción, el índice depende del color; si solo cambia el espejo, depende de su curvatura.</li></ul>` },
+      <li>Solo se valida lo que relaciona la variable cambiada con la medida: si solo cambia el espejo y cambia la formación de la imagen, esta depende de su curvatura.</li></ul>` },
     { t: 'Relaciones y pendiente', b: r`
       <table><tbody>
       <tr><td>Directamente proporcional</td><td>$y/x$ constante, recta por el origen ($F = kx$, $V = IR$)</td></tr>
@@ -430,7 +341,6 @@ Object.assign(COMPACTO, {
       <tr><td>Inversamente proporcional</td><td>$x\cdot y$ constante ($\lambda f = v$: 10 Hz · 2 m = 20 m/s)</td></tr>
       <tr><td>Raíz</td><td>péndulo: para doblar $T$, cuadruplicar $L$</td></tr></tbody></table>
       <p><b>Pendiente:</b> $F$ vs $x$ → $k$; $V$ vs $I$ → $R$; $I$ vs $V$ → $1/R$; posición vs tiempo → velocidad; velocidad vs tiempo → aceleración.</p>
-      <p><b>Resorte con dos datos:</b> 220 N → 36 cm y 400 N → 45 cm: $k = \dfrac{180}{9} = 20$ N/cm; 220 N estiran 11 cm, largo natural $36 - 11 = 25$ cm.</p>
       <div class="box alert">«Aumentan juntas» no es «proporcionales»: prueba el cociente y el producto.</div>` },
     { t: 'Predecir y concluir', b: r`
       <ul><li><b>Interpolar</b> (dentro del rango) sigue la tendencia: con 2 cm/N, entre 3 y 6 N la deformación va de 6 a 12 cm. <b>Extrapolar</b> es riesgoso.</li>

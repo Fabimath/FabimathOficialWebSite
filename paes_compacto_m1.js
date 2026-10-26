@@ -1,5 +1,5 @@
 /* Versión compacta de las clases de M1 (Números, Álgebra, Funciones, Geometría, Probabilidad y Estadística): ver COMPACTO en paes.html. */
-var COMPACTO = COMPACTO || {}, MODULO = MODULO || {};
+var COMPACTO = COMPACTO || {};
 
 /* Versión compacta · M1 Números */
 Object.assign(COMPACTO, {
