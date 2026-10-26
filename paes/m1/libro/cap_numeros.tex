@@ -248,7 +248,7 @@ El mismo modelo sirve para poblaciones que crecen (o valores que bajan) un porce
 \begin{axis}[width=8cm,height=4.6cm,xlabel={períodos},ylabel={capital},xmin=0,xmax=10,ymin=90,ymax=270,
   axis lines=left,tick label style={font=\scriptsize},label style={font=\scriptsize},legend style={font=\scriptsize,draw=none,at={(0.03,0.97)},anchor=north west},legend cell align=left]
   \addplot[azul,thick,mark=*,mark size=1.2pt,domain=0:10,samples=11] {100*(1+0.1*x)}; \addlegendentry{simple al 10\%}
-  \addplot[nar,thick,mark=*,mark size=1.2pt,domain=0:10,samples=11] {100*1.1^x}; \addlegendentry{compuesto al 10\%}
+  \addplot[nar,thick,dashed,mark=square*,mark size=1.4pt,mark options={solid},domain=0:10,samples=11] {100*1.1^x}; \addlegendentry{compuesto al 10\%}
 \end{axis}
 \end{tikzpicture}
 \end{center}

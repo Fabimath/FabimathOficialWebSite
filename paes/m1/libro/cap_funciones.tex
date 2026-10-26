@@ -287,8 +287,8 @@ Lo que va dentro de la raíz se llama \textbf{discriminante}, $\Delta = b^2 - 4a
 \begin{axis}[capfun,width=6.2cm,xmin=-1,xmax=7,ymin=-2,ymax=8,xtick={-1,...,5},ytick={-2,0,...,8},
   legend style={font=\scriptsize,at={(0.99,0.03)},anchor=south east,draw=gris!40},legend cell align=left]
   \addplot[nar,domain=-1:5] {x^2-4*x+3}; \addlegendentry{$\Delta>0$}
-  \addplot[azul,domain=-1:5] {x^2-4*x+4}; \addlegendentry{$\Delta=0$}
-  \addplot[menta,domain=-1:5] {x^2-4*x+6}; \addlegendentry{$\Delta<0$}
+  \addplot[azul,dashed,domain=-1:5] {x^2-4*x+4}; \addlegendentry{$\Delta=0$}
+  \addplot[menta,densely dotted,very thick,domain=-1:5] {x^2-4*x+6}; \addlegendentry{$\Delta<0$}
 \end{axis}
 \end{tikzpicture}
 \end{minipage}
