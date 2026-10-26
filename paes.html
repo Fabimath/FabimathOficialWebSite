@@ -40,6 +40,9 @@
 <script src="paes_fisica_tierra.js"></script>
 <script src="paes_fisica_electricidad.js"></script>
 <script src="paes_fisica_habilidades.js"></script>
+<script src="paes_compacto_m1.js"></script>
+<script src="paes_compacto_fis.js"></script>
+<script src="paes_compacto_bio.js"></script>
 <script src="gacha.js"></script>
 <style>
   :root {
@@ -140,6 +143,13 @@
   .mod { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; }
   .mod.c { background: rgba(23,166,115,.12); color: var(--ok-ink); }
   .mod.e { background: rgba(124,92,240,.13); color: #5b3fd0; }
+  .mod.ce { background: linear-gradient(90deg, rgba(23,166,115,.12), rgba(124,92,240,.13)); color: var(--ink-2); }
+  .slide h3 .mod { vertical-align: middle; margin-left: 10px; font-size: 11px; letter-spacing: .03em; }
+  /* versión full o compacta, y filtro del Módulo Común */
+  .ver-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 18px 0 0; }
+  .ver-bar .ejes { margin-bottom: 0; }
+  .ver-bar .leyenda { flex-basis: 100%; }
+  .ver-bar .libro { font-weight: 600; font-size: 14px; color: #c4540a; }
 
   /* ---------- BUTTONS ---------- */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 22px; border-radius: 980px; font-family: var(--font-text); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; border: none; cursor: pointer; transition: background-color .2s ease, color .2s ease, transform .3s var(--ease), opacity .2s ease; }
@@ -387,6 +397,7 @@
     <div id="v_estudiar" class="hidden">
       <div class="vista-head"><h2 id="estTitle">Estudiar</h2><div class="ejes hidden" id="areaTabs"></div></div>
       <div class="src leyenda" id="ejeSrc"></div>
+      <div class="ver-bar" id="verBar"></div>
       <div id="units"></div>
     </div>
     <div id="v_practicar" class="hidden">
@@ -494,9 +505,9 @@ const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_
 const TOPICS_ALG_M1 = [...TOPICS_ALG, ...ALG_EXPRESIONES, ...ALG_PROPORCION];
 const TOPICS_GEO = [...GEO_FIGURAS, ...GEO_TRANSFORMACIONES];
 const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES, ...QUI_ELECTIVO];
-// temas de Ciencias que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común
-// (cinemática, MRU y MRUA no salen en ninguna de las tres: quedan como Común por nivel curricular; sinapsis va con neurona)
-const ELECTIVO = new Set(['qui_e_moleculas', 'qui_e_isomeros', 'qui_e_estequiometria', 'qui_e_soluciones', 'fis_sistema_solar', 'fis_universo', 'bio_neurona', 'bio_sinapsis']);
+// temas de Química que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común.
+// Física y Biología van más finas, diapositiva por diapositiva: MODULO en paes_compacto_fis.js y paes_compacto_bio.js (lo que no sale en ninguna prueba queda Común)
+const ELECTIVO = new Set(['qui_e_moleculas', 'qui_e_isomeros', 'qui_e_estequiometria', 'qui_e_soluciones']);
 const SRC_CIENCIAS = n => `Versión beta. Basado en el temario oficial de la PAES de Ciencias – ${n} (Admisión 2027) y en las tres últimas pruebas publicadas por el DEMRE. Común: puede salir en el Módulo Común (54 preguntas de Biología, Física y Química que rinden todos). Electivo: solo sale en las 26 preguntas del Módulo Electivo de ${n}.`;
 const AREAS = {
   m1: { name: 'Matemática', tab: '📐 M1', prueba: 'PAES M1', ensayo: 'ensayo_m1',
@@ -511,6 +522,19 @@ const AREAS = {
     nota: ' · Notación: $2n$ diploide y $n$ haploide (juegos de cromosomas), ADN y ARN, FSH, LH, estrógeno y progesterona, CO₂ y O₂.' }
 };
 Object.values(AREAS).forEach(a => a.topics = a.ejes.flatMap(e => e[1]));
+AREAS.m1.libro = 'paes/m1/libro/libro_m1.pdf';
+/* Versión compacta (paes_compacto_*.js): COMPACTO[id] = secciones { t, b, f?, m? } con lo justo para responder; mismas preguntas.
+   f = índice de la diapositiva full cuya figura (SLIDE_FIGS) se reutiliza; m = 'e' si la sección solo entra en el Electivo.
+   MODULO[id] = una letra por diapositiva full ('c' Común, 'e' Electivo) en los temas de Ciencias que no son enteros Común. */
+let CLASE = { compacta: false, comun: false };
+const modulos = t => MODULO[t.id] || (ELECTIVO.has(t.id) ? 'e' : 'c').repeat(t.slides.length);
+function clase(t) {
+  const c = CLASE.compacta && COMPACTO[t.id], mods = modulos(t), def = mods.includes('c') ? 'c' : 'e';
+  const s = (c || t.slides).map((x, i) => ({ ...x, m: c ? x.m || def : mods[i], f: c ? x.f : i }));
+  return CLASE.comun ? s.filter(x => x.m !== 'e') : s;
+}
+const MOD_TXT = { c: 'Común', e: 'Electivo', ce: 'Común + Electivo' };
+const modTema = t => { const m = modulos(t), k = (m.includes('c') ? 'c' : '') + (m.includes('e') ? 'e' : ''); return `<span class="mod ${k}">${MOD_TXT[k]}</span>`; };
 // sin temas propios: 10 preguntas repartidas entre los ejes de M1, cada acierto ×3 y al final una ruleta de gatos (gacha.js)
 const MIXTO = { name: 'Mixto', prueba: 'PAES M1', topics: [], mix: [TOPICS, TOPICS_NUM, TOPICS_FUN, TOPICS_ALG_M1, TOPICS_GEO], n: 10, x: 3, ensayo: 'ensayo_mix', ruleta: true };
 // el eje activo: lo fija la vista de Estudiar o el miniensayo elegido en Practicar
@@ -667,8 +691,9 @@ let mode = 'topic';    // 'topic' | 'ensayo'
 const VISTAS = ['menu', 'estudiar', 'practicar', 'gatos', 'resultados', 'admin'];
 function renderHome() {
   stopClock();
-  const prog = store.get(), [h, a] = location.hash.slice(1).split('/'), vista = VISTAS.includes(h) ? h : 'menu';
+  const prog = store.get(), [h, a, ...ops] = location.hash.slice(1).split('/'), vista = VISTAS.includes(h) ? h : 'menu';
   VISTAS.forEach(v => $('v_' + v).classList.toggle('hidden', v !== vista));
+  CLASE = { compacta: ops.includes('compacta'), comun: ops.includes('comun') };   // fuera de Estudiar, las clases se abren completas
   if (vista === 'estudiar') renderEstudiar(prog, AREAS[a]);
   if (vista === 'practicar') renderPracticar(prog);
   if (vista === 'resultados') renderResultados(prog);
@@ -682,6 +707,7 @@ window.addEventListener('hashchange', renderHome);
 function renderEstudiar(prog, area) {
   $('areaTabs').classList.toggle('hidden', !area);
   $('ejeSrc').textContent = area ? area.src : '';
+  $('verBar').innerHTML = '';
   if (!area) {
     $('estTitle').textContent = 'Estudiar';
     $('units').innerHTML = '<div class="menu3">' + Object.entries(AREAS).map(([k, a]) => `<a class="big" href="#estudiar/${k}"><span class="ic">${a.tab.split(' ')[0]}</span>${a.tab.split(' ')[1]}<small>${a.topics.length} temas${a.beta ? ' · beta' : ''}</small></a>`).join('') + '</div>';
@@ -690,12 +716,19 @@ function renderEstudiar(prog, area) {
   setEje(area);
   $('estTitle').innerHTML = area.name + (area.beta ? ' <span class="beta">beta</span>' : '');
   $('areaTabs').innerHTML = Object.entries(AREAS).map(([k, a]) => `<a href="#estudiar/${k}" class="${a === area ? 'on' : ''}">${a.tab}</a>`).join('');
-  const ciencias = area.prueba === 'PAES Ciencias';
-  $('units').innerHTML = area.ejes.map(([eje, ts]) => (eje ? `<h3 class="eje-lbl">${eje}</h3>` : '') + [...new Set(ts.map(t => t.unit))].map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
+  const ciencias = area.prueba === 'PAES Ciencias', k = Object.keys(AREAS).find(x => AREAS[x] === area);
+  // al entrar: versión full o compacta (si el área la tiene) y, en Ciencias, todo o solo el Módulo Común
+  CLASE.compacta = CLASE.compacta && area.topics.some(t => COMPACTO[t.id]); CLASE.comun = CLASE.comun && ciencias;
+  const ir = (c, m) => `#estudiar/${k}${c ? '/compacta' : ''}${m ? '/comun' : ''}`, tab = (href, on, txt) => `<a href="${href}" class="${on ? 'on' : ''}">${txt}</a>`;
+  $('verBar').innerHTML = (area.topics.some(t => COMPACTO[t.id]) ? '<div class="ejes">' + tab(ir(0, CLASE.comun), !CLASE.compacta, '📘 Versión full') + tab(ir(1, CLASE.comun), CLASE.compacta, '⚡ Versión compacta') + '</div>' : '') +
+    (ciencias ? '<div class="ejes">' + tab(ir(CLASE.compacta, 0), !CLASE.comun, 'Común y Electivo') + tab(ir(CLASE.compacta, 1), CLASE.comun, '✅ Solo Módulo Común') + '</div>' : '') +
+    (area.libro ? `<a class="libro" href="${area.libro}" target="_blank" rel="noopener">📕 Libro ${area.tab.split(' ')[1]} en PDF</a>` : '') +
+    `<div class="leyenda">${CLASE.compacta ? '⚡ Compacta: solo lo justo para responder (definiciones, fórmulas y trampas típicas). Las preguntas son las mismas de la versión full.' : '📘 Full: la clase completa con explicaciones, figuras y ejemplos.'}${CLASE.comun ? ' ✅ Se ocultan los temas y las secciones que solo entran en el Módulo Electivo.' : ''}</div>`;
+  $('units').innerHTML = area.ejes.map(([eje, ts]) => { ts = ts.filter(t => clase(t).length); return (eje ? `<h3 class="eje-lbl">${eje}</h3>` : '') + [...new Set(ts.map(t => t.unit))].map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
     ts.filter(t => t.unit === u).map(t => { const p = prog[t.id];
       const last = (prog.hist || []).find(h => h.id === t.id);
-      return `<button class="topic-card" data-id="${t.id}"><span class="ic">${t.icon}</span>${ciencias ? (ELECTIVO.has(t.id) ? '<span class="mod e">Electivo</span>' : '<span class="mod c">Común</span>') : ''}<h3>${t.title}</h3><p>${t.desc}</p>
-        <div class="meta"><span>${t.slides.length} diapositivas · ${t.bank.length} preguntas${last ? `<br>Último intento: ${fecha(last.d)}` : ''}</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join('')).join('');
+      return `<button class="topic-card" data-id="${t.id}"><span class="ic">${t.icon}</span>${ciencias ? modTema(t) : ''}<h3>${t.title}</h3><p>${t.desc}</p>
+        <div class="meta"><span>${clase(t).length} ${CLASE.compacta && COMPACTO[t.id] ? 'secciones compactas' : 'diapositivas'} · ${t.bank.length} preguntas${last ? `<br>Último intento: ${fecha(last.d)}` : ''}</span>${p ? `<span class="badge ${p.best >= 4 ? 'done' : ''}">mejor ${p.best}/5</span>` : '<span class="badge">nuevo</span>'}</div></button>`; }).join('') + '</div>').join(''); }).join('');
   document.querySelectorAll('.topic-card').forEach(b => b.addEventListener('click', () => openTopic(b.dataset.id)));
 }
 // un miniensayo de 20 por área, más el desafío mixto de M1 con ruleta de gatos
@@ -820,8 +853,9 @@ function setStage(n) {
 function renderSlide() {
   setStage(0);
   const el = $('slide'), figs = typeof SLIDE_FIGS !== 'undefined' && SLIDE_FIGS[cur.id] || {};
-  el.innerHTML = `<div class="kicker">Clase · ${cur.title}</div>` + cur.slides.map(s => `<section class="sec"><h3>${s.t}</h3><div class="body">${s.b}</div></section>`).join('');
-  el.querySelectorAll('.sec').forEach((sec, i) => { const ph = sec.querySelector('.qfig'); if (ph && figs[i]) ph.innerHTML = fig(figs[i]); });
+  const secs = clase(cur), mods = modulos(cur), mixto = mods.includes('c') && mods.includes('e');   // en temas mixtos, cada sección dice si entra en el Común
+  el.innerHTML = `<div class="kicker">${CLASE.compacta && COMPACTO[cur.id] ? 'Clase compacta' : 'Clase'} · ${cur.title}</div>` + secs.map(s => `<section class="sec"><h3>${s.t}${mixto ? `<span class="mod ${s.m}">${MOD_TXT[s.m]}</span>` : ''}</h3><div class="body">${s.b}</div></section>`).join('');
+  el.querySelectorAll('.sec').forEach((sec, i) => { const ph = sec.querySelector('.qfig'), f = figs[secs[i].f]; if (ph && f) ph.innerHTML = fig(f); });
   el.querySelectorAll('.graf').forEach(graficador);
   // las curvas se trazan cuando el gráfico aparece en pantalla
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('ver'); io.unobserve(e.target); } }), { threshold: 0.4 });

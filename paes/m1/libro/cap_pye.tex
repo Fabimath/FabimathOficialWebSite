@@ -1,0 +1,410 @@
+\chapter{Probabilidad y Estadística}
+%% Diagrama de cajón horizontal: \pyecaja{y}{mín}{Q1}{Me}{Q3}{máx}, dentro de un tikzpicture con la escala en x.
+\newcommand{\pyecaja}[6]{%
+  \draw[thick,gris] (#2,#1) -- (#3,#1) (#5,#1) -- (#6,#1);
+  \draw[thick,gris] (#2,#1-0.18) -- (#2,#1+0.18) (#6,#1-0.18) -- (#6,#1+0.18);
+  \draw[thick,nar,fill=narc!35] (#3,#1-0.32) rectangle (#5,#1+0.32);
+  \draw[very thick,nard] (#4,#1-0.32) -- (#4,#1+0.32);}
+
+%% =====================================================================
+\section{Tablas de frecuencia}
+
+\subsection{Para qué sirve una tabla}
+Cuando hay muchos datos, la tabla los resume: en una columna van los valores o categorías $x_i$ y en la otra, cuántas veces aparece cada uno. Esa cantidad es la \textbf{frecuencia absoluta} $f_i$ (la PAES le dice ``cantidad'' o ``frecuencia'').
+
+\begin{clave}[El total] $n = \sum f_i$: el total de datos se obtiene sumando la columna de frecuencias, nunca la de valores.\end{clave}
+
+\begin{ejemplo}
+Puntajes de una prueba en un curso:\par\smallskip
+\centering\begin{tabular}{@{}l*{7}{c}c@{}}\toprule
+Puntaje $x_i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & Total\\\midrule
+Frecuencia $f_i$ & 2 & 4 & 4 & 5 & 7 & 3 & 5 & $n = 30$\\\bottomrule
+\end{tabular}\par\smallskip
+\raggedright El curso tiene $2+4+4+5+7+3+5 = 30$ estudiantes; 7 es solo la cantidad de filas.
+\end{ejemplo}
+
+\subsection{Frecuencia relativa}
+La \textbf{frecuencia relativa} dice qué parte del total representa cada fila. Las $h_i$ siempre suman $1$ (o $100\%$).
+\begin{clave}[Relativa] \[ h_i = \frac{f_i}{n} \qquad h_i\% = \frac{f_i}{n}\cdot 100\% \qquad\text{y al revés}\qquad f_i = h_i\cdot n \]\end{clave}
+
+\begin{minipage}[t]{0.42\linewidth}\vspace{0pt}\centering\small
+\begin{tabular}{@{}ccc@{}}\toprule
+Mascotas & $f_i$ & $h_i$\\\midrule
+0 & 12 & $0{,}24$\\ 1 & 10 & $0{,}20$\\ 2 & 15 & $0{,}30$\\ 3 & 6 & $0{,}12$\\ 4 & 5 & $0{,}10$\\ 5 o más & 2 & $0{,}04$\\\midrule
+Total & $n = 50$ & $1$\\\bottomrule
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.54\linewidth}\vspace{0pt}
+\begin{ojo}[La PAES pide la expresión] Casi siempre las alternativas son del tipo $\frac{13}{50}\cdot 100\%$. Reconoce el numerador (los casos que cumplen) y el denominador ($n$): suelen poner uno bien y el otro mal.\end{ojo}
+\begin{ojo}[Grupos de distinto tamaño] Para comparar niveles con distinta cantidad de alumnos se comparan porcentajes, cada uno sobre su propio total: $\frac{20}{80} = 25\%$ es mayor que $\frac{25}{125} = 20\%$, aunque 25 sea más que 20.\end{ojo}
+\end{minipage}
+
+\subsection{Frecuencias acumuladas}
+La \textbf{acumulada} $F_i = f_1 + \dots + f_i$ suma desde la primera fila hasta la fila $i$, y $H_i = F_i/n$ es la relativa acumulada. Como crece fila a fila, $f_i = F_i - F_{i-1}$: si $F_3 = 20$ y $F_2 = 14$, entonces $f_3 = 6$.
+
+\begin{clave}[Traducción]
+``A lo más 2'' o ``no supera 2'' $=$ 2 o menos: se acumula hasta la fila del 2.\\
+``Al menos 3'' o ``como mínimo 3'' $=$ 3 o más: se suman las filas desde el 3, o bien $n - F_2$.\\
+``Más de 3'' $=$ 4 o más (el 3 no entra). ``Menos de 3'' $=$ 0, 1 o 2.
+\end{clave}
+
+\begin{ejemplo} Con la tabla de mascotas: familias con 3 o más son $6+5+2 = 13$, es decir $\frac{13}{50}\cdot 100\% = 26\%$. Con a lo más 2 son $12+10+15 = 37 = F_3$ y $H_3 = 0{,}74$.\end{ejemplo}
+
+\subsection{Categorías abiertas e intervalos}
+Filas como ``5 o más'' o ``18--24 años'' dicen cuántos datos hay, pero no su valor exacto. Cuando el límite pedido cae \textbf{dentro} de un intervalo, la respuesta depende de si piden la mayor o la menor cantidad posible.
+
+\begin{ojo}[Máximo y mínimo] ¿Cuántos trabajadores, como máximo, tienen a lo más 40 años? La fila 35--44 contiene el 40: para el \textbf{máximo} cuenta entera; para el \textbf{mínimo} aporta 0.\end{ojo}
+
+\gatotip[\gatonaranjo]{Antes de sumar, marca con el lápiz las filas que cumplen la condición. ``Como mínimo 6'' incluye al 6: es el descuido que más puntos regala.}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+En la siguiente tabla se presenta el tiempo que las personas han trabajado en un colegio.
+\begin{center}\small
+\begin{tabular}{@{}l*{10}{c}@{}}\toprule
+Tiempo de trabajo en años & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10\\\midrule
+Cantidad de personas & 2 & 4 & 5 & 4 & 2 & 6 & 2 & 5 & 3 & 2\\\bottomrule
+\end{tabular}
+\end{center}
+El colegio entregará un bono a quienes hayan trabajado \textbf{como mínimo 6 años}. ¿Cuántas personas recibirán el bono?
+\alts{12}{17}{18}{23}
+\solucion{``Como mínimo 6 años'' significa 6 o más: se suman las filas 6, 7, 8, 9 y 10, es decir $6+2+5+3+2 = 18$ personas. Los distractores: 12 es sumar desde 7 (dejar fuera el 6); 17 es sumar de 1 a 5 (los que \textbf{no} reciben bono); 23 es sumar desde 5.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Gráficos}
+
+\subsection{Cada gráfico cuenta algo distinto}
+El gráfico de \textbf{barras} compara categorías: la altura es $f_i$ o $h_i\%$. El \textbf{circular} muestra partes de un total. El de \textbf{líneas} muestra cómo cambia algo en el tiempo. En un \textbf{pictograma} cada ícono vale una cantidad fija: 16 íconos de 4 personas son 64 personas.
+
+\begin{clave}[Para elegir gráfico] ¿Categorías que se comparan? Barras. ¿Porcentajes que suman $100\%$? Circular. ¿Algo que cambia en el tiempo? Líneas.\end{clave}
+\begin{ojo}[Mira el eje] Si el eje está en $\%$, la altura no es la cantidad: el $25\%$ de 80 alumnos son $0{,}25\cdot 80 = 20$.\end{ojo}
+
+\begin{minipage}[c]{0.46\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[ybar,width=6.4cm,height=4.4cm,ymin=0,ymax=8.5,bar width=13pt,xtick={1,...,5},xticklabels={Lun,Mar,Mié,Jue,Vie},
+  axis lines*=left,ylabel={celulares},nodes near coords,every node near coord/.append style={font=\scriptsize},tick label style={font=\small},enlarge x limits=0.15,ytick={0,2,...,8}]
+\addplot[fill=nar,draw=nard] coordinates {(1,3) (2,6) (3,5) (4,2) (5,7)};
+\draw[dashed,azul,thick] (axis cs:0.4,5) -- (axis cs:5.6,5);
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+Celulares vendidos por día. Si la meta es vender \textbf{al menos 5}, se cumple el martes, el miércoles y el viernes: el 5 cuenta.
+\end{minipage}
+
+\subsection{Gráfico circular}
+Cada sector es una frecuencia relativa y el círculo completo es el $100\%$. Un sector de $90^\circ$ es $\frac{90}{360} = \frac14 = 25\%$ del total.
+\begin{clave}[Circular] \[ \text{ángulo}_i = h_i\cdot 360^\circ \qquad f_i = h_i\cdot n \qquad n = \frac{f_i}{h_i} \]\end{clave}
+\begin{ejemplo} De 240 encuestados, el sector de $90^\circ$ son $0{,}25\cdot 240 = 60$ personas. Y al revés: si 85 artículos son el $25\%$, el total es $\frac{85}{0{,}25} = 340$.\end{ejemplo}
+
+\subsection{Gráfico de líneas}
+Interesan la tendencia, los máximos y mínimos, y las subidas y bajadas. ``Aumentó mes a mes'' exige que cada punto esté más arriba que el anterior: basta una bajada para que sea falso.
+
+\begin{minipage}[t]{0.5\linewidth}\vspace{0pt}
+\begin{clave}[Mayor aumento] Es la mayor diferencia entre dos puntos \textbf{consecutivos}, no el punto más alto. Aquí: $+2$, $+3$, $-1$, $+6$, $-2$; el mayor aumento es entre abril y mayo.\end{clave}
+\begin{ojo}[Ausencia no es cero] Si un mes no aparece en el gráfico, el gráfico no informa nada de ese mes.\end{ojo}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}\vspace{0pt}\centering
+\begin{tikzpicture}
+\begin{axis}[width=6.4cm,height=4.4cm,ymin=8,ymax=22,xtick={1,...,6},xticklabels={Ene,Feb,Mar,Abr,May,Jun},axis lines*=left,
+  ylabel={miles de unidades},tick label style={font=\small},label style={font=\small},enlarge x limits=0.08]
+\addplot[nar,very thick,mark=*,mark options={fill=white}] coordinates {(1,10) (2,12) (3,15) (4,14) (5,20) (6,18)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{Gráficos engañosos}
+La PAES pregunta por qué un gráfico dificulta una comparación. Las causas típicas son dos gráficos con \textbf{escalas distintas} (una barra de $20\%$ puede verse más alta que una de $30\%$), un eje vertical que \textbf{no parte de 0} (exagera las diferencias) y sectores 3D o barras de ancho distinto (distorsionan el área).
+
+\gatotip[\gatogris]{Antes de comparar dos gráficos a ojo, mira que compartan escala y unidad. Si no, olvida las alturas y compara los números.}
+\gatotip[\gatoatigrado]{``Más frecuente'' es la barra más alta, la moda. Si cada hora extra se paga \peso 15.000 y la barra más alta es la de 3 horas, el pago más frecuente es \peso 45.000.}
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+Los artículos de una tienda de jardinería están clasificados en cinco categorías. La cantidad de artículos vendidos en cierta semana se presenta en el siguiente gráfico circular.
+\begin{center}
+\begin{tikzpicture}[font=\small]
+\def\r{1.45}
+\fill[nar] (0,0) -- (90:\r) arc[start angle=90,end angle=198,radius=\r] -- cycle;
+\fill[azul] (0,0) -- (198:\r) arc[start angle=198,end angle=270,radius=\r] -- cycle;
+\fill[menta] (0,0) -- (270:\r) arc[start angle=270,end angle=360,radius=\r] -- cycle;
+\fill[lila] (0,0) -- (0:\r) arc[start angle=0,end angle=54,radius=\r] -- cycle;
+\fill[narc] (0,0) -- (54:\r) arc[start angle=54,end angle=90,radius=\r] -- cycle;
+\foreach \a in {90,198,270,0,54} \draw[white,thick] (0,0) -- (\a:\r);
+\node at (144:2.35) {Flores $30\%$};
+\node at (234:2.35) {Árboles $20\%$};
+\node at (315:2.4) {Semillas $25\%$};
+\node at (27:2.35) {Tierra $15\%$};
+\node at (72:2.0) {Arbustos $10\%$};
+\end{tikzpicture}
+\end{center}
+Si esa semana se vendieron 85 semillas, ¿cuál fue el total de artículos vendidos?
+\alts{200}{300}{340}{500}
+\solucion{Semillas es el $25\%$ del total y corresponde a 85 artículos: $0{,}25\cdot n = 85$, así que $n = \frac{85}{0{,}25} = 85\cdot 4 = 340$. Comprobación: el $30\%$ de 340 son 102 flores, el $20\%$ son 68 árboles, etc.; todo suma 340.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Promedio}
+
+\subsection{El promedio reparte el total en partes iguales}
+\begin{clave}[Promedio] \[ \bar{x} = \frac{x_1 + x_2 + \dots + x_n}{n} = \frac{\sum x_i}{n} \qquad\text{y al revés}\qquad \sum x_i = n\cdot\bar{x} \]\end{clave}
+\begin{ejemplo} Gasto en almuerzo durante una semana: \peso 3.200, \peso 5.300, \peso 7.200, \peso 2.500, \peso 11.400, \peso 12.000 y \peso 6.000. La suma es \peso 47.600 y $\bar{x} = \frac{47.600}{7} = 6.800$ pesos diarios. Se divide por 7, incluido el fin de semana.\end{ejemplo}
+El promedio no tiene por qué ser uno de los datos, y un valor extremo lo arrastra. Si la pregunta selecciona algunos datos (por ejemplo, de junio a septiembre), se promedian solo esos.
+
+\subsection{Promedio desde una tabla de frecuencias}
+Cada valor $x_i$ aparece $f_i$ veces, así que se multiplica antes de sumar.
+
+\begin{minipage}[t]{0.55\linewidth}\vspace{0pt}
+\begin{clave}[Promedio de una tabla] \[ \bar{x} = \frac{\sum f_i\,x_i}{n} = \sum h_i\,x_i \]
+Con valores 0, 1 y 2 y frecuencias $P$, $Q$ y $R$:
+\[ \bar{x} = \frac{0\cdot P + 1\cdot Q + 2\cdot R}{P + Q + R} \]\end{clave}
+\begin{ojo}[Denominador] Se divide por la suma de \textbf{todas} las frecuencias, no por la cantidad de filas.\end{ojo}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.4\linewidth}\vspace{0pt}\centering\small
+\begin{tabular}{@{}ccc@{}}\toprule
+Mascotas $x_i$ & $f_i$ & $f_i\,x_i$\\\midrule
+0 & 12 & 0\\ 1 & 10 & 10\\ 2 & 15 & 30\\ 3 & 6 & 18\\ 4 & 5 & 20\\\midrule
+Total & 48 & 78\\\bottomrule
+\end{tabular}\par\smallskip
+$\bar{x} = \dfrac{78}{48} = 1{,}625$ mascotas por familia.
+\end{minipage}
+
+\subsection{Cómo cambia el promedio}
+Si a \textbf{todos} los datos se les suma $k$, el promedio aumenta en $k$; si se multiplican por $k$, el promedio se multiplica por $k$. Si se \textbf{agrega} un dato mayor que $\bar{x}$, el promedio sube; si es menor, baja; si es igual, no cambia. Si se \textbf{quita} un dato mayor que $\bar{x}$, el promedio baja; si se quita uno menor, sube.
+
+\begin{clave}[Promedio de grupos] \[ \bar{x} = \frac{n_A\,\bar{x}_A + n_B\,\bar{x}_B}{n_A + n_B} \]
+Los promedios se pueden promediar directamente solo si los grupos tienen el \textbf{mismo tamaño}.\end{clave}
+
+\subsection{Despejar un dato desconocido}
+Para saber qué nota falta: el total necesario es $n\cdot\bar{x}$, se le resta lo que ya se tiene y lo que queda es el dato.
+\begin{ejemplo} Notas 5,0; 6,0 y 4,5, y se quiere promedio 5,5 con cuatro notas: $4\cdot 5{,}5 = 22$ y $22 - 15{,}5 = 6{,}5$.\end{ejemplo}
+\begin{ojo}[Crecimiento promedio] Un brote midió 2 cm y cinco semanas después 14 cm: creció $14 - 2 = 12$ cm, o sea $\frac{12}{5} = 2{,}4$ cm por semana. Se promedia el \textbf{cambio}, no la altura final.\end{ojo}
+
+\gatotip[\gatoblanco]{Si las alternativas traen $P$, $Q$ y $R$, revisa dos cosas: arriba cada valor multiplicado por su frecuencia, abajo la suma de todas las frecuencias.}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+El promedio de edad de un grupo A de personas es 30 años, mientras que el promedio de edad de un grupo B es 40 años. Si se quiere cambiar solo a una persona de grupo, ¿en cuál de los siguientes casos el promedio \textbf{aumentará en ambos grupos}?
+\alts{Que se cambie una persona de 45 años del grupo B al grupo A.}{Que se cambie una persona de 35 años del grupo B al grupo A.}{Que se cambie una persona de 45 años del grupo A al grupo B.}{Que se cambie una persona de 30 años del grupo A al grupo B.}
+\solucion{Para que el grupo que \textbf{pierde} a la persona suba su promedio, la persona debe ser menor que ese promedio. Para que el grupo que la \textbf{recibe} suba, debe ser mayor que su promedio. Una persona de 35 años sale de B ($35 < 40$): B sube; entra a A ($35 > 30$): A sube. En cambio, 45 de B a A hace bajar a B; 45 de A a B hace bajar a A; y 30 de A a B deja igual a A y hace bajar a B.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Cuartiles y percentiles}
+
+\subsection{Primero, ordenar}
+Las medidas de posición dividen los datos \textbf{ordenados de menor a mayor} en partes con la misma cantidad de datos. La \textbf{mediana} $Me = Q_2$ deja la mitad de los datos a cada lado.
+\begin{clave}[Mediana] Si $n$ es impar, es el dato del centro. Si $n$ es par, es el promedio de los dos centrales.\end{clave}
+\begin{ejemplo} 3, 5, 7, 8, 10, 12 ($n = 6$): $Me = \frac{7+8}{2} = 7{,}5$. Y 4, 0, 0, 2, 3, 3, 1, 0, 3 ordenados quedan 0, 0, 0, 1, \textbf{2}, 3, 3, 3, 4: $Me = 2$.\end{ejemplo}
+
+\subsection{Cuartiles: cuatro partes iguales}
+$Q_1$ es la mediana de la \textbf{mitad inferior} (los datos antes de $Me$) y $Q_3$ es la mediana de la \textbf{mitad superior}. Si $n$ es impar, la mediana no se incluye en ninguna mitad. El \textbf{rango intercuartil} $RIC = Q_3 - Q_1$ es el ancho del $50\%$ central.
+\begin{ejemplo} En 0, 0, 0, 1, \textbf{2}, 3, 3, 3, 4: la mitad inferior 0, 0, 0, 1 da $Q_1 = 0$; la superior 3, 3, 3, 4 da $Q_3 = 3$; $RIC = 3$.\\
+En 2, 4, 4, 6, 9, 10, 12, 15 ($n = 8$): $Q_3 = \frac{10+12}{2} = 11$, que no es ninguno de los datos.\end{ejemplo}
+\begin{ojo}[Error frecuente] $Q_1$ no es el punto medio entre el mínimo y la mediana: es la mediana de los \textbf{datos} de la mitad inferior.\end{ojo}
+
+\subsection{Percentiles: cien partes}
+El percentil $P_k$ es el valor que deja \textbf{al menos el $k\%$} de los datos en $P_k$ o por debajo. Así, $P_{25} = Q_1$, $P_{50} = Me$ y $P_{75} = Q_3$.
+\begin{clave}[Interpretar] ``$P_{80} = 65$ puntos'': al menos el $80\%$ obtuvo 65 puntos o menos (y a lo más el $20\%$ obtuvo más). El valor (65) y el porcentaje (80) no son intercambiables.\end{clave}
+\begin{ejemplo} En un grupo de 40, quien supera a 30 está sobre el $\frac{30}{40} = 75\%$: su puntaje está en el percentil 75.\end{ejemplo}
+
+\subsection{Cuartiles desde una tabla de frecuencias}
+Se calcula la acumulada $F_i$ y se busca la posición que interesa ($\frac{n}{4}$, $\frac{n}{2}$ o $\frac{3n}{4}$): el valor es el de la primera fila donde $F_i$ la alcanza.
+
+\begin{minipage}[t]{0.36\linewidth}\vspace{0pt}\centering\small
+\begin{tabular}{@{}ccc@{}}\toprule
+Puntaje & $f_i$ & $F_i$\\\midrule
+1 & 2 & 2\\ 2 & 4 & 6\\ 3 & 4 & 10\\ 4 & 5 & 15\\ 5 & 7 & 22\\ 6 & 3 & 25\\ 7 & 5 & 30\\\bottomrule
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.6\linewidth}\vspace{0pt}
+\begin{ejemplo} Con $n = 30$ la mediana promedia las posiciones 15 y 16. La primera fila con $F_i \ge 15$ es el puntaje 4; la primera con $F_i \ge 16$ es el 5. Entonces $Me = \frac{4+5}{2} = 4{,}5$.\end{ejemplo}
+\gatotip[\gatolila]{Al terminar, revisa que $Q_1 \le Me \le Q_3$. Si no se cumple, algo quedó mal ordenado.}
+\end{minipage}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+Para una tarea, una estudiante debe representar con un diagrama de cajón las anotaciones positivas de sus amigos: 4, 0, 0, 2, 3, 3, 1, 0, 3. Realiza los siguientes pasos, cometiendo un error:\par\smallskip
+\textbf{Paso 1:} ordena los datos de menor a mayor y determina que el dato central es 2.\\
+\textbf{Paso 2:} identifica el mínimo y el máximo, obteniendo 0 y 4.\\
+\textbf{Paso 3:} determina el primer cuartil como 1, ya que se encuentra entre 0 y 2, y el tercer cuartil como 3, ya que se encuentra entre 2 y 4.\\
+\textbf{Paso 4:} construye el diagrama con esos cinco valores.\par\smallskip
+¿En cuál de los pasos cometió el error?
+\alts{En el Paso 1}{En el Paso 2}{En el Paso 3}{En el Paso 4}
+\solucion{Ordenados: 0, 0, 0, 1, \textbf{2}, 3, 3, 3, 4. El Paso 1 es correcto ($Me = 2$) y el Paso 2 también (mínimo 0, máximo 4). En el Paso 3, $Q_1$ es la mediana de la mitad inferior 0, 0, 0, 1, o sea $0$, no ``el número que está entre 0 y 2''. $Q_3$ es la mediana de 3, 3, 3, 4, que es 3: le resultó bien por casualidad. El error está en el Paso 3: los cuartiles no son puntos medios entre el mínimo y la mediana, sino medianas de las mitades de los datos.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Diagrama de cajón}
+
+\subsection{Cinco números, un dibujo}
+El diagrama de cajón resume los datos con cinco números: \textbf{mínimo, $Q_1$, $Me$, $Q_3$ y máximo}. La caja va de $Q_1$ a $Q_3$ y contiene el $50\%$ central; la línea dentro de la caja es la mediana; los bigotes llegan al mínimo y al máximo. El ancho de la caja es el $RIC$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.17cm,font=\small]
+\draw[gris] (0,-0.7) -- (40,-0.7);
+\foreach \t in {0,10,20,30,40} \draw[gris] (\t,-0.6) -- (\t,-0.8) node[below] {\t};
+\pyecaja{0}{4}{12}{18}{26}{36}
+\foreach \v/\lab in {4/mín,12/$Q_1$,18/$Me$,26/$Q_3$,36/máx} \node[above,font=\scriptsize] at (\v,0.38) {\lab};
+\end{tikzpicture}
+\end{center}
+\begin{clave}[Cada tramo, al menos un $25\%$] mín a $Q_1$, $Q_1$ a $Me$, $Me$ a $Q_3$ y $Q_3$ a máx reúnen cada uno al menos el $25\%$ de los datos. Hasta $Q_3$ hay al menos un $75\%$; desde $Q_3$ hacia arriba, al menos un $25\%$.\end{clave}
+
+\subsection{Lo que el cajón dice y lo que no}
+Sí se puede afirmar que al menos el $25\%$ de los datos es menor o igual que $Q_1$, al menos el $50\%$ es menor o igual que $Me$ y al menos el $75\%$ es menor o igual que $Q_3$, y que ningún dato queda fuera de los bigotes.
+\begin{ojo}[No se puede afirmar] El \textbf{promedio} (el cajón no lo muestra), \textbf{cuántos} datos hay, ni que ``la mitad tiene exactamente $Me$''. Un valor del cajón tampoco es un porcentaje ni una posición en el orden.\end{ojo}
+\begin{ejemplo} Seguidores: mín 80, $Q_1 = 140$, $Me = 270$, $Q_3 = 400$, máx 600. Es correcto decir que al menos un $25\%$ tiene entre 140 y 270 seguidores; no lo es decir que el promedio es 270.\end{ejemplo}
+
+\subsection{Construir el cajón desde los datos}
+Con 18, 19, 20, 21, 21, 27, 30, 30, 31, 34, 35 ($n = 11$): mínimo 18 y máximo 35; $Me = 27$ (posición 6); $Q_1$ es la mediana de 18, 19, 20, 21, 21, o sea 20; $Q_3$ es la mediana de 30, 30, 31, 34, 35, o sea 31.
+\begin{center}
+\begin{tikzpicture}[x=0.26cm,font=\small]
+\draw[gris] (15,-0.7) -- (40,-0.7);
+\foreach \t in {15,20,...,40} \draw[gris] (\t,-0.6) -- (\t,-0.8) node[below] {\t};
+\pyecaja{0}{18}{20}{27}{31}{35}
+\foreach \v in {20,27,31,35} \node[above,font=\scriptsize] at (\v,0.38) {\v};
+\node[above left,font=\scriptsize,inner xsep=1pt] at (18,0.38) {18};
+\end{tikzpicture}
+\end{center}
+\gatotip[\gatonegro]{Para elegir entre cuatro cajones, compara primero los extremos, después la mediana y al final los cuartiles. Descartas rápido.}
+
+\subsection{Comparar grupos}
+Una mediana más a la derecha indica valores mayores en general. Una caja más ancha (mayor $RIC$) indica que el $50\%$ central está más \textbf{disperso}; la mediana no mide dispersión. Un bigote largo hacia un lado indica datos estirados hacia ese lado.
+
+\begin{minipage}[c]{0.5\linewidth}\centering
+\begin{tikzpicture}[x=0.11cm,y=0.9cm,font=\small]
+\draw[gris] (0,-0.7) -- (60,-0.7);
+\foreach \t in {0,10,...,60} \draw[gris] (\t,-0.6) -- (\t,-0.8) node[below] {\t};
+\pyecaja{0.9}{10}{18}{24}{30}{42}
+\pyecaja{0}{14}{26}{36}{48}{58}
+\node[left] at (8,0.9) {A}; \node[left] at (12,0) {B};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.46\linewidth}
+B tiene mayor mediana (36 contra 24) y mayor $RIC$ ($48 - 26 = 22$ contra $30 - 18 = 12$): valores más altos, pero más dispersos. Como el mínimo de B es menor que el máximo de A, no se puede decir que todos los de B superan a todos los de A.
+\end{minipage}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+En el siguiente diagrama de cajón se presenta el tiempo, en minutos, que tardó un grupo de personas en completar un circuito deportivo.
+\begin{center}
+\begin{tikzpicture}[x=0.36cm,font=\small]
+\draw[gris] (6,-0.7) -- (24,-0.7);
+\foreach \t in {6,9,...,24} \draw[gris] (\t,-0.6) -- (\t,-0.8) node[below] {\t};
+\pyecaja{0}{8}{12}{14}{16}{22}
+\foreach \v in {8,12,14,16,22} \node[above,font=\scriptsize] at (\v,0.38) {\v};
+\end{tikzpicture}
+\end{center}
+¿Qué representa el 16 en el diagrama de cajón?
+\alts{Que al menos un $75\%$ de las personas terminó el circuito en 16 minutos o menos.}{Que un $16\%$ de las personas terminó el circuito en a lo más 16 minutos.}{Que la dieciseisava persona que terminó el circuito demoró 16 minutos.}{Que la cuarta persona que terminó el circuito demoró 16 minutos.}
+\solucion{El 16 es el borde derecho de la caja: es $Q_3$, el tercer cuartil, que deja al menos el $75\%$ de los datos en 16 o menos. Eso es exactamente la alternativa A. Las otras confunden el valor 16 con un porcentaje o con una posición en el orden de llegada, cosas que el cajón no informa.}{A}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Probabilidad de un evento}
+
+\subsection{Experimento, espacio muestral y evento}
+Un \textbf{experimento aleatorio} es uno en que se conocen los resultados posibles, pero no cuál saldrá, como lanzar un dado. El \textbf{espacio muestral} $\Omega$ reúne todos los resultados posibles: para un dado común, $\Omega = \{1,2,3,4,5,6\}$ y $\#\Omega = 6$. Un \textbf{evento} es un subconjunto de $\Omega$; ``sale par'' es $A = \{2,4,6\}$.
+\begin{clave}[Regla de Laplace] Si todos los resultados son igualmente probables,
+\[ \mathbb{P}(A) = \frac{\#\,\text{casos favorables}}{\#\,\text{casos totales}} = \frac{\#A}{\#\Omega}, \qquad 0 \le \mathbb{P}(A) \le 1. \]
+Así, $\mathbb{P}(\text{par}) = \frac36 = \frac12$. Una probabilidad 0 es imposible y 1 es seguro.\end{clave}
+
+\subsection{Contar bien los casos}
+Con \textbf{dos dados} hay $6\cdot 6 = 36$ pares ordenados. La suma 7 sale con (1,6), (2,5), (3,4), (4,3), (5,2) y (6,1): es la suma más probable, con $\frac{6}{36}$; la suma 6 sale de 5 maneras, la 10 de 3 y la 12 de una sola. Con \textbf{tres monedas} hay $2^3 = 8$ resultados: CCC, CCS, CSC, SCC, CSS, SCS, SSC, SSS.
+\begin{ojo}[Lo que ya salió cambia $\Omega$] En un memorice de 20 tarjetas ya volteaste un rayo: quedan 19 tarjetas y solo una es el otro rayo, así que $\mathbb{P} = \frac{1}{19}$, no $\frac{1}{20}$.\end{ojo}
+Si el enunciado da frecuencias (en una tabla o en un gráfico), los casos totales son $n$, la suma de todas las barras, y los favorables son la frecuencia de la categoría: si 9 de 28 personas prefieren computador, $\mathbb{P} = \frac{9}{28}$. Si piden una categoría \textbf{o} otra distinta, se suman sus frecuencias sobre el mismo total: $\frac{64 + 51}{441}$.
+
+\subsection{Tablas de doble entrada}
+\begin{minipage}[t]{0.38\linewidth}\vspace{0pt}\centering\small
+\begin{tabular}{@{}lcc@{}}\toprule
+Área & Hombre & Mujer\\\midrule
+Científica & 7 & 10\\ Humanista & 4 & 6\\ Matemática & 8 & 9\\ Artística & 3 & 5\\\midrule
+Total & 22 & 30\\\bottomrule
+\end{tabular}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.58\linewidth}\vspace{0pt}
+Con $n = 52$: ``mujer \textbf{y} artística'' es una sola celda, $\frac{5}{52}$; ``mujer'' es una columna completa, $\frac{30}{52}$; ``artística'' es una fila completa, $\frac{8}{52}$.
+\end{minipage}
+\begin{clave}[El denominador] Es el total de la tabla, salvo que la pregunta restrinja el grupo: ``si se elige una mujer al azar\dots'' cambia el denominador a 30.\end{clave}
+
+\subsection{Cuando los resultados no son equiprobables}
+Un \textbf{dado cargado} viene con su tabla de probabilidades, que suman 1. Ya no se cuentan casos: se \textbf{suman las probabilidades} de los resultados favorables.
+\begin{center}\small
+\begin{tabular}{@{}l*{6}{c}@{}}\toprule
+Cara & 1 & 2 & 3 & 4 & 5 & 6\\\midrule
+$\mathbb{P}$ & $0{,}2$ & $0{,}1$ & $0{,}1$ & $0{,}1$ & $0{,}4$ & $0{,}1$\\\bottomrule
+\end{tabular}
+\end{center}
+\begin{ejemplo} $\mathbb{P}(\text{mayor que } 4) = 0{,}4 + 0{,}1 = 0{,}5$ y $\mathbb{P}(\text{par}) = 0{,}1 + 0{,}1 + 0{,}1 = 0{,}3$. Comparado con un dado común, $\mathbb{P}(6) = 0{,}1 < \frac16$.\end{ejemplo}
+\begin{clave}[Complemento] $\mathbb{P}(A^c) = 1 - \mathbb{P}(A)$. Si $\mathbb{P}(\text{lluvia}) = 0{,}3$, entonces $\mathbb{P}(\text{no lluvia}) = 0{,}7$; en una ruleta de 9 partes con 2 fantasmas, $\mathbb{P}(\text{no fantasma}) = 1 - \frac29 = \frac79$.\end{clave}
+
+\gatotip[\gatoatigrado]{Escribe primero el denominador: ¿cuántos casos hay \textbf{ahora}? Después cuenta los favorables. La mayoría de los distractores tienen el denominador equivocado.}
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+En la tabla se presentan los resultados de una encuesta a un grupo de estudiantes sobre el área de preferencia para sus estudios superiores.
+\begin{center}\small
+\begin{tabular}{@{}lcc@{}}\toprule
+Área de preferencia & Hombre & Mujer\\\midrule
+Científica & 7 & 10\\ Humanista & 4 & 6\\ Matemática & 8 & 9\\ Artística & 3 & 5\\\bottomrule
+\end{tabular}
+\end{center}
+Si se selecciona al azar a una persona del grupo, ¿cuál es la probabilidad de que sea mujer y que escoja el área artística?
+\alts{$\frac{5}{52}$}{$\frac{1}{5}$}{$\frac{5}{8}$}{$\frac{5}{30}$}
+\solucion{Casos totales: toda la tabla, $n = 7+10+4+6+8+9+3+5 = 52$. Casos favorables: la celda ``mujer y artística'', que es 5. Entonces $\mathbb{P} = \frac{5}{52}$. La alternativa $\frac58$ restringe a los del área artística y $\frac{5}{30}$ restringe a las mujeres; ninguna restricción aparece en el enunciado.}{A}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Regla aditiva y multiplicativa}
+
+\subsection{Regla aditiva: ``A o B''}
+Si $A$ y $B$ \textbf{no pueden ocurrir juntos} (son mutuamente excluyentes, $A\cap B = \emptyset$), sus probabilidades se suman. Si pueden ocurrir juntos, lo común quedó contado dos veces y se descuenta.
+\begin{clave}[Regla aditiva] \[ \mathbb{P}(A\cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A\cap B) \]
+Para eventos excluyentes, $\mathbb{P}(A\cap B) = 0$ y queda $\mathbb{P}(A) + \mathbb{P}(B)$.\end{clave}
+\begin{ejemplo} ``Sale 1 o 2'': $\frac16 + \frac16 = \frac13$. ``Par o mayor que 4'': pares $\{2,4,6\}$, mayores que 4 $\{5,6\}$, en común $\{6\}$; $\frac36 + \frac26 - \frac16 = \frac46$. Comprobación: $\{2,4,5,6\}$ son 4 casos.\end{ejemplo}
+
+\subsection{Regla multiplicativa: ``A y luego B''}
+Si los experimentos son \textbf{independientes} (uno no cambia al otro), las probabilidades se multiplican: $\mathbb{P}(A\cap B) = \mathbb{P}(A)\cdot\mathbb{P}(B)$. Un dado y una moneda, ``par y cara'': $\frac12\cdot\frac12 = \frac14$. Dos seis seguidos: $\frac16\cdot\frac16 = \frac{1}{36}$.
+
+\begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
+\begin{clave}[Con reposición] Se devuelve lo extraído y las probabilidades no cambian. Bolsa con 3 rojas y 2 azules, dos rojas: $\frac35\cdot\frac35 = \frac{9}{25}$.\end{clave}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}\vspace{0pt}
+\begin{ojo}[Sin reposición] La segunda extracción tiene una bola menos y, si la primera fue roja, una roja menos: $\frac35\cdot\frac24 = \frac{6}{20} = \frac{3}{10}$.\end{ojo}
+\end{minipage}
+
+\subsection{Diagrama de árbol}
+Cada rama lleva su probabilidad. \textbf{A lo largo} de una rama se multiplica; \textbf{entre ramas} distintas que sirven, se suma. Las ramas que salen de un mismo punto suman 1.
+
+\begin{minipage}[c]{0.46\linewidth}\centering
+\begin{tikzpicture}[font=\small,level distance=2.3cm,
+  grow=right,level 1/.style={sibling distance=1.9cm},level 2/.style={sibling distance=0.9cm},
+  edge from parent/.style={draw,gris,thick},every node/.style={inner sep=2pt}]
+\node[circle,fill=nar,inner sep=2pt] {}
+  child {node {no llueve}
+    child {node {no atraso} edge from parent node[below,font=\scriptsize] {$0{,}9$}}
+    child {node[text=nard,font=\small\bfseries] {atraso} edge from parent node[above,font=\scriptsize] {$0{,}1$}}
+    edge from parent node[below,font=\scriptsize] {$0{,}7$}}
+  child {node {llueve}
+    child {node {no atraso} edge from parent node[below,font=\scriptsize] {$0{,}5$}}
+    child {node[text=nard,font=\small\bfseries] {atraso} edge from parent node[above,font=\scriptsize] {$0{,}5$}}
+    edge from parent node[above,font=\scriptsize] {$0{,}3$}};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\begin{ejemplo} Dos ramas llevan al atraso:
+\begin{align*} \mathbb{P}(\text{atraso}) &= 0{,}3\cdot 0{,}5 + 0{,}7\cdot 0{,}1\\ &= 0{,}15 + 0{,}07 = 0{,}22 \end{align*}\end{ejemplo}
+\end{minipage}
+
+\medskip
+Al leer una expresión, cada factor es una etapa del experimento, en orden. En una ruleta con 4 estrellas, 3 diamantes y 2 fantasmas de 9 partes, el término $\frac49\cdot\frac49\cdot\frac29$ se lee estrella, estrella, fantasma: tres giros, en ese orden.
+
+\subsection{``Al menos uno'' y ``ninguno''}
+``Al menos uno'' es lo contrario de ``ninguno'', así que conviene calcular el complemento.
+\begin{clave}[Al menos uno] \[ \mathbb{P}(\text{al menos uno}) = 1 - \mathbb{P}(\text{ninguno}) \]
+Dos monedas, al menos una cara: $\mathbb{P}(SS) = \frac14$, así que $1 - \frac14 = \frac34$.\end{clave}
+\gatotip[\gatonaranjo]{``Y'' multiplica, ``o'' suma (restando lo común si se solapan), ``al menos uno'' es 1 menos ninguno y ``no'' es 1 menos la probabilidad. Con eso sale casi todo.}
+\gatotip[\gatogris]{Dibuja el árbol aunque sea chiquitito: anotar la probabilidad en cada rama evita multiplicar donde había que sumar.}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+Una ruleta está dividida en nueve partes de igual área: cuatro con estrella, tres con diamante y dos con fantasma. Un juego consiste en realizar 3 giros, pero si en alguno sale fantasma el juego termina. El premio es la suma de lo obtenido: cada estrella vale \peso 50.000 y cada diamante \peso 100.000. La probabilidad de ganar exactamente \peso 100.000 se calcula con la expresión
+\[ \frac49\cdot\frac49\cdot\frac29 + \frac39\cdot\frac29 \]
+¿Qué representa el término $\frac49\cdot\frac49\cdot\frac29$ en la expresión anterior?
+\alts{La probabilidad de sacar estrella en el primer giro, estrella en el segundo y fantasma en el tercero.}{La probabilidad de sacar diamante en el primer giro y estrella en el segundo.}{La probabilidad de sacar diamante en el primer giro y fantasma en el segundo.}{La probabilidad de sacar dos estrellas en los dos primeros giros y un diamante en el tercero.}
+\solucion{Cada factor es un giro: $\frac49$ es estrella, $\frac39$ diamante y $\frac29$ fantasma. El término $\frac49\cdot\frac49\cdot\frac29$ es estrella, estrella, fantasma: \peso 50.000 $+$ \peso 50.000 $=$ \peso 100.000, y el fantasma termina el juego. El otro término, $\frac39\cdot\frac29$, es diamante y luego fantasma, que también suma exactamente \peso 100.000.}{A}
+\end{elejemplo}

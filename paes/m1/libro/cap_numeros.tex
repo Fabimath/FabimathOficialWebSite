@@ -1,0 +1,370 @@
+%% Capítulo 1 · Números (temas de paes_numeros.js, en el mismo orden)
+\chapter{Números}
+
+Este eje reúne los números enteros y racionales, el porcentaje y las potencias y raíces. Casi todas las preguntas se resuelven con pocas reglas bien aplicadas: los signos, la prioridad de las operaciones y saber \emph{de qué} total se habla.
+
+%% =====================================================================
+\section{Números enteros}
+
+\subsection{Los enteros y la recta numérica}
+Los \textbf{números enteros} son $\mathbb{Z} = \{\dots,-3,-2,-1,0,1,2,3,\dots\}$: los naturales, el cero y los negativos. En la recta, un número es \textbf{mayor} mientras más a la derecha está: $-7 < -2 < 0 < 3$. El \textbf{valor absoluto} $|a|$ es la distancia al cero: $|-5| = |5| = 5$.
+
+\begin{center}
+\begin{tikzpicture}[x=0.55cm]
+  \draw[-{Stealth},gris] (-13.5,0) -- (4.5,0);
+  \foreach \x in {-12,-10,...,4} \draw[gris] (\x,0.1) -- (\x,-0.1) node[below,font=\scriptsize] {$\x$};
+  \fill[coral] (-12,0) circle (2.5pt) node[above=2pt,font=\small] {$-12$};
+  \fill[azul] (-7,0) circle (2.5pt) node[above=2pt,font=\small] {$-7$};
+  \fill[menta] (3,0) circle (2.5pt) node[above=2pt,font=\small] {$3$};
+  \draw[-{Stealth},nar,thick] (-13,0.9) -- (3.5,0.9) node[right,font=\scriptsize] {crece};
+\end{tikzpicture}
+\end{center}
+
+\begin{ojo}[Entre negativos] El de mayor valor absoluto es el \textbf{menor}: $-12 < -7$, porque $-12$ está más lejos del cero, a la izquierda. Una temperatura de $-12$ °C es más fría que una de $-7$ °C.\end{ojo}
+
+Los contextos típicos son temperaturas bajo cero, pisos subterráneos, profundidad bajo el nivel del mar, años antes de Cristo, deudas y puntajes que restan.
+
+\subsection{Sumar y restar con signos}
+\begin{itemize}
+  \item \textbf{Mismo signo}: se suman los valores absolutos y se conserva el signo: $-4 + (-6) = -10$.
+  \item \textbf{Distinto signo}: se restan los valores absolutos y queda el signo del de mayor valor absoluto: $-9 + 4 = -5$.
+  \item \textbf{Restar es sumar el opuesto}: $3 - (-5) = 3 + 5 = 8$.
+\end{itemize}
+\begin{ejemplo}[En contexto] A las 7:00 la temperatura era $-3$ °C y al mediodía había subido 8 °C: $-3 + 8 = 5$ °C. Arquímedes nació el 287 a.\,C. y murió el 212 a.\,C.: vivió $-212 - (-287) = 75$ años.\end{ejemplo}
+\gatotip[\gatonegro]{El tiempo transcurrido (o la distancia entre dos enteros) siempre es \emph{final menos inicial}, aunque ambos sean negativos.}
+
+\subsection{Multiplicar y dividir: regla de los signos}
+\begin{center}
+\begin{tabular}{ccc}
+\toprule Signos & Resultado & Ejemplo\\ \midrule
+$(+)\cdot(+)$ & $+$ & $3\cdot 4 = 12$\\
+$(-)\cdot(-)$ & $+$ & $(-3)(-8) = 24$\\
+$(+)\cdot(-)$ & $-$ & $5\cdot(-2) = -10$\\
+$(-) : (+)$ & $-$ & $-18 : 3 = -6$\\ \bottomrule
+\end{tabular}
+\end{center}
+Con varias multiplicaciones, cuenta los factores negativos: si son una cantidad \textbf{par}, el resultado es positivo; si es \textbf{impar}, negativo. Por eso $(-2)^6 = 64$ y $(-2)^3 = -8$.
+\begin{ojo}[Ojo con el paréntesis] $(-2)^4 = 16$, pero $-2^4 = -(2^4) = -16$: sin paréntesis, la potencia afecta solo al 2.\end{ojo}
+
+\subsection{Prioridad de operaciones}
+\begin{clave}[Orden] 1) Paréntesis, de adentro hacia afuera. 2) Potencias. 3) Multiplicaciones y divisiones, \textbf{de izquierda a derecha}. 4) Sumas y restas, de izquierda a derecha.\end{clave}
+\begin{ejemplo} $1 - (-3)(-2 - 6) = 1 - (-3)(-8) = 1 - 24 = -23$.\end{ejemplo}
+\begin{ojo}[Error frecuente] Operar en el orden en que se lee. En $1 - (-3)(-8)$ no se resta primero $1 - (-3)$: la multiplicación va antes. Y en $20 - 8 : 4\cdot 2$ se va de izquierda a derecha: $8 : 4 = 2$, $2\cdot 2 = 4$, y queda $20 - 4 = 16$.\end{ojo}
+\gatotip[\gatoatigrado]{En las preguntas de <<¿en cuál paso se cometió el error?>>, rehaz cada paso por separado: casi siempre el error es un signo o el orden de las operaciones.}
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+¿Cuál es el valor de $2 - (-3)(-4 - 5)$?
+\alts{$-45$}{$-25$}{$-15$}{$29$}
+\solucion{Primero el paréntesis: $-4 - 5 = -9$. Luego la multiplicación: $(-3)(-9) = 27$. Al final la resta: $2 - 27 = -25$.
+
+$-45$ sale de restar primero $2 - (-3) = 5$ y multiplicar después por $-9$; $29$ usa $(-3)(-9) = -27$ (error de signo); $-15$ ignora el paréntesis y calcula $2 - (-3)(-4) - 5 = 2 - 12 - 5$.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Fracciones y racionales}
+
+\subsection{¿Qué es un número racional?}
+Un \textbf{racional} es un cociente de enteros: $\mathbb{Q} = \left\{ \dfrac{a}{b} : a, b \in \mathbb{Z},\ b \neq 0 \right\}$. Todo entero es racional: $-3 = \dfrac{-3}{1}$.
+
+\textbf{Amplificar} es multiplicar numerador y denominador por lo mismo: $\dfrac{3}{4} = \dfrac{6}{8} = \dfrac{9}{12}$. \textbf{Simplificar} es dividir ambos por un divisor común: $\dfrac{18}{24} = \dfrac{3}{4}$ (por 6). Un \textbf{número mixto} es una suma: $2\tfrac{1}{4} = 2 + \dfrac{1}{4} = \dfrac{9}{4}$.
+\begin{ojo}[Solo se simplifican factores] $\dfrac{2\cdot 5}{2} = 5$, pero $\dfrac{2 + 5}{2} = \dfrac{7}{2}$, no $6$. Si hay una suma, no se <<tacha>> un sumando.\end{ojo}
+
+\subsection{Sumar y restar fracciones}
+Con igual denominador se suman los numeradores: $\dfrac{2}{7} + \dfrac{3}{7} = \dfrac{5}{7}$. Con distinto denominador se amplifica a un \textbf{denominador común} (el mínimo común múltiplo):
+\[ \frac{1}{4} + \frac{5}{6} = \frac{3}{12} + \frac{10}{12} = \frac{13}{12} \]
+\begin{ejemplo}[Números mixtos] Se pueden operar por separado la parte entera y la fraccionaria: $2\tfrac{1}{4} - 1\tfrac{1}{8} = (2 - 1) + \left(\tfrac{1}{4} - \tfrac{1}{8}\right) = 1\tfrac{1}{8}$.\end{ejemplo}
+\begin{ojo}[Nunca] $\dfrac{1}{3} + \dfrac{1}{3} \neq \dfrac{2}{6}$: el denominador no se suma. Un entero menos una fracción también necesita denominador común: $3 - \dfrac{1}{2} = \dfrac{6}{2} - \dfrac{1}{2} = \dfrac{5}{2}$.\end{ojo}
+
+\subsection{Multiplicar y dividir}
+\begin{clave}[Reglas] $\dfrac{a}{b}\cdot\dfrac{c}{d} = \dfrac{a\cdot c}{b\cdot d} \qquad \dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b}\cdot\dfrac{d}{c}$\end{clave}
+Dividir es multiplicar por el \textbf{inverso}: $\dfrac{3}{4} : \dfrac{9}{8} = \dfrac{3}{4}\cdot\dfrac{8}{9} = \dfrac{2}{3}$. Conviene simplificar en cruz antes de multiplicar para trabajar con números chicos.
+
+\begin{multicols}{2}
+\textbf{<<Fracción de>> = multiplicar.} $\dfrac{2}{3}$ de 45 es $\dfrac{2}{3}\cdot 45 = 30$.
+
+\columnbreak
+\textbf{<<¿Cuántas caben?>> = dividir.} Botellas de $\dfrac{3}{4}$ L con 12 L: $12 : \dfrac{3}{4} = 16$.
+\end{multicols}
+\gatotip[\gatogris]{Multiplicar por una fracción entre 0 y 1 achica; dividir por ella agranda. Sirve para descartar alternativas sin calcular.}
+
+\subsection{Problemas: del total o de lo que queda}
+La PAES juega con repartos sucesivos. Lee con cuidado \textbf{de qué} es cada fracción.
+
+\begin{center}
+\begin{tikzpicture}[x=0.8cm,y=0.55cm]
+  \foreach \i in {0,1} \draw[gris,fill=nar] (\i,0) rectangle ++(1,1);
+  \foreach \i in {2,...,5} \draw[gris,fill=narc] (\i,0) rectangle ++(1,1);
+  \foreach \i in {6,7,8} \draw[gris,fill=lila!45] (\i,0) rectangle ++(1,1);
+  \foreach \i in {9,10,11} \draw[gris,fill=white] (\i,0) rectangle ++(1,1);
+  \draw[|-|,nard] (0.05,-0.3) -- node[below,font=\scriptsize] {$\tfrac{1}{6}$ del total} (1.95,-0.3);
+  \draw[|-|,nard] (2.05,-0.3) -- node[below,font=\scriptsize] {$\tfrac{1}{3}$ del total} (5.95,-0.3);
+  \draw[|-|,lila] (6.05,-0.3) -- node[below,font=\scriptsize] {$\tfrac{1}{2}$ de los 6 restantes} (8.95,-0.3);
+  \node[right,font=\scriptsize] at (12,0.5) {quedan 3};
+\end{tikzpicture}
+\end{center}
+Una caja de 12 huevos: se aparta $\dfrac{1}{6}$ y $\dfrac{1}{3}$ \textbf{del total} ($2 + 4 = 6$ huevos) y quedan 6. Si luego se usa la mitad \textbf{de los restantes}, $\dfrac{1}{2}\cdot 6 = 3$, quedan 3.
+\begin{ojo}[El resto] Si se gastan $\dfrac{3}{5}$ del sueldo $M$, se ahorra $\dfrac{2}{5}M$ (no $\dfrac{1}{5}M$). En un año de sueldo fijo: $12\cdot\dfrac{2}{5}M = \dfrac{24}{5}M$.\end{ojo}
+\begin{clave}[Del total a la parte y de vuelta] Si una cantidad es la fracción $f$ del total, el total es $\text{cantidad} : f$. Para comparar fracciones con $b, d > 0$: $\dfrac{a}{b} < \dfrac{c}{d} \iff a\cdot d < b\cdot c$.\end{clave}
+
+\begin{elejemplo}{PAES Invierno 2027, adaptada}
+Una botella de agua tiene una capacidad de $2\tfrac{1}{4}$ L y otra de $1\tfrac{1}{8}$ L. ¿Cuál de las siguientes expresiones representa la diferencia de capacidad entre ambas botellas, en litros?
+\alts{$(2 - 1) - \left(\dfrac{1}{4} + \dfrac{1}{8}\right)$}{$(2 - 1) + \left(\dfrac{1}{4} - \dfrac{1}{8}\right)$}{$(2 - 1) + \left(\dfrac{1}{8} - \dfrac{1}{4}\right)$}{$(2 + 1) - \left(\dfrac{1}{4} + \dfrac{1}{8}\right)$}
+\solucion{$2\tfrac{1}{4} - 1\tfrac{1}{8} = \left(2 + \tfrac{1}{4}\right) - \left(1 + \tfrac{1}{8}\right) = (2 - 1) + \left(\tfrac{1}{4} - \tfrac{1}{8}\right) = 1 + \tfrac{1}{8} = 1\tfrac{1}{8}$ L.
+
+La primera alternativa resta mal el paréntesis: $-\left(1 + \tfrac{1}{8}\right)$ solo le cambia el signo a $\tfrac{1}{8}$, no a $\tfrac{1}{4}$. La tercera invierte la resta de las fracciones y la cuarta suma las partes enteras.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Decimales, orden y recta numérica}
+
+\subsection{Decimal y fracción}
+\textbf{Decimal finito a fracción}: se escribe sobre 10, 100, 1000\dots{} y se simplifica:
+\[ 0{,}25 = \frac{25}{100} = \frac{1}{4} \qquad 1{,}6 = \frac{16}{10} = \frac{8}{5} \qquad 0{,}075 = \frac{75}{1000} = \frac{3}{40} \]
+\textbf{Fracción a decimal}: se divide el numerador por el denominador: $\dfrac{3}{8} = 3 : 8 = 0{,}375$.
+\begin{clave}[¿Finito o periódico?] Una fracción \textbf{irreducible} da decimal \textbf{finito} si su denominador solo tiene los factores primos 2 y 5 ($\tfrac{3}{40}$, $\tfrac{7}{25}$). Si tiene otro factor (3, 7, 11\dots), el decimal es \textbf{periódico} ($\tfrac{1}{3} = 0{,}\overline{3}$).\end{clave}
+\gatotip[\gatoblanco]{Simplifica antes de mirar el denominador: $\tfrac{3}{15}$ parece periódica por el 3, pero es $\tfrac{1}{5} = 0{,}2$.}
+
+\subsection{Periódicos y semiperiódicos a fracción}
+\textbf{Periódico puro}: el período sobre tantos 9 como cifras tenga.
+\[ 0{,}\overline{3} = \frac{3}{9} = \frac{1}{3} \qquad 0{,}\overline{27} = \frac{27}{99} = \frac{3}{11} \]
+\textbf{Semiperiódico}: (todas las cifras decimales menos las que no se repiten) sobre tantos 9 como cifras del período, seguidos de tantos 0 como cifras del anteperíodo.
+\[ 0{,}1\overline{6} = \frac{16 - 1}{90} = \frac{15}{90} = \frac{1}{6} \]
+\begin{ejemplo}[Con parte entera] $1{,}\overline{2} = 1 + \dfrac{2}{9} = \dfrac{11}{9}$. También se puede usar el número sin coma: $1{,}2\overline{5} = \dfrac{125 - 12}{90} = \dfrac{113}{90}$.\end{ejemplo}
+\begin{ojo}[Curiosidad que la PAES pregunta] $0{,}\overline{9} = \dfrac{9}{9} = 1$. No es <<casi 1>>: es exactamente 1.\end{ojo}
+
+\subsection{Operar con decimales}
+\begin{itemize}
+  \item \textbf{Sumar y restar}: alinear la coma. $2{,}5 + 0{,}75 = 3{,}25$.
+  \item \textbf{Multiplicar}: multiplicar sin coma y dejar tantos decimales como sumen los factores. $0{,}3\cdot 0{,}02 = 0{,}006$ ($1 + 2 = 3$ decimales).
+  \item \textbf{Dividir}: amplificar para quitar la coma del divisor. $2{,}4 : 0{,}15 = 240 : 15 = 16$.
+\end{itemize}
+Multiplicar por 10 corre la coma un lugar a la derecha; dividir por 10, a la izquierda. Dividir por $0{,}1$ es multiplicar por 10. Con periódicos, conviene operar siempre como fracción.
+\begin{ojo}[<<El número cuya tercera parte es 0,09>>] Si la tercera parte es $0{,}09$, el número es $3\cdot 0{,}09 = 0{,}27$, no $0{,}09 : 3 = 0{,}03$.\end{ojo}
+
+\subsection{Comparar, ordenar y ubicar en la recta}
+\textbf{Decimales}: completar con ceros y comparar cifra a cifra: $0{,}5 = 0{,}50 > 0{,}45$. \textbf{Negativos}: el orden se invierte, $-0{,}5 < -0{,}45$. \textbf{Fracciones y decimales mezclados}: pasar todo a decimal (con 3 o 4 cifras basta) o todo a fracción con denominador común.
+
+Entre dos racionales siempre hay otro, por ejemplo su promedio, que es el \textbf{punto medio} en la recta:
+\begin{center}
+\begin{tikzpicture}[x=3.2cm]
+  \draw[-{Stealth},gris] (-0.7,0) -- (1.5,0);
+  \foreach \x/\l in {-0.4/{-0{,}4},0/0,0.4/{0{,}4},1.2/{1{,}2}} \draw[gris] (\x,0.08) -- (\x,-0.08) node[below,font=\small] {$\l$};
+  \fill[nar] (0.4,0) circle (2.5pt);
+  \draw[|-|,azul] (-0.4,0.35) -- node[above,font=\scriptsize] {$0{,}8$} (0.4,0.35);
+  \draw[|-|,azul] (0.4,0.35) -- node[above,font=\scriptsize] {$0{,}8$} (1.2,0.35);
+\end{tikzpicture}
+\end{center}
+\[ \text{punto medio entre } a \text{ y } b = \frac{a + b}{2}: \qquad \frac{-0{,}4 + 1{,}2}{2} = 0{,}4 \]
+\begin{ojo}[Trampa] $12{,}08$ es menor que $12{,}1$: la cantidad de cifras no dice cuál es mayor. Y $0{,}3 < 0{,}\overline{3} = \tfrac{1}{3}$.\end{ojo}
+
+\begin{elejemplo}{PAES Regular 2026, adaptada}
+¿Cuál es el número cuya cuarta parte es $0{,}06$?
+\alts{$2{,}4$}{$0{,}24$}{$0{,}15$}{$0{,}015$}
+\solucion{Si la cuarta parte del número es $0{,}06$, el número es $4\cdot 0{,}06 = 0{,}24$.
+
+$0{,}015$ divide $0{,}06$ por 4 (calcula la cuarta parte de $0{,}06$, que no es lo pedido); $0{,}15$ es ese mismo error con la coma corrida; $2{,}4$ es el resultado correcto con la coma mal ubicada.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Porcentaje}
+
+\subsection{¿Qué es un porcentaje?}
+$p\%$ significa $p$ de cada 100: $p\% = \dfrac{p}{100}$. Conviene saber de memoria estas equivalencias:
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule \% & $50\%$ & $25\%$ & $20\%$ & $10\%$ & $12{,}5\%$ & $75\%$\\ \midrule
+Decimal & $0{,}5$ & $0{,}25$ & $0{,}2$ & $0{,}1$ & $0{,}125$ & $0{,}75$\\
+Fracción & $\tfrac{1}{2}$ & $\tfrac{1}{4}$ & $\tfrac{1}{5}$ & $\tfrac{1}{10}$ & $\tfrac{1}{8}$ & $\tfrac{3}{4}$\\ \bottomrule
+\end{tabular}
+\end{center}
+\begin{ejemplo}[Justificar un porcentaje] <<5 es el 25\% de 20>> porque 5 es la \textbf{cuarta parte} de 20: $\dfrac{5}{20} = \dfrac{1}{4} = 25\%$.\end{ejemplo}
+\begin{ojo}[Más de 100\%] El 200\% de 15 es $2\cdot 15 = 30$. Un porcentaje mayor que 100 da una cantidad mayor que la original. Además, el $a\%$ de $b$ es igual al $b\%$ de $a$: el 50\% de 80 y el 80\% de 50 valen 40.\end{ojo}
+
+\subsection{Los tres cálculos de porcentaje}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{lll}
+\toprule Pregunta & Fórmula & Ejemplo\\ \midrule
+¿Cuánto es el $p\%$ de $C$? & $\dfrac{p}{100}\cdot C$ & $15\%$ de 480: $0{,}15\cdot 480 = 72$\\
+¿Qué \% es $A$ de $B$? & $\dfrac{A}{B}\cdot 100\%$ & 120 de 3000: $4\%$\\
+$A$ es el $p\%$ de $T$, ¿y $T$? & $T = \dfrac{100\cdot A}{p}$ & 120 páginas son el 40\%: $T = 300$\\ \bottomrule
+\end{tabular}
+\end{center}
+\begin{ojo}[Con letras] Si $p$ es el $25\%$ de $k$, entonces $p = \dfrac{25}{100}k$ y $k = \dfrac{100\cdot p}{25} = 4p$. La PAES pide muy seguido esta expresión despejada, también con porcentajes mayores que 100.\end{ojo}
+
+\subsection{Regla de tres y cálculo mental}
+Todos los cálculos salen de una proporción directa: $C$ es a $100$ como $x$ es a $p$, es decir, $\dfrac{x}{C} = \dfrac{p}{100}$.
+\begin{clave}[Sin calculadora] El 10\% corre la coma un lugar ($10\%$ de 360 $= 36$); el 5\% es la mitad del 10\% (18); el 1\% corre la coma dos lugares (3,6); y $15\% = 10\% + 5\% = 36 + 18 = 54$.\end{clave}
+
+\subsection{Porcentaje de un porcentaje}
+<<El $a\%$ del $b\%$ de $C$>> se calcula \textbf{multiplicando}: $\dfrac{a}{100}\cdot\dfrac{b}{100}\cdot C$. Por ejemplo, el 75\% del 75\% de 100 es $0{,}75\cdot 0{,}75\cdot 100 = 56{,}25$.
+\begin{ejemplo}[Votación] El 45\% de los electores no votó, así que votó el 55\%. El ganador obtuvo 6 de cada 10 votos, es decir, el 60\% \textbf{de los que votaron}: $0{,}6\cdot 0{,}55 = 0{,}33 = 33\%$ de los electores.\end{ejemplo}
+\begin{ojo}[Error típico] Sumar o restar los porcentajes ($75\% + 75\%$, $60\% - 45\%$). Cuando un porcentaje se aplica sobre una parte, se multiplica.\end{ojo}
+\gatotip[\gatolila]{Busca siempre \emph{el total de referencia}: <<con respecto a\dots>>, <<de los que votaron>>, <<de ellos>>. Casi todos los distractores usan un total equivocado o ponen el 100 en el lugar incorrecto.}
+\gatotip[\gatonaranjo]{Si a una mezcla se le agrega agua, la cantidad de sustancia no cambia: divídela por el \emph{nuevo} total. Y para comparar grupos de distinto tamaño, compara porcentajes, no cantidades.}
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+En una elección, el 40\% de los electores no votó y el candidato ganador obtuvo 7 de cada 10 votos. ¿Qué porcentaje de los electores votó por el candidato ganador?
+\alts{4,2\%}{28\%}{42\%}{70\%}
+\solucion{Votó el $100\% - 40\% = 60\%$ de los electores. El ganador obtuvo el $70\%$ de esos votos:
+\[ 0{,}7\cdot 0{,}6 = 0{,}42 = 42\% \]
+28\% aplica el 70\% a los que \textbf{no} votaron ($0{,}7\cdot 0{,}4$); 70\% es el porcentaje respecto de los votantes, no de los electores; 4,2\% es el resultado con la coma corrida.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Aumentos, descuentos e interés}
+
+\subsection{El factor de cambio}
+En vez de calcular el porcentaje y sumarlo o restarlo, se multiplica por un \textbf{factor}:
+\begin{clave}[Factor] Aumentar un $p\%$: multiplicar por $\left(1 + \dfrac{p}{100}\right)$. Descontar un $p\%$: multiplicar por $\left(1 - \dfrac{p}{100}\right)$.\end{clave}
+\begin{ejemplo} Un estacionamiento cobra \peso 25 por minuto y la tarifa sube un 12\%: $25\cdot 1{,}12 = 28$ pesos por minuto. Diez minutos cuestan \peso 280.\end{ejemplo}
+\begin{ojo}[Descuento de 20\%] Significa pagar el \textbf{80\%}. Las alternativas PAES suelen poner $0{,}2$ donde va $0{,}8$.\end{ojo}
+
+\subsection{Porcentajes sucesivos}
+Cuando un cambio se aplica sobre el precio \textbf{ya cambiado}, los factores se multiplican (y su orden no importa). Una rebaja de 20\% y luego otra de 25\% sobre el precio rebajado: $0{,}8\cdot 0{,}75 = 0{,}6$. Se paga el 60\%: el descuento total es \textbf{40\%}, no 45\%.
+\begin{ojo}[Subir y bajar lo mismo no deja igual] Subir 10\% y luego bajar 10\%: $1{,}1\cdot 0{,}9 = 0{,}99$. El precio final es 1\% menor que el original.\end{ojo}
+\gatotip[\gatogris]{Para \emph{deshacer} un cambio, divide por su factor: tras bajar un 20\% hay que multiplicar por $\tfrac{1}{0{,}8} = 1{,}25$, o sea, subir un 25\%. Y lee las condiciones: <<más de tres servicios>>, <<sobre el precio ya rebajado>>.}
+
+\subsection{Variación porcentual e IVA}
+\[ \text{variación} = \frac{\text{final} - \text{inicial}}{\text{inicial}}\cdot 100\% \]
+De 3000 a 3120 millones: $\dfrac{120}{3000}\cdot 100\% = 4\%$ de aumento. Siempre se divide por el valor \textbf{inicial}.
+\begin{clave}[IVA (19\%)] Precio con IVA $=$ neto $\cdot 1{,}19$. Para volver al neto se \textbf{divide} por $1{,}19$: si el total es \peso 23.800, el neto es $\dfrac{23.800}{1{,}19} = 20.000$.\end{clave}
+\begin{ojo}[No se resta el 19\%] $23.800\cdot 0{,}81 = 19.278 \neq 20.000$: el 19\% se calculó sobre el neto, no sobre el total.\end{ojo}
+
+\subsection{Interés simple y compuesto}
+\begin{multicols}{2}
+\textbf{Interés simple}: cada período se gana el $i\%$ del capital \textbf{inicial}.
+\[ C_f = C_i\left(1 + \frac{i\cdot n}{100}\right) \]
+\peso 100.000 al 20\% simple mensual durante 5 meses: $100.000\cdot(1 + 1) = 200.000$.
+
+\columnbreak
+\textbf{Interés compuesto}: cada período se gana sobre lo acumulado.
+\[ C_f = C_i\left(1 + \frac{i}{100}\right)^n \]
+\peso 100.000 al 10\% compuesto por 2 años: $100.000\cdot 1{,}1^2 = 121.000$.
+\end{multicols}
+El mismo modelo sirve para poblaciones que crecen (o valores que bajan) un porcentaje fijo \emph{respecto del período anterior}: $F = P(1 \pm r)^t$.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8cm,height=4.6cm,xlabel={períodos},ylabel={capital},xmin=0,xmax=10,ymin=90,ymax=270,
+  axis lines=left,tick label style={font=\scriptsize},label style={font=\scriptsize},legend style={font=\scriptsize,draw=none,at={(0.03,0.97)},anchor=north west},legend cell align=left]
+  \addplot[azul,thick,mark=*,mark size=1.2pt,domain=0:10,samples=11] {100*(1+0.1*x)}; \addlegendentry{simple al 10\%}
+  \addplot[nar,thick,mark=*,mark size=1.2pt,domain=0:10,samples=11] {100*1.1^x}; \addlegendentry{compuesto al 10\%}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{elejemplo}{PAES Regular 2026, adaptada}
+Una tienda vendía un producto a \peso 30.000. Como no se vendía lo suficiente, rebajó su precio un 20\%. Tiempo después, rebajó un 15\% el precio ya rebajado. ¿Cuál de las siguientes expresiones representa el precio del producto luego de los dos descuentos, en pesos?
+\alts{$0{,}2\cdot 0{,}15\cdot 30.000$}{$(0{,}2 + 0{,}15)\cdot 30.000$}{$0{,}8\cdot 0{,}85\cdot 30.000$}{$(0{,}8 + 0{,}85)\cdot 30.000$}
+\solucion{Tras la primera rebaja se paga el 80\%: $0{,}8\cdot 30.000$. La segunda rebaja se aplica sobre ese precio, y se paga el 85\% de él:
+\[ 0{,}85\cdot(0{,}8\cdot 30.000) = 0{,}8\cdot 0{,}85\cdot 30.000 = 20.400 \]
+$0{,}2\cdot 0{,}15\cdot 30.000$ multiplica los porcentajes de descuento, no lo que se paga; $(0{,}2 + 0{,}15)\cdot 30.000$ es el monto descontado si ambas rebajas fueran sobre el precio original; la última suma factores y da más que el precio inicial.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Potencias}
+
+\subsection{¿Qué es una potencia?}
+$a^n = \underbrace{a\cdot a\cdots a}_{n \text{ veces}}$, donde $a$ es la \textbf{base} y $n$ el \textbf{exponente}. Con base fracción: $\left(\dfrac{2}{3}\right)^3 = \dfrac{8}{27}$. Base negativa con exponente par da positivo; con exponente impar, negativo: $(-2)^6 = 64$, $(-2)^5 = -32$.
+\begin{ojo}[Tres confusiones] $2^3 = 8$, no $2\cdot 3 = 6$. \quad $-3^2 = -9$, pero $(-3)^2 = 9$. \quad $(a + b)^2 \neq a^2 + b^2$: $(1 + 2)^2 = 9$ y $1^2 + 2^2 = 5$.\end{ojo}
+
+\subsection{Propiedades}
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{ll}
+\toprule Propiedad & Ejemplo\\ \midrule
+$a^m\cdot a^n = a^{m+n}$ & $2^3\cdot 2^4 = 2^7$\\
+$a^m : a^n = a^{m-n}$ & $5^6 : 5^2 = 5^4$\\
+$(a^m)^n = a^{m\cdot n}$ & $(3^2)^3 = 3^6$\\
+$(a\cdot b)^n = a^n\cdot b^n$ & $(2\cdot 5)^3 = 2^3\cdot 5^3 = 1000$\\
+$\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}$ & $\left(\dfrac{3}{4}\right)^2 = \dfrac{9}{16}$\\
+$a^0 = 1$ \ ($a \neq 0$) & $7^0 = 1$\\ \bottomrule
+\end{tabular}
+\end{center}
+\begin{ojo}[Solo con igual base] $2^3\cdot 3^4$ no se simplifica sumando exponentes. Para trabajar con bases distintas, descompón en primos: $4 = 2^2$, $27 = 3^3$, $125 = 5^3$.\end{ojo}
+\gatotip[\gatoatigrado]{Para comparar potencias, iguala las bases o los exponentes: $2^{30} = (2^3)^{10} = 8^{10}$ y $3^{20} = (3^2)^{10} = 9^{10}$, así que $3^{20}$ es mayor.}
+
+\subsection{Exponente negativo y exponente racional}
+\begin{multicols}{2}
+\textbf{Negativo}: invierte la base.
+\[ a^{-n} = \frac{1}{a^n} \qquad \left(\frac{2}{3}\right)^{-2} = \left(\frac{3}{2}\right)^2 = \frac{9}{4} \]
+El signo del exponente no cambia el signo del resultado: $2^{-3} = \dfrac{1}{8} > 0$.
+
+\columnbreak
+\textbf{Racional}: el denominador del exponente es el índice de una raíz.
+\[ a^{\frac{m}{n}} = \sqrt[n]{a^m} = \left(\sqrt[n]{a}\right)^m \]
+$8^{\frac{2}{3}} = \left(\sqrt[3]{8}\right)^2 = 4$ \quad $16^{-\frac{1}{2}} = \dfrac{1}{\sqrt{16}} = \dfrac{1}{4}$
+\end{multicols}
+
+\subsection{Notación científica}
+Un número en notación científica es $a\cdot 10^n$ con $1 \le a < 10$ y $n$ entero: $150.000.000 = 1{,}5\cdot 10^8$ (la coma se corre 8 lugares a la izquierda) y $0{,}00045 = 4{,}5\cdot 10^{-4}$ (4 lugares a la derecha). Un 1 seguido de $k$ ceros es $10^k$; un \textbf{gúgol} es $10^{100}$.
+\begin{clave}[Operar] Se multiplican los coeficientes, se suman los exponentes y luego se ajusta: $(4\cdot 10^{-3})(5\cdot 10^6) = 20\cdot 10^3 = 2\cdot 10^4$.\end{clave}
+\gatotip[\gatonegro]{Al ajustar: si el coeficiente se divide por 10, el exponente sube en 1 ($20\cdot 10^3 = 2\cdot 10^4$); si se multiplica por 10, baja en 1 ($0{,}5\cdot 10^3 = 5\cdot 10^2$).}
+
+\subsection{Crecimiento por duplicación}
+Si una cantidad inicial $P$ se duplica en cada período, después de $t$ períodos hay $P\cdot 2^t$. Por ejemplo, 100 bacterias que se duplican cada hora: en 24 horas hay $100\cdot 2^{24}$.
+\begin{ejemplo}[Al revés] Una bacteria se duplica cada 4 minutos. ¿Cuándo hay 64? Como $64 = 2^6$, se necesitan 6 duplicaciones: $6\cdot 4 = 24$ minutos.\end{ejemplo}
+\begin{ojo} $100\cdot 2^{24} \neq 200^{24}$: la potencia afecta solo al 2. Y duplicar $n$ veces es multiplicar por $2^n$, no por $2n$.\end{ojo}
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+Se representará la expresión $(4\cdot 27)^3$ como producto de potencias de base 2 y 3, para lo cual se realiza el siguiente procedimiento, cometiéndose un error.
+
+Paso 1: se reescriben los factores de la base, obteniéndose $(2^2\cdot 3^3)^3$.\\
+Paso 2: se aplica la propiedad de la potencia de un producto, obteniéndose $(2^2)^3\cdot(3^3)^3$.\\
+Paso 3: se aplica la propiedad de la potencia de una potencia, obteniéndose $2^{2+3}\cdot 3^{3+3}$.\\
+Paso 4: se resuelve la suma de los exponentes, obteniéndose $2^5\cdot 3^6$.
+
+¿En cuál de los pasos se cometió el error?
+\alts{En el Paso 1}{En el Paso 2}{En el Paso 3}{En el Paso 4}
+\solucion{Paso 1: $4 = 2^2$ y $27 = 3^3$. Correcto. Paso 2: $(a\cdot b)^3 = a^3\cdot b^3$. Correcto.
+
+Paso 3: en una potencia de potencia los exponentes se \textbf{multiplican}: $(2^2)^3 = 2^{2\cdot 3} = 2^6$ y $(3^3)^3 = 3^9$. Ahí se sumaron: es el error.
+
+El Paso 4 suma bien lo que recibió. El resultado correcto es $2^6\cdot 3^9$.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Raíces enésimas}
+
+\subsection{¿Qué es una raíz enésima?}
+\begin{clave}[Definición] $\sqrt[n]{a} = b \iff b^n = a$. Como potencia: $\sqrt[n]{a^m} = a^{\frac{m}{n}}$, por ejemplo $\sqrt{x} = x^{\frac{1}{2}}$.\end{clave}
+$\sqrt{49} = 7$ porque $7^2 = 49$; $\sqrt[3]{-8} = -2$ porque $(-2)^3 = -8$. En los reales, la raíz de \textbf{índice par} de un número negativo no existe: $\sqrt{-4} \notin \mathbb{R}$. Y la raíz cuadrada nunca es negativa: $\sqrt{(-5)^2} = \sqrt{25} = 5$.
+\begin{ojo}[La raíz no se reparte en sumas] $\sqrt{9 + 16} = \sqrt{25} = 5$, pero $\sqrt{9} + \sqrt{16} = 7$. En general, $\sqrt{a^2 + b^2} \neq a + b$.\end{ojo}
+
+\subsection{Propiedades}
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll}
+\toprule Propiedad & Ejemplo\\ \midrule
+$\sqrt[n]{a\cdot b} = \sqrt[n]{a}\cdot\sqrt[n]{b}$ & $\sqrt{2}\cdot\sqrt{8} = \sqrt{16} = 4$\\
+$\sqrt[n]{\dfrac{a}{b}} = \dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}$ & $\sqrt{\dfrac{9}{25}} = \dfrac{3}{5}$\\
+$\left(\sqrt[n]{a}\right)^n = a$ & $\left(\sqrt{3}\right)^2 = 3$\\
+$\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a}$ & $\sqrt{\sqrt[3]{5}} = \sqrt[6]{5}$\\ \bottomrule
+\end{tabular}
+\end{center}
+\begin{ojo}[Mismo índice] Solo se multiplican directamente raíces de igual índice. $\sqrt{5}\cdot\sqrt{5} = 5$, no $\sqrt{10}$. Si el índice es par, estas reglas valen para $a, b \geq 0$.\end{ojo}
+\gatotip[\gatolila]{¿Raíces de distinto índice? Pásalas a potencias y suma exponentes: $\sqrt[3]{x^2}\cdot\sqrt{x} = x^{\frac{2}{3} + \frac{1}{2}} = x^{\frac{7}{6}}$.}
+
+\subsection{Descomponer y simplificar}
+Se busca el mayor factor que sea potencia exacta del índice: $\sqrt{72} = \sqrt{36\cdot 2} = 6\sqrt{2}$ (con primos, $72 = 2^3\cdot 3^2$) y $\sqrt[3]{54} = \sqrt[3]{27\cdot 2} = 3\sqrt[3]{2}$.
+\begin{clave}[Raíces semejantes] Mismo índice y mismo radicando: se suman los coeficientes. $\sqrt{8} + \sqrt{18} = 2\sqrt{2} + 3\sqrt{2} = 5\sqrt{2}$.\end{clave}
+\begin{ojo}[Error típico] $\sqrt{2} + \sqrt{3} \neq \sqrt{5}$: si no son semejantes, la suma queda indicada. Y al sacar un factor sale su \textbf{raíz}: $\sqrt{25\cdot 2} = 5\sqrt{2}$, no $25\sqrt{2}$.\end{ojo}
+
+\subsection{Multiplicar expresiones con raíces}
+Se multiplican los números de afuera entre sí y las raíces entre sí:
+\[ 2\cdot\left(2\sqrt{3}\right)\cdot\sqrt{3} = 4\cdot 3 = 12 \qquad 3\sqrt{2}\cdot 2\sqrt{5} = 6\sqrt{10} \qquad \left(\sqrt{5} + 1\right)\left(\sqrt{5} - 1\right) = 5 - 1 = 4 \]
+\begin{ejemplo}[En contexto] La diagonal de una caja de aristas $a$, $b$, $c$ mide $\sqrt{a^2 + b^2 + c^2}$. El lado de un cuadrado es $\sqrt{\text{área}}$ y la arista de un cubo es $\sqrt[3]{\text{volumen}}$: si $V = 250$ cm³, la arista es $\sqrt[3]{125\cdot 2} = 5\sqrt[3]{2}$ cm.\end{ejemplo}
+\gatotip[\gatoblanco]{Para comparar raíces, mete el coeficiente adentro: $2\sqrt{5} = \sqrt{20}$ y $3\sqrt{2} = \sqrt{18}$. Luego compara los radicandos.}
+
+\subsection{Racionalizar}
+\textbf{Racionalizar} es eliminar la raíz del denominador amplificando por ella:
+\[ \frac{6}{\sqrt{3}} = \frac{6}{\sqrt{3}}\cdot\frac{\sqrt{3}}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3} \qquad \frac{1}{\sqrt{2}} = \frac{\sqrt{2}}{2} \]
+Funciona porque multiplicar por $\dfrac{\sqrt{a}}{\sqrt{a}} = 1$ no cambia el valor, y $\sqrt{a}\cdot\sqrt{a} = a$ deja un denominador entero.
+
+\begin{elejemplo}{PAES Invierno 2026, adaptada}
+La diagonal de un prisma recto de base rectangular se calcula como $\sqrt{a^2 + b^2 + c^2}$, donde $a$, $b$ y $c$ son las medidas de sus aristas. La diagonal de un prisma de este tipo mide $\sqrt{70}$ cm y dos de sus aristas miden 3 cm y 5 cm. ¿Cuánto mide la arista faltante?
+\alts{6 cm}{8 cm}{36 cm}{62 cm}
+\solucion{$\sqrt{3^2 + 5^2 + c^2} = \sqrt{70} \Rightarrow 9 + 25 + c^2 = 70 \Rightarrow c^2 = 36 \Rightarrow c = 6$ cm.
+
+36 es $c^2$ (falta sacar la raíz); 62 resta $70 - 3 - 5$ sin elevar al cuadrado; 8 suma las aristas conocidas.}{A}
+\end{elejemplo}

@@ -1,0 +1,141 @@
+%% Libro PAES M1 (Fabimath) — versión libro de las clases full de paes.html.
+%% Compilar dos veces: pdflatex libro_m1.tex (la segunda arma el índice).
+%% Capítulos en cap_*.tex; figuras TikZ compiladas en fig/; gato pixel del sitio en gatos.tex.
+\documentclass[11pt,letterpaper,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot,es-noshorthands,es-tabla]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage[top=2.3cm,bottom=2.2cm,left=2.3cm,right=2.3cm,headheight=15pt]{geometry}
+\usepackage{xcolor,graphicx}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18,/pgf/number format/use comma,/pgf/number format/1000 sep={.}}
+\usetikzlibrary{arrows.meta,calc,positioning,patterns,shapes.geometric}
+\usepackage[most]{tcolorbox}
+\usepackage[explicit]{titlesec}
+\usepackage{fancyhdr,enumitem,multicol,array,booktabs,microtype,cancel}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{fig/}{../../../logo/}}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist{nosep,leftmargin=1.4em,topsep=2pt}
+
+%% ---------- paleta del sitio (paes.html) ----------
+\definecolor{nar}{HTML}{E8680C}\definecolor{narc}{HTML}{FFB35C}\definecolor{nard}{HTML}{C4540A}
+\definecolor{hielo}{HTML}{FFF3E8}\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}
+\definecolor{lila}{HTML}{7C5CF0}\definecolor{azul}{HTML}{2F6FD6}\definecolor{azulc}{HTML}{EEF4FF}
+\definecolor{menta}{HTML}{17A673}\definecolor{mentac}{HTML}{EAF7F1}\definecolor{coral}{HTML}{E8342A}
+\color{tinta}
+\input{gatos}
+
+%% ---------- encabezados ----------
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\color{gris}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\color{nar}\bfseries PAES M1 · Fabimath}
+\fancyfoot[C]{\small\color{gris}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\headrule}{{\color{narc}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\color{gris}\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+%% ---------- títulos ----------
+%% capítulo = eje: franja naranja con el número grande y un gato
+\newcommand{\capbanda}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[nar] (current page.north west) rectangle ([yshift=-6.2cm]current page.north east);
+    \fill[narc] ([yshift=-6.2cm]current page.north west) rectangle ([yshift=-6.5cm]current page.north east);
+    \node[anchor=north west,text=white,font=\fontsize{80}{80}\selectfont\bfseries,opacity=.35] at ([xshift=1.6cm,yshift=-0.6cm]current page.north west) {#1};
+    \node[anchor=south west,text=white,font=\fontsize{30}{34}\selectfont\bfseries,text width=13cm] at ([xshift=2.3cm,yshift=-5.4cm]current page.north west) {#2};
+    \node[anchor=south east] at ([xshift=-2cm,yshift=-6.15cm]current page.north east) {\gatonaranjo[0.13]};
+  \end{tikzpicture}\vspace*{3.6cm}}
+\titleformat{\chapter}[display]{\normalfont}{}{0pt}{\capbanda{\thechapter}{#1}}
+\titleformat{name=\chapter,numberless}[display]{\normalfont}{}{0pt}{\capbanda{}{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{12pt}
+%% sección = tema de la página; subsección = sección de la clase
+\titleformat{\section}{\normalfont\Large\bfseries\color{tinta}}{\tikz[baseline=(n.base)]\node[fill=nar,text=white,rounded corners=3pt,inner sep=3pt,font=\normalsize\bfseries](n){\thesection};}{8pt}{#1}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{nard}}{}{0pt}{{\color{nar}\rule[-2pt]{3pt}{13pt}}\hspace{6pt}#1}
+\titlespacing*{\subsection}{0pt}{10pt}{3pt}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+%% ---------- cajas (las mismas de la web: .box y .box.alert) ----------
+%% \begin{clave}[Título] ... \end{clave}     idea, regla o fórmula clave (naranja)
+%% \begin{ojo}[Título] ... \end{ojo}         error frecuente o trampa (azul)
+%% \begin{ejemplo}[Título] ... \end{ejemplo} ejemplo corto de materia (verde), sin ejercicios
+%% \gatotip[gato]{texto}                     un gatito da un tip; gato = \gatonaranjo, \gatogris, \gatoblanco, \gatonegro, \gatoatigrado, \gatolila
+%% \begin{elejemplo}{fuente} ... \end{elejemplo}  EL ejemplo tipo PAES del tema, resuelto
+\newtcolorbox{clave}[1][]{enhanced,breakable,colback=hielo,colframe=nar,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  fonttitle=\bfseries\color{nard},coltitle=nard,colbacktitle=hielo,title={#1},attach title to upper={\ \ }}
+\newtcolorbox{ojo}[1][Ojo]{enhanced,breakable,colback=azulc,colframe=azul,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=azul}
+\newtcolorbox{ejemplo}[1][Ejemplo]{enhanced,breakable,colback=white,colframe=menta,boxrule=0.6pt,arc=3pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=menta}
+\newcommand{\gatotip}[2][\gatonaranjo]{%
+  \begin{tcolorbox}[enhanced,colback=white,colframe=white,boxrule=0pt,left=0pt,right=0pt,top=2pt,bottom=2pt,before skip=6pt,after skip=6pt,
+    sidebyside,lefthand width=1.55cm,sidebyside gap=10pt,segmentation hidden]
+  \centering #1[0.07]
+  \tcblower
+  \begin{tcolorbox}[enhanced,colback=narc!18,colframe=narc,boxrule=0.6pt,arc=8pt,left=7pt,right=7pt,top=3pt,bottom=3pt,
+    overlay={\fill[narc!18,draw=narc,line width=0.6pt] ([yshift=-8pt]frame.north west) -- ++(-7pt,-4pt) -- ++(7pt,-4pt);}]
+  \small #2
+  \end{tcolorbox}
+  \end{tcolorbox}}
+\newenvironment{elejemplo}[1]{%
+  \begin{tcolorbox}[enhanced,breakable,colback=white,colframe=nar,boxrule=0.8pt,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=10pt,
+    title={\gatonaranjo[0.035]\ \ El ejemplo tipo PAES\hfill{\normalfont\small #1}},fonttitle=\bfseries,colbacktitle=nar,coltitle=white]}
+  {\end{tcolorbox}}
+%% alternativas: \alts{A}{B}{C}{D} y solución: \solucion{...}{clave}
+\newcommand{\alts}[4]{\par\smallskip
+  \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+  \textbf{\color{nar}A)} #1 & \textbf{\color{nar}B)} #2\\[2pt] \textbf{\color{nar}C)} #3 & \textbf{\color{nar}D)} #4
+  \end{tabular}\par}
+\newcommand{\solucion}[2]{\par\smallskip{\color{narc}\hrule}\smallskip\textbf{\color{menta}Solución.} #1\par\smallskip\textbf{\color{nard}Clave:} #2\par}
+\newcommand{\peso}{\$}
+
+\begin{document}
+%% ---------- portada ----------
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[nar] (current page.north west) rectangle (current page.south east);
+  \fill[narc,opacity=.5] ([yshift=-15cm]current page.north west) rectangle ([yshift=-15.6cm]current page.north east);
+  \node[anchor=north west] at ([xshift=2.2cm,yshift=-2.2cm]current page.north west) {\includegraphics[width=2.4cm]{fabimath_logo.png}};
+  \node[anchor=north west,text=white,font=\fontsize{56}{60}\selectfont\bfseries] at ([xshift=2.2cm,yshift=-5.6cm]current page.north west) {PAES M1};
+  \node[anchor=north west,text=white,font=\fontsize{24}{28}\selectfont] at ([xshift=2.3cm,yshift=-8.4cm]current page.north west) {Matemática · Admisión 2027};
+  \node[anchor=north west,text=white,font=\Large,text width=12cm] at ([xshift=2.3cm,yshift=-10cm]current page.north west) {Toda la materia del temario oficial en un solo libro: Números, Álgebra, Funciones, Geometría y Probabilidad y Estadística.};
+  \node at ([xshift=-5.4cm,yshift=8.6cm]current page.south east) {\gatonaranjo[0.32]};
+  \node at ([xshift=-12.4cm,yshift=7.3cm]current page.south east) {\gatogris[0.18]};
+  \node at ([xshift=-9.3cm,yshift=5.2cm]current page.south east) {\gatonegro[0.14]};
+  \node[anchor=south west,text=white,font=\large\bfseries] at ([xshift=2.3cm,yshift=2.2cm]current page.south west) {Fabián Ramírez · Fabimath};
+  \node[anchor=south east,text=white,font=\small] at ([xshift=-2.2cm,yshift=2.25cm]current page.south east) {fabimath.github.io/FabimathOficialWebSite/paes.html};
+\end{tikzpicture}
+\end{titlepage}
+
+%% ---------- cómo usar el libro ----------
+\thispagestyle{plain}
+{\Large\bfseries\color{nar} Cómo usar este libro}\par\medskip
+Cada capítulo es un eje del temario de la PAES M1 y cada sección es un tema de la página. La materia va al grano: lo que tienes que saber, con ejemplos cortos solo para ver la idea funcionando. Al final de cada tema está \textbf{el ejemplo}: una pregunta tipo PAES resuelta paso a paso. Para practicar con más preguntas, entra a la página: tus estrellas y tus gatos te esperan.
+
+\begin{clave}[Regla, fórmula o idea clave] Lo que hay que saber de memoria.\end{clave}
+\begin{ojo}[Ojo] El error que más se repite en la prueba.\end{ojo}
+\begin{ejemplo}[Ejemplo] Un caso corto para ver la materia en acción.\end{ejemplo}
+\gatotip[\gatogris]{Y los gatitos te dan tips para ganar tiempo en la prueba. Miau.}
+
+\medskip
+{\large\bfseries\color{nar} Notación}\par\smallskip
+$\mathbb{Z}$ enteros, $\mathbb{Q}$ racionales, $f(x)$ imagen de $x$, $m$ pendiente, $\Delta = b^2 - 4ac$, $\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\bar{x}$ promedio, $Q_2 = Me$. Decimales con coma: $0{,}25$; miles con punto: $30.000$.
+
+\tableofcontents
+
+%% para probar un solo capítulo: pdflatex -jobname=prueba "\def\solocap{cap_numeros}\input{libro_m1.tex}"
+\ifdefined\solocap \input{\solocap} \else
+\input{cap_numeros}
+\input{cap_algebra}
+\input{cap_funciones}
+\input{cap_geometria}
+\input{cap_pye}
+\fi
+
+\end{document}

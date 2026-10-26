@@ -1,0 +1,515 @@
+\chapter{Funciones}
+%% Estilo común de los gráficos del capítulo (rectas y parábolas pequeñas).
+\pgfplotsset{capfun/.style={width=6.4cm,height=5cm,axis lines=middle,xlabel={$x$},ylabel={$y$},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west,font=\small},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south,font=\small},
+  tick label style={font=\scriptsize},grid=major,grid style={gris!20},samples=120,
+  every axis plot/.append style={line width=1.1pt}}}
+
+%% =====================================================================
+\section{Concepto de función}
+%% =====================================================================
+
+\subsection{Qué es una función}
+Una \textbf{función} es una regla que a cada número que entra le asigna \textbf{un solo} número que sale. Al que entra lo llamamos $x$ y al que sale, $f(x)$ («f de x»).
+\begin{itemize}
+  \item \textbf{Variable independiente}: la $x$, lo que tú eliges.
+  \item \textbf{Variable dependiente}: $y = f(x)$, lo que sale; depende de la $x$.
+  \item \textbf{Dominio}: los valores que puede tomar la $x$. Si no se dice nada, son todos los números reales.
+\end{itemize}
+\begin{ejemplo} El kilo de pan cuesta \peso 2.000. Si compro $x$ kilos, pago $f(x) = 2.000\cdot x$. Con 2 kilos: $f(2) = 2.000\cdot 2 = 4.000$ pesos.\end{ejemplo}
+\begin{ojo}[Ojo con la escritura] $f(2)$ no es «f por 2»: es lo que sale cuando entra el 2.\end{ojo}
+
+\subsection{Una sola salida para cada entrada}
+Un par $(x, y)$ dice «entra $x$, sale $y$». Para que un conjunto de pares sea función, ninguna $x$ puede tener dos salidas distintas.
+\begin{clave}[La regla de oro] Dos entradas con la misma salida, como $(1, 5)$ y $(2, 5)$: \textbf{permitido}. Una entrada con dos salidas, como $(1, 5)$ y $(1, 7)$: \textbf{no es función}.\end{clave}
+\begin{ejemplo} En $\{(2, 3),\ (5, 3),\ (2, 8)\}$ la entrada $2$ sale una vez $3$ y otra vez $8$: no es función.\end{ejemplo}
+En un gráfico se usa una \textbf{recta vertical}: si en algún lugar corta la curva en dos puntos o más, no es función. Una recta horizontal sí puede cortarla varias veces.
+
+\subsection{Evaluar: reemplazar la x}
+Evaluar es cambiar \textbf{cada} $x$ de la fórmula por el número, \textbf{entre paréntesis}, y calcular respetando el orden: potencias, multiplicaciones, sumas.
+\begin{ejemplo} Si $f(x) = 2x^2 - 7x + 1$:
+$f(-3) = 2(-3)^2 - 7(-3) + 1 = 2\cdot 9 + 21 + 1 = 40$.\end{ejemplo}
+\begin{ojo}[Tres trampas]
+\begin{itemize}
+  \item $(-3)^2 = 9$, pero $-3^2 = -(3\cdot 3) = -9$.
+  \item $-x^2$ significa $-(x^2)$: si $g(x) = -x^2 + 10$, entonces $g(-3) = -9 + 10 = 1$, no $19$.
+  \item $f(2) + f(3)$ no es $f(5)$: con $f(x) = 4x - 1$, $f(2) + f(3) = 7 + 11 = 18$, pero $f(5) = 19$.
+\end{itemize}
+\end{ojo}
+\gatotip[\gatogris]{Reemplaza siempre con paréntesis, aunque el número sea positivo. Con los negativos es lo que te salva: menos por menos da más.}
+
+\subsection{Imagen y preimagen}
+Si $f(a) = b$, decimos que $b$ es la \textbf{imagen} de $a$ y que $a$ es una \textbf{preimagen} de $b$.
+\begin{clave}[¿Evaluar o despejar?] Si te dan la $x$, \textbf{evalúa}. Si te dan el resultado, \textbf{iguala} la fórmula a ese resultado y despeja la $x$.\end{clave}
+\begin{ejemplo} Si $g(x) = 4x + 6$, la preimagen de $26$ sale de $4x + 6 = 26$: $4x = 20$ y $x = 5$. Comprobación: $g(5) = 26$ \checkmark.\end{ejemplo}
+Un número puede tener dos preimágenes o ninguna: si $h(x) = x^2$, el $9$ tiene dos ($3$ y $-3$), y el $-4$ no tiene ninguna, porque un cuadrado nunca es negativo. Si en la fórmula falta una constante, un dato como $f(2) = 11$ se convierte en una ecuación para encontrarla.
+
+\subsection{Funciones en tablas y gráficos}
+En una tabla, cada fila es un par (entrada, salida). Una fórmula corresponde a la tabla solo si calza en \textbf{todas} las filas. Si la $x$ sube de 1 en 1 y $f(x)$ sube siempre lo mismo, prueba «salto por $x$ más el valor en $x = 0$».
+
+En un gráfico, la entrada se lee en el eje $X$ y la salida es la \textbf{altura}:
+\begin{itemize}
+  \item $f(a)$: desde $x = a$ sube (o baja) hasta la curva y lee la altura.
+  \item $f(x) = b$: traza una horizontal a altura $b$ y, desde cada corte, baja a leer la $x$.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[capfun,xmin=-3,xmax=3,ymin=-1,ymax=9,xtick={-3,...,3},ytick={0,2,...,8}]
+  \addplot[nar,domain=-3:3] {x^2};
+  \addplot[azul,dashed,line width=0.8pt,domain=-3:3] {4};
+  \draw[menta,dashed,line width=0.8pt] (axis cs:2,0) -- (axis cs:2,4);
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(2,4) (-2,4)};
+  \node[font=\scriptsize,anchor=west] at (axis cs:2.05,3.4) {$(2, 4)$};
+  \node[font=\scriptsize,anchor=east] at (axis cs:-2.05,3.4) {$(-2, 4)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{ejemplo} En el gráfico de $f(x) = x^2$: desde $x = 2$ subo hasta la curva y la altura es $4$, así que $f(2) = 4$. La horizontal a altura $4$ corta la curva en $x = -2$ y $x = 2$: esas son las soluciones de $f(x) = 4$.\end{ejemplo}
+\begin{ojo}[Gráficos en contexto] En un gráfico distancia-tiempo, un tramo que sube es avanzar y un tramo \textbf{plano} es estar detenido. Lo que dura la detención se lee restando en el eje del tiempo.\end{ojo}
+\gatotip[\gatoatigrado]{Al final, reemplaza tu respuesta en la fórmula. Si sale el dato del enunciado, marcas tranquilo.}
+
+\begin{elejemplo}{PAES Invierno 2026}
+Considera la función $g$ definida por $g(x) = 8x - 5$, con dominio el conjunto de los números reales. Si $g(x) = 35$, ¿cuál es el valor de $x$?
+\alts{$\dfrac{15}{4}$}{$5$}{$240$}{$275$}
+\solucion{Nos dan el resultado, $35$, y buscamos la $x$: igualamos y despejamos. $8x - 5 = 35$; sumamos 5 a los dos lados: $8x = 40$; dividimos por 8: $x = 5$. Comprobación: $g(5) = 40 - 5 = 35$ \checkmark.
+
+¿Por qué no las otras? $\frac{15}{4}$ sale de restar 5 en vez de sumarlo ($8x = 30$). $275$ es $g(35)$: evalúa en vez de despejar. $240$ resta 5 y además multiplica por 8 en vez de dividir.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Función lineal y afín}
+%% =====================================================================
+
+\subsection{Función afín y función lineal}
+Una planta mide 3 cm y crece 2 cm por semana: después de $x$ semanas mide $f(x) = 2x + 3$.
+\begin{clave}[Función afín] $f(x) = mx + n$. Su gráfico es una recta. $n = f(0)$ es el \textbf{valor de partida} y $m$ es lo que \textbf{cambia por cada paso} de 1 en $x$.\end{clave}
+\begin{clave}[Función lineal] $f(x) = mx$: una afín con $n = 0$. Pasa por el origen y es \textbf{proporcional}: si $x$ se duplica, $y$ se duplica, y $\dfrac{y}{x}$ da siempre $m$.\end{clave}
+\begin{ejemplo} Tabla A: $\frac{6}{2} = \frac{12}{4} = \frac{18}{6} = 3$, siempre igual: es lineal, $f(x) = 3x$. Tabla B con los pares $(1, 5)$ y $(2, 7)$: $\frac{5}{1} = 5$ y $\frac{7}{2} = 3{,}5$, distintos: es afín ($2x + 3$).\end{ejemplo}
+\begin{ojo}[Afín no es proporcional] En $f(x) = 2x + 3$: $f(1) = 5$ y $f(2) = 7$. La $x$ se duplicó, pero $7$ no es el doble de $5$. Con una afín no sirve la regla de tres. Atajo: si la tabla trae $x = 0$ y su $y$ no es $0$, no es lineal.\end{ojo}
+Tampoco son lineales $x^2$ (su gráfico no es recta) ni una constante como $k(x) = 7$ (recta plana a altura 7). Una pendiente negativa o fraccionaria no importa: $g(x) = -\frac{2}{5}x$ sí es lineal.
+
+\subsection{La pendiente}
+La \textbf{pendiente} $m$ es cuánto sube (o baja) la recta por cada paso de 1 a la derecha. Con dos puntos es «lo que sube dividido por lo que avanza»:
+\begin{clave}[Pendiente con dos puntos] $$m = \frac{y_2 - y_1}{x_2 - x_1}$$\end{clave}
+\begin{ejemplo} Por $(1, 4)$ y $(3, 10)$: $m = \dfrac{10 - 4}{3 - 1} = \dfrac{6}{2} = 3$. Por $(-1, 5)$ y $(2, -1)$: $m = \dfrac{-1 - 5}{2 - (-1)} = \dfrac{-6}{3} = -2$.\end{ejemplo}
+\begin{ojo}[Las y van arriba] Al revés da $\frac{2}{6}$, que está mal. Y usa el mismo orden arriba y abajo: si los mezclas, el signo sale cambiado.\end{ojo}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[capfun,xmin=-3,xmax=3,ymin=-4,ymax=6,xtick={-3,...,3},ytick={-4,-2,...,6}]
+  \addplot[nar,domain=-3:3] {2*x} node[pos=0.93,anchor=east,font=\scriptsize] {$m = 2$};
+  \addplot[azul,domain=-3:3] {-x+1} node[pos=0.05,anchor=south west,font=\scriptsize] {$m = -1$};
+  \addplot[menta,domain=-3:3] {3} node[pos=0.85,anchor=south,font=\scriptsize] {$m = 0$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+  \item $m > 0$: la recta sube, la función es \textbf{creciente}.
+  \item $m < 0$: la recta baja, la función es \textbf{decreciente}.
+  \item $m = 0$: la recta es horizontal, la función es \textbf{constante}.
+\end{itemize}
+Mientras más grande es $m$ sin su signo, más inclinada es la recta: $y = 3x$ es más empinada que $y = x$.
+
+\subsection{Cortes con los ejes}
+\begin{clave}[Cortes] \textbf{Eje $Y$}: se reemplaza $x = 0$ y queda el punto $(0, n)$. \textbf{Eje $X$}: se iguala a $0$ y se despeja: $mx + n = 0$ da $x = -\dfrac{n}{m}$.\end{clave}
+\par\noindent\begin{minipage}{0.55\linewidth}
+\begin{ejemplo} Con $f(x) = -3x + 6$: $f(0) = 6$, así que corta al eje $Y$ en $(0, 6)$. Para el eje $X$: $-3x + 6 = 0$, $-3x = -6$, $x = 2$; el punto es $(2, 0)$.\end{ejemplo}
+El signo de $n$ dice dónde corta al eje $Y$: $n > 0$ arriba del origen, $n < 0$ abajo, $n = 0$ en el origen (lineal).
+\begin{ojo}[No los inviertas] Corte con $Y$: $(0, n)$. Corte con $X$: $(x, 0)$.\end{ojo}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.6cm,xmin=-1,xmax=4,ymin=-2,ymax=8,xtick={-1,...,4},ytick={-2,0,...,8}]
+  \addplot[nar,domain=-1:4] {-3*x+6};
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(0,6) (2,0)};
+  \node[font=\scriptsize,anchor=west] at (axis cs:0.1,6.4) {$(0, 6)$};
+  \node[font=\scriptsize,anchor=south west] at (axis cs:2.05,0.2) {$(2, 0)$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{De la tabla o el gráfico a la fórmula}
+Primero la pendiente, después $n$ con un punto, y al final se comprueba con otro punto.
+\begin{ejemplo}[Desde una tabla] Filas $(1, 5)$, $(3, 11)$ y $(5, 17)$. Avanza 2 y sube 6: $m = 3$. Con $(1, 5)$: $5 = 3 + n$, así que $n = 2$ y $f(x) = 3x + 2$. Comprobación: $f(5) = 17$ \checkmark.\end{ejemplo}
+\begin{ejemplo}[Desde un gráfico] La recta corta al eje $Y$ en $(0, -1)$, así que $n = -1$. Pasa justo por la esquina $(2, 3)$: avanza 2 y sube 4, $m = 2$. La fórmula es $f(x) = 2x - 1$.\end{ejemplo}
+\begin{ojo}[Un punto no basta] Muchas rectas pasan por un mismo punto. Comprueba siempre con otra fila, y en un gráfico usa puntos exactos de la cuadrícula, no valores «a ojo».\end{ojo}
+
+\subsection{Rectas paralelas y cambios de m y n}
+Dos rectas \textbf{paralelas} tienen la \textbf{misma pendiente}.
+\begin{ejemplo} La paralela a $y = -x + 2$ que pasa por $(2, 5)$ tiene $m = -1$. Reemplazando el punto: $5 = -2 + n$, así que $n = 7$ y la recta es $y = -x + 7$.\end{ejemplo}
+Si cambias $m$ y dejas $n$ fijo, la recta \textbf{gira} en torno a $(0, n)$; si cambias $n$ y dejas $m$, la recta se \textbf{traslada} hacia arriba o hacia abajo, paralela a la anterior.
+\gatotip[\gatonegro]{Para leer $m$ y $n$ de un dibujo: ¿sube o baja? Eso es el signo de $m$. ¿Corta al eje $Y$ arriba o abajo del origen? Eso es el signo de $n$.}
+\gatotip[\gatolila]{Con una tabla, divide cada $y$ por su $x$. Si siempre da lo mismo, es lineal y basta una regla de tres. Si no, es afín: pendiente, valor de partida y comprobación.}
+
+\begin{elejemplo}{PAES Invierno 2026}
+La distancia de reacción es la distancia recorrida por un vehículo desde que el conductor se percata de un obstáculo hasta que comienza a pisar el pedal de freno. La distancia de reacción $f$ y la rapidez del vehículo se relacionan mediante una función de la forma $f(x) = ax$, con $a$ constante. En la siguiente tabla se presentan algunos ejemplos.
+\begin{center}
+\begin{tabular}{cc}\toprule
+Rapidez del vehículo & Distancia de reacción\\\midrule
+110 km/h & 33 m\\ 70 km/h & 21 m\\\bottomrule
+\end{tabular}
+\end{center}
+¿Cuál es la distancia de reacción de un vehículo que tiene una rapidez de 30 km/h?
+\alts{15 m}{10 m}{9 m}{1 m}
+\solucion{Es lineal: la distancia es siempre $a$ veces la rapidez. Con la primera fila, $33 = a\cdot 110$, así que $a = \dfrac{33}{110} = \dfrac{3}{10} = 0{,}3$. Revisamos con la segunda: $0{,}3\cdot 70 = 21$ \checkmark. Entonces $f(30) = 0{,}3\cdot 30 = 9$ m.
+
+¿Por qué no las otras? 15 m usa $a = 0{,}5$; 10 m usa $a = \frac{1}{3}$; 1 m daría $a = \frac{1}{30}$. Ninguna mantiene la razón $0{,}3$ de la tabla.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Modelar con funciones afines}
+%% =====================================================================
+
+\subsection{Cargo fijo y cargo por unidad}
+Muchas cuentas tienen dos partes: un \textbf{cargo fijo}, que se paga una sola vez, y un \textbf{cargo por unidad}, que se paga por cada página, minuto, kilómetro o video.
+\begin{ejemplo} Una imprenta cobra \peso 27.000 por preparar el trabajo y \peso 115 por página. Con 0, 1 y 2 páginas: $27.000$; $27.000 + 1\cdot 115$; $27.000 + 2\cdot 115$. Con $x$ páginas: $f(x) = 115x + 27.000$.\end{ejemplo}
+\begin{clave}[La forma general] $$f(x) = (\text{precio por unidad})\cdot x + \text{cargo fijo}$$ El precio por unidad es la pendiente; el cargo fijo es el valor con 0 unidades, donde la recta corta al eje $Y$.\end{clave}
+\begin{ojo}[Cuidado con la unidad del cobro] Si cobran \peso 400 «por cada media hora», 2 horas son 4 medias horas: $1.500 + 4\cdot 400 = 3.100$. Completa la frase «cobran por cada \underline{\hspace{1cm}}» y cuenta cuántos hay antes de multiplicar.\end{ojo}
+
+\subsection{Usar el modelo: calcular y despejar}
+Si te dan la cantidad, reemplaza: $f(100) = 115\cdot 100 + 27.000 = 38.500$. Si te dan el total, iguala, \textbf{resta lo fijo} y divide:
+\begin{ejemplo} Pagué \peso 50.000: $115x + 27.000 = 50.000$, $115x = 23.000$, $x = 200$ páginas.\end{ejemplo}
+\begin{ojo}[Errores típicos] Escribir $(115 + 27.000)x$ (cobra lo fijo en cada página), escribir $115 + 27.000x$ (cambia lo fijo por lo variable) o dividir $\frac{50.000}{115}$ sin restar antes el cargo fijo.\end{ojo}
+
+\subsection{Cantidades que disminuyen}
+Si algo se vacía, se gasta o se consume, a lo inicial se le \textbf{resta} el ritmo por el tiempo:
+\begin{ejemplo} Un estanque de 720 L se vacía a 3 L por minuto: $f(x) = -3x + 720$. Quedan 600 L cuando $3x = 120$, o sea a los 40 minutos. Queda vacío cuando $3x = 720$: a los 240 minutos.\end{ejemplo}
+La pendiente es negativa porque la cantidad baja; el número solo es lo que había al comienzo.
+
+\subsection{Aumentos iguales y modelos con dos datos}
+\begin{ejemplo}[Aumento anual] Un pueblo tenía 4.300 habitantes en 2020 y 4.450 en 2021: aumenta 150 por año. De 2020 a 2028 hay $2028 - 2020 = 8$ aumentos: $4.300 + 8\cdot 150 = 5.500$.\end{ejemplo}
+\begin{ejemplo}[Dos datos] Un gasfíter cobra \peso 35.000 por 2 horas y \peso 65.000 por 5 horas. Las 3 horas extra costaron 30.000: cobra $\frac{30.000}{3} = 10.000$ por hora. El fijo es $35.000 - 2\cdot 10.000 = 15.000$. Modelo: $f(x) = 10.000x + 15.000$.\end{ejemplo}
+Lo del segundo ejemplo es justo la pendiente: $\dfrac{65.000 - 35.000}{5 - 2}$.
+\begin{ojo}[Cuenta bien los años] De 2020 a 2028 hay 8 aumentos, no 9.\end{ojo}
+
+\subsection{Costo, ingreso y ganancia}
+\begin{clave}[Tres palabras] \textbf{Costo} $C$: lo que se gasta. \textbf{Ingreso} $I$: lo que entra por ventas. \textbf{Ganancia}: lo que queda, $G = I - C$. Al revés, $C = I - G$.\end{clave}
+\begin{ejemplo} Puesto de empanadas: arriendo \peso 20.000, cada empanada cuesta \peso 600 y se vende a \peso 1.500. $C(x) = 600x + 20.000$ e $I(x) = 1.500x$, así que
+$G(x) = 1.500x - (600x + 20.000) = 900x - 20.000$. Con 30 empanadas gana $G(30) = 7.000$. Empieza a ganar desde 23 empanadas, porque $900x = 20.000$ da $x \approx 22{,}2$.\end{ejemplo}
+\begin{ojo}[El paréntesis] El menos afecta a todo lo que se resta: $-(600x + 20.000) = -600x - 20.000$, y al calcular el costo $-(-20.000) = +20.000$.\end{ojo}
+
+\subsection{Comparar dos planes}
+Para saber dónde dos planes cuestan lo mismo, se \textbf{igualan} las dos fórmulas completas.
+\par\noindent\begin{minipage}{0.55\linewidth}
+\begin{ejemplo} Plan A: \peso 6.000 fijos más \peso 30 por minuto. Plan B: \peso 80 por minuto. $30x + 6.000 = 80x$ da $6.000 = 50x$, o sea $x = 120$. Con menos de 120 minutos conviene B; con más, conviene A.\end{ejemplo}
+\begin{ojo}[Si sale con decimales] Si al igualar sale $x \approx 333{,}3$ y piden minutos enteros, el cambio ocurre en el entero siguiente: 334.\end{ojo}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=0,xmax=250,ymin=0,ymax=20,xtick={0,50,...,250},ytick={0,5,...,20},xlabel={min},ylabel={miles de \$}]
+  \addplot[nar,domain=0:250] {(6000+30*x)/1000} node[pos=0.9,anchor=north,font=\scriptsize] {A};
+  \addplot[azul,domain=0:250] {80*x/1000} node[pos=0.95,anchor=east,font=\scriptsize] {B};
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(120,9.6)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{Leer gráficos de situaciones}
+En un gráfico distancia-tiempo, el eje horizontal es el tiempo y el vertical los kilómetros recorridos desde la partida.
+\par\noindent\begin{minipage}{0.55\linewidth}
+\begin{itemize}
+  \item Tramo que \textbf{sube}: avanza.
+  \item Tramo \textbf{plano}: detenido.
+  \item Tramo \textbf{más inclinado}: va más rápido.
+\end{itemize}
+La \textbf{rapidez} de un tramo es lo que avanzó dividido por lo que duró (su pendiente). En el gráfico: de 0 a 1 h, $\frac{60}{1} = 60$ km/h; de 1 a 2,5 h, detenido 1,5 h; de 2,5 a 4 h, $\frac{120}{1{,}5} = 80$ km/h.
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=0,xmax=4,ymin=0,ymax=200,xtick={0,1,...,4},ytick={0,40,...,200},xlabel={$t$ (h)},ylabel={km}]
+  \addplot[nar,sharp plot] coordinates {(0,0) (1,60) (2.5,60) (4,180)};
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(1,60) (2.5,60) (4,180)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{ojo}[Distancia total] Es la altura del último punto, 180 km. No se suman las alturas, porque cada punto ya muestra todo lo recorrido.\end{ojo}
+\gatotip[\gatoblanco]{Antes de marcar, prueba tu fórmula con $x = 0$ y con $x = 1$: con 0 debe dar lo fijo (o lo inicial) y con 1 debe sumar o restar una sola vez el precio por unidad.}
+
+\begin{elejemplo}{PAES Invierno 2027}
+Una empresa contrata a una persona para que publique videos mostrando los beneficios de sus productos. La empresa le paga \peso 150.000, más \peso 100.000 por cada video publicado. ¿Cuál de las siguientes funciones modela el dinero que recibirá la persona tras publicar $x$ videos para la empresa?
+\alts{$f(x) = 150.000x + 100.000$}{$g(x) = 100.000x + 150.000$}{$h(x) = 100.000\cdot(x + 150.000)$}{$k(x) = x\cdot(100.000 + 150.000)$}
+\solucion{Los \peso 150.000 se pagan una sola vez: se suman. Los \peso 100.000 se pagan por cada video: multiplican a $x$. Con 0 videos recibe $150.000$; con 2, $150.000 + 200.000 = 350.000$. El modelo es $g(x) = 100.000x + 150.000$. Comprobación: $g(0) = 150.000$ \checkmark{} y $g(2) = 350.000$ \checkmark.
+
+¿Por qué no las otras? $f$ intercambia lo fijo con lo variable: $f(2) = 400.000$. $h$ multiplica el fijo por 100.000: $h(0)$ es absurdo. $k$ paga el fijo por cada video: $k(0) = 0$.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Ecuaciones de segundo grado}
+%% =====================================================================
+
+\subsection{La ecuación y sus soluciones}
+Una \textbf{ecuación de segundo grado} (o cuadrática) tiene $x^2$ y ninguna potencia mayor. Siempre se puede ordenar como
+\begin{clave}[Forma ordenada] $$ax^2 + bx + c = 0,\qquad a \neq 0$$ $a$ acompaña a $x^2$, $b$ acompaña a $x$ y $c$ es el número solo. El signo va pegado al número.\end{clave}
+\begin{ejemplo} $x^2 + 6 = 5x$: pasamos el $5x$ restando y ordenamos: $x^2 - 5x + 6 = 0$, con $a = 1$, $b = -5$, $c = 6$.\end{ejemplo}
+Una \textbf{solución} es un número que, puesto en lugar de $x$, hace que todo dé $0$. En $x^2 - 5x + 6 = 0$: con $x = 2$, $4 - 10 + 6 = 0$ \checkmark; con $x = 3$, $9 - 15 + 6 = 0$ \checkmark; con $x = 1$ da $2$, así que $1$ no es solución. Normalmente hay dos soluciones; a veces una o ninguna.
+\gatotip[\gatonaranjo]{¿En blanco? Reemplaza las alternativas en la ecuación: la correcta es la que hace que todo dé 0.}
+
+\subsection{Los casos fáciles}
+Primer paso siempre: \textbf{todo a un lado y un 0 al otro}. Si falta un término, su número es 0.
+\begin{clave}[Falta el término con x] Se despeja $x^2$ y se saca raíz, con $+$ y con $-$: $2x^2 = 50$, $x^2 = 25$, $x = \pm 5$.\end{clave}
+Casos especiales: $x^2 = 0$ tiene una sola solución, $x = 0$; $x^2 = -9$ no tiene ninguna, porque ningún número al cuadrado da negativo.
+\begin{clave}[La regla del cero] Si una multiplicación da 0, al menos un factor es 0: $(x - 4)(x + 1) = 0$ da $x = 4$ o $x = -1$. Solo funciona con un 0 al otro lado.\end{clave}
+\begin{clave}[Falta el número solo] Se saca la $x$ factor común: $x^2 = 3x$, $x^2 - 3x = 0$, $x(x - 3) = 0$, así que $x = 0$ o $x = 3$. Una solución es siempre $0$.\end{clave}
+\begin{ojo}[Errores clásicos] Quedarse solo con el $5$ positivo. Y dividir $x^2 = 3x$ por $x$: así se pierde la solución $x = 0$.\end{ojo}
+
+\subsection{Factorizar buscando dos números}
+Sirve cuando $a = 1$. Como $(x + 2)(x + 3) = x^2 + 5x + 6$, para volver atrás se buscan dos números que \textbf{multiplicados} den $c$ y \textbf{sumados} den $b$.
+\begin{ejemplo} $x^2 - 5x + 6 = 0$: $-2$ y $-3$ multiplican $6$ y suman $-5$. Queda $(x - 2)(x - 3) = 0$, así que $x = 2$ o $x = 3$.\end{ejemplo}
+\begin{clave}[Los signos en una mirada]
+\begin{itemize}
+  \item $c$ positivo: los dos números tienen el signo de $b$. En $x^2 + 7x + 10$: $2$ y $5$; en $x^2 - 7x + 10$: $-2$ y $-5$.
+  \item $c$ negativo: signos distintos. Busca la pareja que al \textbf{restarse} dé $b$ sin signo; el más grande lleva el signo de $b$. En $x^2 + 3x - 10$: $5$ y $-2$; en $x^2 - 3x - 10$: $-5$ y $2$.
+\end{itemize}
+\end{clave}
+\begin{ojo}[Las soluciones van al revés] $(x + 5)(x - 2) = 0$ da $x = -5$ y $x = 2$: el signo se da vuelta al despejar.\end{ojo}
+Con $a = 1$, las dos soluciones multiplicadas dan $c$. Y si conoces una solución, reemplázala en la ecuación para hallar el número que falta.
+
+\subsection{La fórmula general}
+Cuando hay un número delante de $x^2$ o no aparecen rápido los dos números, se usa la fórmula, que nunca falla:
+\begin{clave}[Fórmula general] $$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$\end{clave}
+\begin{ejemplo} $2x^2 - 3x - 2 = 0$: $a = 2$, $b = -3$, $c = -2$. Dentro de la raíz: $9 - (-16) = 25$ y $\sqrt{25} = 5$. Luego $x = \dfrac{3 \pm 5}{4}$: sumando da $2$ y restando da $-\frac{1}{2}$.\end{ejemplo}
+\begin{ojo}[Tres trampas] $-b$ cambia el signo: si $b = -3$, $-b = 3$. Los negativos van entre paréntesis: $(-3)^2 = 9$. Y $2a$ divide a \textbf{todo} lo de arriba, no solo a la raíz.\end{ojo}
+
+\subsection{El discriminante}
+Lo que va dentro de la raíz se llama \textbf{discriminante}, $\Delta = b^2 - 4ac$, y dice cuántas soluciones hay sin resolver.
+\par\noindent\begin{minipage}{0.55\linewidth}
+\begin{clave}[Cuántas soluciones]
+\begin{itemize}
+  \item $\Delta > 0$: dos soluciones.
+  \item $\Delta = 0$: una sola ($\pm 0$ da lo mismo).
+  \item $\Delta < 0$: ninguna solución real.
+\end{itemize}
+\end{clave}
+\begin{ejemplo} $x^2 - 4x + 4$: $\Delta = 16 - 16 = 0$, una solución, $x = \frac{4}{2} = 2$. $x^2 + 2x + 5$: $\Delta = 4 - 20 = -16$, ninguna.\end{ejemplo}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=6.2cm,xmin=-1,xmax=7,ymin=-2,ymax=8,xtick={-1,...,5},ytick={-2,0,...,8},
+  legend style={font=\scriptsize,at={(0.99,0.03)},anchor=south east,draw=gris!40},legend cell align=left]
+  \addplot[nar,domain=-1:5] {x^2-4*x+3}; \addlegendentry{$\Delta>0$}
+  \addplot[azul,domain=-1:5] {x^2-4*x+4}; \addlegendentry{$\Delta=0$}
+  \addplot[menta,domain=-1:5] {x^2-4*x+6}; \addlegendentry{$\Delta<0$}
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\subsection{Problemas con enunciado}
+\begin{enumerate}
+  \item Nombra lo que no sabes con una letra.
+  \item Escribe lo demás con esa letra: «5 más que $x$» es $x + 5$; «el doble» es $2x$; «el cuadrado» es $x^2$; dos consecutivos son $x$ y $x + 1$.
+  \item Plantea la ecuación con el dato, deja un 0 a un lado y resuelve.
+  \item Descarta lo que no tiene sentido y responde lo que te piden.
+\end{enumerate}
+\begin{ejemplo} Terreno con largo 5 m mayor que el ancho y área 104 m$^2$: $x(x + 5) = 104$, $x^2 + 5x - 104 = 0$, $(x + 13)(x - 8) = 0$. El ancho no puede ser $-13$: mide 8 m y el largo 13 m. Perímetro: $8 + 13 + 8 + 13 = 42$ m.\end{ejemplo}
+\begin{ojo}[Descarta con criterio] Una medida o un tiempo no pueden ser negativos; si piden «un número», el negativo sí sirve. Y relee la pregunta: si piden el perímetro, 8, 13 o 21 son trampas.\end{ojo}
+
+\begin{elejemplo}{PAES Regular 2026}
+Una persona dispone de un terreno de forma rectangular. Se sabe que el terreno tiene un área de 192 m$^2$ y que su ancho mide 4 m menos que su largo. ¿Cuánto mide el largo del terreno?
+\alts{12 m}{16 m}{20 m}{24 m}
+\solucion{Largo $= L$ y ancho $= L - 4$. El área da $L(L - 4) = 192$, o sea $L^2 - 4L - 192 = 0$. El número solo es negativo: signos distintos, y el más grande lleva el signo de $-4$. Buscamos dos números que multiplicados den 192 y se resten 4: $16$ y $12$. Queda $(L - 16)(L + 12) = 0$, así que $L = 16$ o $L = -12$. Un largo no puede ser negativo: $L = 16$ m. Comprobación: ancho $12$ y $16\cdot 12 = 192$ \checkmark.
+
+¿Por qué no las otras? 12 m es el ancho. Con 20 m el área sería $20\cdot 16 = 320$; con 24 m, $24\cdot 20 = 480$.}{B}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Gráfico de la función cuadrática}
+%% =====================================================================
+
+\subsection{Hacia dónde abre y qué tan abierta es}
+Una \textbf{función cuadrática} es $f(x) = ax^2 + bx + c$ con $a \neq 0$. Su gráfico es una curva en forma de U llamada \textbf{parábola}.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[capfun,xmin=-3,xmax=3,ymin=-6,ymax=6,xtick={-3,...,3},ytick={-6,-4,...,6}]
+  \addplot[nar,domain=-3:3] {x^2} node[pos=0.8,anchor=west,font=\scriptsize] {$x^2$};
+  \addplot[azul,domain=-3:3] {-x^2} node[pos=0.8,anchor=west,font=\scriptsize] {$-x^2$};
+\end{axis}
+\end{tikzpicture}\hspace{6mm}
+\begin{tikzpicture}
+\begin{axis}[capfun,xmin=-3,xmax=3,ymin=-1,ymax=9,xtick={-3,...,3},ytick={0,2,...,8}]
+  \addplot[nar,domain=-3:3] {x^2};
+  \addplot[azul,domain=-3:3] {3*x^2};
+  \addplot[menta,domain=-3:3] {x^2/2};
+  \node[font=\scriptsize,azul,anchor=east] at (axis cs:0.95,6.5) {$3x^2$};
+  \node[font=\scriptsize,nard,anchor=west] at (axis cs:2.2,3.5) {$x^2$};
+  \node[font=\scriptsize,menta!70!black,anchor=north west] at (axis cs:1.6,1.2) {$\frac{1}{2}x^2$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\begin{clave}[El número de $x^2$ manda] $a > 0$: abre hacia arriba y el vértice es un \textbf{mínimo}. $a < 0$: abre hacia abajo y el vértice es un \textbf{máximo}. Mientras más grande es $a$ sin su signo, más \textbf{angosta}; si está entre 0 y 1, como $\frac{1}{2}$, es más ancha que $x^2$.\end{clave}
+\begin{ojo}[Solo cuenta $a$] En $3 + 5x - 2x^2$ el número de $x^2$ es $-2$: abre hacia abajo. Y el signo no cuenta para el ancho: $-3x^2$ es igual de angosta que $3x^2$.\end{ojo}
+
+\subsection{Corte con el eje Y y tabla de valores}
+Al poner $x = 0$, todo lo que tiene $x$ se anula y queda $c$: la parábola corta al eje $Y$ en $(0, c)$. Por ejemplo, $x^2 - 6x + 8$ lo corta en $(0, 8)$, no en $(8, 0)$.
+
+Para dibujarla a mano se hace una tabla. Con $f(x) = x^2 - 2x - 3$:
+\begin{center}
+\begin{tabular}{c|ccccc}\toprule
+$x$ & $-1$ & $0$ & $1$ & $2$ & $3$\\\midrule
+$f(x)$ & $1 + 2 - 3 = 0$ & $-3$ & $1 - 2 - 3 = -4$ & $-3$ & $9 - 6 - 3 = 0$\\\bottomrule
+\end{tabular}
+\end{center}
+Las alturas se repiten como en un espejo: $0, -3, -4, -3, 0$. Eso es la simetría de la parábola.
+
+\subsection{Ceros: cortes con el eje X}
+Los \textbf{ceros} son las $x$ donde la parábola cruza el eje $X$; ahí la altura es 0, así que se iguala la función a 0.
+\begin{ejemplo} $x^2 - 6x + 8 = 0$: $(x - 2)(x - 4) = 0$, así que corta en $(2, 0)$ y $(4, 0)$.\end{ejemplo}
+\begin{clave}[¿Cuántas veces corta?] Con $\Delta = b^2 - 4ac$: positivo, dos cortes; cero, la toca en un punto (su vértice); negativo, no la toca.\end{clave}
+\begin{ejemplo} Con $a = 1$ y $b = -4$: $x^2 - 4x + 3$ tiene $\Delta = 4$ (dos cortes), $x^2 - 4x + 4$ tiene $\Delta = 0$ (un punto) y $x^2 - 4x + 6$ tiene $\Delta = -8$ (ninguno).\end{ejemplo}
+
+\subsection{El vértice y el eje de simetría}
+El \textbf{vértice} es la punta de la parábola. El \textbf{eje de simetría} es la recta vertical que pasa por él y parte la parábola en dos mitades iguales.
+\begin{clave}[Vértice] $$x_v = -\frac{b}{2a},\qquad y_v = f(x_v)$$ El eje de simetría es la recta $x = x_v$.\end{clave}
+\par\noindent\begin{minipage}{0.55\linewidth}
+\begin{ejemplo} $f(x) = x^2 + 2x - 1$: $x_v = -\frac{2}{2} = -1$ e $y_v = 1 - 2 - 1 = -2$. El vértice es $(-1, -2)$; como $a > 0$, el valor mínimo es $-2$ y el eje es $x = -1$.\end{ejemplo}
+\begin{clave}[El truco del espejo] Si $f(p) = f(q)$, el eje está en el punto medio: $x = \dfrac{p + q}{2}$. En el dibujo, $f(1) = f(-3) = 2$ y $\frac{1 + (-3)}{2} = -1$.\end{clave}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=-5,xmax=3,ymin=-3,ymax=7,xtick={-5,...,3},ytick={-2,0,...,6}]
+  \addplot[nar,domain=-5:3] {x^2+2*x-1};
+  \draw[azul,dashed,line width=0.8pt] (axis cs:-1,-3) -- (axis cs:-1,7);
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(-1,-2) (1,2) (-3,2)};
+  \node[font=\scriptsize,anchor=west] at (axis cs:-0.8,-2.6) {$(-1, -2)$};
+  \node[font=\scriptsize,anchor=west] at (axis cs:1.1,1.7) {$(1, 2)$};
+  \node[font=\scriptsize,anchor=east] at (axis cs:-3.1,1.7) {$(-3, 2)$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{ojo}[Ojo con el signo] Si $b$ es negativo, el menos de la fórmula lo vuelve positivo: con $a = 1$ y $b = -6$, $x_v = \frac{6}{2} = 3$. Y se divide por $2a$, no por $a$.\end{ojo}
+\gatotip[\gatogris]{El vértice queda justo al medio de los dos ceros. Si ya tienes los ceros, $x_v$ es su promedio: $\frac{-1 + 3}{2} = 1$ en $x^2 - 2x - 3$.}
+
+\subsection{Forma canónica y traslaciones}
+\begin{clave}[Forma canónica] $f(x) = a(x - h)^2 + k$ tiene vértice $(h, k)$: el número de \textbf{adentro} con el signo \textbf{cambiado}, el de \textbf{afuera} tal cual.\end{clave}
+\begin{ejemplo} $(x - 2)^2 + 1$: el paréntesis vale 0 en $x = 2$ y ahí la función vale 1; vértice $(2, 1)$. En $(x + 3)^2 - 4$ el vértice es $(-3, -4)$.\end{ejemplo}
+\par\noindent\begin{minipage}{0.55\linewidth}
+Mover la parábola sin cambiar su forma:
+\begin{itemize}
+  \item Número sumado \textbf{afuera}: $x^2 + 3$ sube 3; $x^2 - 2$ baja 2.
+  \item Número \textbf{dentro} del paréntesis: $(x - 2)^2$ se corre 2 a la derecha; $(x + 3)^2$ se corre 3 a la izquierda. Parece al revés, pero lo dicen las cuentas: $(x - 2)^2$ vale 0 en $x = 2$.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=-6,xmax=4,ymin=-2.4,ymax=8,xtick={-3,0,2},ytick={2,4,...,8}]
+  \addplot[menta,domain=-6:4] {(x+3)^2};
+  \addplot[nar,domain=-6:4] {x^2};
+  \addplot[azul,domain=-6:4] {(x-2)^2};
+  \node[font=\scriptsize,menta!70!black] at (axis cs:-3,-1.7) {$(x+3)^2$};
+  \node[font=\scriptsize,azul] at (axis cs:2.4,-1.7) {$(x-2)^2$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\gatotip[\gatoatigrado]{Para reconocer una parábola en un gráfico, descarta en este orden: 1) hacia dónde abre, 2) dónde cruza el eje $Y$, 3) dónde están el vértice o los ceros.}
+
+\begin{elejemplo}{PAES Regular 2026, adaptada}
+Considera la función cuadrática $f$, con dominio el conjunto de los números reales. En la figura se representa su gráfica, con su eje de simetría $x = -1$, y el punto $(2, 7)$.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[capfun,width=6cm,xmin=-6,xmax=4,ymin=-3,ymax=9,xtick={-6,-4,...,4},ytick={-2,0,...,8}]
+  \addplot[nar,domain=-6:4] {x^2+2*x-1} node[pos=0.97,anchor=east,font=\scriptsize] {$f$};
+  \draw[azul,dashed,line width=0.8pt] (axis cs:-1,-3) -- (axis cs:-1,9);
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(2,7)};
+  \node[font=\scriptsize,anchor=west] at (axis cs:2.1,6.6) {$(2, 7)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+¿Para cuál de los siguientes valores de $x$ se tiene que $f(x) = 7$?
+\alts{$4$}{$-3$}{$-4$}{$-5$}
+\solucion{Buscamos el gemelo de $(2, 7)$ al otro lado del eje. Distancia del punto al eje: $2 - (-1) = 3$. El gemelo está 3 unidades a la izquierda: $-1 - 3 = -4$. Entonces $f(-4) = 7$. Comprobación: $\frac{-4 + 2}{2} = -1$ \checkmark.
+
+¿Por qué no las otras? $4$ refleja respecto del eje $Y$ y no de $x = -1$. $-3$ cuenta solo 2 unidades desde el eje; $-5$ cuenta 4.}{C}
+\end{elejemplo}
+
+%% =====================================================================
+\section{Problemas con función cuadrática}
+%% =====================================================================
+
+\subsection{Primero: ¿me piden una x o una y?}
+En estos problemas siempre hay una fórmula. La letra de adentro ($x$ o $t$) es lo que eliges: tiempo, unidades vendidas, medida de un lado. El resultado ($y$) es lo que sale: altura, área, ganancia.
+\begin{itemize}
+  \item «¿Cuándo...?», «¿cuántas unidades...?», «¿qué medida...?»: buscas una $x$.
+  \item «¿Qué altura...?», «¿cuánta área o ganancia...?»: buscas una $y$.
+\end{itemize}
+\begin{ojo}[La trampa favorita] Muchas alternativas incorrectas son la $x$ cuando piden la $y$, o al revés. Decídelo antes de calcular.\end{ojo}
+
+\subsection{Las cuatro preguntas típicas}
+\begin{center}
+\begin{tabular}{p{6.2cm}p{3.4cm}p{5.6cm}}\toprule
+\textbf{Pregunta} & \textbf{En la parábola} & \textbf{Receta}\\\midrule
+Valor inicial: ¿desde dónde parte? & corte con el eje $Y$ & $x = 0$: queda el número solo\\
+¿Cuándo? ¿Cuántas unidades? & $x$ del vértice & $x_v = -\dfrac{b}{2a}$\\
+¿Cuál es el máximo (o mínimo)? & $y$ del vértice & reemplazar $x_v$ en la fórmula\\
+Llega al suelo, ni gana ni pierde & ceros & igualar a 0 y despejar\\\bottomrule
+\end{tabular}
+\end{center}
+El orden importa: el máximo necesita primero el «cuándo».
+
+\subsection{Lanzamientos}
+\par\noindent\begin{minipage}{0.55\linewidth}
+La altura de una pelota es $h(t) = -5t^2 + 20t$ (metros, segundos). Como $a = -5 < 0$, la parábola es un cerro: sube, frena y cae.
+\begin{itemize}
+  \item Parte de $h(0) = 0$: desde el suelo.
+  \item Llega arriba en $t_v = -\dfrac{20}{2\cdot(-5)} = 2$ s.
+  \item Altura máxima: $h(2) = -20 + 40 = 20$ m.
+  \item Vuelve al suelo: $-5t(t - 4) = 0$, en $t = 4$ s.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=0,xmax=4.4,ymin=0,ymax=25,xtick={0,1,...,4},ytick={0,5,...,25},xlabel={$t$},ylabel={$h$}]
+  \addplot[nar,domain=0:4] {-5*x^2+20*x};
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(2,20) (0,0) (4,0)};
+  \node[font=\scriptsize,anchor=south] at (axis cs:2,20.3) {$(2, 20)$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{ojo}[No confundas] 2 s es \textbf{cuándo} llega arriba; 20 m es \textbf{qué tan alto} llega. Y de los dos ceros, $t = 0$ es el lanzamiento: la respuesta a «¿cuándo vuelve al suelo?» es el otro.\end{ojo}
+\begin{ejemplo} En $h(t) = -5t^2 + 10t + 15$, la altura inicial es el número solo: se lanzó desde 15 m. Ojo: eso no es el máximo, porque después sigue subiendo.\end{ejemplo}
+
+\subsection{Áreas máximas}
+\begin{ejemplo}[Cerca alrededor] Con 40 m de cerca, un largo más un ancho suman 20. Si un lado es $x$, el otro es $20 - x$ y $A(x) = x(20 - x) = -x^2 + 20x$. Vértice: $x_v = 10$; lados 10 y 10, área 100 m$^2$.\end{ejemplo}
+\par\noindent\begin{minipage}{0.6\linewidth}
+\begin{ejemplo}[Contra un muro] Con 60 m de malla para tres lados: los dos lados que salen del muro miden $x$ y el de enfrente $60 - 2x$. $A(x) = x(60 - 2x) = -2x^2 + 60x$, $x_v = \frac{60}{4} = 15$, frente $30$ y área $15\cdot 30 = 450$ m$^2$.\end{ejemplo}
+\end{minipage}\hfill
+\begin{minipage}{0.36\linewidth}\centering
+\begin{tikzpicture}[scale=0.75]
+  \fill[gris!60] (0,2.4) rectangle (4.4,2.75);
+  \node[font=\scriptsize,white] at (2.2,2.58) {muro};
+  \draw[nar,line width=1.4pt,fill=hielo] (0.7,2.4) -- (0.7,0.6) -- (3.7,0.6) -- (3.7,2.4);
+  \node[font=\small,anchor=east] at (0.65,1.5) {$x$};
+  \node[font=\small,anchor=west] at (3.75,1.5) {$x$};
+  \node[font=\small,anchor=north] at (2.2,0.55) {$60 - 2x$};
+\end{tikzpicture}
+\end{minipage}
+\begin{ojo}[Con muro no es cuadrado] Si toda la cerca rodea el terreno, el área máxima es siempre un cuadrado. Contra un muro no: el lado de enfrente es el doble de los otros.\end{ojo}
+\gatotip[\gatolila]{Si el lado de un cuadrado se multiplica por $k$, el área se multiplica por $k^2$: triplicar el lado multiplica el área por 9.}
+
+\subsection{Ganancias}
+\par\noindent\begin{minipage}{0.55\linewidth}
+Una empresa gana $G(x) = -x^2 + 40x - 300$ miles de pesos al vender $x$ unidades.
+\begin{itemize}
+  \item Sin vender: $G(0) = -300$; pierde 300 mil (gastos fijos).
+  \item Unidades para la ganancia máxima: $x_v = -\dfrac{40}{-2} = 20$.
+  \item Ganancia máxima: $G(20) = -400 + 800 - 300 = 100$ mil pesos.
+  \item Ni gana ni pierde: $x^2 - 40x + 300 = 0$ (multiplicando por $-1$), $(x - 10)(x - 30) = 0$: con 10 o 30 unidades.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[capfun,width=5.8cm,xmin=0,xmax=40,ymin=-300,ymax=150,xtick={0,10,...,40},ytick={-300,-200,...,100},ylabel={$G$}]
+  \addplot[nar,domain=0:40] {-x^2+40*x-300};
+  \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(10,0) (30,0) (20,100)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\begin{clave}[¿Dónde se gana?] Si la parábola abre hacia abajo, es positiva \textbf{entre los dos ceros}: aquí, vendiendo entre 10 y 30 unidades.\end{clave}
+\begin{ojo}[Ojo con el signo] En $-x^2$ con $x = 20$: primero se eleva y después se pone el menos, $-400$. Y en una fórmula como $d(v) = \frac{v^2}{100}$ también va primero la potencia: $d(80) = \frac{6.400}{100} = 64$.\end{ojo}
+\gatotip[\gatonegro]{Revisa que tu respuesta tenga sentido: un tiempo, una medida o una cantidad de personas no pueden ser negativos. Si sale $t^2 = 16$, todavía falta sacar la raíz.}
+
+\begin{elejemplo}{Ejemplo tipo PAES}
+La altura $h$, en metros, de una pelota lanzada verticalmente hacia arriba está dada por $h(t) = -5t^2 + 20t$, con $t$ en segundos. ¿Cuál es la altura máxima que alcanza la pelota?
+\alts{20 m}{2 m}{40 m}{15 m}
+\solucion{Piden una altura, la $y$ del vértice. Con $a = -5$ y $b = 20$: $t_v = -\dfrac{20}{-10} = 2$ s. Reemplazando: $h(2) = -5\cdot 4 + 40 = -20 + 40 = 20$ m. Comprobación: $h(1) = h(3) = 15$, ambas menores que 20 \checkmark.
+
+¿Por qué no las otras? 2 m es el tiempo del vértice (la $x$), no la altura. 40 m olvida la parte $-5t^2$. 15 m es $h(1)$, cuando la pelota todavía sube.}{A}
+\end{elejemplo}
