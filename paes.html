@@ -526,6 +526,8 @@ const AREAS = {
 };
 Object.values(AREAS).forEach(a => a.topics = a.ejes.flatMap(e => e[1]));
 AREAS.m1.libro = 'paes/m1/libro/libro_m1.pdf';
+// un solo libro de Ciencias para la Mención Química: Química completa, Física y Biología solo Módulo Común
+['qui', 'fis', 'bio'].forEach(k => Object.assign(AREAS[k], { libro: 'paes/ciencias/libro/libro_ciencias.pdf', libroNombre: 'Ciencias (Mención Química)' }));
 /* Versión compacta (paes_compacto_*.js): COMPACTO[id] = secciones { t, b, f? } con lo justo para responder; mismas preguntas.
    f = índice de la diapositiva full cuya figura (SLIDE_FIGS) se reutiliza. */
 let CLASE = { compacta: false, comun: false };
@@ -718,7 +720,7 @@ function renderEstudiar(prog, area) {
   const ir = (c, m) => `#estudiar/${k}${c ? '/compacta' : ''}${m ? '/comun' : ''}`, tab = (href, on, txt) => `<a href="${href}" class="${on ? 'on' : ''}">${txt}</a>`;
   $('verBar').innerHTML = (area.topics.some(t => COMPACTO[t.id]) ? '<div class="ejes">' + tab(ir(0, CLASE.comun), !CLASE.compacta, '📘 Versión full') + tab(ir(1, CLASE.comun), CLASE.compacta, '⚡ Versión compacta') + '</div>' : '') +
     (hayElectivo ? '<div class="ejes">' + tab(ir(CLASE.compacta, 0), !CLASE.comun, 'Común y Electivo') + tab(ir(CLASE.compacta, 1), CLASE.comun, '✅ Solo Módulo Común') + '</div>' : '') +
-    (area.libro ? `<a class="libro" href="${area.libro}" target="_blank" rel="noopener">📕 Libro ${area.tab.split(' ')[1]} en PDF</a><a class="libro" href="${area.libro.replace('.pdf', '_bn.pdf')}" target="_blank" rel="noopener">🖨️ Para imprimir (blanco y negro)</a>` : '') +
+    (area.libro ? `<a class="libro" href="${area.libro}" target="_blank" rel="noopener">📕 Libro ${area.libroNombre || area.tab.split(' ')[1]} en PDF</a><a class="libro" href="${area.libro.replace('.pdf', '_bn.pdf')}" target="_blank" rel="noopener">🖨️ Para imprimir (blanco y negro)</a>` : '') +
     `<div class="leyenda">${CLASE.compacta ? '⚡ Compacta: solo lo justo para responder (definiciones, fórmulas y trampas típicas). Las preguntas son las mismas de la versión full.' : '📘 Full: la clase completa con explicaciones, figuras y ejemplos.'}${CLASE.comun ? ' ✅ Se ocultan los temas que solo entran en el Módulo Electivo.' : ''}</div>`;
   $('units').innerHTML = area.ejes.map(([eje, ts]) => { ts = ts.filter(t => !(CLASE.comun && ELECTIVO.has(t.id))); return (eje ? `<h3 class="eje-lbl">${eje}</h3>` : '') + [...new Set(ts.map(t => t.unit))].map(u => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
     ts.filter(t => t.unit === u).map(t => { const p = prog[t.id];

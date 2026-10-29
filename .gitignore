@@ -5,3 +5,8 @@ paes/quimica/fuentes/
 paes/biologia/fuentes/
 paes/fisica/fuentes/
 _tmp/
+paes/ciencias/libro/temas.json
+paes/ciencias/libro/*.aux
+paes/ciencias/libro/*.log
+paes/ciencias/libro/*.toc
+paes/ciencias/libro/*.out

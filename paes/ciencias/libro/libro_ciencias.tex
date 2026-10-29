@@ -1,0 +1,219 @@
+%% Libro PAES Ciencias, Mención Química (Fabimath): versión libro de las clases full de paes.html.
+%% Química completa (Módulo Común y Mención), Física y Biología solo con lo del Módulo Común.
+%% Rearmar: node dump_temas.js && python build_figs.py && python html2tex.py; luego pdflatex dos veces.
+%% cap_*.tex se generan desde los .js del sitio: no se editan a mano. Gato pixel: ../../m1/libro/gatos.tex.
+\documentclass[11pt,letterpaper,openany]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot,es-noshorthands,es-tabla]{babel}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{amsmath,amssymb}
+\usepackage[top=2.3cm,bottom=2.2cm,left=2.3cm,right=2.3cm,headheight=15pt]{geometry}
+\usepackage{xcolor,graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage[most]{tcolorbox}
+\usepackage[explicit]{titlesec}
+\usepackage{fancyhdr,enumitem,array,booktabs,tabularx,microtype,pifont}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{fig/}{../../../logo/}}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist{nosep,leftmargin=1.4em,topsep=2pt}
+
+%% ---------- versión blanco y negro para imprimir (libro_ciencias_bn.tex define \versionbn) ----------
+%% Todo pasa a grises, sin fondos llenos que gasten tóner; las figuras salen de fig_bn/ (build_figs.py las compila en gris).
+\newif\ifbn \ifdefined\versionbn \bntrue \graphicspath{{fig_bn/}{../../../logo/}} \fi
+
+%% ---------- paleta: un color por ciencia, sin verde ----------
+%% Química naranjo (el del sitio), Física azul, Biología morado. \ciencia{qui|fis|bio} cambia los colores
+%% ciencia (principal), cienciaD (oscuro), cienciaL (claro) y cienciaT (fondo suave) que usan cajas, títulos y encabezado.
+\ifbn
+\selectcolormodel{gray}
+\definecolor{tinta}{gray}{0}\definecolor{gris}{gray}{0.35}\definecolor{coral}{gray}{0.3}\definecolor{coralT}{gray}{1}
+\foreach \c in {qui,fis,bio}{\xglobal\definecolor{\c C}{gray}{0.15}\xglobal\definecolor{\c D}{gray}{0}\xglobal\definecolor{\c L}{gray}{0.6}\xglobal\definecolor{\c T}{gray}{0.95}}
+\else
+\definecolor{tinta}{HTML}{1D1D1F}\definecolor{gris}{HTML}{6E6E73}\definecolor{coral}{HTML}{D63A2F}\definecolor{coralT}{HTML}{FDEEEC}
+\definecolor{quiC}{HTML}{E8680C}\definecolor{quiD}{HTML}{C4540A}\definecolor{quiL}{HTML}{FFB35C}\definecolor{quiT}{HTML}{FFF3E8}
+\definecolor{fisC}{HTML}{2F6FD6}\definecolor{fisD}{HTML}{1F4FA3}\definecolor{fisL}{HTML}{8DB4F0}\definecolor{fisT}{HTML}{EEF4FF}
+\definecolor{bioC}{HTML}{8E44C9}\definecolor{bioD}{HTML}{6B2E9E}\definecolor{bioL}{HTML}{C9A2EA}\definecolor{bioT}{HTML}{F6EFFC}
+\fi
+\newcommand{\ciencia}[1]{\colorlet{ciencia}{#1C}\colorlet{cienciaD}{#1D}\colorlet{cienciaL}{#1L}\colorlet{cienciaT}{#1T}%
+  \ifbn\colorlet{fondo}{white}\colorlet{sobrefondo}{black}\else\colorlet{fondo}{#1C}\colorlet{sobrefondo}{white}\fi}
+\ciencia{qui}
+\color{tinta}
+\input{../../m1/libro/gatos}
+\newcommand{\gatociencia}{\gatonaranjo}
+
+%% ---------- encabezados ----------
+\newcommand{\cabeza}{PAES Ciencias · Fabimath}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\color{gris}\nouppercase{\leftmark}}
+\fancyhead[R]{\small\color{ciencia}\bfseries\cabeza}
+\fancyfoot[C]{\small\color{gris}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\headrule}{{\color{cienciaL}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\color{gris}\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+%% ---------- marcas de módulo ----------
+\newcommand{\modcomun}{\tikz[baseline=(n.base)]\node[draw=ciencia,line width=0.8pt,text=cienciaD,rounded corners=7pt,inner sep=3pt,font=\scriptsize\bfseries](n){COMÚN};}
+\newcommand{\modmencion}{\tikz[baseline=(n.base)]\node[fill=cienciaD,text=white,rounded corners=7pt,inner sep=3.5pt,font=\scriptsize\bfseries](n){SOLO MENCIÓN QUÍMICA};}
+
+%% ---------- portadilla de cada ciencia ----------
+%% #1 clave, #2 nombre, #3 qué módulos cubre, #4 explicación, #5 gato
+\newcommand{\portadilla}[5]{\clearpage\ciencia{#1}\renewcommand{\gatociencia}{#5}%
+  \renewcommand{\cabeza}{#2 · #3}\phantomsection\addcontentsline{toc}{part}{#2 · #3}%
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[fondo] (current page.north west) rectangle (current page.south east);
+    \ifbn\draw[black,line width=2pt] ([xshift=1.5cm,yshift=-1.5cm]current page.north west) rectangle ([xshift=-1.5cm,yshift=1.5cm]current page.south east);\fi
+    \node[anchor=north west,text=sobrefondo,font=\fontsize{64}{68}\selectfont\bfseries] at ([xshift=2.2cm,yshift=-5cm]current page.north west) {#2};
+    \node[anchor=north west,fill=sobrefondo,text=fondo,rounded corners=10pt,inner sep=8pt,font=\fontsize{20}{24}\selectfont\bfseries] at ([xshift=2.3cm,yshift=-8.4cm]current page.north west) {#3};
+    \node[anchor=north west,text=sobrefondo,font=\Large,text width=13.5cm,align=left] at ([xshift=2.3cm,yshift=-10.6cm]current page.north west) {#4};
+    \node at ([xshift=-5.4cm,yshift=6.6cm]current page.south east) {#5[0.3]};
+  \end{tikzpicture}\null\clearpage}
+\newcommand{\parteciencia}[1]{\csname parte#1\endcsname}
+\newcommand{\partequi}{\portadilla{qui}{Química}{Común y Mención}{Esta es tu mención: Química completa. Los capítulos 1 a 4 son materia del \textbf{Módulo Común}, que rinden todos, y también pueden salir en el Electivo. El capítulo 5 es \textbf{solo de la Mención}: sale únicamente en las 26 preguntas del Módulo Electivo de Química.\par\medskip Cada tema lleva su marca: \textbf{COMÚN} o \textbf{SOLO MENCIÓN QUÍMICA}.}{\gatonaranjo}}
+\newcommand{\partefis}{\portadilla{fis}{Física}{Solo Módulo Común}{Rindiendo la mención en Química, de Física solo te preguntan en el \textbf{Módulo Común}. Aquí está exactamente eso: la materia de Física del Módulo Común, sin la profundización del Electivo de Física, que no te toca.}{\gatogris}}
+\newcommand{\partebio}{\portadilla{bio}{Biología}{Solo Módulo Común}{Rindiendo la mención en Química, de Biología solo te preguntan en el \textbf{Módulo Común}. Aquí está exactamente eso: la materia de Biología del Módulo Común, sin la profundización del Electivo de Biología, que no te toca.}{\gatolila}}
+
+%% ---------- títulos ----------
+%% capítulo = unidad: franja del color de la ciencia con el número grande y el gato de la ciencia
+\newcommand{\capbanda}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[fondo] (current page.north west) rectangle ([yshift=-6.2cm]current page.north east);
+    \fill[cienciaL] ([yshift=-6.2cm]current page.north west) rectangle ([yshift=-6.5cm]current page.north east);
+    \node[anchor=north west,text=sobrefondo,font=\fontsize{80}{80}\selectfont\bfseries,opacity=.35] at ([xshift=1.6cm,yshift=-0.6cm]current page.north west) {#1};
+    \node[anchor=north east,text=sobrefondo,font=\small\bfseries] at ([xshift=-2cm,yshift=-0.8cm]current page.north east) {\cabeza};
+    \node[anchor=south west,text=sobrefondo,font=\fontsize{30}{34}\selectfont\bfseries,text width=12.5cm,align=left] at ([xshift=2.3cm,yshift=-5.4cm]current page.north west) {\hyphenpenalty=10000 #2};
+    \node[anchor=south east] at ([xshift=-2cm,yshift=-6.15cm]current page.north east) {\gatociencia[0.13]};
+  \end{tikzpicture}\vspace*{3.6cm}}
+\titleformat{\chapter}[display]{\normalfont}{}{0pt}{\capbanda{\thechapter}{#1}}
+\titleformat{name=\chapter,numberless}[display]{\normalfont}{}{0pt}{\capbanda{}{#1}}
+\titlespacing*{\chapter}{0pt}{0pt}{12pt}
+%% sección = tema de la página (con su marca de módulo); subsección = diapositiva de la clase
+\titleformat{\section}{\normalfont\Large\bfseries\color{tinta}}{\tikz[baseline=(n.base)]\node[fill=ciencia,text=white,rounded corners=3pt,inner sep=3pt,font=\normalsize\bfseries](n){\thesection};}{8pt}{#1}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{cienciaD}}{}{0pt}{{\color{ciencia}\rule[-2pt]{3pt}{13pt}}\hspace{6pt}#1}
+\titlespacing*{\subsection}{0pt}{10pt}{3pt}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+%% el índice pasa del capítulo 9: más espacio para los números de dos cifras
+\makeatletter\patchcmd{\l@chapter}{1.5em}{2.2em}{}{}\renewcommand*\l@section{\@dottedtocline{1}{2.2em}{2.8em}}\makeatother
+
+%% ---------- cajas (las de la web: .box y .box.alert) ----------
+%% clave = .box (color de la ciencia) · ojo = .box.alert (rojo coral) · ejemplo = ejemplo resuelto (gris)
+%% \gatotip[gato]{texto} = trucos y atajos · elejemplo = EL ejemplo tipo PAES del tema, resuelto
+\ifbn\tcbset{ojobn/.style={borderline={0.7pt}{0pt}{black,dash pattern=on 3pt off 2pt}},ejbn/.style={boxrule=0.4pt,borderline={0.4pt}{1.6pt}{black}}}
+\else\tcbset{ojobn/.style={},ejbn/.style={}}\fi
+\newtcolorbox{clave}[1][]{enhanced,breakable,colback=cienciaT,colframe=ciencia,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  fonttitle=\bfseries,coltitle=cienciaD,title={#1},attach title to upper={\ \ }}
+\newtcolorbox{ojo}[1][Ojo]{enhanced,breakable,colback=coralT,colframe=coral,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=coral,ojobn}
+\newtcolorbox{ejemplo}[1][Ejemplo]{enhanced,breakable,colback=white,colframe=gris,boxrule=0.6pt,arc=3pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+  title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=tinta,ejbn}
+\newcommand{\gatotip}[2][\gatonaranjo]{%
+  \begin{tcolorbox}[enhanced,colback=white,colframe=white,boxrule=0pt,left=0pt,right=0pt,top=2pt,bottom=2pt,before skip=6pt,after skip=6pt,
+    sidebyside,lefthand width=1.55cm,sidebyside gap=10pt,segmentation hidden]
+  \centering #1[0.07]
+  \tcblower
+  \begin{tcolorbox}[enhanced,colback=cienciaL!18,colframe=cienciaL,boxrule=0.6pt,arc=8pt,left=7pt,right=7pt,top=3pt,bottom=3pt,
+    overlay={\fill[cienciaL!18,draw=cienciaL,line width=0.6pt] ([yshift=-8pt]frame.north west) -- ++(-7pt,-4pt) -- ++(7pt,-4pt);}]
+  \small #2
+  \end{tcolorbox}
+  \end{tcolorbox}}
+\newenvironment{elejemplo}[1]{%
+  \begin{tcolorbox}[enhanced,breakable,colback=white,colframe=ciencia,boxrule=0.8pt,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=10pt,
+    title={\gatociencia[0.035]\ \ El ejemplo tipo PAES\hfill{\normalfont\small #1}},fonttitle=\bfseries,colbacktitle=ciencia,coltitle=white]}
+  {\end{tcolorbox}}
+%% alternativas cortas en dos columnas (\alts) o largas una por línea (\altslargas); solución: \solucion{...}{clave}
+\newcommand{\alts}[4]{\par\smallskip
+  \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}
+  \textbf{\color{ciencia}A)} #1 & \textbf{\color{ciencia}B)} #2\\[2pt] \textbf{\color{ciencia}C)} #3 & \textbf{\color{ciencia}D)} #4
+  \end{tabular}\par}
+\newcommand{\altslargas}[4]{\par\smallskip
+  \begin{enumerate}[label={\textbf{\color{ciencia}\Alph*)}},leftmargin=2em,itemsep=2pt]\item #1 \item #2 \item #3 \item #4\end{enumerate}\par}
+\newcommand{\solucion}[2]{\par\smallskip{\color{cienciaL}\hrule}\smallskip\textbf{\color{cienciaD}Solución.} #1\par\smallskip\textbf{\color{cienciaD}Clave:} #2\par}
+
+\begin{document}
+%% ---------- portada ----------
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[fondo] (current page.north west) rectangle (current page.south east);
+  \node[anchor=north west] at ([xshift=2.2cm,yshift=-2.2cm]current page.north west) {\includegraphics[width=2.4cm]{fabimath_logo.png}};
+  \node[anchor=north west,text=sobrefondo,font=\fontsize{50}{54}\selectfont\bfseries] at ([xshift=2.2cm,yshift=-5.6cm]current page.north west) {PAES Ciencias};
+  \node[anchor=north west,text=sobrefondo,font=\fontsize{24}{28}\selectfont] at ([xshift=2.3cm,yshift=-8.1cm]current page.north west) {Mención Química · Admisión 2027};
+  \node[anchor=north west,text=sobrefondo,font=\Large,text width=15cm] at ([xshift=2.3cm,yshift=-9.7cm]current page.north west) {Todo lo que entra en tu prueba de Ciencias si eliges la mención en Química, en un solo libro.};
+  %% las tres ciencias, cada una en su color, con lo que cubre
+  \foreach \c/\n/\m/\y in {qui/Química/Común y Mención/12.6,fis/Física/Solo Módulo Común/14.4,bio/Biología/Solo Módulo Común/16.2}{
+    \ifbn\node[anchor=north west,draw=black,line width=1pt,fill=white,text=black,rounded corners=6pt,text width=10.3cm,minimum height=1.35cm,inner xsep=10pt,font=\Large]
+      at ([xshift=2.3cm,yshift=-\y cm]current page.north west) {\textbf{\n}\hfill\m};
+    \else\node[anchor=north west,draw=white,line width=1.5pt,fill=\c C,text=white,rounded corners=6pt,text width=10.3cm,minimum height=1.35cm,inner xsep=10pt,font=\Large]
+      at ([xshift=2.3cm,yshift=-\y cm]current page.north west) {\textbf{\n}\hfill\m};\fi}
+  \node at ([xshift=-4.2cm,yshift=7.4cm]current page.south east) {\gatonaranjo[0.24]};
+  \node at ([xshift=-7.6cm,yshift=4.6cm]current page.south east) {\gatogris[0.15]};
+  \node at ([xshift=-3.4cm,yshift=3.9cm]current page.south east) {\gatolila[0.15]};
+  \node[anchor=south west,text=sobrefondo,font=\large\bfseries] at ([xshift=2.3cm,yshift=2.2cm]current page.south west) {Fabián Ramírez · Fabimath};
+  \node[anchor=south east,text=sobrefondo,font=\small] at ([xshift=-2.2cm,yshift=2.25cm]current page.south east) {fabimath.github.io/FabimathOficialWebSite/paes.html};
+\end{tikzpicture}
+\end{titlepage}
+
+%% ---------- cómo es la prueba y cómo usar el libro ----------
+\thispagestyle{plain}
+{\Large\bfseries\color{quiC} Cómo es tu prueba}\par\medskip
+La PAES de Ciencias tiene \textbf{80 preguntas} y dura 2 horas y 40 minutos (75 cuentan para el puntaje). Está dividida en dos módulos:
+\begin{itemize}
+  \item \textbf{Módulo Común}, las primeras \textbf{54 preguntas}: Biología, Física y Química. Lo rinden todos, elijan la mención que elijan.
+  \item \textbf{Módulo Electivo}, las últimas \textbf{26 preguntas}: solo de la ciencia que elegiste. En tu caso, \textbf{Química}.
+\end{itemize}
+Por eso este libro no trata igual a las tres ciencias:
+
+\medskip
+\begin{center}\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Ciencia} & \textbf{Qué trae este libro} & \textbf{Dónde te lo preguntan}\\ \midrule
+\textbf{\color{quiC}Química} & todo: Común y Mención & Módulo Común y Módulo Electivo\\
+\textbf{\color{fisC}Física} & solo lo del Común & Módulo Común\\
+\textbf{\color{bioC}Biología} & solo lo del Común & Módulo Común\\ \bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+Cada ciencia tiene su color: \textbf{\color{quiC}Química en naranjo}, \textbf{\color{fisC}Física en azul} y \textbf{\color{bioC}Biología en morado}. Y cada tema lleva una marca junto al título:
+
+\medskip
+{\ciencia{qui}\modcomun}\ \ el tema es del Módulo Común. En Química, además, también puede salir en el Electivo.
+
+{\ciencia{qui}\modmencion}\ \ el tema sale solo en el Módulo Electivo de Química. Es el capítulo 5.
+
+\medskip
+{\Large\bfseries\color{quiC} Cómo usar este libro}\par\medskip
+Cada capítulo es una unidad del temario y cada sección es un tema de la página, con la misma clase completa que ves en la web. Al final de cada tema está \textbf{el ejemplo}: una pregunta tipo PAES resuelta paso a paso. Para practicar con más preguntas, entra a la página: tus estrellas y tus gatos te esperan.
+
+{\ciencia{qui}
+\begin{clave}[Recuerda] La regla, fórmula o idea clave que hay que saber.\end{clave}
+\begin{ojo}[Error típico] El error que más se repite en la prueba.\end{ojo}
+\begin{ejemplo}[Ejemplo resuelto] Un caso corto para ver la materia en acción.\end{ejemplo}
+\gatotip[\gatogris]{Y los gatitos te dan trucos para ganar tiempo en la prueba. Miau.}}
+
+\medskip
+{\large\bfseries\color{quiC} Notación}\par\smallskip
+\textbf{Química:} $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.
+\textbf{Física:} $v$ rapidez, $a$ aceleración, $F$ fuerza (N), $g = 10$ m/s², $\lambda$ longitud de onda, $f$ frecuencia, $V$ voltaje, $I$ corriente, $R$ resistencia, $P$ potencia.
+\textbf{Biología:} $2n$ diploide y $n$ haploide (juegos de cromosomas), ADN y ARN, FSH, LH, estrógeno y progesterona, CO\textsubscript{2} y O\textsubscript{2}.
+Decimales con coma: $0{,}25$.
+
+\tableofcontents
+
+%% para probar una sola ciencia: pdflatex -jobname=prueba "\def\solocap{cap_fisica}\input{libro_ciencias.tex}"
+\ifdefined\solocap \input{\solocap} \else
+\input{cap_quimica}
+\input{cap_fisica}
+\input{cap_biologia}
+\fi
+
+\end{document}

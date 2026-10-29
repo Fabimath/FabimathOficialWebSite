@@ -276,7 +276,7 @@ const BIO_DIVISION = [
       <div class="cols"><div>
       <p>La célula llega a la meiosis con el ADN ya replicado: cada cromosoma tiene dos cromátidas.</p>
       <ul><li><b>Profase I.</b> Es la etapa más larga. Los cromosomas se condensan y cada par de <b>homólogos se aparea</b> a lo largo (sinapsis), unidos por el complejo sinaptonémico. Cada par forma un <b>bivalente</b> o tétrada (cuatro cromátidas). Ocurre el <b>entrecruzamiento</b>.</li>
-      <li><b>Metafase I.</b> Los <b>pares de homólogos</b> se ubican en el plano ecuatorial, uno a cada lado.</li>
+      <li><b>Metafase I.</b> Los <b>pares de homólogos</b> se ubican en el plano ecuatorial, uno a cada lado.</li></ul>
       </div><div>
       <ul><li><b>Anafase I.</b> Se separan los <b>cromosomas homólogos</b> y van a polos opuestos. Las cromátidas hermanas siguen unidas.</li>
       <li><b>Telofase I.</b> Se forman dos células <b>haploides (n)</b>, cada una con un cromosoma de cada par, todavía con dos cromátidas.</li></ul>
