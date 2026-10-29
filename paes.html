@@ -39,6 +39,7 @@
 <script src="paes_fisica_tierra.js"></script>
 <script src="paes_fisica_electricidad.js"></script>
 <script src="paes_fisica_habilidades.js"></script>
+<script src="paes_lectora.js"></script>
 <script src="paes_compacto_m1.js"></script>
 <script src="paes_compacto_fis.js"></script>
 <script src="paes_compacto_bio.js"></script>
@@ -219,6 +220,7 @@
   .pbar > div { height: 100%; background: var(--royal); border-radius: 980px; transition: width .4s var(--ease); }
   .qenun { font-size: 17px; line-height: 1.55; margin-bottom: 16px; }
   .qenun p { margin-bottom: 10px; }
+  .pauta mark { background: #ffe1b8; color: inherit; padding: 0 3px; border-radius: 4px; }
   .qfig { margin: 6px 0 18px; overflow-x: auto; }
   .qfig table, .slide table, .review table, .qenun table { border-collapse: collapse; font-size: 15px; margin: 4px 0; }
   .qfig th, .qfig td, .slide th, .slide td, .review th, .review td, .qenun th, .qenun td { border: 1px solid var(--line); padding: 8px 14px; text-align: center; }
@@ -370,7 +372,7 @@
     <div id="v_menu">
       <div class="hero">
         <h1>PAES <span>Fabimath</span></h1>
-        <p>Clases, preguntas tipo PAES y miniensayos de Matemática M1 y Ciencias. Tus estrellas y tus gatos sirven en todo.</p>
+        <p>Clases, preguntas tipo PAES y miniensayos de Matemática M1, Competencia Lectora y Ciencias. Tus estrellas y tus gatos sirven en todo.</p>
       </div>
       <div class="menu3">
         <a class="big" href="#estudiar"><span class="ic">📚</span>Estudiar<small>Unidades y temas con clase, pregunta resuelta y cuestionario</small></a>
@@ -501,6 +503,7 @@ const TOPICS_FIS = [...FIS_ONDAS, ...FIS_MOVIMIENTO, ...FIS_FUERZAS, ...FIS_TIER
 const TOPICS_BIO = [...BIO_CELULA, ...BIO_NERVIOSO, ...BIO_REPRODUCCION, ...BIO_DIVISION, ...BIO_EVOLUCION, ...BIO_AMBIENTE, ...BIO_HABILIDADES];
 const TOPICS_ALG_M1 = [...TOPICS_ALG, ...ALG_EXPRESIONES, ...ALG_PROPORCION];
 const TOPICS_GEO = [...GEO_FIGURAS, ...GEO_TRANSFORMACIONES];
+const TOPICS_LEC = LEC_PARRAFO;
 const TOPICS_QUI = [...QUI_ATOMO, ...QUI_ORGANICA, ...QUI_REACCIONES, ...QUI_SOLUCIONES, ...QUI_HABILIDADES, ...QUI_ELECTIVO];
 // temas de Química que en las pruebas DEMRE (Invierno 2026, Regular 2026, Invierno 2027) solo salen en el Módulo Electivo; el resto también entra en el Común.
 // Física y Biología traen solo lo del Módulo Común (lo electivo se guarda fuera del sitio).
@@ -512,6 +515,8 @@ const AREAS = {
     ejes: [['🔢 Números', TOPICS_NUM], ['🧮 Álgebra', TOPICS_ALG_M1], ['📈 Funciones', TOPICS_FUN], ['🔺 Geometría', TOPICS_GEO], ['📊 Probabilidad y Estadística', TOPICS]],
     src: 'Basado en el temario oficial PAES M1 (Admisión 2027) y en el estilo de las tres últimas pruebas publicadas por el DEMRE.',
     nota: ' · Notación: $\\mathbb{Z}$ enteros, $\\mathbb{Q}$ racionales, $f(x)$ imagen de $x$, $m$ pendiente, $\\Delta = b^2 - 4ac$, $\\mathbb{P}(A)$ probabilidad, $f_i$ y $h_i$ frecuencias, $\\bar{x}$ promedio, $Q_2 = Me$.' },
+  lec: { name: 'Competencia Lectora', tab: '📖 Lectora', prueba: 'PAES Competencia Lectora', beta: true, ensayo: 'ensayo_lec', ejes: [['', TOPICS_LEC]],
+    src: 'Versión beta. Párrafo PAES: un párrafo corto y una pregunta, para practicar las tareas de Interpretar y Evaluar del temario oficial de la PAES de Competencia Lectora (Admisión 2027), con preguntas al estilo de las tres últimas pruebas publicadas por el DEMRE. En la pauta, lo destacado es la parte del párrafo donde está la respuesta.' },
   qui: { name: 'Química', tab: '🧪 Química', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_qui', ejes: [['', TOPICS_QUI]], src: SRC_CIENCIAS('Química'),
     nota: ' · Notación: $n$ cantidad de sustancia (mol), $M$ masa molar (g/mol), $Z$ número atómico, $A$ número másico, concentración molar en mol/L.' },
   fis: { name: 'Física', tab: '🔭 Física', prueba: 'PAES Ciencias', beta: true, ensayo: 'ensayo_fis', ejes: [['', TOPICS_FIS]], src: SRC_COMUN('Física'),
@@ -531,7 +536,7 @@ const MIXTO = { name: 'Mixto', prueba: 'PAES M1', topics: [], mix: [TOPICS, TOPI
 // el eje activo: lo fija la vista de Estudiar o el miniensayo elegido en Practicar
 let EJE = AREAS.m1, T = EJE.topics;
 const ALL_TOPICS = Object.values(AREAS).flatMap(a => a.topics);
-const ENSAYOS = { ensayo_m1: 'Miniensayo de Matemática M1', ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Miniensayo de Química', ensayo_bio: 'Miniensayo de Biología', ensayo_fis: 'Miniensayo de Física' };
+const ENSAYOS = { ensayo_m1: 'Miniensayo de Matemática M1', ensayo: 'Ensayo de Probabilidad y Estadística', ensayo_num: 'Ensayo de Números', ensayo_fun: 'Ensayo de Funciones', ensayo_alg: 'Ensayo de Álgebra y ecuaciones', ensayo_mix: 'Desafío mixto', ensayo_qui: 'Miniensayo de Química', ensayo_bio: 'Miniensayo de Biología', ensayo_fis: 'Miniensayo de Física', ensayo_lec: 'Miniensayo de Competencia Lectora' };
 function setEje(e) {
   EJE = e; T = e.topics;
   document.title = `PAES ${e.name} — Fabimath`;
@@ -1116,11 +1121,11 @@ window.renderAdmin = async () => {
       .sort((a, b) => (b.updated || '').localeCompare(a.updated || ''));
   } catch (e) { el.innerHTML = '<h3>🧑‍🏫 Panel del profe</h3><div class="sub">No se pudo leer el avance de los estudiantes: revisa las reglas de Firestore.</div>'; return; }
   el.innerHTML = `<h3>🧑‍🏫 Panel del profe</h3><div class="sub">${filasAdmin.length} estudiantes con cuenta · solo tú ves esto</div>
-    <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Geometría</th><th>Química</th><th>Biología</th><th>Física</th><th>Ensayos (mejor)</th><th>Ensayos rendidos</th><th>Intentos</th><th>Última actividad</th><th></th></tr></thead><tbody>` +
+    <table><thead><tr><th>Estudiante</th><th>⭐</th><th>Números</th><th>Estadística</th><th>Funciones</th><th>Álgebra</th><th>Geometría</th><th>Química</th><th>Biología</th><th>Física</th><th>Lectora</th><th>Ensayos (mejor)</th><th>Ensayos rendidos</th><th>Intentos</th><th>Última actividad</th><th></th></tr></thead><tbody>` +
     filasAdmin.map(f => { const p = f.p, h = p.hist || [];
       const hechos = ts => `${ts.filter(t => p[t.id]).length}/${ts.length}`;
-      const ens = ['ensayo_m1', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
-      return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG_M1)}</td><td>${hechos(TOPICS_GEO)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${ens}</td><td>${h.filter(x => x.id in ENSAYOS).length}</td><td>${h.length}</td><td>${fecha(f.updated)}</td><td><a href="paes/reporte.html?q=${encodeURIComponent(f.email || '')}" target="_blank">Informe de errores</a></td></tr>`; }).join('') +
+      const ens = ['ensayo_m1', 'ensayo_lec', 'ensayo_qui', 'ensayo_bio', 'ensayo_fis'].map(k => p[k] ? p[k].best + '/20' : '–').join(' · ');
+      return `<tr><td>${esc(f.name || '')}<br><small>${esc(f.email || '')}</small></td><td><b>${p.pts || 0}</b></td><td>${hechos(TOPICS_NUM)}</td><td>${hechos(TOPICS)}</td><td>${hechos(TOPICS_FUN)}</td><td>${hechos(TOPICS_ALG_M1)}</td><td>${hechos(TOPICS_GEO)}</td><td>${hechos(TOPICS_QUI)}</td><td>${hechos(TOPICS_BIO)}</td><td>${hechos(TOPICS_FIS)}</td><td>${hechos(TOPICS_LEC)}</td><td>${ens}</td><td>${h.filter(x => x.id in ENSAYOS).length}</td><td>${h.length}</td><td>${fecha(f.updated)}</td><td><a href="paes/reporte.html?q=${encodeURIComponent(f.email || '')}" target="_blank">Informe de errores</a></td></tr>`; }).join('') +
     '</tbody></table><div class="note">Temas practicados por eje; miniensayos: mejor puntaje en M1 · Química · Biología · Física. El informe abre las preguntas que erró cada estudiante.</div>';
   pintaHistAdmin();
 };
