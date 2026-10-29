@@ -8,18 +8,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 1{,}750\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 1{,}750\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}292\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 0{,}292\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −1{,}750\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=210,\\ \\bar{x}=217,\\ \\sigma=24,\\ n=36,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=210,\\ \\bar{x}=217,\\ \\sigma=24,\\ n=36,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=210\\quad\\text{vs}\\quad H_1:\\mu>210",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{217-210}{24/\\sqrt{36}}=1{,}750",
 "\\text{Región de rechazo: }Z_c > 1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=1{,}750\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 210 kg."
+"conc": "Se rechaza H₀: hay evidencia de que el peso promedio de las cerdas del productor es mayor que 210 kg."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -29,18 +29,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −3{,}548\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −3{,}548\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}710\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}710\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 3{,}548\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=15,\\ \\bar{x}=12{,}80,\\ \\sigma=3,1,\\ n=25,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=15,\\ \\bar{x}=12{,}80,\\ \\sigma=3{,}1,\\ n=25,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=15\\quad\\text{vs}\\quad H_1:\\mu<15",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{12{,}80-15}{3,1/\\sqrt{25}}=−3{,}548",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{12{,}80-15}{3{,}1/\\sqrt{25}}=−3{,}548",
 "\\text{Región de rechazo: }Z_c < −2{,}326\\quad(z_{crit}=2{,}326)",
 "\\text{Como }Z_c=−3{,}548\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 15 g/dL."
+"conc": "Se rechaza H₀: hay evidencia de que la hemoglobina media de los perros con enfermedad renal crónica es menor que 15 g/dL."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -50,18 +50,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 5{,}250\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 5{,}250\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}750\\;$ · se rechaza $H_0$",
-"$\\;Z_c = −5{,}250\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = 0{,}750\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = −5{,}250\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=38{,}50,\\ \\bar{x}=39{,}10,\\ \\sigma=0,8,\\ n=49,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=38{,}50,\\ \\bar{x}=39{,}10,\\ \\sigma=0{,}8,\\ n=49,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=38{,}50\\quad\\text{vs}\\quad H_1:\\mu\\neq38{,}50",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{39{,}10-38{,}50}{0,8/\\sqrt{49}}=5{,}250",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{39{,}10-38{,}50}{0{,}8/\\sqrt{49}}=5{,}250",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=5{,}250\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 38,50 °C."
+"conc": "Se rechaza H₀: hay evidencia de que la temperatura media de los novillos estresados por el transporte difiere de 38,50 °C."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -71,18 +71,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −2{,}500\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −2{,}500\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}625\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}625\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 2{,}500\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=65,\\ \\bar{x}=62{,}50,\\ \\sigma=4,\\ n=16,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=65,\\ \\bar{x}=62{,}50,\\ \\sigma=4,\\ n=16,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=65\\quad\\text{vs}\\quad H_1:\\mu<65",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{62{,}50-65}{4/\\sqrt{16}}=−2{,}500",
 "\\text{Región de rechazo: }Z_c < −1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=−2{,}500\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 65 días."
+"conc": "Se rechaza H₀: hay evidencia de que la duración media de la gestación de las gatas del criador es menor que 65 días."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -92,18 +92,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 2{,}933\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 2{,}933\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}367\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 0{,}367\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −2{,}933\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=58,\\ \\bar{x}=61{,}30,\\ \\sigma=9,\\ n=64,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=58,\\ \\bar{x}=61{,}30,\\ \\sigma=9,\\ n=64,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=58\\quad\\text{vs}\\quad H_1:\\mu>58",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{61{,}30-58}{9/\\sqrt{64}}=2{,}933",
 "\\text{Región de rechazo: }Z_c > 2{,}326\\quad(z_{crit}=2{,}326)",
 "\\text{Como }Z_c=2{,}933\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 58 g/día."
+"conc": "Se rechaza H₀: hay evidencia de que la ganancia diaria media con el nuevo suplemento es mayor que 58 g/día."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -113,39 +113,39 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 2{,}347\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 2{,}347\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}429\\;$ · se rechaza $H_0$",
-"$\\;Z_c = −2{,}347\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = 0{,}429\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = −2{,}347\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=85,\\ \\bar{x}=91,\\ \\sigma=14,\\ n=30,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=85,\\ \\bar{x}=91,\\ \\sigma=14,\\ n=30,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=85\\quad\\text{vs}\\quad H_1:\\mu\\neq85",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{91-85}{14/\\sqrt{30}}=2{,}347",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=2{,}347\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 85 mg/dL."
+"conc": "Se rechaza H₀: hay evidencia de que la glucosa plasmática media de los caballos de polo en competencia difiere de 85 mg/dL."
 },
 {
 "tipo": "Media · σ conocida (Z)",
 "ctx": "Enfermería · Urgencias",
-"enun": "El tiempo de espera previo era 45 minutos. Tras un nuevo triaje, en 50 pacientes el promedio fue 47,8 minutos. La desviación estándar poblacional es 12 minutos. Con α=0,05, ¿aumentó el tiempo de espera?",
+"enun": "El tiempo de espera previo era 45 minutos. Tras un nuevo triaje, en 50 pacientes el promedio fue 48 minutos. La desviación estándar poblacional es 12 minutos. Con α=0,05, ¿aumentó el tiempo de espera?",
 "ask": "El estadístico de prueba y la decisión correctos son:",
 "alts": [
-"$\\;Z_c = 1{,}650\\;$ · se rechaza $H_0$",
-"$\\;Z_c = 1{,}650\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}233\\;$ · se rechaza $H_0$",
-"$\\;Z_c = −1{,}650\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = 1{,}768\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 1{,}768\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = 0{,}250\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = −1{,}768\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=45,\\ \\bar{x}=47{,}80,\\ \\sigma=12,\\ n=50,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=45,\\ \\bar{x}=48,\\ \\sigma=12,\\ n=50,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=45\\quad\\text{vs}\\quad H_1:\\mu>45",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{47{,}80-45}{12/\\sqrt{50}}=1{,}650",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{48-45}{12/\\sqrt{50}}=1{,}768",
 "\\text{Región de rechazo: }Z_c > 1{,}645\\quad(z_{crit}=1{,}645)",
-"\\text{Como }Z_c=1{,}650\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
+"\\text{Como }Z_c=1{,}768\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 45 min."
+"conc": "Se rechaza H₀: hay evidencia de que el tiempo medio de espera con el nuevo triaje es mayor que 45 min."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -155,18 +155,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −3{,}935\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −3{,}935\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}622\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}622\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 3{,}935\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=97,\\ \\bar{x}=94{,}20,\\ \\sigma=4,5,\\ n=40,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=97,\\ \\bar{x}=94{,}20,\\ \\sigma=4{,}5,\\ n=40,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=97\\quad\\text{vs}\\quad H_1:\\mu<97",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{94{,}20-97}{4,5/\\sqrt{40}}=−3{,}935",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{94{,}20-97}{4{,}5/\\sqrt{40}}=−3{,}935",
 "\\text{Región de rechazo: }Z_c < −2{,}326\\quad(z_{crit}=2{,}326)",
 "\\text{Como }Z_c=−3{,}935\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 97 %."
+"conc": "Se rechaza H₀: hay evidencia de que la SpO2 media de los adultos mayores con neumonía es menor que 97 %."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -176,18 +176,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −2{,}400\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −2{,}400\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}400\\;$ · se rechaza $H_0$",
-"$\\;Z_c = 2{,}400\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = −0{,}400\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = 2{,}400\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=72,\\ \\bar{x}=68,\\ \\sigma=10,\\ n=36,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=72,\\ \\bar{x}=68,\\ \\sigma=10,\\ n=36,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=72\\quad\\text{vs}\\quad H_1:\\mu\\neq72",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{68-72}{10/\\sqrt{36}}=−2{,}400",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=−2{,}400\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 72 lpm."
+"conc": "Se rechaza H₀: hay evidencia de que la frecuencia cardíaca media de los pacientes con hipotiroidismo difiere de 72 lpm."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -197,18 +197,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −2{,}167\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −2{,}167\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}433\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}433\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 2{,}167\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=21,\\ \\bar{x}=18{,}40,\\ \\sigma=6,\\ n=25,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=21,\\ \\bar{x}=18{,}40,\\ \\sigma=6,\\ n=25,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=21\\quad\\text{vs}\\quad H_1:\\mu<21",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{18{,}40-21}{6/\\sqrt{25}}=−2{,}167",
 "\\text{Región de rechazo: }Z_c < −1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=−2{,}167\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 21 días."
+"conc": "Se rechaza H₀: hay evidencia de que el tiempo medio de cicatrización con el nuevo apósito es menor que 21 días."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -218,18 +218,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 2{,}275\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 2{,}275\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}325\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 0{,}325\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −2{,}275\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=18,\\ \\bar{x}=20{,}60,\\ \\sigma=8,\\ n=49,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=18,\\ \\bar{x}=20{,}60,\\ \\sigma=8,\\ n=49,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=18\\quad\\text{vs}\\quad H_1:\\mu>18",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{20{,}60-18}{8/\\sqrt{49}}=2{,}275",
 "\\text{Región de rechazo: }Z_c > 1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=2{,}275\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 18 µg/dL."
+"conc": "Se rechaza H₀: hay evidencia de que el cortisol medio de las enfermeras de turno nocturno es mayor que 18 µg/dL."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -240,17 +240,17 @@ const TH_QUESTIONS = [
 "$\\;Z_c = −1{,}714\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −1{,}714\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −0{,}214\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 1{,}714\\;$ · se rechaza $H_0$"
+"$\\;Z_c = 1{,}714\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=120,\\ \\bar{x}=114,\\ \\sigma=28,\\ n=64,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=120,\\ \\bar{x}=114,\\ \\sigma=28,\\ n=64,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=120\\quad\\text{vs}\\quad H_1:\\mu\\neq120",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{114-120}{28/\\sqrt{64}}=−1{,}714",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=−1{,}714\\ \\text{no cae en la región de rechazo}\\Rightarrow \\text{no se rechaza }H_0"
 ],
-"conc": "No se rechaza H₀: no hay evidencia de que la media difiera de 120 mg."
+"conc": "No se rechaza H₀: no hay evidencia suficiente de que la dosis media de tramadol del servicio difiera de 120 mg."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -260,18 +260,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 2{,}600\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 2{,}600\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}289\\;$ · se rechaza $H_0$",
-"$\\;Z_c = −2{,}600\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = 0{,}289\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = −2{,}600\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=3350,\\ \\bar{x}=3480,\\ \\sigma=450,\\ n=81,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=3350,\\ \\bar{x}=3480,\\ \\sigma=450,\\ n=81,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=3350\\quad\\text{vs}\\quad H_1:\\mu\\neq3350",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{3480-3350}{450/\\sqrt{81}}=2{,}600",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=2{,}600\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 3350 g."
+"conc": "Se rechaza H₀: hay evidencia de que el peso medio al nacer en la clínica difiere de 3.350 g."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -281,18 +281,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −2{,}800\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −2{,}800\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}560\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}560\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 2{,}800\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=39{,}20,\\ \\bar{x}=37{,}80,\\ \\sigma=2,5,\\ n=25,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=39{,}20,\\ \\bar{x}=37{,}80,\\ \\sigma=2{,}5,\\ n=25,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=39{,}20\\quad\\text{vs}\\quad H_1:\\mu<39{,}20",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{37{,}80-39{,}20}{2,5/\\sqrt{25}}=−2{,}800",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{37{,}80-39{,}20}{2{,}5/\\sqrt{25}}=−2{,}800",
 "\\text{Región de rechazo: }Z_c < −1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=−2{,}800\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 39,20 semanas."
+"conc": "Se rechaza H₀: hay evidencia de que la edad gestacional media al parto en embarazadas con lupus es menor que 39,20 semanas."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -302,18 +302,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 3{,}200\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 3{,}200\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}533\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 0{,}533\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −3{,}200\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=350,\\ \\bar{x}=398,\\ \\sigma=90,\\ n=36,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=350,\\ \\bar{x}=398,\\ \\sigma=90,\\ n=36,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=350\\quad\\text{vs}\\quad H_1:\\mu>350",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{398-350}{90/\\sqrt{36}}=3{,}200",
 "\\text{Región de rechazo: }Z_c > 1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=3{,}200\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 350 mL."
+"conc": "Se rechaza H₀: hay evidencia de que el volumen medio de loquios con episiotomía amplia es mayor que 350 mL."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -323,18 +323,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 4{,}000\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 4{,}000\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}571\\;$ · se rechaza $H_0$",
-"$\\;Z_c = −4{,}000\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = 0{,}571\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = −4{,}000\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8,\\ \\bar{x}=9{,}20,\\ \\sigma=2,1,\\ n=49,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8,\\ \\bar{x}=9{,}20,\\ \\sigma=2{,}1,\\ n=49,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=8\\quad\\text{vs}\\quad H_1:\\mu\\neq8",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{9{,}20-8}{2,1/\\sqrt{49}}=4{,}000",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{9{,}20-8}{2{,}1/\\sqrt{49}}=4{,}000",
 "\\text{Región de rechazo: }|Z_c| > 2{,}576\\quad(z_{crit}=2{,}576)",
 "\\text{Como }Z_c=4{,}000\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 8 tomas."
+"conc": "Se rechaza H₀: hay evidencia de que el número medio de tomas diarias de los lactantes de madres primerizas difiere de 8 tomas."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -344,18 +344,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −3{,}111\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −3{,}111\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}389\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}389\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 3{,}111\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=34{,}50,\\ \\bar{x}=33{,}80,\\ \\sigma=1,8,\\ n=64,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=34{,}50,\\ \\bar{x}=33{,}80,\\ \\sigma=1{,}8,\\ n=64,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=34{,}50\\quad\\text{vs}\\quad H_1:\\mu<34{,}50",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{33{,}80-34{,}50}{1,8/\\sqrt{64}}=−3{,}111",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{33{,}80-34{,}50}{1{,}8/\\sqrt{64}}=−3{,}111",
 "\\text{Región de rechazo: }Z_c < −2{,}326\\quad(z_{crit}=2{,}326)",
 "\\text{Como }Z_c=−3{,}111\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 34,50 cm."
+"conc": "Se rechaza H₀: hay evidencia de que el perímetro cefálico medio de los neonatos de la zona es menor que 34,50 cm."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -365,18 +365,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = 3{,}000\\;$ · se rechaza $H_0$",
 "$\\;Z_c = 3{,}000\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = 0{,}500\\;$ · se rechaza $H_0$",
+"$\\;Z_c = 0{,}500\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = −3{,}000\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=45,\\ \\bar{x}=51,\\ \\sigma=12,\\ n=36,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=45,\\ \\bar{x}=51,\\ \\sigma=12,\\ n=36,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=45\\quad\\text{vs}\\quad H_1:\\mu>45",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{51-45}{12/\\sqrt{36}}=3{,}000",
 "\\text{Región de rechazo: }Z_c > 1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=3{,}000\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 45 kg."
+"conc": "Se rechaza H₀: hay evidencia de que la fuerza de prensión palmar media de los rugbiers es mayor que 45 kg."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -386,18 +386,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −3{,}162\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −3{,}162\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}500\\;$ · se rechaza $H_0$",
+"$\\;Z_c = −0{,}500\\;$ · no se rechaza $H_0$",
 "$\\;Z_c = 3{,}162\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=75,\\ \\bar{x}=69,\\ \\sigma=12,\\ n=40,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=75,\\ \\bar{x}=69,\\ \\sigma=12,\\ n=40,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=75\\quad\\text{vs}\\quad H_1:\\mu<75",
 "Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{69-75}{12/\\sqrt{40}}=−3{,}162",
 "\\text{Región de rechazo: }Z_c < −1{,}645\\quad(z_{crit}=1{,}645)",
 "\\text{Como }Z_c=−3{,}162\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 75 grados."
+"conc": "Se rechaza H₀: hay evidencia de que la extensibilidad media de isquiotibiales de los trabajadores es menor que 75 grados."
 },
 {
 "tipo": "Media · σ conocida (Z)",
@@ -407,18 +407,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;Z_c = −2{,}500\\;$ · se rechaza $H_0$",
 "$\\;Z_c = −2{,}500\\;$ · no se rechaza $H_0$",
-"$\\;Z_c = −0{,}500\\;$ · se rechaza $H_0$",
-"$\\;Z_c = 2{,}500\\;$ · no se rechaza $H_0$"
+"$\\;Z_c = −0{,}500\\;$ · no se rechaza $H_0$",
+"$\\;Z_c = 2{,}500\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=3{,}20,\\ \\bar{x}=2{,}90,\\ \\sigma=0,6,\\ n=25,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=3{,}20,\\ \\bar{x}=2{,}90,\\ \\sigma=0{,}6,\\ n=25,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=3{,}20\\quad\\text{vs}\\quad H_1:\\mu\\neq3{,}20",
-"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{2{,}90-3{,}20}{0,6/\\sqrt{25}}=−2{,}500",
+"Z_c=\\dfrac{\\bar{x}-\\mu_0}{\\sigma/\\sqrt{n}}=\\dfrac{2{,}90-3{,}20}{0{,}6/\\sqrt{25}}=−2{,}500",
 "\\text{Región de rechazo: }|Z_c| > 1{,}960\\quad(z_{crit}=1{,}960)",
 "\\text{Como }Z_c=−2{,}500\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 3,20 litros."
+"conc": "Se rechaza H₀: hay evidencia de que la CVF media de los pacientes con artritis reumatoide difiere de 3,20 litros."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -428,18 +428,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}294\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}294\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}636\\;$ · se rechaza $H_0$",
+"$\\;T_c = 0{,}636\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −2{,}294\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=6{,}50,\\ \\bar{x}=7{,}20,\\ s=1,1,\\ n=13,\\ \\nu=12,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=6{,}50,\\ \\bar{x}=7{,}20,\\ s=1{,}1,\\ n=13,\\ \\nu=12,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=6{,}50\\quad\\text{vs}\\quad H_1:\\mu>6{,}50",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{7{,}20-6{,}50}{1,1/\\sqrt{13}}=2{,}294",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{7{,}20-6{,}50}{1{,}1/\\sqrt{13}}=2{,}294",
 "\\text{Región de rechazo: }T_c > 1{,}782\\quad(t_{crit}=1{,}782)",
 "\\text{Como }T_c=2{,}294\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 6,50 g/dL."
+"conc": "Se rechaza H₀: hay evidencia de que la proteína total media de los Rottweiler es mayor que 6,50 g/dL."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -449,18 +449,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −2{,}811\\;$ · se rechaza $H_0$",
 "$\\;T_c = −2{,}811\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}889\\;$ · se rechaza $H_0$",
+"$\\;T_c = −0{,}889\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 2{,}811\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=39,\\ \\bar{x}=38{,}20,\\ s=0,9,\\ n=10,\\ \\nu=9,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=39,\\ \\bar{x}=38{,}20,\\ s=0{,}9,\\ n=10,\\ \\nu=9,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=39\\quad\\text{vs}\\quad H_1:\\mu<39",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{38{,}20-39}{0,9/\\sqrt{10}}=−2{,}811",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{38{,}20-39}{0{,}9/\\sqrt{10}}=−2{,}811",
 "\\text{Región de rechazo: }T_c < −1{,}833\\quad(t_{crit}=1{,}833)",
 "\\text{Como }T_c=−2{,}811\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 39 °C."
+"conc": "Se rechaza H₀: hay evidencia de que la temperatura media de los conejos en hacinamiento es menor que 39 °C."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -470,18 +470,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 3{,}500\\;$ · se rechaza $H_0$",
 "$\\;T_c = 3{,}500\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}875\\;$ · se rechaza $H_0$",
-"$\\;T_c = −3{,}500\\;$ · no se rechaza $H_0$"
+"$\\;T_c = 0{,}875\\;$ · no se rechaza $H_0$",
+"$\\;T_c = −3{,}500\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=6{,}20,\\ \\bar{x}=6{,}90,\\ s=0,8,\\ n=16,\\ \\nu=15,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=6{,}20,\\ \\bar{x}=6{,}90,\\ s=0{,}8,\\ n=16,\\ \\nu=15,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=6{,}20\\quad\\text{vs}\\quad H_1:\\mu\\neq6{,}20",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}90-6{,}20}{0,8/\\sqrt{16}}=3{,}500",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}90-6{,}20}{0{,}8/\\sqrt{16}}=3{,}500",
 "\\text{Región de rechazo: }|T_c| > 2{,}131\\quad(t_{crit}=2{,}131)",
 "\\text{Como }T_c=3{,}500\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 6,20 kg."
+"conc": "Se rechaza H₀: hay evidencia de que el peso medio al destete con el nuevo programa difiere de 6,20 kg."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -491,18 +491,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −2{,}333\\;$ · se rechaza $H_0$",
 "$\\;T_c = −2{,}333\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}778\\;$ · se rechaza $H_0$",
+"$\\;T_c = −0{,}778\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 2{,}333\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=7{,}50,\\ \\bar{x}=6{,}80,\\ s=0,9,\\ n=9,\\ \\nu=8,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=7{,}50,\\ \\bar{x}=6{,}80,\\ s=0{,}9,\\ n=9,\\ \\nu=8,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=7{,}50\\quad\\text{vs}\\quad H_1:\\mu<7{,}50",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}80-7{,}50}{0,9/\\sqrt{9}}=−2{,}333",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}80-7{,}50}{0{,}9/\\sqrt{9}}=−2{,}333",
 "\\text{Región de rechazo: }T_c < −1{,}860\\quad(t_{crit}=1{,}860)",
 "\\text{Como }T_c=−2{,}333\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 7,50 ×10⁶/µL."
+"conc": "Se rechaza H₀: hay evidencia de que el recuento medio de eritrocitos de los gatos con enfermedad intestinal es menor que 7,50 ×10⁶/µL."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -512,18 +512,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}733\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}733\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}611\\;$ · se rechaza $H_0$",
+"$\\;T_c = 0{,}611\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −2{,}733\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=1{,}80,\\ \\bar{x}=1{,}91,\\ s=0,18,\\ n=20,\\ \\nu=19,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=1{,}80,\\ \\bar{x}=1{,}91,\\ s=0{,}18,\\ n=20,\\ \\nu=19,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=1{,}80\\quad\\text{vs}\\quad H_1:\\mu>1{,}80",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{1{,}91-1{,}80}{0,18/\\sqrt{20}}=2{,}733",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{1{,}91-1{,}80}{0{,}18/\\sqrt{20}}=2{,}733",
 "\\text{Región de rechazo: }T_c > 1{,}729\\quad(t_{crit}=1{,}729)",
 "\\text{Como }T_c=2{,}733\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 1,80 ."
+"conc": "Se rechaza H₀: hay evidencia de que la conversión alimenticia media con el aditivo es mayor que 1,80."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -533,18 +533,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}598\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}598\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}750\\;$ · se rechaza $H_0$",
-"$\\;T_c = −2{,}598\\;$ · no se rechaza $H_0$"
+"$\\;T_c = 0{,}750\\;$ · no se rechaza $H_0$",
+"$\\;T_c = −2{,}598\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=15,\\ \\bar{x}=18,\\ s=4,\\ n=12,\\ \\nu=11,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=15,\\ \\bar{x}=18,\\ s=4,\\ n=12,\\ \\nu=11,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=15\\quad\\text{vs}\\quad H_1:\\mu\\neq15",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{18-15}{4/\\sqrt{12}}=2{,}598",
 "\\text{Región de rechazo: }|T_c| > 2{,}201\\quad(t_{crit}=2{,}201)",
 "\\text{Como }T_c=2{,}598\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 15 mmHg."
+"conc": "Se rechaza H₀: hay evidencia de que la presión intraocular media de los Cocker Spaniel difiere de 15 mmHg."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -554,18 +554,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}714\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}714\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}818\\;$ · se rechaza $H_0$",
+"$\\;T_c = 0{,}818\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −2{,}714\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=4,\\ \\bar{x}=5{,}80,\\ s=2,2,\\ n=11,\\ \\nu=10,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=4,\\ \\bar{x}=5{,}80,\\ s=2{,}2,\\ n=11,\\ \\nu=10,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=4\\quad\\text{vs}\\quad H_1:\\mu>4",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{5{,}80-4}{2,2/\\sqrt{11}}=2{,}714",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{5{,}80-4}{2{,}2/\\sqrt{11}}=2{,}714",
 "\\text{Región de rechazo: }T_c > 1{,}812\\quad(t_{crit}=1{,}812)",
 "\\text{Como }T_c=2{,}714\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 4 min."
+"conc": "Se rechaza H₀: hay evidencia de que el tiempo medio de respuesta a los llamados es mayor que 4 min."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -575,18 +575,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −3{,}012\\;$ · se rechaza $H_0$",
 "$\\;T_c = −3{,}012\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}778\\;$ · se rechaza $H_0$",
+"$\\;T_c = −0{,}778\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 3{,}012\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=72,\\ \\bar{x}=65,\\ s=9,\\ n=15,\\ \\nu=14,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=72,\\ \\bar{x}=65,\\ s=9,\\ n=15,\\ \\nu=14,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=72\\quad\\text{vs}\\quad H_1:\\mu<72",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{65-72}{9/\\sqrt{15}}=−3{,}012",
 "\\text{Región de rechazo: }T_c < −1{,}761\\quad(t_{crit}=1{,}761)",
 "\\text{Como }T_c=−3{,}012\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 72 lpm."
+"conc": "Se rechaza H₀: hay evidencia de que la frecuencia cardíaca media de los pacientes con betabloqueadores es menor que 72 lpm."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -596,18 +596,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}372\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}372\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}750\\;$ · se rechaza $H_0$",
-"$\\;T_c = −2{,}372\\;$ · no se rechaza $H_0$"
+"$\\;T_c = 0{,}750\\;$ · no se rechaza $H_0$",
+"$\\;T_c = −2{,}372\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=110,\\ \\bar{x}=128,\\ s=24,\\ n=10,\\ \\nu=9,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=110,\\ \\bar{x}=128,\\ s=24,\\ n=10,\\ \\nu=9,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=110\\quad\\text{vs}\\quad H_1:\\mu\\neq110",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{128-110}{24/\\sqrt{10}}=2{,}372",
 "\\text{Región de rechazo: }|T_c| > 2{,}262\\quad(t_{crit}=2{,}262)",
 "\\text{Como }T_c=2{,}372\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 110 mg/dL."
+"conc": "Se rechaza H₀: hay evidencia de que la glucemia preprandial media de los pacientes difiere de 110 mg/dL."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -617,18 +617,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −3{,}272\\;$ · se rechaza $H_0$",
 "$\\;T_c = −3{,}272\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}944\\;$ · se rechaza $H_0$",
+"$\\;T_c = −0{,}944\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 3{,}272\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8,\\ \\bar{x}=6{,}30,\\ s=1,8,\\ n=12,\\ \\nu=11,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8,\\ \\bar{x}=6{,}30,\\ s=1{,}8,\\ n=12,\\ \\nu=11,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=8\\quad\\text{vs}\\quad H_1:\\mu<8",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}30-8}{1,8/\\sqrt{12}}=−3{,}272",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}30-8}{1{,}8/\\sqrt{12}}=−3{,}272",
 "\\text{Región de rechazo: }T_c < −1{,}796\\quad(t_{crit}=1{,}796)",
 "\\text{Como }T_c=−3{,}272\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 8 min."
+"conc": "Se rechaza H₀: hay evidencia de que el tiempo medio de colocación de vía tras el entrenamiento es menor que 8 min."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -638,18 +638,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 3{,}098\\;$ · se rechaza $H_0$",
 "$\\;T_c = 3{,}098\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 1{,}095\\;$ · se rechaza $H_0$",
+"$\\;T_c = 1{,}095\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −3{,}098\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=4{,}50,\\ \\bar{x}=6{,}80,\\ s=2,1,\\ n=8,\\ \\nu=7,\\ \\alpha=0,10.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=4{,}50,\\ \\bar{x}=6{,}80,\\ s=2{,}1,\\ n=8,\\ \\nu=7,\\ \\alpha=0{,}10.",
 "pautaSteps": [
 "H_0:\\mu=4{,}50\\quad\\text{vs}\\quad H_1:\\mu>4{,}50",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}80-4{,}50}{2,1/\\sqrt{8}}=3{,}098",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{6{,}80-4{,}50}{2{,}1/\\sqrt{8}}=3{,}098",
 "\\text{Región de rechazo: }T_c > 1{,}415\\quad(t_{crit}=1{,}415)",
 "\\text{Como }T_c=3{,}098\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 4,50 fármacos."
+"conc": "Se rechaza H₀: hay evidencia de que el número medio de fármacos por paciente es mayor que 4,50 fármacos."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -660,17 +660,17 @@ const TH_QUESTIONS = [
 "$\\;T_c = 2{,}064\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 2{,}064\\;$ · se rechaza $H_0$",
 "$\\;T_c = 0{,}462\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −2{,}064\\;$ · se rechaza $H_0$"
+"$\\;T_c = −2{,}064\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=7{,}80,\\ \\bar{x}=8{,}40,\\ s=1,3,\\ n=20,\\ \\nu=19,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=7{,}80,\\ \\bar{x}=8{,}40,\\ s=1{,}3,\\ n=20,\\ \\nu=19,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=7{,}80\\quad\\text{vs}\\quad H_1:\\mu\\neq7{,}80",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{8{,}40-7{,}80}{1,3/\\sqrt{20}}=2{,}064",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{8{,}40-7{,}80}{1{,}3/\\sqrt{20}}=2{,}064",
 "\\text{Región de rechazo: }|T_c| > 2{,}093\\quad(t_{crit}=2{,}093)",
 "\\text{Como }T_c=2{,}064\\ \\text{no cae en la región de rechazo}\\Rightarrow \\text{no se rechaza }H_0"
 ],
-"conc": "No se rechaza H₀: no hay evidencia de que la media difiera de 7,80 puntos."
+"conc": "No se rechaza H₀: no hay evidencia suficiente de que la satisfacción usuaria media del servicio difiera de 7,80 puntos."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -681,17 +681,17 @@ const TH_QUESTIONS = [
 "$\\;T_c = −2{,}132\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −2{,}132\\;$ · se rechaza $H_0$",
 "$\\;T_c = −0{,}643\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 2{,}132\\;$ · se rechaza $H_0$"
+"$\\;T_c = 2{,}132\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=280,\\ \\bar{x}=271,\\ s=14,\\ n=11,\\ \\nu=10,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=280,\\ \\bar{x}=271,\\ s=14,\\ n=11,\\ \\nu=10,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=280\\quad\\text{vs}\\quad H_1:\\mu\\neq280",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{271-280}{14/\\sqrt{11}}=−2{,}132",
 "\\text{Región de rechazo: }|T_c| > 2{,}228\\quad(t_{crit}=2{,}228)",
 "\\text{Como }T_c=−2{,}132\\ \\text{no cae en la región de rechazo}\\Rightarrow \\text{no se rechaza }H_0"
 ],
-"conc": "No se rechaza H₀: no hay evidencia de que la media difiera de 280 días."
+"conc": "No se rechaza H₀: no hay evidencia suficiente de que la duración media del embarazo de alto riesgo difiera de 280 días."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -701,18 +701,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −2{,}786\\;$ · se rechaza $H_0$",
 "$\\;T_c = −2{,}786\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}929\\;$ · se rechaza $H_0$",
+"$\\;T_c = −0{,}929\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 2{,}786\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8{,}50,\\ \\bar{x}=7{,}20,\\ s=1,4,\\ n=9,\\ \\nu=8,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=8{,}50,\\ \\bar{x}=7{,}20,\\ s=1{,}4,\\ n=9,\\ \\nu=8,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=8{,}50\\quad\\text{vs}\\quad H_1:\\mu<8{,}50",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{7{,}20-8{,}50}{1,4/\\sqrt{9}}=−2{,}786",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{7{,}20-8{,}50}{1{,}4/\\sqrt{9}}=−2{,}786",
 "\\text{Región de rechazo: }T_c < −1{,}860\\quad(t_{crit}=1{,}860)",
 "\\text{Como }T_c=−2{,}786\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 8,50 puntos."
+"conc": "Se rechaza H₀: hay evidencia de que el Apgar medio con registro no reactivo es menor que 8,50 puntos."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -722,18 +722,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 3{,}023\\;$ · se rechaza $H_0$",
 "$\\;T_c = 3{,}023\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}780\\;$ · se rechaza $H_0$",
+"$\\;T_c = 0{,}780\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −3{,}023\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=12,\\ \\bar{x}=15{,}20,\\ s=4,1,\\ n=15,\\ \\nu=14,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=12,\\ \\bar{x}=15{,}20,\\ s=4{,}1,\\ n=15,\\ \\nu=14,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=12\\quad\\text{vs}\\quad H_1:\\mu>12",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{15{,}20-12}{4,1/\\sqrt{15}}=3{,}023",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{15{,}20-12}{4{,}1/\\sqrt{15}}=3{,}023",
 "\\text{Región de rechazo: }T_c > 1{,}761\\quad(t_{crit}=1{,}761)",
 "\\text{Como }T_c=3{,}023\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 12 kg."
+"conc": "Se rechaza H₀: hay evidencia de que la ganancia de peso gestacional media es mayor que 12 kg."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -743,18 +743,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −2{,}663\\;$ · se rechaza $H_0$",
 "$\\;T_c = −2{,}663\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −0{,}842\\;$ · se rechaza $H_0$",
-"$\\;T_c = 2{,}663\\;$ · no se rechaza $H_0$"
+"$\\;T_c = −0{,}842\\;$ · no se rechaza $H_0$",
+"$\\;T_c = 2{,}663\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=500,\\ \\bar{x}=420,\\ s=95,\\ n=10,\\ \\nu=9,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=500,\\ \\bar{x}=420,\\ s=95,\\ n=10,\\ \\nu=9,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=500\\quad\\text{vs}\\quad H_1:\\mu\\neq500",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{420-500}{95/\\sqrt{10}}=−2{,}663",
 "\\text{Región de rechazo: }|T_c| > 2{,}262\\quad(t_{crit}=2{,}262)",
 "\\text{Como }T_c=−2{,}663\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 500 mL."
+"conc": "Se rechaza H₀: hay evidencia de que la producción media de leche tras cesárea electiva difiere de 500 mL."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -764,18 +764,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −4{,}400\\;$ · se rechaza $H_0$",
 "$\\;T_c = −4{,}400\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −1{,}556\\;$ · se rechaza $H_0$",
+"$\\;T_c = −1{,}556\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 4{,}400\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=500,\\ \\bar{x}=388,\\ s=72,\\ n=8,\\ \\nu=7,\\ \\alpha=0,01.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=500,\\ \\bar{x}=388,\\ s=72,\\ n=8,\\ \\nu=7,\\ \\alpha=0{,}01.",
 "pautaSteps": [
 "H_0:\\mu=500\\quad\\text{vs}\\quad H_1:\\mu<500",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{388-500}{72/\\sqrt{8}}=−4{,}400",
 "\\text{Región de rechazo: }T_c < −2{,}998\\quad(t_{crit}=2{,}998)",
 "\\text{Como }T_c=−4{,}400\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 500 g."
+"conc": "Se rechaza H₀: hay evidencia de que el peso placentario medio con RCIU es menor que 500 g."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -785,18 +785,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 2{,}571\\;$ · se rechaza $H_0$",
 "$\\;T_c = 2{,}571\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}643\\;$ · se rechaza $H_0$",
+"$\\;T_c = 0{,}643\\;$ · no se rechaza $H_0$",
 "$\\;T_c = −2{,}571\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=120,\\ \\bar{x}=138,\\ s=28,\\ n=16,\\ \\nu=15,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=120,\\ \\bar{x}=138,\\ s=28,\\ n=16,\\ \\nu=15,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=120\\quad\\text{vs}\\quad H_1:\\mu>120",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{138-120}{28/\\sqrt{16}}=2{,}571",
 "\\text{Región de rechazo: }T_c > 1{,}753\\quad(t_{crit}=1{,}753)",
 "\\text{Como }T_c=2{,}571\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media supera 120 Nm."
+"conc": "Se rechaza H₀: hay evidencia de que el torque medio de cuádriceps de los ciclistas es mayor que 120 Nm."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -806,18 +806,18 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = −3{,}500\\;$ · se rechaza $H_0$",
 "$\\;T_c = −3{,}500\\;$ · no se rechaza $H_0$",
-"$\\;T_c = −1{,}167\\;$ · se rechaza $H_0$",
+"$\\;T_c = −1{,}167\\;$ · no se rechaza $H_0$",
 "$\\;T_c = 3{,}500\\;$ · no se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=28,\\ \\bar{x}=21,\\ s=6,\\ n=9,\\ \\nu=8,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=28,\\ \\bar{x}=21,\\ s=6,\\ n=9,\\ \\nu=8,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=28\\quad\\text{vs}\\quad H_1:\\mu<28",
 "T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{21-28}{6/\\sqrt{9}}=−3{,}500",
 "\\text{Región de rechazo: }T_c < −1{,}860\\quad(t_{crit}=1{,}860)",
 "\\text{Como }T_c=−3{,}500\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: hay evidencia de que la media es inferior a 28 cm."
+"conc": "Se rechaza H₀: hay evidencia de que el alcance funcional medio de los adultos mayores con caídas es menor que 28 cm."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -827,17 +827,17 @@ const TH_QUESTIONS = [
 "alts": [
 "$\\;T_c = 3{,}031\\;$ · se rechaza $H_0$",
 "$\\;T_c = 3{,}031\\;$ · no se rechaza $H_0$",
-"$\\;T_c = 0{,}875\\;$ · se rechaza $H_0$",
-"$\\;T_c = −3{,}031\\;$ · no se rechaza $H_0$"
+"$\\;T_c = 0{,}875\\;$ · no se rechaza $H_0$",
+"$\\;T_c = −3{,}031\\;$ · se rechaza $H_0$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ \\mu_0=1{,}10,\\ \\bar{x}=1{,}38,\\ s=0,32,\\ n=12,\\ \\nu=11,\\ \\alpha=0,05.",
+"pautaHead": "\\textbf{Datos:}\\ \\mu_0=1{,}10,\\ \\bar{x}=1{,}38,\\ s=0{,}32,\\ n=12,\\ \\nu=11,\\ \\alpha=0{,}05.",
 "pautaSteps": [
 "H_0:\\mu=1{,}10\\quad\\text{vs}\\quad H_1:\\mu\\neq1{,}10",
-"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{1{,}38-1{,}10}{0,32/\\sqrt{12}}=3{,}031",
+"T_c=\\dfrac{\\bar{x}-\\mu_0}{s/\\sqrt{n}}=\\dfrac{1{,}38-1{,}10}{0{,}32/\\sqrt{12}}=3{,}031",
 "\\text{Región de rechazo: }|T_c| > 2{,}201\\quad(t_{crit}=2{,}201)",
 "\\text{Como }T_c=3{,}031\\ \\text{cae en la región de rechazo}\\Rightarrow \\text{se rechaza }H_0"
 ],
-"conc": "Se rechaza H₀: la media difiere significativamente de 1,10 s."
+"conc": "Se rechaza H₀: hay evidencia de que el tiempo medio de ciclo de marcha en esclerosis múltiple difiere de 1,10 s."
 }
 ];

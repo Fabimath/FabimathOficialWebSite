@@ -153,7 +153,7 @@ enun: "En un laboratorio clínico, se mide la concentración de glucosa en sangr
 v: "La concentración de glucosa en sangre (en mg/dL)",
 d: ["Cada paciente en ayunas", "El diagnóstico de diabetes (sí o no)", "El número de exámenes procesados"],
 clase: 2,
-razon: "es una magnitud bioquímica que puede asumir cualquier valor real positivo dentro del rango fisiológico y más allá."
+razon: "es una magnitud bioquímica que se mide (no se cuenta); puede tomar cualquier valor real positivo, con decimales, por ejemplo 98,5 mg/dL."
 },
 {
 ctx: "Cultura · Fomento lector",
@@ -225,7 +225,7 @@ enun: "En un catastro habitacional, se registra la cantidad de dormitorios que p
 v: "La cantidad de dormitorios de la vivienda",
 d: ["Cada vivienda encuestada", "La superficie de la vivienda", "El material de construcción de la vivienda"],
 clase: 3,
-razon: "los dormitorios se cuentan; los valores son enteros positivos (1, 2, 3, …) y no existe un dormitorio fraccionario."
+razon: "los dormitorios se cuentan; los valores son enteros no negativos (0, 1, 2, …; un monoambiente tiene 0) y no existe un dormitorio fraccionario."
 },
 {
 ctx: "Educación · Inclusión",
@@ -345,7 +345,7 @@ enun: "En una encuesta sobre condiciones de vida, se registra el ingreso mensual
 v: "El ingreso mensual total del hogar (en pesos)",
 d: ["Cada hogar encuestado", "El número de personas que aportan ingreso", "El nivel socioeconómico del hogar"],
 clase: 2,
-razon: "el ingreso monetario puede tomar cualquier valor real no negativo, incluyendo decimales; no está restringido a enteros."
+razon: "el ingreso es un monto que se mide, no un conteo de objetos; aunque el peso chileno no usa centavos, la unidad mínima (1 peso) es despreciable frente al enorme rango de valores posibles, por lo que por convención se trata como variable continua."
 },
 {
 ctx: "Transporte · Fiscalización vial",
@@ -419,7 +419,7 @@ VC_RAW.forEach(r => {
       "\\text{1. Reconoce la unidad de estudio: a quién o a qué se observa.}",
       "\\text{2. Identifica qué característica se registra de cada unidad.}"
     ],
-    conc: `La variable de estudio es <b>${r.v.charAt(0).toLowerCase() + r.v.slice(1)}</b>: es lo que se registra para cada unidad observada. Las demás alternativas corresponden a la unidad de estudio o a datos del contexto.`
+    conc: `La variable de estudio es <b>${r.v.charAt(0).toLowerCase() + r.v.slice(1)}</b>: es lo que se registra para cada unidad observada. Las demás alternativas son la unidad de estudio, un total del estudio u otra característica que el enunciado no registra.`
   });
   VC_QUESTIONS.push({
     tipo: "Clasificar la variable",

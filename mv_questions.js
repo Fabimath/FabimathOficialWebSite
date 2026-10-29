@@ -27,10 +27,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de hermanos en 14 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 1, 3, 2, 1, 0.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}65$",
+   "$0{,}94$",
    "$1{,}02$",
-   "$1{,}61$",
-   "$1{,}17$"
+   "$0{,}65$",
+   "$1{,}61$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=14.",
@@ -45,11 +45,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Educación · Estudiantes",
   "enun": "Se registró el número de hermanos en 14 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 1, 3, 2, 1, 0.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$0{,}97$",
    "$0{,}79$",
    "$1{,}45$",
-   "$0{,}35$",
    "$1{,}01$"
   ],
   "correct": 3,
@@ -66,20 +66,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Educación · Estudiantes",
   "enun": "Se registró el número de hermanos en 14 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 1, 3, 2, 1, 0.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$101{,}03\\%$",
-   "$83{,}34\\%$",
+   "$71{,}59\\%$",
+   "$0{,}74\\%$",
    "$74{,}29\\%$",
-   "$56{,}25\\%$"
+   "$134{,}61\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{19}{14} = 1{,}36",
+   "\\bar{x} = \\dfrac{19}{14} = 1{,}3571",
    "\\sum (x_i-\\bar{x})^2 = 13{,}21",
-   "s = 1{,}01",
-   "CV = \\dfrac{1{,}01}{1{,}36}\\times 100\\% = 74{,}29\\%"
+   "s = 1{,}0082",
+   "CV = \\dfrac{1{,}0082}{1{,}3571}\\times 100\\% = 74{,}29\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 74{,}29\\%$."
  },
@@ -89,9 +89,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de entradas vendidas en 15 funciones de un cine. Datos: 40, 35, 50, 42, 38, 45, 33, 48, 41, 36, 44, 39, 47, 43, 37.",
   "ask": "Calcule el rango.",
   "alts": [
+   "$50$",
    "$12$",
    "$23$",
-   "$7$",
    "$17$"
   ],
   "correct": 3,
@@ -107,10 +107,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de entradas vendidas en 15 funciones de un cine. Datos: 40, 35, 50, 42, 38, 45, 33, 48, 41, 36, 44, 39, 47, 43, 37.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$28{,}03$",
+   "$23{,}36$",
    "$25{,}03$",
-   "$34{,}18$",
-   "$18{,}95$"
+   "$5{,}00$",
+   "$28{,}03$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=15.",
@@ -125,11 +125,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Entretenimiento · Cine",
   "enun": "Se registró el número de entradas vendidas en 15 funciones de un cine. Datos: 40, 35, 50, 42, 38, 45, 33, 48, 41, 36, 44, 39, 47, 43, 37.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$25{,}03$",
+   "$4{,}83$",
    "$2{,}99$",
-   "$4{,}33$",
-   "$6{,}34$",
    "$5{,}00$"
   ],
   "correct": 3,
@@ -146,20 +146,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Entretenimiento · Cine",
   "enun": "Se registró el número de entradas vendidas en 15 funciones de un cine. Datos: 40, 35, 50, 42, 38, 45, 33, 48, 41, 36, 44, 39, 47, 43, 37.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$16{,}51\\%$",
+   "$11{,}73\\%$",
    "$12{,}14\\%$",
-   "$13{,}74\\%$",
-   "$9{,}02\\%$"
+   "$0{,}12\\%$",
+   "$60{,}75\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{618}{15} = 41{,}20",
+   "\\bar{x} = \\dfrac{618}{15} = 41{,}2000",
    "\\sum (x_i-\\bar{x})^2 = 350{,}40",
-   "s = 5{,}00",
-   "CV = \\dfrac{5{,}00}{41{,}20}\\times 100\\% = 12{,}14\\%"
+   "s = 5{,}0029",
+   "CV = \\dfrac{5{,}0029}{41{,}2000}\\times 100\\% = 12{,}14\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 12{,}14\\%$."
  },
@@ -188,9 +188,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$4{,}91$",
-   "$6{,}82$",
-   "$5{,}50$",
-   "$3{,}66$"
+   "$4{,}53$",
+   "$2{,}22$",
+   "$6{,}82$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=13.",
@@ -205,11 +205,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Retail · Compras",
   "enun": "Se registró el número de artículos en el carro de compra en 13 clientes. Datos: 5, 8, 3, 6, 10, 4, 7, 5, 9, 6, 3, 8, 5.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$4{,}91$",
+   "$2{,}13$",
    "$1{,}88$",
-   "$2{,}89$",
-   "$1{,}21$",
    "$2{,}22$"
   ],
   "correct": 3,
@@ -226,20 +226,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Retail · Compras",
   "enun": "Se registró el número de artículos en el carro de compra en 13 clientes. Datos: 5, 8, 3, 6, 10, 4, 7, 5, 9, 6, 3, 8, 5.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$40{,}98\\%$",
-   "$49{,}59\\%$",
+   "$35{,}03\\%$",
+   "$0{,}36\\%$",
    "$36{,}46\\%$",
-   "$27{,}50\\%$"
+   "$80{,}80\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{79}{13} = 6{,}08",
+   "\\bar{x} = \\dfrac{79}{13} = 6{,}0769",
    "\\sum (x_i-\\bar{x})^2 = 58{,}92",
-   "s = 2{,}22",
-   "CV = \\dfrac{2{,}22}{6{,}08}\\times 100\\% = 36{,}46\\%"
+   "s = 2{,}2159",
+   "CV = \\dfrac{2{,}2159}{6{,}0769}\\times 100\\% = 36{,}46\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 36{,}46\\%$."
  },
@@ -267,10 +267,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de turnos con horas extra en un mes en 14 empleados. Datos: 2, 4, 1, 3, 5, 2, 0, 3, 4, 2, 1, 3, 2, 4.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}19$",
+   "$1{,}82$",
    "$1{,}96$",
-   "$2{,}80$",
-   "$1{,}42$"
+   "$1{,}40$",
+   "$2{,}19$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=14.",
@@ -285,11 +285,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Laboral · Horas extra",
   "enun": "Se registró el número de turnos con horas extra en un mes en 14 empleados. Datos: 2, 4, 1, 3, 5, 2, 0, 3, 4, 2, 1, 3, 2, 4.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$1{,}96$",
+   "$1{,}35$",
    "$1{,}16$",
-   "$0{,}69$",
-   "$1{,}87$",
    "$1{,}40$"
   ],
   "correct": 3,
@@ -306,20 +306,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Laboral · Horas extra",
   "enun": "Se registró el número de turnos con horas extra en un mes en 14 empleados. Datos: 2, 4, 1, 3, 5, 2, 0, 3, 4, 2, 1, 3, 2, 4.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$54{,}39\\%$",
-   "$73{,}97\\%$",
-   "$61{,}06\\%$",
-   "$41{,}13\\%$"
+   "$52{,}41\\%$",
+   "$0{,}54\\%$",
+   "$76{,}07\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{36}{14} = 2{,}57",
+   "\\bar{x} = \\dfrac{36}{14} = 2{,}5714",
    "\\sum (x_i-\\bar{x})^2 = 25{,}43",
-   "s = 1{,}40",
-   "CV = \\dfrac{1{,}40}{2{,}57}\\times 100\\% = 54{,}39\\%"
+   "s = 1{,}3986",
+   "CV = \\dfrac{1{,}3986}{2{,}5714}\\times 100\\% = 54{,}39\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 54{,}39\\%$."
  },
@@ -329,10 +329,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de vuelos retrasados por día en 15 días. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5, 3.",
   "ask": "Calcule el rango.",
   "alts": [
-   "$7$",
+   "$6$",
    "$5$",
-   "$1$",
-   "$2$"
+   "$7$",
+   "$1$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -347,10 +347,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de vuelos retrasados por día en 15 días. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5, 3.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}22$",
-   "$1{,}44$",
+   "$1{,}85$",
+   "$1{,}41$",
    "$1{,}98$",
-   "$2{,}83$"
+   "$2{,}22$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=15.",
@@ -365,12 +365,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Transporte · Aeropuerto",
   "enun": "Se registró el número de vuelos retrasados por día en 15 días. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5, 3.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}89$",
-   "$0{,}69$",
+   "$1{,}98$",
+   "$1{,}36$",
    "$1{,}41$",
-   "$1{,}17$"
+   "$1{,}89$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=15.",
@@ -386,20 +386,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Transporte · Aeropuerto",
   "enun": "Se registró el número de vuelos retrasados por día en 15 días. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5, 3.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$45{,}61\\%$",
-   "$30{,}65\\%$",
+   "$39{,}22\\%$",
+   "$0{,}41\\%$",
    "$40{,}60\\%$",
-   "$55{,}22\\%$"
+   "$57{,}14\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{52}{15} = 3{,}47",
+   "\\bar{x} = \\dfrac{52}{15} = 3{,}4667",
    "\\sum (x_i-\\bar{x})^2 = 27{,}73",
-   "s = 1{,}41",
-   "CV = \\dfrac{1{,}41}{3{,}47}\\times 100\\% = 40{,}60\\%"
+   "s = 1{,}4075",
+   "CV = \\dfrac{1{,}4075}{3{,}4667}\\times 100\\% = 40{,}60\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 40{,}60\\%$."
  },
@@ -428,9 +428,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}53$",
-   "$1{,}71$",
-   "$1{,}09$",
-   "$2{,}21$"
+   "$1{,}41$",
+   "$1{,}24$",
+   "$1{,}71$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=13.",
@@ -445,12 +445,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Telecomunicaciones · Soporte",
   "enun": "Se registró el número de llamadas caídas por técnico en 13 turnos. Datos: 1, 3, 0, 2, 4, 1, 2, 0, 3, 1, 2, 1, 3.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}68$",
+   "$1{,}53$",
    "$1{,}24$",
-   "$0{,}58$",
-   "$1{,}02$"
+   "$1{,}19$",
+   "$1{,}68$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=13.",
@@ -466,20 +466,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Telecomunicaciones · Soporte",
   "enun": "Se registró el número de llamadas caídas por técnico en 13 turnos. Datos: 1, 3, 0, 2, 4, 1, 2, 0, 3, 1, 2, 1, 3.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$69{,}81\\%$",
-   "$52{,}85\\%$",
-   "$78{,}33\\%$",
-   "$94{,}95\\%$"
+   "$67{,}07\\%$",
+   "$0{,}70\\%$",
+   "$86{,}23\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{23}{13} = 1{,}77",
+   "\\bar{x} = \\dfrac{23}{13} = 1{,}76923",
    "\\sum (x_i-\\bar{x})^2 = 18{,}31",
-   "s = 1{,}24",
-   "CV = \\dfrac{1{,}24}{1{,}77}\\times 100\\% = 69{,}81\\%"
+   "s = 1{,}23517",
+   "CV = \\dfrac{1{,}23517}{1{,}76923}\\times 100\\% = 69{,}81\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 69{,}81\\%$."
  },
@@ -490,9 +490,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$5$",
+   "$7$",
    "$9$",
-   "$2$",
-   "$3$"
+   "$2$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -507,10 +507,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de pacientes ingresados a urgencias por hora en 16 horas. Datos: 4, 6, 3, 5, 7, 4, 2, 5, 6, 3, 4, 5, 3, 6, 4, 5.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}09$",
-   "$1{,}35$",
+   "$1{,}75$",
+   "$1{,}37$",
    "$1{,}87$",
-   "$2{,}68$"
+   "$2{,}09$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=16.",
@@ -525,12 +525,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Salud · Urgencias",
   "enun": "Se registró el número de pacientes ingresados a urgencias por hora en 16 horas. Datos: 4, 6, 3, 5, 7, 4, 2, 5, 6, 3, 4, 5, 3, 6, 4, 5.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}83$",
-   "$0{,}66$",
+   "$1{,}87$",
+   "$1{,}32$",
    "$1{,}37$",
-   "$1{,}13$"
+   "$1{,}83$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=16.",
@@ -546,20 +546,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Salud · Urgencias",
   "enun": "Se registró el número de pacientes ingresados a urgencias por hora en 16 horas. Datos: 4, 6, 3, 5, 7, 4, 2, 5, 6, 3, 4, 5, 3, 6, 4, 5.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$30{,}36\\%$",
-   "$34{,}14\\%$",
-   "$22{,}86\\%$",
-   "$41{,}29\\%$"
+   "$29{,}40\\%$",
+   "$0{,}30\\%$",
+   "$41{,}48\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{72}{16} = 4{,}50",
+   "\\bar{x} = \\dfrac{72}{16} = 4{,}5000",
    "\\sum (x_i-\\bar{x})^2 = 28{,}00",
-   "s = 1{,}37",
-   "CV = \\dfrac{1{,}37}{4{,}50}\\times 100\\% = 30{,}36\\%"
+   "s = 1{,}3663",
+   "CV = \\dfrac{1{,}3663}{4{,}5000}\\times 100\\% = 30{,}36\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 30{,}36\\%$."
  },
@@ -587,9 +587,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de goles recibidos en 14 partidos. Datos: 1, 2, 0, 1, 3, 2, 1, 0, 2, 1, 1, 2, 0, 1.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
+   "$0{,}74$",
+   "$0{,}89$",
    "$1{,}39$",
-   "$0{,}95$",
-   "$0{,}43$",
    "$0{,}80$"
   ],
   "correct": 3,
@@ -605,12 +605,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Deporte · Fútbol",
   "enun": "Se registró el número de goles recibidos en 14 partidos. Datos: 1, 2, 0, 1, 3, 2, 1, 0, 2, 1, 1, 2, 0, 1.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$0{,}89$",
-   "$0{,}23$",
-   "$0{,}67$",
-   "$1{,}33$"
+   "$0{,}80$",
+   "$0{,}86$",
+   "$0{,}23$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=14.",
@@ -626,20 +626,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Deporte · Fútbol",
   "enun": "Se registró el número de goles recibidos en 14 partidos. Datos: 1, 2, 0, 1, 3, 2, 1, 0, 2, 1, 1, 2, 0, 1.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$55{,}66\\%$",
-   "$99{,}97\\%$",
-   "$82{,}47\\%$",
+   "$70{,}83\\%$",
+   "$0{,}74\\%$",
+   "$65{,}61\\%$",
    "$73{,}51\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{17}{14} = 1{,}21",
+   "\\bar{x} = \\dfrac{17}{14} = 1{,}2143",
    "\\sum (x_i-\\bar{x})^2 = 10{,}36",
-   "s = 0{,}89",
-   "CV = \\dfrac{0{,}89}{1{,}21}\\times 100\\% = 73{,}51\\%"
+   "s = 0{,}8926",
+   "CV = \\dfrac{0{,}8926}{1{,}2143}\\times 100\\% = 73{,}51\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 73{,}51\\%$."
  },
@@ -667,9 +667,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de errores de tipeo en 13 correos electrónicos. Datos: 0, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
+   "$1{,}31$",
+   "$1{,}19$",
    "$1{,}01$",
-   "$1{,}59$",
-   "$2{,}08$",
    "$1{,}42$"
   ],
   "correct": 3,
@@ -685,12 +685,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Oficina · Correos",
   "enun": "Se registró el número de errores de tipeo en 13 correos electrónicos. Datos: 0, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}97$",
-   "$0{,}53$",
+   "$1{,}42$",
+   "$1{,}15$",
    "$1{,}19$",
-   "$1{,}63$"
+   "$0{,}97$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=13.",
@@ -706,20 +706,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Oficina · Correos",
   "enun": "Se registró el número de errores de tipeo en 13 correos electrónicos. Datos: 0, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$117{,}17\\%$",
-   "$96{,}63\\%$",
-   "$65{,}27\\%$",
+   "$82{,}78\\%$",
+   "$0{,}86\\%$",
+   "$102{,}78\\%$",
    "$86{,}16\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{18}{13} = 1{,}38",
+   "\\bar{x} = \\dfrac{18}{13} = 1{,}38462",
    "\\sum (x_i-\\bar{x})^2 = 17{,}08",
-   "s = 1{,}19",
-   "CV = \\dfrac{1{,}19}{1{,}38}\\times 100\\% = 86{,}16\\%"
+   "s = 1{,}19293",
+   "CV = \\dfrac{1{,}19293}{1{,}38462}\\times 100\\% = 86{,}16\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 86{,}16\\%$."
  },
@@ -730,9 +730,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$6$",
+   "$9$",
    "$4$",
-   "$3$",
-   "$10$"
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -747,9 +747,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de bugs encontrados por sprint en 15 sprints de desarrollo. Datos: 5, 8, 3, 6, 9, 4, 7, 5, 3, 6, 8, 4, 5, 7, 6.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
+   "$3{,}13$",
+   "$1{,}83$",
    "$2{,}48$",
-   "$4{,}70$",
-   "$3{,}75$",
    "$3{,}35$"
   ],
   "correct": 3,
@@ -765,12 +765,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Desarrollo de software · Sprints",
   "enun": "Se registró el número de bugs encontrados por sprint en 15 sprints de desarrollo. Datos: 5, 8, 3, 6, 9, 4, 7, 5, 3, 6, 8, 4, 5, 7, 6.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}83$",
-   "$0{,}96$",
-   "$1{,}54$",
-   "$2{,}41$"
+   "$3{,}35$",
+   "$1{,}77$",
+   "$0{,}96$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=15.",
@@ -786,20 +786,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Desarrollo de software · Sprints",
   "enun": "Se registró el número de bugs encontrados por sprint en 15 sprints de desarrollo. Datos: 5, 8, 3, 6, 9, 4, 7, 5, 3, 6, 8, 4, 5, 7, 6.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$43{,}43\\%$",
-   "$24{,}06\\%$",
-   "$35{,}91\\%$",
+   "$30{,}85\\%$",
+   "$0{,}32\\%$",
+   "$58{,}47\\%$",
    "$31{,}94\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{86}{15} = 5{,}73",
+   "\\bar{x} = \\dfrac{86}{15} = 5{,}7333",
    "\\sum (x_i-\\bar{x})^2 = 46{,}93",
-   "s = 1{,}83",
-   "CV = \\dfrac{1{,}83}{5{,}73}\\times 100\\% = 31{,}94\\%"
+   "s = 1{,}8310",
+   "CV = \\dfrac{1{,}8310}{5{,}7333}\\times 100\\% = 31{,}94\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 31{,}94\\%$."
  },
@@ -827,9 +827,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de trenes retrasados por día en 14 días. Datos: 2, 3, 1, 4, 2, 0, 3, 2, 1, 3, 4, 2, 1, 2.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
+   "$1{,}27$",
+   "$1{,}17$",
    "$0{,}97$",
-   "$1{,}53$",
-   "$1{,}99$",
    "$1{,}36$"
   ],
   "correct": 3,
@@ -845,12 +845,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Transporte · Estación de trenes",
   "enun": "Se registró el número de trenes retrasados por día en 14 días. Datos: 2, 3, 1, 4, 2, 0, 3, 2, 1, 3, 4, 2, 1, 2.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}95$",
+   "$1{,}36$",
    "$1{,}17$",
-   "$0{,}51$",
-   "$1{,}61$"
+   "$1{,}12$",
+   "$0{,}95$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=14.",
@@ -866,20 +866,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Transporte · Estación de trenes",
   "enun": "Se registró el número de trenes retrasados por día en 14 días. Datos: 2, 3, 1, 4, 2, 0, 3, 2, 1, 3, 4, 2, 1, 2.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$74{,}09\\%$",
+   "$52{,}49\\%$",
    "$54{,}47\\%$",
-   "$41{,}19\\%$",
-   "$61{,}15\\%$"
+   "$0{,}54\\%$",
+   "$63{,}59\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{30}{14} = 2{,}14",
+   "\\bar{x} = \\dfrac{30}{14} = 2{,}1429",
    "\\sum (x_i-\\bar{x})^2 = 17{,}71",
-   "s = 1{,}17",
-   "CV = \\dfrac{1{,}17}{2{,}14}\\times 100\\% = 54{,}47\\%"
+   "s = 1{,}1673",
+   "CV = \\dfrac{1{,}1673}{2{,}1429}\\times 100\\% = 54{,}47\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 54{,}47\\%$."
  },
@@ -890,9 +890,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$6$",
+   "$12$",
    "$5$",
-   "$9$",
-   "$1$"
+   "$9$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -907,10 +907,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de clientes atendidos por hora en 16 horas. Datos: 8, 10, 7, 9, 12, 8, 6, 9, 11, 7, 8, 10, 9, 8, 7, 9.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}84$",
+   "$2{,}36$",
    "$2{,}52$",
-   "$3{,}56$",
-   "$2{,}82$"
+   "$1{,}59$",
+   "$1{,}84$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=16.",
@@ -925,12 +925,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Banca · Sucursal",
   "enun": "Se registró el número de clientes atendidos por hora en 16 horas. Datos: 8, 10, 7, 9, 12, 8, 6, 9, 11, 7, 8, 10, 9, 8, 7, 9.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}11$",
+   "$2{,}52$",
    "$1{,}59$",
-   "$1{,}33$",
-   "$0{,}81$"
+   "$1{,}54$",
+   "$2{,}11$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=16.",
@@ -946,20 +946,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Banca · Sucursal",
   "enun": "Se registró el número de clientes atendidos por hora en 16 horas. Datos: 8, 10, 7, 9, 12, 8, 6, 9, 11, 7, 8, 10, 9, 8, 7, 9.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$13{,}77\\%$",
-   "$25{,}01\\%$",
+   "$17{,}81\\%$",
+   "$0{,}18\\%$",
    "$18{,}39\\%$",
-   "$20{,}74\\%$"
+   "$29{,}18\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{138}{16} = 8{,}63",
+   "\\bar{x} = \\dfrac{138}{16} = 8{,}6250",
    "\\sum (x_i-\\bar{x})^2 = 37{,}75",
-   "s = 1{,}59",
-   "CV = \\dfrac{1{,}59}{8{,}63}\\times 100\\% = 18{,}39\\%"
+   "s = 1{,}5864",
+   "CV = \\dfrac{1{,}5864}{8{,}6250}\\times 100\\% = 18{,}39\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 18{,}39\\%$."
  },
@@ -969,10 +969,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de pedidos entregados al día en 13 repartidores. Datos: 12, 15, 10, 14, 18, 11, 13, 16, 12, 14, 10, 15, 13.",
   "ask": "Calcule el rango.",
   "alts": [
+   "$18$",
    "$5$",
-   "$14$",
    "$8$",
-   "$2$"
+   "$14$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -987,10 +987,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de pedidos entregados al día en 13 repartidores. Datos: 12, 15, 10, 14, 18, 11, 13, 16, 12, 14, 10, 15, 13.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$7{,}71$",
-   "$4{,}16$",
+   "$5{,}14$",
+   "$2{,}36$",
    "$5{,}56$",
-   "$6{,}23$"
+   "$7{,}71$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=13.",
@@ -1005,12 +1005,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Logística · Reparto",
   "enun": "Se registró el número de pedidos entregados al día en 13 repartidores. Datos: 12, 15, 10, 14, 18, 11, 13, 16, 12, 14, 10, 15, 13.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$2{,}36$",
-   "$2{,}01$",
-   "$3{,}06$",
-   "$1{,}30$"
+   "$5{,}56$",
+   "$2{,}27$",
+   "$2{,}01$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=13.",
@@ -1026,20 +1026,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Logística · Reparto",
   "enun": "Se registró el número de pedidos entregados al día en 13 repartidores. Datos: 12, 15, 10, 14, 18, 11, 13, 16, 12, 14, 10, 15, 13.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$24{,}11\\%$",
+   "$17{,}03\\%$",
    "$17{,}73\\%$",
-   "$13{,}26\\%$",
-   "$19{,}99\\%$"
+   "$0{,}18\\%$",
+   "$41{,}81\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{173}{13} = 13{,}31",
+   "\\bar{x} = \\dfrac{173}{13} = 13{,}3077",
    "\\sum (x_i-\\bar{x})^2 = 66{,}77",
-   "s = 2{,}36",
-   "CV = \\dfrac{2{,}36}{13{,}31}\\times 100\\% = 17{,}73\\%"
+   "s = 2{,}3588",
+   "CV = \\dfrac{2{,}3588}{13{,}3077}\\times 100\\% = 17{,}73\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 17{,}73\\%$."
  },
@@ -1049,10 +1049,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de visitantes por hora en 15 horas. Datos: 6, 9, 4, 7, 10, 5, 8, 6, 7, 9, 5, 8, 6, 7, 8.",
   "ask": "Calcule el rango.",
   "alts": [
-   "$8$",
+   "$10$",
    "$6$",
-   "$3$",
-   "$2$"
+   "$8$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -1068,9 +1068,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$2{,}86$",
-   "$2{,}10$",
-   "$4{,}03$",
-   "$3{,}20$"
+   "$2{,}67$",
+   "$1{,}69$",
+   "$2{,}10$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=15.",
@@ -1085,12 +1085,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Cultura · Museo",
   "enun": "Se registró el número de visitantes por hora en 15 horas. Datos: 6, 9, 4, 7, 10, 5, 8, 6, 7, 9, 5, 8, 6, 7, 8.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}24$",
+   "$2{,}86$",
    "$1{,}69$",
-   "$1{,}42$",
-   "$0{,}87$"
+   "$1{,}63$",
+   "$2{,}24$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=15.",
@@ -1106,20 +1106,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Cultura · Museo",
   "enun": "Se registró el número de visitantes por hora en 15 horas. Datos: 6, 9, 4, 7, 10, 5, 8, 6, 7, 9, 5, 8, 6, 7, 8.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$32{,}84\\%$",
-   "$18{,}14\\%$",
+   "$23{,}33\\%$",
+   "$0{,}24\\%$",
    "$24{,}15\\%$",
-   "$27{,}18\\%$"
+   "$40{,}82\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{105}{15} = 7{,}00",
+   "\\bar{x} = \\dfrac{105}{15} = 7{,}0000",
    "\\sum (x_i-\\bar{x})^2 = 40{,}00",
-   "s = 1{,}69",
-   "CV = \\dfrac{1{,}69}{7{,}00}\\times 100\\% = 24{,}15\\%"
+   "s = 1{,}6903",
+   "CV = \\dfrac{1{,}6903}{7{,}0000}\\times 100\\% = 24{,}15\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 24{,}15\\%$."
  },
@@ -1129,10 +1129,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de nuevos seguidores por día en 14 días. Datos: 20, 35, 15, 28, 40, 18, 25, 30, 22, 33, 17, 27, 24, 29.",
   "ask": "Calcule el rango.",
   "alts": [
+   "$40$",
    "$36$",
-   "$20$",
    "$25$",
-   "$8$"
+   "$20$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -1147,10 +1147,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de nuevos seguidores por día en 14 días. Datos: 20, 35, 15, 28, 40, 18, 25, 30, 22, 33, 17, 27, 24, 29.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$58{,}49$",
-   "$71{,}17$",
+   "$48{,}49$",
+   "$7{,}23$",
    "$52{,}23$",
-   "$39{,}62$"
+   "$58{,}49$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=14.",
@@ -1165,11 +1165,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Redes sociales · Crecimiento",
   "enun": "Se registró el número de nuevos seguidores por día en 14 días. Datos: 20, 35, 15, 28, 40, 18, 25, 30, 22, 33, 17, 27, 24, 29.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$52{,}23$",
+   "$6{,}96$",
    "$6{,}29$",
-   "$4{,}42$",
-   "$9{,}10$",
    "$7{,}23$"
   ],
   "correct": 3,
@@ -1186,20 +1186,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Redes sociales · Crecimiento",
   "enun": "Se registró el número de nuevos seguidores por día en 14 días. Datos: 20, 35, 15, 28, 40, 18, 25, 30, 22, 33, 17, 27, 24, 29.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$27{,}87\\%$",
-   "$31{,}36\\%$",
-   "$37{,}91\\%$",
-   "$20{,}97\\%$"
+   "$26{,}86\\%$",
+   "$0{,}28\\%$",
+   "$201{,}42\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{363}{14} = 25{,}93",
+   "\\bar{x} = \\dfrac{363}{14} = 25{,}9286",
    "\\sum (x_i-\\bar{x})^2 = 678{,}93",
-   "s = 7{,}23",
-   "CV = \\dfrac{7{,}23}{25{,}93}\\times 100\\% = 27{,}87\\%"
+   "s = 7{,}2267",
+   "CV = \\dfrac{7{,}2267}{25{,}9286}\\times 100\\% = 27{,}87\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 27{,}87\\%$."
  },
@@ -1209,9 +1209,9 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de libros prestados en 13 visitantes. Datos: 1, 3, 2, 1, 4, 2, 1, 3, 2, 1, 2, 3, 1.",
   "ask": "Calcule el rango.",
   "alts": [
+   "$4$",
    "$7$",
    "$0$",
-   "$1$",
    "$3$"
   ],
   "correct": 3,
@@ -1228,9 +1228,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}00$",
+   "$0{,}92$",
    "$1{,}59$",
-   "$1{,}15$",
-   "$0{,}63$"
+   "$1{,}15$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=13.",
@@ -1245,11 +1245,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Biblioteca · Préstamos",
   "enun": "Se registró el número de libros prestados en 13 visitantes. Datos: 1, 3, 2, 1, 4, 2, 1, 3, 2, 1, 2, 3, 1.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$0{,}96$",
    "$0{,}34$",
    "$1{,}44$",
-   "$0{,}78$",
    "$1{,}00$"
   ],
   "correct": 3,
@@ -1266,20 +1266,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Biblioteca · Préstamos",
   "enun": "Se registró el número de libros prestados en 13 visitantes. Datos: 1, 3, 2, 1, 4, 2, 1, 3, 2, 1, 2, 3, 1.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$56{,}14\\%$",
-   "$68{,}00\\%$",
+   "$48{,}04\\%$",
+   "$0{,}50\\%$",
    "$50{,}00\\%$",
-   "$37{,}79\\%$"
+   "$200{,}00\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{26}{13} = 2{,}00",
+   "\\bar{x} = \\dfrac{26}{13} = 2{,}0000",
    "\\sum (x_i-\\bar{x})^2 = 12{,}00",
-   "s = 1{,}00",
-   "CV = \\dfrac{1{,}00}{2{,}00}\\times 100\\% = 50{,}00\\%"
+   "s = 1{,}0000",
+   "CV = \\dfrac{1{,}0000}{2{,}0000}\\times 100\\% = 50{,}00\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 50{,}00\\%$."
  },
@@ -1308,9 +1308,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$2{,}69$",
-   "$3{,}01$",
-   "$3{,}79$",
-   "$1{,}97$"
+   "$2{,}51$",
+   "$1{,}64$",
+   "$3{,}01$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=15.",
@@ -1325,11 +1325,11 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Tránsito · Fiscalización",
   "enun": "Se registró el número de multas de estacionamiento emitidas por día en 15 días. Datos: 4, 6, 3, 5, 8, 4, 2, 6, 5, 3, 4, 7, 5, 4, 3.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$2{,}69$",
+   "$1{,}58$",
    "$1{,}37$",
-   "$0{,}84$",
-   "$2{,}17$",
    "$1{,}64$"
   ],
   "correct": 3,
@@ -1346,20 +1346,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Tránsito · Fiscalización",
   "enun": "Se registró el número de multas de estacionamiento emitidas por día en 15 días. Datos: 4, 6, 3, 5, 8, 4, 2, 6, 5, 3, 4, 7, 5, 4, 3.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$35{,}63\\%$",
-   "$40{,}04\\%$",
-   "$48{,}45\\%$",
-   "$26{,}87\\%$"
+   "$34{,}42\\%$",
+   "$0{,}36\\%$",
+   "$58{,}39\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{69}{15} = 4{,}60",
+   "\\bar{x} = \\dfrac{69}{15} = 4{,}6000",
    "\\sum (x_i-\\bar{x})^2 = 37{,}60",
-   "s = 1{,}64",
-   "CV = \\dfrac{1{,}64}{4{,}60}\\times 100\\% = 35{,}63\\%"
+   "s = 1{,}6388",
+   "CV = \\dfrac{1{,}6388}{4{,}6000}\\times 100\\% = 35{,}63\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 35{,}63\\%$."
  },
@@ -1387,10 +1387,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de accidentes reportados por semana en 13 semanas. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1.",
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}50$",
+   "$0{,}84$",
    "$0{,}91$",
-   "$1{,}06$",
-   "$0{,}54$"
+   "$0{,}95$",
+   "$1{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=13.",
@@ -1405,12 +1405,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Seguridad industrial · Fábrica",
   "enun": "Se registró el número de accidentes reportados por semana en 13 semanas. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$0{,}91$",
    "$1{,}39$",
-   "$0{,}29$",
    "$0{,}95$",
-   "$0{,}73$"
+   "$0{,}29$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=13.",
@@ -1426,20 +1426,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Seguridad industrial · Fábrica",
   "enun": "Se registró el número de accidentes reportados por semana en 13 semanas. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$78{,}34\\%$",
-   "$115{,}90\\%$",
+   "$99{,}30\\%$",
+   "$1{,}03\\%$",
    "$103{,}36\\%$",
-   "$140{,}57\\%$"
+   "$96{,}75\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{12}{13} = 0{,}92",
+   "\\bar{x} = \\dfrac{12}{13} = 0{,}9231",
    "\\sum (x_i-\\bar{x})^2 = 10{,}92",
-   "s = 0{,}95",
-   "CV = \\dfrac{0{,}95}{0{,}92}\\times 100\\% = 103{,}36\\%"
+   "s = 0{,}9541",
+   "CV = \\dfrac{0{,}9541}{0{,}9231}\\times 100\\% = 103{,}36\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 103{,}36\\%$."
  },
@@ -1449,10 +1449,10 @@ const MV_QUESTIONS = [
   "enun": "Se registró el número de libros vencidos en 14 sucursales. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5.",
   "ask": "Calcule el rango.",
   "alts": [
+   "$6$",
    "$2$",
-   "$9$",
    "$5$",
-   "$3$"
+   "$9$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -1468,9 +1468,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$2{,}12$",
-   "$2{,}37$",
-   "$1{,}54$",
-   "$3{,}02$"
+   "$1{,}96$",
+   "$1{,}45$",
+   "$2{,}37$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=14.",
@@ -1485,12 +1485,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "Biblioteca · Sucursales",
   "enun": "Se registró el número de libros vencidos en 14 sucursales. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}45$",
-   "$0{,}72$",
-   "$1{,}94$",
-   "$1{,}21$"
+   "$2{,}12$",
+   "$1{,}40$",
+   "$0{,}72$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=14.",
@@ -1498,7 +1498,7 @@ const MV_QUESTIONS = [
    "\\bar{x} = \\dfrac{49}{14} = 3{,}50",
    "\\sum (x_i-\\bar{x})^2 = 27{,}50",
    "s^2 = \\dfrac{27{,}50}{13} = 2{,}12",
-   "s = \\sqrt{2{,}12} = 1{,}45"
+   "s = \\sqrt{2{,}1154} = 1{,}45"
   ],
   "conc": "La desviación estándar es $s = 1{,}45$."
  },
@@ -1506,20 +1506,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "Biblioteca · Sucursales",
   "enun": "Se registró el número de libros vencidos en 14 sucursales. Datos: 3, 5, 2, 4, 6, 3, 1, 4, 5, 2, 3, 4, 2, 5.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$31{,}37\\%$",
+   "$40{,}04\\%$",
    "$41{,}56\\%$",
-   "$46{,}68\\%$",
-   "$56{,}52\\%$"
+   "$0{,}42\\%$",
+   "$60{,}44\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{49}{14} = 3{,}50",
+   "\\bar{x} = \\dfrac{49}{14} = 3{,}50000",
    "\\sum (x_i-\\bar{x})^2 = 27{,}50",
-   "s = 1{,}45",
-   "CV = \\dfrac{1{,}45}{3{,}50}\\times 100\\% = 41{,}56\\%"
+   "s = 1{,}45444",
+   "CV = \\dfrac{1{,}45444}{3{,}50000}\\times 100\\% = 41{,}56\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 41{,}56\\%$."
  },
@@ -1530,9 +1530,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$10$",
+   "$18$",
    "$14$",
-   "$3$",
-   "$6$"
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -1548,9 +1548,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$8{,}12$",
-   "$6{,}10$",
-   "$9{,}10$",
-   "$11{,}19$"
+   "$7{,}58$",
+   "$2{,}85$",
+   "$6{,}10$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum (x_i-\\bar{x})^2,\\ n=15.",
@@ -1565,12 +1565,12 @@ const MV_QUESTIONS = [
   "tipo": "Desviación estándar",
   "ctx": "E-commerce · Reseñas",
   "enun": "Se registró el número de reseñas dejadas en 15 productos. Datos: 10, 15, 8, 12, 18, 9, 14, 11, 13, 16, 10, 12, 9, 14, 11.",
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}61$",
-   "$3{,}67$",
+   "$8{,}12$",
+   "$2{,}75$",
    "$2{,}85$",
-   "$2{,}44$"
+   "$1{,}61$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=15.",
@@ -1586,20 +1586,20 @@ const MV_QUESTIONS = [
   "tipo": "Coeficiente de variación",
   "ctx": "E-commerce · Reseñas",
   "enun": "Se registró el número de reseñas dejadas en 15 productos. Datos: 10, 15, 8, 12, 18, 9, 14, 11, 13, 16, 10, 12, 9, 14, 11.",
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$17{,}64\\%$",
-   "$26{,}45\\%$",
+   "$22{,}69\\%$",
+   "$0{,}23\\%$",
    "$23{,}49\\%$",
-   "$31{,}95\\%$"
+   "$66{,}95\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{182}{15} = 12{,}13",
+   "\\bar{x} = \\dfrac{182}{15} = 12{,}1333",
    "\\sum (x_i-\\bar{x})^2 = 113{,}73",
-   "s = 2{,}85",
-   "CV = \\dfrac{2{,}85}{12{,}13}\\times 100\\% = 23{,}49\\%"
+   "s = 2{,}8502",
+   "CV = \\dfrac{2{,}8502}{12{,}1333}\\times 100\\% = 23{,}49\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 23{,}49\\%$."
  },
@@ -1693,10 +1693,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}52$",
+   "$1{,}32$",
    "$1{,}36$",
-   "$0{,}96$",
-   "$1{,}99$"
+   "$1{,}17$",
+   "$2{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=30.",
@@ -1744,12 +1744,12 @@ const MV_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}17$",
-   "$0{,}51$",
-   "$1{,}61$",
-   "$0{,}95$"
+   "$1{,}36$",
+   "$1{,}15$",
+   "$1{,}58$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=30.",
@@ -1798,20 +1798,20 @@ const MV_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$57{,}61\\%$",
+   "$74{,}80\\%$",
    "$76{,}08\\%$",
-   "$85{,}35\\%$",
-   "$103{,}47\\%$"
+   "$0{,}76\\%$",
+   "$79{,}06\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{46}{30} = 1{,}53",
+   "\\bar{x} = \\dfrac{46}{30} = 1{,}5333",
    "\\sum f_i(x_i-\\bar{x})^2 = 39{,}47",
-   "s = 1{,}17",
-   "CV = \\dfrac{1{,}17}{1{,}53}\\times 100\\% = 76{,}08\\%"
+   "s = 1{,}1666",
+   "CV = \\dfrac{1{,}1666}{1{,}5333}\\times 100\\% = 76{,}08\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 76{,}08\\%$."
  },
@@ -1850,10 +1850,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$0$",
+   "$8$",
    "$3$",
-   "$1$",
-   "$7$"
+   "$0$",
+   "$1$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -1897,9 +1897,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}50$",
-   "$1{,}02$",
-   "$1{,}46$",
+   "$0{,}84$",
+   "$0{,}93$",
+   "$1{,}67$",
    "$0{,}87$"
   ],
   "correct": 3,
@@ -1944,12 +1944,12 @@ const MV_QUESTIONS = [
    ],
    "N": 25
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}71$",
-   "$0{,}27$",
+   "$0{,}87$",
+   "$1{,}29$",
    "$0{,}93$",
-   "$1{,}37$"
+   "$0{,}71$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=25.",
@@ -1994,20 +1994,20 @@ const MV_QUESTIONS = [
    ],
    "N": 25
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$100{,}78\\%$",
-   "$68{,}08\\%$",
-   "$122{,}21\\%$",
+   "$88{,}04\\%$",
+   "$0{,}90\\%$",
+   "$86{,}07\\%$",
    "$89{,}86\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{26}{25} = 1{,}04",
+   "\\bar{x} = \\dfrac{26}{25} = 1{,}0400",
    "\\sum f_i(x_i-\\bar{x})^2 = 20{,}96",
-   "s = 0{,}93",
-   "CV = \\dfrac{0{,}93}{1{,}04}\\times 100\\% = 89{,}86\\%"
+   "s = 0{,}9345",
+   "CV = \\dfrac{0{,}9345}{1{,}0400}\\times 100\\% = 89{,}86\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 89{,}86\\%$."
  },
@@ -2047,9 +2047,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$3$",
-   "$0$",
-   "$9$",
-   "$5$"
+   "$6$",
+   "$4$",
+   "$0$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -2093,9 +2093,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}00$",
-   "$1{,}44$",
-   "$0{,}48$",
+   "$0{,}82$",
+   "$0{,}92$",
+   "$1{,}67$",
    "$0{,}85$"
   ],
   "correct": 3,
@@ -2140,12 +2140,12 @@ const MV_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}26$",
+   "$0{,}85$",
    "$0{,}92$",
-   "$0{,}70$",
-   "$1{,}36$"
+   "$1{,}29$",
+   "$0{,}26$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=28.",
@@ -2190,20 +2190,20 @@ const MV_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$50{,}21\\%$",
-   "$27{,}85\\%$",
-   "$41{,}49\\%$",
+   "$36{,}25\\%$",
+   "$0{,}37\\%$",
+   "$51{,}64\\%$",
    "$36{,}92\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{70}{28} = 2{,}50",
+   "\\bar{x} = \\dfrac{70}{28} = 2{,}5000",
    "\\sum f_i(x_i-\\bar{x})^2 = 23{,}00",
-   "s = 0{,}92",
-   "CV = \\dfrac{0{,}92}{2{,}50}\\times 100\\% = 36{,}92\\%"
+   "s = 0{,}9230",
+   "CV = \\dfrac{0{,}9230}{2{,}5000}\\times 100\\% = 36{,}92\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 36{,}92\\%$."
  },
@@ -2242,10 +2242,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$7$",
+   "$11$",
    "$3$",
-   "$2$",
-   "$6$"
+   "$7$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -2289,9 +2289,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}94$",
-   "$0{,}42$",
-   "$1{,}38$",
+   "$0{,}76$",
+   "$0{,}89$",
+   "$1{,}67$",
    "$0{,}79$"
   ],
   "correct": 3,
@@ -2336,12 +2336,12 @@ const MV_QUESTIONS = [
    ],
    "N": 32
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}23$",
-   "$0{,}67$",
+   "$0{,}79$",
+   "$0{,}87$",
    "$0{,}89$",
-   "$1{,}33$"
+   "$1{,}29$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=32.",
@@ -2386,20 +2386,20 @@ const MV_QUESTIONS = [
    ],
    "N": 32
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$77{,}80\\%$",
-   "$94{,}30\\%$",
-   "$52{,}49\\%$",
+   "$68{,}25\\%$",
+   "$0{,}69\\%$",
+   "$86{,}07\\%$",
    "$69{,}34\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{41}{32} = 1{,}28",
+   "\\bar{x} = \\dfrac{41}{32} = 1{,}2813",
    "\\sum f_i(x_i-\\bar{x})^2 = 24{,}47",
-   "s = 0{,}89",
-   "CV = \\dfrac{0{,}89}{1{,}28}\\times 100\\% = 69{,}34\\%"
+   "s = 0{,}8884",
+   "CV = \\dfrac{0{,}8884}{1{,}2813}\\times 100\\% = 69{,}34\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 69{,}34\\%$."
  },
@@ -2442,10 +2442,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$2$",
+   "$8$",
    "$4$",
-   "$1$",
-   "$8$"
+   "$6$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -2493,9 +2493,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}82$",
-   "$1{,}38$",
-   "$0{,}86$",
+   "$1{,}18$",
+   "$1{,}11$",
+   "$2{,}50$",
    "$1{,}23$"
   ],
   "correct": 3,
@@ -2544,12 +2544,12 @@ const MV_QUESTIONS = [
    ],
    "N": 26
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}55$",
+   "$1{,}23$",
    "$1{,}11$",
-   "$0{,}89$",
-   "$0{,}45$"
+   "$1{,}09$",
+   "$1{,}58$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=26.",
@@ -2598,20 +2598,20 @@ const MV_QUESTIONS = [
    ],
    "N": 26
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$28{,}51\\%$",
-   "$21{,}45\\%$",
-   "$38{,}77\\%$",
-   "$32{,}07\\%$"
+   "$27{,}95\\%$",
+   "$0{,}29\\%$",
+   "$39{,}53\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{101}{26} = 3{,}88",
+   "\\bar{x} = \\dfrac{101}{26} = 3{,}88462",
    "\\sum f_i(x_i-\\bar{x})^2 = 30{,}65",
-   "s = 1{,}11",
-   "CV = \\dfrac{1{,}11}{3{,}88}\\times 100\\% = 28{,}51\\%"
+   "s = 1{,}10732",
+   "CV = \\dfrac{1{,}10732}{3{,}88462}\\times 100\\% = 28{,}51\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 28{,}51\\%$."
  },
@@ -2654,10 +2654,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
+   "$12$",
    "$6$",
-   "$1$",
    "$4$",
-   "$0$"
+   "$1$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -2705,10 +2705,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}93$",
-   "$0{,}93$",
+   "$1{,}28$",
+   "$1{,}15$",
    "$1{,}32$",
-   "$1{,}48$"
+   "$2{,}50$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=40.",
@@ -2756,12 +2756,12 @@ const MV_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}59$",
-   "$0{,}93$",
+   "$1{,}32$",
+   "$1{,}13$",
    "$1{,}15$",
-   "$0{,}49$"
+   "$1{,}58$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=40.",
@@ -2810,20 +2810,20 @@ const MV_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$83{,}47\\%$",
-   "$113{,}52\\%$",
-   "$63{,}23\\%$",
-   "$93{,}63\\%$"
+   "$82{,}42\\%$",
+   "$0{,}83\\%$",
+   "$79{,}06\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{55}{40} = 1{,}38",
+   "\\bar{x} = \\dfrac{55}{40} = 1{,}3750",
    "\\sum f_i(x_i-\\bar{x})^2 = 51{,}38",
-   "s = 1{,}15",
-   "CV = \\dfrac{1{,}15}{1{,}38}\\times 100\\% = 83{,}47\\%"
+   "s = 1{,}1477",
+   "CV = \\dfrac{1{,}1477}{1{,}3750}\\times 100\\% = 83{,}47\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 83{,}47\\%$."
  },
@@ -2866,10 +2866,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$3$",
+   "$9$",
    "$4$",
    "$7$",
-   "$8$"
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -2918,9 +2918,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}36$",
-   "$0{,}96$",
-   "$1{,}99$",
-   "$1{,}52$"
+   "$1{,}32$",
+   "$1{,}17$",
+   "$2{,}50$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=35.",
@@ -2968,12 +2968,12 @@ const MV_QUESTIONS = [
    ],
    "N": 35
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}17$",
-   "$1{,}61$",
-   "$0{,}95$",
-   "$0{,}51$"
+   "$1{,}36$",
+   "$1{,}15$",
+   "$1{,}58$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=35.",
@@ -3022,20 +3022,20 @@ const MV_QUESTIONS = [
    ],
    "N": 35
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$18{,}05\\%$",
+   "$23{,}68\\%$",
    "$24{,}02\\%$",
-   "$32{,}67\\%$",
-   "$27{,}04\\%$"
+   "$0{,}24\\%$",
+   "$31{,}62\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{170}{35} = 4{,}86",
+   "\\bar{x} = \\dfrac{170}{35} = 4{,}8571",
    "\\sum f_i(x_i-\\bar{x})^2 = 46{,}29",
-   "s = 1{,}17",
-   "CV = \\dfrac{1{,}17}{4{,}86}\\times 100\\% = 24{,}02\\%"
+   "s = 1{,}1668",
+   "CV = \\dfrac{1{,}1668}{4{,}8571}\\times 100\\% = 24{,}02\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 24{,}02\\%$."
  },
@@ -3078,10 +3078,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
+   "$7$",
    "$8$",
-   "$2$",
    "$4$",
-   "$1$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -3129,10 +3129,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}91$",
-   "$1{,}89$",
+   "$1{,}23$",
+   "$1{,}13$",
    "$1{,}29$",
-   "$1{,}44$"
+   "$2{,}50$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=24.",
@@ -3180,12 +3180,12 @@ const MV_QUESTIONS = [
    ],
    "N": 24
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}91$",
+   "$1{,}29$",
    "$1{,}13$",
-   "$1{,}57$",
-   "$0{,}47$"
+   "$1{,}11$",
+   "$1{,}58$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=24.",
@@ -3193,7 +3193,7 @@ const MV_QUESTIONS = [
    "\\bar{x} = \\dfrac{33}{24} = 1{,}38",
    "\\sum f_i(x_i-\\bar{x})^2 = 29{,}63",
    "s^2 = \\dfrac{29{,}63}{23} = 1{,}29",
-   "s = \\sqrt{1{,}29} = 1{,}13"
+   "s = \\sqrt{1{,}2880} = 1{,}13"
   ],
   "conc": "La desviación estándar es $s = 1{,}13$."
  },
@@ -3234,20 +3234,20 @@ const MV_QUESTIONS = [
    ],
    "N": 24
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$82{,}54\\%$",
-   "$92{,}58\\%$",
-   "$112{,}25\\%$",
-   "$62{,}52\\%$"
+   "$80{,}80\\%$",
+   "$0{,}83\\%$",
+   "$79{,}06\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{33}{24} = 1{,}38",
+   "\\bar{x} = \\dfrac{33}{24} = 1{,}3750",
    "\\sum f_i(x_i-\\bar{x})^2 = 29{,}63",
-   "s = 1{,}13",
-   "CV = \\dfrac{1{,}13}{1{,}38}\\times 100\\% = 82{,}54\\%"
+   "s = 1{,}1349",
+   "CV = \\dfrac{1{,}1349}{1{,}3750}\\times 100\\% = 82{,}54\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 82{,}54\\%$."
  },
@@ -3294,9 +3294,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
+   "$6$",
    "$1$",
    "$2$",
-   "$7$",
    "$5$"
   ],
   "correct": 3,
@@ -3349,10 +3349,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}82$",
+   "$1{,}90$",
    "$1{,}97$",
-   "$2{,}20$",
-   "$1{,}43$"
+   "$1{,}40$",
+   "$3{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=27.",
@@ -3404,11 +3404,11 @@ const MV_QUESTIONS = [
    ],
    "N": 27
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}69$",
-   "$1{,}88$",
-   "$1{,}16$",
+   "$1{,}97$",
+   "$1{,}38$",
+   "$1{,}87$",
    "$1{,}40$"
   ],
   "correct": 3,
@@ -3462,20 +3462,20 @@ const MV_QUESTIONS = [
    ],
    "N": 27
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$84{,}46\\%$",
-   "$69{,}70\\%$",
+   "$60{,}94\\%$",
+   "$0{,}62\\%$",
    "$62{,}10\\%$",
-   "$46{,}99\\%$"
+   "$74{,}83\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{61}{27} = 2{,}26",
+   "\\bar{x} = \\dfrac{61}{27} = 2{,}2593",
    "\\sum f_i(x_i-\\bar{x})^2 = 51{,}19",
-   "s = 1{,}40",
-   "CV = \\dfrac{1{,}40}{2{,}26}\\times 100\\% = 62{,}10\\%"
+   "s = 1{,}4031",
+   "CV = \\dfrac{1{,}4031}{2{,}2593}\\times 100\\% = 62{,}10\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 62{,}10\\%$."
  },
@@ -3514,8 +3514,8 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$2$",
    "$6$",
+   "$2$",
    "$7$",
    "$3$"
   ],
@@ -3561,10 +3561,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}59$",
-   "$1{,}15$",
+   "$0{,}95$",
+   "$1{,}67$",
    "$1{,}00$",
-   "$0{,}63$"
+   "$1{,}59$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=22.",
@@ -3608,11 +3608,11 @@ const MV_QUESTIONS = [
    ],
    "N": 22
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
+   "$0{,}98$",
+   "$1{,}29$",
    "$0{,}78$",
-   "$0{,}34$",
-   "$1{,}44$",
    "$1{,}00$"
   ],
   "correct": 3,
@@ -3658,20 +3658,20 @@ const MV_QUESTIONS = [
    ],
    "N": 22
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$107{,}15\\%$",
+   "$93{,}35\\%$",
    "$95{,}55\\%$",
-   "$129{,}95\\%$",
-   "$72{,}41\\%$"
+   "$0{,}96\\%$",
+   "$86{,}07\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{23}{22} = 1{,}05",
+   "\\bar{x} = \\dfrac{23}{22} = 1{,}04545",
    "\\sum f_i(x_i-\\bar{x})^2 = 20{,}95",
-   "s = 1{,}00",
-   "CV = \\dfrac{1{,}00}{1{,}05}\\times 100\\% = 95{,}55\\%"
+   "s = 0{,}99892",
+   "CV = \\dfrac{0{,}99892}{1{,}04545}\\times 100\\% = 95{,}55\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 95{,}55\\%$."
  },
@@ -3714,9 +3714,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
+   "$7$",
    "$1$",
    "$8$",
-   "$2$",
    "$4$"
   ],
   "correct": 3,
@@ -3765,10 +3765,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}26$",
+   "$1{,}52$",
    "$1{,}56$",
-   "$1{,}75$",
-   "$1{,}11$"
+   "$1{,}25$",
+   "$2{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=36.",
@@ -3816,11 +3816,11 @@ const MV_QUESTIONS = [
    ],
    "N": 36
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}69$",
-   "$0{,}59$",
-   "$1{,}03$",
+   "$1{,}56$",
+   "$1{,}23$",
+   "$1{,}58$",
    "$1{,}25$"
   ],
   "correct": 3,
@@ -3870,20 +3870,20 @@ const MV_QUESTIONS = [
    ],
    "N": 36
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$105{,}39\\%$",
-   "$86{,}93\\%$",
+   "$76{,}41\\%$",
+   "$0{,}77\\%$",
    "$77{,}49\\%$",
-   "$58{,}68\\%$"
+   "$79{,}06\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{58}{36} = 1{,}61",
+   "\\bar{x} = \\dfrac{58}{36} = 1{,}6111",
    "\\sum f_i(x_i-\\bar{x})^2 = 54{,}56",
-   "s = 1{,}25",
-   "CV = \\dfrac{1{,}25}{1{,}61}\\times 100\\% = 77{,}49\\%"
+   "s = 1{,}2485",
+   "CV = \\dfrac{1{,}2485}{1{,}6111}\\times 100\\% = 77{,}49\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 77{,}49\\%$."
  },
@@ -3930,9 +3930,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
+   "$8$",
    "$2$",
    "$7$",
-   "$1$",
    "$5$"
   ],
   "correct": 3,
@@ -3985,10 +3985,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}99$",
+   "$1{,}73$",
    "$1{,}78$",
-   "$1{,}28$",
-   "$2{,}56$"
+   "$1{,}33$",
+   "$3{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=33.",
@@ -4040,12 +4040,12 @@ const MV_QUESTIONS = [
    ],
    "N": 33
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}33$",
-   "$0{,}64$",
-   "$1{,}79$",
-   "$1{,}10$"
+   "$1{,}78$",
+   "$1{,}31$",
+   "$1{,}87$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=33.",
@@ -4098,20 +4098,20 @@ const MV_QUESTIONS = [
    ],
    "N": 33
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$65{,}03\\%$",
+   "$57{,}05\\%$",
    "$57{,}94\\%$",
-   "$43{,}82\\%$",
-   "$78{,}79\\%$"
+   "$0{,}58\\%$",
+   "$74{,}83\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{76}{33} = 2{,}30",
+   "\\bar{x} = \\dfrac{76}{33} = 2{,}3030",
    "\\sum f_i(x_i-\\bar{x})^2 = 56{,}97",
-   "s = 1{,}33",
-   "CV = \\dfrac{1{,}33}{2{,}30}\\times 100\\% = 57{,}94\\%"
+   "s = 1{,}3343",
+   "CV = \\dfrac{1{,}3343}{2{,}3030}\\times 100\\% = 57{,}94\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 57{,}94\\%$."
  },
@@ -4150,10 +4150,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$6$",
+   "$12$",
    "$3$",
-   "$7$",
-   "$2$"
+   "$6$",
+   "$7$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -4198,9 +4198,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
    "$0{,}88$",
-   "$0{,}51$",
-   "$1{,}03$",
-   "$1{,}47$"
+   "$0{,}85$",
+   "$0{,}94$",
+   "$1{,}67$"
   ],
   "correct": 0,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=29.",
@@ -4244,12 +4244,12 @@ const MV_QUESTIONS = [
    ],
    "N": 29
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}28$",
-   "$1{,}38$",
+   "$0{,}88$",
+   "$0{,}92$",
    "$0{,}94$",
-   "$0{,}72$"
+   "$1{,}29$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=29.",
@@ -4294,20 +4294,20 @@ const MV_QUESTIONS = [
    ],
    "N": 29
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$132{,}93\\%$",
-   "$89{,}90\\%$",
+   "$116{,}50\\%$",
+   "$1{,}19\\%$",
    "$118{,}56\\%$",
-   "$161{,}25\\%$"
+   "$86{,}07\\%$"
   ],
   "correct": 2,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{23}{29} = 0{,}79",
+   "\\bar{x} = \\dfrac{23}{29} = 0{,}7931",
    "\\sum f_i(x_i-\\bar{x})^2 = 24{,}76",
-   "s = 0{,}94",
-   "CV = \\dfrac{0{,}94}{0{,}79}\\times 100\\% = 118{,}56\\%"
+   "s = 0{,}9403",
+   "CV = \\dfrac{0{,}9403}{0{,}7931}\\times 100\\% = 118{,}56\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 118{,}56\\%$."
  },
@@ -4351,9 +4351,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$8$",
-   "$1$",
+   "$7$",
    "$4$",
-   "$2$"
+   "$1$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -4401,10 +4401,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}40$",
+   "$1{,}21$",
    "$1{,}25$",
-   "$0{,}88$",
-   "$1{,}84$"
+   "$1{,}12$",
+   "$2{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=31.",
@@ -4452,12 +4452,12 @@ const MV_QUESTIONS = [
    ],
    "N": 31
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}46$",
+   "$1{,}25$",
    "$1{,}12$",
-   "$1{,}56$",
-   "$0{,}90$"
+   "$1{,}10$",
+   "$1{,}58$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=31.",
@@ -4506,20 +4506,20 @@ const MV_QUESTIONS = [
    ],
    "N": 31
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$23{,}39\\%$",
-   "$17{,}57\\%$",
-   "$26{,}34\\%$",
-   "$31{,}81\\%$"
+   "$23{,}01\\%$",
+   "$0{,}23\\%$",
+   "$31{,}62\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{148}{31} = 4{,}77",
+   "\\bar{x} = \\dfrac{148}{31} = 4{,}7742",
    "\\sum f_i(x_i-\\bar{x})^2 = 37{,}42",
-   "s = 1{,}12",
-   "CV = \\dfrac{1{,}12}{4{,}77}\\times 100\\% = 23{,}39\\%"
+   "s = 1{,}1168",
+   "CV = \\dfrac{1{,}1168}{4{,}7742}\\times 100\\% = 23{,}39\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 23{,}39\\%$."
  },
@@ -4566,10 +4566,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$7$",
+   "$8$",
    "$5$",
-   "$1$",
-   "$2$"
+   "$6$",
+   "$7$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -4621,10 +4621,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}38$",
+   "$1{,}85$",
    "$1{,}91$",
-   "$2{,}14$",
-   "$2{,}73$"
+   "$1{,}38$",
+   "$3{,}50$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=34.",
@@ -4676,12 +4676,12 @@ const MV_QUESTIONS = [
    ],
    "N": 34
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}85$",
-   "$0{,}67$",
+   "$1{,}91$",
+   "$1{,}36$",
    "$1{,}38$",
-   "$1{,}15$"
+   "$1{,}87$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=34.",
@@ -4734,20 +4734,20 @@ const MV_QUESTIONS = [
    ],
    "N": 34
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$48{,}83\\%$",
-   "$32{,}83\\%$",
-   "$59{,}13\\%$",
+   "$42{,}83\\%$",
+   "$0{,}43\\%$",
+   "$53{,}45\\%$",
    "$43{,}48\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{108}{34} = 3{,}18",
+   "\\bar{x} = \\dfrac{108}{34} = 3{,}1765",
    "\\sum f_i(x_i-\\bar{x})^2 = 62{,}94",
-   "s = 1{,}38",
-   "CV = \\dfrac{1{,}38}{3{,}18}\\times 100\\% = 43{,}48\\%"
+   "s = 1{,}3811",
+   "CV = \\dfrac{1{,}3811}{3{,}1765}\\times 100\\% = 43{,}48\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 43{,}48\\%$."
  },
@@ -4791,9 +4791,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$4$",
+   "$7$",
    "$3$",
-   "$8$",
-   "$7$"
+   "$8$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -4841,9 +4841,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}87$",
-   "$1{,}42$",
-   "$0{,}89$",
+   "$1{,}21$",
+   "$1{,}13$",
+   "$2{,}50$",
    "$1{,}27$"
   ],
   "correct": 3,
@@ -4892,12 +4892,12 @@ const MV_QUESTIONS = [
    ],
    "N": 23
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}91$",
+   "$1{,}27$",
    "$1{,}13$",
-   "$0{,}47$",
-   "$1{,}57$"
+   "$1{,}10$",
+   "$1{,}58$"
   ],
   "correct": 1,
   "pautaHead": "s=\\sqrt{s^2},\\ n=23.",
@@ -4946,20 +4946,20 @@ const MV_QUESTIONS = [
    ],
    "N": 23
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$125{,}83\\%$",
-   "$70{,}11\\%$",
-   "$103{,}77\\%$",
+   "$90{,}49\\%$",
+   "$0{,}93\\%$",
+   "$79{,}06\\%$",
    "$92{,}53\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{28}{23} = 1{,}22",
+   "\\bar{x} = \\dfrac{28}{23} = 1{,}2174",
    "\\sum f_i(x_i-\\bar{x})^2 = 27{,}91",
-   "s = 1{,}13",
-   "CV = \\dfrac{1{,}13}{1{,}22}\\times 100\\% = 92{,}53\\%"
+   "s = 1{,}1264",
+   "CV = \\dfrac{1{,}1264}{1{,}2174}\\times 100\\% = 92{,}53\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 92{,}53\\%$."
  },
@@ -5007,9 +5007,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$5$",
+   "$12$",
    "$2$",
-   "$3$",
-   "$9$"
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -5061,9 +5061,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}45$",
-   "$1{,}59$",
-   "$3{,}11$",
+   "$2{,}13$",
+   "$1{,}48$",
+   "$3{,}50$",
    "$2{,}18$"
   ],
   "correct": 3,
@@ -5116,12 +5116,12 @@ const MV_QUESTIONS = [
    ],
    "N": 38
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}74$",
-   "$1{,}23$",
+   "$2{,}18$",
+   "$1{,}46$",
    "$1{,}48$",
-   "$1{,}97$"
+   "$1{,}87$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=38.",
@@ -5174,20 +5174,20 @@ const MV_QUESTIONS = [
    ],
    "N": 38
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$81{,}88\\%$",
-   "$121{,}12\\%$",
-   "$146{,}91\\%$",
+   "$106{,}59\\%$",
+   "$1{,}08\\%$",
+   "$74{,}83\\%$",
    "$108{,}02\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{52}{38} = 1{,}37",
+   "\\bar{x} = \\dfrac{52}{38} = 1{,}3684",
    "\\sum f_i(x_i-\\bar{x})^2 = 80{,}84",
-   "s = 1{,}48",
-   "CV = \\dfrac{1{,}48}{1{,}37}\\times 100\\% = 108{,}02\\%"
+   "s = 1{,}4781",
+   "CV = \\dfrac{1{,}4781}{1{,}3684}\\times 100\\% = 108{,}02\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 108{,}02\\%$."
  },
@@ -5230,10 +5230,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule el rango.",
   "alts": [
-   "$1$",
+   "$6$",
    "$4$",
-   "$0$",
-   "$6$"
+   "$1$",
+   "$0$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -5281,9 +5281,9 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}19$",
-   "$1{,}69$",
-   "$1{,}08$",
+   "$1{,}45$",
+   "$1{,}23$",
+   "$2{,}50$",
    "$1{,}51$"
   ],
   "correct": 3,
@@ -5332,12 +5332,12 @@ const MV_QUESTIONS = [
    ],
    "N": 25
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}23$",
-   "$0{,}57$",
-   "$1{,}01$",
-   "$1{,}67$"
+   "$1{,}51$",
+   "$1{,}20$",
+   "$1{,}58$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=25.",
@@ -5386,20 +5386,20 @@ const MV_QUESTIONS = [
    ],
    "N": 25
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$62{,}89\\%$",
-   "$112{,}92\\%$",
-   "$93{,}13\\%$",
+   "$81{,}35\\%$",
+   "$0{,}83\\%$",
+   "$79{,}06\\%$",
    "$83{,}03\\%$"
   ],
   "correct": 3,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{37}{25} = 1{,}48",
+   "\\bar{x} = \\dfrac{37}{25} = 1{,}4800",
    "\\sum f_i(x_i-\\bar{x})^2 = 36{,}24",
-   "s = 1{,}23",
-   "CV = \\dfrac{1{,}23}{1{,}48}\\times 100\\% = 83{,}03\\%"
+   "s = 1{,}2288",
+   "CV = \\dfrac{1{,}2288}{1{,}4800}\\times 100\\% = 83{,}03\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 83{,}03\\%$."
  },
@@ -5447,9 +5447,9 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$5$",
+   "$7$",
    "$8$",
-   "$4$",
-   "$0$"
+   "$4$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Rango} = x_{\\max} - x_{\\min}.",
@@ -5501,10 +5501,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
+   "$1{,}86$",
    "$1{,}39$",
-   "$2{,}76$",
    "$1{,}93$",
-   "$2{,}16$"
+   "$3{,}50$"
   ],
   "correct": 2,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=30.",
@@ -5556,12 +5556,12 @@ const MV_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}15$",
-   "$1{,}86$",
+   "$1{,}93$",
+   "$1{,}36$",
    "$1{,}39$",
-   "$0{,}68$"
+   "$1{,}87$"
   ],
   "correct": 2,
   "pautaHead": "s=\\sqrt{s^2},\\ n=30.",
@@ -5614,20 +5614,20 @@ const MV_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
    "$32{,}53\\%$",
-   "$44{,}24\\%$",
-   "$24{,}51\\%$",
-   "$36{,}57\\%$"
+   "$31{,}98\\%$",
+   "$0{,}33\\%$",
+   "$41{,}57\\%$"
   ],
   "correct": 0,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{128}{30} = 4{,}27",
+   "\\bar{x} = \\dfrac{128}{30} = 4{,}2667",
    "\\sum f_i(x_i-\\bar{x})^2 = 55{,}87",
-   "s = 1{,}39",
-   "CV = \\dfrac{1{,}39}{4{,}27}\\times 100\\% = 32{,}53\\%"
+   "s = 1{,}3880",
+   "CV = \\dfrac{1{,}3880}{4{,}2667}\\times 100\\% = 32{,}53\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 32{,}53\\%$."
  },
@@ -5667,8 +5667,8 @@ const MV_QUESTIONS = [
   "ask": "Calcule el rango.",
   "alts": [
    "$3$",
-   "$1$",
    "$7$",
+   "$1$",
    "$0$"
   ],
   "correct": 0,
@@ -5713,10 +5713,10 @@ const MV_QUESTIONS = [
   },
   "ask": "Calcule la varianza muestral $s^2$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}50$",
+   "$0{,}87$",
    "$0{,}91$",
-   "$0{,}54$",
-   "$1{,}06$"
+   "$0{,}95$",
+   "$1{,}67$"
   ],
   "correct": 1,
   "pautaHead": "s^2=\\dfrac{1}{n-1}\\sum f_i(x_i-\\bar{x})^2,\\ n=24.",
@@ -5760,12 +5760,12 @@ const MV_QUESTIONS = [
    ],
    "N": 24
   },
-  "ask": "Calcule la desviación estándar $s$ (aproximada a 2 decimales).",
+  "ask": "Calcule la desviación estándar muestral $s$ (aproximada a 2 decimales).",
   "alts": [
    "$0{,}95$",
-   "$1{,}39$",
-   "$0{,}73$",
-   "$0{,}29$"
+   "$0{,}91$",
+   "$0{,}93$",
+   "$1{,}29$"
   ],
   "correct": 0,
   "pautaHead": "s=\\sqrt{s^2},\\ n=24.",
@@ -5810,20 +5810,20 @@ const MV_QUESTIONS = [
    ],
    "N": 24
   },
-  "ask": "Calcule el coeficiente de variación $CV$ (aproximado a 2 decimales).",
+  "ask": "Calcule el coeficiente de variación $CV$ usando la desviación estándar muestral $s$ (aproximado a 2 decimales).",
   "alts": [
-   "$55{,}96\\%$",
+   "$72{,}35\\%$",
    "$73{,}90\\%$",
-   "$100{,}51\\%$",
-   "$82{,}91\\%$"
+   "$0{,}74\\%$",
+   "$86{,}07\\%$"
   ],
   "correct": 1,
   "pautaHead": "CV=\\dfrac{s}{\\bar{x}}\\times 100\\%.",
   "pautaSteps": [
-   "\\bar{x} = \\dfrac{31}{24} = 1{,}29",
+   "\\bar{x} = \\dfrac{31}{24} = 1{,}2917",
    "\\sum f_i(x_i-\\bar{x})^2 = 20{,}96",
-   "s = 0{,}95",
-   "CV = \\dfrac{0{,}95}{1{,}29}\\times 100\\% = 73{,}90\\%"
+   "s = 0{,}9546",
+   "CV = \\dfrac{0{,}9546}{1{,}2917}\\times 100\\% = 73{,}90\\%"
   ],
   "conc": "El coeficiente de variación es $CV = 73{,}90\\%$."
  },

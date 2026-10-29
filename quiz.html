@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fbfbfd">
 <title>Gatos de Estadística — Fabimath</title>
-<meta name="description" content="Quiz interactivo de estadística: Clasificación de Variables, Datos Cualitativos Nominales, Intervalos de Confianza, Test de Hipótesis, Normal, Condicional y Bayes. 5 ejercicios al azar con alternativas y pauta completa.">
+<meta name="description" content="Practica estadística con los gatos de Fabimath: variables, tablas de frecuencia, variabilidad, probabilidad condicional, Bayes, Normal, intervalos de confianza y test de hipótesis. 5 ejercicios al azar con pauta completa.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
@@ -23,304 +23,280 @@
 <script src="cc_questions.js"></script>
 <style>
   :root {
-    /* Fabimath × Apple — same names as before, light values */
-    --royal: #c2530a;
-    --azure: #f5822a;
-    --sky: #ffb35c;
-    --tint: #fff3e8;
-    --ink: #1d1d1f;
-    --ink-2: #424245;
-    --ink-3: #6e6e73;
-    --panel: #ffffff;
-    --panel-2: #fbfbfd;
-    --text: #1d1d1f;
-    --gold: #e8680c;
-    --mint: #1f8f4e;
-    --coral: #d70015;
-    --line: rgba(0,0,0,.08);
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
-    --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
-    --ease: cubic-bezier(.32,.72,0,1);
-    --accent: var(--sky);
-    /* topic accents are pastel: darken them when used as text on white */
-    --accent-ink: color-mix(in srgb, var(--accent) 45%, #1d1d1f);
+    --royal: #c2530a; --azure: #f5822a; --sky: #ffb35c; --ice: #fff3e8;
+    --ink: #1d1d1f; --ink-2: #424245; --ink-3: #6e6e73; --paper: #ffffff;
+    --bg: #fbfbfd; --line: rgba(0,0,0,.08); --tint: rgba(232,104,12,.1);
+    --mint: #17a673; --coral: #e8342a; --ok-ink: #0d6b4a; --ko-ink: #b3261e;
+    --radius: 20px;
     --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.04), 0 16px 40px rgba(0,0,0,.08);
+    --ease: cubic-bezier(.32,.72,0,1);
+    --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
+    --accent: var(--sky);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    background: var(--panel-2);
-    color: var(--text); font-family: var(--sans);
-    font-size: 17px; line-height: 1.47; letter-spacing: -0.01em;
+    font-family: var(--font-text); font-size: 17px; line-height: 1.47; letter-spacing: -0.01em;
+    color: var(--ink); background: var(--bg);
     -webkit-font-smoothing: antialiased; min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 0 16px 80px; overflow-x: hidden;
   }
-  .mosaic { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
-  .mosaic i { position: absolute; display: block; border-radius: 6px; background: var(--tint) !important; opacity: .9; animation: drift 24s ease-in-out infinite; }
-  @keyframes drift { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-10px);} }
-
-  /* ---------- NAV ---------- */
-  .topbar {
-    position: sticky; top: 0; z-index: 10; align-self: stretch;
-    height: 52px; margin: 0 -16px 48px;
-    padding: 0 max(16px, calc((100% - 948px) / 2));
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(251,251,253,.72);
-    -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--line);
-  }
-  .topbar a { color: var(--ink); font-size: 14px; font-weight: 600; letter-spacing: -0.01em; text-decoration: none; display: flex; align-items: center; gap: 8px; border-radius: 8px; transition: color .3s var(--ease); }
-  .topbar a:last-child { color: var(--royal); font-weight: 500; }
-  .topbar a img { width: 26px; height: 26px; border-radius: 7px; }
-  .topbar a:hover { color: var(--royal); }
-
-  .header { z-index: 1; text-align: center; margin-bottom: 40px; max-width: 980px; }
-  .header h1 {
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(36px, 7vw, 56px); letter-spacing: -0.025em; line-height: 1.05;
-    background: linear-gradient(100deg, var(--royal), var(--azure));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    padding-bottom: .06em;
-  }
-  .header .sub { font-size: 19px; line-height: 1.42; letter-spacing: -0.01em; color: var(--ink-3); margin-top: 10px; }
-
-  .screen { z-index: 1; width: 100%; max-width: 980px; }
-  #quizScreen { max-width: 820px; }
-  #finalScreen { max-width: 640px; }
+  a { color: var(--royal); text-decoration: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  button, select { font-family: inherit; letter-spacing: inherit; }
   .hidden { display: none !important; }
 
-  /* ---------- TOPIC MENU ---------- */
-  .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-  .topic-card {
-    background: var(--panel); color: var(--text); font-family: inherit;
-    border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 32px 24px 26px; text-align: center;
-    box-shadow: var(--shadow);
-    cursor: pointer; transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .topic-card:hover { transform: translateY(-2px); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 32px rgba(0,0,0,.08); }
-  .topic-card:active { transform: scale(.97); transition: transform 100ms ease-out; }
-  .topic-card .tc-cat { margin-bottom: 18px; }
-  .topic-card h3 { font-family: var(--display); font-size: 21px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 6px; }
-  .topic-card .tc-name { font-size: 13px; letter-spacing: .01em; color: color-mix(in srgb, var(--tc-accent, var(--sky)) 45%, #1d1d1f); font-weight: 600; margin-bottom: 10px; }
-  .topic-card p { font-size: 15px; line-height: 1.47; color: var(--ink-2); }
-  .topic-card .tc-count { font-size: 12px; letter-spacing: .01em; color: var(--ink-3); margin-top: auto; padding-top: 14px; }
-  .topic-card.soon { opacity: .5; cursor: default; }
-  .topic-card.soon:hover { transform: none; box-shadow: var(--shadow); }
-  .menu-hint { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); text-align: center; margin-top: 28px; }
+  /* ---------- NAV ---------- */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(251,251,253,.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+  .nav-inner { max-width: 980px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 52px; gap: 12px; }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--ink); }
+  .nav-brand img { width: 30px; height: 30px; border-radius: 8px; object-fit: cover; }
+  .nav-brand b { color: var(--royal); font-weight: 700; }
+  .nav-right { display: flex; gap: 8px; align-items: center; }
+  .pill { background: var(--tint); color: var(--royal); font-weight: 600; font-size: 13px; letter-spacing: 0.01em; padding: 6px 13px; border-radius: 980px; white-space: nowrap; transition: background-color .2s ease; }
+  .pill:hover { background: rgba(232,104,12,.16); }
 
-  /* ---------- CAT ---------- */
-  .cat-box { position: relative; display: flex; justify-content: center; margin-bottom: 18px; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 48px 22px 96px; }
+
+  /* ---------- MENÚ ---------- */
+  .hero { text-align: center; padding: 32px 0 24px; }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 64px); letter-spacing: -0.025em; line-height: 1.05; }
+  .hero h1 span { background: linear-gradient(100deg, var(--royal) 10%, var(--azure) 60%, #ff9a3c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { max-width: 640px; margin: 20px auto 0; color: var(--ink-2); font-size: 19px; line-height: 1.42; letter-spacing: -0.012em; }
+  .hero .src { font-size: 13px; color: var(--ink-3); margin-top: 14px; }
+  .unit-lbl { font-weight: 600; font-size: 13px; letter-spacing: 0.01em; color: var(--ink-3); margin: 44px 0 14px; display: flex; align-items: center; gap: 8px; }
+  .unit-lbl::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--royal); }
+  .topic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+  .topic-card { color: inherit; text-align: left; background: var(--paper); border-radius: var(--radius); padding: 22px 24px 20px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 6px; transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .topic-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .topic-card .tc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .topic-card h3 { font-size: 21px; }
+  .topic-card .tc-name { font-size: 13px; font-weight: 600; letter-spacing: .01em; color: var(--tc-ink); margin-top: -2px; }
+  .topic-card p { color: var(--ink-2); font-size: 15px; line-height: 1.45; }
+  .topic-card .meta { margin-top: auto; padding-top: 12px; font-size: 12px; letter-spacing: 0.01em; color: var(--ink-3); }
+  .badge { font-size: 12px; font-weight: 600; letter-spacing: 0.01em; padding: 3px 10px; border-radius: 980px; background: var(--tint); color: #b84f06; white-space: nowrap; }
+  .badge.done { background: rgba(23,166,115,.12); color: var(--ok-ink); }
+  .menu-hint { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); text-align: center; margin-top: 36px; }
+
+  /* ---------- GATO PIXEL ---------- */
+  .catgrid { display: grid; }
+  .cat-box { display: flex; justify-content: center; }
   .cat-box.talking { animation: hop .45s var(--ease); }
   @keyframes hop { 0%,100% { transform: translateY(0);} 40% { transform: translateY(-5px);} }
-  .char-img { display: block; image-rendering: pixelated; }
-  .char-img.pop { animation: pop .4s var(--ease); }
-  @keyframes pop { 0% { transform: scale(.94); opacity: .6; } 100% { transform: scale(1); opacity: 1; } }
-  .catgrid { display: grid; }
 
-  /* ---------- QUIZ ---------- */
-  .quiz-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .quiz-top .qt-name { font-size: 14px; font-weight: 700; color: var(--accent-ink); }
-  .progress-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: var(--ink-3); }
+  /* ---------- VISTA DEL TEMA ---------- */
+  .vista-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+  .vista-head .t-txt { flex: 1; min-width: 200px; }
+  .vista-head h2 { font-size: clamp(28px, 4.4vw, 40px); }
+  .vista-head .sub { font-size: 14px; color: var(--ink-3); margin-top: 4px; }
+  .filtro { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
+  .filtro select { font-size: 14px; font-weight: 600; color: #b84f06; background: var(--tint); border: none; border-radius: 980px; padding: 8px 14px; max-width: 260px; cursor: pointer; }
+  .dots { display: flex; gap: 6px; align-items: center; }
+  .dots i { width: 28px; height: 6px; border-radius: 99px; background: rgba(0,0,0,.08); transition: background-color .3s var(--ease); }
+  .dots i.cur { background: var(--sky); }
+  .dots i.ok { background: var(--mint); }
+  .dots i.ko { background: var(--coral); }
+  .progress-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; font-size: 14px; color: var(--ink-3); }
   .progress-row .score { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .pbar { height: 4px; background: rgba(0,0,0,.06); border-radius: 100px; overflow: hidden; margin-bottom: 24px; }
-  .pbar > div { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--royal), var(--azure)); transition: width .45s var(--ease); }
 
-  .card { background: var(--panel); border: 1px solid rgba(0,0,0,.06); border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+  .qcard { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); padding: 32px 34px; }
   .quiz-body { display: flex; gap: 24px; align-items: flex-start; }
-  @media (max-width: 640px) {
-    .card { padding: 22px 18px; }
-    .quiz-body { flex-direction: column; align-items: center; gap: 8px; }
-  }
   .quiz-cat { flex-shrink: 0; }
-  .quiz-q { flex: 1; width: 100%; }
-  .qtype { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .01em; color: #b34d00; background: var(--tint); padding: 5px 12px; border-radius: 980px; margin-bottom: 10px; }
-  .qctx { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); margin-bottom: 12px; }
-  .qenun { font-size: 17px; color: var(--ink); line-height: 1.55; margin-bottom: 18px; }
+  .quiz-q { flex: 1; min-width: 0; }
+  .qtop { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .qtag { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #c4540a; background: var(--tint); padding: 4px 11px; border-radius: 980px; }
+  .qctx { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); }
+  .qenun { font-size: 17px; line-height: 1.55; margin-bottom: 16px; }
   .qtable { margin: 0 0 18px; overflow-x: auto; }
   .qtable table { border-collapse: separate; border-spacing: 0; font-size: 14px; min-width: 240px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
   .qtable th, .qtable td { border-bottom: 1px solid var(--line); padding: 9px 14px; text-align: center; font-variant-numeric: tabular-nums; }
   .qtable tbody tr:last-child th, .qtable tbody tr:last-child td { border-bottom: 0; }
-  .qtable thead th { background: var(--panel-2); color: var(--ink); font-weight: 600; }
-  .qtable tbody th { background: var(--panel); color: var(--ink-2); font-weight: 500; text-align: left; }
-  .qtable tbody td { color: var(--ink); }
-  .qtable > div { color: var(--ink-3) !important; font-size: 13px !important; letter-spacing: .01em; }
+  .qtable thead th { background: var(--ice); color: #b84f06; font-weight: 600; }
+  .qtable tbody th { background: var(--paper); color: var(--ink-2); font-weight: 500; text-align: left; }
+  .qn { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); margin-top: 8px; }
 
-  /* ---------- CHART (barras / torta) ---------- */
+  /* gráficos de barras y torta */
   .qchart { margin: 0 0 18px; }
   .bar-chart { display: flex; align-items: flex-end; gap: 14px; height: 160px; padding: 6px 4px 0; overflow-x: auto; }
   .bar-chart .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex: 1 0 auto; min-width: 44px; height: 100%; }
-  .bar-chart .bar-val { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
-  .bar-chart .bar-rect { width: 30px; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, var(--accent), var(--azure)); }
+  .bar-chart .bar-val { font-size: 12px; font-weight: 600; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+  .bar-chart .bar-rect { width: 30px; border-radius: 6px 6px 2px 2px; }
   .bar-chart .bar-lbl { font-size: 12px; letter-spacing: .01em; color: var(--ink-2); margin-top: 6px; text-align: center; max-width: 64px; }
   .pie-wrap { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
   .pie-circle { width: 130px; height: 130px; border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 0 1px var(--line); }
   .pie-legend { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
-  .pie-legend .pl-row { display: flex; align-items: center; gap: 8px; color: var(--ink); }
+  .pie-legend .pl-row { display: flex; align-items: center; gap: 8px; }
   .pie-legend .pl-sw { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
   .pie-legend .pl-pct { color: var(--ink-3); margin-left: auto; padding-left: 10px; font-variant-numeric: tabular-nums; }
-  .qchart-n { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); margin-top: 8px; }
-  .qask { font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+  .qask { font-size: 17px; font-weight: 600; margin-bottom: 14px; }
 
+  /* alternativas */
   .alts { display: flex; flex-direction: column; gap: 10px; }
-  .alt-btn {
-    background: var(--panel); border: 1px solid rgba(0,0,0,.12); border-radius: 14px;
-    color: var(--ink); font-family: var(--sans); font-size: 17px; letter-spacing: -0.01em;
-    padding: 14px 16px; min-height: 56px; cursor: pointer; text-align: left;
-    display: flex; gap: 14px; align-items: center;
-    transition: border-color .3s var(--ease), background-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
-  }
-  .alt-btn:hover:not(:disabled) { border-color: var(--royal); background: #fffaf5; }
-  .alt-btn:active:not(:disabled) { transform: scale(.97); transition: transform 100ms ease-out; }
-  .alt-btn:disabled { cursor: default; }
-  .alt-btn > span:not(.key) { display: block; min-width: 0; overflow-x: auto; }
-  .quiz-q { min-width: 0; }
-  .alt-btn .key { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--tint); color: #b34d00; font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: background-color .2s var(--ease), color .2s var(--ease); }
-  .alt-btn.correct, .alt-btn.wrong { border-width: 2px; padding: 13px 15px; }
-  .alt-btn.correct { border-color: var(--mint); background: #eaf7ef; }
-  .alt-btn.correct .key { background: var(--mint); color: #fff; }
-  .alt-btn.wrong { border-color: var(--coral); background: #fdecee; }
-  .alt-btn.wrong .key { background: var(--coral); color: #fff; }
-  .alt-btn.correct::after, .alt-btn.wrong::after { margin-left: auto; padding-left: 8px; font-weight: 700; font-size: 18px; }
-  .alt-btn.correct::after { content: "✓"; color: var(--mint); }
-  .alt-btn.wrong::after { content: "✗"; color: var(--coral); }
-  .alt-btn:disabled:not(.correct):not(.wrong) { opacity: .55; }
+  .alt { display: flex; align-items: center; gap: 14px; text-align: left; width: 100%; background: #fff; border: 2px solid rgba(0,0,0,.08); border-radius: 14px; padding: 13px 16px; min-height: 56px; font-size: 16px; cursor: pointer; color: var(--ink); transition: border-color .2s ease, background-color .2s ease, transform .3s var(--ease); }
+  .alt:hover:not(:disabled) { border-color: rgba(232,104,12,.45); background: #fffaf5; }
+  .alt:disabled { cursor: default; }
+  .alt > span:not(.key) { display: block; min-width: 0; overflow-x: auto; }
+  .alt .key { flex-shrink: 0; width: 30px; height: 30px; border-radius: 9px; background: var(--tint); color: #c4540a; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; justify-content: center; transition: background-color .2s ease, color .2s ease; }
+  .alt.correct { border-color: var(--mint); background: rgba(23,166,115,.08); }
+  .alt.correct .key { background: var(--mint); color: #fff; }
+  .alt.wrong { border-color: var(--coral); background: rgba(232,52,42,.06); }
+  .alt.wrong .key { background: var(--coral); color: #fff; }
+  .alt.correct::after, .alt.wrong::after { margin-left: auto; padding-left: 8px; font-weight: 700; font-size: 18px; }
+  .alt.correct::after { content: "✓"; color: var(--mint); }
+  .alt.wrong::after { content: "✗"; color: var(--coral); }
+  .alt:disabled:not(.correct):not(.wrong) { opacity: .55; }
 
-  .pauta { display: none; margin-top: 24px; background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 20px; animation: fadein .35s var(--ease); }
-  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  .pauta .p-flag { font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
-  .pauta.good { border-color: rgba(31,143,78,.35); }
-  .pauta.bad { border-color: rgba(215,0,21,.3); }
-  .pauta.good .p-flag { color: var(--mint); }
-  .pauta.bad .p-flag { color: var(--coral); }
-  .pauta .p-head { font-size: 15px; color: var(--ink-2); margin-bottom: 12px; line-height: 1.7; overflow-x: auto; }
-  .pauta .p-steps { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 14px; }
-  .pauta .p-step { background: var(--panel); border: 1px solid var(--line); border-left: 3px solid var(--royal); border-radius: 10px; padding: 11px 14px; overflow-x: auto; }
-  .pauta .p-conc { font-size: 15px; color: var(--ink); background: var(--tint); border-radius: 10px; padding: 12px 14px; line-height: 1.55; }
-  .pauta .p-conc b { color: #b34d00; }
+  /* pauta */
+  .pauta { margin-top: 22px; border-radius: 16px; padding: 20px 22px; border: 1px solid var(--line); background: #fafafc; animation: rise .3s var(--ease); }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .pauta.good { background: rgba(23,166,115,.05); border-color: rgba(23,166,115,.25); }
+  .pauta.bad { background: rgba(232,52,42,.04); border-color: rgba(232,52,42,.2); }
+  .pauta .flag { font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.015em; margin-bottom: 10px; }
+  .pauta.good .flag { color: var(--ok-ink); }
+  .pauta.bad .flag { color: var(--ko-ink); }
+  .pauta .p-head { font-size: 15px; color: var(--ink-2); margin-bottom: 10px; line-height: 1.7; overflow-x: auto; }
+  .pauta .p-steps { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 12px; }
+  .pauta .p-step { background: #fff; border: 1px solid var(--line); border-left: 3px solid var(--royal); border-radius: 10px; padding: 11px 14px; overflow-x: auto; }
+  .pauta .p-conc { font-size: 15px; background: var(--ice); border-radius: 12px; padding: 12px 15px; line-height: 1.55; }
+  .pauta .p-conc b { color: #b84f06; }
+  .qnav { margin-top: 22px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 
-  .nav-row { margin-top: 24px; display: flex; gap: 10px; justify-content: space-between; flex-wrap: wrap; }
-  .btn {
-    background: var(--royal); border: none; border-radius: 980px; color: #fff;
-    font-family: var(--sans); font-size: 17px; font-weight: 500; letter-spacing: -0.01em;
-    padding: 12px 24px; min-height: 44px; cursor: pointer;
-    transition: background-color .3s var(--ease), transform .3s var(--ease);
-  }
-  .btn:hover { background: #a94707; }
-  .btn:active { transform: scale(.97); transition: transform 100ms ease-out; }
-  .btn.ghost { background: rgba(232,104,12,.1); color: #c25500; }
-  .btn.ghost:hover { background: rgba(232,104,12,.16); }
+  /* botones */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 22px; border-radius: 980px; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; border: none; cursor: pointer; transition: background-color .2s ease, transform .3s var(--ease); }
+  .btn-primary { background: var(--royal); color: #fff; }
+  .btn-primary:hover { background: #a94707; }
+  .btn-ghost { background: var(--tint); color: #c4540a; }
+  .btn-ghost:hover { background: rgba(232,104,12,.16); }
 
-  .final { text-align: center; padding: 40px 32px; }
-  .final .ring { width: 140px; height: 140px; border-radius: 50%; margin: 6px auto 22px; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--royal) var(--deg,0deg), rgba(0,0,0,.06) 0deg); }
-  .final .ring .inner { width: 120px; height: 120px; border-radius: 50%; background: var(--panel); display: flex; align-items: center; justify-content: center; flex-direction: column; }
-  .final .ring .big { font-family: var(--display); font-size: 34px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; }
-  .final .ring .lbl { font-size: 12px; letter-spacing: .01em; color: var(--ink-3); }
-  .final h2 { font-family: var(--display); font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 12px; }
-  .final p { font-size: 17px; color: var(--ink-2); max-width: 520px; margin: 0 auto 6px; }
-  .final .nav-row { gap: 12px; }
+  /* resultado */
+  .final { text-align: center; }
+  .ring { width: 156px; height: 156px; border-radius: 50%; margin: 10px auto 22px; display: flex; align-items: center; justify-content: center; background: conic-gradient(var(--royal) var(--deg, 0deg), rgba(0,0,0,.06) 0deg); }
+  .ring .inner { width: 132px; height: 132px; border-radius: 50%; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring .big { font-family: var(--font-display); font-size: 36px; font-weight: 700; letter-spacing: -0.025em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .ring .lbl { font-size: 12px; letter-spacing: 0.01em; color: var(--ink-3); margin-top: 6px; }
+  .final h3 { font-size: 32px; letter-spacing: -0.022em; margin-bottom: 10px; }
+  .final p { color: var(--ink-2); max-width: 540px; margin: 0 auto 8px; }
+  .resumen { list-style: none; max-width: 560px; margin: 22px auto 0; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+  .resumen li { display: flex; justify-content: space-between; gap: 12px; background: #f5f5f7; border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+  .resumen .ok { color: var(--ok-ink); font-weight: 600; }
+  .resumen .ko { color: var(--ko-ink); font-weight: 600; }
 
-  :focus-visible { outline: 3px solid rgba(232,104,12,.4); outline-offset: 2px; }
+  .btn:active, .pill:active, .topic-card:active, .alt:active:not(:disabled), .nav-brand:active { transform: scale(.97); transition: transform 100ms ease-out; }
+  :focus-visible { outline: 3px solid rgba(232,104,12,.4); outline-offset: 2px; border-radius: 8px; }
   .katex { font-size: 1.05em; }
+  footer { text-align: center; color: var(--ink-3); font-size: 12px; letter-spacing: 0.01em; padding: 32px 22px 48px; border-top: 1px solid var(--line); max-width: 980px; margin: 0 auto; }
+  .version { font-variant-numeric: tabular-nums; }
 
-  @media (max-width: 480px) {
-    .topbar { margin-bottom: 32px; }
-    .header .sub { font-size: 17px; }
-    .final { padding: 32px 20px; }
-    .final .nav-row .btn { flex: 1 1 100%; }
+  @media (max-width: 640px) {
+    .wrap { padding: 28px 18px 80px; }
+    .nav-inner { padding: 0 16px; }
+    .nav-brand span { display: none; }
+    .hero { padding: 16px 0 12px; }
+    .hero p { font-size: 17px; }
+    .qcard { padding: 22px 18px; }
+    .quiz-cat { display: none; }  /* en el celular basta el gato del encabezado */
+    .quiz-q { width: 100%; }
+    .dots i { width: 20px; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .mosaic i, .cat-box, .cat-box.talking, .char-img.pop { animation: none !important; }
-    .pauta { animation-name: fade; }
-    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-    .topic-card, .alt-btn, .btn { transition: background-color .2s, border-color .2s, box-shadow .2s, opacity .2s !important; }
-    .topic-card:hover, .topic-card:active, .alt-btn:active, .btn:active { transform: none !important; }
+    html { scroll-behavior: auto; }
+    .cat-box.talking, .pauta { animation: none !important; }
+    .topic-card, .alt, .btn { transition: background-color .2s, border-color .2s, box-shadow .2s, opacity .2s !important; }
+    .topic-card:hover, .topic-card:active, .alt:active, .btn:active, .pill:active, .nav-brand:active { transform: none !important; }
   }
   @media (prefers-reduced-transparency: reduce) {
-    .topbar { background: #fbfbfd; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    nav { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
   }
   @media (prefers-contrast: more) {
     :root { --ink-2: #1d1d1f; --ink-3: #3a3a3c; --line: rgba(0,0,0,.4); }
-    .topbar { background: #fbfbfd; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: #1d1d1f; }
-    .topic-card, .card, .alt-btn, .pauta { border-color: #1d1d1f; }
-    .mosaic { display: none; }
+    nav { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: #1d1d1f; }
+    .topic-card, .qcard, .alt, .pauta { border-color: #1d1d1f; }
+    .hero h1 span { background: none; color: #b84f06; }
   }
-  .site-foot { text-align: center; color: var(--ink-3); font-size: 12px; letter-spacing: .01em; padding: 32px 20px 40px; }
-  .version { font-variant-numeric: tabular-nums; }
 </style>
 <script src="version.js" defer></script>
 </head>
 <body>
-<div class="mosaic" aria-hidden="true">
-  <i style="left:5%;  top:14%; width:30px; height:30px; background:#6e3d14; animation-delay:0s"></i>
-  <i style="left:12%; top:64%; width:20px; height:20px; background:#8a4d1a; animation-delay:-4s"></i>
-  <i style="right:8%;  top:20%; width:36px; height:36px; background:#5e3412; animation-delay:-2s"></i>
-  <i style="right:18%; top:70%; width:22px; height:22px; background:#8a4d1a; animation-delay:-7s"></i>
-  <i style="left:30%;  top:8%;  width:16px; height:16px; background:#a05a1d; animation-delay:-5s"></i>
-  <i style="right:34%; top:86%; width:26px; height:26px; background:#6e3d14; animation-delay:-9s"></i>
-</div>
 
-<div class="topbar">
-  <a href="index.html"><img src="logo/fabimath_logo.png" alt="">Fabimath</a>
-  <a href="aes.html">Gatito AES →</a>
-</div>
-
-<div class="header">
-  <h1>Gatos de Estadística</h1>
-  <div class="sub">Elige un gato para practicar · 5 ejercicios al azar · con pauta completa</div>
-</div>
-
-<!-- TOPIC MENU -->
-<div class="screen" id="menuScreen">
-  <div class="topic-grid" id="topicGrid"></div>
-  <div class="menu-hint">Cada gato practica un tema distinto. Responde con clic o teclas A · B · C · D — Enter para continuar.</div>
-</div>
-
-<!-- QUIZ -->
-<div class="screen hidden" id="quizScreen">
-  <div class="progress-row">
-    <span id="qCounter">Pregunta 1 de 5</span>
-    <span class="score" id="scoreLabel">0 correctas</span>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><img src="logo/fabimath_logo.png" alt=""><span>Fabi<b>math</b></span></a>
+    <div class="nav-right">
+      <a class="pill" href="#">🐱 Gatos</a>
+      <a class="pill" href="aes.html">🎓 Eximición</a>
+      <a class="pill" href="index.html">Inicio</a>
+    </div>
   </div>
-  <div class="pbar"><div id="pbarFill" style="width:20%"></div></div>
-  <div class="card">
-    <div class="quiz-body">
-      <div class="quiz-cat cat-box" id="quizCatBox"><div class="catgrid" id="quizCatGrid"></div></div>
-      <div class="quiz-q">
-        <span class="qtype" id="qType"></span>
-        <div class="qctx" id="qCtx"></div>
-        <div class="qenun" id="qEnun"></div>
-        <div class="qtable" id="qTable"></div>
-        <div class="qask" id="qAsk"></div>
-        <div class="alts" id="alts"></div>
+</nav>
+
+<div class="wrap">
+  <!-- MENÚ: temas agrupados por unidad -->
+  <div id="v_menu">
+    <div class="hero">
+      <h1>Gatos de <span>Estadística</span></h1>
+      <p>Cada gato practica un tema del curso: 5 ejercicios al azar, de tipos distintos, con alternativas y pauta completa.</p>
+      <div class="src" id="totalTxt"></div>
+    </div>
+    <div id="units"></div>
+    <div class="menu-hint">Responde con clic o con las teclas A · B · C · D (o 1 · 2 · 3 · 4). Enter para continuar.</div>
+  </div>
+
+  <!-- TEMA: cuestionario -->
+  <div id="v_quiz" class="hidden">
+    <div class="vista-head">
+      <div class="cat-box" id="headCat"><div class="catgrid" id="headCatGrid"></div></div>
+      <div class="t-txt"><h2 id="tTitle"></h2><div class="sub" id="tSub"></div></div>
+      <label class="filtro">Practicar
+        <select id="tipoSel" aria-label="Tipo de ejercicio"></select>
+      </label>
+    </div>
+
+    <div id="quizBox">
+      <div class="progress-row">
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <span><span id="qCounter"></span> · <span class="score" id="scoreLabel"></span></span>
+      </div>
+      <div class="qcard">
+        <div class="quiz-body">
+          <div class="quiz-cat cat-box" id="quizCatBox"><div class="catgrid" id="quizCatGrid"></div></div>
+          <div class="quiz-q">
+            <div class="qtop"><span class="qtag" id="qType"></span><span class="qctx" id="qCtx"></span></div>
+            <div class="qenun" id="qEnun"></div>
+            <div id="qTable"></div>
+            <div class="qask" id="qAsk"></div>
+            <div class="alts" id="alts"></div>
+          </div>
+        </div>
+        <div class="pauta hidden" id="pauta">
+          <div class="flag" id="pFlag"></div>
+          <div class="p-head" id="pHead"></div>
+          <div class="p-steps" id="pSteps"></div>
+          <div class="p-conc" id="pConc"></div>
+        </div>
+        <div class="qnav">
+          <a class="btn btn-ghost" href="#">◀ Temas</a>
+          <button class="btn btn-primary hidden" id="nextBtn">Siguiente ▶</button>
+        </div>
       </div>
     </div>
-    <div class="pauta" id="pauta">
-      <div class="p-flag" id="pFlag"></div>
-      <div class="p-head" id="pHead"></div>
-      <div class="p-steps" id="pSteps"></div>
-      <div class="p-conc" id="pConc"></div>
-    </div>
-    <div class="nav-row">
-      <button class="btn ghost" id="quitBtn">◀ Temas</button>
-      <button class="btn hidden" id="nextBtn">Siguiente ▶</button>
+
+    <div id="finalBox" class="hidden">
+      <div class="qcard final">
+        <div class="ring" id="ring"><div class="inner"><span class="big" id="finalScore"></span><span class="lbl">correctas</span></div></div>
+        <h3 id="finalTitle"></h3>
+        <p id="finalMsg"></p>
+        <ul class="resumen" id="resumen"></ul>
+        <div class="qnav" style="justify-content:center; margin-top:22px;">
+          <a class="btn btn-ghost" href="#">◀ Elegir otro gato</a>
+          <button class="btn btn-primary" id="retryBtn">↻ Otras 5 preguntas</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- FINAL -->
-<div class="screen hidden" id="finalScreen">
-  <div class="card final">
-    <div class="cat-box" style="margin-bottom:6px"><div class="catgrid" id="finalCatGrid"></div></div>
-    <div class="ring" id="ring"><div class="inner"><span class="big" id="finalScore">0/5</span><span class="lbl">correctas</span></div></div>
-    <h2 id="finalTitle"></h2>
-    <p id="finalMsg"></p>
-    <div class="nav-row" style="justify-content:center; margin-top:22px;">
-      <button class="btn ghost" id="homeBtn">◀ Elegir otro gato</button>
-      <button class="btn" id="retryBtn">↻ Otras 5 preguntas</button>
-    </div>
-  </div>
-</div>
+<footer>Fabimath · Gatos de Estadística · <span class="version"></span></footer>
 
 <script>
 /* ---------------- pixel cat sprite (scholar w/ glasses) ---------------- */
@@ -331,12 +307,12 @@ const SPRITE = [
 ".KBPPBBKKKKKKBBPPBK.",
 ".KBBBBBBBBBBBBBBBBK.",
 "KBBBBBBBBBBBBBBBBBBK",
-"KBAAAAABBBBAAAAAABK",
-"KBAEGAABbBBAAEGAABK",
-"KBAAAABWWWWBAAAAABK",
-"KBbBBBWWPPWWBBBBbBK",
-".KBBBBBWWWWBBBBBBK.",
-".KBBYYYYYRYYYYYBBK.",
+"KBAAAAABBBBBBAAAAABK",
+"KBAEGAABbBBbBAEGAABK",
+"KBAAAAABWWWWBAAAAABK",
+"KBbBBBBWWPPWWBBBBbBK",
+".KBBBBBBWWWWBBBBBBK.",
+".KBBYYYYYRRYYYYYBBK.",
 ".KBBBBBBBBBBBBBBBBK.",
 ".KBbBBBBBBBBBBBBbBK.",
 "..KBBKKBBBBBBKKBBK..",
@@ -346,127 +322,110 @@ function palette(body, shade) {
   return { '.':null,'K':'#1a1008','B':body,'b':shade,'W':'#ffffff','w':'#ffe8d2',
            'E':'#1a1008','G':'#ffe6cf','P':'#ff9ecb','Y':'#ffd75e','A':'#2a1a0e','R':'#e8342a' };
 }
-function drawCat(el, cell, pal) {
+function drawCat(el, cell, t) {
+  const pal = palette(t.body, t.shade);
   el.innerHTML = '';
   el.style.gridTemplateColumns = `repeat(20, ${cell}px)`;
   el.style.gridAutoRows = `${cell}px`;
   SPRITE.forEach(row => { for (const ch of row) {
     const d = document.createElement('div');
-    d.style.width = cell+'px'; d.style.height = cell+'px';
+    d.style.width = cell + 'px'; d.style.height = cell + 'px';
     if (pal[ch]) d.style.background = pal[ch];
     el.appendChild(d);
   }});
 }
 
-/* Draws the topic mascot: image sprite with mood (if the topic has one) or the pixel cat. */
-function drawChar(el, cell, t, mood) {
-  if (t.imgs) {
-    const size = cell * 22;
-    el.style.gridTemplateColumns = 'none';
-    el.innerHTML = `<img class="char-img pop" src="${t.imgs[mood] || t.imgs.neutro}" alt="${t.name}" width="${size}" height="${size}">`;
-    const img = el.firstChild;
-    img.addEventListener('animationend', () => img.classList.remove('pop'), { once: true });
-  } else {
-    drawCat(el, cell, palette(t.body, t.shade));
-  }
+/* ---------------- temas, en el orden del curso ---------------- */
+const UNIDADES = [
+  ['Estadística descriptiva', [
+    { id:'vc', title:'Gato de las Variables', name:'Clasificación de Variables',
+      desc:'Identifica la variable de estudio y clasifícala: nominal, ordinal, discreta o continua.',
+      bank: typeof VC_QUESTIONS !== 'undefined' ? VC_QUESTIONS : [], body:'#eab308', shade:'#b98a06',
+      guide:'Guía 0 — Identificación y Clasificación de Variables' },
+    { id:'cn', title:'Gato Nominal', name:'Datos Cualitativos Nominales',
+      desc:'Tablas de frecuencia (fᵢ, hᵢ, hᵢ%): constrúyelas desde datos crudos, léelas o interprétalas desde un gráfico.',
+      bank: typeof CN_QUESTIONS !== 'undefined' ? CN_QUESTIONS : [], body:'#38bdf8', shade:'#0ea5c7',
+      guide:'Guía de Tablas de Frecuencia (Datos Cualitativos Nominales)' },
+    { id:'cd', title:'Gato Discreto', name:'Datos Cuantitativos Discretos',
+      desc:'Tablas con acumuladas (Fᵢ, Hᵢ), lectura «a lo más / más de», y media, mediana y moda desde datos o tablas.',
+      bank: typeof CD_QUESTIONS !== 'undefined' ? CD_QUESTIONS : [], body:'#a3e635', shade:'#7bb418',
+      guide:'Guía de Tablas de Frecuencia (Datos Cuantitativos Discretos)' },
+    { id:'mv', title:'Gato Variable', name:'Medidas de Variabilidad',
+      desc:'Rango, varianza s², desviación estándar y coeficiente de variación; compara homogeneidad con el CV.',
+      bank: typeof MV_QUESTIONS !== 'undefined' ? MV_QUESTIONS : [], body:'#fb923c', shade:'#d9701c',
+      guide:'Guía de Medidas de Variabilidad' },
+    { id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos',
+      desc:'Tablas con clases [Lᵢ, Lₛ) y marca de clase: lectura, promedio, mediana y moda interpoladas, varianza y CV.',
+      bank: typeof CC_QUESTIONS !== 'undefined' ? CC_QUESTIONS : [], body:'#2dd4bf', shade:'#0d9488',
+      guide:'Guía de Tablas de Frecuencia (Datos Cuantitativos Continuos)' }
+  ]],
+  ['Probabilidad', [
+    { id:'pc', title:'Gato Condicional', name:'Probabilidad Condicional',
+      desc:'Tablas de contingencia: probabilidad conjunta P(A∩B), unión P(A∪B) y condicional P(A|B).',
+      bank: typeof PC_QUESTIONS !== 'undefined' ? PC_QUESTIONS : [], body:'#f472b6', shade:'#db2f8f',
+      guide:'Guía de Probabilidad Condicional' },
+    { id:'bt', title:'Gato de Bayes', name:'Probabilidad Total y Bayes',
+      desc:'Diagramas de árbol: calcula la probabilidad total de un resultado y actualiza la causa con Bayes.',
+      bank: typeof BT_QUESTIONS !== 'undefined' ? BT_QUESTIONS : [], body:'#34d399', shade:'#0ea371',
+      guide:'Guía de Probabilidad Total y Bayes' },
+    { id:'nm', title:'Gato de la Normal', name:'Probabilidades con la Normal',
+      desc:'Estandariza X ~ N(μ, σ) y calcula P(X < x), P(X > x) o P(x₁ < X < x₂) con la tabla Φ(z).',
+      bank: typeof NM_QUESTIONS !== 'undefined' ? NM_QUESTIONS : [], body:'#a78bfa', shade:'#7c5cf0',
+      guide:'Guía 4 — Distribución Normal' }
+  ]],
+  ['Inferencia', [
+    { id:'ic', title:'Gato de Intervalos', name:'Intervalos de Confianza',
+      desc:'Media (z y t) y proporción. Elige el intervalo correcto entre 4 alternativas.',
+      bank: typeof IC_QUESTIONS !== 'undefined' ? IC_QUESTIONS : [], body:'#ff9a3c', shade:'#e07a1f',
+      guide:'Guía 5 — Intervalos de Confianza' },
+    { id:'th', title:'Gato de Test', name:'Test de Hipótesis',
+      desc:'Media con σ conocida (Z) y desconocida (t). Calcula el estadístico y decide sobre H₀.',
+      bank: typeof TH_QUESTIONS !== 'undefined' ? TH_QUESTIONS : [], body:'#f0883e', shade:'#d96f22',
+      guide:'Guía 6 — Test de Hipótesis' }
+  ]]
+];
+const TOPICS = Object.fromEntries(UNIDADES.flatMap(([, ts]) => ts).map(t => [t.id, t]));
+
+const $ = id => document.getElementById(id);
+const N_QUIZ = 5;
+const bestKey = id => 'gatos_best_' + id;
+const getBest = id => { try { return +localStorage.getItem(bestKey(id)) || 0; } catch (e) { return 0; } };
+
+/* ---------------- menú ---------------- */
+function buildMenu() {
+  let total = 0;
+  $('units').innerHTML = UNIDADES.map(([u, ts]) => `<div class="unit-lbl">${u}</div><div class="topic-grid">` +
+    ts.map(t => {
+      total += t.bank.length;
+      const best = getBest(t.id);
+      const tipos = new Set(t.bank.map(q => q.tipo)).size;
+      return `<a class="topic-card" href="#${t.id}" style="--tc-ink:color-mix(in srgb, ${t.shade} 65%, #1d1d1f)">
+        <div class="tc-top"><div class="catgrid" data-cat="${t.id}"></div>${best ? `<span class="badge${best === N_QUIZ ? ' done' : ''}">Mejor: ${best}/${N_QUIZ}</span>` : ''}</div>
+        <h3>${t.title}</h3><div class="tc-name">${t.name}</div><p>${t.desc}</p>
+        <div class="meta">${t.bank.length} ejercicios · ${tipos} tipos · 5 por ronda</div></a>`;
+    }).join('') + '</div>').join('');
+  document.querySelectorAll('[data-cat]').forEach(el => drawCat(el, 4, TOPICS[el.dataset.cat]));
+  $('totalTxt').textContent = total.toLocaleString('es-CL') + ' ejercicios en ' + Object.keys(TOPICS).length + ' gatos, ordenados como el curso';
 }
 
-/* ---------------- topics (extensible) ---------------- */
-const TOPICS = [
-  {
-    id:'vc', title:'Gato de las Variables', name:'Clasificación de Variables',
-    desc:'Identifica la variable de estudio y clasifícala: nominal, ordinal, discreta o continua.',
-    bank: (typeof VC_QUESTIONS!=='undefined') ? VC_QUESTIONS : [],
-    body:'#eab308', shade:'#b98a06', accent:'#fde047',
-    guide:'Guía 0 — Identificación y Clasificación de Variables'
-  },
-  {
-    id:'ic', title:'Gato de Intervalos', name:'Intervalos de Confianza',
-    desc:'Media (z y t) y proporción. Elige el intervalo correcto entre 4 alternativas.',
-    bank: (typeof IC_QUESTIONS!=='undefined') ? IC_QUESTIONS : [],
-    body:'#ff9a3c', shade:'#e07a1f', accent:'#ffb15c',
-    guide:'Guía 5 — Intervalos de Confianza'
-  },
-  {
-    id:'th', title:'Gato de Test', name:'Test de Hipótesis',
-    desc:'Media con σ conocida (Z) y desconocida (t). Calcula el estadístico y decide sobre H₀.',
-    bank: (typeof TH_QUESTIONS!=='undefined') ? TH_QUESTIONS : [],
-    body:'#f0883e', shade:'#d96f22', accent:'#ffb066',
-    guide:'Guía 6 — Test de Hipótesis'
-  },
-  {
-    id:'nm', title:'Gato de la Normal', name:'Probabilidades con la Normal',
-    desc:'Estandariza X ~ N(μ,σ) y calcula P(X&lt;x), P(X&gt;x) o P(x₁&lt;X&lt;x₂) con la tabla Φ(z).',
-    bank: (typeof NM_QUESTIONS!=='undefined') ? NM_QUESTIONS : [],
-    body:'#a78bfa', shade:'#7c5cf0', accent:'#c4b5fd',
-    guide:'Guía 4 — Distribución Normal'
-  },
-  {
-    id:'pc', title:'Gato Condicional', name:'Probabilidad Condicional',
-    desc:'Tablas de contingencia: probabilidad conjunta P(A∩B), unión P(A∪B) y condicional P(A|B).',
-    bank: (typeof PC_QUESTIONS!=='undefined') ? PC_QUESTIONS : [],
-    body:'#f472b6', shade:'#db2f8f', accent:'#f9a8d4',
-    guide:'Guía de Probabilidad Condicional'
-  },
-  {
-    id:'bt', title:'Gato de Bayes', name:'Probabilidad Total y Bayes',
-    desc:'Diagramas de árbol: calcula la probabilidad total de un resultado y actualiza la causa con Bayes.',
-    bank: (typeof BT_QUESTIONS!=='undefined') ? BT_QUESTIONS : [],
-    body:'#34d399', shade:'#0ea371', accent:'#6ee7b7',
-    guide:'Guía de Probabilidad Total y Bayes'
-  },
-  {
-    id:'cn', title:'Gato Nominal', name:'Datos Cualitativos Nominales',
-    desc:'Tablas de frecuencia (f_i, h_i, h_i%): constrúyelas desde datos crudos, léelas o interprétalas desde un gráfico.',
-    bank: (typeof CN_QUESTIONS!=='undefined') ? CN_QUESTIONS : [],
-    body:'#38bdf8', shade:'#0ea5c7', accent:'#7dd3fc',
-    guide:'Guía — Tablas de Frecuencia (Datos Cualitativos Nominales)'
-  },
-  {
-    id:'cd', title:'Gato Discreto', name:'Datos Cuantitativos Discretos',
-    desc:'Tablas con acumuladas (F_i, H_i), lectura "a lo más / más de", y media, mediana y moda desde datos o tablas.',
-    bank: (typeof CD_QUESTIONS!=='undefined') ? CD_QUESTIONS : [],
-    body:'#a3e635', shade:'#7bb418', accent:'#bef264',
-    guide:'Guía — Tablas de Frecuencia (Datos Cuantitativos Discretos)'
-  },
-  {
-    id:'mv', title:'Gato Variable', name:'Medidas de Variabilidad',
-    desc:'Rango, varianza s², desviación estándar y coeficiente de variación; compara homogeneidad entre variables con el CV.',
-    bank: (typeof MV_QUESTIONS!=='undefined') ? MV_QUESTIONS : [],
-    body:'#fb923c', shade:'#d9701c', accent:'#fdba74',
-    guide:'Guía — Medidas de Variabilidad (Datos Cuantitativos Discretos)'
-  },
-  {
-    id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos',
-    desc:'Tablas con clases [Lᵢ, Lₛ) y marca de clase: lectura, promedio, mediana y moda interpoladas, varianza y CV.',
-    bank: (typeof CC_QUESTIONS!=='undefined') ? CC_QUESTIONS : [],
-    body:'#2dd4bf', shade:'#0d9488', accent:'#5eead4',
-    guide:'Guía — Tablas de Frecuencia (Datos Cuantitativos Continuos)'
-  }
-];
-
-/* ---------------- chart renderer (barras / torta) ---------------- */
+/* ---------------- gráficos (barras / torta) ---------------- */
 const CHART_PALETTE = ['#ffb15c','#4ade80','#ffd75e','#ff6b61','#a78bfa','#f472b6','#34d399','#f0883e'];
 function renderChart(chart) {
+  const color = i => CHART_PALETTE[i % CHART_PALETTE.length];
   if (chart.type === 'bar') {
     const max = Math.max(...chart.values) || 1;
     const cols = chart.labels.map((lbl, i) => {
       const v = chart.values[i];
-      const hpct = Math.max(6, Math.round(v / max * 88));
-      return `<div class="bar-col"><span class="bar-val">${v}</span><div class="bar-rect" style="height:${hpct}%;background:${CHART_PALETTE[i % CHART_PALETTE.length]}"></div><span class="bar-lbl">${lbl}</span></div>`;
+      return `<div class="bar-col"><span class="bar-val">${v}</span><div class="bar-rect" style="height:${Math.max(6, Math.round(v / max * 88))}%;background:${color(i)}"></div><span class="bar-lbl">${lbl}</span></div>`;
     }).join('');
-    return `<div class="bar-chart">${cols}</div><div class="qchart-n">${chart.unit || ''}</div>`;
+    return `<div class="bar-chart">${cols}</div><div class="qn">${chart.unit || ''}</div>`;
   }
   if (chart.type === 'pie') {
     let acc = 0;
-    const stops = chart.labels.map((lbl, i) => {
-      const start = acc; acc += chart.pct[i];
-      return `${CHART_PALETTE[i % CHART_PALETTE.length]} ${start}% ${acc}%`;
-    }).join(', ');
+    const stops = chart.labels.map((lbl, i) => { const s = acc; acc += chart.pct[i]; return `${color(i)} ${s}% ${acc}%`; }).join(', ');
     const legend = chart.labels.map((lbl, i) =>
-      `<div class="pl-row"><span class="pl-sw" style="background:${CHART_PALETTE[i % CHART_PALETTE.length]}"></span>${lbl}<span class="pl-pct">${chart.pct[i]}%</span></div>`
-    ).join('');
-    return `<div class="pie-wrap"><div class="pie-circle" style="background:conic-gradient(${stops})"></div><div class="pie-legend">${legend}</div></div><div class="qchart-n">Total N = ${chart.N}</div>`;
+      `<div class="pl-row"><span class="pl-sw" style="background:${color(i)}"></span>${lbl}<span class="pl-pct">${chart.pct[i]}%</span></div>`).join('');
+    return `<div class="pie-wrap"><div class="pie-circle" style="background:conic-gradient(${stops})"></div><div class="pie-legend">${legend}</div></div><div class="qn">Total N = ${chart.N}</div>`;
   }
   return '';
 }
@@ -474,68 +433,70 @@ function renderChart(chart) {
 /* ---------------- KaTeX ---------------- */
 function renderMath(el) {
   if (window.renderMathInElement) {
-    renderMathInElement(el, { delimiters:[
-      {left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false}
-    ], throwOnError:false });
+    renderMathInElement(el, { delimiters: [
+      { left: '$', right: '$', display: false }, { left: '\\(', right: '\\)', display: false }
+    ], throwOnError: false });
   }
 }
+/* Un '<' dentro de una fórmula (p. ej. P(3,25<X<4,35)) el navegador lo lee como etiqueta HTML y corta el texto. */
+const texSafe = t => String(t).replace(/<(?!\/?(b|i|br|sub|sup|span|small|strong|em)\b)/g, '&lt;');
 
-/* ---------------- build menu ---------------- */
-const topicGrid = document.getElementById('topicGrid');
-TOPICS.forEach((t, i) => {
-  const card = document.createElement('button');
-  card.className = 'topic-card';
-  card.style.setProperty('--tc-accent', t.accent);
-  card.innerHTML = `<div class="tc-cat"><div class="catgrid" id="menuCat${i}"></div></div>
-    <h3>${t.title}</h3><div class="tc-name">${t.name}</div><p>${t.desc}</p>
-    <div class="tc-count">${t.bank.length} ejercicios · 5 por ronda</div>`;
-  card.addEventListener('click', () => startTopic(i));
-  topicGrid.appendChild(card);
-  drawChar(card.querySelector(`#menuCat${i}`), 6, t, 'saludo');
-});
+/* ---------------- juego ---------------- */
+let topic = null, tipo = '', round = [], idx = 0, score = 0, answered = false, order = [], marks = [];
 
-/* ---------------- game state ---------------- */
-const menuScreen = document.getElementById('menuScreen');
-const quizScreen = document.getElementById('quizScreen');
-const finalScreen = document.getElementById('finalScreen');
-const altsEl = document.getElementById('alts');
-const pauta = document.getElementById('pauta');
-const nextBtn = document.getElementById('nextBtn');
-const quizCatBox = document.getElementById('quizCatBox');
+function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-const N_QUIZ = 5;
-let topic = null, round = [], idx = 0, score = 0, answered = false, order = [];
+/* ronda variada: va tomando una pregunta de cada tipo, en orden al azar, hasta juntar 5 */
+function armarRonda(qs) {
+  const porTipo = {};
+  shuffle(qs.slice()).forEach(q => (porTipo[q.tipo] = porTipo[q.tipo] || []).push(q));
+  const colas = shuffle(Object.values(porTipo)), out = [];
+  while (out.length < N_QUIZ && colas.some(c => c.length)) colas.forEach(c => { if (c.length && out.length < N_QUIZ) out.push(c.pop()); });
+  return out;
+}
 
-function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function abrir(id) {
+  topic = TOPICS[id];
+  document.title = topic.title + ' — Fabimath';
+  $('tTitle').textContent = topic.title;
+  $('tSub').textContent = topic.name + ' · ' + topic.bank.length + ' ejercicios';
+  drawCat($('headCatGrid'), 3, topic);
+  drawCat($('quizCatGrid'), 6, topic);
+  const cuenta = {};
+  topic.bank.forEach(q => cuenta[q.tipo] = (cuenta[q.tipo] || 0) + 1);
+  $('tipoSel').innerHTML = '<option value="">Todos los tipos (variado)</option>' +
+    Object.entries(cuenta).map(([t, n]) => `<option value="${t.replace(/"/g, '&quot;')}">${t} (${n})</option>`).join('');
+  tipo = '';
+  empezar();
+}
 
-function startTopic(i) {
-  topic = TOPICS[i];
-  document.documentElement.style.setProperty('--accent', topic.accent);
-  drawChar(document.getElementById('quizCatGrid'), 6, topic, 'neutro');
-  const pool = shuffle([...Array(topic.bank.length).keys()]).slice(0, N_QUIZ);
-  round = pool.map(k => topic.bank[k]);
-  idx = 0; score = 0;
-  menuScreen.classList.add('hidden');
-  finalScreen.classList.add('hidden');
-  quizScreen.classList.remove('hidden');
+function empezar() {
+  const qs = tipo ? topic.bank.filter(q => q.tipo === tipo) : topic.bank;
+  round = tipo ? shuffle(qs.slice()).slice(0, N_QUIZ) : armarRonda(qs);
+  idx = 0; score = 0; marks = [];
+  $('finalBox').classList.add('hidden');
+  $('quizBox').classList.remove('hidden');
   showQuestion();
+}
+
+function paintDots() {
+  $('dots').innerHTML = round.map((_, i) => `<i class="${marks[i] === true ? 'ok' : marks[i] === false ? 'ko' : i === idx ? 'cur' : ''}"></i>`).join('');
 }
 
 function showQuestion() {
   const q = round[idx];
   answered = false;
-  pauta.style.display = 'none'; pauta.className = 'pauta';
-  nextBtn.classList.add('hidden');
-  document.getElementById('qCounter').textContent = `Pregunta ${idx+1} de ${N_QUIZ}`;
-  document.getElementById('scoreLabel').textContent = `${score} correctas`;
-  document.getElementById('pbarFill').style.width = `${idx/N_QUIZ*100}%`;
-  document.getElementById('qType').textContent = q.tipo;
-  document.getElementById('qCtx').textContent = q.ctx;
-  document.getElementById('qEnun').textContent = q.enun;
-  const tEl = document.getElementById('qTable');
+  $('pauta').className = 'pauta hidden';
+  $('nextBtn').classList.add('hidden');
+  $('qCounter').textContent = `Pregunta ${idx + 1} de ${round.length}`;
+  $('scoreLabel').textContent = `${score} correcta${score === 1 ? '' : 's'}`;
+  paintDots();
+  $('qType').textContent = q.tipo;
+  $('qCtx').textContent = q.ctx;
+  $('qEnun').textContent = q.enun;
+  const tEl = $('qTable');
   if (q.chart) {
-    tEl.innerHTML = renderChart(q.chart);
-    tEl.className = 'qchart';
+    tEl.className = 'qchart'; tEl.innerHTML = renderChart(q.chart);
   } else if (q.table) {
     tEl.className = 'qtable';
     let html = '<table><thead><tr>' + q.table.head.map(h => `<th>${texSafe(h)}</th>`).join('') + '</tr></thead><tbody>';
@@ -543,102 +504,92 @@ function showQuestion() {
       html += '<tr><th>' + texSafe(r[0]) + '</th>' + r.slice(1).map(c => `<td>${texSafe(c)}</td>`).join('') + '</tr>';
     });
     html += '</tbody></table>';
-    if (q.table.N) html += `<div style="font-size:12px;color:#c19c7d;margin-top:6px">Total N = ${q.table.N}</div>`;
+    if (q.table.N && !/^total$/i.test(q.table.rows.at(-1)[0])) html += `<div class="qn">Total N = ${q.table.N}</div>`;  /* sin repetir la fila Total */
     tEl.innerHTML = html;
-  } else { tEl.className = 'qtable'; tEl.innerHTML = ''; }
-  document.getElementById('qAsk').textContent = q.ask;
+  } else { tEl.className = ''; tEl.innerHTML = ''; }
+  $('qAsk').textContent = q.ask;
   order = shuffle([...q.alts.keys()]);
-  const letters = ['A','B','C','D'];
-  altsEl.innerHTML = '';
-  order.forEach((origIdx, pos) => {
-    const b = document.createElement('button');
-    b.className = 'alt-btn'; b.dataset.orig = origIdx;
-    b.innerHTML = `<span class="key">${letters[pos]}</span><span>${texSafe(q.alts[origIdx])}</span>`;
-    b.addEventListener('click', () => answer(pos));
-    altsEl.appendChild(b);
-  });
+  $('alts').innerHTML = order.map((o, pos) =>
+    `<button class="alt" data-pos="${pos}"><span class="key">${'ABCD'[pos]}</span><span>${texSafe(q.alts[o])}</span></button>`).join('');
   renderMath(document.querySelector('.quiz-q'));
-  drawChar(document.getElementById('quizCatGrid'), 6, topic, 'neutro');
-  quizCatBox.classList.add('talking');
-  setTimeout(() => quizCatBox.classList.remove('talking'), 500);
+  $('quizCatBox').classList.add('talking');
+  setTimeout(() => $('quizCatBox').classList.remove('talking'), 500);
 }
-
-/* Un '<' dentro de una fórmula (p. ej. P(3,25<X<4,35)) el navegador lo lee como etiqueta HTML y corta el texto. */
-const texSafe = t => String(t).replace(/<(?!\/?(b|i|br|sub|sup|span|small|strong|em)\b)/g, '&lt;');
 
 function answer(pos) {
   if (answered) return;
   answered = true;
   const q = round[idx];
-  const btns = [...altsEl.querySelectorAll('.alt-btn')];
+  const btns = [...$('alts').querySelectorAll('.alt')];
   btns.forEach(b => b.disabled = true);
-  const chosenOrig = parseInt(btns[pos].dataset.orig, 10);
-  const correctPos = order.indexOf(q.correct);
-  btns[correctPos].classList.add('correct');
-  const good = chosenOrig === q.correct;
-  if (good) { score++; document.getElementById('scoreLabel').textContent = `${score} correctas`; }
-  else btns[pos].classList.add('wrong');
-  drawChar(document.getElementById('quizCatGrid'), 6, topic, good ? 'exito' : 'tristeza');
-  pauta.classList.add(good ? 'good' : 'bad');
-  document.getElementById('pFlag').textContent = good ? '✓ ¡Correcto, miau!' : '✗ Incorrecto — revisa la pauta:';
-  document.getElementById('pHead').innerHTML = `$${texSafe(q.pautaHead)}$`;
-  const steps = document.getElementById('pSteps');
-  steps.innerHTML = '';
-  q.pautaSteps.forEach(s => {
-    const d = document.createElement('div'); d.className = 'p-step';
-    d.innerHTML = `\\(${texSafe(s)}\\)`; steps.appendChild(d);
-  });
-  document.getElementById('pConc').innerHTML = q.conc;
-  renderMath(pauta);
-  pauta.style.display = 'block';
-  nextBtn.classList.remove('hidden');
-  nextBtn.textContent = (idx+1 < N_QUIZ) ? 'Siguiente ▶' : 'Ver resultado ★';
-  document.getElementById('pbarFill').style.width = `${(idx+1)/N_QUIZ*100}%`;
-  nextBtn.focus();
+  const good = order[pos] === q.correct;
+  btns[order.indexOf(q.correct)].classList.add('correct');
+  if (good) score++; else btns[pos].classList.add('wrong');
+  marks[idx] = good;
+  paintDots();
+  $('scoreLabel').textContent = `${score} correcta${score === 1 ? '' : 's'}`;
+  const p = $('pauta');
+  p.className = 'pauta ' + (good ? 'good' : 'bad');
+  $('pFlag').textContent = good ? '✓ ¡Correcto, miau!' : '✗ Incorrecto — revisa la pauta:';
+  $('pHead').innerHTML = `$${texSafe(q.pautaHead)}$`;
+  $('pSteps').innerHTML = q.pautaSteps.map(s => `<div class="p-step">\\(${texSafe(s)}\\)</div>`).join('');
+  $('pConc').innerHTML = q.conc;
+  renderMath(p);
+  const nb = $('nextBtn');
+  nb.classList.remove('hidden');
+  nb.textContent = (idx + 1 < round.length) ? 'Siguiente ▶' : 'Ver resultado ★';
+  nb.focus({ preventScroll: true });
+  p.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 function next() {
   idx++;
-  if (idx < N_QUIZ) showQuestion();
+  if (idx < round.length) { showQuestion(); $('quizBox').scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   else showFinal();
 }
 
 function showFinal() {
-  quizScreen.classList.add('hidden');
-  finalScreen.classList.remove('hidden');
-  drawChar(document.getElementById('finalCatGrid'), 6, topic, (score / N_QUIZ >= 0.6) ? 'exito' : 'tristeza');
-  document.getElementById('finalScore').textContent = `${score}/${N_QUIZ}`;
-  document.getElementById('ring').style.setProperty('--deg', `${score/N_QUIZ*360}deg`);
-  const pct = score / N_QUIZ;
+  $('quizBox').classList.add('hidden');
+  $('finalBox').classList.remove('hidden');
+  const n = round.length, pct = score / n;
+  $('finalScore').textContent = `${score}/${n}`;
+  $('ring').style.setProperty('--deg', `${pct * 360}deg`);
+  if (!tipo && n === N_QUIZ && score > getBest(topic.id)) { try { localStorage.setItem(bestKey(topic.id), score); } catch (e) {} }
   let t, m;
   if (pct === 1) { t = '¡Purrfecto! ✦'; m = `Dominas ${topic.name}. ᕕ(=^･ω･^=)ᕗ`; }
   else if (pct >= 0.6) { t = '¡Muy bien, miau!'; m = 'Buen manejo. Repasa la pauta de las que fallaste y quedas listo.'; }
-  else if (pct >= 0.4) { t = 'Vas por buen camino'; m = `A mitad de camino, miau. Descarga la ${topic.guide} en la sección Material del sitio y vuelve a intentarlo.`; }
-  else { t = 'A practicar, michi'; m = `Este tema necesita más repaso. Estudia la ${topic.guide} en el sitio, revisa cada pauta y vuelve: yo te espero. (=^-ω-^=)`; }
-  document.getElementById('finalTitle').textContent = t;
-  document.getElementById('finalMsg').textContent = m;
+  else if (pct >= 0.4) { t = 'Vas por buen camino'; m = `A mitad de camino, miau. Repasa la ${topic.guide} y vuelve a intentarlo.`; }
+  else { t = 'A practicar, michi'; m = `Este tema necesita más repaso. Estudia la ${topic.guide}, revisa cada pauta y vuelve: yo te espero. (=^-ω-^=)`; }
+  $('finalTitle').textContent = t;
+  $('finalMsg').textContent = m;
+  $('resumen').innerHTML = round.map((q, i) =>
+    `<li><span>${i + 1}. ${q.tipo}</span><span class="${marks[i] ? 'ok' : 'ko'}">${marks[i] ? '✓ correcta' : '✗ incorrecta'}</span></li>`).join('');
 }
 
-document.getElementById('nextBtn').addEventListener('click', next);
-document.getElementById('retryBtn').addEventListener('click', () => startTopic(TOPICS.indexOf(topic)));
-document.getElementById('quitBtn').addEventListener('click', backMenu);
-document.getElementById('homeBtn').addEventListener('click', backMenu);
-function backMenu() {
-  quizScreen.classList.add('hidden');
-  finalScreen.classList.add('hidden');
-  menuScreen.classList.remove('hidden');
-}
-
+$('alts').addEventListener('click', e => { const b = e.target.closest('.alt'); if (b) answer(+b.dataset.pos); });
+$('nextBtn').addEventListener('click', next);
+$('retryBtn').addEventListener('click', empezar);
+$('tipoSel').addEventListener('change', e => { tipo = e.target.value; empezar(); });
 document.addEventListener('keydown', e => {
-  if (!quizScreen.classList.contains('hidden')) {
-    const i = ['a','b','c','d'].indexOf(e.key.toLowerCase());
-    const n = ['1','2','3','4'].indexOf(e.key);
-    const pos = i>=0 ? i : n;
-    if (!answered && pos>=0 && pos<order.length) answer(pos);
-    else if (answered && e.key === 'Enter') next();
-  }
+  if ($('v_quiz').classList.contains('hidden') || $('quizBox').classList.contains('hidden') || e.target.tagName === 'SELECT') return;
+  const i = ['a','b','c','d'].indexOf(e.key.toLowerCase()), n = ['1','2','3','4'].indexOf(e.key);
+  const pos = i >= 0 ? i : n;
+  if (!answered && pos >= 0 && pos < order.length) answer(pos);
+  else if (answered && e.key === 'Enter' && document.activeElement !== $('nextBtn')) next();
 });
+
+/* ---------------- vistas por hash: # menú · #ic, #th, … un gato ---------------- */
+function ruta() {
+  const id = location.hash.slice(1);
+  const enTema = Object.hasOwn(TOPICS, id);
+  $('v_menu').classList.toggle('hidden', enTema);
+  $('v_quiz').classList.toggle('hidden', !enTema);
+  window.scrollTo(0, 0);
+  if (enTema) abrir(id);
+  else { document.title = 'Gatos de Estadística — Fabimath'; buildMenu(); }
+}
+addEventListener('hashchange', ruta);
+addEventListener('DOMContentLoaded', ruta);  /* después de KaTeX (defer), para que un enlace directo a #ic ya muestre las fórmulas */
 </script>
-<footer class="site-foot">Fabimath · <span class="version"></span></footer>
 </body>
 </html>

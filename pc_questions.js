@@ -65,9 +65,9 @@ const PC_QUESTIONS = [
 "ask": "Calcule la probabilidad de que un perro sea macho o tenga un diagnóstico infeccioso (o ambas).",
 "alts": [
 "$P = 0{,}7600$",
-"$P = 1{,}0300$",
+"$P = 0{,}4900$",
 "$P = 0{,}2700$",
-"$P = 1{,}2667$"
+"$P = 0{,}2400$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=200.\\ \\text{Frecuencias de la tabla.}",
@@ -220,9 +220,9 @@ const PC_QUESTIONS = [
 "ask": "Calcule la probabilidad de que una vaca tenga condición corporal adecuada o esté gestante (o ambas).",
 "alts": [
 "$P = 0{,}7867$",
-"$P = 1{,}2667$",
+"$P = 0{,}3067$",
 "$P = 0{,}4800$",
-"$P = 1{,}1800$"
+"$P = 0{,}2133$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=150.\\ \\text{Frecuencias de la tabla.}",
@@ -387,7 +387,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}5917$",
 "$P = 0{,}8083$",
 "$P = 0{,}2167$",
-"$P = 1{,}7750$"
+"$P = 0{,}3750$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=240.\\ \\text{Frecuencias de la tabla.}",
@@ -519,7 +519,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}1375$",
 "$P = 0{,}2200$",
 "$P = 0{,}4681$",
-"$P = 0{,}7812$"
+"$P = 0{,}7813$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=320.\\ \\text{Frecuencias de la tabla.}",
@@ -559,18 +559,18 @@ const PC_QUESTIONS = [
 },
 "ask": "Calcule la probabilidad de que un pollo tenga peso normal o presente lesiones (o ambas).",
 "alts": [
-"$P = 0{,}7812$",
-"$P = 0{,}9187$",
+"$P = 0{,}7813$",
+"$P = 0{,}9188$",
 "$P = 0{,}1375$",
-"$P = 1{,}2500$"
+"$P = 0{,}6438$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=320.\\ \\text{Frecuencias de la tabla.}",
 "pautaSteps": [
 "P(A)=\\dfrac{200}{320}=0{,}6250\\;;\\quad P(B)=\\dfrac{94}{320}=0{,}2938\\;;\\quad P(A\\cap B)=\\dfrac{44}{320}=0{,}1375",
-"P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=\\dfrac{200+94-44}{320}=0{,}7812"
+"P(A\\cup B)=P(A)+P(B)-P(A\\cap B)=\\dfrac{200+94-44}{320}=0{,}7813"
 ],
-"conc": "La probabilidad de que un pollo tenga peso normal o presente lesiones (o ambas) es 0,7812 (78,12%)."
+"conc": "La probabilidad de que un pollo tenga peso normal o presente lesiones (o ambas) es 0,7813 (78,13%)."
 },
 {
 "tipo": "Probabilidad condicional P(A|B)",
@@ -725,9 +725,9 @@ const PC_QUESTIONS = [
 "ask": "Calcule la probabilidad de que un paciente sea adherente al tratamiento o tenga la presión controlada (o ambas).",
 "alts": [
 "$P = 0{,}7444$",
-"$P = 1{,}2889$",
+"$P = 0{,}2000$",
 "$P = 0{,}5444$",
-"$P = 1{,}1167$"
+"$P = 0{,}2556$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=180.\\ \\text{Frecuencias de la tabla.}",
@@ -882,7 +882,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}4720$",
 "$P = 0{,}6000$",
 "$P = 0{,}1280$",
-"$P = 1{,}1800$"
+"$P = 0{,}3440$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=250.\\ \\text{Frecuencias de la tabla.}",
@@ -1047,7 +1047,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}6750$",
 "$P = 0{,}9500$",
 "$P = 0{,}2750$",
-"$P = 1{,}8000$"
+"$P = 0{,}4000$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=160.\\ \\text{Frecuencias de la tabla.}",
@@ -1222,7 +1222,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}5100$",
 "$P = 0{,}6000$",
 "$P = 0{,}0900$",
-"$P = 2{,}5500$"
+"$P = 0{,}4200$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=200.\\ \\text{Frecuencias de la tabla.}",
@@ -1387,7 +1387,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}6400$",
 "$P = 0{,}7000$",
 "$P = 0{,}0600$",
-"$P = 1{,}0667$"
+"$P = 0{,}5800$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=300.\\ \\text{Frecuencias de la tabla.}",
@@ -1426,13 +1426,14 @@ const PC_QUESTIONS = [
 "$P = 0{,}1000$",
 "$P = 0{,}0600$",
 "$P = 0{,}6000$",
-"$P = 0{,}6007$"
+"$P = 0{,}9000$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=300.\\ \\text{Frecuencias de la tabla.}",
 "pautaSteps": [
 "P(B\\mid A)=\\dfrac{n(A\\cap B)}{n(A)}=\\dfrac{18}{180}=0{,}1000",
-"\\text{El denominador es el subtotal de la condición }(n=180),\\ \\text{no el total }N."
+"\\text{El denominador es el subtotal de la condición }(n=180),\\ \\text{no el total }N.",
+"\text{Coincide con }P(B)=dfrac{30}{300}=0{,}1000: \text{los eventos son independientes.}"
 ],
 "conc": "Sabiendo que nació por parto vaginal, la probabilidad de que un recién nacido tenga bajo peso al nacer es 0,1000 (10,00%)."
 },
@@ -1465,13 +1466,14 @@ const PC_QUESTIONS = [
 "$P = 0{,}6000$",
 "$P = 0{,}0600$",
 "$P = 0{,}1000$",
-"$P = 0{,}1007$"
+"$P = 0{,}4000$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=300.\\ \\text{Frecuencias de la tabla.}",
 "pautaSteps": [
 "P(A\\mid B)=\\dfrac{n(A\\cap B)}{n(B)}=\\dfrac{18}{30}=0{,}6000",
-"\\text{El denominador es el subtotal de la condición }(n=30)."
+"\\text{El denominador es el subtotal de la condición }(n=30).",
+"\text{Coincide con }P(A)=dfrac{180}{300}=0{,}6000: \text{los eventos son independientes.}"
 ],
 "conc": "Sabiendo que tiene bajo peso al nacer, la probabilidad de que un recién nacido haya nacido por parto vaginal es 0,6000 (60,00%)."
 },
@@ -1550,9 +1552,9 @@ const PC_QUESTIONS = [
 "ask": "Calcule la probabilidad de que una madre haya tenido parto vaginal o dé lactancia exclusiva (o ambas).",
 "alts": [
 "$P = 0{,}8091$",
-"$P = 1{,}2091$",
+"$P = 0{,}4091$",
 "$P = 0{,}4000$",
-"$P = 1{,}4833$"
+"$P = 0{,}1909$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=220.\\ \\text{Frecuencias de la tabla.}",
@@ -1717,7 +1719,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}5111$",
 "$P = 0{,}7222$",
 "$P = 0{,}2111$",
-"$P = 1{,}1500$"
+"$P = 0{,}3000$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=180.\\ \\text{Frecuencias de la tabla.}",
@@ -1872,7 +1874,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}6167$",
 "$P = 0{,}8417$",
 "$P = 0{,}2250$",
-"$P = 1{,}2333$"
+"$P = 0{,}3917$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=240.\\ \\text{Frecuencias de la tabla.}",
@@ -2035,9 +2037,9 @@ const PC_QUESTIONS = [
 "ask": "Calcule la probabilidad de que un paciente tenga cumplimiento alto del programa o tenga un resultado satisfactorio (o ambas).",
 "alts": [
 "$P = 0{,}7600$",
-"$P = 1{,}1500$",
+"$P = 0{,}3700$",
 "$P = 0{,}3900$",
-"$P = 1{,}6889$"
+"$P = 0{,}2400$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=200.\\ \\text{Frecuencias de la tabla.}",
@@ -2212,7 +2214,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}6500$",
 "$P = 0{,}8500$",
 "$P = 0{,}2000$",
-"$P = 1{,}7333$"
+"$P = 0{,}4500$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=160.\\ \\text{Frecuencias de la tabla.}",
@@ -2397,7 +2399,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}4944$",
 "$P = 0{,}6500$",
 "$P = 0{,}1556$",
-"$P = 1{,}9778$"
+"$P = 0{,}3389$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=180.\\ \\text{Frecuencias de la tabla.}",
@@ -2582,7 +2584,7 @@ const PC_QUESTIONS = [
 "$P = 0{,}5500$",
 "$P = 0{,}7500$",
 "$P = 0{,}2000$",
-"$P = 1{,}6500$"
+"$P = 0{,}3500$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Total } N=120.\\ \\text{Frecuencias de la tabla.}",

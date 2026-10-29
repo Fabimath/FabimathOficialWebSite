@@ -1,12 +1,12 @@
-// Banco de 220 ejercicios de Tablas de Frecuencia para Datos Cualitativos Nominales (guia oficial Fabimath)
-// Parte I (60): construccion de tabla desde datos crudos -> valores f_i / h_i
-// Parte II (80): lectura e interpretacion de tabla ya construida
-// Parte III (80): interpretacion de graficos de barras y de torta
+// Banco de 220 ejercicios de Tablas de Frecuencia para Datos Cualitativos Nominales (guía oficial Fabimath)
+// Parte I (60): construcción de tabla desde datos crudos -> valores f_i / h_i
+// Parte II (80): lectura e interpretación de tabla ya construida
+// Parte III (80): interpretación de gráficos de barras y de torta
 const CN_QUESTIONS = [
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Salud · Banco de sangre",
-  "enun": "Se registró tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
+  "enun": "Se registró el tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
   "ask": "Ordenando las categorías tal como se listan (A, B, AB, O) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"A\"?",
   "alts": [
    "$f_{1} = 8$",
@@ -17,16 +17,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "A=7,\\ B=3,\\ AB=3,\\ O=7",
+   "\\text{A}=7,\\ \\text{B}=3,\\ \\text{AB}=3,\\ \\text{O}=7",
    "f_{1}=7,\\ f_{2}=3,\\ f_{3}=3,\\ f_{4}=7",
    "h_{1}=0{,}35,\\ h_{2}=0{,}15,\\ h_{3}=0{,}15,\\ h_{4}=0{,}35"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>A</b>\": $f_{1} = 7$."
+  "conc": "La categoría \"<b>A</b>\" aparece 7 veces entre los 20 datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Salud · Banco de sangre",
-  "enun": "Se registró tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
+  "enun": "Se registró el tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
   "ask": "Ordenando las categorías tal como se listan (A, B, AB, O) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"AB\"?",
   "alts": [
    "$h_{3} = 0{,}35$",
@@ -37,16 +37,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "A=7,\\ B=3,\\ AB=3,\\ O=7",
+   "\\text{A}=7,\\ \\text{B}=3,\\ \\text{AB}=3,\\ \\text{O}=7",
    "f_{1}=7,\\ f_{2}=3,\\ f_{3}=3,\\ f_{4}=7",
    "h_{1}=0{,}35,\\ h_{2}=0{,}15,\\ h_{3}=0{,}15,\\ h_{4}=0{,}35"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>AB</b>\": $h_{3} = 0{,}15$."
+  "conc": "La categoría \"<b>AB</b>\" aparece 3 veces entre los 20 datos: $h_{3} = \\dfrac{3}{20} = 0{,}15$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Salud · Banco de sangre",
-  "enun": "Se registró tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
+  "enun": "Se registró el tipo de sangre de 20 donantes. Categorías: A, B, AB, O. Datos: O, A, A, B, O, AB, A, O, B, A, O, AB, A, O, B, O, A, AB, O, A.",
   "ask": "Ordenando las categorías tal como se listan (A, B, AB, O) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"O\"?",
   "alts": [
    "$f_{4} = 3$",
@@ -57,16 +57,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "A=7,\\ B=3,\\ AB=3,\\ O=7",
+   "\\text{A}=7,\\ \\text{B}=3,\\ \\text{AB}=3,\\ \\text{O}=7",
    "f_{1}=7,\\ f_{2}=3,\\ f_{3}=3,\\ f_{4}=7",
    "h_{1}=0{,}35,\\ h_{2}=0{,}15,\\ h_{3}=0{,}15,\\ h_{4}=0{,}35"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>O</b>\": $f_{4} = 7$."
+  "conc": "La categoría \"<b>O</b>\" aparece 7 veces entre los 20 datos: $f_{4} = 7$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Educación · Encuesta de aula",
-  "enun": "Se registró color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
+  "enun": "Se registró el color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Azul (Az), Verde (V), Negro (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Café\"?",
   "alts": [
    "$f_{1} = 3$",
@@ -77,16 +77,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Café=8,\\ Azul=4,\\ Verde=3,\\ Negro=3",
+   "\\text{Café}=8,\\ \\text{Azul}=4,\\ \\text{Verde}=3,\\ \\text{Negro}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Café</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Café</b>\" aparece 8 veces entre los 18 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Educación · Encuesta de aula",
-  "enun": "Se registró color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
+  "enun": "Se registró el color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Azul (Az), Verde (V), Negro (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Verde\"?",
   "alts": [
    "$h_{3} = 0{,}17$",
@@ -97,16 +97,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Café=8,\\ Azul=4,\\ Verde=3,\\ Negro=3",
+   "\\text{Café}=8,\\ \\text{Azul}=4,\\ \\text{Verde}=3,\\ \\text{Negro}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Verde</b>\": $h_{3} = 0{,}17$."
+  "conc": "La categoría \"<b>Verde</b>\" aparece 3 veces entre los 18 datos: $h_{3} = \\dfrac{3}{18} \\approx 0{,}17$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Educación · Encuesta de aula",
-  "enun": "Se registró color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
+  "enun": "Se registró el color de ojos de 18 estudiantes. Categorías: Café (C), Azul (Az), Verde (V), Negro (N). Datos: C, Az, C, V, C, N, Az, C, V, C, Az, N, C, V, C, Az, C, N.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Azul (Az), Verde (V), Negro (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Negro\"?",
   "alts": [
    "$f_{4} = 3$",
@@ -117,16 +117,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Café=8,\\ Azul=4,\\ Verde=3,\\ Negro=3",
+   "\\text{Café}=8,\\ \\text{Azul}=4,\\ \\text{Verde}=3,\\ \\text{Negro}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Negro</b>\": $f_{4} = 3$."
+  "conc": "La categoría \"<b>Negro</b>\" aparece 3 veces entre los 18 datos: $f_{4} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Movilidad · Transporte laboral",
-  "enun": "Se registró medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
+  "enun": "Se registró el medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
   "ask": "Ordenando las categorías tal como se listan (Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Auto\"?",
   "alts": [
    "$f_{1} = 7$",
@@ -137,16 +137,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Auto=6,\\ Bus=6,\\ Metro=6,\\ Bicicleta=2,\\ Caminando=2",
+   "\\text{Auto}=6,\\ \\text{Bus}=6,\\ \\text{Metro}=6,\\ \\text{Bicicleta}=2,\\ \\text{Caminando}=2",
    "f_{1}=6,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}27,\\ h_{2}=0{,}27,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Auto</b>\": $f_{1} = 6$."
+  "conc": "La categoría \"<b>Auto</b>\" aparece 6 veces entre los 22 datos: $f_{1} = 6$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Movilidad · Transporte laboral",
-  "enun": "Se registró medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
+  "enun": "Se registró el medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
   "ask": "Ordenando las categorías tal como se listan (Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Metro\"?",
   "alts": [
    "$h_{3} = 0{,}24$",
@@ -157,16 +157,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Auto=6,\\ Bus=6,\\ Metro=6,\\ Bicicleta=2,\\ Caminando=2",
+   "\\text{Auto}=6,\\ \\text{Bus}=6,\\ \\text{Metro}=6,\\ \\text{Bicicleta}=2,\\ \\text{Caminando}=2",
    "f_{1}=6,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}27,\\ h_{2}=0{,}27,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Metro</b>\": $h_{3} = 0{,}27$."
+  "conc": "La categoría \"<b>Metro</b>\" aparece 6 veces entre los 22 datos: $h_{3} = \\dfrac{6}{22} \\approx 0{,}27$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Movilidad · Transporte laboral",
-  "enun": "Se registró medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
+  "enun": "Se registró el medio de transporte al trabajo de 22 empleados. Categorías: Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca). Datos: A, B, M, A, Bi, B, M, A, Ca, B, M, A, B, Bi, M, A, Ca, B, M, A, B, M.",
   "ask": "Ordenando las categorías tal como se listan (Auto (A), Bus (B), Metro (M), Bicicleta (Bi), Caminando (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Caminando\"?",
   "alts": [
    "$f_{5} = 3$",
@@ -177,16 +177,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Auto=6,\\ Bus=6,\\ Metro=6,\\ Bicicleta=2,\\ Caminando=2",
+   "\\text{Auto}=6,\\ \\text{Bus}=6,\\ \\text{Metro}=6,\\ \\text{Bicicleta}=2,\\ \\text{Caminando}=2",
    "f_{1}=6,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}27,\\ h_{2}=0{,}27,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Caminando</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Caminando</b>\" aparece 2 veces entre los 22 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Cultura · Preferencias musicales",
-  "enun": "Se registró género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
+  "enun": "Se registró el género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
   "ask": "Ordenando las categorías tal como se listan (Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Rock\"?",
   "alts": [
    "$f_{1} = 7$",
@@ -197,16 +197,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Rock=3,\\ Pop=7,\\ Reggaetón=6,\\ Clásica=2,\\ Jazz=2",
+   "\\text{Rock}=3,\\ \\text{Pop}=7,\\ \\text{Reggaetón}=6,\\ \\text{Clásica}=2,\\ \\text{Jazz}=2",
    "f_{1}=3,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}15,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Rock</b>\": $f_{1} = 3$."
+  "conc": "La categoría \"<b>Rock</b>\" aparece 3 veces entre los 20 datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Cultura · Preferencias musicales",
-  "enun": "Se registró género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
+  "enun": "Se registró el género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
   "ask": "Ordenando las categorías tal como se listan (Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Reggaetón\"?",
   "alts": [
    "$h_{3} = 0{,}35$",
@@ -217,16 +217,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Rock=3,\\ Pop=7,\\ Reggaetón=6,\\ Clásica=2,\\ Jazz=2",
+   "\\text{Rock}=3,\\ \\text{Pop}=7,\\ \\text{Reggaetón}=6,\\ \\text{Clásica}=2,\\ \\text{Jazz}=2",
    "f_{1}=3,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}15,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Reggaetón</b>\": $h_{3} = 0{,}30$."
+  "conc": "La categoría \"<b>Reggaetón</b>\" aparece 6 veces entre los 20 datos: $h_{3} = \\dfrac{6}{20} = 0{,}30$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Cultura · Preferencias musicales",
-  "enun": "Se registró género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
+  "enun": "Se registró el género musical favorito de 20 personas. Categorías: Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J). Datos: P, Rg, R, P, Rg, J, P, Cl, Rg, P, R, Rg, P, J, Rg, P, Cl, R, Rg, P.",
   "ask": "Ordenando las categorías tal como se listan (Rock (R), Pop (P), Reggaetón (Rg), Clásica (Cl), Jazz (J)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Jazz\"?",
   "alts": [
    "$f_{5} = 2$",
@@ -237,16 +237,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Rock=3,\\ Pop=7,\\ Reggaetón=6,\\ Clásica=2,\\ Jazz=2",
+   "\\text{Rock}=3,\\ \\text{Pop}=7,\\ \\text{Reggaetón}=6,\\ \\text{Clásica}=2,\\ \\text{Jazz}=2",
    "f_{1}=3,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}15,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Jazz</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Jazz</b>\" aparece 2 veces entre los 20 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Servicio técnico",
-  "enun": "Se registró marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
+  "enun": "Se registró la marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
   "ask": "Ordenando las categorías tal como se listan (Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Apple\"?",
   "alts": [
    "$f_{1} = 7$",
@@ -257,16 +257,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Apple=7,\\ Samsung=8,\\ Xiaomi=5,\\ Motorola=2,\\ Huawei=2",
+   "\\text{Apple}=7,\\ \\text{Samsung}=8,\\ \\text{Xiaomi}=5,\\ \\text{Motorola}=2,\\ \\text{Huawei}=2",
    "f_{1}=7,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}29,\\ h_{2}=0{,}33,\\ h_{3}=0{,}21,\\ h_{4}=0{,}08,\\ h_{5}=0{,}08"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Apple</b>\": $f_{1} = 7$."
+  "conc": "La categoría \"<b>Apple</b>\" aparece 7 veces entre los 24 datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Retail · Servicio técnico",
-  "enun": "Se registró marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
+  "enun": "Se registró la marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
   "ask": "Ordenando las categorías tal como se listan (Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Xiaomi\"?",
   "alts": [
    "$h_{3} = 0{,}08$",
@@ -277,16 +277,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Apple=7,\\ Samsung=8,\\ Xiaomi=5,\\ Motorola=2,\\ Huawei=2",
+   "\\text{Apple}=7,\\ \\text{Samsung}=8,\\ \\text{Xiaomi}=5,\\ \\text{Motorola}=2,\\ \\text{Huawei}=2",
    "f_{1}=7,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}29,\\ h_{2}=0{,}33,\\ h_{3}=0{,}21,\\ h_{4}=0{,}08,\\ h_{5}=0{,}08"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Xiaomi</b>\": $h_{3} = 0{,}21$."
+  "conc": "La categoría \"<b>Xiaomi</b>\" aparece 5 veces entre los 24 datos: $h_{3} = \\dfrac{5}{24} \\approx 0{,}21$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Servicio técnico",
-  "enun": "Se registró marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
+  "enun": "Se registró la marca de smartphone de 24 clientes. Categorías: Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu). Datos: Sa, Ap, Sa, Xi, Ap, Mo, Sa, Ap, Xi, Sa, Hu, Ap, Sa, Xi, Ap, Sa, Mo, Xi, Sa, Ap, Hu, Sa, Ap, Xi.",
   "ask": "Ordenando las categorías tal como se listan (Apple (Ap), Samsung (Sa), Xiaomi (Xi), Motorola (Mo), Huawei (Hu)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Huawei\"?",
   "alts": [
    "$f_{5} = 7$",
@@ -297,16 +297,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Apple=7,\\ Samsung=8,\\ Xiaomi=5,\\ Motorola=2,\\ Huawei=2",
+   "\\text{Apple}=7,\\ \\text{Samsung}=8,\\ \\text{Xiaomi}=5,\\ \\text{Motorola}=2,\\ \\text{Huawei}=2",
    "f_{1}=7,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}29,\\ h_{2}=0{,}33,\\ h_{3}=0{,}21,\\ h_{4}=0{,}08,\\ h_{5}=0{,}08"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Huawei</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Huawei</b>\" aparece 2 veces entre los 24 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Demografía · Censo local",
-  "enun": "Se registró estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
+  "enun": "Se registró el estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
   "ask": "Ordenando las categorías tal como se listan (Soltero (S), Casado (Ca), Divorciado (D), Viudo (V)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Soltero\"?",
   "alts": [
    "$f_{1} = 9$",
@@ -317,16 +317,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Soltero=8,\\ Casado=8,\\ Divorciado=2,\\ Viudo=2",
+   "\\text{Soltero}=8,\\ \\text{Casado}=8,\\ \\text{Divorciado}=2,\\ \\text{Viudo}=2",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=2,\\ f_{4}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}40,\\ h_{3}=0{,}10,\\ h_{4}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Soltero</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Soltero</b>\" aparece 8 veces entre los 20 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Demografía · Censo local",
-  "enun": "Se registró estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
+  "enun": "Se registró el estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
   "ask": "Ordenando las categorías tal como se listan (Soltero (S), Casado (Ca), Divorciado (D), Viudo (V)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Divorciado\"?",
   "alts": [
    "$h_{3} = 0{,}07$",
@@ -337,16 +337,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Soltero=8,\\ Casado=8,\\ Divorciado=2,\\ Viudo=2",
+   "\\text{Soltero}=8,\\ \\text{Casado}=8,\\ \\text{Divorciado}=2,\\ \\text{Viudo}=2",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=2,\\ f_{4}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}40,\\ h_{3}=0{,}10,\\ h_{4}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Divorciado</b>\": $h_{3} = 0{,}10$."
+  "conc": "La categoría \"<b>Divorciado</b>\" aparece 2 veces entre los 20 datos: $h_{3} = \\dfrac{2}{20} = 0{,}10$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Demografía · Censo local",
-  "enun": "Se registró estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
+  "enun": "Se registró el estado civil de 20 personas. Categorías: Soltero (S), Casado (Ca), Divorciado (D), Viudo (V). Datos: S, Ca, S, Ca, D, S, Ca, Ca, S, V, Ca, S, D, Ca, S, Ca, S, V, Ca, S.",
   "ask": "Ordenando las categorías tal como se listan (Soltero (S), Casado (Ca), Divorciado (D), Viudo (V)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Viudo\"?",
   "alts": [
    "$f_{4} = 8$",
@@ -357,16 +357,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Soltero=8,\\ Casado=8,\\ Divorciado=2,\\ Viudo=2",
+   "\\text{Soltero}=8,\\ \\text{Casado}=8,\\ \\text{Divorciado}=2,\\ \\text{Viudo}=2",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=2,\\ f_{4}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}40,\\ h_{3}=0{,}10,\\ h_{4}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Viudo</b>\": $f_{4} = 2$."
+  "conc": "La categoría \"<b>Viudo</b>\" aparece 2 veces entre los 20 datos: $f_{4} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Tenencia de mascotas",
-  "enun": "Se registró tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
+  "enun": "Se registró el tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
   "ask": "Ordenando las categorías tal como se listan (Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Perro\"?",
   "alts": [
    "$f_{1} = 8$",
@@ -377,16 +377,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Perro=8,\\ Gato=5,\\ Ave=2,\\ Pez=1,\\ Ninguna=3",
+   "\\text{Perro}=8,\\ \\text{Gato}=5,\\ \\text{Ave}=2,\\ \\text{Pez}=1,\\ \\text{Ninguna}=3",
    "f_{1}=8,\\ f_{2}=5,\\ f_{3}=2,\\ f_{4}=1,\\ f_{5}=3",
    "h_{1}=0{,}42,\\ h_{2}=0{,}26,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Perro</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Perro</b>\" aparece 8 veces entre los 19 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Hogar · Tenencia de mascotas",
-  "enun": "Se registró tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
+  "enun": "Se registró el tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
   "ask": "Ordenando las categorías tal como se listan (Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Ave\"?",
   "alts": [
    "$h_{3} = 0{,}11$",
@@ -397,16 +397,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Perro=8,\\ Gato=5,\\ Ave=2,\\ Pez=1,\\ Ninguna=3",
+   "\\text{Perro}=8,\\ \\text{Gato}=5,\\ \\text{Ave}=2,\\ \\text{Pez}=1,\\ \\text{Ninguna}=3",
    "f_{1}=8,\\ f_{2}=5,\\ f_{3}=2,\\ f_{4}=1,\\ f_{5}=3",
    "h_{1}=0{,}42,\\ h_{2}=0{,}26,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Ave</b>\": $h_{3} = 0{,}11$."
+  "conc": "La categoría \"<b>Ave</b>\" aparece 2 veces entre los 19 datos: $h_{3} = \\dfrac{2}{19} \\approx 0{,}11$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Tenencia de mascotas",
-  "enun": "Se registró tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
+  "enun": "Se registró el tipo de mascota de 19 familias. Categorías: Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N). Datos: P, G, P, N, P, A, G, P, Pz, G, P, N, P, G, A, P, G, N, P.",
   "ask": "Ordenando las categorías tal como se listan (Perro (P), Gato (G), Ave (A), Pez (Pz), Ninguna (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Ninguna\"?",
   "alts": [
    "$f_{5} = 2$",
@@ -417,16 +417,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Perro=8,\\ Gato=5,\\ Ave=2,\\ Pez=1,\\ Ninguna=3",
+   "\\text{Perro}=8,\\ \\text{Gato}=5,\\ \\text{Ave}=2,\\ \\text{Pez}=1,\\ \\text{Ninguna}=3",
    "f_{1}=8,\\ f_{2}=5,\\ f_{3}=2,\\ f_{4}=1,\\ f_{5}=3",
    "h_{1}=0{,}42,\\ h_{2}=0{,}26,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Ninguna</b>\": $f_{5} = 3$."
+  "conc": "La categoría \"<b>Ninguna</b>\" aparece 3 veces entre los 19 datos: $f_{5} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Tecnología · Redes sociales",
-  "enun": "Se registró red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
+  "enun": "Se registró la red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
   "ask": "Ordenando las categorías tal como se listan (Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Instagram\"?",
   "alts": [
    "$f_{1} = 3$",
@@ -437,16 +437,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=25\\text{):}",
   "pautaSteps": [
-   "Instagram=8,\\ TikTok=8,\\ Facebook=3,\\ Twitter/X=2,\\ YouTube=4",
+   "\\text{Instagram}=8,\\ \\text{TikTok}=8,\\ \\text{Facebook}=3,\\ \\text{Twitter/X}=2,\\ \\text{YouTube}=4",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=3,\\ f_{4}=2,\\ f_{5}=4",
    "h_{1}=0{,}32,\\ h_{2}=0{,}32,\\ h_{3}=0{,}12,\\ h_{4}=0{,}08,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Instagram</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Instagram</b>\" aparece 8 veces entre los 25 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Tecnología · Redes sociales",
-  "enun": "Se registró red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
+  "enun": "Se registró la red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
   "ask": "Ordenando las categorías tal como se listan (Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Facebook\"?",
   "alts": [
    "$h_{3} = 0{,}32$",
@@ -457,16 +457,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=25\\text{):}",
   "pautaSteps": [
-   "Instagram=8,\\ TikTok=8,\\ Facebook=3,\\ Twitter/X=2,\\ YouTube=4",
+   "\\text{Instagram}=8,\\ \\text{TikTok}=8,\\ \\text{Facebook}=3,\\ \\text{Twitter/X}=2,\\ \\text{YouTube}=4",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=3,\\ f_{4}=2,\\ f_{5}=4",
    "h_{1}=0{,}32,\\ h_{2}=0{,}32,\\ h_{3}=0{,}12,\\ h_{4}=0{,}08,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Facebook</b>\": $h_{3} = 0{,}12$."
+  "conc": "La categoría \"<b>Facebook</b>\" aparece 3 veces entre los 25 datos: $h_{3} = \\dfrac{3}{25} = 0{,}12$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Tecnología · Redes sociales",
-  "enun": "Se registró red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
+  "enun": "Se registró la red social más usada de 25 jóvenes. Categorías: Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT). Datos: TK, IG, TK, YT, IG, FB, TK, IG, X, TK, YT, IG, TK, FB, IG, TK, YT, IG, X, TK, IG, FB, TK, IG, YT.",
   "ask": "Ordenando las categorías tal como se listan (Instagram (IG), TikTok (TK), Facebook (FB), Twitter/X (X), YouTube (YT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"YouTube\"?",
   "alts": [
    "$f_{5} = 4$",
@@ -477,16 +477,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=25\\text{):}",
   "pautaSteps": [
-   "Instagram=8,\\ TikTok=8,\\ Facebook=3,\\ Twitter/X=2,\\ YouTube=4",
+   "\\text{Instagram}=8,\\ \\text{TikTok}=8,\\ \\text{Facebook}=3,\\ \\text{Twitter/X}=2,\\ \\text{YouTube}=4",
    "f_{1}=8,\\ f_{2}=8,\\ f_{3}=3,\\ f_{4}=2,\\ f_{5}=4",
    "h_{1}=0{,}32,\\ h_{2}=0{,}32,\\ h_{3}=0{,}12,\\ h_{4}=0{,}08,\\ h_{5}=0{,}16"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>YouTube</b>\": $f_{5} = 4$."
+  "conc": "La categoría \"<b>YouTube</b>\" aparece 4 veces entre los 25 datos: $f_{5} = 4$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Heladería",
-  "enun": "Se registró sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
+  "enun": "Se registró el sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
   "ask": "Ordenando las categorías tal como se listan (Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Chocolate\"?",
   "alts": [
    "$f_{1} = 2$",
@@ -497,16 +497,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Chocolate=8,\\ Vainilla=4,\\ Fresa=4,\\ Menta=2,\\ Pistacho=2",
+   "\\text{Chocolate}=8,\\ \\text{Vainilla}=4,\\ \\text{Fresa}=4,\\ \\text{Menta}=2,\\ \\text{Pistacho}=2",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=4,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}20,\\ h_{3}=0{,}20,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Chocolate</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Chocolate</b>\" aparece 8 veces entre los 20 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Retail · Heladería",
-  "enun": "Se registró sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
+  "enun": "Se registró el sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
   "ask": "Ordenando las categorías tal como se listan (Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Fresa\"?",
   "alts": [
    "$h_{3} = 0{,}20$",
@@ -517,16 +517,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Chocolate=8,\\ Vainilla=4,\\ Fresa=4,\\ Menta=2,\\ Pistacho=2",
+   "\\text{Chocolate}=8,\\ \\text{Vainilla}=4,\\ \\text{Fresa}=4,\\ \\text{Menta}=2,\\ \\text{Pistacho}=2",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=4,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}20,\\ h_{3}=0{,}20,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Fresa</b>\": $h_{3} = 0{,}20$."
+  "conc": "La categoría \"<b>Fresa</b>\" aparece 4 veces entre los 20 datos: $h_{3} = \\dfrac{4}{20} = 0{,}20$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Heladería",
-  "enun": "Se registró sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
+  "enun": "Se registró el sabor preferido de 20 clientes. Categorías: Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P). Datos: Ch, V, Ch, F, Ch, M, V, Ch, P, F, Ch, V, Ch, M, F, Ch, V, P, Ch, F.",
   "ask": "Ordenando las categorías tal como se listan (Chocolate (Ch), Vainilla (V), Fresa (F), Menta (M), Pistacho (P)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Pistacho\"?",
   "alts": [
    "$f_{5} = 4$",
@@ -537,16 +537,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Chocolate=8,\\ Vainilla=4,\\ Fresa=4,\\ Menta=2,\\ Pistacho=2",
+   "\\text{Chocolate}=8,\\ \\text{Vainilla}=4,\\ \\text{Fresa}=4,\\ \\text{Menta}=2,\\ \\text{Pistacho}=2",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=4,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}40,\\ h_{2}=0{,}20,\\ h_{3}=0{,}20,\\ h_{4}=0{,}10,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Pistacho</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Pistacho</b>\" aparece 2 veces entre los 20 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Cultura · Cine",
-  "enun": "Se registró género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
+  "enun": "Se registró el género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
   "ask": "Ordenando las categorías tal como se listan (Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Acción\"?",
   "alts": [
    "$f_{1} = 3$",
@@ -557,16 +557,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Acción=7,\\ Comedia=7,\\ Drama=2,\\ Terror=3,\\ Ciencia ficción=2",
+   "\\text{Acción}=7,\\ \\text{Comedia}=7,\\ \\text{Drama}=2,\\ \\text{Terror}=3,\\ \\text{Ciencia ficción}=2",
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}33,\\ h_{2}=0{,}33,\\ h_{3}=0{,}10,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Acción</b>\": $f_{1} = 7$."
+  "conc": "La categoría \"<b>Acción</b>\" aparece 7 veces entre los 21 datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Cultura · Cine",
-  "enun": "Se registró género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
+  "enun": "Se registró el género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
   "ask": "Ordenando las categorías tal como se listan (Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Drama\"?",
   "alts": [
    "$h_{3} = 0{,}33$",
@@ -577,16 +577,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Acción=7,\\ Comedia=7,\\ Drama=2,\\ Terror=3,\\ Ciencia ficción=2",
+   "\\text{Acción}=7,\\ \\text{Comedia}=7,\\ \\text{Drama}=2,\\ \\text{Terror}=3,\\ \\text{Ciencia ficción}=2",
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}33,\\ h_{2}=0{,}33,\\ h_{3}=0{,}10,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Drama</b>\": $h_{3} = 0{,}10$."
+  "conc": "La categoría \"<b>Drama</b>\" aparece 2 veces entre los 21 datos: $h_{3} = \\dfrac{2}{21} \\approx 0{,}10$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Cultura · Cine",
-  "enun": "Se registró género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
+  "enun": "Se registró el género de película favorito de 21 personas. Categorías: Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF). Datos: A, C, A, T, C, D, A, CF, C, A, T, C, A, D, C, A, CF, T, C, A, C.",
   "ask": "Ordenando las categorías tal como se listan (Acción (A), Comedia (C), Drama (D), Terror (T), Ciencia ficción (CF)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Ciencia ficción\"?",
   "alts": [
    "$f_{5} = 1$",
@@ -597,16 +597,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Acción=7,\\ Comedia=7,\\ Drama=2,\\ Terror=3,\\ Ciencia ficción=2",
+   "\\text{Acción}=7,\\ \\text{Comedia}=7,\\ \\text{Drama}=2,\\ \\text{Terror}=3,\\ \\text{Ciencia ficción}=2",
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}33,\\ h_{2}=0{,}33,\\ h_{3}=0{,}10,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Ciencia ficción</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Ciencia ficción</b>\" aparece 2 veces entre los 21 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Laboral · Contratos",
-  "enun": "Se registró tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
+  "enun": "Se registró el tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
   "ask": "Ordenando las categorías tal como se listan (Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Indefinido\"?",
   "alts": [
    "$f_{1} = 8$",
@@ -617,16 +617,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Indefinido=8,\\ Plazo fijo=4,\\ Honorarios=3,\\ Part-time=3",
+   "\\text{Indefinido}=8,\\ \\text{Plazo fijo}=4,\\ \\text{Honorarios}=3,\\ \\text{Part-time}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Indefinido</b>\": $f_{1} = 8$."
+  "conc": "La categoría \"<b>Indefinido</b>\" aparece 8 veces entre los 18 datos: $f_{1} = 8$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Laboral · Contratos",
-  "enun": "Se registró tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
+  "enun": "Se registró el tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
   "ask": "Ordenando las categorías tal como se listan (Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Honorarios\"?",
   "alts": [
    "$h_{3} = 0{,}44$",
@@ -637,16 +637,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Indefinido=8,\\ Plazo fijo=4,\\ Honorarios=3,\\ Part-time=3",
+   "\\text{Indefinido}=8,\\ \\text{Plazo fijo}=4,\\ \\text{Honorarios}=3,\\ \\text{Part-time}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Honorarios</b>\": $h_{3} = 0{,}17$."
+  "conc": "La categoría \"<b>Honorarios</b>\" aparece 3 veces entre los 18 datos: $h_{3} = \\dfrac{3}{18} \\approx 0{,}17$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Laboral · Contratos",
-  "enun": "Se registró tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
+  "enun": "Se registró el tipo de contrato laboral de 18 trabajadores. Categorías: Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT). Datos: I, PF, I, H, I, PT, PF, I, H, I, PF, PT, I, H, PF, I, PT, I.",
   "ask": "Ordenando las categorías tal como se listan (Indefinido (I), Plazo fijo (PF), Honorarios (H), Part-time (PT)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Part-time\"?",
   "alts": [
    "$f_{4} = 3$",
@@ -657,16 +657,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=18\\text{):}",
   "pautaSteps": [
-   "Indefinido=8,\\ Plazo fijo=4,\\ Honorarios=3,\\ Part-time=3",
+   "\\text{Indefinido}=8,\\ \\text{Plazo fijo}=4,\\ \\text{Honorarios}=3,\\ \\text{Part-time}=3",
    "f_{1}=8,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}44,\\ h_{2}=0{,}22,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Part-time</b>\": $f_{4} = 3$."
+  "conc": "La categoría \"<b>Part-time</b>\" aparece 3 veces entre los 18 datos: $f_{4} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Desayuno",
-  "enun": "Se registró bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
+  "enun": "Se registró la bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Té (T), Jugo (J), Leche (L), Agua (A)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Café\"?",
   "alts": [
    "$f_{1} = 3$",
@@ -677,16 +677,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Café=9,\\ Té=4,\\ Jugo=3,\\ Leche=3,\\ Agua=1",
+   "\\text{Café}=9,\\ \\text{Té}=4,\\ \\text{Jugo}=3,\\ \\text{Leche}=3,\\ \\text{Agua}=1",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=1",
    "h_{1}=0{,}45,\\ h_{2}=0{,}20,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Café</b>\": $f_{1} = 9$."
+  "conc": "La categoría \"<b>Café</b>\" aparece 9 veces entre los 20 datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Hogar · Desayuno",
-  "enun": "Se registró bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
+  "enun": "Se registró la bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Té (T), Jugo (J), Leche (L), Agua (A)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Jugo\"?",
   "alts": [
    "$h_{3} = 0{,}05$",
@@ -697,16 +697,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Café=9,\\ Té=4,\\ Jugo=3,\\ Leche=3,\\ Agua=1",
+   "\\text{Café}=9,\\ \\text{Té}=4,\\ \\text{Jugo}=3,\\ \\text{Leche}=3,\\ \\text{Agua}=1",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=1",
    "h_{1}=0{,}45,\\ h_{2}=0{,}20,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Jugo</b>\": $h_{3} = 0{,}15$."
+  "conc": "La categoría \"<b>Jugo</b>\" aparece 3 veces entre los 20 datos: $h_{3} = \\dfrac{3}{20} = 0{,}15$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Desayuno",
-  "enun": "Se registró bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
+  "enun": "Se registró la bebida preferida en el desayuno de 20 personas. Categorías: Café (C), Té (T), Jugo (J), Leche (L), Agua (A). Datos: C, T, C, J, C, L, C, T, J, C, A, C, T, L, C, J, C, T, C, L.",
   "ask": "Ordenando las categorías tal como se listan (Café (C), Té (T), Jugo (J), Leche (L), Agua (A)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Agua\"?",
   "alts": [
    "$f_{5} = 3$",
@@ -717,16 +717,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Café=9,\\ Té=4,\\ Jugo=3,\\ Leche=3,\\ Agua=1",
+   "\\text{Café}=9,\\ \\text{Té}=4,\\ \\text{Jugo}=3,\\ \\text{Leche}=3,\\ \\text{Agua}=1",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=1",
    "h_{1}=0{,}45,\\ h_{2}=0{,}20,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Agua</b>\": $f_{5} = 1$."
+  "conc": "La categoría \"<b>Agua</b>\" aparece 1 vez entre los 20 datos: $f_{5} = 1$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Política · Encuesta electoral",
-  "enun": "Se registró preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
+  "enun": "Se registró la preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
   "ask": "Ordenando las categorías tal como se listan (Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Candidato A\"?",
   "alts": [
    "$f_{1} = 7$",
@@ -737,16 +737,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Candidato A=6,\\ Candidato B=10,\\ Candidato C=4,\\ Candidato D=4",
+   "\\text{Candidato A}=6,\\ \\text{Candidato B}=10,\\ \\text{Candidato C}=4,\\ \\text{Candidato D}=4",
    "f_{1}=6,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=4",
    "h_{1}=0{,}25,\\ h_{2}=0{,}42,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Candidato A</b>\": $f_{1} = 6$."
+  "conc": "La categoría \"<b>Candidato A</b>\" aparece 6 veces entre los 24 datos: $f_{1} = 6$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Política · Encuesta electoral",
-  "enun": "Se registró preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
+  "enun": "Se registró la preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
   "ask": "Ordenando las categorías tal como se listan (Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Candidato C\"?",
   "alts": [
    "$h_{3} = 0{,}17$",
@@ -757,16 +757,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Candidato A=6,\\ Candidato B=10,\\ Candidato C=4,\\ Candidato D=4",
+   "\\text{Candidato A}=6,\\ \\text{Candidato B}=10,\\ \\text{Candidato C}=4,\\ \\text{Candidato D}=4",
    "f_{1}=6,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=4",
    "h_{1}=0{,}25,\\ h_{2}=0{,}42,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Candidato C</b>\": $h_{3} = 0{,}17$."
+  "conc": "La categoría \"<b>Candidato C</b>\" aparece 4 veces entre los 24 datos: $h_{3} = \\dfrac{4}{24} \\approx 0{,}17$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Política · Encuesta electoral",
-  "enun": "Se registró preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
+  "enun": "Se registró la preferencia de candidato de 24 votantes. Categorías: Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D). Datos: B, A, C, B, D, A, B, C, B, A, D, B, C, A, B, D, B, A, C, B, A, B, D, B.",
   "ask": "Ordenando las categorías tal como se listan (Candidato A (A), Candidato B (B), Candidato C (C), Candidato D (D)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Candidato D\"?",
   "alts": [
    "$f_{4} = 10$",
@@ -777,16 +777,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Candidato A=6,\\ Candidato B=10,\\ Candidato C=4,\\ Candidato D=4",
+   "\\text{Candidato A}=6,\\ \\text{Candidato B}=10,\\ \\text{Candidato C}=4,\\ \\text{Candidato D}=4",
    "f_{1}=6,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=4",
    "h_{1}=0{,}25,\\ h_{2}=0{,}42,\\ h_{3}=0{,}17,\\ h_{4}=0{,}17"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Candidato D</b>\": $f_{4} = 4$."
+  "conc": "La categoría \"<b>Candidato D</b>\" aparece 4 veces entre los 24 datos: $f_{4} = 4$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Concesionario de autos",
-  "enun": "Se registró color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
+  "enun": "Se registró el color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
   "ask": "Ordenando las categorías tal como se listan (Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Blanco\"?",
   "alts": [
    "$f_{1} = 9$",
@@ -797,16 +797,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Blanco=9,\\ Negro=3,\\ Gris=6,\\ Rojo=2,\\ Azul=2",
+   "\\text{Blanco}=9,\\ \\text{Negro}=3,\\ \\text{Gris}=6,\\ \\text{Rojo}=2,\\ \\text{Azul}=2",
    "f_{1}=9,\\ f_{2}=3,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}41,\\ h_{2}=0{,}14,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Blanco</b>\": $f_{1} = 9$."
+  "conc": "La categoría \"<b>Blanco</b>\" aparece 9 veces entre los 22 datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Retail · Concesionario de autos",
-  "enun": "Se registró color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
+  "enun": "Se registró el color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
   "ask": "Ordenando las categorías tal como se listan (Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Gris\"?",
   "alts": [
    "$h_{3} = 0{,}41$",
@@ -817,16 +817,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Blanco=9,\\ Negro=3,\\ Gris=6,\\ Rojo=2,\\ Azul=2",
+   "\\text{Blanco}=9,\\ \\text{Negro}=3,\\ \\text{Gris}=6,\\ \\text{Rojo}=2,\\ \\text{Azul}=2",
    "f_{1}=9,\\ f_{2}=3,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}41,\\ h_{2}=0{,}14,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Gris</b>\": $h_{3} = 0{,}27$."
+  "conc": "La categoría \"<b>Gris</b>\" aparece 6 veces entre los 22 datos: $h_{3} = \\dfrac{6}{22} \\approx 0{,}27$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Concesionario de autos",
-  "enun": "Se registró color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
+  "enun": "Se registró el color de vehículo de 22 unidades vendidas. Categorías: Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az). Datos: Bl, Gr, Bl, Ng, Bl, Ro, Gr, Bl, Az, Gr, Bl, Ng, Bl, Gr, Ro, Bl, Gr, Az, Bl, Ng, Gr, Bl.",
   "ask": "Ordenando las categorías tal como se listan (Blanco (Bl), Negro (Ng), Gris (Gr), Rojo (Ro), Azul (Az)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Azul\"?",
   "alts": [
    "$f_{5} = 3$",
@@ -837,16 +837,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Blanco=9,\\ Negro=3,\\ Gris=6,\\ Rojo=2,\\ Azul=2",
+   "\\text{Blanco}=9,\\ \\text{Negro}=3,\\ \\text{Gris}=6,\\ \\text{Rojo}=2,\\ \\text{Azul}=2",
    "f_{1}=9,\\ f_{2}=3,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=2",
    "h_{1}=0{,}41,\\ h_{2}=0{,}14,\\ h_{3}=0{,}27,\\ h_{4}=0{,}09,\\ h_{5}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Azul</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Azul</b>\" aparece 2 veces entre los 22 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Vivienda",
-  "enun": "Se registró tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
+  "enun": "Se registró el tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
   "ask": "Ordenando las categorías tal como se listan (Casa (C), Departamento (D), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Casa\"?",
   "alts": [
    "$f_{1} = 9$",
@@ -857,16 +857,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Casa=9,\\ Departamento=8,\\ Otro=2",
+   "\\text{Casa}=9,\\ \\text{Departamento}=8,\\ \\text{Otro}=2",
    "f_{1}=9,\\ f_{2}=8,\\ f_{3}=2",
    "h_{1}=0{,}47,\\ h_{2}=0{,}42,\\ h_{3}=0{,}11"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Casa</b>\": $f_{1} = 9$."
+  "conc": "La categoría \"<b>Casa</b>\" aparece 9 veces entre los 19 datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Hogar · Vivienda",
-  "enun": "Se registró tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
+  "enun": "Se registró el tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
   "ask": "Ordenando las categorías tal como se listan (Casa (C), Departamento (D), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{2}$, la frecuencia relativa de la categoría \"Departamento\"?",
   "alts": [
    "$h_{2} = 0{,}47$",
@@ -877,16 +877,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Casa=9,\\ Departamento=8,\\ Otro=2",
+   "\\text{Casa}=9,\\ \\text{Departamento}=8,\\ \\text{Otro}=2",
    "f_{1}=9,\\ f_{2}=8,\\ f_{3}=2",
    "h_{1}=0{,}47,\\ h_{2}=0{,}42,\\ h_{3}=0{,}11"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Departamento</b>\": $h_{2} = 0{,}42$."
+  "conc": "La categoría \"<b>Departamento</b>\" aparece 8 veces entre los 19 datos: $h_{2} = \\dfrac{8}{19} \\approx 0{,}42$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Hogar · Vivienda",
-  "enun": "Se registró tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
+  "enun": "Se registró el tipo de vivienda de 19 familias. Categorías: Casa (C), Departamento (D), Otro (O). Datos: C, D, C, D, C, O, D, C, D, C, D, C, O, D, C, D, C, D, C.",
   "ask": "Ordenando las categorías tal como se listan (Casa (C), Departamento (D), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{3}$, la frecuencia absoluta de la categoría \"Otro\"?",
   "alts": [
    "$f_{3} = 2$",
@@ -897,16 +897,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=19\\text{):}",
   "pautaSteps": [
-   "Casa=9,\\ Departamento=8,\\ Otro=2",
+   "\\text{Casa}=9,\\ \\text{Departamento}=8,\\ \\text{Otro}=2",
    "f_{1}=9,\\ f_{2}=8,\\ f_{3}=2",
    "h_{1}=0{,}47,\\ h_{2}=0{,}42,\\ h_{3}=0{,}11"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Otro</b>\": $f_{3} = 2$."
+  "conc": "La categoría \"<b>Otro</b>\" aparece 2 veces entre los 19 datos: $f_{3} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Medios de pago",
-  "enun": "Se registró método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
+  "enun": "Se registró el método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
   "ask": "Ordenando las categorías tal como se listan (Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Efectivo\"?",
   "alts": [
    "$f_{1} = 6$",
@@ -917,16 +917,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=23\\text{):}",
   "pautaSteps": [
-   "Efectivo=3,\\ Débito=11,\\ Crédito=6,\\ Transferencia=3",
+   "\\text{Efectivo}=3,\\ \\text{Débito}=11,\\ \\text{Crédito}=6,\\ \\text{Transferencia}=3",
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=6,\\ f_{4}=3",
    "h_{1}=0{,}13,\\ h_{2}=0{,}48,\\ h_{3}=0{,}26,\\ h_{4}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Efectivo</b>\": $f_{1} = 3$."
+  "conc": "La categoría \"<b>Efectivo</b>\" aparece 3 veces entre los 23 datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Retail · Medios de pago",
-  "enun": "Se registró método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
+  "enun": "Se registró el método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
   "ask": "Ordenando las categorías tal como se listan (Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Crédito\"?",
   "alts": [
    "$h_{3} = 0{,}26$",
@@ -937,16 +937,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=23\\text{):}",
   "pautaSteps": [
-   "Efectivo=3,\\ Débito=11,\\ Crédito=6,\\ Transferencia=3",
+   "\\text{Efectivo}=3,\\ \\text{Débito}=11,\\ \\text{Crédito}=6,\\ \\text{Transferencia}=3",
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=6,\\ f_{4}=3",
    "h_{1}=0{,}13,\\ h_{2}=0{,}48,\\ h_{3}=0{,}26,\\ h_{4}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Crédito</b>\": $h_{3} = 0{,}26$."
+  "conc": "La categoría \"<b>Crédito</b>\" aparece 6 veces entre los 23 datos: $h_{3} = \\dfrac{6}{23} \\approx 0{,}26$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Medios de pago",
-  "enun": "Se registró método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
+  "enun": "Se registró el método de pago de 23 clientes. Categorías: Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T). Datos: D, Cr, E, D, D, Cr, T, D, E, Cr, D, D, T, Cr, D, E, D, Cr, D, T, D, Cr, D.",
   "ask": "Ordenando las categorías tal como se listan (Efectivo (E), Débito (D), Crédito (Cr), Transferencia (T)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Transferencia\"?",
   "alts": [
    "$f_{4} = 4$",
@@ -957,16 +957,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=23\\text{):}",
   "pautaSteps": [
-   "Efectivo=3,\\ Débito=11,\\ Crédito=6,\\ Transferencia=3",
+   "\\text{Efectivo}=3,\\ \\text{Débito}=11,\\ \\text{Crédito}=6,\\ \\text{Transferencia}=3",
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=6,\\ f_{4}=3",
    "h_{1}=0{,}13,\\ h_{2}=0{,}48,\\ h_{3}=0{,}26,\\ h_{4}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Transferencia</b>\": $f_{4} = 3$."
+  "conc": "La categoría \"<b>Transferencia</b>\" aparece 3 veces entre los 23 datos: $f_{4} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Salud · Especialidades médicas",
-  "enun": "Se registró especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
+  "enun": "Se registró la especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
   "ask": "Ordenando las categorías tal como se listan (Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Pediatría\"?",
   "alts": [
    "$f_{1} = 3$",
@@ -977,16 +977,16 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Pediatría=9,\\ Cardiología=5,\\ Dermatología=3,\\ Traumatología=3",
+   "\\text{Pediatría}=9,\\ \\text{Cardiología}=5,\\ \\text{Dermatología}=3,\\ \\text{Traumatología}=3",
    "f_{1}=9,\\ f_{2}=5,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}45,\\ h_{2}=0{,}25,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Pediatría</b>\": $f_{1} = 9$."
+  "conc": "La categoría \"<b>Pediatría</b>\" aparece 9 veces entre los 20 datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Salud · Especialidades médicas",
-  "enun": "Se registró especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
+  "enun": "Se registró la especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
   "ask": "Ordenando las categorías tal como se listan (Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Dermatología\"?",
   "alts": [
    "$h_{3} = 0{,}18$",
@@ -997,16 +997,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Pediatría=9,\\ Cardiología=5,\\ Dermatología=3,\\ Traumatología=3",
+   "\\text{Pediatría}=9,\\ \\text{Cardiología}=5,\\ \\text{Dermatología}=3,\\ \\text{Traumatología}=3",
    "f_{1}=9,\\ f_{2}=5,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}45,\\ h_{2}=0{,}25,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Dermatología</b>\": $h_{3} = 0{,}15$."
+  "conc": "La categoría \"<b>Dermatología</b>\" aparece 3 veces entre los 20 datos: $h_{3} = \\dfrac{3}{20} = 0{,}15$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Salud · Especialidades médicas",
-  "enun": "Se registró especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
+  "enun": "Se registró la especialidad médica consultada de 20 pacientes. Categorías: Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr). Datos: Pe, Ca, Pe, De, Pe, Tr, Ca, Pe, De, Pe, Ca, Tr, Pe, De, Ca, Pe, Tr, Pe, Ca, Pe.",
   "ask": "Ordenando las categorías tal como se listan (Pediatría (Pe), Cardiología (Ca), Dermatología (De), Traumatología (Tr)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Traumatología\"?",
   "alts": [
    "$f_{4} = 9$",
@@ -1017,16 +1017,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=20\\text{):}",
   "pautaSteps": [
-   "Pediatría=9,\\ Cardiología=5,\\ Dermatología=3,\\ Traumatología=3",
+   "\\text{Pediatría}=9,\\ \\text{Cardiología}=5,\\ \\text{Dermatología}=3,\\ \\text{Traumatología}=3",
    "f_{1}=9,\\ f_{2}=5,\\ f_{3}=3,\\ f_{4}=3",
    "h_{1}=0{,}45,\\ h_{2}=0{,}25,\\ h_{3}=0{,}15,\\ h_{4}=0{,}15"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Traumatología</b>\": $f_{4} = 3$."
+  "conc": "La categoría \"<b>Traumatología</b>\" aparece 3 veces entre los 20 datos: $f_{4} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Educación · Idiomas",
-  "enun": "Se registró idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
+  "enun": "Se registró el idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
   "ask": "Ordenando las categorías tal como se listan (Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Inglés\"?",
   "alts": [
    "$f_{1} = 9$",
@@ -1037,16 +1037,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Inglés=9,\\ Francés=4,\\ Alemán=3,\\ Portugués=3,\\ Ninguno=2",
+   "\\text{Inglés}=9,\\ \\text{Francés}=4,\\ \\text{Alemán}=3,\\ \\text{Portugués}=3,\\ \\text{Ninguno}=2",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}43,\\ h_{2}=0{,}19,\\ h_{3}=0{,}14,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Inglés</b>\": $f_{1} = 9$."
+  "conc": "La categoría \"<b>Inglés</b>\" aparece 9 veces entre los 21 datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Educación · Idiomas",
-  "enun": "Se registró idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
+  "enun": "Se registró el idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
   "ask": "Ordenando las categorías tal como se listan (Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Alemán\"?",
   "alts": [
    "$h_{3} = 0{,}10$",
@@ -1057,16 +1057,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Inglés=9,\\ Francés=4,\\ Alemán=3,\\ Portugués=3,\\ Ninguno=2",
+   "\\text{Inglés}=9,\\ \\text{Francés}=4,\\ \\text{Alemán}=3,\\ \\text{Portugués}=3,\\ \\text{Ninguno}=2",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}43,\\ h_{2}=0{,}19,\\ h_{3}=0{,}14,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Alemán</b>\": $h_{3} = 0{,}14$."
+  "conc": "La categoría \"<b>Alemán</b>\" aparece 3 veces entre los 21 datos: $h_{3} = \\dfrac{3}{21} \\approx 0{,}14$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Educación · Idiomas",
-  "enun": "Se registró idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
+  "enun": "Se registró el idioma extranjero estudiado de 21 estudiantes. Categorías: Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N). Datos: I, F, I, A, I, P, F, I, N, I, A, I, F, P, I, A, I, N, F, I, P.",
   "ask": "Ordenando las categorías tal como se listan (Inglés (I), Francés (F), Alemán (A), Portugués (P), Ninguno (N)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Ninguno\"?",
   "alts": [
    "$f_{5} = 2$",
@@ -1077,17 +1077,17 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=21\\text{):}",
   "pautaSteps": [
-   "Inglés=9,\\ Francés=4,\\ Alemán=3,\\ Portugués=3,\\ Ninguno=2",
+   "\\text{Inglés}=9,\\ \\text{Francés}=4,\\ \\text{Alemán}=3,\\ \\text{Portugués}=3,\\ \\text{Ninguno}=2",
    "f_{1}=9,\\ f_{2}=4,\\ f_{3}=3,\\ f_{4}=3,\\ f_{5}=2",
    "h_{1}=0{,}43,\\ h_{2}=0{,}19,\\ h_{3}=0{,}14,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Ninguno</b>\": $f_{5} = 2$."
+  "conc": "La categoría \"<b>Ninguno</b>\" aparece 2 veces entre los 21 datos: $f_{5} = 2$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Cafetería",
-  "enun": "Se registró tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
-  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Espresso\"?",
+  "enun": "Se registró el tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
+  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Espresso\"?",
   "alts": [
    "$f_{1} = 3$",
    "$f_{1} = 9$",
@@ -1097,17 +1097,17 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Espresso=4,\\ Cortado=5,\\ Latte=9,\\ Americano=3,\\ Capuccino=3",
+   "\\text{Espresso}=4,\\ \\text{Cortado}=5,\\ \\text{Latte}=9,\\ \\text{Americano}=3,\\ \\text{Cappuccino}=3",
    "f_{1}=4,\\ f_{2}=5,\\ f_{3}=9,\\ f_{4}=3,\\ f_{5}=3",
    "h_{1}=0{,}17,\\ h_{2}=0{,}21,\\ h_{3}=0{,}38,\\ h_{4}=0{,}13,\\ h_{5}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Espresso</b>\": $f_{1} = 4$."
+  "conc": "La categoría \"<b>Espresso</b>\" aparece 4 veces entre los 24 datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Retail · Cafetería",
-  "enun": "Se registró tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
-  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Latte\"?",
+  "enun": "Se registró el tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
+  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Latte\"?",
   "alts": [
    "$h_{3} = 0{,}13$",
    "$h_{3} = 0{,}21$",
@@ -1117,17 +1117,17 @@ const CN_QUESTIONS = [
   "correct": 2,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Espresso=4,\\ Cortado=5,\\ Latte=9,\\ Americano=3,\\ Capuccino=3",
+   "\\text{Espresso}=4,\\ \\text{Cortado}=5,\\ \\text{Latte}=9,\\ \\text{Americano}=3,\\ \\text{Cappuccino}=3",
    "f_{1}=4,\\ f_{2}=5,\\ f_{3}=9,\\ f_{4}=3,\\ f_{5}=3",
    "h_{1}=0{,}17,\\ h_{2}=0{,}21,\\ h_{3}=0{,}38,\\ h_{4}=0{,}13,\\ h_{5}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Latte</b>\": $h_{3} = 0{,}38$."
+  "conc": "La categoría \"<b>Latte</b>\" aparece 9 veces entre los 24 datos: $h_{3} = \\dfrac{9}{24} \\approx 0{,}38$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Retail · Cafetería",
-  "enun": "Se registró tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
-  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Capuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Capuccino\"?",
+  "enun": "Se registró el tipo de café pedido de 24 clientes. Categorías: Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca). Datos: L, Es, Co, L, Am, Co, L, Ca, Es, L, Co, L, Am, Ca, L, Es, Co, L, Am, L, Co, Ca, L, Es.",
+  "ask": "Ordenando las categorías tal como se listan (Espresso (Es), Cortado (Co), Latte (L), Americano (Am), Cappuccino (Ca)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{5}$, la frecuencia absoluta de la categoría \"Cappuccino\"?",
   "alts": [
    "$f_{5} = 4$",
    "$f_{5} = 5$",
@@ -1137,16 +1137,16 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=24\\text{):}",
   "pautaSteps": [
-   "Espresso=4,\\ Cortado=5,\\ Latte=9,\\ Americano=3,\\ Capuccino=3",
+   "\\text{Espresso}=4,\\ \\text{Cortado}=5,\\ \\text{Latte}=9,\\ \\text{Americano}=3,\\ \\text{Cappuccino}=3",
    "f_{1}=4,\\ f_{2}=5,\\ f_{3}=9,\\ f_{4}=3,\\ f_{5}=3",
    "h_{1}=0{,}17,\\ h_{2}=0{,}21,\\ h_{3}=0{,}38,\\ h_{4}=0{,}13,\\ h_{5}=0{,}13"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Capuccino</b>\": $f_{5} = 3$."
+  "conc": "La categoría \"<b>Cappuccino</b>\" aparece 3 veces entre los 24 datos: $f_{5} = 3$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Servicio al cliente · Call center",
-  "enun": "Se registró categoría de reclamo de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
+  "enun": "Se registró la categoría de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
   "ask": "Ordenando las categorías tal como se listan (Facturación (F), Servicio técnico (ST), Atención (At), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{1}$, la frecuencia absoluta de la categoría \"Facturación\"?",
   "alts": [
    "$f_{1} = 4$",
@@ -1157,16 +1157,16 @@ const CN_QUESTIONS = [
   "correct": 1,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Facturación=7,\\ Servicio técnico=9,\\ Atención=4,\\ Otro=2",
+   "\\text{Facturación}=7,\\ \\text{Servicio técnico}=9,\\ \\text{Atención}=4,\\ \\text{Otro}=2",
    "f_{1}=7,\\ f_{2}=9,\\ f_{3}=4,\\ f_{4}=2",
    "h_{1}=0{,}32,\\ h_{2}=0{,}41,\\ h_{3}=0{,}18,\\ h_{4}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Facturación</b>\": $f_{1} = 7$."
+  "conc": "La categoría \"<b>Facturación</b>\" aparece 7 veces entre los 22 datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla de frecuencias · h_i",
   "ctx": "Servicio al cliente · Call center",
-  "enun": "Se registró categoría de reclamo de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
+  "enun": "Se registró la categoría de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
   "ask": "Ordenando las categorías tal como se listan (Facturación (F), Servicio técnico (ST), Atención (At), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $h_{3}$, la frecuencia relativa de la categoría \"Atención\"?",
   "alts": [
    "$h_{3} = 0{,}18$",
@@ -1177,16 +1177,16 @@ const CN_QUESTIONS = [
   "correct": 0,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Facturación=7,\\ Servicio técnico=9,\\ Atención=4,\\ Otro=2",
+   "\\text{Facturación}=7,\\ \\text{Servicio técnico}=9,\\ \\text{Atención}=4,\\ \\text{Otro}=2",
    "f_{1}=7,\\ f_{2}=9,\\ f_{3}=4,\\ f_{4}=2",
    "h_{1}=0{,}32,\\ h_{2}=0{,}41,\\ h_{3}=0{,}18,\\ h_{4}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Atención</b>\": $h_{3} = 0{,}18$."
+  "conc": "La categoría \"<b>Atención</b>\" aparece 4 veces entre los 22 datos: $h_{3} = \\dfrac{4}{22} \\approx 0{,}18$."
  },
  {
   "tipo": "Tabla de frecuencias · f_i",
   "ctx": "Servicio al cliente · Call center",
-  "enun": "Se registró categoría de reclamo de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
+  "enun": "Se registró la categoría de 22 reclamos. Categorías: Facturación (F), Servicio técnico (ST), Atención (At), Otro (O). Datos: ST, F, ST, At, F, ST, O, ST, F, At, ST, F, ST, O, At, ST, F, ST, At, F, ST, F.",
   "ask": "Ordenando las categorías tal como se listan (Facturación (F), Servicio técnico (ST), Atención (At), Otro (O)) y construyendo la tabla de frecuencias con los datos de arriba, ¿cuál es el valor de $f_{4}$, la frecuencia absoluta de la categoría \"Otro\"?",
   "alts": [
    "$f_{4} = 9$",
@@ -1197,11 +1197,11 @@ const CN_QUESTIONS = [
   "correct": 3,
   "pautaHead": "\\text{Conteo por categoría (}n=22\\text{):}",
   "pautaSteps": [
-   "Facturación=7,\\ Servicio técnico=9,\\ Atención=4,\\ Otro=2",
+   "\\text{Facturación}=7,\\ \\text{Servicio técnico}=9,\\ \\text{Atención}=4,\\ \\text{Otro}=2",
    "f_{1}=7,\\ f_{2}=9,\\ f_{3}=4,\\ f_{4}=2",
    "h_{1}=0{,}32,\\ h_{2}=0{,}41,\\ h_{3}=0{,}18,\\ h_{4}=0{,}09"
   ],
-  "conc": "El valor pedido corresponde a la categoría \"<b>Otro</b>\": $f_{4} = 2$."
+  "conc": "La categoría \"<b>Otro</b>\" aparece 2 veces entre los 22 datos: $f_{4} = 2$."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1250,17 +1250,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos suscriptores prefieren Netflix?",
   "alts": [
-   "$107$",
-   "$39$",
+   "$40$",
+   "$120$",
    "$80$",
-   "$67$"
+   "$110$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "f(\\text{Netflix}) = 80"
   ],
-  "conc": "El valor pedido es <b>80</b>."
+  "conc": "<b>80</b> de los 200 suscriptores prefieren Netflix (40%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1309,17 +1309,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje prefiere HBO Max o Disney+?",
   "alts": [
-   "$52\\%$",
-   "$78\\%$",
+   "$90\\%$",
+   "$25\\%$",
    "$45\\%$",
-   "$17\\%$"
+   "$20\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "\\dfrac{50+40}{200}\\times 100 = 45\\%"
   ],
-  "conc": "El porcentaje pedido es <b>45%</b>."
+  "conc": "El <b>45%</b> prefiere HBO Max o Disney+ (90 de 200)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1368,17 +1368,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos suscriptores NO prefieren Netflix?",
   "alts": [
-   "$158$",
-   "$97$",
+   "$80$",
+   "$60$",
    "$120$",
-   "$62$"
+   "$70$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "N - f(\\text{Netflix}) = 200 - 80 = 120"
   ],
-  "conc": "El valor pedido es <b>120</b>."
+  "conc": "<b>120</b> de los 200 suscriptores NO prefieren Netflix (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1428,8 +1428,8 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje prefiere Prime Video?",
   "alts": [
    "$30\\%$",
-   "$26\\%$",
-   "$0\\%$",
+   "$85\\%$",
+   "$0{,}15\\%$",
    "$15\\%$"
   ],
   "correct": 3,
@@ -1437,7 +1437,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{30}{200}\\times 100 = 15\\%"
   ],
-  "conc": "El porcentaje pedido es <b>15%</b>."
+  "conc": "El <b>15%</b> prefiere Prime Video (30 de 200)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1486,17 +1486,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos vehículos son a bencina o a diésel?",
   "alts": [
-   "$63$",
+   "$90$",
    "$120$",
-   "$157$",
-   "$98$"
+   "$30$",
+   "$80$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=150.",
   "pautaSteps": [
    "f(\\text{Bencina})+f(\\text{Diésel}) = 90+30 = 120"
   ],
-  "conc": "El valor pedido es <b>120</b>."
+  "conc": "<b>120</b> de los 150 vehículos son a bencina o a diésel (80%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1546,16 +1546,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje corresponde a vehículos eléctricos o híbridos?",
   "alts": [
    "$20\\%$",
-   "$47\\%$",
-   "$25\\%$",
-   "$0\\%$"
+   "$30\\%$",
+   "$10\\%$",
+   "$80\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=150.",
   "pautaSteps": [
    "\\dfrac{15+15}{150}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> corresponde a vehículos eléctricos o híbridos (30 de 150)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1604,17 +1604,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos vehículos NO son a bencina?",
   "alts": [
-   "$83$",
+   "$90$",
    "$60$",
-   "$48$",
-   "$31$"
+   "$40$",
+   "$30$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=150.",
   "pautaSteps": [
    "N - f(\\text{Bencina}) = 150 - 90 = 60"
   ],
-  "conc": "El valor pedido es <b>60</b>."
+  "conc": "<b>60</b> de los 150 vehículos NO son a bencina (40%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1663,17 +1663,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de vehículos es a diésel?",
   "alts": [
-   "$8\\%$",
-   "$59\\%$",
+   "$30\\%$",
+   "$80\\%$",
    "$20\\%$",
-   "$29\\%$"
+   "$0{,}20\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=150.",
   "pautaSteps": [
    "\\dfrac{30}{150}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de vehículos es a diésel (30 de 150)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1728,17 +1728,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos pacientes reportan algún alérgeno (es decir, NO \"Ninguno\")?",
   "alts": [
-   "$49$",
-   "$32$",
+   "$50$",
+   "$36$",
    "$60$",
-   "$82$"
+   "$120$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=120.",
   "pautaSteps": [
    "N - f(\\text{Ninguno}) = 120 - 60 = 60"
   ],
-  "conc": "El valor pedido es <b>60</b>."
+  "conc": "<b>60</b> de los 120 pacientes reportan algún alérgeno (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1794,16 +1794,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje reporta alergia a lácteos o a gluten?",
   "alts": [
    "$35\\%$",
-   "$48\\%$",
-   "$15\\%$",
-   "$56\\%$"
+   "$42\\%$",
+   "$20\\%$",
+   "$15\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=120.",
   "pautaSteps": [
    "\\dfrac{24+18}{120}\\times 100 = 35\\%"
   ],
-  "conc": "El porcentaje pedido es <b>35%</b>."
+  "conc": "El <b>35%</b> reporta alergia a lácteos o a gluten (42 de 120)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1858,9 +1858,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos pacientes reportan alergia a maní o a mariscos?",
   "alts": [
-   "$4$",
-   "$14$",
-   "$27$",
+   "$12$",
+   "$6$",
+   "$15$",
    "$18$"
   ],
   "correct": 3,
@@ -1868,7 +1868,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Maní})+f(\\text{Mariscos}) = 12+6 = 18"
   ],
-  "conc": "El valor pedido es <b>18</b>."
+  "conc": "<b>18</b> de los 120 pacientes reportan alergia a maní o a mariscos (15%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1923,17 +1923,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje no reporta ningún alérgeno?",
   "alts": [
-   "$83\\%$",
+   "$60\\%$",
    "$50\\%$",
-   "$22\\%$",
-   "$57\\%$"
+   "$0{,}50\\%$",
+   "$20\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=120.",
   "pautaSteps": [
    "\\dfrac{60}{120}\\times 100 = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> no reporta ningún alérgeno (60 de 120)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -1989,16 +1989,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos perros adoptados son mestizos?",
   "alts": [
    "$32$",
-   "$13$",
-   "$22$",
-   "$44$"
+   "$40$",
+   "$48$",
+   "$42$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=80.",
   "pautaSteps": [
    "f(\\text{Mestizo}) = 32"
   ],
-  "conc": "El valor pedido es <b>32</b>."
+  "conc": "<b>32</b> de los 80 perros adoptados son mestizos (40%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2053,17 +2053,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje corresponde a labrador o poodle?",
   "alts": [
-   "$19\\%$",
+   "$28\\%$",
    "$35\\%$",
-   "$46\\%$",
-   "$50\\%$"
+   "$20\\%$",
+   "$15\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=80.",
   "pautaSteps": [
    "\\dfrac{16+12}{80}\\times 100 = 35\\%"
   ],
-  "conc": "El porcentaje pedido es <b>35%</b>."
+  "conc": "El <b>35%</b> corresponde a labrador o poodle (28 de 80)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2118,9 +2118,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos perros NO son mestizos?",
   "alts": [
-   "$63$",
-   "$37$",
-   "$24$",
+   "$32$",
+   "$60$",
+   "$80$",
    "$48$"
   ],
   "correct": 3,
@@ -2128,7 +2128,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{Mestizo}) = 80 - 32 = 48"
   ],
-  "conc": "El valor pedido es <b>48</b>."
+  "conc": "<b>48</b> de los 80 perros NO son mestizos (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2183,17 +2183,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos perros son bulldog o chihuahua?",
   "alts": [
-   "$24$",
-   "$34$",
+   "$10$",
+   "$25$",
    "$20$",
-   "$11$"
+   "$60$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=80.",
   "pautaSteps": [
    "f(\\text{Bulldog})+f(\\text{Chihuahua}) = 10+10 = 20"
   ],
-  "conc": "El valor pedido es <b>20</b>."
+  "conc": "<b>20</b> de los 80 perros son bulldog o chihuahua (25%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2243,16 +2243,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos clientes compraron por sitio web o por app móvil?",
   "alts": [
    "$125$",
-   "$103$",
-   "$168$",
-   "$66$"
+   "$75$",
+   "$50$",
+   "$150$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "f(\\text{Sitio web})+f(\\text{App móvil}) = 75+50 = 125"
   ],
-  "conc": "El valor pedido es <b>125</b>."
+  "conc": "<b>125</b> de los 250 clientes compraron por sitio web o por app móvil (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2301,9 +2301,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje compró en tienda física?",
   "alts": [
-   "$49\\%$",
-   "$79\\%$",
-   "$28\\%$",
+   "$100\\%$",
+   "$60\\%$",
+   "$0{,}40\\%$",
    "$40\\%$"
   ],
   "correct": 3,
@@ -2311,7 +2311,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{100}{250}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> compró en tienda física (100 de 250)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2360,17 +2360,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes NO compraron en tienda física?",
   "alts": [
-   "$200$",
+   "$100$",
    "$150$",
-   "$80$",
-   "$125$"
+   "$60$",
+   "$75$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "N - f(\\text{Tienda física}) = 250 - 100 = 150"
   ],
-  "conc": "El valor pedido es <b>150</b>."
+  "conc": "<b>150</b> de los 250 clientes NO compraron en tienda física (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2420,16 +2420,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos clientes compraron por teléfono?",
   "alts": [
    "$25$",
-   "$40$",
-   "$33$",
-   "$16$"
+   "$10$",
+   "$225$",
+   "$75$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "f(\\text{Teléfono}) = 25"
   ],
-  "conc": "El valor pedido es <b>25</b>."
+  "conc": "<b>25</b> de los 250 clientes compraron por teléfono (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2472,17 +2472,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes tienen cuenta vista?",
   "alts": [
-   "$121$",
+   "$50$",
    "$90$",
-   "$75$",
-   "$43$"
+   "$126$",
+   "$95$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "f(\\text{Cuenta vista}) = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de los 180 clientes tienen cuenta vista (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2525,9 +2525,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje tiene cuenta corriente o cuenta ahorro?",
   "alts": [
-   "$22\\%$",
-   "$57\\%$",
-   "$83\\%$",
+   "$90\\%$",
+   "$30\\%$",
+   "$20\\%$",
    "$50\\%$"
   ],
   "correct": 3,
@@ -2535,7 +2535,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{54+36}{180}\\times 100 = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> tiene cuenta corriente o cuenta ahorro (90 de 180)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2578,17 +2578,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes NO tienen cuenta vista?",
   "alts": [
-   "$44$",
-   "$120$",
+   "$50$",
+   "$36$",
    "$90$",
-   "$71$"
+   "$180$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "N - f(\\text{Cuenta vista}) = 180 - 90 = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de los 180 clientes NO tienen cuenta vista (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2632,16 +2632,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos clientes tienen cuenta ahorro?",
   "alts": [
    "$36$",
-   "$43$",
-   "$52$",
-   "$22$"
+   "$20$",
+   "$144$",
+   "$90$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "f(\\text{Cuenta ahorro}) = 36"
   ],
-  "conc": "El valor pedido es <b>36</b>."
+  "conc": "<b>36</b> de los 180 clientes tienen cuenta ahorro (20%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2696,9 +2696,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos lectores prefieren novela o cómic?",
   "alts": [
-   "$67$",
-   "$42$",
-   "$111$",
+   "$56$",
+   "$28$",
+   "$60$",
    "$84$"
   ],
   "correct": 3,
@@ -2706,7 +2706,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Novela})+f(\\text{Cómic}) = 56+28 = 84"
   ],
-  "conc": "El valor pedido es <b>84</b>."
+  "conc": "<b>84</b> de los 140 lectores prefieren novela o cómic (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2761,17 +2761,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje prefiere ensayo?",
   "alts": [
-   "$0\\%$",
+   "$21\\%$",
    "$15\\%$",
-   "$42\\%$",
-   "$20\\%$"
+   "$85\\%$",
+   "$0{,}15\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=140.",
   "pautaSteps": [
    "\\dfrac{21}{140}\\times 100 = 15\\%"
   ],
-  "conc": "El porcentaje pedido es <b>15%</b>."
+  "conc": "El <b>15%</b> prefiere ensayo (21 de 140)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2827,16 +2827,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos lectores NO prefieren novela?",
   "alts": [
    "$84$",
-   "$43$",
-   "$68$",
-   "$115$"
+   "$56$",
+   "$60$",
+   "$140$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=140.",
   "pautaSteps": [
    "N - f(\\text{Novela}) = 140 - 56 = 84"
   ],
-  "conc": "El valor pedido es <b>84</b>."
+  "conc": "<b>84</b> de los 140 lectores NO prefieren novela (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2891,17 +2891,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos lectores prefieren poesía o infantil?",
   "alts": [
-   "$45$",
-   "$23$",
+   "$21$",
+   "$14$",
    "$35$",
-   "$54$"
+   "$25$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=140.",
   "pautaSteps": [
    "f(\\text{Poesía})+f(\\text{Infantil}) = 21+14 = 35"
   ],
-  "conc": "El valor pedido es <b>35</b>."
+  "conc": "<b>35</b> de los 140 lectores prefieren poesía o infantil (25%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -2950,9 +2950,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos turistas son argentinos o brasileños?",
   "alts": [
-   "$160$",
-   "$100$",
-   "$65$",
+   "$70$",
+   "$50$",
+   "$60$",
    "$120$"
   ],
   "correct": 3,
@@ -2960,7 +2960,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Argentino})+f(\\text{Brasileño}) = 70+50 = 120"
   ],
-  "conc": "El valor pedido es <b>120</b>."
+  "conc": "<b>120</b> de los 200 turistas son argentinos o brasileños (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3009,17 +3009,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje es peruano?",
   "alts": [
-   "$41\\%$",
-   "$0\\%$",
+   "$40\\%$",
+   "$80\\%$",
    "$20\\%$",
-   "$33\\%$"
+   "$0{,}20\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "\\dfrac{40}{200}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> es peruano (40 de 200)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3069,16 +3069,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos turistas NO son argentinos?",
   "alts": [
    "$130$",
-   "$109$",
+   "$70$",
    "$65$",
-   "$173$"
+   "$80$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "N - f(\\text{Argentino}) = 200 - 70 = 130"
   ],
-  "conc": "El valor pedido es <b>130</b>."
+  "conc": "<b>130</b> de los 200 turistas NO son argentinos (65%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3127,17 +3127,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos turistas corresponden a la categoría \"Otro\"?",
   "alts": [
-   "$49$",
+   "$20$",
    "$40$",
-   "$23$",
-   "$60$"
+   "$160$",
+   "$80$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=200.",
   "pautaSteps": [
    "f(\\text{Otro}) = 40"
   ],
-  "conc": "El valor pedido es <b>40</b>."
+  "conc": "<b>40</b> de los 200 turistas corresponden a la categoría \"Otro\" (20%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3186,9 +3186,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares usan gas o electricidad?",
   "alts": [
-   "$148$",
-   "$57$",
-   "$90$",
+   "$64$",
+   "$48$",
+   "$70$",
    "$112$"
   ],
   "correct": 3,
@@ -3196,7 +3196,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Gas})+f(\\text{Electricidad}) = 64+48 = 112"
   ],
-  "conc": "El valor pedido es <b>112</b>."
+  "conc": "<b>112</b> de los 160 hogares usan gas o electricidad (70%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3246,16 +3246,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje usa leña?",
   "alts": [
    "$20\\%$",
-   "$35\\%$",
-   "$31\\%$",
-   "$4\\%$"
+   "$32\\%$",
+   "$80\\%$",
+   "$0{,}20\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=160.",
   "pautaSteps": [
    "\\dfrac{32}{160}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> usa leña (32 de 160)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3304,17 +3304,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares NO usan gas?",
   "alts": [
-   "$78$",
-   "$125$",
+   "$64$",
+   "$60$",
    "$96$",
-   "$51$"
+   "$48$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=160.",
   "pautaSteps": [
    "N - f(\\text{Gas}) = 160 - 64 = 96"
   ],
-  "conc": "El valor pedido es <b>96</b>."
+  "conc": "<b>96</b> de los 160 hogares NO usan gas (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3363,9 +3363,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares usan parafina?",
   "alts": [
-   "$9$",
-   "$19$",
-   "$27$",
+   "$10$",
+   "$144$",
+   "$48$",
    "$16$"
   ],
   "correct": 3,
@@ -3373,7 +3373,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Parafina}) = 16"
   ],
-  "conc": "El valor pedido es <b>16</b>."
+  "conc": "<b>16</b> de los 160 hogares usan parafina (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3428,17 +3428,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes consultaron por pantalla o por batería?",
   "alts": [
-   "$31$",
+   "$35$",
    "$60$",
-   "$83$",
-   "$48$"
+   "$25$",
+   "$40$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=100.",
   "pautaSteps": [
    "f(\\text{Pantalla})+f(\\text{Batería}) = 35+25 = 60"
   ],
-  "conc": "El valor pedido es <b>60</b>."
+  "conc": "<b>60</b> de los 100 clientes consultaron por pantalla o por batería (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3494,16 +3494,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje consultó por software?",
   "alts": [
    "$20\\%$",
-   "$29\\%$",
-   "$59\\%$",
-   "$8\\%$"
+   "$80\\%$",
+   "$0{,}20\\%$",
+   "$35\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=100.",
   "pautaSteps": [
    "\\dfrac{20}{100}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> consultó por software (20 de 100)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3558,17 +3558,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes NO consultaron por pantalla?",
   "alts": [
-   "$89$",
+   "$35$",
    "$65$",
-   "$53$",
-   "$34$"
+   "$40$",
+   "$100$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=100.",
   "pautaSteps": [
    "N - f(\\text{Pantalla}) = 100 - 35 = 65"
   ],
-  "conc": "El valor pedido es <b>65</b>."
+  "conc": "<b>65</b> de los 100 clientes NO consultaron por pantalla (65%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3623,9 +3623,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos consultaron por cámara u otro motivo?",
   "alts": [
-   "$13$",
-   "$32$",
-   "$27$",
+   "$12$",
+   "$8$",
+   "$80$",
    "$20$"
   ],
   "correct": 3,
@@ -3633,7 +3633,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Cámara})+f(\\text{Otro}) = 12+8 = 20"
   ],
-  "conc": "El valor pedido es <b>20</b>."
+  "conc": "<b>20</b> de los 100 clientes consultaron por cámara u otro motivo (20%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3689,16 +3689,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos clientes compraron Nike o Adidas?",
   "alts": [
    "$154$",
-   "$203$",
-   "$80$",
-   "$130$"
+   "$88$",
+   "$66$",
+   "$70$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=220.",
   "pautaSteps": [
    "f(\\text{Nike})+f(\\text{Adidas}) = 88+66 = 154"
   ],
-  "conc": "El valor pedido es <b>154</b>."
+  "conc": "<b>154</b> de los 220 clientes compraron Nike o Adidas (70%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3753,17 +3753,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje compró Puma?",
   "alts": [
-   "$22\\%$",
-   "$0\\%$",
+   "$33\\%$",
+   "$85\\%$",
    "$15\\%$",
-   "$48\\%$"
+   "$0{,}15\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=220.",
   "pautaSteps": [
    "\\dfrac{33}{220}\\times 100 = 15\\%"
   ],
-  "conc": "El porcentaje pedido es <b>15%</b>."
+  "conc": "El <b>15%</b> compró Puma (33 de 220)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3818,9 +3818,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes NO compraron Nike?",
   "alts": [
-   "$174$",
-   "$107$",
-   "$68$",
+   "$88$",
+   "$60$",
+   "$66$",
    "$132$"
   ],
   "correct": 3,
@@ -3828,7 +3828,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{Nike}) = 220 - 88 = 132"
   ],
-  "conc": "El valor pedido es <b>132</b>."
+  "conc": "<b>132</b> de los 220 clientes NO compraron Nike (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3883,17 +3883,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes compraron Reebok u otra marca?",
   "alts": [
-   "$49$",
+   "$22$",
    "$33$",
-   "$19$",
-   "$40$"
+   "$11$",
+   "$15$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=220.",
   "pautaSteps": [
    "f(\\text{Reebok})+f(\\text{Otra}) = 22+11 = 33"
   ],
-  "conc": "El valor pedido es <b>33</b>."
+  "conc": "<b>33</b> de los 220 clientes compraron Reebok u otra marca (15%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -3943,16 +3943,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas consultas fueron de perros?",
   "alts": [
    "$65$",
-   "$51$",
-   "$32$",
-   "$86$"
+   "$50$",
+   "$78$",
+   "$70$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=130.",
   "pautaSteps": [
    "f(\\text{Perro}) = 65"
   ],
-  "conc": "El valor pedido es <b>65</b>."
+  "conc": "<b>65</b> de las 130 consultas fueron de perros (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4001,17 +4001,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje fue de gatos o aves?",
   "alts": [
-   "$16\\%$",
+   "$52\\%$",
    "$40\\%$",
-   "$45\\%$",
-   "$67\\%$"
+   "$30\\%$",
+   "$10\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=130.",
   "pautaSteps": [
    "\\dfrac{39+13}{130}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> fue de gatos o aves (52 de 130)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4060,9 +4060,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas consultas NO fueron de perros?",
   "alts": [
-   "$33$",
-   "$90$",
-   "$52$",
+   "$50$",
+   "$26$",
+   "$130$",
    "$65$"
   ],
   "correct": 3,
@@ -4070,7 +4070,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{Perro}) = 130 - 65 = 65"
   ],
-  "conc": "El valor pedido es <b>65</b>."
+  "conc": "<b>65</b> de las 130 consultas NO fueron de perros (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4119,17 +4119,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas consultas corresponden a \"Otro\"?",
   "alts": [
-   "$7$",
-   "$23$",
+   "$10$",
+   "$117$",
    "$13$",
-   "$20$"
+   "$26$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=130.",
   "pautaSteps": [
    "f(\\text{Otro}) = 13"
   ],
-  "conc": "El valor pedido es <b>13</b>."
+  "conc": "<b>13</b> de las 130 consultas corresponden a \"Otro\" (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4178,17 +4178,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos pasajeros volaron con LATAM o Sky?",
   "alts": [
-   "$52$",
-   "$35$",
+   "$45$",
+   "$18$",
    "$63$",
-   "$85$"
+   "$70$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=90.",
   "pautaSteps": [
    "f(\\text{LATAM})+f(\\text{Sky}) = 45+18 = 63"
   ],
-  "conc": "El valor pedido es <b>63</b>."
+  "conc": "<b>63</b> de los 90 pasajeros volaron con LATAM o Sky (70%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4237,17 +4237,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje voló con una aerolínea \"Otra\"?",
   "alts": [
-   "$0\\%$",
-   "$23\\%$",
+   "$9\\%$",
+   "$90\\%$",
    "$10\\%$",
-   "$31\\%$"
+   "$0{,}10\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=90.",
   "pautaSteps": [
    "\\dfrac{9}{90}\\times 100 = 10\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10%</b>."
+  "conc": "El <b>10%</b> voló con una aerolínea \"Otra\" (9 de 90)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4296,17 +4296,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos pasajeros NO volaron con LATAM?",
   "alts": [
-   "$19$",
+   "$50$",
    "$45$",
-   "$62$",
-   "$37$"
+   "$27$",
+   "$90$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=90.",
   "pautaSteps": [
    "N - f(\\text{LATAM}) = 90 - 45 = 45"
   ],
-  "conc": "El valor pedido es <b>45</b>."
+  "conc": "<b>45</b> de los 90 pasajeros NO volaron con LATAM (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4356,16 +4356,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos volaron con JetSmart u otra aerolínea?",
   "alts": [
    "$27$",
-   "$34$",
-   "$41$",
-   "$14$"
+   "$18$",
+   "$9$",
+   "$30$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=90.",
   "pautaSteps": [
    "f(\\text{JetSmart})+f(\\text{Otra}) = 18+9 = 27"
   ],
-  "conc": "El valor pedido es <b>27</b>."
+  "conc": "<b>27</b> de los 90 pasajeros volaron con JetSmart u otra aerolínea (30%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4414,17 +4414,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas boletas incluyen ropa o calzado?",
   "alts": [
-   "$276$",
+   "$120$",
    "$210$",
-   "$173$",
-   "$110$"
+   "$90$",
+   "$70$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=300.",
   "pautaSteps": [
    "f(\\text{Ropa})+f(\\text{Calzado}) = 120+90 = 210"
   ],
-  "conc": "El valor pedido es <b>210</b>."
+  "conc": "<b>210</b> de las 300 boletas incluyen ropa o calzado (70%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4473,9 +4473,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje corresponde a accesorios?",
   "alts": [
-   "$35\\%$",
-   "$4\\%$",
-   "$31\\%$",
+   "$60\\%$",
+   "$80\\%$",
+   "$0{,}20\\%$",
    "$20\\%$"
   ],
   "correct": 3,
@@ -4483,7 +4483,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{60}{300}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> corresponde a accesorios (60 de 300)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4532,17 +4532,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas boletas NO corresponden a ropa?",
   "alts": [
-   "$235$",
-   "$96$",
+   "$120$",
+   "$60$",
    "$180$",
-   "$149$"
+   "$90$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=300.",
   "pautaSteps": [
    "N - f(\\text{Ropa}) = 300 - 120 = 180"
   ],
-  "conc": "El valor pedido es <b>180</b>."
+  "conc": "<b>180</b> de las 300 boletas NO corresponden a ropa (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4591,17 +4591,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas boletas corresponden a electrónica?",
   "alts": [
-   "$36$",
-   "$50$",
+   "$10$",
+   "$270$",
    "$30$",
-   "$17$"
+   "$90$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=300.",
   "pautaSteps": [
    "f(\\text{Electrónica}) = 30"
   ],
-  "conc": "El valor pedido es <b>30</b>."
+  "conc": "<b>30</b> de las 300 boletas corresponden a electrónica (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4651,16 +4651,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas cirugías usaron anestesia general?",
   "alts": [
    "$30$",
-   "$22$",
-   "$45$",
-   "$13$"
+   "$50$",
+   "$36$",
+   "$35$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=60.",
   "pautaSteps": [
    "f(\\text{General}) = 30"
   ],
-  "conc": "El valor pedido es <b>30</b>."
+  "conc": "<b>30</b> de las 60 cirugías usaron anestesia general (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4709,9 +4709,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje usó anestesia local o regional?",
   "alts": [
-   "$49\\%$",
-   "$79\\%$",
-   "$28\\%$",
+   "$24\\%$",
+   "$25\\%$",
+   "$15\\%$",
    "$40\\%$"
   ],
   "correct": 3,
@@ -4719,7 +4719,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{15+9}{60}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> usó anestesia local o regional (24 de 60)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4769,16 +4769,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas cirugías NO usaron anestesia general?",
   "alts": [
    "$30$",
-   "$23$",
-   "$14$",
-   "$44$"
+   "$50$",
+   "$15$",
+   "$60$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=60.",
   "pautaSteps": [
    "N - f(\\text{General}) = 60 - 30 = 30"
   ],
-  "conc": "El valor pedido es <b>30</b>."
+  "conc": "<b>30</b> de las 60 cirugías NO usaron anestesia general (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4827,17 +4827,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas cirugías usaron sedación?",
   "alts": [
-   "$3$",
+   "$10$",
    "$6$",
-   "$11$",
-   "$12$"
+   "$54$",
+   "$15$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=60.",
   "pautaSteps": [
    "f(\\text{Sedación}) = 6"
   ],
-  "conc": "El valor pedido es <b>6</b>."
+  "conc": "<b>6</b> de las 60 cirugías usaron sedación (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4886,9 +4886,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas tarjetas gastan principalmente en supermercado o restaurantes?",
   "alts": [
-   "$138$",
-   "$341$",
-   "$220$",
+   "$160$",
+   "$100$",
+   "$65$",
    "$260$"
   ],
   "correct": 3,
@@ -4896,7 +4896,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Supermercado})+f(\\text{Restaurantes}) = 160+100 = 260"
   ],
-  "conc": "El valor pedido es <b>260</b>."
+  "conc": "<b>260</b> de las 400 tarjetas gastan principalmente en supermercado o restaurantes (65%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -4945,17 +4945,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje gasta principalmente en vestuario?",
   "alts": [
-   "$0\\%$",
-   "$53\\%$",
+   "$80\\%$",
+   "$0{,}20\\%$",
    "$20\\%$",
-   "$27\\%$"
+   "$40\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=400.",
   "pautaSteps": [
    "\\dfrac{80}{400}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> gasta principalmente en vestuario (80 de 400)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5004,17 +5004,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas tarjetas NO gastan principalmente en supermercado?",
   "alts": [
-   "$199$",
-   "$128$",
+   "$160$",
+   "$60$",
    "$240$",
-   "$314$"
+   "$140$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=400.",
   "pautaSteps": [
    "N - f(\\text{Supermercado}) = 400 - 160 = 240"
   ],
-  "conc": "El valor pedido es <b>240</b>."
+  "conc": "<b>240</b> de las 400 tarjetas NO gastan principalmente en supermercado (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5064,16 +5064,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas gastan principalmente en tecnología?",
   "alts": [
    "$60$",
-   "$71$",
-   "$38$",
-   "$88$"
+   "$15$",
+   "$340$",
+   "$140$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=400.",
   "pautaSteps": [
    "f(\\text{Tecnología}) = 60"
   ],
-  "conc": "El valor pedido es <b>60</b>."
+  "conc": "<b>60</b> de las 400 tarjetas gastan principalmente en tecnología (15%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5122,9 +5122,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos casos fueron por enfermedad?",
   "alts": [
-   "$55$",
-   "$34$",
-   "$93$",
+   "$50$",
+   "$84$",
+   "$75$",
    "$70$"
   ],
   "correct": 3,
@@ -5132,7 +5132,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Enfermedad}) = 70"
   ],
-  "conc": "El valor pedido es <b>70</b>."
+  "conc": "<b>70</b> de los 140 casos fueron por enfermedad (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5182,16 +5182,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje fue por trámites personales u otro motivo?",
   "alts": [
    "$40\\%$",
-   "$16\\%$",
-   "$67\\%$",
-   "$45\\%$"
+   "$56\\%$",
+   "$20\\%$",
+   "$60\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=140.",
   "pautaSteps": [
    "\\dfrac{28+28}{140}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> fue por trámites personales u otro motivo (56 de 140)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5240,17 +5240,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos casos NO fueron por enfermedad?",
   "alts": [
-   "$35$",
+   "$50$",
    "$70$",
-   "$56$",
-   "$97$"
+   "$42$",
+   "$140$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=140.",
   "pautaSteps": [
    "N - f(\\text{Enfermedad}) = 140 - 70 = 70"
   ],
-  "conc": "El valor pedido es <b>70</b>."
+  "conc": "<b>70</b> de los 140 casos NO fueron por enfermedad (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5299,9 +5299,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos casos fueron por accidente?",
   "alts": [
-   "$24$",
-   "$8$",
-   "$21$",
+   "$10$",
+   "$126$",
+   "$42$",
    "$14$"
   ],
   "correct": 3,
@@ -5309,7 +5309,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Accidente}) = 14"
   ],
-  "conc": "El valor pedido es <b>14</b>."
+  "conc": "<b>14</b> de los 140 casos fueron por accidente (10%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5358,17 +5358,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas entregas fueron de plástico o vidrio?",
   "alts": [
-   "$231$",
-   "$96$",
+   "$100$",
+   "$75$",
    "$175$",
-   "$147$"
+   "$70$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "f(\\text{Plástico})+f(\\text{Vidrio}) = 100+75 = 175"
   ],
-  "conc": "El valor pedido es <b>175</b>."
+  "conc": "<b>175</b> de las 250 entregas fueron de plástico o vidrio (70%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5417,17 +5417,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje correspondió a metal?",
   "alts": [
-   "$23\\%$",
-   "$31\\%$",
+   "$25\\%$",
+   "$90\\%$",
    "$10\\%$",
-   "$0\\%$"
+   "$0{,}10\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "\\dfrac{25}{250}\\times 100 = 10\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10%</b>."
+  "conc": "El <b>10%</b> correspondió a metal (25 de 250)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5477,16 +5477,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas entregas NO fueron de plástico?",
   "alts": [
    "$150$",
-   "$126$",
-   "$199$",
-   "$76$"
+   "$100$",
+   "$60$",
+   "$75$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=250.",
   "pautaSteps": [
    "N - f(\\text{Plástico}) = 250 - 100 = 150"
   ],
-  "conc": "El valor pedido es <b>150</b>."
+  "conc": "<b>150</b> de las 250 entregas NO fueron de plástico (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5535,9 +5535,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas entregas fueron de papel o cartón?",
   "alts": [
-   "$61$",
-   "$76$",
-   "$29$",
+   "$20$",
+   "$200$",
+   "$75$",
    "$50$"
   ],
   "correct": 3,
@@ -5545,7 +5545,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Papel/cartón}) = 50"
   ],
-  "conc": "El valor pedido es <b>50</b>."
+  "conc": "<b>50</b> de las 250 entregas fueron de papel o cartón (20%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5601,16 +5601,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos estudiantes usan HP o Lenovo?",
   "alts": [
    "$108$",
-   "$142$",
-   "$56$",
-   "$87$"
+   "$63$",
+   "$45$",
+   "$60$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "f(\\text{HP})+f(\\text{Lenovo}) = 63+45 = 108"
   ],
-  "conc": "El valor pedido es <b>108</b>."
+  "conc": "<b>108</b> de los 180 estudiantes usan HP o Lenovo (60%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5665,17 +5665,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje usa Apple?",
   "alts": [
-   "$35\\%$",
+   "$36\\%$",
    "$20\\%$",
-   "$31\\%$",
-   "$4\\%$"
+   "$80\\%$",
+   "$0{,}20\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "\\dfrac{36}{180}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> usa Apple (36 de 180)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5730,17 +5730,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes NO usan HP?",
   "alts": [
-   "$154$",
-   "$95$",
+   "$63$",
+   "$65$",
    "$117$",
-   "$60$"
+   "$72$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=180.",
   "pautaSteps": [
    "N - f(\\text{HP}) = 180 - 63 = 117"
   ],
-  "conc": "El valor pedido es <b>117</b>."
+  "conc": "<b>117</b> de los 180 estudiantes NO usan HP (65%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5795,9 +5795,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos usan Asus u otra marca?",
   "alts": [
-   "$42$",
-   "$23$",
-   "$56$",
+   "$27$",
+   "$9$",
+   "$20$",
    "$36$"
   ],
   "correct": 3,
@@ -5805,7 +5805,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Asus})+f(\\text{Otra}) = 27+9 = 36"
   ],
-  "conc": "El valor pedido es <b>36</b>."
+  "conc": "<b>36</b> de los 180 estudiantes usan Asus u otra marca (20%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5854,17 +5854,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes prefieren WhatsApp?",
   "alts": [
-   "$86$",
-   "$55$",
+   "$50$",
+   "$126$",
    "$105$",
-   "$142$"
+   "$110$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } N=210.",
   "pautaSteps": [
    "f(\\text{WhatsApp}) = 105"
   ],
-  "conc": "El valor pedido es <b>105</b>."
+  "conc": "<b>105</b> de los 210 clientes prefieren WhatsApp (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5914,16 +5914,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje prefiere correo electrónico o teléfono?",
   "alts": [
    "$40\\%$",
-   "$49\\%$",
-   "$28\\%$",
-   "$79\\%$"
+   "$84\\%$",
+   "$20\\%$",
+   "$60\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=210.",
   "pautaSteps": [
    "\\dfrac{42+42}{210}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> prefiere correo electrónico o teléfono (84 de 210)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -5972,9 +5972,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos clientes NO prefieren WhatsApp?",
   "alts": [
-   "$87$",
-   "$56$",
-   "$141$",
+   "$50$",
+   "$63$",
+   "$210$",
    "$105$"
   ],
   "correct": 3,
@@ -5982,7 +5982,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{WhatsApp}) = 210 - 105 = 105"
   ],
-  "conc": "El valor pedido es <b>105</b>."
+  "conc": "<b>105</b> de los 210 clientes NO prefieren WhatsApp (50%)."
  },
  {
   "tipo": "Lectura de tabla de frecuencias",
@@ -6032,16 +6032,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos prefieren redes sociales?",
   "alts": [
    "$21$",
-   "$14$",
-   "$33$",
-   "$28$"
+   "$10$",
+   "$189$",
+   "$63$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } N=210.",
   "pautaSteps": [
    "f(\\text{Redes sociales}) = 21"
   ],
-  "conc": "El valor pedido es <b>21</b>."
+  "conc": "<b>21</b> de los 210 clientes prefieren redes sociales (10%)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6065,17 +6065,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el número total de pagos registrados (sume las frecuencias del gráfico).",
   "alts": [
-   "$105$",
+   "$170$",
    "$200$",
-   "$169$",
-   "$263$"
+   "$70$",
+   "$160$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=200.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 40+70+60+30 = 200"
   ],
-  "conc": "El total es <b>200</b>."
+  "conc": "El número total de pagos registrados es <b>200</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6109,7 +6109,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Débito}) = 70\\ \\text{es el valor máximo entre } 40, 70, 60, 30"
   ],
-  "conc": "La categoría pedida es \"<b>Débito</b>\", con frecuencia absoluta <b>70</b>."
+  "conc": "La categoría pedida es \"<b>Débito</b>\", con frecuencia absoluta <b>70</b> de un total de 200."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6133,9 +6133,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje que representan los pagos con débito.",
   "alts": [
-   "$21\\%$",
-   "$57\\%$",
-   "$11\\%$",
+   "$70\\%$",
+   "$65\\%$",
+   "$0{,}35\\%$",
    "$35\\%$"
   ],
   "correct": 3,
@@ -6143,7 +6143,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{70}{200}\\times 100 = 35\\%"
   ],
-  "conc": "El porcentaje pedido es <b>35%</b>."
+  "conc": "El porcentaje que representan los pagos con débito es <b>35%</b> (70 de 200)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6167,17 +6167,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos pagos más hubo con crédito que con transferencia?",
   "alts": [
-   "$46$",
+   "$90$",
    "$30$",
-   "$16$",
-   "$37$"
+   "$60$",
+   "$15$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=200.",
   "pautaSteps": [
-   "Crédito - Transferencia = 60 - 30 = 30"
+   "\\text{Crédito} - \\text{Transferencia} = 60 - 30 = 30"
   ],
-  "conc": "La diferencia pedida es <b>30</b>."
+  "conc": "La diferencia es de <b>30</b> pagos (60 frente a 30)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6204,16 +6204,16 @@ const CN_QUESTIONS = [
   "ask": "Determine el número total de quejas registradas.",
   "alts": [
    "$50$",
-   "$38$",
-   "$67$",
-   "$23$"
+   "$45$",
+   "$18$",
+   "$32$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=50.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 18+12+9+6+5 = 50"
   ],
-  "conc": "El total es <b>50</b>."
+  "conc": "El número total de quejas registradas es <b>50</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6249,7 +6249,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Limpieza}) = 18\\ \\text{es el valor máximo entre } 18, 12, 9, 6, 5"
   ],
-  "conc": "La categoría pedida es \"<b>Limpieza</b>\", con frecuencia absoluta <b>18</b>."
+  "conc": "La categoría pedida es \"<b>Limpieza</b>\", con frecuencia absoluta <b>18</b> de un total de 50."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6276,16 +6276,16 @@ const CN_QUESTIONS = [
   "ask": "Calcule el porcentaje de quejas por wifi.",
   "alts": [
    "$18\\%$",
-   "$36\\%$",
-   "$0\\%$",
-   "$6\\%$"
+   "$9\\%$",
+   "$82\\%$",
+   "$0{,}18\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=50.",
   "pautaSteps": [
    "\\dfrac{9}{50}\\times 100 = 18\\%"
   ],
-  "conc": "El porcentaje pedido es <b>18%</b>."
+  "conc": "El porcentaje de quejas por wifi es <b>18%</b> (9 de 50)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6311,17 +6311,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas quejas más hubo por limpieza que por personal?",
   "alts": [
-   "$22$",
+   "$24$",
    "$12$",
-   "$19$",
+   "$18$",
    "$6$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=50.",
   "pautaSteps": [
-   "Limpieza - Personal = 18 - 6 = 12"
+   "\\text{Limpieza} - \\text{Personal} = 18 - 6 = 12"
   ],
-  "conc": "La diferencia pedida es <b>12</b>."
+  "conc": "La diferencia es de <b>12</b> quejas (18 frente a 6)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6347,17 +6347,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de estudiantes encuestados.",
   "alts": [
-   "$226$",
-   "$142$",
+   "$150$",
+   "$50$",
    "$170$",
-   "$91$"
+   "$125$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=170.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 45+25+50+30+20 = 170"
   ],
-  "conc": "El total es <b>170</b>."
+  "conc": "El total de estudiantes encuestados es <b>170</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6393,7 +6393,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{PC}) = 50\\ \\text{es el valor máximo entre } 45, 25, 50, 30, 20"
   ],
-  "conc": "La categoría pedida es \"<b>PC</b>\", con frecuencia absoluta <b>50</b>."
+  "conc": "La categoría pedida es \"<b>PC</b>\", con frecuencia absoluta <b>50</b> de un total de 170."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6419,17 +6419,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje que prefiere PC.",
   "alts": [
-   "$0\\%$",
+   "$50\\%$",
    "$29{,}41\\%$",
-   "$43{,}41\\%$",
-   "$19{,}41\\%$"
+   "$70{,}59\\%$",
+   "$0{,}29\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=170.",
   "pautaSteps": [
    "\\dfrac{50}{170}\\times 100 = 29{,}41\\%"
   ],
-  "conc": "El porcentaje pedido es <b>29{,}41%</b>."
+  "conc": "El porcentaje que prefiere PC es <b>29,41%</b> (50 de 170)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6456,16 +6456,16 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje conjunto representan Xbox y Switch?",
   "alts": [
    "$32{,}35\\%$",
-   "$39{,}35\\%$",
-   "$65{,}35\\%$",
-   "$4{,}35\\%$"
+   "$55\\%$",
+   "$14{,}71\\%$",
+   "$17{,}65\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=170.",
   "pautaSteps": [
    "\\dfrac{25+30}{170}\\times 100 = 32{,}35\\%"
   ],
-  "conc": "El porcentaje pedido es <b>32{,}35%</b>."
+  "conc": "Xbox y Switch representan en conjunto el <b>32,35%</b> (55 de 170)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6489,17 +6489,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de películas vistas.",
   "alts": [
-   "$328$",
+   "$240$",
    "$250$",
-   "$207$",
-   "$132$"
+   "$120$",
+   "$170$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 80+120+40+10 = 250"
   ],
-  "conc": "El total es <b>250</b>."
+  "conc": "El total de películas vistas es <b>250</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6524,16 +6524,16 @@ const CN_QUESTIONS = [
   "ask": "Calcule el porcentaje de películas en inglés.",
   "alts": [
    "$48\\%$",
-   "$32\\%$",
-   "$63\\%$",
-   "$59\\%$"
+   "$52\\%$",
+   "$0{,}48\\%$",
+   "$32\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "\\dfrac{120}{250}\\times 100 = 48\\%"
   ],
-  "conc": "El porcentaje pedido es <b>48%</b>."
+  "conc": "El porcentaje de películas en inglés es <b>48%</b> (120 de 250)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6557,17 +6557,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas películas más se vieron en español que en coreano?",
   "alts": [
-   "$19$",
+   "$120$",
    "$40$",
-   "$30$",
-   "$53$"
+   "$80$",
+   "$16$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
-   "Español - Coreano = 80 - 40 = 40"
+   "\\text{Español} - \\text{Coreano} = 80 - 40 = 40"
   ],
-  "conc": "La diferencia pedida es <b>40</b>."
+  "conc": "La diferencia es de <b>40</b> películas (80 frente a 40)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6591,17 +6591,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje conjunto representan coreano y francés?",
   "alts": [
-   "$0\\%$",
-   "$25\\%$",
+   "$50\\%$",
+   "$16\\%$",
    "$20\\%$",
-   "$47\\%$"
+   "$4\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "\\dfrac{40+10}{250}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "Coreano y francés representan en conjunto el <b>20%</b> (50 de 250)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6627,9 +6627,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de muebles vendidos.",
   "alts": [
-   "$82$",
-   "$135$",
-   "$53$",
+   "$80$",
+   "$35$",
+   "$65$",
    "$100$"
   ],
   "correct": 3,
@@ -6637,7 +6637,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 35+20+15+10+20 = 100"
   ],
-  "conc": "El total es <b>100</b>."
+  "conc": "El total de muebles vendidos es <b>100</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6673,7 +6673,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Sillas}) = 35\\ \\text{es el valor máximo entre } 35, 20, 15, 10, 20"
   ],
-  "conc": "La categoría pedida es \"<b>Sillas</b>\", con frecuencia absoluta <b>35</b>."
+  "conc": "La categoría pedida es \"<b>Sillas</b>\", con frecuencia absoluta <b>35</b> de un total de 100."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6700,16 +6700,16 @@ const CN_QUESTIONS = [
   "ask": "Calcule el porcentaje que representan las camas.",
   "alts": [
    "$10\\%$",
-   "$4\\%$",
-   "$0\\%$",
-   "$36\\%$"
+   "$90\\%$",
+   "$0{,}10\\%$",
+   "$35\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=100.",
   "pautaSteps": [
    "\\dfrac{10}{100}\\times 100 = 10\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10%</b>."
+  "conc": "El porcentaje que representan las camas es <b>10%</b> (10 de 100)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6733,19 +6733,19 @@ const CN_QUESTIONS = [
    ],
    "unit": "Frecuencia absoluta"
   },
-  "ask": "¿Cuántos muebles más se vendieron entre mesas y estantes que sofás?",
+  "ask": "¿Cuántos muebles más se vendieron de mesas y estantes juntos que de sofás?",
   "alts": [
-   "$16$",
+   "$55$",
    "$25$",
-   "$33$",
-   "$40$"
+   "$40$",
+   "$15$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=100.",
   "pautaSteps": [
-   "Mesas+Estantes - Sofás = 40 - 15 = 25"
+   "(\\text{Mesas}+\\text{Estantes}) - \\text{Sofás} = (20+20) - 15 = 25"
   ],
-  "conc": "La diferencia pedida es <b>25</b>."
+  "conc": "La diferencia es de <b>25</b> muebles (40 frente a 15)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6769,9 +6769,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de consultas registradas.",
   "alts": [
-   "$76$",
-   "$199$",
-   "$126$",
+   "$115$",
+   "$60$",
+   "$90$",
    "$150$"
   ],
   "correct": 3,
@@ -6779,7 +6779,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 60+30+25+35 = 150"
   ],
-  "conc": "El total es <b>150</b>."
+  "conc": "El total de consultas registradas es <b>150</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6813,7 +6813,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Dermatología}) = 25\\ \\text{es el valor mínimo entre } 60, 30, 25, 35"
   ],
-  "conc": "La categoría pedida es \"<b>Dermatología</b>\", con frecuencia absoluta <b>25</b>."
+  "conc": "La categoría pedida es \"<b>Dermatología</b>\", con frecuencia absoluta <b>25</b> de un total de 150."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6837,17 +6837,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje de consultas de pediatría.",
   "alts": [
-   "$62\\%$",
-   "$26\\%$",
+   "$60\\%$",
+   "$0{,}40\\%$",
    "$40\\%$",
-   "$16\\%$"
+   "$20\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=150.",
   "pautaSteps": [
    "\\dfrac{60}{150}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El porcentaje de consultas de pediatría es <b>40%</b> (60 de 150)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6871,9 +6871,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje conjunto representan cardiología y dermatología?",
   "alts": [
-   "$47{,}67\\%$",
-   "$20{,}67\\%$",
-   "$51{,}67\\%$",
+   "$55\\%$",
+   "$20\\%$",
+   "$16{,}67\\%$",
    "$36{,}67\\%$"
   ],
   "correct": 3,
@@ -6881,7 +6881,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{30+25}{150}\\times 100 = 36{,}67\\%"
   ],
-  "conc": "El porcentaje pedido es <b>36{,}67%</b>."
+  "conc": "Cardiología y dermatología representan en conjunto el <b>36,67%</b> (55 de 150)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6906,16 +6906,16 @@ const CN_QUESTIONS = [
   "ask": "Determine el total de contactos registrados.",
   "alts": [
    "$100$",
-   "$52$",
-   "$131$",
-   "$81$"
+   "$90$",
+   "$50$",
+   "$150$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=100.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 50+30+10+10 = 100"
   ],
-  "conc": "El total es <b>100</b>."
+  "conc": "El total de contactos registrados es <b>100</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6940,16 +6940,16 @@ const CN_QUESTIONS = [
   "ask": "Calcule el porcentaje de contactos por error.",
   "alts": [
    "$50\\%$",
-   "$55\\%$",
-   "$77\\%$",
-   "$26\\%$"
+   "$0{,}50\\%$",
+   "$30\\%$",
+   "$10\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=100.",
   "pautaSteps": [
    "\\dfrac{50}{100}\\times 100 = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El porcentaje de contactos por error es <b>50%</b> (50 de 100)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -6973,17 +6973,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos contactos fueron por sugerencia o reclamo?",
   "alts": [
-   "$31$",
+   "$10$",
    "$20$",
-   "$14$",
-   "$9$"
+   "$80$",
+   "$50$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=100.",
   "pautaSteps": [
    "f(\\text{Sugerencia})+f(\\text{Reclamo}) = 10+10 = 20"
   ],
-  "conc": "El valor pedido es <b>20</b>."
+  "conc": "<b>20</b> de los 100 contactos fueron por sugerencia o reclamo (20%)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7007,9 +7007,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO fue por error?",
   "alts": [
-   "$89\\%$",
-   "$38\\%$",
-   "$59\\%$",
+   "$0{,}50\\%$",
+   "$20\\%$",
+   "$55\\%$",
    "$50\\%$"
   ],
   "correct": 3,
@@ -7017,7 +7017,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "100\\% - \\dfrac{50}{100}\\times 100 = 100\\% - 50\\% = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> NO fue por error (50 de 100)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7041,17 +7041,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de viviendas arrendadas registradas.",
   "alts": [
-   "$153$",
-   "$368$",
+   "$260$",
+   "$140$",
    "$280$",
-   "$236$"
+   "$420$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=280.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 140+90+30+20 = 280"
   ],
-  "conc": "El total es <b>280</b>."
+  "conc": "El total de viviendas arrendadas registradas es <b>280</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7085,7 +7085,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Departamento}) = 140\\ \\text{es el valor máximo entre } 140, 90, 30, 20"
   ],
-  "conc": "La categoría pedida es \"<b>Departamento</b>\", con frecuencia absoluta <b>140</b>."
+  "conc": "La categoría pedida es \"<b>Departamento</b>\", con frecuencia absoluta <b>140</b> de un total de 280."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7109,9 +7109,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje de viviendas tipo estudio.",
   "alts": [
-   "$0{,}71\\%$",
-   "$0\\%$",
-   "$24{,}71\\%$",
+   "$30\\%$",
+   "$89{,}29\\%$",
+   "$0{,}11\\%$",
    "$10{,}71\\%$"
   ],
   "correct": 3,
@@ -7119,7 +7119,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{30}{280}\\times 100 = 10{,}71\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10{,}71%</b>."
+  "conc": "El porcentaje de viviendas tipo estudio es <b>10,71%</b> (30 de 280)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7144,16 +7144,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas viviendas más son departamento que casa?",
   "alts": [
    "$50$",
-   "$76$",
-   "$29$",
-   "$61$"
+   "$230$",
+   "$140$",
+   "$90$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=280.",
   "pautaSteps": [
-   "Departamento - Casa = 140 - 90 = 50"
+   "\\text{Departamento} - \\text{Casa} = 140 - 90 = 50"
   ],
-  "conc": "La diferencia pedida es <b>50</b>."
+  "conc": "La diferencia es de <b>50</b> viviendas (140 frente a 90)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7178,16 +7178,16 @@ const CN_QUESTIONS = [
   "ask": "Determine el total de bebidas vendidas.",
   "alts": [
    "$120$",
-   "$97$",
-   "$62$",
-   "$158$"
+   "$108$",
+   "$48$",
+   "$72$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=120.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 48+36+24+12 = 120"
   ],
-  "conc": "El total es <b>120</b>."
+  "conc": "El total de bebidas vendidas es <b>120</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7211,17 +7211,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje de ventas de RedBull.",
   "alts": [
-   "$24\\%$",
+   "$48\\%$",
    "$40\\%$",
-   "$51\\%$",
-   "$55\\%$"
+   "$60\\%$",
+   "$0{,}40\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=120.",
   "pautaSteps": [
    "\\dfrac{48}{120}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El porcentaje de ventas de RedBull es <b>40%</b> (48 de 120)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7245,17 +7245,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas ventas más tuvo RedBull que Sport?",
   "alts": [
-   "$9$",
-   "$33$",
-   "$16$",
+   "$72$",
+   "$48$",
+   "$20$",
    "$24$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Gráfico con } N=120.",
   "pautaSteps": [
-   "RedBull - Sport = 48 - 24 = 24"
+   "\\text{RedBull} - \\text{Sport} = 48 - 24 = 24"
   ],
-  "conc": "La diferencia pedida es <b>24</b>."
+  "conc": "La diferencia es de <b>24</b> ventas (48 frente a 24)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7279,17 +7279,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje corresponde a Sport u Otra?",
   "alts": [
-   "$57\\%$",
-   "$6\\%$",
+   "$36\\%$",
+   "$20\\%$",
    "$30\\%$",
-   "$35\\%$"
+   "$10\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=120.",
   "pautaSteps": [
    "\\dfrac{24+12}{120}\\times 100 = 30\\%"
   ],
-  "conc": "El porcentaje pedido es <b>30%</b>."
+  "conc": "El <b>30%</b> corresponde a Sport u Otra (36 de 120)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7313,17 +7313,17 @@ const CN_QUESTIONS = [
   },
   "ask": "Determine el total de préstamos registrados.",
   "alts": [
-   "$118$",
-   "$181$",
+   "$180$",
+   "$90$",
    "$216$",
-   "$285$"
+   "$126$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=216.",
   "pautaSteps": [
    "\\text{Suma de todas las frecuencias} = 90+54+36+36 = 216"
   ],
-  "conc": "El total es <b>216</b>."
+  "conc": "El total de préstamos registrados es <b>216</b>."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7357,7 +7357,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Novela}) = 90\\ \\text{es el valor máximo entre } 90, 54, 36, 36"
   ],
-  "conc": "La categoría pedida es \"<b>Novela</b>\", con frecuencia absoluta <b>90</b>."
+  "conc": "La categoría pedida es \"<b>Novela</b>\", con frecuencia absoluta <b>90</b> de un total de 216."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7381,9 +7381,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Calcule el porcentaje de préstamos de libros de ciencia.",
   "alts": [
-   "$0\\%$",
-   "$10{,}67\\%$",
-   "$42{,}67\\%$",
+   "$36\\%$",
+   "$83{,}33\\%$",
+   "$0{,}17\\%$",
    "$16{,}67\\%$"
   ],
   "correct": 3,
@@ -7391,7 +7391,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{36}{216}\\times 100 = 16{,}67\\%"
   ],
-  "conc": "El porcentaje pedido es <b>16{,}67%</b>."
+  "conc": "El porcentaje de préstamos de libros de ciencia es <b>16,67%</b> (36 de 216)."
  },
  {
   "tipo": "Interpretación de gráfico de barras",
@@ -7416,16 +7416,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántos préstamos corresponden a infantil u otro?",
   "alts": [
    "$90$",
-   "$135$",
-   "$108$",
-   "$61$"
+   "$54$",
+   "$36$",
+   "$42$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=216.",
   "pautaSteps": [
    "f(\\text{Infantil})+f(\\text{Otro}) = 54+36 = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de los 216 préstamos corresponden a infantil u otro (41,67%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7449,17 +7449,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos trabajadores tienen contrato indefinido?",
   "alts": [
-   "$289$",
+   "$55$",
    "$220$",
-   "$186$",
-   "$116$"
+   "$180$",
+   "$240$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=400.",
   "pautaSteps": [
    "f(\\text{Indefinido}) = 220"
   ],
-  "conc": "El valor pedido es <b>220</b>."
+  "conc": "<b>220</b> de los 400 trabajadores tienen contrato indefinido (55%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7483,9 +7483,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos trabajadores NO tienen contrato indefinido?",
   "alts": [
-   "$121$",
-   "$210$",
-   "$263$",
+   "$220$",
+   "$45$",
+   "$80$",
    "$180$"
   ],
   "correct": 3,
@@ -7493,7 +7493,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{Indefinido}) = 400 - 220 = 180"
   ],
-  "conc": "El valor pedido es <b>180</b>."
+  "conc": "<b>180</b> de los 400 trabajadores NO tienen contrato indefinido (45%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7527,7 +7527,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Part-time}) = 20\\ \\text{es el valor mínimo entre } 220, 100, 60, 20"
   ],
-  "conc": "La categoría pedida es \"<b>Part-time</b>\", con frecuencia absoluta <b>20</b>."
+  "conc": "La categoría pedida es \"<b>Part-time</b>\", con frecuencia absoluta <b>20</b> de un total de 400."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7551,17 +7551,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos trabajadores tienen honorarios o part-time?",
   "alts": [
-   "$117$",
-   "$94$",
+   "$60$",
+   "$20$",
    "$80$",
-   "$52$"
+   "$320$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=400.",
   "pautaSteps": [
    "f(\\text{Honorarios})+f(\\text{Part-time}) = 60+20 = 80"
   ],
-  "conc": "El valor pedido es <b>80</b>."
+  "conc": "<b>80</b> de los 400 trabajadores tienen honorarios o part-time (20%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7585,17 +7585,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos compradores pagan con tarjeta débito?",
   "alts": [
-   "$166$",
+   "$40$",
    "$200$",
-   "$261$",
-   "$107$"
+   "$300$",
+   "$250$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=500.",
   "pautaSteps": [
    "f(\\text{Tarjeta débito}) = 200"
   ],
-  "conc": "El valor pedido es <b>200</b>."
+  "conc": "<b>200</b> de los 500 compradores pagan con tarjeta débito (40%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7619,9 +7619,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO paga con tarjeta débito?",
   "alts": [
-   "$87\\%$",
-   "$65\\%$",
-   "$36\\%$",
+   "$40\\%$",
+   "$0{,}60\\%$",
+   "$25\\%$",
    "$60\\%$"
   ],
   "correct": 3,
@@ -7629,7 +7629,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "100\\% - \\dfrac{200}{500}\\times 100 = 100\\% - 40\\% = 60\\%"
   ],
-  "conc": "El porcentaje pedido es <b>60%</b>."
+  "conc": "El <b>60%</b> NO paga con tarjeta débito (300 de 500)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7653,17 +7653,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos compradores pagan con transferencia o billetera digital?",
   "alts": [
-   "$168$",
+   "$75$",
    "$125$",
-   "$66$",
-   "$103$"
+   "$50$",
+   "$25$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=500.",
   "pautaSteps": [
    "f(\\text{Transferencia})+f(\\text{Billetera digital}) = 75+50 = 125"
   ],
-  "conc": "El valor pedido es <b>125</b>."
+  "conc": "<b>125</b> de los 500 compradores pagan con transferencia o billetera digital (25%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7697,7 +7697,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Billetera digital}) = 50\\ \\text{es el valor mínimo entre } 200, 175, 75, 50"
   ],
-  "conc": "La categoría pedida es \"<b>Billetera digital</b>\", con frecuencia absoluta <b>50</b>."
+  "conc": "La categoría pedida es \"<b>Billetera digital</b>\", con frecuencia absoluta <b>50</b> de un total de 500."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7719,9 +7719,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas mascotas registradas son perros?",
   "alts": [
-   "$472$",
-   "$304$",
-   "$197$",
+   "$60$",
+   "$240$",
+   "$420$",
    "$360$"
   ],
   "correct": 3,
@@ -7729,7 +7729,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Perro}) = 360"
   ],
-  "conc": "El valor pedido es <b>360</b>."
+  "conc": "<b>360</b> de las 600 mascotas registradas son perros (60%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7751,17 +7751,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas mascotas NO son perros?",
   "alts": [
-   "$351$",
-   "$167$",
+   "$360$",
+   "$40$",
    "$240$",
-   "$280$"
+   "$60$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=600.",
   "pautaSteps": [
    "N - f(\\text{Perro}) = 600 - 360 = 240"
   ],
-  "conc": "El valor pedido es <b>240</b>."
+  "conc": "<b>240</b> de las 600 mascotas NO son perros (40%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7784,16 +7784,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas mascotas son gatos?",
   "alts": [
    "$180$",
-   "$152$",
-   "$94$",
-   "$237$"
+   "$30$",
+   "$420$",
+   "$240$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=600.",
   "pautaSteps": [
    "f(\\text{Gato}) = 180"
   ],
-  "conc": "El valor pedido es <b>180</b>."
+  "conc": "<b>180</b> de las 600 mascotas son gatos (30%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7815,17 +7815,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje corresponde a la categoría \"Otro\"?",
   "alts": [
-   "$17\\%$",
+   "$60\\%$",
    "$10\\%$",
-   "$0\\%$",
-   "$43\\%$"
+   "$90\\%$",
+   "$0{,}10\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=600.",
   "pautaSteps": [
    "\\dfrac{60}{600}\\times 100 = 10\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10%</b>."
+  "conc": "El <b>10%</b> corresponde a la categoría \"Otro\" (60 de 600)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7847,9 +7847,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos taxis funcionan a bencina?",
   "alts": [
-   "$62$",
-   "$97$",
-   "$158$",
+   "$48$",
+   "$130$",
+   "$170$",
    "$120$"
   ],
   "correct": 3,
@@ -7857,7 +7857,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Bencina}) = 120"
   ],
-  "conc": "El valor pedido es <b>120</b>."
+  "conc": "<b>120</b> de los 250 taxis funcionan a bencina (48%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7879,17 +7879,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos taxis funcionan a GLP o son eléctricos?",
   "alts": [
-   "$86$",
+   "$80$",
    "$130$",
-   "$191$",
-   "$152$"
+   "$50$",
+   "$52$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "f(\\text{GLP})+f(\\text{Eléctrico}) = 80+50 = 130"
   ],
-  "conc": "El valor pedido es <b>130</b>."
+  "conc": "<b>130</b> de los 250 taxis funcionan a GLP o son eléctricos (52%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7911,17 +7911,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO es a bencina?",
   "alts": [
-   "$16\\%$",
+   "$48\\%$",
    "$52\\%$",
-   "$44\\%$",
-   "$62\\%$"
+   "$0{,}52\\%$",
+   "$20\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "100\\% - \\dfrac{120}{250}\\times 100 = 100\\% - 48\\% = 52\\%"
   ],
-  "conc": "El porcentaje pedido es <b>52%</b>."
+  "conc": "El <b>52%</b> NO es a bencina (130 de 250)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7943,17 +7943,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos taxis son eléctricos?",
   "alts": [
-   "$31$",
-   "$59$",
+   "$20$",
+   "$200$",
    "$50$",
-   "$79$"
+   "$130$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=250.",
   "pautaSteps": [
    "f(\\text{Eléctrico}) = 50"
   ],
-  "conc": "El valor pedido es <b>50</b>."
+  "conc": "<b>50</b> de los 250 taxis son eléctricos (20%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -7977,17 +7977,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas unidades presupuestarias corresponden a alimentación?",
   "alts": [
-   "$43$",
-   "$110$",
+   "$45$",
+   "$99$",
    "$81$",
-   "$66$"
+   "$86$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=180.",
   "pautaSteps": [
    "f(\\text{Alimentación}) = 81"
   ],
-  "conc": "El valor pedido es <b>81</b>."
+  "conc": "<b>81</b> de las 180 unidades presupuestarias corresponden a alimentación (45%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8012,16 +8012,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas corresponden a arriendo de sala o transporte?",
   "alts": [
    "$81$",
-   "$98$",
-   "$121$",
-   "$55$"
+   "$45$",
+   "$36$",
+   "$99$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=180.",
   "pautaSteps": [
    "f(\\text{Arriendo de sala})+f(\\text{Transporte}) = 45+36 = 81"
   ],
-  "conc": "El valor pedido es <b>81</b>."
+  "conc": "<b>81</b> de las 180 unidades corresponden a arriendo de sala o transporte (45%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8045,17 +8045,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO corresponde a alimentación?",
   "alts": [
-   "$49\\%$",
+   "$45\\%$",
    "$55\\%$",
-   "$81\\%$",
-   "$25\\%$"
+   "$99\\%$",
+   "$0{,}55\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=180.",
   "pautaSteps": [
    "100\\% - \\dfrac{81}{180}\\times 100 = 100\\% - 45\\% = 55\\%"
   ],
-  "conc": "El porcentaje pedido es <b>55%</b>."
+  "conc": "El <b>55%</b> NO corresponde a alimentación (99 de 180)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8077,7 +8077,7 @@ const CN_QUESTIONS = [
    ],
    "N": 180
   },
-  "ask": "Indique la categoría menos frecuente y su valor absoluto.",
+  "ask": "Indique la categoría menos frecuente y su frecuencia absoluta.",
   "alts": [
    "Alimentación ($f=81$)",
    "Arriendo de sala ($f=45$)",
@@ -8089,7 +8089,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Otros}) = 18\\ \\text{es el valor mínimo entre } 81, 45, 36, 18"
   ],
-  "conc": "La categoría pedida es \"<b>Otros</b>\", con frecuencia absoluta <b>18</b>."
+  "conc": "La categoría pedida es \"<b>Otros</b>\", con frecuencia absoluta <b>18</b> de un total de 180."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8109,17 +8109,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas cajas son de fruta nacional?",
   "alts": [
-   "$295$",
+   "$70$",
    "$224$",
-   "$117$",
-   "$189$"
+   "$96$",
+   "$320$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=320.",
   "pautaSteps": [
    "f(\\text{Nacional}) = 224"
   ],
-  "conc": "El valor pedido es <b>224</b>."
+  "conc": "<b>224</b> de las 320 cajas son de fruta nacional (70%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8139,17 +8139,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas cajas son de fruta importada?",
   "alts": [
-   "$140$",
+   "$30$",
    "$96$",
-   "$113$",
-   "$63$"
+   "$224$",
+   "$320$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=320.",
   "pautaSteps": [
    "f(\\text{Importada}) = 96"
   ],
-  "conc": "El valor pedido es <b>96</b>."
+  "conc": "<b>96</b> de las 320 cajas son de fruta importada (30%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8169,17 +8169,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO es de origen nacional?",
   "alts": [
-   "$52\\%$",
-   "$16\\%$",
+   "$70\\%$",
+   "$96\\%$",
    "$30\\%$",
-   "$6\\%$"
+   "$0{,}30\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=320.",
   "pautaSteps": [
    "100\\% - \\dfrac{224}{320}\\times 100 = 100\\% - 70\\% = 30\\%"
   ],
-  "conc": "El porcentaje pedido es <b>30%</b>."
+  "conc": "El <b>30%</b> NO es de origen nacional (96 de 320)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8199,9 +8199,9 @@ const CN_QUESTIONS = [
   },
   "ask": "Si se retiraran todas las cajas importadas, ¿cuántas cajas quedarían?",
   "alts": [
-   "$260$",
-   "$152$",
-   "$327$",
+   "$96$",
+   "$70$",
+   "$320$",
    "$224$"
   ],
   "correct": 3,
@@ -8209,7 +8209,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "N - f(\\text{Importada}) = 320 - 96 = 224"
   ],
-  "conc": "El valor pedido es <b>224</b>."
+  "conc": "Quedarían <b>224</b> cajas de las 320 (70%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8232,16 +8232,16 @@ const CN_QUESTIONS = [
   "ask": "¿Cuántas órdenes corresponden a examen de sangre?",
   "alts": [
    "$225$",
-   "$187$",
-   "$120$",
-   "$294$"
+   "$50$",
+   "$315$",
+   "$230$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=450.",
   "pautaSteps": [
    "f(\\text{Sangre}) = 225"
   ],
-  "conc": "El valor pedido es <b>225</b>."
+  "conc": "<b>225</b> de las 450 órdenes corresponden a examen de sangre (50%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8263,17 +8263,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas corresponden a orina u otro tipo?",
   "alts": [
-   "$260$",
+   "$135$",
    "$225$",
-   "$154$",
-   "$332$"
+   "$90$",
+   "$50$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=450.",
   "pautaSteps": [
    "f(\\text{Orina})+f(\\text{Otro}) = 135+90 = 225"
   ],
-  "conc": "El valor pedido es <b>225</b>."
+  "conc": "<b>225</b> de las 450 órdenes corresponden a orina u otro tipo (50%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8295,9 +8295,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje NO corresponde a examen de sangre?",
   "alts": [
-   "$32\\%$",
-   "$68\\%$",
-   "$38\\%$",
+   "$0{,}50\\%$",
+   "$20\\%$",
+   "$55\\%$",
    "$50\\%$"
   ],
   "correct": 3,
@@ -8305,7 +8305,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "100\\% - \\dfrac{225}{450}\\times 100 = 100\\% - 50\\% = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> NO corresponde a examen de sangre (225 de 450)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8327,17 +8327,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas órdenes corresponden a la categoría \"Otro\"?",
   "alts": [
-   "$60$",
+   "$20$",
    "$90$",
-   "$136$",
-   "$109$"
+   "$360$",
+   "$225$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=450.",
   "pautaSteps": [
    "f(\\text{Otro}) = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de las 450 órdenes corresponden a la categoría \"Otro\" (20%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8361,17 +8361,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas publicaciones se hicieron en Instagram?",
   "alts": [
-   "$47$",
-   "$74$",
+   "$45$",
+   "$110$",
    "$90$",
-   "$122$"
+   "$95$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=200.",
   "pautaSteps": [
    "f(\\text{Instagram}) = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de las 200 publicaciones se hicieron en Instagram (45%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8395,17 +8395,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas se hicieron en Facebook o TikTok?",
   "alts": [
-   "$61$",
-   "$108$",
+   "$50$",
+   "$40$",
    "$90$",
-   "$135$"
+   "$45$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=200.",
   "pautaSteps": [
    "f(\\text{Facebook})+f(\\text{TikTok}) = 50+40 = 90"
   ],
-  "conc": "El valor pedido es <b>90</b>."
+  "conc": "<b>90</b> de las 200 publicaciones se hicieron en Facebook o TikTok (45%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8430,8 +8430,8 @@ const CN_QUESTIONS = [
   "ask": "¿Qué porcentaje NO se hizo en Instagram?",
   "alts": [
    "$45\\%$",
-   "$69\\%$",
-   "$13\\%$",
+   "$0{,}55\\%$",
+   "$30\\%$",
    "$55\\%$"
   ],
   "correct": 3,
@@ -8439,7 +8439,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "100\\% - \\dfrac{90}{200}\\times 100 = 100\\% - 45\\% = 55\\%"
   ],
-  "conc": "El porcentaje pedido es <b>55%</b>."
+  "conc": "El <b>55%</b> NO se hizo en Instagram (110 de 200)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8473,7 +8473,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Otra}) = 20\\ \\text{es el valor mínimo entre } 90, 50, 40, 20"
   ],
-  "conc": "La categoría pedida es \"<b>Otra</b>\", con frecuencia absoluta <b>20</b>."
+  "conc": "La categoría pedida es \"<b>Otra</b>\", con frecuencia absoluta <b>20</b> de un total de 200."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8495,17 +8495,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos departamentos tienen calefacción eléctrica?",
   "alts": [
-   "$49$",
+   "$40$",
    "$64$",
-   "$30$",
-   "$86$"
+   "$96$",
+   "$104$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=160.",
   "pautaSteps": [
    "f(\\text{Eléctrica}) = 64"
   ],
-  "conc": "El valor pedido es <b>64</b>."
+  "conc": "<b>64</b> de los 160 departamentos tienen calefacción eléctrica (40%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8527,9 +8527,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos tienen calefacción a gas o eléctrica?",
   "alts": [
-   "$175$",
-   "$80$",
-   "$140$",
+   "$64$",
+   "$56$",
+   "$75$",
    "$120$"
   ],
   "correct": 3,
@@ -8537,7 +8537,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Gas})+f(\\text{Eléctrica}) = 56+64 = 120"
   ],
-  "conc": "El valor pedido es <b>120</b>."
+  "conc": "<b>120</b> de los 160 departamentos tienen calefacción a gas o eléctrica (75%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8559,17 +8559,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje no tiene ningún tipo de calefacción?",
   "alts": [
-   "$35\\%$",
+   "$40\\%$",
    "$25\\%$",
-   "$0\\%$",
-   "$17\\%$"
+   "$75\\%$",
+   "$0{,}25\\%$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=160.",
   "pautaSteps": [
    "\\dfrac{40}{160}\\times 100 = 25\\%"
   ],
-  "conc": "El porcentaje pedido es <b>25%</b>."
+  "conc": "El <b>25%</b> no tiene ningún tipo de calefacción (40 de 160)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8591,17 +8591,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántos departamentos corresponden a la categoría \"Ninguna\"?",
   "alts": [
-   "$63$",
-   "$47$",
+   "$25$",
+   "$120$",
    "$40$",
-   "$25$"
+   "$96$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=160.",
   "pautaSteps": [
    "f(\\text{Ninguna}) = 40"
   ],
-  "conc": "El valor pedido es <b>40</b>."
+  "conc": "<b>40</b> de los 160 departamentos corresponden a la categoría \"Ninguna\" (25%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8621,17 +8621,17 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas reservas fueron de vuelos nacionales?",
   "alts": [
-   "$207$",
-   "$130$",
+   "$65$",
+   "$84$",
    "$156$",
-   "$85$"
+   "$240$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Gráfico con } N=240.",
   "pautaSteps": [
    "f(\\text{Nacional}) = 156"
   ],
-  "conc": "El valor pedido es <b>156</b>."
+  "conc": "<b>156</b> de las 240 reservas fueron de vuelos nacionales (65%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8651,9 +8651,9 @@ const CN_QUESTIONS = [
   },
   "ask": "¿Cuántas reservas fueron de vuelos internacionales?",
   "alts": [
-   "$102$",
-   "$127$",
-   "$56$",
+   "$35$",
+   "$156$",
+   "$240$",
    "$84$"
   ],
   "correct": 3,
@@ -8661,7 +8661,7 @@ const CN_QUESTIONS = [
   "pautaSteps": [
    "f(\\text{Internacional}) = 84"
   ],
-  "conc": "El valor pedido es <b>84</b>."
+  "conc": "<b>84</b> de las 240 reservas fueron de vuelos internacionales (35%)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8683,15 +8683,15 @@ const CN_QUESTIONS = [
   "alts": [
    "$65\\%$",
    "$35\\%$",
-   "$91\\%$",
-   "$59\\%$"
+   "$0{,}65\\%$",
+   "$70\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Gráfico con } N=240.",
   "pautaSteps": [
    "\\dfrac{156}{240}\\times 100 = 65\\%"
   ],
-  "conc": "El porcentaje pedido es <b>65%</b>."
+  "conc": "El <b>65%</b> corresponde a vuelos nacionales (156 de 240)."
  },
  {
   "tipo": "Interpretación de gráfico de torta",
@@ -8711,16 +8711,16 @@ const CN_QUESTIONS = [
   },
   "ask": "Si se anularan todas las reservas internacionales, ¿cuántas reservas quedarían vigentes?",
   "alts": [
-   "$183$",
+   "$84$",
    "$156$",
-   "$228$",
-   "$109$"
+   "$65$",
+   "$240$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Gráfico con } N=240.",
   "pautaSteps": [
    "N - f(\\text{Internacional}) = 240 - 84 = 156"
   ],
-  "conc": "El valor pedido es <b>156</b>."
+  "conc": "Quedarían <b>156</b> reservas de las 240 (65%)."
  }
 ];

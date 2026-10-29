@@ -1,4 +1,4 @@
-// Banco de 260 ejercicios de Tablas de Frecuencia para Datos Cuantitativos Discretos (guia oficial Fabimath)
+// Banco de 260 ejercicios de Tablas de Frecuencia para Datos Cuantitativos Discretos (guía oficial Fabimath)
 // Parte I (60): tabla completa desde datos crudos -> valores f_i / F_i / h_i / H_i
 // Parte II (80): lectura de tabla con frecuencias acumuladas
 // Parte III (60): media, mediana y moda desde datos sin tabular
@@ -10,10 +10,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hijos en 20 familias. Datos: 2, 1, 0, 3, 2, 1, 2, 0, 4, 1, 2, 3, 1, 2, 0, 1, 2, 3, 1, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$0$",
-   "$9$",
+   "$6$",
+   "$4$",
    "$3$",
-   "$10$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -22,9 +22,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=16,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}35,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=0$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -33,8 +33,8 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
    "$7$",
-   "$24$",
-   "$21$",
+   "$9$",
+   "$19$",
    "$16$"
   ],
   "correct": 3,
@@ -44,9 +44,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=16,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}35,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 16$."
+  "conc": "$F_{3} = 16$: 16 de los 20 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -55,9 +55,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{4}$ (frecuencia relativa de $x_{4}=3$) es:",
   "alts": [
    "$h_{4} = 0{,}15$",
-   "$h_{4} = 0{,}35$",
-   "$h_{4} = 0{,}30$",
-   "$h_{4} = 0{,}05$"
+   "$h_{4} = 0{,}95$",
+   "$h_{4} = 0{,}05$",
+   "$h_{4} = 0{,}35$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -66,9 +66,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=16,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}35,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}80,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{4} = 0{,}15$."
+  "conc": "$h_{4} = \\dfrac{3}{20} = 0{,}15$: el 15% de los datos vale 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -76,9 +76,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hermanos en 18 estudiantes. Datos: 1, 0, 2, 1, 3, 2, 1, 0, 1, 2, 1, 4, 2, 1, 0, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$11$",
-   "$9$",
-   "$10$",
+   "$8$",
+   "$4$",
+   "$2$",
    "$3$"
   ],
   "correct": 3,
@@ -88,9 +88,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}44,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=0$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -98,10 +98,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hermanos en 18 estudiantes. Datos: 1, 0, 2, 1, 3, 2, 1, 0, 1, 2, 1, 4, 2, 1, 0, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$13$",
    "$5$",
+   "$11$",
    "$16$",
-   "$23$"
+   "$17$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -110,19 +110,19 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}44,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 16$."
+  "conc": "$F_{3} = 16$: 16 de los 18 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Educación · Estudiantes",
   "enun": "Se registró el número de hermanos en 18 estudiantes. Datos: 1, 0, 2, 1, 3, 2, 1, 0, 1, 2, 1, 4, 2, 1, 0, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=3$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=3$, calculada como $F_{4}/n$ y redondeada a 2 decimales) es:",
   "alts": [
+   "$H_{4} = 0{,}06$",
    "$H_{4} = 0{,}89$",
-   "$H_{4} = 0{,}17$",
-   "$H_{4} = 0{,}61$",
+   "$H_{4} = 1{,}00$",
    "$H_{4} = 0{,}94$"
   ],
   "correct": 3,
@@ -132,9 +132,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=8,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=3,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}44,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{4} = 0{,}94$."
+  "conc": "$H_{4} = \\dfrac{17}{18} \\approx 0{,}94$: cerca del 94% de los datos es menor o igual a 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -143,9 +143,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
    "$7$",
-   "$14$",
-   "$2$",
-   "$3$"
+   "$10$",
+   "$8$",
+   "$6$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -154,9 +154,9 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=1",
    "F_{1}=7,\\ F_{2}=17,\\ F_{3}=21,\\ F_{4}=22",
    "h_{1}=0{,}32,\\ h_{2}=0{,}45,\\ h_{3}=0{,}18,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 7$."
+  "conc": "El valor $x_{1}=0$ aparece 7 veces en los datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -165,9 +165,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
    "$21$",
-   "$14$",
-   "$28$",
-   "$33$"
+   "$4$",
+   "$17$",
+   "$22$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -176,9 +176,9 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=1",
    "F_{1}=7,\\ F_{2}=17,\\ F_{3}=21,\\ F_{4}=22",
    "h_{1}=0{,}32,\\ h_{2}=0{,}45,\\ h_{3}=0{,}18,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 21$."
+  "conc": "$F_{3} = 21$: 21 de los 22 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -186,10 +186,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de mascotas en 22 hogares. Datos: 1, 0, 2, 1, 0, 1, 3, 1, 0, 2, 1, 0, 1, 2, 0, 1, 1, 0, 2, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{3}$ (frecuencia relativa de $x_{3}=2$) es:",
   "alts": [
-   "$h_{3} = 0{,}32$",
+   "$h_{3} = 0{,}95$",
    "$h_{3} = 0{,}18$",
-   "$h_{3} = 0{,}45$",
-   "$h_{3} = 0{,}05$"
+   "$h_{3} = 0{,}05$",
+   "$h_{3} = 0{,}45$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -198,9 +198,9 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=10,\\ f_{3}=4,\\ f_{4}=1",
    "F_{1}=7,\\ F_{2}=17,\\ F_{3}=21,\\ F_{4}=22",
    "h_{1}=0{,}32,\\ h_{2}=0{,}45,\\ h_{3}=0{,}18,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}32,\\ H_{2}=0{,}77,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{3} = 0{,}18$."
+  "conc": "$h_{3} = \\dfrac{4}{22} \\approx 0{,}18$: cerca del 18% de los datos vale 2."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -208,10 +208,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de autos en 20 hogares. Datos: 1, 2, 1, 0, 1, 2, 1, 1, 0, 2, 1, 3, 1, 2, 1, 0, 1, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$5$",
    "$11$",
+   "$4$",
    "$3$",
-   "$12$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -220,9 +220,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=14,\\ F_{3}=19,\\ F_{4}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}55,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=0$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -230,9 +230,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de autos en 20 hogares. Datos: 1, 2, 1, 0, 1, 2, 1, 1, 0, 2, 1, 3, 1, 2, 1, 0, 1, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$29$",
+   "$5$",
    "$14$",
-   "$9$",
+   "$20$",
    "$19$"
   ],
   "correct": 3,
@@ -242,19 +242,19 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=14,\\ F_{3}=19,\\ F_{4}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}55,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 19$."
+  "conc": "$F_{3} = 19$: 19 de los 20 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Hogar · Vehículos",
   "enun": "Se registró el número de autos en 20 hogares. Datos: 1, 2, 1, 0, 1, 2, 1, 1, 0, 2, 1, 3, 1, 2, 1, 0, 1, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{3}$ (frecuencia relativa acumulada hasta $x_{3}=2$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{3}$ (frecuencia relativa acumulada hasta $x_{3}=2$, calculada como $F_{3}/n$ y redondeada a 2 decimales) es:",
   "alts": [
    "$H_{3} = 0{,}95$",
+   "$H_{3} = 0{,}25$",
    "$H_{3} = 0{,}70$",
-   "$H_{3} = 0{,}15$",
    "$H_{3} = 1{,}00$"
   ],
   "correct": 0,
@@ -264,9 +264,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=11,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=14,\\ F_{3}=19,\\ F_{4}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}55,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}70,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{3} = 0{,}95$."
+  "conc": "$H_{3} = \\dfrac{19}{20} = 0{,}95$: el 95% de los datos es menor o igual a 2."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -274,9 +274,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de dormitorios en 19 departamentos en arriendo. Datos: 2, 3, 2, 1, 3, 2, 2, 4, 3, 2, 1, 2, 3, 2, 2, 1, 3, 2, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=1$) es:",
   "alts": [
-   "$12$",
-   "$13$",
-   "$6$",
+   "$10$",
+   "$4$",
+   "$2$",
    "$3$"
   ],
   "correct": 3,
@@ -286,9 +286,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=10,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}16,\\ h_{2}=0{,}53,\\ h_{3}=0{,}26,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=1$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -296,10 +296,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de dormitorios en 19 departamentos en arriendo. Datos: 2, 3, 2, 1, 3, 2, 2, 4, 3, 2, 1, 2, 3, 2, 2, 1, 3, 2, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=3$) es:",
   "alts": [
-   "$26$",
+   "$5$",
    "$18$",
-   "$31$",
-   "$10$"
+   "$13$",
+   "$19$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=19\\text{):}",
@@ -308,9 +308,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=10,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}16,\\ h_{2}=0{,}53,\\ h_{3}=0{,}26,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 18$."
+  "conc": "$F_{3} = 18$: 18 de los 19 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -319,9 +319,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{3}$ (frecuencia relativa de $x_{3}=3$) es:",
   "alts": [
    "$h_{3} = 0{,}26$",
-   "$h_{3} = 0{,}53$",
-   "$h_{3} = 0{,}16$",
-   "$h_{3} = 0{,}05$"
+   "$h_{3} = 0{,}95$",
+   "$h_{3} = 0{,}05$",
+   "$h_{3} = 0{,}53$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=19\\text{):}",
@@ -330,9 +330,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=10,\\ f_{3}=5,\\ f_{4}=1",
    "F_{1}=3,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}16,\\ h_{2}=0{,}53,\\ h_{3}=0{,}26,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}16,\\ H_{2}=0{,}68,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{3} = 0{,}26$."
+  "conc": "$h_{3} = \\dfrac{5}{19} \\approx 0{,}26$: cerca del 26% de los datos vale 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -341,9 +341,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=3$) es:",
   "alts": [
    "$8$",
-   "$14$",
+   "$5$",
    "$4$",
-   "$7$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -352,9 +352,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=8,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=12,\\ F_{3}=18,\\ F_{4}=20,\\ F_{5}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}38,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=3$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -362,10 +362,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de empleados en 21 sucursales pequeñas. Datos: 4, 5, 3, 4, 6, 5, 4, 3, 5, 4, 7, 4, 5, 3, 4, 6, 5, 4, 3, 5, 4. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=5$) es:",
   "alts": [
-   "$29$",
+   "$6$",
    "$18$",
    "$12$",
-   "$7$"
+   "$20$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -374,20 +374,20 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=8,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=12,\\ F_{3}=18,\\ F_{4}=20,\\ F_{5}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}38,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 18$."
+  "conc": "$F_{3} = 18$: 18 de los 21 datos son menores o iguales a 5."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Retail · Sucursales",
   "enun": "Se registró el número de empleados en 21 sucursales pequeñas. Datos: 4, 5, 3, 4, 6, 5, 4, 3, 5, 4, 7, 4, 5, 3, 4, 6, 5, 4, 3, 5, 4. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=6$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=6$, calculada como $F_{4}/n$ y redondeada a 2 decimales) es:",
   "alts": [
-   "$H_{4} = 1{,}00$",
+   "$H_{4} = 0{,}10$",
    "$H_{4} = 0{,}95$",
    "$H_{4} = 0{,}86$",
-   "$H_{4} = 0{,}57$"
+   "$H_{4} = 1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -396,9 +396,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=8,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=12,\\ F_{3}=18,\\ F_{4}=20,\\ F_{5}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}38,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}57,\\ H_{3}=0{,}86,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{4} = 0{,}95$."
+  "conc": "$H_{4} = \\dfrac{20}{21} \\approx 0{,}95$: cerca del 95% de los datos es menor o igual a 6."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -407,9 +407,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
    "$5$",
-   "$9$",
-   "$16$",
-   "$10$"
+   "$8$",
+   "$6$",
+   "$4$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -418,9 +418,9 @@ const CD_QUESTIONS = [
    "f_{1}=5,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=5,\\ F_{2}=13,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}25,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 5$."
+  "conc": "El valor $x_{1}=0$ aparece 5 veces en los datos: $f_{1} = 5$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -428,9 +428,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de errores de tipeo por página en 20 páginas de un informe. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 1, 5, 2, 1, 0. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
-   "$32$",
-   "$22$",
-   "$9$",
+   "$1$",
+   "$17$",
+   "$19$",
    "$18$"
   ],
   "correct": 3,
@@ -440,9 +440,9 @@ const CD_QUESTIONS = [
    "f_{1}=5,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=5,\\ F_{2}=13,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}25,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 18$."
+  "conc": "$F_{4} = 18$: 18 de los 20 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -450,10 +450,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de errores de tipeo por página en 20 páginas de un informe. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 4, 1, 2, 1, 0, 1, 5, 2, 1, 0. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{5}$ (frecuencia relativa de $x_{5}=4$) es:",
   "alts": [
-   "$h_{5} = 0{,}25$",
-   "$h_{5} = 0{,}20$",
+   "$h_{5} = 0{,}95$",
+   "$h_{5} = 0{,}17$",
    "$h_{5} = 0{,}05$",
-   "$h_{5} = 0{,}40$"
+   "$h_{5} = 0{,}10$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -462,9 +462,9 @@ const CD_QUESTIONS = [
    "f_{1}=5,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=5,\\ F_{2}=13,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}25,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}25,\\ H_{2}=0{,}65,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{5} = 0{,}05$."
+  "conc": "$h_{5} = \\dfrac{1}{20} = 0{,}05$: el 5% de los datos vale 4."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -472,9 +472,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de llamadas recibidas por hora en 22 turnos. Datos: 5, 6, 7, 5, 8, 6, 5, 7, 4, 6, 5, 9, 6, 5, 7, 6, 3, 5, 6, 7, 5, 6. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=3$) es:",
   "alts": [
-   "$6$",
-   "$7$",
-   "$5$",
+   "$2$",
+   "$3$",
+   "$4$",
    "$1$"
   ],
   "correct": 3,
@@ -484,9 +484,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 1$."
+  "conc": "El valor $x_{1}=3$ aparece 1 vez en los datos: $f_{1} = 1$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -495,9 +495,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=6$) es:",
   "alts": [
    "$16$",
-   "$21$",
    "$7$",
-   "$10$"
+   "$9$",
+   "$20$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -506,20 +506,20 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 16$."
+  "conc": "$F_{4} = 16$: 16 de los 22 datos son menores o iguales a 6."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Call center · Turnos",
   "enun": "Se registró el número de llamadas recibidas por hora en 22 turnos. Datos: 5, 6, 7, 5, 8, 6, 5, 7, 4, 6, 5, 9, 6, 5, 7, 6, 3, 5, 6, 7, 5, 6. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{6}$ (frecuencia relativa acumulada hasta $x_{6}=8$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{6}$ (frecuencia relativa acumulada hasta $x_{6}=8$, calculada como $F_{6}/n$ y redondeada a 2 decimales) es:",
   "alts": [
    "$H_{6} = 0{,}95$",
-   "$H_{6} = 0{,}09$",
-   "$H_{6} = 0{,}41$",
-   "$H_{6} = 0{,}05$"
+   "$H_{6} = 0{,}05$",
+   "$H_{6} = 0{,}91$",
+   "$H_{6} = 1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -528,9 +528,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{6} = 0{,}95$."
+  "conc": "$H_{6} = \\dfrac{21}{22} \\approx 0{,}95$: cerca del 95% de los datos es menor o igual a 8."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -538,10 +538,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de goles anotados por partido en 20 encuentros. Datos: 1, 0, 2, 1, 0, 2, 3, 1, 0, 1, 2, 0, 1, 4, 1, 0, 2, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$12$",
+   "$8$",
    "$6$",
-   "$11$",
-   "$4$"
+   "$7$",
+   "$5$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -550,9 +550,9 @@ const CD_QUESTIONS = [
    "f_{1}=6,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=6,\\ F_{2}=14,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}30,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 6$."
+  "conc": "El valor $x_{1}=0$ aparece 6 veces en los datos: $f_{1} = 6$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -560,10 +560,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de goles anotados por partido en 20 encuentros. Datos: 1, 0, 2, 1, 0, 2, 3, 1, 0, 1, 2, 0, 1, 4, 1, 0, 2, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$23$",
-   "$8$",
+   "$4$",
+   "$14$",
    "$18$",
-   "$28$"
+   "$19$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -572,9 +572,9 @@ const CD_QUESTIONS = [
    "f_{1}=6,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=6,\\ F_{2}=14,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}30,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 18$."
+  "conc": "$F_{3} = 18$: 18 de los 20 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -582,9 +582,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de goles anotados por partido en 20 encuentros. Datos: 1, 0, 2, 1, 0, 2, 3, 1, 0, 1, 2, 0, 1, 4, 1, 0, 2, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{4}$ (frecuencia relativa de $x_{4}=3$) es:",
   "alts": [
+   "$h_{4} = 0{,}95$",
    "$h_{4} = 0{,}20$",
-   "$h_{4} = 0{,}40$",
-   "$h_{4} = 0{,}30$",
+   "$h_{4} = 0{,}10$",
    "$h_{4} = 0{,}05$"
   ],
   "correct": 3,
@@ -594,9 +594,9 @@ const CD_QUESTIONS = [
    "f_{1}=6,\\ f_{2}=8,\\ f_{3}=4,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=6,\\ F_{2}=14,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}30,\\ h_{2}=0{,}40,\\ h_{3}=0{,}20,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}30,\\ H_{2}=0{,}70,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{4} = 0{,}05$."
+  "conc": "$h_{4} = \\dfrac{1}{20} = 0{,}05$: el 5% de los datos vale 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -605,9 +605,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
    "$3$",
-   "$9$",
-   "$8$",
-   "$0$"
+   "$5$",
+   "$4$",
+   "$2$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -616,9 +616,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=5,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=8,\\ F_{3}=14,\\ F_{4}=16,\\ F_{5}=17,\\ F_{6}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}28,\\ h_{3}=0{,}33,\\ h_{4}=0{,}11,\\ h_{5}=0{,}06,\\ h_{6}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=0$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -626,9 +626,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de libros leídos al mes en 18 estudiantes. Datos: 2, 1, 0, 3, 2, 1, 2, 0, 4, 1, 2, 5, 1, 2, 0, 1, 2, 3. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
-   "$6$",
-   "$9$",
-   "$22$",
+   "$2$",
+   "$14$",
+   "$17$",
    "$16$"
   ],
   "correct": 3,
@@ -638,20 +638,20 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=5,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=8,\\ F_{3}=14,\\ F_{4}=16,\\ F_{5}=17,\\ F_{6}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}28,\\ h_{3}=0{,}33,\\ h_{4}=0{,}11,\\ h_{5}=0{,}06,\\ h_{6}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 16$."
+  "conc": "$F_{4} = 16$: 16 de los 18 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Educación · Lectura",
   "enun": "Se registró el número de libros leídos al mes en 18 estudiantes. Datos: 2, 1, 0, 3, 2, 1, 2, 0, 4, 1, 2, 5, 1, 2, 0, 1, 2, 3. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$, calculada como $F_{5}/n$ y redondeada a 2 decimales) es:",
   "alts": [
-   "$H_{5} = 1{,}00$",
+   "$H_{5} = 0{,}06$",
    "$H_{5} = 0{,}94$",
-   "$H_{5} = 0{,}44$",
-   "$H_{5} = 0{,}89$"
+   "$H_{5} = 0{,}89$",
+   "$H_{5} = 1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -660,9 +660,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=5,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=8,\\ F_{3}=14,\\ F_{4}=16,\\ F_{5}=17,\\ F_{6}=18",
    "h_{1}=0{,}17,\\ h_{2}=0{,}28,\\ h_{3}=0{,}33,\\ h_{4}=0{,}11,\\ h_{5}=0{,}06,\\ h_{6}=0{,}06",
-   "H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}17,\\ H_{2}=0{,}44,\\ H_{3}=0{,}78,\\ H_{4}=0{,}89,\\ H_{5}=0{,}94,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{5} = 0{,}94$."
+  "conc": "$H_{5} = \\dfrac{17}{18} \\approx 0{,}94$: cerca del 94% de los datos es menor o igual a 4."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -670,10 +670,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de accidentes de tránsito por mes en 20 meses. Datos: 1, 2, 0, 1, 3, 2, 1, 0, 1, 2, 4, 1, 0, 2, 1, 1, 0, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$1$",
-   "$10$",
+   "$9$",
+   "$5$",
    "$4$",
-   "$0$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -682,9 +682,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=9,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}45,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=0$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -692,10 +692,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de accidentes de tránsito por mes en 20 meses. Datos: 1, 2, 0, 1, 3, 2, 1, 0, 1, 2, 4, 1, 0, 2, 1, 1, 0, 2, 1, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$7$",
-   "$29$",
+   "$5$",
+   "$13$",
    "$18$",
-   "$24$"
+   "$19$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -704,9 +704,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=9,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}45,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 18$."
+  "conc": "$F_{3} = 18$: 18 de los 20 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -715,9 +715,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{4}$ (frecuencia relativa de $x_{4}=3$) es:",
   "alts": [
    "$h_{4} = 0{,}05$",
+   "$h_{4} = 0{,}95$",
    "$h_{4} = 0{,}25$",
-   "$h_{4} = 0{,}20$",
-   "$h_{4} = 0{,}45$"
+   "$h_{4} = 0{,}20$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -726,9 +726,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=9,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=13,\\ F_{3}=18,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}45,\\ h_{3}=0{,}25,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}65,\\ H_{3}=0{,}90,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{4} = 0{,}05$."
+  "conc": "$h_{4} = \\dfrac{1}{20} = 0{,}05$: el 5% de los datos vale 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -736,10 +736,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de defectos por lote en 21 lotes de producción. Datos: 2, 1, 0, 3, 2, 1, 0, 1, 4, 2, 1, 0, 3, 2, 1, 5, 2, 1, 0, 2, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$11$",
+   "$7$",
    "$4$",
-   "$0$",
-   "$10$"
+   "$5$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -748,9 +748,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20,\\ F_{6}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}33,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=0$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -758,10 +758,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de defectos por lote en 21 lotes de producción. Datos: 2, 1, 0, 3, 2, 1, 0, 1, 4, 2, 1, 0, 3, 2, 1, 5, 2, 1, 0, 2, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
-   "$15$",
+   "$2$",
    "$19$",
-   "$5$",
-   "$28$"
+   "$17$",
+   "$20$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -770,19 +770,19 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20,\\ F_{6}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}33,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 19$."
+  "conc": "$F_{4} = 19$: 19 de los 21 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Producción · Control de calidad",
   "enun": "Se registró el número de defectos por lote en 21 lotes de producción. Datos: 2, 1, 0, 3, 2, 1, 0, 1, 4, 2, 1, 0, 3, 2, 1, 5, 2, 1, 0, 2, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$, calculada como $F_{5}/n$ y redondeada a 2 decimales) es:",
   "alts": [
-   "$H_{5} = 0{,}52$",
+   "$H_{5} = 0{,}05$",
    "$H_{5} = 0{,}90$",
-   "$H_{5} = 0{,}81$",
+   "$H_{5} = 1{,}00$",
    "$H_{5} = 0{,}95$"
   ],
   "correct": 3,
@@ -792,9 +792,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20,\\ F_{6}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}33,\\ h_{3}=0{,}29,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}52,\\ H_{3}=0{,}81,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{5} = 0{,}95$."
+  "conc": "$H_{5} = \\dfrac{20}{21} \\approx 0{,}95$: cerca del 95% de los datos es menor o igual a 4."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -802,10 +802,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de visitas al médico al año en 20 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 3, 5, 2, 3, 1, 2, 3, 4, 2, 3, 6, 2, 3. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$10$",
-   "$8$",
+   "$2$",
+   "$3$",
    "$1$",
-   "$9$"
+   "$4$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -814,9 +814,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=2,\\ f_{3}=6,\\ f_{4}=7,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=3,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=18,\\ F_{6}=19,\\ F_{7}=20",
    "h_{1}=0{,}05,\\ h_{2}=0{,}10,\\ h_{3}=0{,}30,\\ h_{4}=0{,}35,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 1$."
+  "conc": "El valor $x_{1}=0$ aparece 1 vez en los datos: $f_{1} = 1$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -824,9 +824,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de visitas al médico al año en 20 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 3, 5, 2, 3, 1, 2, 3, 4, 2, 3, 6, 2, 3. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
-   "$11$",
-   "$25$",
-   "$22$",
+   "$7$",
+   "$9$",
+   "$18$",
    "$16$"
   ],
   "correct": 3,
@@ -836,9 +836,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=2,\\ f_{3}=6,\\ f_{4}=7,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=3,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=18,\\ F_{6}=19,\\ F_{7}=20",
    "h_{1}=0{,}05,\\ h_{2}=0{,}10,\\ h_{3}=0{,}30,\\ h_{4}=0{,}35,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 16$."
+  "conc": "$F_{4} = 16$: 16 de los 20 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -846,10 +846,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de visitas al médico al año en 20 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 3, 5, 2, 3, 1, 2, 3, 4, 2, 3, 6, 2, 3. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{6}$ (frecuencia relativa de $x_{6}=5$) es:",
   "alts": [
-   "$h_{6} = 0{,}10$",
+   "$h_{6} = 0{,}95$",
    "$h_{6} = 0{,}05$",
-   "$h_{6} = 0{,}30$",
-   "$h_{6} = 0{,}35$"
+   "$h_{6} = 0{,}10$",
+   "$h_{6} = 0{,}14$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -858,9 +858,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=2,\\ f_{3}=6,\\ f_{4}=7,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=3,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=18,\\ F_{6}=19,\\ F_{7}=20",
    "h_{1}=0{,}05,\\ h_{2}=0{,}10,\\ h_{3}=0{,}30,\\ h_{4}=0{,}35,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}15,\\ H_{3}=0{,}45,\\ H_{4}=0{,}80,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{6} = 0{,}05$."
+  "conc": "$h_{6} = \\dfrac{1}{20} = 0{,}05$: el 5% de los datos vale 5."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -869,9 +869,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
    "$9$",
-   "$11$",
-   "$4$",
-   "$17$"
+   "$7$",
+   "$10$",
+   "$8$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=19\\text{):}",
@@ -880,9 +880,9 @@ const CD_QUESTIONS = [
    "f_{1}=9,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=1",
    "F_{1}=9,\\ F_{2}=16,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}47,\\ h_{2}=0{,}37,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 9$."
+  "conc": "El valor $x_{1}=0$ aparece 9 veces en los datos: $f_{1} = 9$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -890,10 +890,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de materias reprobadas por semestre en 19 estudiantes. Datos: 0, 1, 0, 2, 0, 1, 0, 3, 1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$28$",
-   "$8$",
+   "$2$",
+   "$16$",
    "$18$",
-   "$13$"
+   "$19$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=19\\text{):}",
@@ -902,18 +902,18 @@ const CD_QUESTIONS = [
    "f_{1}=9,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=1",
    "F_{1}=9,\\ F_{2}=16,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}47,\\ h_{2}=0{,}37,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 18$."
+  "conc": "$F_{3} = 18$: 18 de los 19 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Educación · Rendimiento",
   "enun": "Se registró el número de materias reprobadas por semestre en 19 estudiantes. Datos: 0, 1, 0, 2, 0, 1, 0, 3, 1, 0, 1, 0, 2, 0, 1, 0, 1, 0, 1. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{4}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{3}$ (frecuencia relativa acumulada hasta $x_{3}=2$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{3}$ (frecuencia relativa acumulada hasta $x_{3}=2$, calculada como $F_{3}/n$ y redondeada a 2 decimales) es:",
   "alts": [
+   "$H_{3} = 0{,}11$",
    "$H_{3} = 0{,}84$",
-   "$H_{3} = 0{,}47$",
    "$H_{3} = 0{,}95$",
    "$H_{3} = 1{,}00$"
   ],
@@ -924,9 +924,9 @@ const CD_QUESTIONS = [
    "f_{1}=9,\\ f_{2}=7,\\ f_{3}=2,\\ f_{4}=1",
    "F_{1}=9,\\ F_{2}=16,\\ F_{3}=18,\\ F_{4}=19",
    "h_{1}=0{,}47,\\ h_{2}=0{,}37,\\ h_{3}=0{,}11,\\ h_{4}=0{,}05",
-   "H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}47,\\ H_{2}=0{,}84,\\ H_{3}=0{,}95,\\ H_{4}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{3} = 0{,}95$."
+  "conc": "$H_{3} = \\dfrac{18}{19} \\approx 0{,}95$: cerca del 95% de los datos es menor o igual a 2."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -934,8 +934,8 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de correos recibidos por hora en 22 registros de una oficina. Datos: 4, 5, 6, 4, 7, 5, 4, 6, 3, 5, 4, 8, 5, 4, 6, 5, 2, 4, 5, 6, 4, 5. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=2$) es:",
   "alts": [
-   "$10$",
-   "$11$",
+   "$2$",
+   "$3$",
    "$4$",
    "$1$"
   ],
@@ -946,9 +946,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 1$."
+  "conc": "El valor $x_{1}=2$ aparece 1 vez en los datos: $f_{1} = 1$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -957,9 +957,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=5$) es:",
   "alts": [
    "$16$",
-   "$26$",
-   "$23$",
-   "$10$"
+   "$7$",
+   "$9$",
+   "$20$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=22\\text{):}",
@@ -968,9 +968,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 16$."
+  "conc": "$F_{4} = 16$: 16 de los 22 datos son menores o iguales a 5."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -978,9 +978,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de correos recibidos por hora en 22 registros de una oficina. Datos: 4, 5, 6, 4, 7, 5, 4, 6, 3, 5, 4, 8, 5, 4, 6, 5, 2, 4, 5, 6, 4, 5. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{6}$ (frecuencia relativa de $x_{6}=7$) es:",
   "alts": [
-   "$h_{6} = 0{,}09$",
-   "$h_{6} = 0{,}32$",
+   "$h_{6} = 0{,}95$",
    "$h_{6} = 0{,}18$",
+   "$h_{6} = 0{,}14$",
    "$h_{6} = 0{,}05$"
   ],
   "correct": 3,
@@ -990,9 +990,9 @@ const CD_QUESTIONS = [
    "f_{1}=1,\\ f_{2}=1,\\ f_{3}=7,\\ f_{4}=7,\\ f_{5}=4,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=1,\\ F_{2}=2,\\ F_{3}=9,\\ F_{4}=16,\\ F_{5}=20,\\ F_{6}=21,\\ F_{7}=22",
    "h_{1}=0{,}05,\\ h_{2}=0{,}05,\\ h_{3}=0{,}32,\\ h_{4}=0{,}32,\\ h_{5}=0{,}18,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}05,\\ H_{2}=0{,}09,\\ H_{3}=0{,}41,\\ H_{4}=0{,}73,\\ H_{5}=0{,}91,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{6} = 0{,}05$."
+  "conc": "$h_{6} = \\dfrac{1}{22} \\approx 0{,}05$: cerca del 5% de los datos vale 7."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -1001,9 +1001,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=1$) es:",
   "alts": [
    "$6$",
-   "$13$",
+   "$4$",
    "$3$",
-   "$7$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1012,9 +1012,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=3,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=15,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}30,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 3$."
+  "conc": "El valor $x_{1}=1$ aparece 3 veces en los datos: $f_{1} = 3$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -1022,10 +1022,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de productos comprados por boleta en 20 boletas. Datos: 3, 2, 4, 1, 3, 2, 5, 3, 2, 4, 1, 3, 6, 2, 3, 4, 2, 3, 1, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=4$) es:",
   "alts": [
-   "$12$",
-   "$29$",
+   "$3$",
+   "$15$",
    "$18$",
-   "$7$"
+   "$19$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1034,20 +1034,20 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=3,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=15,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}30,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 18$."
+  "conc": "$F_{4} = 18$: 18 de los 20 datos son menores o iguales a 4."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Retail · Supermercado",
   "enun": "Se registró el número de productos comprados por boleta en 20 boletas. Datos: 3, 2, 4, 1, 3, 2, 5, 3, 2, 4, 1, 3, 6, 2, 3, 4, 2, 3, 1, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=5$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=5$, calculada como $F_{5}/n$ y redondeada a 2 decimales) es:",
   "alts": [
    "$H_{5} = 0{,}95$",
-   "$H_{5} = 1{,}00$",
+   "$H_{5} = 0{,}05$",
    "$H_{5} = 0{,}90$",
-   "$H_{5} = 0{,}15$"
+   "$H_{5} = 1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1056,9 +1056,9 @@ const CD_QUESTIONS = [
    "f_{1}=3,\\ f_{2}=6,\\ f_{3}=6,\\ f_{4}=3,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=3,\\ F_{2}=9,\\ F_{3}=15,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}15,\\ h_{2}=0{,}30,\\ h_{3}=0{,}30,\\ h_{4}=0{,}15,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}15,\\ H_{2}=0{,}45,\\ H_{3}=0{,}75,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{5} = 0{,}95$."
+  "conc": "$H_{5} = \\dfrac{19}{20} = 0{,}95$: el 95% de los datos es menor o igual a 5."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -1067,9 +1067,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
    "$4$",
-   "$9$",
-   "$8$",
-   "$15$"
+   "$7$",
+   "$5$",
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -1078,9 +1078,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}22,\\ h_{2}=0{,}39,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=0$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -1088,10 +1088,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de reclamos recibidos por semana en 18 semanas de una tienda online. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 1, 2, 4, 1, 0, 2, 1, 1, 2, 0. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=2$) es:",
   "alts": [
-   "$27$",
+   "$5$",
    "$16$",
-   "$9$",
-   "$19$"
+   "$11$",
+   "$17$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -1100,9 +1100,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}22,\\ h_{2}=0{,}39,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 16$."
+  "conc": "$F_{3} = 16$: 16 de los 18 datos son menores o iguales a 2."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -1110,10 +1110,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de reclamos recibidos por semana en 18 semanas de una tienda online. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 1, 2, 4, 1, 0, 2, 1, 1, 2, 0. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{4}$ (frecuencia relativa de $x_{4}=3$) es:",
   "alts": [
-   "$h_{4} = 0{,}39$",
+   "$h_{4} = 0{,}94$",
    "$h_{4} = 0{,}06$",
    "$h_{4} = 0{,}28$",
-   "$h_{4} = 0{,}22$"
+   "$h_{4} = 0{,}20$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=18\\text{):}",
@@ -1122,9 +1122,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=5,\\ f_{4}=1,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=16,\\ F_{4}=17,\\ F_{5}=18",
    "h_{1}=0{,}22,\\ h_{2}=0{,}39,\\ h_{3}=0{,}28,\\ h_{4}=0{,}06,\\ h_{5}=0{,}06",
-   "H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}22,\\ H_{2}=0{,}61,\\ H_{3}=0{,}89,\\ H_{4}=0{,}94,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{4} = 0{,}06$."
+  "conc": "$h_{4} = \\dfrac{1}{18} \\approx 0{,}06$: cerca del 6% de los datos vale 3."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -1132,9 +1132,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de días de atraso en el pago en 20 facturas. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 2, 1, 0, 1, 4, 0, 1, 2, 0, 1, 5. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$0$",
-   "$11$",
-   "$12$",
+   "$8$",
+   "$6$",
+   "$9$",
    "$7$"
   ],
   "correct": 3,
@@ -1144,9 +1144,9 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=3,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=7,\\ F_{2}=14,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}35,\\ h_{2}=0{,}35,\\ h_{3}=0{,}15,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 7$."
+  "conc": "El valor $x_{1}=0$ aparece 7 veces en los datos: $f_{1} = 7$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -1155,9 +1155,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
    "$18$",
-   "$6$",
-   "$11$",
-   "$25$"
+   "$1$",
+   "$17$",
+   "$19$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1166,19 +1166,19 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=3,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=7,\\ F_{2}=14,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}35,\\ h_{2}=0{,}35,\\ h_{3}=0{,}15,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 18$."
+  "conc": "$F_{4} = 18$: 18 de los 20 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Finanzas · Facturación",
   "enun": "Se registró el número de días de atraso en el pago en 20 facturas. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 2, 1, 0, 1, 4, 0, 1, 2, 0, 1, 5. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{6}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{5}$ (frecuencia relativa acumulada hasta $x_{5}=4$, calculada como $F_{5}/n$ y redondeada a 2 decimales) es:",
   "alts": [
-   "$H_{5} = 1{,}00$",
-   "$H_{5} = 0{,}70$",
+   "$H_{5} = 0{,}05$",
    "$H_{5} = 0{,}90$",
+   "$H_{5} = 1{,}00$",
    "$H_{5} = 0{,}95$"
   ],
   "correct": 3,
@@ -1188,9 +1188,9 @@ const CD_QUESTIONS = [
    "f_{1}=7,\\ f_{2}=7,\\ f_{3}=3,\\ f_{4}=1,\\ f_{5}=1,\\ f_{6}=1",
    "F_{1}=7,\\ F_{2}=14,\\ F_{3}=17,\\ F_{4}=18,\\ F_{5}=19,\\ F_{6}=20",
    "h_{1}=0{,}35,\\ h_{2}=0{,}35,\\ h_{3}=0{,}15,\\ h_{4}=0{,}05,\\ h_{5}=0{,}05,\\ h_{6}=0{,}05",
-   "H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}35,\\ H_{2}=0{,}70,\\ H_{3}=0{,}85,\\ H_{4}=0{,}90,\\ H_{5}=0{,}95,\\ H_{6}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{5} = 0{,}95$."
+  "conc": "$H_{5} = \\dfrac{19}{20} = 0{,}95$: el 95% de los datos es menor o igual a 4."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -1198,10 +1198,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de horas extra trabajadas en la semana en 21 empleados. Datos: 2, 0, 3, 1, 4, 2, 0, 3, 2, 1, 5, 2, 0, 3, 2, 1, 4, 2, 0, 6, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=0$) es:",
   "alts": [
-   "$10$",
+   "$3$",
    "$4$",
-   "$9$",
-   "$2$"
+   "$5$",
+   "$6$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -1210,9 +1210,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=3,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=4,\\ F_{2}=7,\\ F_{3}=14,\\ F_{4}=17,\\ F_{5}=19,\\ F_{6}=20,\\ F_{7}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}14,\\ h_{3}=0{,}33,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=0$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -1221,9 +1221,9 @@ const CD_QUESTIONS = [
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{4}$ (frecuencia absoluta acumulada hasta $x_{4}=3$) es:",
   "alts": [
    "$17$",
-   "$22$",
-   "$7$",
-   "$27$"
+   "$3$",
+   "$14$",
+   "$19$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=21\\text{):}",
@@ -1232,9 +1232,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=3,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=4,\\ F_{2}=7,\\ F_{3}=14,\\ F_{4}=17,\\ F_{5}=19,\\ F_{6}=20,\\ F_{7}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}14,\\ h_{3}=0{,}33,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{4} = 17$."
+  "conc": "$F_{4} = 17$: 17 de los 21 datos son menores o iguales a 3."
  },
  {
   "tipo": "Tabla completa · h_i",
@@ -1242,8 +1242,8 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de horas extra trabajadas en la semana en 21 empleados. Datos: 2, 0, 3, 1, 4, 2, 0, 3, 2, 1, 5, 2, 0, 3, 2, 1, 4, 2, 0, 6, 2. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{7}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $h_{6}$ (frecuencia relativa de $x_{6}=5$) es:",
   "alts": [
+   "$h_{6} = 0{,}95$",
    "$h_{6} = 0{,}10$",
-   "$h_{6} = 0{,}19$",
    "$h_{6} = 0{,}05$",
    "$h_{6} = 0{,}14$"
   ],
@@ -1254,9 +1254,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=3,\\ f_{3}=7,\\ f_{4}=3,\\ f_{5}=2,\\ f_{6}=1,\\ f_{7}=1",
    "F_{1}=4,\\ F_{2}=7,\\ F_{3}=14,\\ F_{4}=17,\\ F_{5}=19,\\ F_{6}=20,\\ F_{7}=21",
    "h_{1}=0{,}19,\\ h_{2}=0{,}14,\\ h_{3}=0{,}33,\\ h_{4}=0{,}14,\\ h_{5}=0{,}10,\\ h_{6}=0{,}05,\\ h_{7}=0{,}05",
-   "H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}19,\\ H_{2}=0{,}33,\\ H_{3}=0{,}67,\\ H_{4}=0{,}81,\\ H_{5}=0{,}90,\\ H_{6}=0{,}95,\\ H_{7}=1{,}00"
   ],
-  "conc": "El valor pedido es $h_{6} = 0{,}05$."
+  "conc": "$h_{6} = \\dfrac{1}{21} \\approx 0{,}05$: cerca del 5% de los datos vale 5."
  },
  {
   "tipo": "Tabla completa · f_i",
@@ -1264,10 +1264,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de dispositivos conectados a la red wifi en 20 hogares. Datos: 4, 5, 3, 6, 4, 5, 3, 4, 7, 5, 4, 3, 5, 4, 6, 5, 3, 4, 5, 4. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $f_{1}$ (frecuencia absoluta de $x_{1}=3$) es:",
   "alts": [
-   "$1$",
+   "$7$",
    "$4$",
-   "$9$",
-   "$10$"
+   "$5$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1276,9 +1276,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $f_{1} = 4$."
+  "conc": "El valor $x_{1}=3$ aparece 4 veces en los datos: $f_{1} = 4$."
  },
  {
   "tipo": "Tabla completa · F_i acumulada",
@@ -1286,9 +1286,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de dispositivos conectados a la red wifi en 20 hogares. Datos: 4, 5, 3, 6, 4, 5, 3, 4, 7, 5, 4, 3, 5, 4, 6, 5, 3, 4, 5, 4. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
   "ask": "Construyendo la tabla de frecuencias, el valor de $F_{3}$ (frecuencia absoluta acumulada hasta $x_{3}=5$) es:",
   "alts": [
-   "$25$",
-   "$4$",
-   "$9$",
+   "$6$",
+   "$11$",
+   "$19$",
    "$17$"
   ],
   "correct": 3,
@@ -1298,20 +1298,20 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $F_{3} = 17$."
+  "conc": "$F_{3} = 17$: 17 de los 20 datos son menores o iguales a 5."
  },
  {
   "tipo": "Tabla completa · H_i acumulada",
   "ctx": "Hogar · Conectividad",
   "enun": "Se registró el número de dispositivos conectados a la red wifi en 20 hogares. Datos: 4, 5, 3, 6, 4, 5, 3, 4, 7, 5, 4, 3, 5, 4, 6, 5, 3, 4, 5, 4. Los valores se ordenan de menor a mayor: $x_1 < x_2 < \\dots < x_{5}$.",
-  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=6$) es:",
+  "ask": "Construyendo la tabla de frecuencias, el valor de $H_{4}$ (frecuencia relativa acumulada hasta $x_{4}=6$, calculada como $F_{4}/n$ y redondeada a 2 decimales) es:",
   "alts": [
    "$H_{4} = 0{,}95$",
-   "$H_{4} = 0{,}20$",
-   "$H_{4} = 1{,}00$",
-   "$H_{4} = 0{,}55$"
+   "$H_{4} = 0{,}10$",
+   "$H_{4} = 0{,}85$",
+   "$H_{4} = 1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Conteo ordenado de valores (}n=20\\text{):}",
@@ -1320,9 +1320,9 @@ const CD_QUESTIONS = [
    "f_{1}=4,\\ f_{2}=7,\\ f_{3}=6,\\ f_{4}=2,\\ f_{5}=1",
    "F_{1}=4,\\ F_{2}=11,\\ F_{3}=17,\\ F_{4}=19,\\ F_{5}=20",
    "h_{1}=0{,}20,\\ h_{2}=0{,}35,\\ h_{3}=0{,}30,\\ h_{4}=0{,}10,\\ h_{5}=0{,}05",
-   "H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
+   "H_{i}=F_{i}/n:\\ H_{1}=0{,}20,\\ H_{2}=0{,}55,\\ H_{3}=0{,}85,\\ H_{4}=0{,}95,\\ H_{5}=1{,}00"
   ],
-  "conc": "El valor pedido es $H_{4} = 0{,}95$."
+  "conc": "$H_{4} = \\dfrac{19}{20} = 0{,}95$: el 95% de los datos es menor o igual a 6."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1389,11 +1389,11 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos familias registran a lo más 2 hijos?",
+  "ask": "¿Cuántas familias registran a lo más 2 hijos?",
   "alts": [
-   "$21$",
-   "$32$",
-   "$56$",
+   "$25$",
+   "$10$",
+   "$15$",
    "$40$"
   ],
   "correct": 3,
@@ -1401,7 +1401,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 40"
   ],
-  "conc": "Se lee directo de la acumulada: <b>40</b>."
+  "conc": "<b>40</b> de las 50 familias registran a lo más 2 hijos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1468,19 +1468,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos familias registran más de 2 hijos?",
+  "ask": "¿Cuántas familias registran más de 2 hijos?",
   "alts": [
-   "$15$",
-   "$18$",
+   "$25$",
+   "$40$",
    "$10$",
-   "$1$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 50 - 40 = 10"
   ],
-  "conc": "El valor pedido es <b>10</b>."
+  "conc": "<b>10</b> de las 50 familias registran más de 2 hijos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1547,19 +1547,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos familias registran entre 1 y 3 hijos (inclusive)?",
+  "ask": "¿Cuántas familias registran entre 1 y 3 hijos (inclusive)?",
   "alts": [
-   "$50$",
-   "$16$",
-   "$27$",
+   "$22$",
+   "$30$",
+   "$15$",
    "$37$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 47 - 10 = 37"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 47 - 10 = 37"
   ],
-  "conc": "El valor pedido es <b>37</b>."
+  "conc": "<b>37</b> de las 50 familias registran entre 1 y 3 hijos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1629,16 +1629,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de familias registra menos de 2 hijos?",
   "alts": [
    "$50\\%$",
-   "$38\\%$",
-   "$89\\%$",
-   "$59\\%$"
+   "$80\\%$",
+   "$20\\%$",
+   "$30\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"menos de } 2\\text{\"} = \\dfrac{F(1)}{n}\\times 100 = \\dfrac{25}{50}\\times 100 = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> de las familias registra menos de 2 hijos (25 de 50)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1697,19 +1697,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos hogares registran a lo más 1 mascotas?",
+  "ask": "¿Cuántos hogares registran a lo más 1 mascota?",
   "alts": [
    "$28$",
-   "$23$",
-   "$39$",
-   "$11$"
+   "$12$",
+   "$16$",
+   "$36$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 28"
   ],
-  "conc": "Se lee directo de la acumulada: <b>28</b>."
+  "conc": "<b>28</b> de los 40 hogares registran a lo más 1 mascota."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1768,19 +1768,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos hogares registran más de 1 mascotas?",
+  "ask": "¿Cuántos hogares registran más de 1 mascota?",
   "alts": [
-   "$19$",
+   "$28$",
    "$12$",
    "$4$",
-   "$16$"
+   "$8$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 1\\text{\"} = n - F(1) = 40 - 28 = 12"
   ],
-  "conc": "El valor pedido es <b>12</b>."
+  "conc": "<b>12</b> de los 40 hogares registran más de 1 mascota."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1841,17 +1841,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares registran entre 0 y 2 mascotas (inclusive)?",
   "alts": [
+   "$24$",
    "$28$",
-   "$51$",
    "$36$",
-   "$19$"
+   "$16$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(-1) = 36 - 0 = 36"
+   "\\text{\"entre } 0\\text{ y }2\\text{\" (inclusive)} = F(2) = 36\\quad(\\text{0 es el menor valor})"
   ],
-  "conc": "El valor pedido es <b>36</b>."
+  "conc": "<b>36</b> de los 40 hogares registran entre 0 y 2 mascotas (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1913,8 +1913,8 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de hogares registra al menos 2 mascotas?",
   "alts": [
    "$10\\%$",
-   "$43\\%$",
-   "$51\\%$",
+   "$70\\%$",
+   "$20\\%$",
    "$30\\%$"
   ],
   "correct": 3,
@@ -1922,7 +1922,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"al menos } 2\\text{\"} = \\dfrac{n - F(1)}{n}\\times 100 = \\dfrac{12}{40}\\times 100 = 30\\%"
   ],
-  "conc": "El porcentaje pedido es <b>30%</b>."
+  "conc": "El <b>30%</b> de los hogares registra al menos 2 mascotas (12 de 40)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -1981,19 +1981,19 @@ const CD_QUESTIONS = [
    ],
    "N": 60
   },
-  "ask": "¿Cuántos hogares registran a lo más 1 autos?",
+  "ask": "¿Cuántos hogares registran a lo más 1 auto?",
   "alts": [
    "$36$",
-   "$17$",
-   "$26$",
-   "$48$"
+   "$9$",
+   "$24$",
+   "$27$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 36"
   ],
-  "conc": "Se lee directo de la acumulada: <b>36</b>."
+  "conc": "<b>36</b> de los 60 hogares registran a lo más 1 auto."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2054,9 +2054,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares registran más de 2 autos?",
   "alts": [
-   "$8$",
-   "$14$",
-   "$1$",
+   "$24$",
+   "$54$",
+   "$7$",
    "$6$"
   ],
   "correct": 3,
@@ -2064,7 +2064,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 60 - 54 = 6"
   ],
-  "conc": "El valor pedido es <b>6</b>."
+  "conc": "<b>6</b> de los 60 hogares registran más de 2 autos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2125,17 +2125,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares registran entre 1 y 2 autos (inclusive)?",
   "alts": [
-   "$36$",
+   "$18$",
    "$45$",
-   "$23$",
-   "$63$"
+   "$27$",
+   "$54$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(0) = 54 - 9 = 45"
+   "\\text{\"entre } 1\\text{ y }2\\text{\" (inclusive)} = F(2) - F(0) = 54 - 9 = 45"
   ],
-  "conc": "El valor pedido es <b>45</b>."
+  "conc": "<b>45</b> de los 60 hogares registran entre 1 y 2 autos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2196,17 +2196,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de hogares registra menos de 3 autos?",
   "alts": [
-   "$62\\%$",
-   "$97\\%$",
+   "$100\\%$",
+   "$10\\%$",
    "$90\\%$",
-   "$100\\%$"
+   "$60\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"menos de } 3\\text{\"} = \\dfrac{F(2)}{n}\\times 100 = \\dfrac{54}{60}\\times 100 = 90\\%"
   ],
-  "conc": "El porcentaje pedido es <b>90%</b>."
+  "conc": "El <b>90%</b> de los hogares registra menos de 3 autos (54 de 60)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2267,17 +2267,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos departamentos registran a lo más 2 dormitorios?",
   "alts": [
-   "$53$",
-   "$19$",
+   "$8$",
+   "$32$",
    "$40$",
-   "$30$"
+   "$72$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 40"
   ],
-  "conc": "Se lee directo de la acumulada: <b>40</b>."
+  "conc": "<b>40</b> de los 80 departamentos registran a lo más 2 dormitorios."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2338,17 +2338,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos departamentos registran más de 3 dormitorios?",
   "alts": [
-   "$4$",
+   "$40$",
    "$8$",
-   "$14$",
-   "$15$"
+   "$72$",
+   "$9$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 3\\text{\"} = n - F(3) = 80 - 72 = 8"
   ],
-  "conc": "El valor pedido es <b>8</b>."
+  "conc": "<b>8</b> de los 80 departamentos registran más de 3 dormitorios."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2409,17 +2409,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos departamentos registran entre 2 y 3 dormitorios (inclusive)?",
   "alts": [
-   "$29$",
+   "$32$",
    "$64$",
-   "$87$",
-   "$53$"
+   "$72$",
+   "$65$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(1) = 72 - 8 = 64"
+   "\\text{\"entre } 2\\text{ y }3\\text{\" (inclusive)} = F(3) - F(1) = 72 - 8 = 64"
   ],
-  "conc": "El valor pedido es <b>64</b>."
+  "conc": "<b>64</b> de los 80 departamentos registran entre 2 y 3 dormitorios (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2481,16 +2481,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de departamentos registra al menos 3 dormitorios?",
   "alts": [
    "$50\\%$",
-   "$61\\%$",
-   "$65\\%$",
-   "$34\\%$"
+   "$10\\%$",
+   "$40\\%$",
+   "$90\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 3\\text{\"} = \\dfrac{n - F(2)}{n}\\times 100 = \\dfrac{40}{80}\\times 100 = 50\\%"
   ],
-  "conc": "El porcentaje pedido es <b>50%</b>."
+  "conc": "El <b>50%</b> de los departamentos registra al menos 3 dormitorios (40 de 80)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2557,11 +2557,11 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos sucursales registran a lo más 3 empleados?",
+  "ask": "¿Cuántas sucursales registran a lo más 3 empleados?",
   "alts": [
-   "$24$",
+   "$5$",
+   "$35$",
    "$10$",
-   "$7$",
    "$15$"
   ],
   "correct": 3,
@@ -2569,7 +2569,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"a lo más } 3\\text{\"} = F(3) = 15"
   ],
-  "conc": "Se lee directo de la acumulada: <b>15</b>."
+  "conc": "<b>15</b> de las 50 sucursales registran a lo más 3 empleados."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2636,10 +2636,10 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos sucursales registran más de 4 empleados?",
+  "ask": "¿Cuántas sucursales registran más de 4 empleados?",
   "alts": [
-   "$21$",
-   "$24$",
+   "$35$",
+   "$5$",
    "$15$",
    "$10$"
   ],
@@ -2648,7 +2648,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 4\\text{\"} = n - F(4) = 50 - 35 = 15"
   ],
-  "conc": "El valor pedido es <b>15</b>."
+  "conc": "<b>15</b> de las 50 sucursales registran más de 4 empleados."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2715,19 +2715,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos sucursales registran entre 3 y 5 empleados (inclusive)?",
+  "ask": "¿Cuántas sucursales registran entre 3 y 5 empleados (inclusive)?",
   "alts": [
-   "$54$",
-   "$18$",
-   "$29$",
+   "$30$",
+   "$20$",
+   "$45$",
    "$40$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(5) - F(2) = 45 - 5 = 40"
+   "\\text{\"entre } 3\\text{ y }5\\text{\" (inclusive)} = F(5) - F(2) = 45 - 5 = 40"
   ],
-  "conc": "El valor pedido es <b>40</b>."
+  "conc": "<b>40</b> de las 50 sucursales registran entre 3 y 5 empleados (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2797,16 +2797,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de sucursales registra menos de 4 empleados?",
   "alts": [
    "$30\\%$",
-   "$6\\%$",
-   "$57\\%$",
-   "$35\\%$"
+   "$70\\%$",
+   "$10\\%$",
+   "$20\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"menos de } 4\\text{\"} = \\dfrac{F(3)}{n}\\times 100 = \\dfrac{15}{50}\\times 100 = 30\\%"
   ],
-  "conc": "El porcentaje pedido es <b>30%</b>."
+  "conc": "El <b>30%</b> de las sucursales registra menos de 4 empleados (15 de 50)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2873,19 +2873,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos páginas registran a lo más 1 errores?",
+  "ask": "¿Cuántas páginas registran a lo más 1 error?",
   "alts": [
    "$55$",
+   "$20$",
    "$45$",
-   "$75$",
-   "$30$"
+   "$35$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 55"
   ],
-  "conc": "Se lee directo de la acumulada: <b>55</b>."
+  "conc": "<b>55</b> de las 100 páginas registran a lo más 1 error."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -2952,19 +2952,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos páginas registran más de 2 errores?",
+  "ask": "¿Cuántas páginas registran más de 2 errores?",
   "alts": [
-   "$31$",
-   "$9$",
+   "$45$",
+   "$80$",
    "$20$",
-   "$26$"
+   "$5$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 100 - 80 = 20"
   ],
-  "conc": "El valor pedido es <b>20</b>."
+  "conc": "<b>20</b> de las 100 páginas registran más de 2 errores."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3031,19 +3031,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos páginas registran entre 1 y 3 errores (inclusive)?",
+  "ask": "¿Cuántas páginas registran entre 1 y 3 errores (inclusive)?",
   "alts": [
+   "$40$",
    "$60$",
-   "$98$",
    "$75$",
-   "$39$"
+   "$25$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 95 - 20 = 75"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 95 - 20 = 75"
   ],
-  "conc": "El valor pedido es <b>75</b>."
+  "conc": "<b>75</b> de las 100 páginas registran entre 1 y 3 errores (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3112,9 +3112,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de páginas registra exactamente 0 errores?",
   "alts": [
-   "$59\\%$",
-   "$8\\%$",
-   "$29\\%$",
+   "$55\\%$",
+   "$80\\%$",
+   "$35\\%$",
    "$20\\%$"
   ],
   "correct": 3,
@@ -3122,7 +3122,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\dfrac{f(x=0)}{n}\\times 100 = \\dfrac{20}{100}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de las páginas registra exactamente 0 errores (20 de 100)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3192,16 +3192,16 @@ const CD_QUESTIONS = [
   "ask": "¿Cuántos turnos registran a lo más 4 llamadas?",
   "alts": [
    "$27$",
-   "$10$",
-   "$22$",
-   "$38$"
+   "$9$",
+   "$63$",
+   "$18$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 4\\text{\"} = F(4) = 27"
   ],
-  "conc": "Se lee directo de la acumulada: <b>27</b>."
+  "conc": "<b>27</b> de los 90 turnos registran a lo más 4 llamadas."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3270,9 +3270,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos turnos registran más de 5 llamadas?",
   "alts": [
-   "$43$",
-   "$52$",
-   "$22$",
+   "$63$",
+   "$54$",
+   "$9$",
    "$36$"
   ],
   "correct": 3,
@@ -3280,7 +3280,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 5\\text{\"} = n - F(5) = 90 - 54 = 36"
   ],
-  "conc": "El valor pedido es <b>36</b>."
+  "conc": "<b>36</b> de los 90 turnos registran más de 5 llamadas."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3349,17 +3349,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos turnos registran entre 4 y 6 llamadas (inclusive)?",
   "alts": [
-   "$58$",
-   "$37$",
+   "$54$",
+   "$45$",
    "$72$",
-   "$99$"
+   "$27$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(6) - F(3) = 81 - 9 = 72"
+   "\\text{\"entre } 4\\text{ y }6\\text{\" (inclusive)} = F(6) - F(3) = 81 - 9 = 72"
   ],
-  "conc": "El valor pedido es <b>72</b>."
+  "conc": "<b>72</b> de los 90 turnos registran entre 4 y 6 llamadas (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3428,17 +3428,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de turnos registra al menos 6 llamadas?",
   "alts": [
-   "$20\\%$",
-   "$53\\%$",
+   "$10\\%$",
+   "$60\\%$",
    "$40\\%$",
-   "$61\\%$"
+   "$30\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 6\\text{\"} = \\dfrac{n - F(5)}{n}\\times 100 = \\dfrac{36}{90}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> de los turnos registra al menos 6 llamadas (36 de 90)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3505,19 +3505,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos partidos registran a lo más 1 goles?",
+  "ask": "¿Cuántos partidos registran a lo más 1 gol?",
   "alts": [
    "$24$",
-   "$34$",
-   "$8$",
-   "$15$"
+   "$10$",
+   "$16$",
+   "$14$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 24"
   ],
-  "conc": "Se lee directo de la acumulada: <b>24</b>."
+  "conc": "<b>24</b> de los 40 partidos registran a lo más 1 gol."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3586,17 +3586,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos partidos registran más de 2 goles?",
   "alts": [
-   "$1$",
+   "$16$",
    "$6$",
-   "$8$",
-   "$14$"
+   "$34$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 40 - 34 = 6"
   ],
-  "conc": "El valor pedido es <b>6</b>."
+  "conc": "<b>6</b> de los 40 partidos registran más de 2 goles."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3665,17 +3665,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos partidos registran entre 1 y 2 goles (inclusive)?",
   "alts": [
-   "$11$",
+   "$10$",
    "$24$",
-   "$36$",
-   "$18$"
+   "$14$",
+   "$34$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(0) = 34 - 10 = 24"
+   "\\text{\"entre } 1\\text{ y }2\\text{\" (inclusive)} = F(2) - F(0) = 34 - 10 = 24"
   ],
-  "conc": "El valor pedido es <b>24</b>."
+  "conc": "<b>24</b> de los 40 partidos registran entre 1 y 2 goles (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3745,16 +3745,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de partidos registra menos de 3 goles?",
   "alts": [
    "$85\\%$",
-   "$92\\%$",
-   "$100\\%$",
-   "$57\\%$"
+   "$95\\%$",
+   "$15\\%$",
+   "$60\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"menos de } 3\\text{\"} = \\dfrac{F(2)}{n}\\times 100 = \\dfrac{34}{40}\\times 100 = 85\\%"
   ],
-  "conc": "El porcentaje pedido es <b>85%</b>."
+  "conc": "El <b>85%</b> de los partidos registra menos de 3 goles (34 de 40)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3831,9 +3831,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes registran a lo más 2 libros?",
   "alts": [
-   "$47$",
-   "$27$",
    "$18$",
+   "$24$",
+   "$48$",
    "$36$"
   ],
   "correct": 3,
@@ -3841,7 +3841,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 36"
   ],
-  "conc": "Se lee directo de la acumulada: <b>36</b>."
+  "conc": "<b>36</b> de los 60 estudiantes registran a lo más 2 libros."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -3918,17 +3918,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes registran más de 3 libros?",
   "alts": [
-   "$22$",
+   "$24$",
    "$12$",
-   "$19$",
-   "$6$"
+   "$48$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 3\\text{\"} = n - F(3) = 60 - 48 = 12"
   ],
-  "conc": "El valor pedido es <b>12</b>."
+  "conc": "<b>12</b> de los 60 estudiantes registran más de 3 libros."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4005,17 +4005,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes registran entre 2 y 4 libros (inclusive)?",
   "alts": [
-   "$54$",
-   "$16$",
-   "$32$",
+   "$21$",
+   "$30$",
+   "$12$",
    "$39$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(4) - F(1) = 57 - 18 = 39"
+   "\\text{\"entre } 2\\text{ y }4\\text{\" (inclusive)} = F(4) - F(1) = 57 - 18 = 39"
   ],
-  "conc": "El valor pedido es <b>39</b>."
+  "conc": "<b>39</b> de los 60 estudiantes registran entre 2 y 4 libros (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4093,16 +4093,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de estudiantes registra menos de 2 libros?",
   "alts": [
    "$30\\%$",
-   "$45\\%$",
-   "$14\\%$",
-   "$41\\%$"
+   "$60\\%$",
+   "$70\\%$",
+   "$10\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"menos de } 2\\text{\"} = \\dfrac{F(1)}{n}\\times 100 = \\dfrac{18}{60}\\times 100 = 30\\%"
   ],
-  "conc": "El porcentaje pedido es <b>30%</b>."
+  "conc": "El <b>30%</b> de los estudiantes registra menos de 2 libros (18 de 60)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4169,19 +4169,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos meses registran a lo más 1 accidentes?",
+  "ask": "¿Cuántos meses registran a lo más 1 accidente?",
   "alts": [
    "$30$",
-   "$22$",
-   "$45$",
-   "$13$"
+   "$15$",
+   "$20$",
+   "$40$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 30"
   ],
-  "conc": "Se lee directo de la acumulada: <b>30</b>."
+  "conc": "<b>30</b> de los 50 meses registran a lo más 1 accidente."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4250,17 +4250,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos meses registran más de 2 accidentes?",
   "alts": [
-   "$19$",
-   "$5$",
+   "$20$",
+   "$40$",
    "$10$",
-   "$16$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 50 - 40 = 10"
   ],
-  "conc": "El valor pedido es <b>10</b>."
+  "conc": "<b>10</b> de los 50 meses registran más de 2 accidentes."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4329,17 +4329,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos meses registran entre 0 y 2 accidentes (inclusive)?",
   "alts": [
-   "$54$",
+   "$25$",
    "$40$",
-   "$29$",
-   "$18$"
+   "$30$",
+   "$15$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(-1) = 40 - 0 = 40"
+   "\\text{\"entre } 0\\text{ y }2\\text{\" (inclusive)} = F(2) = 40\\quad(\\text{0 es el menor valor})"
   ],
-  "conc": "El valor pedido es <b>40</b>."
+  "conc": "<b>40</b> de los 50 meses registran entre 0 y 2 accidentes (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4408,9 +4408,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de meses registra al menos 3 accidentes?",
   "alts": [
-   "$47\\%$",
-   "$0\\%$",
-   "$25\\%$",
+   "$6\\%$",
+   "$80\\%$",
+   "$14\\%$",
    "$20\\%$"
   ],
   "correct": 3,
@@ -4418,7 +4418,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"al menos } 3\\text{\"} = \\dfrac{n - F(2)}{n}\\times 100 = \\dfrac{10}{50}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los meses registra al menos 3 accidentes (10 de 50)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4496,16 +4496,16 @@ const CD_QUESTIONS = [
   "ask": "¿Cuántos lotes registran a lo más 2 defectos?",
   "alts": [
    "$56$",
-   "$46$",
-   "$31$",
-   "$76$"
+   "$36$",
+   "$24$",
+   "$20$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 56"
   ],
-  "conc": "Se lee directo de la acumulada: <b>56</b>."
+  "conc": "<b>56</b> de los 80 lotes registran a lo más 2 defectos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4582,9 +4582,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos lotes registran más de 3 defectos?",
   "alts": [
-   "$17$",
-   "$20$",
-   "$3$",
+   "$24$",
+   "$68$",
+   "$4$",
    "$12$"
   ],
   "correct": 3,
@@ -4592,7 +4592,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 3\\text{\"} = n - F(3) = 80 - 68 = 12"
   ],
-  "conc": "El valor pedido es <b>12</b>."
+  "conc": "<b>12</b> de los 80 lotes registran más de 3 defectos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4669,17 +4669,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos lotes registran entre 1 y 3 defectos (inclusive)?",
   "alts": [
+   "$32$",
    "$40$",
-   "$25$",
    "$52$",
-   "$69$"
+   "$20$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 68 - 16 = 52"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 68 - 16 = 52"
   ],
-  "conc": "El valor pedido es <b>52</b>."
+  "conc": "<b>52</b> de los 80 lotes registran entre 1 y 3 defectos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4757,16 +4757,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de lotes registra exactamente 0 defectos?",
   "alts": [
    "$20\\%$",
-   "$8\\%$",
-   "$29\\%$",
-   "$59\\%$"
+   "$45\\%$",
+   "$80\\%$",
+   "$25\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\dfrac{f(x=0)}{n}\\times 100 = \\dfrac{16}{80}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los lotes registra exactamente 0 defectos (16 de 80)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4844,16 +4844,16 @@ const CD_QUESTIONS = [
   "ask": "¿Cuántos pacientes registran a lo más 2 visitas?",
   "alts": [
    "$60$",
-   "$81$",
-   "$28$",
-   "$50$"
+   "$30$",
+   "$40$",
+   "$80$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 60"
   ],
-  "conc": "Se lee directo de la acumulada: <b>60</b>."
+  "conc": "<b>60</b> de los 100 pacientes registran a lo más 2 visitas."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -4930,17 +4930,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos pacientes registran más de 3 visitas?",
   "alts": [
-   "$25$",
+   "$40$",
    "$20$",
-   "$10$",
-   "$30$"
+   "$80$",
+   "$10$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 3\\text{\"} = n - F(3) = 100 - 80 = 20"
   ],
-  "conc": "El valor pedido es <b>20</b>."
+  "conc": "<b>20</b> de los 100 pacientes registran más de 3 visitas."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5017,17 +5017,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos pacientes registran entre 2 y 4 visitas (inclusive)?",
   "alts": [
-   "$31$",
+   "$30$",
    "$60$",
-   "$83$",
-   "$48$"
+   "$50$",
+   "$20$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(4) - F(1) = 90 - 30 = 60"
+   "\\text{\"entre } 2\\text{ y }4\\text{\" (inclusive)} = F(4) - F(1) = 90 - 30 = 60"
   ],
-  "conc": "El valor pedido es <b>60</b>."
+  "conc": "<b>60</b> de los 100 pacientes registran entre 2 y 4 visitas (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5104,17 +5104,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de pacientes registra al menos 4 visitas?",
   "alts": [
-   "$41\\%$",
-   "$33\\%$",
+   "$10\\%$",
+   "$80\\%$",
    "$20\\%$",
-   "$0\\%$"
+   "$40\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 4\\text{\"} = \\dfrac{n - F(3)}{n}\\times 100 = \\dfrac{20}{100}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los pacientes registra al menos 4 visitas (20 de 100)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5175,9 +5175,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes registran exactamente 0 materias?",
   "alts": [
-   "$42$",
-   "$20$",
-   "$11$",
+   "$48$",
+   "$18$",
+   "$19$",
    "$30$"
   ],
   "correct": 3,
@@ -5185,7 +5185,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "f(x=0) = 30"
   ],
-  "conc": "El valor pedido es <b>30</b>."
+  "conc": "<b>30</b> de los 60 estudiantes registran exactamente 0 materias."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5244,19 +5244,19 @@ const CD_QUESTIONS = [
    ],
    "N": 60
   },
-  "ask": "¿Cuántos estudiantes registran más de 1 materias?",
+  "ask": "¿Cuántos estudiantes registran más de 1 materia?",
   "alts": [
-   "$23$",
+   "$30$",
    "$12$",
-   "$15$",
-   "$5$"
+   "$48$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 1\\text{\"} = n - F(1) = 60 - 48 = 12"
   ],
-  "conc": "El valor pedido es <b>12</b>."
+  "conc": "<b>12</b> de los 60 estudiantes registran más de 1 materia."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5317,17 +5317,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos estudiantes registran entre 1 y 2 materias (inclusive)?",
   "alts": [
-   "$21$",
-   "$14$",
-   "$39$",
+   "$9$",
+   "$18$",
+   "$57$",
    "$27$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(0) = 57 - 30 = 27"
+   "\\text{\"entre } 1\\text{ y }2\\text{\" (inclusive)} = F(2) - F(0) = 57 - 30 = 27"
   ],
-  "conc": "El valor pedido es <b>27</b>."
+  "conc": "<b>27</b> de los 60 estudiantes registran entre 1 y 2 materias (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5389,16 +5389,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de estudiantes registra al menos 2 materias?",
   "alts": [
    "$20\\%$",
-   "$53\\%$",
-   "$0\\%$",
-   "$27\\%$"
+   "$5\\%$",
+   "$80\\%$",
+   "$15\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=60.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 2\\text{\"} = \\dfrac{n - F(1)}{n}\\times 100 = \\dfrac{12}{60}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los estudiantes registra al menos 2 materias (12 de 60)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5465,19 +5465,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos registros registran a lo más 4 correos?",
+  "ask": "¿Cuántos registros muestran a lo más 4 correos?",
   "alts": [
-   "$46$",
-   "$26$",
+   "$10$",
+   "$65$",
    "$35$",
-   "$17$"
+   "$25$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 4\\text{\"} = F(4) = 35"
   ],
-  "conc": "Se lee directo de la acumulada: <b>35</b>."
+  "conc": "<b>35</b> de los 100 registros muestran a lo más 4 correos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5544,19 +5544,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos registros registran más de 5 correos?",
+  "ask": "¿Cuántos registros muestran más de 5 correos?",
   "alts": [
-   "$49$",
-   "$18$",
+   "$65$",
+   "$70$",
    "$30$",
-   "$40$"
+   "$10$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 5\\text{\"} = n - F(5) = 100 - 70 = 30"
   ],
-  "conc": "El valor pedido es <b>30</b>."
+  "conc": "<b>30</b> de los 100 registros muestran más de 5 correos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5623,19 +5623,19 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Cuántos registros registran entre 4 y 6 correos (inclusive)?",
+  "ask": "¿Cuántos registros muestran entre 4 y 6 correos (inclusive)?",
   "alts": [
-   "$107$",
+   "$55$",
    "$80$",
-   "$67$",
-   "$39$"
+   "$60$",
+   "$35$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=100.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(6) - F(3) = 90 - 10 = 80"
+   "\\text{\"entre } 4\\text{ y }6\\text{\" (inclusive)} = F(6) - F(3) = 90 - 10 = 80"
   ],
-  "conc": "El valor pedido es <b>80</b>."
+  "conc": "<b>80</b> de los 100 registros muestran entre 4 y 6 correos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5702,11 +5702,11 @@ const CD_QUESTIONS = [
    ],
    "N": 100
   },
-  "ask": "¿Qué porcentaje de registros registra menos de 5 correos?",
+  "ask": "¿Qué porcentaje de registros muestra menos de 5 correos?",
   "alts": [
-   "$50\\%$",
-   "$46\\%$",
-   "$19\\%$",
+   "$70\\%$",
+   "$65\\%$",
+   "$10\\%$",
    "$35\\%$"
   ],
   "correct": 3,
@@ -5714,7 +5714,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"menos de } 5\\text{\"} = \\dfrac{F(4)}{n}\\times 100 = \\dfrac{35}{100}\\times 100 = 35\\%"
   ],
-  "conc": "El porcentaje pedido es <b>35%</b>."
+  "conc": "El <b>35%</b> de los registros muestra menos de 5 correos (35 de 100)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5789,19 +5789,19 @@ const CD_QUESTIONS = [
    ],
    "N": 90
   },
-  "ask": "¿Cuántos boletas registran a lo más 2 productos?",
+  "ask": "¿Cuántas boletas registran a lo más 2 productos?",
   "alts": [
    "$27$",
-   "$20$",
-   "$13$",
-   "$40$"
+   "$9$",
+   "$63$",
+   "$18$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 2\\text{\"} = F(2) = 27"
   ],
-  "conc": "Se lee directo de la acumulada: <b>27</b>."
+  "conc": "<b>27</b> de las 90 boletas registran a lo más 2 productos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5876,11 +5876,11 @@ const CD_QUESTIONS = [
    ],
    "N": 90
   },
-  "ask": "¿Cuántos boletas registran más de 4 productos?",
+  "ask": "¿Cuántas boletas registran más de 4 productos?",
   "alts": [
-   "$25$",
-   "$11$",
-   "$30$",
+   "$36$",
+   "$72$",
+   "$9$",
    "$18$"
   ],
   "correct": 3,
@@ -5888,7 +5888,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 4\\text{\"} = n - F(4) = 90 - 72 = 18"
   ],
-  "conc": "El valor pedido es <b>18</b>."
+  "conc": "<b>18</b> de las 90 boletas registran más de 4 productos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -5963,19 +5963,19 @@ const CD_QUESTIONS = [
    ],
    "N": 90
   },
-  "ask": "¿Cuántos boletas registran entre 2 y 4 productos (inclusive)?",
+  "ask": "¿Cuántas boletas registran entre 2 y 4 productos (inclusive)?",
   "alts": [
-   "$49$",
-   "$32$",
+   "$45$",
+   "$27$",
    "$63$",
-   "$83$"
+   "$72$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(4) - F(1) = 72 - 9 = 63"
+   "\\text{\"entre } 2\\text{ y }4\\text{\" (inclusive)} = F(4) - F(1) = 72 - 9 = 63"
   ],
-  "conc": "El valor pedido es <b>63</b>."
+  "conc": "<b>63</b> de las 90 boletas registran entre 2 y 4 productos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6053,16 +6053,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de boletas registra al menos 5 productos?",
   "alts": [
    "$20\\%$",
-   "$0\\%$",
-   "$25\\%$",
-   "$47\\%$"
+   "$10\\%$",
+   "$80\\%$",
+   "$40\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=90.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 5\\text{\"} = \\dfrac{n - F(4)}{n}\\times 100 = \\dfrac{18}{90}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de las boletas registra al menos 5 productos (18 de 90)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6129,19 +6129,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos semanas registran a lo más 1 reclamos?",
+  "ask": "¿Cuántas semanas registran a lo más 1 reclamo?",
   "alts": [
    "$32$",
-   "$46$",
-   "$16$",
-   "$25$"
+   "$14$",
+   "$18$",
+   "$42$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 32"
   ],
-  "conc": "Se lee directo de la acumulada: <b>32</b>."
+  "conc": "<b>32</b> de las 50 semanas registran a lo más 1 reclamo."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6208,19 +6208,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos semanas registran más de 2 reclamos?",
+  "ask": "¿Cuántas semanas registran más de 2 reclamos?",
   "alts": [
-   "$12$",
+   "$18$",
    "$8$",
-   "$1$",
-   "$13$"
+   "$42$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 50 - 42 = 8"
   ],
-  "conc": "El valor pedido es <b>8</b>."
+  "conc": "<b>8</b> de las 50 semanas registran más de 2 reclamos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6287,19 +6287,19 @@ const CD_QUESTIONS = [
    ],
    "N": 50
   },
-  "ask": "¿Cuántos semanas registran entre 1 y 3 reclamos (inclusive)?",
+  "ask": "¿Cuántas semanas registran entre 1 y 3 reclamos (inclusive)?",
   "alts": [
    "$16$",
-   "$45$",
+   "$28$",
    "$34$",
-   "$25$"
+   "$10$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 48 - 14 = 34"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 48 - 14 = 34"
   ],
-  "conc": "El valor pedido es <b>34</b>."
+  "conc": "<b>34</b> de las 50 semanas registran entre 1 y 3 reclamos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6368,17 +6368,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de semanas registra exactamente 0 reclamos?",
   "alts": [
-   "$16\\%$",
-   "$37\\%$",
+   "$64\\%$",
+   "$72\\%$",
    "$28\\%$",
-   "$67\\%$"
+   "$36\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\dfrac{f(x=0)}{n}\\times 100 = \\dfrac{14}{50}\\times 100 = 28\\%"
   ],
-  "conc": "El porcentaje pedido es <b>28%</b>."
+  "conc": "El <b>28%</b> de las semanas registra exactamente 0 reclamos (14 de 50)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6453,11 +6453,11 @@ const CD_QUESTIONS = [
    ],
    "N": 80
   },
-  "ask": "¿Cuántos facturas registran exactamente 0 días de atraso?",
+  "ask": "¿Cuántas facturas registran exactamente 0 días de atraso?",
   "alts": [
-   "$12$",
-   "$45$",
-   "$26$",
+   "$52$",
+   "$48$",
+   "$20$",
    "$32$"
   ],
   "correct": 3,
@@ -6465,7 +6465,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "f(x=0) = 32"
   ],
-  "conc": "El valor pedido es <b>32</b>."
+  "conc": "<b>32</b> de las 80 facturas registran exactamente 0 días de atraso."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6540,11 +6540,11 @@ const CD_QUESTIONS = [
    ],
    "N": 80
   },
-  "ask": "¿Cuántos facturas registran más de 2 días de atraso?",
+  "ask": "¿Cuántas facturas registran más de 2 días de atraso?",
   "alts": [
-   "$23$",
+   "$28$",
    "$16$",
-   "$20$",
+   "$64$",
    "$8$"
   ],
   "correct": 1,
@@ -6552,7 +6552,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 80 - 64 = 16"
   ],
-  "conc": "El valor pedido es <b>16</b>."
+  "conc": "<b>16</b> de las 80 facturas registran más de 2 días de atraso."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6627,19 +6627,19 @@ const CD_QUESTIONS = [
    ],
    "N": 80
   },
-  "ask": "¿Cuántos facturas registran entre 1 y 3 días de atraso (inclusive)?",
+  "ask": "¿Cuántas facturas registran entre 1 y 3 días de atraso (inclusive)?",
   "alts": [
-   "$31$",
    "$20$",
-   "$57$",
+   "$32$",
+   "$12$",
    "$40$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 72 - 32 = 40"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 72 - 32 = 40"
   ],
-  "conc": "El valor pedido es <b>40</b>."
+  "conc": "<b>40</b> de las 80 facturas registran entre 1 y 3 días de atraso (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6716,17 +6716,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de facturas registra al menos 4 días de atraso?",
   "alts": [
-   "$31\\%$",
-   "$23\\%$",
+   "$5\\%$",
+   "$90\\%$",
    "$10\\%$",
-   "$0\\%$"
+   "$20\\%$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=80.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 4\\text{\"} = \\dfrac{n - F(3)}{n}\\times 100 = \\dfrac{8}{80}\\times 100 = 10\\%"
   ],
-  "conc": "El porcentaje pedido es <b>10%</b>."
+  "conc": "El <b>10%</b> de las facturas registra al menos 4 días de atraso (8 de 80)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6793,19 +6793,19 @@ const CD_QUESTIONS = [
    ],
    "N": 70
   },
-  "ask": "¿Cuántos empleados registran a lo más 1 horas extra?",
+  "ask": "¿Cuántos empleados registran a lo más 1 hora extra?",
   "alts": [
-   "$47$",
-   "$25$",
+   "$14$",
+   "$21$",
    "$35$",
-   "$16$"
+   "$56$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=70.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 35"
   ],
-  "conc": "Se lee directo de la acumulada: <b>35</b>."
+  "conc": "<b>35</b> de los 70 empleados registran a lo más 1 hora extra."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6874,17 +6874,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos empleados registran más de 2 horas extra?",
   "alts": [
-   "$7$",
+   "$35$",
    "$14$",
-   "$25$",
-   "$17$"
+   "$56$",
+   "$7$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=70.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 2\\text{\"} = n - F(2) = 70 - 56 = 14"
   ],
-  "conc": "El valor pedido es <b>14</b>."
+  "conc": "<b>14</b> de los 70 empleados registran más de 2 horas extra."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -6953,17 +6953,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos empleados registran entre 1 y 3 horas extra (inclusive)?",
   "alts": [
-   "$67$",
+   "$28$",
    "$49$",
-   "$40$",
-   "$27$"
+   "$42$",
+   "$21$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=70.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(3) - F(0) = 63 - 14 = 49"
+   "\\text{\"entre } 1\\text{ y }3\\text{\" (inclusive)} = F(3) - F(0) = 63 - 14 = 49"
   ],
-  "conc": "El valor pedido es <b>49</b>."
+  "conc": "<b>49</b> de los 70 empleados registran entre 1 y 3 horas extra (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7033,16 +7033,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de empleados registra exactamente 0 horas extra?",
   "alts": [
    "$20\\%$",
-   "$53\\%$",
-   "$0\\%$",
-   "$27\\%$"
+   "$50\\%$",
+   "$80\\%$",
+   "$30\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=70.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\dfrac{f(x=0)}{n}\\times 100 = \\dfrac{14}{70}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los empleados registra exactamente 0 horas extra (14 de 70)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7120,16 +7120,16 @@ const CD_QUESTIONS = [
   "ask": "¿Cuántos hogares registran a lo más 3 dispositivos?",
   "alts": [
    "$15$",
-   "$9$",
-   "$6$",
-   "$20$"
+   "$5$",
+   "$35$",
+   "$10$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 3\\text{\"} = F(3) = 15"
   ],
-  "conc": "Se lee directo de la acumulada: <b>15</b>."
+  "conc": "<b>15</b> de los 50 hogares registran a lo más 3 dispositivos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7206,9 +7206,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares registran más de 5 dispositivos?",
   "alts": [
-   "$17$",
-   "$4$",
    "$20$",
+   "$40$",
+   "$5$",
    "$10$"
   ],
   "correct": 3,
@@ -7216,7 +7216,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"más de } 5\\text{\"} = n - F(5) = 50 - 40 = 10"
   ],
-  "conc": "El valor pedido es <b>10</b>."
+  "conc": "<b>10</b> de los 50 hogares registran más de 5 dispositivos."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7293,17 +7293,17 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Cuántos hogares registran entre 3 y 5 dispositivos (inclusive)?",
   "alts": [
-   "$15$",
+   "$25$",
    "$35$",
-   "$29$",
-   "$48$"
+   "$15$",
+   "$40$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=50.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(5) - F(2) = 40 - 5 = 35"
+   "\\text{\"entre } 3\\text{ y }5\\text{\" (inclusive)} = F(5) - F(2) = 40 - 5 = 35"
   ],
-  "conc": "El valor pedido es <b>35</b>."
+  "conc": "<b>35</b> de los 50 hogares registran entre 3 y 5 dispositivos (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7380,9 +7380,9 @@ const CD_QUESTIONS = [
   },
   "ask": "¿Qué porcentaje de hogares registra al menos 6 dispositivos?",
   "alts": [
-   "$35\\%$",
-   "$4\\%$",
-   "$31\\%$",
+   "$10\\%$",
+   "$80\\%$",
+   "$40\\%$",
    "$20\\%$"
   ],
   "correct": 3,
@@ -7390,7 +7390,7 @@ const CD_QUESTIONS = [
   "pautaSteps": [
    "\\text{\"al menos } 6\\text{\"} = \\dfrac{n - F(5)}{n}\\times 100 = \\dfrac{10}{50}\\times 100 = 20\\%"
   ],
-  "conc": "El porcentaje pedido es <b>20%</b>."
+  "conc": "El <b>20%</b> de los hogares registra al menos 6 dispositivos (10 de 50)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7449,19 +7449,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos familias registran a lo más 1 hijos matriculados?",
+  "ask": "¿Cuántas familias registran a lo más 1 hijo matriculado?",
   "alts": [
    "$24$",
-   "$10$",
-   "$37$",
-   "$17$"
+   "$8$",
+   "$16$",
+   "$36$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"a lo más } 1\\text{\"} = F(1) = 24"
   ],
-  "conc": "Se lee directo de la acumulada: <b>24</b>."
+  "conc": "<b>24</b> de las 40 familias registran a lo más 1 hijo matriculado."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7520,19 +7520,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos familias registran más de 1 hijos matriculados?",
+  "ask": "¿Cuántas familias registran más de 1 hijo matriculado?",
   "alts": [
-   "$22$",
+   "$32$",
    "$16$",
-   "$11$",
-   "$25$"
+   "$24$",
+   "$4$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"más de } 1\\text{\"} = n - F(1) = 40 - 24 = 16"
   ],
-  "conc": "El valor pedido es <b>16</b>."
+  "conc": "<b>16</b> de las 40 familias registran más de 1 hijo matriculado."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7591,19 +7591,19 @@ const CD_QUESTIONS = [
    ],
    "N": 40
   },
-  "ask": "¿Cuántos familias registran entre 1 y 2 hijos matriculados (inclusive)?",
+  "ask": "¿Cuántas familias registran entre 1 y 2 hijos matriculados (inclusive)?",
   "alts": [
    "$12$",
-   "$38$",
+   "$16$",
    "$28$",
-   "$19$"
+   "$36$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
-   "F(2) - F(0) = 36 - 8 = 28"
+   "\\text{\"entre } 1\\text{ y }2\\text{\" (inclusive)} = F(2) - F(0) = 36 - 8 = 28"
   ],
-  "conc": "El valor pedido es <b>28</b>."
+  "conc": "<b>28</b> de las 40 familias registran entre 1 y 2 hijos matriculados (inclusive)."
  },
  {
   "tipo": "Lectura con frecuencias acumuladas",
@@ -7665,16 +7665,16 @@ const CD_QUESTIONS = [
   "ask": "¿Qué porcentaje de familias registra al menos 2 hijos matriculados?",
   "alts": [
    "$40\\%$",
-   "$16\\%$",
-   "$45\\%$",
-   "$67\\%$"
+   "$10\\%$",
+   "$60\\%$",
+   "$30\\%$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Tabla con } n=40.\\ F_i\\text{ acumula desde el menor valor.}",
   "pautaSteps": [
    "\\text{\"al menos } 2\\text{\"} = \\dfrac{n - F(1)}{n}\\times 100 = \\dfrac{16}{40}\\times 100 = 40\\%"
   ],
-  "conc": "El porcentaje pedido es <b>40%</b>."
+  "conc": "El <b>40%</b> de las familias registra al menos 2 hijos matriculados (16 de 40)."
  },
  {
   "tipo": "Media muestral",
@@ -7682,9 +7682,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hijos en 15 familias. Datos: 2, 1, 3, 0, 2, 1, 2, 4, 1, 2, 3, 1, 0, 2, 2.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}27$",
-   "$2{,}01$",
-   "$1{,}44$",
+   "$5{,}20$",
+   "$2{,}00$",
+   "$1{,}86$",
    "$1{,}73$"
   ],
   "correct": 3,
@@ -7700,10 +7700,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hijos en 15 familias. Datos: 2, 1, 3, 0, 2, 1, 2, 4, 1, 2, 3, 1, 0, 2, 2.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
+   "$4$",
    "$2$",
    "$8$",
-   "$7$"
+   "$1{,}73$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -7712,17 +7712,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3,\\, 4",
    "\\text{Mediana} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Demografía · Familias",
   "enun": "Se registró el número de hijos en 15 familias. Datos: 2, 1, 3, 0, 2, 1, 2, 4, 1, 2, 3, 1, 0, 2, 2.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$5$",
-   "$12$",
-   "$11$",
+   "$6$",
+   "Bimodal: 1 y 2",
+   "$4$",
    "$2$"
   ],
   "correct": 3,
@@ -7731,7 +7731,7 @@ const CD_QUESTIONS = [
    "f(0)=2,\\ f(1)=4,\\ f(2)=6,\\ f(3)=2,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 2\\ (f=6)"
   ],
-  "conc": "La moda es <b>2</b>."
+  "conc": "La moda es <b>2</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -7739,10 +7739,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de mascotas en 13 hogares. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 2, 1, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}55$",
-   "$1{,}25$",
+   "$3{,}75$",
+   "$1{,}50$",
    "$1{,}15$",
-   "$0{,}90$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -7758,9 +7758,9 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$7$",
-   "$6$",
+   "$1{,}15$",
    "$1$",
-   "$8$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -7769,18 +7769,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 3",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Hogar · Mascotas",
   "enun": "Se registró el número de mascotas en 13 hogares. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 2, 1, 1.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$5$",
+   "$6$",
    "$1$",
-   "$11$",
-   "$4$"
+   "Bimodal: 0 y 1",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -7788,7 +7788,7 @@ const CD_QUESTIONS = [
    "f(0)=3,\\ f(1)=6,\\ f(2)=3,\\ f(3)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=6)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -7796,10 +7796,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de autos en 17 hogares. Datos: 1, 2, 1, 0, 2, 1, 3, 1, 2, 0, 1, 1, 2, 1, 0, 2, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}09$",
+   "$5{,}25$",
    "$1{,}24$",
-   "$1{,}54$",
-   "$0{,}79$"
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=17.",
@@ -7815,9 +7815,9 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
-   "$8$",
-   "$7$",
-   "$6$"
+   "$2$",
+   "$9$",
+   "$1{,}24$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=17.",
@@ -7826,18 +7826,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Hogar · Vehículos",
   "enun": "Se registró el número de autos en 17 hogares. Datos: 1, 2, 1, 0, 2, 1, 3, 1, 2, 0, 1, 1, 2, 1, 0, 2, 1.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$12$",
-   "$5$",
+   "$8$",
+   "Bimodal: 1 y 2",
    "$1$",
-   "$6$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -7845,7 +7845,7 @@ const CD_QUESTIONS = [
    "f(0)=3,\\ f(1)=8,\\ f(2)=5,\\ f(3)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=8)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=8$)."
  },
  {
   "tipo": "Media muestral",
@@ -7853,9 +7853,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de goles en 15 partidos. Datos: 1, 0, 2, 3, 1, 0, 2, 1, 0, 1, 2, 1, 0, 3, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}40$",
-   "$0{,}85$",
+   "$4{,}50$",
    "$1{,}50$",
+   "$1{,}00$",
    "$1{,}20$"
   ],
   "correct": 3,
@@ -7871,10 +7871,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de goles en 15 partidos. Datos: 1, 0, 2, 3, 1, 0, 2, 1, 0, 1, 2, 1, 0, 3, 1.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$9$",
+   "$8$",
    "$1$",
-   "$7$",
-   "$8$"
+   "$1{,}2$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -7883,17 +7883,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Deporte · Torneo",
   "enun": "Se registró el número de goles en 15 partidos. Datos: 1, 0, 2, 3, 1, 0, 2, 1, 0, 1, 2, 1, 0, 3, 1.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$7$",
-   "$5$",
    "$6$",
+   "Bimodal: 0 y 1",
+   "$3$",
    "$1$"
   ],
   "correct": 3,
@@ -7902,7 +7902,7 @@ const CD_QUESTIONS = [
    "f(0)=4,\\ f(1)=6,\\ f(2)=3,\\ f(3)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=6)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -7911,9 +7911,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}23$",
-   "$0{,}88$",
-   "$1{,}43$",
-   "$0{,}98$"
+   "$3{,}20$",
+   "$2{,}00$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -7929,9 +7929,9 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$7$",
-   "$8$",
+   "$2$",
    "$1$",
-   "$9$"
+   "$1{,}23$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -7940,18 +7940,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Edición · Informes",
   "enun": "Se registró el número de errores por página en 13 informes. Datos: 0, 1, 2, 1, 0, 3, 1, 2, 0, 1, 1, 4, 0.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
-   "$7$",
+   "$5$",
+   "Bimodal: 0 y 1",
    "$1$",
-   "$6$"
+   "$4$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -7959,7 +7959,7 @@ const CD_QUESTIONS = [
    "f(0)=4,\\ f(1)=5,\\ f(2)=2,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=5)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -7968,9 +7968,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$6{,}00$",
-   "$4{,}99$",
-   "$6{,}48$",
-   "$7{,}54$"
+   "$15{,}00$",
+   "$6{,}50$",
+   "$6{,}43$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -7985,9 +7985,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de llamadas por hora en 15 turnos. Datos: 5, 6, 7, 5, 8, 6, 5, 4, 6, 7, 5, 6, 5, 9, 6.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$1$",
-   "$2$",
-   "$13$",
+   "$4$",
+   "$8$",
+   "$7$",
    "$6$"
   ],
   "correct": 3,
@@ -7997,18 +7997,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 4,\\, 5,\\, 5,\\, 5,\\, 5,\\, 5,\\, 6,\\, 6,\\, 6,\\, 6,\\, 6,\\, 7,\\, 7,\\, 8,\\, 9",
    "\\text{Mediana} = 6"
   ],
-  "conc": "La mediana es <b>6</b>."
+  "conc": "La mediana es <b>6</b>: al menos la mitad de los datos es menor o igual a 6 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Call center · Turnos",
   "enun": "Se registró el número de llamadas por hora en 15 turnos. Datos: 5, 6, 7, 5, 8, 6, 5, 4, 6, 7, 5, 6, 5, 9, 6.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "5",
    "Bimodal: 5 y 6",
-   "4",
-   "6"
+   "6",
+   "9"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8024,9 +8024,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de libros leídos al mes en 13 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 4, 1, 2, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}37$",
-   "$1{,}88$",
-   "$1{,}02$",
+   "$4{,}00$",
+   "$2{,}00$",
+   "$1{,}00$",
    "$1{,}54$"
   ],
   "correct": 3,
@@ -8042,10 +8042,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de libros leídos al mes en 13 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 4, 1, 2, 1.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$10$",
-   "$3$",
+   "$7$",
+   "$2$",
    "$1$",
-   "$9$"
+   "$1{,}54$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -8054,18 +8054,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Educación · Lectura",
   "enun": "Se registró el número de libros leídos al mes en 13 estudiantes. Datos: 1, 2, 0, 3, 1, 2, 1, 0, 2, 4, 1, 2, 1.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$1$",
-   "$8$",
-   "$7$",
-   "$9$"
+   "$5$",
+   "Bimodal: 1 y 2",
+   "$4$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8073,7 +8073,7 @@ const CD_QUESTIONS = [
    "f(0)=2,\\ f(1)=5,\\ f(2)=4,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=5)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -8081,10 +8081,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de accidentes por mes en 15 intersecciones. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 1, 2, 4, 1, 0.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}91$",
+   "$3{,}80$",
    "$1{,}27$",
-   "$1{,}57$",
-   "$1{,}47$"
+   "$2{,}00$",
+   "$1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -8099,10 +8099,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de accidentes por mes en 15 intersecciones. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 1, 2, 4, 1, 0.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$4$",
+   "$2$",
    "$1$",
-   "$10$",
-   "$11$"
+   "$8$",
+   "$1{,}27$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -8111,18 +8111,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Tránsito · Intersecciones",
   "enun": "Se registró el número de accidentes por mes en 15 intersecciones. Datos: 1, 0, 2, 1, 3, 0, 1, 2, 1, 0, 1, 2, 4, 1, 0.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
-   "$9$",
+   "$6$",
+   "Bimodal: 0 y 1",
    "$1$",
-   "$7$"
+   "$4$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8130,18 +8130,18 @@ const CD_QUESTIONS = [
    "f(0)=4,\\ f(1)=6,\\ f(2)=3,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=6)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en 13 producciones. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
+  "enun": "Se registró el número de defectos por lote en 13 lotes. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}24$",
-   "$1{,}41$",
+   "$4{,}40$",
+   "$2{,}00$",
    "$1{,}69$",
-   "$1{,}96$"
+   "$1{,}83$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8153,12 +8153,12 @@ const CD_QUESTIONS = [
  {
   "tipo": "Mediana",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en 13 producciones. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
+  "enun": "Se registró el número de defectos por lote en 13 lotes. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
-   "$12$",
-   "$5$",
+   "$0$",
+   "$7$",
+   "$1{,}69$",
    "$2$"
   ],
   "correct": 3,
@@ -8168,18 +8168,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3,\\, 4",
    "\\text{Mediana} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en 13 producciones. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
-  "ask": "Determine la moda.",
+  "enun": "Se registró el número de defectos por lote en 13 lotes. Datos: 2, 1, 0, 3, 2, 1, 0, 4, 2, 1, 1, 3, 2.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "0",
-   "Bimodal: 1 y 2",
    "1",
-   "2"
+   "Bimodal: 1 y 2",
+   "2",
+   "4"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8195,9 +8195,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de visitas al médico al año en 15 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 5, 3, 2, 1, 3, 4, 2, 3.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$3{,}24$",
-   "$2{,}74$",
-   "$2{,}08$",
+   "$6{,}33$",
+   "$2{,}50$",
+   "$3{,}00$",
    "$2{,}53$"
   ],
   "correct": 3,
@@ -8213,10 +8213,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de visitas al médico al año en 15 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 5, 3, 2, 1, 3, 4, 2, 3.",
   "ask": "Determine la mediana.",
   "alts": [
+   "$5$",
    "$8$",
-   "$14$",
    "$3$",
-   "$7$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -8225,18 +8225,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3,\\, 3,\\, 3,\\, 3,\\, 4,\\, 4,\\, 5",
    "\\text{Mediana} = 3"
   ],
-  "conc": "La mediana es <b>3</b>."
+  "conc": "La mediana es <b>3</b>: al menos la mitad de los datos es menor o igual a 3 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Salud · Pacientes",
   "enun": "Se registró el número de visitas al médico al año en 15 pacientes. Datos: 3, 2, 1, 4, 3, 2, 0, 5, 3, 2, 1, 3, 4, 2, 3.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$5$",
-   "$11$",
+   "Bimodal: 2 y 3",
    "$3$",
-   "$12$"
+   "$0$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8244,7 +8244,7 @@ const CD_QUESTIONS = [
    "f(0)=1,\\ f(1)=2,\\ f(2)=4,\\ f(3)=5,\\ f(4)=2,\\ f(5)=1",
    "\\text{El valor con mayor frecuencia es } 3\\ (f=5)"
   ],
-  "conc": "La moda es <b>3</b>."
+  "conc": "La moda es <b>3</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -8252,10 +8252,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de materias reprobadas en 13 estudiantes. Datos: 0, 1, 0, 2, 0, 1, 3, 0, 1, 0, 2, 0, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}15$",
+   "$2{,}75$",
    "$0{,}85$",
-   "$0{,}40$",
-   "$0{,}70$"
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8271,9 +8271,9 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
-   "$6$",
-   "$5$",
-   "$7$"
+   "$3$",
+   "$7$",
+   "$0$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -8282,17 +8282,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 3",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Educación · Rendimiento",
   "enun": "Se registró el número de materias reprobadas en 13 estudiantes. Datos: 0, 1, 0, 2, 0, 1, 3, 0, 1, 0, 2, 0, 1.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$10$",
-   "$3$",
-   "$9$",
+   "$6$",
+   "Bimodal: 0 y 1",
+   "$1$",
    "$0$"
   ],
   "correct": 3,
@@ -8301,7 +8301,7 @@ const CD_QUESTIONS = [
    "f(0)=6,\\ f(1)=4,\\ f(2)=2,\\ f(3)=1",
    "\\text{El valor con mayor frecuencia es } 0\\ (f=6)"
   ],
-  "conc": "La moda es <b>0</b>."
+  "conc": "La moda es <b>0</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -8309,10 +8309,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de correos por hora en 15 registros. Datos: 4, 5, 6, 4, 7, 5, 4, 3, 5, 6, 4, 5, 8, 4, 5.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$5{,}50$",
+   "$12{,}50$",
    "$5{,}00$",
-   "$6{,}20$",
-   "$4{,}05$"
+   "$5{,}50$",
+   "$5{,}36$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -8328,8 +8328,8 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$3$",
-   "$10$",
-   "$11$",
+   "$8$",
+   "$6$",
    "$5$"
   ],
   "correct": 3,
@@ -8339,18 +8339,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 3,\\, 4,\\, 4,\\, 4,\\, 4,\\, 4,\\, 5,\\, 5,\\, 5,\\, 5,\\, 5,\\, 6,\\, 6,\\, 7,\\, 8",
    "\\text{Mediana} = 5"
   ],
-  "conc": "La mediana es <b>5</b>."
+  "conc": "La mediana es <b>5</b>: al menos la mitad de los datos es menor o igual a 5 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Oficina · Correos",
   "enun": "Se registró el número de correos por hora en 15 registros. Datos: 4, 5, 6, 4, 7, 5, 4, 3, 5, 6, 4, 5, 8, 4, 5.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "Bimodal: 4 y 5",
-   "3",
    "4",
-   "5"
+   "5",
+   "8"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8367,9 +8367,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$2{,}69$",
-   "$3{,}12$",
-   "$2{,}33$",
-   "$2{,}00$"
+   "$7{,}00$",
+   "$3{,}00$",
+   "$2{,}92$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8384,10 +8384,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de productos por boleta en 13 compras. Datos: 3, 2, 4, 1, 3, 5, 2, 3, 4, 1, 2, 3, 2.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$9$",
+   "$2$",
    "$3$",
-   "$0$",
-   "$8$"
+   "$7$",
+   "$2{,}69$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -8396,18 +8396,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3,\\, 3,\\, 3,\\, 4,\\, 4,\\, 5",
    "\\text{Mediana} = 3"
   ],
-  "conc": "La mediana es <b>3</b>."
+  "conc": "La mediana es <b>3</b>: al menos la mitad de los datos es menor o igual a 3 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Retail · Compras",
   "enun": "Se registró el número de productos por boleta en 13 compras. Datos: 3, 2, 4, 1, 3, 5, 2, 3, 4, 1, 2, 3, 2.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "2",
    "Bimodal: 2 y 3",
    "3",
-   "1"
+   "4"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8420,13 +8420,13 @@ const CD_QUESTIONS = [
  {
   "tipo": "Media muestral",
   "ctx": "E-commerce · Reclamos",
-  "enun": "Se registró el número de reclamos por semana en 15 registros. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
+  "enun": "Se registró el número de reclamos por semana en 15 semanas. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}13$",
-   "$1{,}84$",
+   "$4{,}20$",
+   "$2{,}00$",
    "$1{,}40$",
-   "$1{,}51$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -8438,13 +8438,13 @@ const CD_QUESTIONS = [
  {
   "tipo": "Mediana",
   "ctx": "E-commerce · Reclamos",
-  "enun": "Se registró el número de reclamos por semana en 15 registros. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
+  "enun": "Se registró el número de reclamos por semana en 15 semanas. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
+   "$0$",
    "$8$",
-   "$7$",
-   "$9$"
+   "$2$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -8453,17 +8453,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "E-commerce · Reclamos",
-  "enun": "Se registró el número de reclamos por semana en 15 registros. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
-  "ask": "Determine la moda.",
+  "enun": "Se registró el número de reclamos por semana en 15 semanas. Datos: 1, 2, 0, 1, 3, 1, 2, 0, 4, 1, 2, 1, 0, 2, 1.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$6$",
-   "$7$",
-   "$5$",
+   "Bimodal: 1 y 2",
+   "$4$",
    "$1$"
   ],
   "correct": 3,
@@ -8472,7 +8472,7 @@ const CD_QUESTIONS = [
    "f(0)=3,\\ f(1)=6,\\ f(2)=4,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=6)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -8480,10 +8480,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de días de atraso en 13 facturas. Datos: 0, 1, 0, 2, 1, 3, 0, 1, 2, 0, 1, 4, 0.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}00$",
+   "$3{,}00$",
    "$1{,}15$",
-   "$0{,}70$",
-   "$1{,}45$"
+   "$2{,}00$",
+   "$1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8498,9 +8498,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de días de atraso en 13 facturas. Datos: 0, 1, 0, 2, 1, 3, 0, 1, 2, 0, 1, 4, 0.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$9$",
+   "$0$",
    "$7$",
-   "$8$",
+   "$2$",
    "$1$"
   ],
   "correct": 3,
@@ -8510,18 +8510,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Finanzas · Facturación",
   "enun": "Se registró el número de días de atraso en 13 facturas. Datos: 0, 1, 0, 2, 1, 3, 0, 1, 2, 0, 1, 4, 0.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$7$",
    "$5$",
+   "Bimodal: 0 y 1",
    "$0$",
-   "$6$"
+   "$1$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8529,7 +8529,7 @@ const CD_QUESTIONS = [
    "f(0)=5,\\ f(1)=4,\\ f(2)=2,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 0\\ (f=5)"
   ],
-  "conc": "La moda es <b>0</b>."
+  "conc": "La moda es <b>0</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -8537,10 +8537,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de horas extra en 15 empleados. Datos: 2, 0, 3, 1, 4, 2, 0, 3, 2, 5, 1, 2, 0, 3, 2.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}26$",
-   "$1{,}53$",
+   "$5{,}00$",
+   "$2{,}50$",
    "$2{,}00$",
-   "$2{,}48$"
+   "$2{,}14$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -8555,10 +8555,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de horas extra en 15 empleados. Datos: 2, 0, 3, 1, 4, 2, 0, 3, 2, 5, 1, 2, 0, 3, 2.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$10$",
+   "$3$",
    "$2$",
-   "$11$",
-   "$9$"
+   "$8$",
+   "$1$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -8567,18 +8567,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3,\\, 3,\\, 4,\\, 5",
    "\\text{Mediana} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Laboral · Horas extra",
   "enun": "Se registró el número de horas extra en 15 empleados. Datos: 2, 0, 3, 1, 4, 2, 0, 3, 2, 5, 1, 2, 0, 3, 2.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$2$",
-   "$7$",
-   "$8$",
-   "$9$"
+   "$5$",
+   "Bimodal: 0 y 2",
+   "$0$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8586,7 +8586,7 @@ const CD_QUESTIONS = [
    "f(0)=3,\\ f(1)=2,\\ f(2)=5,\\ f(3)=3,\\ f(4)=1,\\ f(5)=1",
    "\\text{El valor con mayor frecuencia es } 2\\ (f=5)"
   ],
-  "conc": "La moda es <b>2</b>."
+  "conc": "La moda es <b>2</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -8595,9 +8595,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$4{,}46$",
-   "$3{,}34$",
-   "$5{,}18$",
-   "$3{,}95$"
+   "$11{,}60$",
+   "$5{,}00$",
+   "$4{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8612,10 +8612,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de dispositivos conectados a wifi en 13 hogares. Datos: 4, 5, 3, 6, 4, 5, 3, 4, 7, 5, 4, 3, 5.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
-   "$13$",
+   "$3$",
+   "$7$",
    "$4$",
-   "$12$"
+   "$5$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -8624,17 +8624,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 3,\\, 3,\\, 3,\\, 4,\\, 4,\\, 4,\\, 4,\\, 5,\\, 5,\\, 5,\\, 5,\\, 6,\\, 7",
    "\\text{Mediana} = 4"
   ],
-  "conc": "La mediana es <b>4</b>."
+  "conc": "La mediana es <b>4</b>: al menos la mitad de los datos es menor o igual a 4 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Hogar · Conectividad",
   "enun": "Se registró el número de dispositivos conectados a wifi en 13 hogares. Datos: 4, 5, 3, 6, 4, 5, 3, 4, 7, 5, 4, 3, 5.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "4",
    "5",
-   "3",
+   "7",
    "Bimodal: 4 y 5"
   ],
   "correct": 3,
@@ -8652,9 +8652,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}20$",
-   "$1{,}60$",
-   "$1{,}30$",
-   "$0{,}95$"
+   "$4{,}50$",
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=15.",
@@ -8669,9 +8669,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de hijos matriculados en 15 familias. Datos: 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 2, 1, 1, 3, 0.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$11$",
-   "$4$",
-   "$10$",
+   "$2$",
+   "$8$",
+   "$1{,}2$",
    "$1$"
   ],
   "correct": 3,
@@ -8681,18 +8681,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 2,\\, 3,\\, 3",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Educación · Matrícula",
   "enun": "Se registró el número de hijos matriculados en 15 familias. Datos: 0, 1, 2, 1, 3, 0, 1, 2, 1, 0, 2, 1, 1, 3, 0.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$9$",
+   "$6$",
    "$1$",
-   "$8$",
-   "$7$"
+   "Bimodal: 0 y 1",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8700,7 +8700,7 @@ const CD_QUESTIONS = [
    "f(0)=4,\\ f(1)=6,\\ f(2)=3,\\ f(3)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=6)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media muestral",
@@ -8708,10 +8708,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de partidos ganados en 13 equipos. Datos: 5, 3, 4, 5, 2, 6, 4, 5, 3, 5, 4, 2, 5.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$3{,}70$",
-   "$4{,}83$",
+   "$10{,}60$",
+   "$4{,}00$",
    "$4{,}08$",
-   "$2{,}95$"
+   "$4{,}42$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=13.",
@@ -8726,10 +8726,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de partidos ganados en 13 equipos. Datos: 5, 3, 4, 5, 2, 6, 4, 5, 3, 5, 4, 2, 5.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$8$",
-   "$14$",
+   "$7$",
+   "$5$",
    "$4$",
-   "$7$"
+   "$4{,}08$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=13.",
@@ -8738,18 +8738,18 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 2,\\, 2,\\, 3,\\, 3,\\, 4,\\, 4,\\, 4,\\, 5,\\, 5,\\, 5,\\, 5,\\, 5,\\, 6",
    "\\text{Mediana} = 4"
   ],
-  "conc": "La mediana es <b>4</b>."
+  "conc": "La mediana es <b>4</b>: al menos la mitad de los datos es menor o igual a 4 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Deporte · Torneo",
   "enun": "Se registró el número de partidos ganados en 13 equipos. Datos: 5, 3, 4, 5, 2, 6, 4, 5, 3, 5, 4, 2, 5.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$5$",
-   "$12$",
-   "$1$",
-   "$0$"
+   "Bimodal: 4 y 5",
+   "$4$",
+   "$6$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -8757,7 +8757,7 @@ const CD_QUESTIONS = [
    "f(2)=2,\\ f(3)=2,\\ f(4)=3,\\ f(5)=5,\\ f(6)=1",
    "\\text{El valor con mayor frecuencia es } 5\\ (f=5)"
   ],
-  "conc": "La moda es <b>5</b>."
+  "conc": "La moda es <b>5</b>: es el valor con mayor frecuencia ($f=5$)."
  },
  {
   "tipo": "Media muestral",
@@ -8765,9 +8765,9 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de siniestros por póliza en 15 clientes de una aseguradora. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1, 0, 4.",
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}72$",
-   "$1{,}37$",
-   "$1{,}27$",
+   "$3{,}20$",
+   "$2{,}00$",
+   "$1{,}00$",
    "$1{,}07$"
   ],
   "correct": 3,
@@ -8783,10 +8783,10 @@ const CD_QUESTIONS = [
   "enun": "Se registró el número de siniestros por póliza en 15 clientes de una aseguradora. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1, 0, 4.",
   "ask": "Determine la mediana.",
   "alts": [
-   "$5$",
+   "$8$",
    "$1$",
-   "$12$",
-   "$6$"
+   "$2$",
+   "$0$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=15.",
@@ -8795,17 +8795,17 @@ const CD_QUESTIONS = [
    "\\text{Ordenando: } 0,\\, 0,\\, 0,\\, 0,\\, 0,\\, 0,\\, 1,\\, 1,\\, 1,\\, 1,\\, 1,\\, 2,\\, 2,\\, 3,\\, 4",
    "\\text{Mediana} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda",
   "ctx": "Seguros · Pólizas",
   "enun": "Se registró el número de siniestros por póliza en 15 clientes de una aseguradora. Datos: 0, 1, 0, 2, 1, 0, 3, 1, 0, 1, 2, 0, 1, 0, 4.",
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
-   "$2$",
-   "$9$",
+   "$6$",
+   "Bimodal: 0 y 1",
+   "$1$",
    "$0$"
   ],
   "correct": 3,
@@ -8814,7 +8814,7 @@ const CD_QUESTIONS = [
    "f(0)=6,\\ f(1)=5,\\ f(2)=2,\\ f(3)=1,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 0\\ (f=6)"
   ],
-  "conc": "La moda es <b>0</b>."
+  "conc": "La moda es <b>0</b>: es el valor con mayor frecuencia ($f=6$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -8862,10 +8862,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}09$",
-   "$1{,}23$",
+   "$6{,}60$",
+   "$2{,}00$",
    "$1{,}50$",
-   "$1{,}74$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=22.",
@@ -8920,19 +8920,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
+   "$11{,}5$",
    "$1$",
-   "$5$",
-   "$7$"
+   "$2$",
+   "$1{,}5$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=22.",
   "pautaSteps": [
-   "n=22\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 11\\text{ y } 12",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=22\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 11\\text{ y } 12",
+   "x_{(11)}=1\\quad(F_{1}=4<11\\le F_{2}=12)",
+   "x_{(12)}=1\\quad(F_{1}=4<12\\le F_{2}=12)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -8978,11 +8979,11 @@ const CD_QUESTIONS = [
    ],
    "N": 22
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$10$",
+   "$8$",
    "$1$",
-   "$11$",
+   "Bimodal: 1 y 2",
    "$4$"
   ],
   "correct": 1,
@@ -8991,7 +8992,7 @@ const CD_QUESTIONS = [
    "f(0)=4,\\ f(1)=8,\\ f(2)=6,\\ f(3)=3,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=8)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=8$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9035,9 +9036,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}21$",
-   "$1{,}31$",
-   "$0{,}96$",
-   "$1{,}61$"
+   "$7{,}25$",
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=24.",
@@ -9087,19 +9088,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$7$",
-   "$8$",
+   "$12{,}5$",
+   "$1{,}21$",
    "$1$",
-   "$6$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=24.",
   "pautaSteps": [
-   "n=24\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 12\\text{ y } 13",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=24\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 12\\text{ y } 13",
+   "x_{(12)}=1\\quad(F_{1}=6<12\\le F_{2}=16)",
+   "x_{(13)}=1\\quad(F_{1}=6<13\\le F_{2}=16)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9140,12 +9142,12 @@ const CD_QUESTIONS = [
    ],
    "N": 24
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$4$",
-   "$11$",
+   "$10$",
+   "Bimodal: 0 y 1",
    "$1$",
-   "$5$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -9153,7 +9155,7 @@ const CD_QUESTIONS = [
    "f(0)=6,\\ f(1)=10,\\ f(2)=5,\\ f(3)=3",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=10)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9196,9 +9198,9 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}98$",
-   "$1{,}73$",
-   "$2{,}23$",
+   "$15{,}50$",
+   "$2{,}50$",
+   "$2{,}00$",
    "$2{,}48$"
   ],
   "correct": 3,
@@ -9250,18 +9252,18 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$2$",
-   "$9$",
-   "$7$",
-   "$8$"
+   "$13$",
+   "$2{,}48$",
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=25.",
   "pautaSteps": [
    "n=25\\text{ impar} \\Rightarrow \\text{mediana} = \\text{dato en posición } 13",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 2",
+   "x_{(13)}=2\\quad(F_{1}=3<13\\le F_{2}=13)",
    "\\text{Mediana} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9302,11 +9304,11 @@ const CD_QUESTIONS = [
    ],
    "N": 25
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$13$",
-   "$6$",
-   "$7$",
+   "$10$",
+   "Bimodal: 2 y 3",
+   "$4$",
    "$2$"
   ],
   "correct": 3,
@@ -9315,7 +9317,7 @@ const CD_QUESTIONS = [
    "f(1)=3,\\ f(2)=10,\\ f(3)=9,\\ f(4)=3",
    "\\text{El valor con mayor frecuencia es } 2\\ (f=10)"
   ],
-  "conc": "La moda es <b>2</b>."
+  "conc": "La moda es <b>2</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9358,10 +9360,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}64$",
-   "$0{,}96$",
+   "$9{,}25$",
+   "$1{,}50$",
    "$1{,}32$",
-   "$1{,}53$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=28.",
@@ -9411,19 +9413,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$7$",
-   "$8$",
+   "$14{,}5$",
+   "$1{,}32$",
    "$1$",
-   "$9$"
+   "$2$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=28.",
   "pautaSteps": [
-   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 14\\text{ y } 15",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 14\\text{ y } 15",
+   "x_{(14)}=1\\quad(F_{1}=5<14\\le F_{2}=17)",
+   "x_{(15)}=1\\quad(F_{1}=5<15\\le F_{2}=17)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9464,12 +9467,12 @@ const CD_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$1$",
-   "$6$",
-   "$7$",
-   "$5$"
+   "$12$",
+   "Bimodal: 1 y 2",
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -9477,7 +9480,7 @@ const CD_QUESTIONS = [
    "f(0)=5,\\ f(1)=12,\\ f(2)=8,\\ f(3)=3",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=12)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=12$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9526,9 +9529,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}46$",
-   "$1{,}70$",
-   "$1{,}20$",
-   "$1{,}06$"
+   "$8{,}20$",
+   "$2{,}00$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=28.",
@@ -9583,19 +9586,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$7$",
-   "$9$",
-   "$8$",
+   "$14{,}5$",
+   "$2$",
+   "$1{,}46$",
    "$1$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Datos ordenados, } n=28.",
   "pautaSteps": [
-   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 14\\text{ y } 15",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 14\\text{ y } 15",
+   "x_{(14)}=1\\quad(F_{1}=6<14\\le F_{2}=16)",
+   "x_{(15)}=1\\quad(F_{1}=6<15\\le F_{2}=16)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9641,12 +9645,12 @@ const CD_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$6$",
+   "$10$",
    "$1$",
-   "$8$",
-   "$7$"
+   "Bimodal: 1 y 2",
+   "$4$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -9654,7 +9658,7 @@ const CD_QUESTIONS = [
    "f(0)=6,\\ f(1)=10,\\ f(2)=7,\\ f(3)=3,\\ f(4)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=10)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9702,9 +9706,9 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$3{,}31$",
-   "$4{,}32$",
-   "$5{,}06$",
+   "$22{,}40$",
+   "$4{,}15$",
+   "$4{,}25$",
    "$4{,}00$"
   ],
   "correct": 3,
@@ -9761,18 +9765,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$4$",
-   "$12$",
-   "$0$",
-   "$11$"
+   "$14{,}5$",
+   "$5$",
+   "$3$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=28.",
   "pautaSteps": [
-   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 14\\text{ y } 15",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 4",
-   "\\text{Mediana} = 4"
+   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 14\\text{ y } 15",
+   "x_{(14)}=4\\quad(F_{2}=9<14\\le F_{3}=19)",
+   "x_{(15)}=4\\quad(F_{2}=9<15\\le F_{3}=19)",
+   "\\text{Mediana} = \\dfrac{4+4}{2} = 4"
   ],
-  "conc": "La mediana es <b>4</b>."
+  "conc": "La mediana es <b>4</b>: al menos la mitad de los datos es menor o igual a 4 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9818,12 +9823,12 @@ const CD_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$1$",
+   "$10$",
    "$4$",
-   "$9$",
-   "$10$"
+   "Bimodal: 3 y 4",
+   "$6$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -9831,7 +9836,7 @@ const CD_QUESTIONS = [
    "f(2)=3,\\ f(3)=6,\\ f(4)=10,\\ f(5)=6,\\ f(6)=3",
    "\\text{El valor con mayor frecuencia es } 4\\ (f=10)"
   ],
-  "conc": "La moda es <b>4</b>."
+  "conc": "La moda es <b>4</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -9874,10 +9879,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}55$",
+   "$7{,}50$",
    "$1{,}00$",
-   "$1{,}30$",
-   "$0{,}85$"
+   "$1{,}50$",
+   "$1{,}03$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -9928,18 +9933,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
-   "$3$",
-   "$9$",
-   "$10$"
+   "$15{,}5$",
+   "$2$",
+   "$0$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=10<15\\le F_{2}=22)",
+   "x_{(16)}=1\\quad(F_{1}=10<16\\le F_{2}=22)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -9980,12 +9986,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
-   "$9$",
+   "$12$",
+   "Bimodal: 0 y 1",
    "$1$",
-   "$7$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -9993,7 +9999,7 @@ const CD_QUESTIONS = [
    "f(0)=10,\\ f(1)=12,\\ f(2)=6,\\ f(3)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=12)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=12$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -10041,10 +10047,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$7{,}11$",
+   "$34{,}40$",
    "$5{,}73$",
-   "$6{,}29$",
-   "$4{,}67$"
+   "$6{,}00$",
+   "$5{,}93$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -10099,19 +10105,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$9$",
-   "$0$",
-   "$1$",
+   "$15{,}5$",
+   "$5{,}73$",
+   "$7$",
    "$6$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 6",
-   "\\text{Mediana} = 6"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=6\\quad(F_{2}=13<15\\le F_{3}=23)",
+   "x_{(16)}=6\\quad(F_{2}=13<16\\le F_{3}=23)",
+   "\\text{Mediana} = \\dfrac{6+6}{2} = 6"
   ],
-  "conc": "La mediana es <b>6</b>."
+  "conc": "La mediana es <b>6</b>: al menos la mitad de los datos es menor o igual a 6 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -10157,12 +10164,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$6$",
-   "$12$",
-   "$13$",
-   "$2$"
+   "$10$",
+   "Bimodal: 5 y 6",
+   "$8$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -10170,7 +10177,7 @@ const CD_QUESTIONS = [
    "f(4)=4,\\ f(5)=9,\\ f(6)=10,\\ f(7)=5,\\ f(8)=2",
    "\\text{El valor con mayor frecuencia es } 6\\ (f=10)"
   ],
-  "conc": "La moda es <b>6</b>."
+  "conc": "La moda es <b>6</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -10218,9 +10225,9 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}44$",
-   "$1{,}66$",
-   "$2{,}28$",
+   "$11{,}00$",
+   "$2{,}00$",
+   "$2{,}04$",
    "$1{,}96$"
   ],
   "correct": 3,
@@ -10276,19 +10283,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$12$",
-   "$6$",
+   "$14{,}5$",
+   "$1{,}96$",
    "$2$",
-   "$5$"
+   "$3$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=28.",
   "pautaSteps": [
-   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 14\\text{ y } 15",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 2",
-   "\\text{Mediana} = 2"
+   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 14\\text{ y } 15",
+   "x_{(14)}=2\\quad(F_{2}=10<14\\le F_{3}=19)",
+   "x_{(15)}=2\\quad(F_{2}=10<15\\le F_{3}=19)",
+   "\\text{Mediana} = \\dfrac{2+2}{2} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -10334,12 +10342,12 @@ const CD_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$9$",
-   "$10$",
+   "Bimodal: 1 y 2",
    "$2$",
-   "$11$"
+   "$4$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -10347,7 +10355,7 @@ const CD_QUESTIONS = [
    "f(0)=3,\\ f(1)=7,\\ f(2)=9,\\ f(3)=6,\\ f(4)=3",
    "\\text{El valor con mayor frecuencia es } 2\\ (f=9)"
   ],
-  "conc": "La moda es <b>2</b>."
+  "conc": "La moda es <b>2</b>: es el valor con mayor frecuencia ($f=9$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -10391,9 +10399,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}04$",
-   "$0{,}79$",
-   "$1{,}44$",
-   "$1{,}14$"
+   "$7{,}25$",
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=28.",
@@ -10444,18 +10452,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
-   "$5$",
-   "$6$",
-   "$12$"
+   "$14{,}5$",
+   "$1{,}04$",
+   "$2$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=28.",
   "pautaSteps": [
-   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 14\\text{ y } 15",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=28\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 14\\text{ y } 15",
+   "x_{(14)}=1\\quad(F_{1}=9<14\\le F_{2}=20)",
+   "x_{(15)}=1\\quad(F_{1}=9<15\\le F_{2}=20)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -10496,11 +10505,11 @@ const CD_QUESTIONS = [
    ],
    "N": 28
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
+   "$11$",
+   "Bimodal: 0 y 1",
    "$3$",
-   "$10$",
-   "$9$",
    "$1$"
   ],
   "correct": 3,
@@ -10509,12 +10518,12 @@ const CD_QUESTIONS = [
    "f(0)=9,\\ f(1)=11,\\ f(2)=6,\\ f(3)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=11)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=11$)."
  },
  {
   "tipo": "Media desde tabla",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en $n=30$ producciones. La tabla de frecuencias es:",
+  "enun": "Se registró el número de defectos por lote en $n=30$ lotes. La tabla de frecuencias es:",
   "table": {
    "head": [
     "$x_i$",
@@ -10557,10 +10566,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}21$",
-   "$0{,}89$",
+   "$8{,}20$",
+   "$2{,}00$",
    "$1{,}37$",
-   "$1{,}69$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -10572,7 +10581,7 @@ const CD_QUESTIONS = [
  {
   "tipo": "Mediana desde tabla",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en $n=30$ producciones. La tabla de frecuencias es:",
+  "enun": "Se registró el número de defectos por lote en $n=30$ lotes. La tabla de frecuencias es:",
   "table": {
    "head": [
     "$x_i$",
@@ -10615,24 +10624,25 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
-   "$5$",
-   "$7$",
+   "$15{,}5$",
+   "$2$",
+   "$1{,}37$",
    "$1$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=8<15\\le F_{2}=18)",
+   "x_{(16)}=1\\quad(F_{1}=8<16\\le F_{2}=18)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
   "ctx": "Producción · Lotes",
-  "enun": "Se registró el número de defectos por lote en $n=30$ producciones. La tabla de frecuencias es:",
+  "enun": "Se registró el número de defectos por lote en $n=30$ lotes. La tabla de frecuencias es:",
   "table": {
    "head": [
     "$x_i$",
@@ -10673,12 +10683,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$1$",
-   "$11$",
-   "$4$",
-   "$10$"
+   "$10$",
+   "Bimodal: 0 y 1",
+   "$4$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -10686,7 +10696,7 @@ const CD_QUESTIONS = [
    "f(0)=8,\\ f(1)=10,\\ f(2)=7,\\ f(3)=3,\\ f(4)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=10)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -10739,10 +10749,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$2{,}58$",
+   "$11{,}50$",
    "$2{,}30$",
-   "$1{,}78$",
-   "$2{,}85$"
+   "$2{,}50$",
+   "$2{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -10802,19 +10812,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$8$",
+   "$15{,}5$",
    "$2$",
-   "$7$",
-   "$0$"
+   "$2{,}3$",
+   "$3$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 2",
-   "\\text{Mediana} = 2"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=2\\quad(F_{2}=8<15\\le F_{3}=18)",
+   "x_{(16)}=2\\quad(F_{2}=8<16\\le F_{3}=18)",
+   "\\text{Mediana} = \\dfrac{2+2}{2} = 2"
   ],
-  "conc": "La mediana es <b>2</b>."
+  "conc": "La mediana es <b>2</b>: al menos la mitad de los datos es menor o igual a 2 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -10865,12 +10876,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$6$",
-   "$5$",
+   "$10$",
+   "Bimodal: 2 y 3",
    "$2$",
-   "$12$"
+   "$5$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -10878,7 +10889,7 @@ const CD_QUESTIONS = [
    "f(0)=2,\\ f(1)=6,\\ f(2)=10,\\ f(3)=7,\\ f(4)=3,\\ f(5)=2",
    "\\text{El valor con mayor frecuencia es } 2\\ (f=10)"
   ],
-  "conc": "La moda es <b>2</b>."
+  "conc": "La moda es <b>2</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -10921,10 +10932,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$0{,}97$",
-   "$0{,}42$",
+   "$5{,}75$",
+   "$1{,}50$",
    "$0{,}77$",
-   "$0{,}52$"
+   "$0{,}50$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -10974,19 +10985,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$0{,}1$",
+   "$15{,}5$",
    "$0{,}5$",
-   "$0{,}7$",
-   "$0{,}8$"
+   "$1$",
+   "$0$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 0{,}5",
-   "\\text{Mediana} = 0{,}5"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=0\\quad(15\\le F_{1}=15)",
+   "x_{(16)}=1\\quad(F_{1}=15<16\\le F_{2}=24)",
+   "\\text{Mediana} = \\dfrac{0+1}{2} = 0{,}5"
   ],
-  "conc": "La mediana es <b>0,5</b>."
+  "conc": "La mediana es <b>0,5</b>: al menos la mitad de los datos es menor o igual a 0,5 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11027,11 +11039,11 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$5$",
-   "$11$",
-   "$4$",
+   "$15$",
+   "Bimodal: 0 y 1",
+   "$3$",
    "$0$"
   ],
   "correct": 3,
@@ -11040,7 +11052,7 @@ const CD_QUESTIONS = [
    "f(0)=15,\\ f(1)=9,\\ f(2)=4,\\ f(3)=2",
    "\\text{El valor con mayor frecuencia es } 0\\ (f=15)"
   ],
-  "conc": "La moda es <b>0</b>."
+  "conc": "La moda es <b>0</b>: es el valor con mayor frecuencia ($f=15$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11089,9 +11101,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$4{,}73$",
-   "$5{,}11$",
-   "$5{,}97$",
-   "$3{,}93$"
+   "$28{,}40$",
+   "$5{,}00$",
+   "$4{,}90$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -11146,19 +11158,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$11$",
-   "$2$",
-   "$1$",
+   "$15{,}5$",
+   "$4{,}73$",
+   "$6$",
    "$5$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 5",
-   "\\text{Mediana} = 5"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=5\\quad(F_{2}=13<15\\le F_{3}=23)",
+   "x_{(16)}=5\\quad(F_{2}=13<16\\le F_{3}=23)",
+   "\\text{Mediana} = \\dfrac{5+5}{2} = 5"
   ],
-  "conc": "La mediana es <b>5</b>."
+  "conc": "La mediana es <b>5</b>: al menos la mitad de los datos es menor o igual a 5 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11204,12 +11217,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$9$",
-   "$11$",
+   "$10$",
+   "Bimodal: 4 y 5",
    "$5$",
-   "$10$"
+   "$7$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -11217,7 +11230,7 @@ const CD_QUESTIONS = [
    "f(3)=4,\\ f(4)=9,\\ f(5)=10,\\ f(6)=5,\\ f(7)=2",
    "\\text{El valor con mayor frecuencia es } 5\\ (f=10)"
   ],
-  "conc": "La moda es <b>5</b>."
+  "conc": "La moda es <b>5</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11265,10 +11278,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$3{,}27$",
+   "$16{,}40$",
    "$2{,}73$",
-   "$2{,}46$",
-   "$1{,}93$"
+   "$3{,}00$",
+   "$2{,}83$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -11324,18 +11337,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$3$",
-   "$10$",
-   "$11$",
-   "$9$"
+   "$15{,}5$",
+   "$2{,}73$",
+   "$4$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 3",
-   "\\text{Mediana} = 3"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=3\\quad(F_{2}=13<15\\le F_{3}=23)",
+   "x_{(16)}=3\\quad(F_{2}=13<16\\le F_{3}=23)",
+   "\\text{Mediana} = \\dfrac{3+3}{2} = 3"
   ],
-  "conc": "La mediana es <b>3</b>."
+  "conc": "La mediana es <b>3</b>: al menos la mitad de los datos es menor o igual a 3 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11381,12 +11395,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$3$",
-   "$1$",
-   "$8$",
-   "$9$"
+   "$10$",
+   "Bimodal: 2 y 3",
+   "$5$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -11394,7 +11408,7 @@ const CD_QUESTIONS = [
    "f(1)=4,\\ f(2)=9,\\ f(3)=10,\\ f(4)=5,\\ f(5)=2",
    "\\text{El valor con mayor frecuencia es } 3\\ (f=10)"
   ],
-  "conc": "La moda es <b>3</b>."
+  "conc": "La moda es <b>3</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11442,10 +11456,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}65$",
-   "$0{,}97$",
+   "$8{,}00$",
+   "$2{,}00$",
    "$1{,}33$",
-   "$1{,}54$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -11500,19 +11514,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$8$",
-   "$10$",
+   "$15{,}5$",
+   "$2$",
    "$1$",
-   "$9$"
+   "$1{,}33$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=8<15\\le F_{2}=19)",
+   "x_{(16)}=1\\quad(F_{1}=8<16\\le F_{2}=19)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11558,11 +11573,11 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
-   "$7$",
-   "$6$",
+   "$11$",
+   "Bimodal: 0 y 1",
+   "$4$",
    "$1$"
   ],
   "correct": 3,
@@ -11571,7 +11586,7 @@ const CD_QUESTIONS = [
    "f(0)=8,\\ f(1)=11,\\ f(2)=6,\\ f(3)=3,\\ f(4)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=11)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=11$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11620,9 +11635,9 @@ const CD_QUESTIONS = [
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
    "$1{,}07$",
-   "$0{,}72$",
-   "$0{,}82$",
-   "$1{,}27$"
+   "$6{,}40$",
+   "$2{,}00$",
+   "$1{,}00$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -11677,19 +11692,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$3$",
-   "$10$",
-   "$9$",
+   "$15{,}5$",
+   "$2$",
+   "$0$",
    "$1$"
   ],
   "correct": 3,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=12<15\\le F_{2}=21)",
+   "x_{(16)}=1\\quad(F_{1}=12<16\\le F_{2}=21)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11735,12 +11751,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
+   "$12$",
    "$0$",
-   "$7$",
-   "$6$"
+   "Bimodal: 0 y 1",
+   "$1$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -11748,7 +11764,7 @@ const CD_QUESTIONS = [
    "f(0)=12,\\ f(1)=9,\\ f(2)=5,\\ f(3)=3,\\ f(4)=1",
    "\\text{El valor con mayor frecuencia es } 0\\ (f=12)"
   ],
-  "conc": "La moda es <b>0</b>."
+  "conc": "La moda es <b>0</b>: es el valor con mayor frecuencia ($f=12$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11796,10 +11812,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}15$",
-   "$1{,}55$",
+   "$8{,}60$",
+   "$2{,}00$",
    "$1{,}43$",
-   "$1{,}88$"
+   "$1{,}00$"
   ],
   "correct": 2,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -11855,18 +11871,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$1$",
-   "$10$",
-   "$11$",
-   "$4$"
+   "$15{,}5$",
+   "$2$",
+   "$1{,}43$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=7<15\\le F_{2}=17)",
+   "x_{(16)}=1\\quad(F_{1}=7<16\\le F_{2}=17)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -11912,12 +11929,12 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$8$",
+   "$10$",
    "$1$",
-   "$7$",
-   "$9$"
+   "Bimodal: 1 y 2",
+   "$4$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Frecuencias por valor:}",
@@ -11925,7 +11942,7 @@ const CD_QUESTIONS = [
    "f(0)=7,\\ f(1)=10,\\ f(2)=8,\\ f(3)=3,\\ f(4)=2",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=10)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -11973,9 +11990,9 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$4{,}43$",
-   "$3{,}55$",
-   "$5{,}75$",
+   "$29{,}20$",
+   "$5{,}00$",
+   "$5{,}03$",
    "$4{,}87$"
   ],
   "correct": 3,
@@ -12032,18 +12049,19 @@ const CD_QUESTIONS = [
   "ask": "Determine la mediana.",
   "alts": [
    "$5$",
-   "$8$",
-   "$15$",
-   "$9$"
+   "$15{,}5$",
+   "$4{,}87$",
+   "$6$"
   ],
   "correct": 0,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 5",
-   "\\text{Mediana} = 5"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=5\\quad(F_{2}=12<15\\le F_{3}=22)",
+   "x_{(16)}=5\\quad(F_{2}=12<16\\le F_{3}=22)",
+   "\\text{Mediana} = \\dfrac{5+5}{2} = 5"
   ],
-  "conc": "La mediana es <b>5</b>."
+  "conc": "La mediana es <b>5</b>: al menos la mitad de los datos es menor o igual a 5 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -12089,11 +12107,11 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
-   "$12$",
-   "$1$",
-   "$0$",
+   "$10$",
+   "Bimodal: 4 y 5",
+   "$7$",
    "$5$"
   ],
   "correct": 3,
@@ -12102,7 +12120,7 @@ const CD_QUESTIONS = [
    "f(3)=3,\\ f(4)=9,\\ f(5)=10,\\ f(6)=5,\\ f(7)=3",
    "\\text{El valor con mayor frecuencia es } 5\\ (f=10)"
   ],
-  "conc": "La moda es <b>5</b>."
+  "conc": "La moda es <b>5</b>: es el valor con mayor frecuencia ($f=10$)."
  },
  {
   "tipo": "Media desde tabla",
@@ -12145,10 +12163,10 @@ const CD_QUESTIONS = [
   },
   "ask": "Calcule la media muestral $\\bar{x}$ (aproximada a 2 decimales).",
   "alts": [
-   "$1{,}47$",
+   "$8{,}75$",
    "$1{,}17$",
-   "$1{,}37$",
-   "$0{,}82$"
+   "$1{,}50$",
+   "$1{,}00$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos con } n=30.",
@@ -12198,19 +12216,20 @@ const CD_QUESTIONS = [
   },
   "ask": "Determine la mediana.",
   "alts": [
-   "$6$",
+   "$15{,}5$",
    "$1$",
-   "$5$",
-   "$12$"
+   "$1{,}17$",
+   "$2$"
   ],
   "correct": 1,
   "pautaHead": "\\text{Datos ordenados, } n=30.",
   "pautaSteps": [
-   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de posiciones } 15\\text{ y } 16",
-   "\\text{Con } F_i \\text{ se ubica la posición: mediana} = 1",
-   "\\text{Mediana} = 1"
+   "n=30\\text{ par} \\Rightarrow \\text{mediana} = \\text{promedio de los datos en posiciones } 15\\text{ y } 16",
+   "x_{(15)}=1\\quad(F_{1}=8<15\\le F_{2}=20)",
+   "x_{(16)}=1\\quad(F_{1}=8<16\\le F_{2}=20)",
+   "\\text{Mediana} = \\dfrac{1+1}{2} = 1"
   ],
-  "conc": "La mediana es <b>1</b>."
+  "conc": "La mediana es <b>1</b>: al menos la mitad de los datos es menor o igual a 1 y al menos la mitad es mayor o igual."
  },
  {
   "tipo": "Moda desde tabla",
@@ -12251,11 +12270,11 @@ const CD_QUESTIONS = [
    ],
    "N": 30
   },
-  "ask": "Determine la moda.",
+  "ask": "Determine la moda (si hay más de una, indíquelas todas).",
   "alts": [
    "$1$",
-   "$10$",
-   "$9$",
+   "$12$",
+   "Bimodal: 0 y 1",
    "$3$"
   ],
   "correct": 0,
@@ -12264,6 +12283,6 @@ const CD_QUESTIONS = [
    "f(0)=8,\\ f(1)=12,\\ f(2)=7,\\ f(3)=3",
    "\\text{El valor con mayor frecuencia es } 1\\ (f=12)"
   ],
-  "conc": "La moda es <b>1</b>."
+  "conc": "La moda es <b>1</b>: es el valor con mayor frecuencia ($f=12$)."
  }
 ];

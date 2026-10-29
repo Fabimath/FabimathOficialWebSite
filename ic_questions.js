@@ -15,10 +15,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=36,\\ \\bar{x}=4{,}20,\\ \\sigma=0{,}90,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{0,90}{\\sqrt{36}}=0{,}294\\ \\text{kg}",
+"ME=1{,}960\\cdot\\dfrac{0{,}90}{\\sqrt{36}}=0{,}294\\ \\text{kg}",
 "IC=4{,}20\\pm 0{,}294=\\left[\\,3{,}906\\;;\\;4{,}494\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 3,906 y 4,494 kg."
+"conc": "Con un 95% de confianza, el peso promedio de los gatos domésticos adultos se encuentra entre 3,906 y 4,494 kg."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -38,7 +38,7 @@ const IC_QUESTIONS = [
 "ME=2{,}576\\cdot\\dfrac{7}{\\sqrt{49}}=2{,}576\\ \\text{lpm}",
 "IC=82\\pm 2{,}576=\\left[\\,79{,}424\\;;\\;84{,}576\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 79,424 y 84,576 lpm."
+"conc": "Con un 99% de confianza, la frecuencia cardíaca media en reposo de los Border Collie se encuentra entre 79,424 y 84,576 lpm."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -58,7 +58,7 @@ const IC_QUESTIONS = [
 "ME=1{,}645\\cdot\\dfrac{18}{\\sqrt{25}}=5{,}922\\ \\text{mg/dL}",
 "IC=148\\pm 5{,}922=\\left[\\,142{,}078\\;;\\;153{,}922\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 142,078 y 153,922 mg/dL."
+"conc": "Con un 90% de confianza, la glucosa media en sangre de los conejos de laboratorio se encuentra entre 142,078 y 153,922 mg/dL."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -75,10 +75,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=64,\\ \\bar{x}=38{,}50,\\ \\sigma=4{,}20,\\ 98\\%\\Rightarrow z_{1-\\alpha/2}=2{,}326.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}326\\cdot\\dfrac{4,20}{\\sqrt{64}}=1{,}221\\ \\text{kg}",
+"ME=2{,}326\\cdot\\dfrac{4{,}20}{\\sqrt{64}}=1{,}221\\ \\text{kg}",
 "IC=38{,}50\\pm 1{,}221=\\left[\\,37{,}279\\;;\\;39{,}721\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 37,279 y 39,721 kg."
+"conc": "Con un 98% de confianza, el peso medio al nacer de los terneros Holstein se encuentra entre 37,279 y 39,721 kg."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -95,10 +95,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=81,\\ \\bar{x}=41{,}80,\\ \\sigma=0{,}60,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{0,60}{\\sqrt{81}}=0{,}131\\ \\text{°C}",
+"ME=1{,}960\\cdot\\dfrac{0{,}60}{\\sqrt{81}}=0{,}131\\ \\text{°C}",
 "IC=41{,}80\\pm 0{,}131=\\left[\\,41{,}669\\;;\\;41{,}931\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 41,669 y 41,931 °C."
+"conc": "Con un 95% de confianza, la temperatura corporal media de los pollos broiler bajo estrés térmico se encuentra entre 41,669 y 41,931 °C."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -118,7 +118,7 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\cdot\\dfrac{15}{\\sqrt{100}}=2{,}940\\ \\text{mmHg}",
 "IC=138\\pm 2{,}940=\\left[\\,135{,}060\\;;\\;140{,}940\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 135,060 y 140,940 mmHg."
+"conc": "Con un 95% de confianza, la presión arterial sistólica media de los adultos mayores hospitalizados se encuentra entre 135,060 y 140,940 mmHg."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -135,10 +135,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=40,\\ \\bar{x}=93{,}40,\\ \\sigma=3{,}10,\\ 99\\%\\Rightarrow z_{1-\\alpha/2}=2{,}576.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}576\\cdot\\dfrac{3,10}{\\sqrt{40}}=1{,}263\\ \\%",
+"ME=2{,}576\\cdot\\dfrac{3{,}10}{\\sqrt{40}}=1{,}263\\ \\%",
 "IC=93{,}40\\pm 1{,}263=\\left[\\,92{,}137\\;;\\;94{,}663\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 92,137 y 94,663 %."
+"conc": "Con un 99% de confianza, la SpO2 media de los pacientes con síntomas respiratorios agudos se encuentra entre 92,137 y 94,663 %."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -155,10 +155,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=50,\\ \\bar{x}=12{,}30,\\ \\sigma=2{,}50,\\ 90\\%\\Rightarrow z_{1-\\alpha/2}=1{,}645.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}645\\cdot\\dfrac{2,50}{\\sqrt{50}}=0{,}582\\ \\text{min}",
+"ME=1{,}645\\cdot\\dfrac{2{,}50}{\\sqrt{50}}=0{,}582\\ \\text{min}",
 "IC=12{,}30\\pm 0{,}582=\\left[\\,11{,}718\\;;\\;12{,}882\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 11,718 y 12,882 min."
+"conc": "Con un 90% de confianza, el tiempo medio de administración de medicamentos endovenosos se encuentra entre 11,718 y 12,882 min."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -178,7 +178,7 @@ const IC_QUESTIONS = [
 "ME=2{,}326\\cdot\\dfrac{4}{\\sqrt{36}}=1{,}551\\ \\text{rpm}",
 "IC=22\\pm 1{,}551=\\left[\\,20{,}449\\;;\\;23{,}551\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 20,449 y 23,551 rpm."
+"conc": "Con un 98% de confianza, la frecuencia respiratoria media en reposo de los adultos con neumonía leve se encuentra entre 20,449 y 23,551 rpm."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -195,10 +195,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=60,\\ \\bar{x}=7{,}80,\\ \\sigma=1{,}20,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{1,20}{\\sqrt{60}}=0{,}304\\ \\%",
+"ME=1{,}960\\cdot\\dfrac{1{,}20}{\\sqrt{60}}=0{,}304\\ \\%",
 "IC=7{,}80\\pm 0{,}304=\\left[\\,7{,}496\\;;\\;8{,}104\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 7,496 y 8,104 %."
+"conc": "Con un 95% de confianza, la HbA1c media de los pacientes diabéticos se encuentra entre 7,496 y 8,104 %."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -215,14 +215,14 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=80,\\ \\bar{x}=3{,}42,\\ \\sigma=0{,}38,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{0,38}{\\sqrt{80}}=0{,}083\\ \\text{kg}",
+"ME=1{,}960\\cdot\\dfrac{0{,}38}{\\sqrt{80}}=0{,}083\\ \\text{kg}",
 "IC=3{,}42\\pm 0{,}083=\\left[\\,3{,}337\\;;\\;3{,}503\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 3,337 y 3,503 kg."
+"conc": "Con un 95% de confianza, el peso medio al nacer de los recién nacidos de término se encuentra entre 3,337 y 3,503 kg."
 },
 {
 "tipo": "Media · σ conocida (z)",
-"ctx": "Obstetricia · Obstetricia",
+"ctx": "Obstetricia · Trabajo de parto",
 "enun": "Se estudia la duración del trabajo de parto activo en primíparas. Una revisión de 45 fichas mostró un promedio de 8,6 horas. La desviación estándar poblacional es de 1,8 horas. Determine el intervalo de confianza del 99% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
@@ -235,10 +235,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=45,\\ \\bar{x}=8{,}60,\\ \\sigma=1{,}80,\\ 99\\%\\Rightarrow z_{1-\\alpha/2}=2{,}576.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}576\\cdot\\dfrac{1,80}{\\sqrt{45}}=0{,}691\\ \\text{horas}",
+"ME=2{,}576\\cdot\\dfrac{1{,}80}{\\sqrt{45}}=0{,}691\\ \\text{horas}",
 "IC=8{,}60\\pm 0{,}691=\\left[\\,7{,}909\\;;\\;9{,}291\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 7,909 y 9,291 horas."
+"conc": "Con un 99% de confianza, la duración media del trabajo de parto activo en primíparas se encuentra entre 7,909 y 9,291 horas."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -255,10 +255,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=55,\\ \\bar{x}=49{,}80,\\ \\sigma=2{,}10,\\ 90\\%\\Rightarrow z_{1-\\alpha/2}=1{,}645.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}645\\cdot\\dfrac{2,10}{\\sqrt{55}}=0{,}466\\ \\text{cm}",
+"ME=1{,}645\\cdot\\dfrac{2{,}10}{\\sqrt{55}}=0{,}466\\ \\text{cm}",
 "IC=49{,}80\\pm 0{,}466=\\left[\\,49{,}334\\;;\\;50{,}266\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 49,334 y 50,266 cm."
+"conc": "Con un 90% de confianza, la talla media al nacer de los neonatos de término se encuentra entre 49,334 y 50,266 cm."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -275,10 +275,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=120,\\ \\bar{x}=38{,}70,\\ \\sigma=1{,}40,\\ 98\\%\\Rightarrow z_{1-\\alpha/2}=2{,}326.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}326\\cdot\\dfrac{1,40}{\\sqrt{120}}=0{,}297\\ \\text{semanas}",
+"ME=2{,}326\\cdot\\dfrac{1{,}40}{\\sqrt{120}}=0{,}297\\ \\text{semanas}",
 "IC=38{,}70\\pm 0{,}297=\\left[\\,38{,}403\\;;\\;38{,}997\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 38,403 y 38,997 semanas."
+"conc": "Con un 98% de confianza, la edad gestacional media de los partos del hospital se encuentra entre 38,403 y 38,997 semanas."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -295,10 +295,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=38,\\ \\bar{x}=34{,}50,\\ \\sigma=1{,}60,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{1,60}{\\sqrt{38}}=0{,}509\\ \\text{cm}",
+"ME=1{,}960\\cdot\\dfrac{1{,}60}{\\sqrt{38}}=0{,}509\\ \\text{cm}",
 "IC=34{,}50\\pm 0{,}509=\\left[\\,33{,}991\\;;\\;35{,}009\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 33,991 y 35,009 cm."
+"conc": "Con un 95% de confianza, el perímetro cefálico medio al nacer de los hijos de madres con diabetes gestacional se encuentra entre 33,991 y 35,009 cm."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -315,10 +315,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=30,\\ \\bar{x}=112{,}40,\\ \\sigma=9{,}80,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{9,80}{\\sqrt{30}}=3{,}507\\ \\text{grados}",
+"ME=1{,}960\\cdot\\dfrac{9{,}80}{\\sqrt{30}}=3{,}507\\ \\text{grados}",
 "IC=112{,}40\\pm 3{,}507=\\left[\\,108{,}893\\;;\\;115{,}907\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 108,893 y 115,907 grados."
+"conc": "Con un 95% de confianza, el rango medio de flexión de rodilla tras la cirugía de LCA se encuentra entre 108,893 y 115,907 grados."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -335,10 +335,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=44,\\ \\bar{x}=5{,}30,\\ \\sigma=1{,}20,\\ 99\\%\\Rightarrow z_{1-\\alpha/2}=2{,}576.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}576\\cdot\\dfrac{1,20}{\\sqrt{44}}=0{,}466\\ \\text{semanas}",
+"ME=2{,}576\\cdot\\dfrac{1{,}20}{\\sqrt{44}}=0{,}466\\ \\text{semanas}",
 "IC=5{,}30\\pm 0{,}466=\\left[\\,4{,}834\\;;\\;5{,}766\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 4,834 y 5,766 semanas."
+"conc": "Con un 99% de confianza, el tiempo medio de recuperación del esguince de tobillo grado II se encuentra entre 4,834 y 5,766 semanas."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -355,10 +355,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=52,\\ \\bar{x}=2{,}85,\\ \\sigma=0{,}55,\\ 90\\%\\Rightarrow z_{1-\\alpha/2}=1{,}645.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}645\\cdot\\dfrac{0,55}{\\sqrt{52}}=0{,}125\\ \\text{litros}",
+"ME=1{,}645\\cdot\\dfrac{0{,}55}{\\sqrt{52}}=0{,}125\\ \\text{litros}",
 "IC=2{,}85\\pm 0{,}125=\\left[\\,2{,}725\\;;\\;2{,}975\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 2,725 y 2,975 litros."
+"conc": "Con un 90% de confianza, la CVF media de los adultos con EPOC leve se encuentra entre 2,725 y 2,975 litros."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -375,10 +375,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=68,\\ \\bar{x}=18{,}70,\\ \\sigma=4{,}30,\\ 98\\%\\Rightarrow z_{1-\\alpha/2}=2{,}326.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=2{,}326\\cdot\\dfrac{4,30}{\\sqrt{68}}=1{,}213\\ \\text{kg}",
+"ME=2{,}326\\cdot\\dfrac{4{,}30}{\\sqrt{68}}=1{,}213\\ \\text{kg}",
 "IC=18{,}70\\pm 1{,}213=\\left[\\,17{,}487\\;;\\;19{,}913\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 17,487 y 19,913 kg."
+"conc": "Con un 98% de confianza, la fuerza de prensión palmar media de los adultos mayores se encuentra entre 17,487 y 19,913 kg."
 },
 {
 "tipo": "Media · σ conocida (z)",
@@ -395,10 +395,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=40,\\ \\bar{x}=68{,}20,\\ \\sigma=7{,}50,\\ 95\\%\\Rightarrow z_{1-\\alpha/2}=1{,}960.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm z_{1-\\alpha/2}\\dfrac{\\sigma}{\\sqrt{n}}",
-"ME=1{,}960\\cdot\\dfrac{7,50}{\\sqrt{40}}=2{,}324\\ \\%",
+"ME=1{,}960\\cdot\\dfrac{7{,}50}{\\sqrt{40}}=2{,}324\\ \\%",
 "IC=68{,}20\\pm 2{,}324=\\left[\\,65{,}876\\;;\\;70{,}524\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 65,876 y 70,524 %."
+"conc": "Con un 95% de confianza, el puntaje medio de equilibrio postural (SEBT anterior) de los deportistas se encuentra entre 65,876 y 70,524 %."
 },
 {
 "tipo": "Proporción (z)",
@@ -406,7 +406,7 @@ const IC_QUESTIONS = [
 "enun": "En una campaña de detección de leishmaniasis se examinaron 120 perros y 34 resultaron positivos. Construya un intervalo de confianza del 95% para la verdadera proporción de perros con leishmaniasis.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}2027\\;;\\;0{,}3640\\,\\right]$",
+"$\\left[\\,0{,}2027\\;;\\;0{,}3639\\,\\right]$",
 "$\\left[\\,0{,}2800\\;;\\;0{,}2866\\,\\right]$",
 "$\\left[\\,0{,}2422\\;;\\;0{,}3245\\,\\right]$",
 "$\\left[\\,0{,}1774\\;;\\;0{,}3893\\,\\right]$"
@@ -416,9 +416,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=1{,}960\\sqrt{\\dfrac{0{,}2833\\cdot 0{,}7167}{120}}=0{,}0806",
-"IC=0{,}2833\\pm 0{,}0806=\\left[\\,0{,}2027\\;;\\;0{,}3640\\,\\right]"
+"IC=0{,}2833\\pm 0{,}0806=\\left[\\,0{,}2027\\;;\\;0{,}3639\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 20,27% y 36,40%."
+"conc": "Con un 95% de confianza, la proporción de perros con leishmaniasis está entre 20,27% y 36,39%."
 },
 {
 "tipo": "Proporción (z)",
@@ -438,7 +438,7 @@ const IC_QUESTIONS = [
 "ME=2{,}576\\sqrt{\\dfrac{0{,}2235\\cdot 0{,}7765}{85}}=0{,}1164",
 "IC=0{,}2235\\pm 0{,}1164=\\left[\\,0{,}1071\\;;\\;0{,}3399\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera proporción está entre 10,71% y 33,99%."
+"conc": "Con un 99% de confianza, la proporción de gatas con quistes ováricos está entre 10,71% y 33,99%."
 },
 {
 "tipo": "Proporción (z)",
@@ -458,7 +458,7 @@ const IC_QUESTIONS = [
 "ME=1{,}645\\sqrt{\\dfrac{0{,}2600\\cdot 0{,}7400}{200}}=0{,}0510",
 "IC=0{,}2600\\pm 0{,}0510=\\left[\\,0{,}2090\\;;\\;0{,}3110\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera proporción está entre 20,90% y 31,10%."
+"conc": "Con un 90% de confianza, la proporción de terneros con diarrea neonatal está entre 20,90% y 31,10%."
 },
 {
 "tipo": "Proporción (z)",
@@ -478,7 +478,7 @@ const IC_QUESTIONS = [
 "ME=2{,}326\\sqrt{\\dfrac{0{,}4200\\cdot 0{,}5800}{150}}=0{,}0937",
 "IC=0{,}4200\\pm 0{,}0937=\\left[\\,0{,}3263\\;;\\;0{,}5137\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera proporción está entre 32,63% y 51,37%."
+"conc": "Con un 98% de confianza, la proporción de equinos parasitados por estróngilos está entre 32,63% y 51,37%."
 },
 {
 "tipo": "Proporción (z)",
@@ -498,7 +498,7 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\sqrt{\\dfrac{0{,}1500\\cdot 0{,}8500}{300}}=0{,}0404",
 "IC=0{,}1500\\pm 0{,}0404=\\left[\\,0{,}1096\\;;\\;0{,}1904\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 10,96% y 19,04%."
+"conc": "Con un 95% de confianza, la proporción de pollos broiler con lesiones de bronquitis está entre 10,96% y 19,04%."
 },
 {
 "tipo": "Proporción (z)",
@@ -518,7 +518,7 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\sqrt{\\dfrac{0{,}6500\\cdot 0{,}3500}{180}}=0{,}0697",
 "IC=0{,}6500\\pm 0{,}0697=\\left[\\,0{,}5803\\;;\\;0{,}7197\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 58,03% y 71,97%."
+"conc": "Con un 95% de confianza, la proporción de pacientes hipertensos con adherencia adecuada al tratamiento está entre 58,03% y 71,97%."
 },
 {
 "tipo": "Proporción (z)",
@@ -538,7 +538,7 @@ const IC_QUESTIONS = [
 "ME=2{,}576\\sqrt{\\dfrac{0{,}3500\\cdot 0{,}6500}{240}}=0{,}0793",
 "IC=0{,}3500\\pm 0{,}0793=\\left[\\,0{,}2707\\;;\\;0{,}4293\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera proporción está entre 27,07% y 42,93%."
+"conc": "Con un 99% de confianza, la proporción de adultos mayores hospitalizados con al menos una caída está entre 27,07% y 42,93%."
 },
 {
 "tipo": "Proporción (z)",
@@ -546,19 +546,19 @@ const IC_QUESTIONS = [
 "enun": "De 320 instalaciones de catéter venoso central, 38 tuvieron complicaciones. Determine el intervalo de confianza del 90% para la verdadera proporción con complicaciones.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}0890\\;;\\;0{,}1485\\,\\right]$",
+"$\\left[\\,0{,}0891\\;;\\;0{,}1485\\,\\right]$",
 "$\\left[\\,0{,}1182\\;;\\;0{,}1193\\,\\right]$",
 "$\\left[\\,0{,}1007\\;;\\;0{,}1368\\,\\right]$",
 "$\\left[\\,0{,}0722\\;;\\;0{,}1653\\,\\right]$"
 ],
 "correct": 0,
-"pautaHead": "\\textbf{Datos:}\\ n=320,\\ x=38,\\ \\hat{p}=\\dfrac{38}{320}=0{,}1187,\\ 90\\%\\Rightarrow z_{1-\\alpha/2}=1{,}645.",
+"pautaHead": "\\textbf{Datos:}\\ n=320,\\ x=38,\\ \\hat{p}=\\dfrac{38}{320}=0{,}1188,\\ 90\\%\\Rightarrow z_{1-\\alpha/2}=1{,}645.",
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
-"ME=1{,}645\\sqrt{\\dfrac{0{,}1187\\cdot 0{,}8812}{320}}=0{,}0297",
-"IC=0{,}1187\\pm 0{,}0297=\\left[\\,0{,}0890\\;;\\;0{,}1485\\,\\right]"
+"ME=1{,}645\\sqrt{\\dfrac{0{,}1188\\cdot 0{,}8812}{320}}=0{,}0297",
+"IC=0{,}1188\\pm 0{,}0297=\\left[\\,0{,}0891\\;;\\;0{,}1485\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera proporción está entre 8,90% y 14,85%."
+"conc": "Con un 90% de confianza, la proporción de instalaciones de catéter venoso central con complicaciones está entre 8,91% y 14,85%."
 },
 {
 "tipo": "Proporción (z)",
@@ -578,7 +578,7 @@ const IC_QUESTIONS = [
 "ME=2{,}326\\sqrt{\\dfrac{0{,}2842\\cdot 0{,}7158}{95}}=0{,}1076",
 "IC=0{,}2842\\pm 0{,}1076=\\left[\\,0{,}1766\\;;\\;0{,}3918\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera proporción está entre 17,66% y 39,18%."
+"conc": "Con un 98% de confianza, la proporción de pacientes diabéticos con tamizaje PHQ-9 positivo está entre 17,66% y 39,18%."
 },
 {
 "tipo": "Proporción (z)",
@@ -598,11 +598,11 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\sqrt{\\dfrac{0{,}3500\\cdot 0{,}6500}{140}}=0{,}0790",
 "IC=0{,}3500\\pm 0{,}0790=\\left[\\,0{,}2710\\;;\\;0{,}4290\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 27,10% y 42,90%."
+"conc": "Con un 95% de confianza, la proporción de adultos mayores dependientes con úlceras por presión está entre 27,10% y 42,90%."
 },
 {
 "tipo": "Proporción (z)",
-"ctx": "Obstetricia · Obstetricia",
+"ctx": "Obstetricia · Vía de parto",
 "enun": "De 160 partos atendidos, 48 finalizaron en cesárea de urgencia. Construya un intervalo de confianza del 95% para la verdadera proporción de cesáreas de urgencia.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
@@ -618,7 +618,7 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\sqrt{\\dfrac{0{,}3000\\cdot 0{,}7000}{160}}=0{,}0710",
 "IC=0{,}3000\\pm 0{,}0710=\\left[\\,0{,}2290\\;;\\;0{,}3710\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 22,90% y 37,10%."
+"conc": "Con un 95% de confianza, la proporción de partos que terminan en cesárea de urgencia está entre 22,90% y 37,10%."
 },
 {
 "tipo": "Proporción (z)",
@@ -626,7 +626,7 @@ const IC_QUESTIONS = [
 "enun": "De 210 partos de término, 57 recién nacidos presentaron circular de cordón. Determine el intervalo de confianza del 99% para la verdadera proporción con circular de cordón.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}1924\\;;\\;0{,}3505\\,\\right]$",
+"$\\left[\\,0{,}1924\\;;\\;0{,}3504\\,\\right]$",
 "$\\left[\\,0{,}2690\\;;\\;0{,}2739\\,\\right]$",
 "$\\left[\\,0{,}2407\\;;\\;0{,}3021\\,\\right]$",
 "$\\left[\\,0{,}2113\\;;\\;0{,}3316\\,\\right]$"
@@ -636,9 +636,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=2{,}576\\sqrt{\\dfrac{0{,}2714\\cdot 0{,}7286}{210}}=0{,}0790",
-"IC=0{,}2714\\pm 0{,}0790=\\left[\\,0{,}1924\\;;\\;0{,}3505\\,\\right]"
+"IC=0{,}2714\\pm 0{,}0790=\\left[\\,0{,}1924\\;;\\;0{,}3504\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera proporción está entre 19,24% y 35,05%."
+"conc": "Con un 99% de confianza, la proporción de recién nacidos de término con circular de cordón está entre 19,24% y 35,04%."
 },
 {
 "tipo": "Proporción (z)",
@@ -646,7 +646,7 @@ const IC_QUESTIONS = [
 "enun": "De 130 puérperas, 41 presentaron síntomas de depresión postparto. Construya un intervalo de confianza del 90% para la verdadera proporción con depresión postparto.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}2483\\;;\\;0{,}3824\\,\\right]$",
+"$\\left[\\,0{,}2484\\;;\\;0{,}3824\\,\\right]$",
 "$\\left[\\,0{,}3127\\;;\\;0{,}3181\\,\\right]$",
 "$\\left[\\,0{,}2746\\;;\\;0{,}3561\\,\\right]$",
 "$\\left[\\,0{,}2104\\;;\\;0{,}4204\\,\\right]$"
@@ -656,9 +656,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=1{,}645\\sqrt{\\dfrac{0{,}3154\\cdot 0{,}6846}{130}}=0{,}0670",
-"IC=0{,}3154\\pm 0{,}0670=\\left[\\,0{,}2483\\;;\\;0{,}3824\\,\\right]"
+"IC=0{,}3154\\pm 0{,}0670=\\left[\\,0{,}2484\\;;\\;0{,}3824\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera proporción está entre 24,83% y 38,24%."
+"conc": "Con un 90% de confianza, la proporción de puérperas con síntomas de depresión postparto está entre 24,84% y 38,24%."
 },
 {
 "tipo": "Proporción (z)",
@@ -678,7 +678,7 @@ const IC_QUESTIONS = [
 "ME=2{,}326\\sqrt{\\dfrac{0{,}6400\\cdot 0{,}3600}{175}}=0{,}0844",
 "IC=0{,}6400\\pm 0{,}0844=\\left[\\,0{,}5556\\;;\\;0{,}7244\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera proporción está entre 55,56% y 72,44%."
+"conc": "Con un 98% de confianza, la proporción de recién nacidos con lactancia materna exclusiva al mes está entre 55,56% y 72,44%."
 },
 {
 "tipo": "Proporción (z)",
@@ -686,7 +686,7 @@ const IC_QUESTIONS = [
 "enun": "De 90 embarazos con diabetes gestacional, 33 recién nacidos presentaron macrosomía. Construya un intervalo de confianza del 95% para la verdadera proporción de macrosómicos.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}2671\\;;\\;0{,}4662\\,\\right]$",
+"$\\left[\\,0{,}2671\\;;\\;0{,}4663\\,\\right]$",
 "$\\left[\\,0{,}3616\\;;\\;0{,}3717\\,\\right]$",
 "$\\left[\\,0{,}3159\\;;\\;0{,}4175\\,\\right]$",
 "$\\left[\\,0{,}2358\\;;\\;0{,}4975\\,\\right]$"
@@ -696,9 +696,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=1{,}960\\sqrt{\\dfrac{0{,}3667\\cdot 0{,}6333}{90}}=0{,}0996",
-"IC=0{,}3667\\pm 0{,}0996=\\left[\\,0{,}2671\\;;\\;0{,}4662\\,\\right]"
+"IC=0{,}3667\\pm 0{,}0996=\\left[\\,0{,}2671\\;;\\;0{,}4663\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 26,71% y 46,62%."
+"conc": "Con un 95% de confianza, la proporción de recién nacidos macrosómicos en embarazos con diabetes gestacional está entre 26,71% y 46,63%."
 },
 {
 "tipo": "Proporción (z)",
@@ -718,7 +718,7 @@ const IC_QUESTIONS = [
 "ME=1{,}960\\sqrt{\\dfrac{0{,}7091\\cdot 0{,}2909}{110}}=0{,}0849",
 "IC=0{,}7091\\pm 0{,}0849=\\left[\\,0{,}6242\\;;\\;0{,}7940\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 62,42% y 79,40%."
+"conc": "Con un 95% de confianza, la proporción de pacientes de rehabilitación de rodilla que logran el alta funcional a tiempo está entre 62,42% y 79,40%."
 },
 {
 "tipo": "Proporción (z)",
@@ -726,7 +726,7 @@ const IC_QUESTIONS = [
 "enun": "De 75 trabajadores evaluados, 22 presentaron síndrome de túnel carpiano. Construya un intervalo de confianza del 99% para la verdadera proporción con túnel carpiano.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}1579\\;;\\;0{,}4288\\,\\right]$",
+"$\\left[\\,0{,}1579\\;;\\;0{,}4287\\,\\right]$",
 "$\\left[\\,0{,}2862\\;;\\;0{,}3005\\,\\right]$",
 "$\\left[\\,0{,}2408\\;;\\;0{,}3459\\,\\right]$",
 "$\\left[\\,0{,}1903\\;;\\;0{,}3964\\,\\right]$"
@@ -736,9 +736,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=2{,}576\\sqrt{\\dfrac{0{,}2933\\cdot 0{,}7067}{75}}=0{,}1354",
-"IC=0{,}2933\\pm 0{,}1354=\\left[\\,0{,}1579\\;;\\;0{,}4288\\,\\right]"
+"IC=0{,}2933\\pm 0{,}1354=\\left[\\,0{,}1579\\;;\\;0{,}4287\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera proporción está entre 15,79% y 42,88%."
+"conc": "Con un 99% de confianza, la proporción de trabajadores con síndrome de túnel carpiano está entre 15,79% y 42,87%."
 },
 {
 "tipo": "Proporción (z)",
@@ -758,7 +758,7 @@ const IC_QUESTIONS = [
 "ME=1{,}645\\sqrt{\\dfrac{0{,}6700\\cdot 0{,}3300}{200}}=0{,}0547",
 "IC=0{,}6700\\pm 0{,}0547=\\left[\\,0{,}6153\\;;\\;0{,}7247\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera proporción está entre 61,53% y 72,47%."
+"conc": "Con un 90% de confianza, la proporción de pacientes egresados que mantienen la actividad física a los 6 meses está entre 61,53% y 72,47%."
 },
 {
 "tipo": "Proporción (z)",
@@ -778,7 +778,7 @@ const IC_QUESTIONS = [
 "ME=2{,}326\\sqrt{\\dfrac{0{,}2750\\cdot 0{,}7250}{160}}=0{,}0821",
 "IC=0{,}2750\\pm 0{,}0821=\\left[\\,0{,}1929\\;;\\;0{,}3571\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera proporción está entre 19,29% y 35,71%."
+"conc": "Con un 98% de confianza, la proporción de escolares con escoliosis funcional está entre 19,29% y 35,71%."
 },
 {
 "tipo": "Proporción (z)",
@@ -786,7 +786,7 @@ const IC_QUESTIONS = [
 "enun": "De 120 atletas amateur, 53 refirieron una lesión musculoesquelética en el año. Construya un intervalo de confianza del 95% para la verdadera proporción con lesiones.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,0{,}3528\\;;\\;0{,}5305\\,\\right]$",
+"$\\left[\\,0{,}3528\\;;\\;0{,}5306\\,\\right]$",
 "$\\left[\\,0{,}4376\\;;\\;0{,}4457\\,\\right]$",
 "$\\left[\\,0{,}3963\\;;\\;0{,}4870\\,\\right]$",
 "$\\left[\\,0{,}3249\\;;\\;0{,}5584\\,\\right]$"
@@ -796,9 +796,9 @@ const IC_QUESTIONS = [
 "pautaSteps": [
 "IC_p=\\hat{p}\\pm z_{1-\\alpha/2}\\sqrt{\\dfrac{\\hat{p}(1-\\hat{p})}{n}}",
 "ME=1{,}960\\sqrt{\\dfrac{0{,}4417\\cdot 0{,}5583}{120}}=0{,}0889",
-"IC=0{,}4417\\pm 0{,}0889=\\left[\\,0{,}3528\\;;\\;0{,}5305\\,\\right]"
+"IC=0{,}4417\\pm 0{,}0889=\\left[\\,0{,}3528\\;;\\;0{,}5306\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera proporción está entre 35,28% y 53,05%."
+"conc": "Con un 95% de confianza, la proporción de atletas amateur con una lesión musculoesquelética en el año está entre 35,28% y 53,06%."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -806,7 +806,7 @@ const IC_QUESTIONS = [
 "enun": "Un veterinario midió la glucemia en ayunas de 10 gatos con sospecha de diabetes felina, con media de 285 mg/dL y desviación estándar muestral de 42 mg/dL. Construya un intervalo de confianza del 95% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,254{,}95\\;;\\;315{,}05\\,\\right]$",
+"$\\left[\\,254{,}96\\;;\\;315{,}04\\,\\right]$",
 "$\\left[\\,275{,}50\\;;\\;294{,}50\\,\\right]$",
 "$\\left[\\,258{,}97\\;;\\;311{,}03\\,\\right]$",
 "$\\left[\\,190{,}00\\;;\\;380{,}00\\,\\right]$"
@@ -815,10 +815,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=10,\\ \\bar{x}=285,\\ s=42,\\ \\nu=n-1=9,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,9}=2{,}262.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}262\\cdot\\dfrac{42}{\\sqrt{10}}=30{,}05\\ \\text{mg/dL}",
-"IC=285\\pm 30{,}05=\\left[\\,254{,}95\\;;\\;315{,}05\\,\\right]"
+"ME=2{,}262\\cdot\\dfrac{42}{\\sqrt{10}}=30{,}04\\ \\text{mg/dL}",
+"IC=285\\pm 30{,}04=\\left[\\,254{,}96\\;;\\;315{,}04\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 254,95 y 315,05 mg/dL. Al ser σ desconocida se usa t con 9 g.l."
+"conc": "Con un 95% de confianza, la glucemia media en ayunas de los gatos con sospecha de diabetes se encuentra entre 254,96 y 315,04 mg/dL. Al ser σ desconocida se usa t con 9 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -838,7 +838,7 @@ const IC_QUESTIONS = [
 "ME=3{,}355\\cdot\\dfrac{310}{\\sqrt{9}}=346{,}683\\ \\text{HPG}",
 "IC=1240\\pm 346{,}683=\\left[\\,893{,}317\\;;\\;1586{,}683\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 893,317 y 1586,683 HPG. Al ser σ desconocida se usa t con 8 g.l."
+"conc": "Con un 99% de confianza, el recuento medio de huevos por gramo (HPG) en los ovinos se encuentra entre 893,317 y 1586,683 HPG. Al ser σ desconocida se usa t con 8 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -849,16 +849,16 @@ const IC_QUESTIONS = [
 "$\\left[\\,40{,}289\\;;\\;41{,}111\\,\\right]$",
 "$\\left[\\,40{,}532\\;;\\;40{,}868\\,\\right]$",
 "$\\left[\\,40{,}364\\;;\\;41{,}036\\,\\right]$",
-"$\\left[\\,39{,}693\\;;\\;41{,}708\\,\\right]$"
+"$\\left[\\,39{,}692\\;;\\;41{,}708\\,\\right]$"
 ],
 "correct": 0,
 "pautaHead": "\\textbf{Datos:}\\ n=6,\\ \\bar{x}=40{,}70,\\ s=0{,}50,\\ \\nu=n-1=5,\\ 90\\%\\Rightarrow t_{1-\\alpha/2,\\,5}=2{,}015.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}015\\cdot\\dfrac{0,50}{\\sqrt{6}}=0{,}411\\ \\text{°C}",
+"ME=2{,}015\\cdot\\dfrac{0{,}50}{\\sqrt{6}}=0{,}411\\ \\text{°C}",
 "IC=40{,}70\\pm 0{,}411=\\left[\\,40{,}289\\;;\\;41{,}111\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 40,289 y 41,111 °C. Al ser σ desconocida se usa t con 5 g.l."
+"conc": "Con un 90% de confianza, la temperatura rectal media de los cerdos bajo estrés por calor se encuentra entre 40,289 y 41,111 °C. Al ser σ desconocida se usa t con 5 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -875,10 +875,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=13,\\ \\bar{x}=62{,}40,\\ s=8{,}70,\\ \\nu=n-1=12,\\ 98\\%\\Rightarrow t_{1-\\alpha/2,\\,12}=2{,}681.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}681\\cdot\\dfrac{8,70}{\\sqrt{13}}=6{,}469\\ \\text{kg}",
+"ME=2{,}681\\cdot\\dfrac{8{,}70}{\\sqrt{13}}=6{,}469\\ \\text{kg}",
 "IC=62{,}40\\pm 6{,}469=\\left[\\,55{,}931\\;;\\;68{,}869\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 55,931 y 68,869 kg. Al ser σ desconocida se usa t con 12 g.l."
+"conc": "Con un 98% de confianza, el peso vivo medio de las alpacas adultas se encuentra entre 55,931 y 68,869 kg. Al ser σ desconocida se usa t con 12 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -895,10 +895,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=16,\\ \\bar{x}=18,\\ s=3{,}20,\\ \\nu=n-1=15,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,15}=2{,}131.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}131\\cdot\\dfrac{3,20}{\\sqrt{16}}=1{,}705\\ \\text{rpm}",
+"ME=2{,}131\\cdot\\dfrac{3{,}20}{\\sqrt{16}}=1{,}705\\ \\text{rpm}",
 "IC=18\\pm 1{,}705=\\left[\\,16{,}295\\;;\\;19{,}705\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 16,295 y 19,705 rpm. Al ser σ desconocida se usa t con 15 g.l."
+"conc": "Con un 95% de confianza, la frecuencia respiratoria media de los beagle bajo anestesia se encuentra entre 16,295 y 19,705 rpm. Al ser σ desconocida se usa t con 15 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -906,7 +906,7 @@ const IC_QUESTIONS = [
 "enun": "Se registró el tiempo de espera de 12 pacientes en urgencias nocturnas, con media de 23,4 minutos y desviación estándar muestral de 6,8 minutos. Construya un intervalo de confianza del 95% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,19{,}077\\;;\\;27{,}723\\,\\right]$",
+"$\\left[\\,19{,}079\\;;\\;27{,}721\\,\\right]$",
 "$\\left[\\,22{,}153\\;;\\;24{,}647\\,\\right]$",
 "$\\left[\\,19{,}553\\;;\\;27{,}247\\,\\right]$",
 "$\\left[\\,8{,}433\\;;\\;38{,}367\\,\\right]$"
@@ -915,10 +915,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=12,\\ \\bar{x}=23{,}40,\\ s=6{,}80,\\ \\nu=n-1=11,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,11}=2{,}201.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}201\\cdot\\dfrac{6,80}{\\sqrt{12}}=4{,}323\\ \\text{min}",
-"IC=23{,}40\\pm 4{,}323=\\left[\\,19{,}077\\;;\\;27{,}723\\,\\right]"
+"ME=2{,}201\\cdot\\dfrac{6{,}80}{\\sqrt{12}}=4{,}321\\ \\text{min}",
+"IC=23{,}40\\pm 4{,}321=\\left[\\,19{,}079\\;;\\;27{,}721\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 19,077 y 27,723 min. Al ser σ desconocida se usa t con 11 g.l."
+"conc": "Con un 95% de confianza, el tiempo medio de espera en urgencias nocturnas se encuentra entre 19,079 y 27,721 min. Al ser σ desconocida se usa t con 11 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -926,7 +926,7 @@ const IC_QUESTIONS = [
 "enun": "Se midió la hemoglobina de 9 pacientes con quimioterapia activa, con media de 9,6 g/dL y desviación estándar muestral de 1,4 g/dL. Construya un intervalo de confianza del 99% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,8{,}035\\;;\\;11{,}165\\,\\right]$",
+"$\\left[\\,8{,}034\\;;\\;11{,}166\\,\\right]$",
 "$\\left[\\,9{,}078\\;;\\;10{,}122\\,\\right]$",
 "$\\left[\\,8{,}398\\;;\\;10{,}802\\,\\right]$",
 "$\\left[\\,4{,}903\\;;\\;14{,}297\\,\\right]$"
@@ -935,10 +935,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=9,\\ \\bar{x}=9{,}60,\\ s=1{,}40,\\ \\nu=n-1=8,\\ 99\\%\\Rightarrow t_{1-\\alpha/2,\\,8}=3{,}355.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=3{,}355\\cdot\\dfrac{1,40}{\\sqrt{9}}=1{,}565\\ \\text{g/dL}",
-"IC=9{,}60\\pm 1{,}565=\\left[\\,8{,}035\\;;\\;11{,}165\\,\\right]"
+"ME=3{,}355\\cdot\\dfrac{1{,}40}{\\sqrt{9}}=1{,}566\\ \\text{g/dL}",
+"IC=9{,}60\\pm 1{,}566=\\left[\\,8{,}034\\;;\\;11{,}166\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 8,035 y 11,165 g/dL. Al ser σ desconocida se usa t con 8 g.l."
+"conc": "Con un 99% de confianza, la hemoglobina media de los pacientes con quimioterapia activa se encuentra entre 8,034 y 11,166 g/dL. Al ser σ desconocida se usa t con 8 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -955,10 +955,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=15,\\ \\bar{x}=4{,}20,\\ s=1{,}90,\\ \\nu=n-1=14,\\ 90\\%\\Rightarrow t_{1-\\alpha/2,\\,14}=1{,}761.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=1{,}761\\cdot\\dfrac{1,90}{\\sqrt{15}}=0{,}864\\ \\text{puntos}",
+"ME=1{,}761\\cdot\\dfrac{1{,}90}{\\sqrt{15}}=0{,}864\\ \\text{puntos}",
 "IC=4{,}20\\pm 0{,}864=\\left[\\,3{,}336\\;;\\;5{,}064\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 3,336 y 5,064 puntos. Al ser σ desconocida se usa t con 14 g.l."
+"conc": "Con un 90% de confianza, el dolor postoperatorio medio (EVA) se encuentra entre 3,336 y 5,064 puntos. Al ser σ desconocida se usa t con 14 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -975,10 +975,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=20,\\ \\bar{x}=36{,}60,\\ s=0{,}40,\\ \\nu=n-1=19,\\ 98\\%\\Rightarrow t_{1-\\alpha/2,\\,19}=2{,}539.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}539\\cdot\\dfrac{0,40}{\\sqrt{20}}=0{,}227\\ \\text{°C}",
+"ME=2{,}539\\cdot\\dfrac{0{,}40}{\\sqrt{20}}=0{,}227\\ \\text{°C}",
 "IC=36{,}60\\pm 0{,}227=\\left[\\,36{,}373\\;;\\;36{,}827\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 36,373 y 36,827 °C. Al ser σ desconocida se usa t con 19 g.l."
+"conc": "Con un 98% de confianza, la temperatura axilar media de los recién nacidos prematuros se encuentra entre 36,373 y 36,827 °C. Al ser σ desconocida se usa t con 19 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -995,18 +995,18 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=25,\\ \\bar{x}=78,\\ s=9{,}50,\\ \\nu=n-1=24,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,24}=2{,}064.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}064\\cdot\\dfrac{9,50}{\\sqrt{25}}=3{,}922\\ \\text{mmHg}",
+"ME=2{,}064\\cdot\\dfrac{9{,}50}{\\sqrt{25}}=3{,}922\\ \\text{mmHg}",
 "IC=78\\pm 3{,}922=\\left[\\,74{,}078\\;;\\;81{,}922\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 74,078 y 81,922 mmHg. Al ser σ desconocida se usa t con 24 g.l."
+"conc": "Con un 95% de confianza, la presión diastólica media al finalizar el ejercicio se encuentra entre 74,078 y 81,922 mmHg. Al ser σ desconocida se usa t con 24 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
-"ctx": "Obstetricia · Obstetricia",
+"ctx": "Obstetricia · Período expulsivo",
 "enun": "Se registró la duración del período expulsivo en 11 primíparas, con media de 48 minutos y desviación estándar muestral de 12 minutos. Construya un intervalo de confianza del 95% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,39{,}938\\;;\\;56{,}062\\,\\right]$",
+"$\\left[\\,39{,}939\\;;\\;56{,}061\\,\\right]$",
 "$\\left[\\,45{,}569\\;;\\;50{,}431\\,\\right]$",
 "$\\left[\\,40{,}908\\;;\\;55{,}092\\,\\right]$",
 "$\\left[\\,21{,}264\\;;\\;74{,}736\\,\\right]$"
@@ -1015,10 +1015,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=11,\\ \\bar{x}=48,\\ s=12,\\ \\nu=n-1=10,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,10}=2{,}228.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}228\\cdot\\dfrac{12}{\\sqrt{11}}=8{,}062\\ \\text{min}",
-"IC=48\\pm 8{,}062=\\left[\\,39{,}938\\;;\\;56{,}062\\,\\right]"
+"ME=2{,}228\\cdot\\dfrac{12}{\\sqrt{11}}=8{,}061\\ \\text{min}",
+"IC=48\\pm 8{,}061=\\left[\\,39{,}939\\;;\\;56{,}061\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 39,938 y 56,062 min. Al ser σ desconocida se usa t con 10 g.l."
+"conc": "Con un 95% de confianza, la duración media del período expulsivo en primíparas se encuentra entre 39,939 y 56,061 min. Al ser σ desconocida se usa t con 10 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1026,7 +1026,7 @@ const IC_QUESTIONS = [
 "enun": "Se registró el peso placentario de 8 recién nacidos de madres con preeclampsia, con media de 412 g y desviación estándar muestral de 58 g. Determine el intervalo de confianza del 99% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,340{,}238\\;;\\;483{,}762\\,\\right]$",
+"$\\left[\\,340{,}249\\;;\\;483{,}751\\,\\right]$",
 "$\\left[\\,386{,}632\\;;\\;437{,}368\\,\\right]$",
 "$\\left[\\,359{,}176\\;;\\;464{,}824\\,\\right]$",
 "$\\left[\\,209{,}058\\;;\\;614{,}942\\,\\right]$"
@@ -1035,10 +1035,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=8,\\ \\bar{x}=412,\\ s=58,\\ \\nu=n-1=7,\\ 99\\%\\Rightarrow t_{1-\\alpha/2,\\,7}=3{,}499.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=3{,}499\\cdot\\dfrac{58}{\\sqrt{8}}=71{,}762\\ \\text{g}",
-"IC=412\\pm 71{,}762=\\left[\\,340{,}238\\;;\\;483{,}762\\,\\right]"
+"ME=3{,}499\\cdot\\dfrac{58}{\\sqrt{8}}=71{,}751\\ \\text{g}",
+"IC=412\\pm 71{,}751=\\left[\\,340{,}249\\;;\\;483{,}751\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 340,238 y 483,762 g. Al ser σ desconocida se usa t con 7 g.l."
+"conc": "Con un 99% de confianza, el peso placentario medio en madres con preeclampsia se encuentra entre 340,249 y 483,751 g. Al ser σ desconocida se usa t con 7 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1055,10 +1055,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=20,\\ \\bar{x}=7{,}30,\\ s=1{,}20,\\ \\nu=n-1=19,\\ 90\\%\\Rightarrow t_{1-\\alpha/2,\\,19}=1{,}729.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=1{,}729\\cdot\\dfrac{1,20}{\\sqrt{20}}=0{,}464\\ \\text{puntos}",
+"ME=1{,}729\\cdot\\dfrac{1{,}20}{\\sqrt{20}}=0{,}464\\ \\text{puntos}",
 "IC=7{,}30\\pm 0{,}464=\\left[\\,6{,}836\\;;\\;7{,}764\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 6,836 y 7,764 puntos. Al ser σ desconocida se usa t con 19 g.l."
+"conc": "Con un 90% de confianza, el Apgar medio al minuto de los recién nacidos con fórceps se encuentra entre 6,836 y 7,764 puntos. Al ser σ desconocida se usa t con 19 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1066,7 +1066,7 @@ const IC_QUESTIONS = [
 "enun": "Se midió la ganancia de peso gestacional en 15 adolescentes, con media de 13,2 kg y desviación estándar muestral de 3,6 kg. Construya un intervalo de confianza del 98% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,10{,}760\\;;\\;15{,}640\\,\\right]$",
+"$\\left[\\,10{,}761\\;;\\;15{,}639\\,\\right]$",
 "$\\left[\\,12{,}570\\;;\\;13{,}830\\,\\right]$",
 "$\\left[\\,11{,}038\\;;\\;15{,}362\\,\\right]$",
 "$\\left[\\,3{,}754\\;;\\;22{,}646\\,\\right]$"
@@ -1075,10 +1075,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=15,\\ \\bar{x}=13{,}20,\\ s=3{,}60,\\ \\nu=n-1=14,\\ 98\\%\\Rightarrow t_{1-\\alpha/2,\\,14}=2{,}624.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}624\\cdot\\dfrac{3,60}{\\sqrt{15}}=2{,}440\\ \\text{kg}",
-"IC=13{,}20\\pm 2{,}440=\\left[\\,10{,}760\\;;\\;15{,}640\\,\\right]"
+"ME=2{,}624\\cdot\\dfrac{3{,}60}{\\sqrt{15}}=2{,}439\\ \\text{kg}",
+"IC=13{,}20\\pm 2{,}439=\\left[\\,10{,}761\\;;\\;15{,}639\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 10,760 y 15,640 kg. Al ser σ desconocida se usa t con 14 g.l."
+"conc": "Con un 98% de confianza, la ganancia de peso gestacional media en adolescentes se encuentra entre 10,761 y 15,639 kg. Al ser σ desconocida se usa t con 14 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1095,10 +1095,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=30,\\ \\bar{x}=4{,}10,\\ s=1{,}80,\\ \\nu=n-1=29,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,29}=2{,}045.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}045\\cdot\\dfrac{1,80}{\\sqrt{30}}=0{,}672\\ \\text{episodios/día}",
+"ME=2{,}045\\cdot\\dfrac{1{,}80}{\\sqrt{30}}=0{,}672\\ \\text{episodios/día}",
 "IC=4{,}10\\pm 0{,}672=\\left[\\,3{,}428\\;;\\;4{,}772\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 3,428 y 4,772 episodios/día. Al ser σ desconocida se usa t con 29 g.l."
+"conc": "Con un 95% de confianza, el número medio de regurgitaciones diarias de los lactantes se encuentra entre 3,428 y 4,772 episodios/día. Al ser σ desconocida se usa t con 29 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1118,7 +1118,7 @@ const IC_QUESTIONS = [
 "ME=2{,}201\\cdot\\dfrac{34}{\\sqrt{12}}=21{,}603\\ \\text{N}",
 "IC=186\\pm 21{,}603=\\left[\\,164{,}397\\;;\\;207{,}603\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 164,397 y 207,603 N. Al ser σ desconocida se usa t con 11 g.l."
+"conc": "Con un 95% de confianza, la fuerza media de cuádriceps tras la cirugía de LCA se encuentra entre 164,397 y 207,603 N. Al ser σ desconocida se usa t con 11 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1126,7 +1126,7 @@ const IC_QUESTIONS = [
 "enun": "Se midió el umbral de dolor a la presión en 10 trabajadores con cervicalgia, con media de 198 kPa y desviación estándar muestral de 41 kPa. Construya un intervalo de confianza del 99% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,155{,}857\\;;\\;240{,}143\\,\\right]$",
+"$\\left[\\,155{,}863\\;;\\;240{,}137\\,\\right]$",
 "$\\left[\\,184{,}675\\;;\\;211{,}325\\,\\right]$",
 "$\\left[\\,164{,}601\\;;\\;231{,}399\\,\\right]$",
 "$\\left[\\,64{,}750\\;;\\;331{,}250\\,\\right]$"
@@ -1135,10 +1135,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=10,\\ \\bar{x}=198,\\ s=41,\\ \\nu=n-1=9,\\ 99\\%\\Rightarrow t_{1-\\alpha/2,\\,9}=3{,}250.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=3{,}250\\cdot\\dfrac{41}{\\sqrt{10}}=42{,}143\\ \\text{kPa}",
-"IC=198\\pm 42{,}143=\\left[\\,155{,}857\\;;\\;240{,}143\\,\\right]"
+"ME=3{,}250\\cdot\\dfrac{41}{\\sqrt{10}}=42{,}137\\ \\text{kPa}",
+"IC=198\\pm 42{,}137=\\left[\\,155{,}863\\;;\\;240{,}137\\,\\right]"
 ],
-"conc": "Con un 99% de confianza, la verdadera media se encuentra en 155,857 y 240,143 kPa. Al ser σ desconocida se usa t con 9 g.l."
+"conc": "Con un 99% de confianza, el umbral medio de dolor a la presión en trabajadores con cervicalgia se encuentra entre 155,863 y 240,137 kPa. Al ser σ desconocida se usa t con 9 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1155,10 +1155,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=25,\\ \\bar{x}=1{,}74,\\ s=0{,}38,\\ \\nu=n-1=24,\\ 90\\%\\Rightarrow t_{1-\\alpha/2,\\,24}=1{,}711.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=1{,}711\\cdot\\dfrac{0,38}{\\sqrt{25}}=0{,}130\\ \\text{litros}",
+"ME=1{,}711\\cdot\\dfrac{0{,}38}{\\sqrt{25}}=0{,}130\\ \\text{litros}",
 "IC=1{,}74\\pm 0{,}130=\\left[\\,1{,}610\\;;\\;1{,}870\\,\\right]"
 ],
-"conc": "Con un 90% de confianza, la verdadera media se encuentra en 1,610 y 1,870 litros. Al ser σ desconocida se usa t con 24 g.l."
+"conc": "Con un 90% de confianza, el VEF1 medio de los pacientes con asma moderada se encuentra entre 1,610 y 1,870 litros. Al ser σ desconocida se usa t con 24 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1175,10 +1175,10 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=9,\\ \\bar{x}=6{,}30,\\ s=2{,}10,\\ \\nu=n-1=8,\\ 98\\%\\Rightarrow t_{1-\\alpha/2,\\,8}=2{,}896.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}896\\cdot\\dfrac{2,10}{\\sqrt{9}}=2{,}027\\ \\text{segundos}",
+"ME=2{,}896\\cdot\\dfrac{2{,}10}{\\sqrt{9}}=2{,}027\\ \\text{segundos}",
 "IC=6{,}30\\pm 2{,}027=\\left[\\,4{,}273\\;;\\;8{,}327\\,\\right]"
 ],
-"conc": "Con un 98% de confianza, la verdadera media se encuentra en 4,273 y 8,327 segundos. Al ser σ desconocida se usa t con 8 g.l."
+"conc": "Con un 98% de confianza, el tiempo medio de apoyo monopodal de los adultos mayores se encuentra entre 4,273 y 8,327 segundos. Al ser σ desconocida se usa t con 8 g.l."
 },
 {
 "tipo": "Media · σ desconocida (t)",
@@ -1186,7 +1186,7 @@ const IC_QUESTIONS = [
 "enun": "Se midió la potencia anaeróbica pico en 20 ciclistas (Wingate), con media de 742 W y desviación estándar muestral de 98 W. Construya un intervalo de confianza del 95% para la verdadera media.",
 "ask": "El intervalo de confianza solicitado es:",
 "alts": [
-"$\\left[\\,696{,}139\\;;\\;787{,}861\\,\\right]$",
+"$\\left[\\,696{,}135\\;;\\;787{,}865\\,\\right]$",
 "$\\left[\\,731{,}744\\;;\\;752{,}256\\,\\right]$",
 "$\\left[\\,699{,}050\\;;\\;784{,}950\\,\\right]$",
 "$\\left[\\,536{,}886\\;;\\;947{,}114\\,\\right]$"
@@ -1195,9 +1195,9 @@ const IC_QUESTIONS = [
 "pautaHead": "\\textbf{Datos:}\\ n=20,\\ \\bar{x}=742,\\ s=98,\\ \\nu=n-1=19,\\ 95\\%\\Rightarrow t_{1-\\alpha/2,\\,19}=2{,}093.",
 "pautaSteps": [
 "IC_\\mu=\\bar{x}\\pm t_{1-\\alpha/2,\\,n-1}\\dfrac{s}{\\sqrt{n}}",
-"ME=2{,}093\\cdot\\dfrac{98}{\\sqrt{20}}=45{,}861\\ \\text{W}",
-"IC=742\\pm 45{,}861=\\left[\\,696{,}139\\;;\\;787{,}861\\,\\right]"
+"ME=2{,}093\\cdot\\dfrac{98}{\\sqrt{20}}=45{,}865\\ \\text{W}",
+"IC=742\\pm 45{,}865=\\left[\\,696{,}135\\;;\\;787{,}865\\,\\right]"
 ],
-"conc": "Con un 95% de confianza, la verdadera media se encuentra en 696,139 y 787,861 W. Al ser σ desconocida se usa t con 19 g.l."
+"conc": "Con un 95% de confianza, la potencia anaeróbica pico media de los ciclistas se encuentra entre 696,135 y 787,865 W. Al ser σ desconocida se usa t con 19 g.l."
 }
 ];
