@@ -4,217 +4,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#fbfbfd">
-<title>Gatito AES — Fabimath</title>
-<meta name="description" content="El gatito de Fabimath calcula tu eximición y la nota que necesitas en el examen de AES519.">
+<title>Gatito de eximición — Fabimath</title>
+<meta name="description" content="Criterios de eximición de AES500, AES519 y FIS401 (UDLA), y un gatito que calcula tu nota de presentación y la nota que necesitas en el examen.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <link rel="icon" type="image/png" href="logo/fabimath_logo.png">
 <style>
   :root {
-    --royal: #c2530a;
-    --azure: #f5822a;
-    --sky: #ffb35c;
-    --ice: #fff3e8;
-    --ink: #1d1d1f;
-    --ink-2: #424245;
-    --ink-3: #6e6e73;
-    --paper: #ffffff;
-    --bg: #fbfbfd;
-    --line: rgba(0,0,0,.08);
-    --field: #f5f5f7;
-    --coral: #d70015;
-    --mint: #1d7d36;
-    --gold: #9a5700;
+    --royal: #c2530a; --azure: #f5822a; --sky: #ffb35c; --ice: #fff3e8;
+    --ink: #1d1d1f; --ink-2: #424245; --ink-3: #6e6e73; --paper: #ffffff;
+    --bg: #fbfbfd; --line: rgba(0,0,0,.08); --field: #f5f5f7; --tint: rgba(232,104,12,.1);
+    --coral: #d70015; --mint: #1d7d36; --gold: #9a5700;
     --radius: 20px;
     --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.04);
-    --shadow-hover: 0 2px 4px rgba(0,0,0,.04), 0 12px 32px rgba(0,0,0,.07);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.04), 0 16px 40px rgba(0,0,0,.08);
     --ease: cubic-bezier(.32,.72,0,1);
     --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
     --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI Variable Display", "Segoe UI", system-ui, sans-serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: var(--font-text);
-    font-size: 17px; line-height: 1.47; letter-spacing: -0.01em;
-    color: var(--ink);
-    background: var(--bg);
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
-    padding: 0 20px 72px;
-    overflow-x: hidden;
+    font-family: var(--font-text); font-size: 17px; line-height: 1.47; letter-spacing: -0.01em;
+    color: var(--ink); background: var(--bg);
+    -webkit-font-smoothing: antialiased; min-height: 100vh;
   }
-  h1, .display { font-family: var(--font-display); }
-
-  /* mosaic blocks — signature from the logo (tamed: slow, small, faint) */
-  .mosaic { position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .55; }
-  .mosaic i {
-    position: absolute; display: block; border-radius: 6px;
-    animation: drift 24s ease-in-out infinite;
-  }
-  @keyframes drift {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+  a { color: var(--royal); text-decoration: none; }
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  button { font-family: inherit; letter-spacing: inherit; }
+  .hidden { display: none !important; }
 
   /* ---------- NAV ---------- */
-  .topbar {
-    position: sticky; top: 0; z-index: 10;
-    width: calc(100% + 40px); margin: 0 -20px 48px;
-    height: 52px; padding: 0 20px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(251,251,253,.72);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    border-bottom: 1px solid var(--line);
-  }
-  .brand {
-    display: flex; align-items: center; gap: 8px;
-    font-family: var(--font-display); font-weight: 600; font-size: 17px;
-    color: var(--ink); letter-spacing: -0.01em; text-decoration: none;
-    border-radius: 10px;
-  }
-  .brand img { width: 28px; height: 28px; border-radius: 7px; object-fit: cover; }
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(251,251,253,.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+  .nav-inner { max-width: 980px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 52px; gap: 12px; }
+  .nav-brand { display: flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 700; font-size: 19px; letter-spacing: -0.02em; color: var(--ink); }
+  .nav-brand img { width: 30px; height: 30px; border-radius: 8px; object-fit: cover; }
+  .nav-brand b { color: var(--royal); font-weight: 700; }
+  .nav-right { display: flex; gap: 8px; align-items: center; }
+  .pill { background: var(--tint); color: var(--royal); font-weight: 600; font-size: 13px; letter-spacing: 0.01em; padding: 6px 13px; border-radius: 980px; white-space: nowrap; transition: background-color .2s ease; }
+  .pill:hover { background: rgba(232,104,12,.16); }
 
-  h1, .subtitle, .game { position: relative; }
-  h1 {
-    z-index: 1;
-    font-size: clamp(40px, 7vw, 56px); font-weight: 700;
-    letter-spacing: -0.025em; line-height: 1.05; text-align: center;
-  }
-  h1 .grad {
-    background: linear-gradient(100deg, var(--royal) 15%, var(--azure) 85%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .subtitle {
-    z-index: 1; margin: 12px 0 36px; text-align: center;
-    color: var(--ink-3); font-size: 19px; line-height: 1.4; letter-spacing: -0.012em;
-  }
-  .subtitle b { color: var(--royal); font-weight: 600; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 48px 22px 96px; }
 
-  .game { z-index: 1; width: 100%; max-width: 640px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  /* ---------- MENÚ: hero y tarjetas de curso ---------- */
+  .hero { text-align: center; padding: 32px 0 40px; }
+  .hero h1 { font-size: clamp(40px, 6.4vw, 64px); letter-spacing: -0.025em; line-height: 1.05; }
+  .hero h1 span { background: linear-gradient(100deg, var(--royal) 10%, var(--azure) 60%, #ff9a3c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { max-width: 640px; margin: 20px auto 0; color: var(--ink-2); font-size: 19px; line-height: 1.42; letter-spacing: -0.012em; }
+  .unit-lbl { font-weight: 600; font-size: 13px; letter-spacing: 0.01em; color: var(--ink-3); margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+  .unit-lbl::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--royal); }
+  .cursos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .curso { background: var(--paper); border-radius: var(--radius); padding: 26px 24px 24px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); display: flex; flex-direction: column; gap: 6px; transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+  .cursos .curso:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .curso .c-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .curso .ic { font-size: 28px; line-height: 1; }
+  .curso h3 { font-size: 24px; letter-spacing: -0.02em; }
+  .curso .nom { color: var(--ink-3); font-size: 15px; margin-top: -2px; }
+  .badge { font-size: 12px; font-weight: 600; letter-spacing: 0.01em; padding: 4px 11px; border-radius: 980px; background: rgba(36,138,61,.12); color: var(--mint); white-space: nowrap; }
+  /* barra de ponderaciones */
+  .pesos { display: flex; height: 10px; border-radius: 99px; overflow: hidden; margin: 14px 0 8px; gap: 2px; }
+  .pesos i { display: block; height: 100%; }
+  .pesos .pc, .ley .pc::before { background: var(--royal); }
+  .pesos .pe, .ley .pe::before { background: var(--azure); }
+  .pesos .px, .ley .px::before { background: var(--sky); }
+  .ley { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--ink-2); }
+  .ley span { display: inline-flex; align-items: center; gap: 6px; }
+  .ley span::before { content: ""; width: 8px; height: 8px; border-radius: 3px; }
+  .ley b { font-variant-numeric: tabular-nums; }
+  .reglas { list-style: none; margin: 14px 0 4px; display: flex; flex-direction: column; gap: 8px; font-size: 14.5px; line-height: 1.45; color: var(--ink-2); }
+  .reglas li { padding-left: 22px; position: relative; }
+  .reglas li::before { content: attr(data-i); position: absolute; left: 0; top: 0; }
+  .reglas b { color: var(--ink); }
+  .formula { font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .curso .btn-wrap { margin-top: auto; padding-top: 14px; }
+  .nota-pie { margin-top: 28px; font-size: 13px; color: var(--ink-3); line-height: 1.5; text-align: center; }
 
-  /* ---------- PAW PROGRESS ---------- */
-  .paws { display: flex; gap: 10px; min-height: 20px; }
+  /* ---------- BOTONES Y SELECTOR ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 11px 22px; border-radius: 980px; font-family: var(--font-text); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; border: none; cursor: pointer; transition: background-color .2s ease, transform .3s var(--ease), opacity .2s ease; }
+  .btn-primary { background: var(--royal); color: #fff; }
+  .btn-primary:hover { background: #a94707; }
+  .btn-ghost { background: var(--tint); color: #c4540a; }
+  .btn-ghost:hover { background: rgba(232,104,12,.16); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .ejes { display: inline-flex; gap: 2px; background: rgba(118,118,128,.12); padding: 3px; border-radius: 980px; max-width: 100%; overflow-x: auto; }
+  .ejes a { padding: 7px 16px; border-radius: 980px; font-weight: 500; font-size: 14px; letter-spacing: -0.005em; color: var(--ink-2); white-space: nowrap; transition: background-color .25s var(--ease), color .25s var(--ease), box-shadow .25s var(--ease); }
+  .ejes a:hover:not(.on) { color: var(--ink); background: rgba(0,0,0,.04); }
+  .ejes a.on { background: var(--paper); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 3px 8px rgba(0,0,0,.08); }
+
+  /* ---------- VISTA DE CURSO ---------- */
+  .vista-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+  .vista-head h2 { font-size: clamp(28px, 4.4vw, 40px); }
+  .vista-head .sub { font-size: 14px; color: var(--ink-3); margin-top: 4px; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 28px; align-items: start; }
+  .layout .curso { position: sticky; top: 72px; }
+  .game { display: flex; flex-direction: column; align-items: center; gap: 20px; min-width: 0; }
+
+  .paws { display: flex; gap: 10px; min-height: 20px; flex-wrap: wrap; justify-content: center; }
   .paw { font-size: 16px; filter: grayscale(1) opacity(.3); transition: filter .3s var(--ease), transform .3s var(--ease); }
   .paw.on { filter: none; transform: scale(1.15); }
 
-  /* ---------- CAT ---------- */
+  /* gato */
   .cat-stage { position: relative; height: 172px; display: flex; align-items: flex-end; animation: idle 4s ease-in-out infinite; }
   @keyframes idle { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-4px);} }
   .cat-stage.talking { animation: hop .4s steps(2) infinite; }
   @keyframes hop { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-5px);} }
   #cat { display: grid; grid-template-columns: repeat(20, 8px); grid-auto-rows: 8px; position: relative; z-index: 2; }
   #cat div { width: 8px; height: 8px; }
-  #tail {
-    position: absolute; right: -26px; bottom: 16px; z-index: 1;
-    display: grid; grid-template-columns: repeat(4, 8px); grid-auto-rows: 8px;
-    transform-origin: left bottom;
-    animation: wag 1.8s ease-in-out infinite;
-  }
+  #tail { position: absolute; right: -26px; bottom: 16px; z-index: 1; display: grid; grid-template-columns: repeat(4, 8px); grid-auto-rows: 8px; transform-origin: left bottom; animation: wag 1.8s ease-in-out infinite; }
   @keyframes wag { 0%,100% { transform: rotate(0deg);} 50% { transform: rotate(-16deg);} }
   #tail div { width: 8px; height: 8px; }
-  .shadow {
-    position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
-    width: 130px; height: 12px; border-radius: 50%;
-    background: rgba(0,0,0,0.08); filter: blur(4px);
-  }
-  .zzz { position: absolute; right: -48px; top: -4px; color: var(--sky); font-size: 15px; font-weight: 600; animation: blink 1.2s steps(2) infinite; display: none; }
+  .shadow { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); width: 130px; height: 12px; border-radius: 50%; background: rgba(0,0,0,0.08); filter: blur(4px); }
   @keyframes blink { 50% { opacity: 0; } }
   .heart { position: absolute; left: -36px; top: 6px; font-size: 18px; display: none; animation: floatup 1.6s var(--ease) infinite; }
   @keyframes floatup { 0% { transform: translateY(0); opacity: 1;} 100% { transform: translateY(-24px); opacity: 0;} }
 
-  /* ---------- DIALOG ---------- */
-  .dialog {
-    width: 100%;
-    background: var(--paper);
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px 28px 26px;
-    min-height: 132px;
-    position: relative;
-  }
-  .dialog::after {
-    content: ""; position: absolute; top: -8px; left: 46px;
-    width: 15px; height: 15px;
-    background: var(--paper);
-    border-left: 1px solid rgba(0,0,0,.06); border-top: 1px solid rgba(0,0,0,.06);
-    transform: rotate(45deg); border-radius: 3px 0 0 0;
-  }
-  .dialog .speaker {
-    position: absolute; top: -12px; right: 20px;
-    background: var(--royal); color: #fff;
-    font-family: var(--font-text); font-weight: 600;
-    font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
-    padding: 4px 12px; border-radius: 980px;
-  }
-  #text { font-size: 17px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; color: var(--ink); }
+  /* diálogo */
+  .dialog { width: 100%; background: var(--paper); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px 28px 26px; min-height: 132px; position: relative; }
+  .dialog::after { content: ""; position: absolute; top: -8px; left: 46px; width: 15px; height: 15px; background: var(--paper); border-left: 1px solid rgba(0,0,0,.06); border-top: 1px solid rgba(0,0,0,.06); transform: rotate(45deg); border-radius: 3px 0 0 0; }
+  .dialog .speaker { position: absolute; top: -12px; right: 20px; background: var(--royal); color: #fff; font-weight: 600; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 4px 12px; border-radius: 980px; }
+  #text { font-size: 17px; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word; }
   .cursor::after { content: "▌"; animation: blink .8s steps(2) infinite; color: var(--sky); }
 
-  /* ---------- COURSE MENU ---------- */
-  .menu { width: 100%; display: none; flex-direction: column; gap: 12px; }
-  .menu button {
-    width: 100%; min-height: 72px; text-align: left; cursor: pointer;
-    background: var(--paper); color: var(--ink);
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 18px 22px;
-    font: inherit;
-    transition: box-shadow .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
-    display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  }
-  .menu button:hover { border-color: rgba(232,104,12,.35); box-shadow: var(--shadow-hover); }
-  .menu .t { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -0.015em; line-height: 1.25; color: var(--ink); display: block; }
-  .menu .d { font-size: 14px; letter-spacing: -0.005em; color: var(--ink-3); }
-  .menu .arrow { color: var(--royal); font-size: 14px; transition: transform .3s var(--ease); }
-  .menu button:hover .arrow { transform: translateX(3px); }
-
-  /* ---------- INPUT ---------- */
-  .input-row { width: 100%; display: none; gap: 10px; }
-  #answer {
-    flex: 1; min-width: 0; min-height: 50px;
-    background: var(--field);
-    border: 1px solid transparent;
-    border-radius: 12px;
-    color: var(--ink);
-    font: inherit; font-size: 17px;
-    padding: 12px 16px;
-    outline: none;
-    transition: box-shadow .2s var(--ease), background-color .2s var(--ease);
-  }
+  /* entrada */
+  .input-row { width: 100%; display: flex; gap: 10px; }
+  #answer { flex: 1; min-width: 0; min-height: 50px; background: var(--field); border: 1px solid transparent; border-radius: 12px; color: var(--ink); font: inherit; font-size: 17px; padding: 12px 16px; outline: none; transition: box-shadow .2s var(--ease), background-color .2s var(--ease); }
   #answer:focus { background: var(--paper); box-shadow: 0 0 0 3px rgba(232,104,12,.35); }
   #answer::placeholder { color: var(--ink-3); }
-  #answer:disabled { opacity: .5; }
-  #enterBtn, #again {
-    min-height: 50px; cursor: pointer;
-    border: none; border-radius: 980px;
-    font-family: var(--font-text); font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
-    padding: 12px 26px;
-    transition: background-color .2s var(--ease), transform .3s var(--ease);
-  }
-  #enterBtn { background: var(--royal); color: #fff; }
-  #enterBtn:hover { background: #a94707; }
-  #enterBtn:disabled { opacity: .5; cursor: default; }
-  .hint { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); text-align: center; display: none; }
+  .hint { font-size: 13px; letter-spacing: .01em; color: var(--ink-3); text-align: center; }
 
-  /* press feedback — instant, on pointer-down */
-  .menu button:active, #enterBtn:active, #again:active, .brand:active {
-    transform: scale(.97); transition: transform 100ms ease-out;
-  }
-
-  /* ---------- RESULT ---------- */
-  .result {
-    display: none;
-    width: 100%;
-    background: var(--paper);
-    border: 1px solid rgba(0,0,0,.06);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 12px 24px 24px;
-    font-size: 15px; letter-spacing: -0.005em;
-    animation: rise .45s var(--ease);
-  }
+  /* resultado */
+  .result { width: 100%; background: var(--paper); border: 1px solid rgba(0,0,0,.06); border-radius: var(--radius); box-shadow: var(--shadow); padding: 12px 24px 24px; font-size: 15px; letter-spacing: -0.005em; animation: rise .45s var(--ease); }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .result .row { display: flex; justify-content: space-between; align-items: baseline; gap: 14px; border-bottom: 1px solid var(--line); padding: 13px 0; color: var(--ink-2); }
   .result .row:last-of-type { border-bottom: none; }
@@ -223,109 +140,160 @@
   .result .ok { color: var(--mint); font-weight: 600; }
   .result .bad { color: var(--coral); font-weight: 600; }
   .result .gold { color: var(--gold); font-weight: 600; }
-  .verdict {
-    margin-top: 12px; padding: 22px 20px; border-radius: 16px; text-align: center;
-    font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums;
-  }
-  .verdict .big { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; display: block; margin: 8px 0; font-variant-numeric: tabular-nums; }
+  .verdict { margin-top: 12px; padding: 22px 20px; border-radius: 16px; text-align: center; font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+  .verdict .big { font-family: var(--font-display); font-size: 48px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.05; display: block; margin: 8px 0; }
   .verdict.win { background: rgba(36,138,61,.08); border: 1px solid rgba(36,138,61,.25); color: #155d27; }
   .verdict.win .big { color: var(--mint); }
-  .verdict.fight { background: var(--ice); border: 1px solid rgba(232,104,12,.2); color: var(--ink); }
+  .verdict.fight { background: var(--ice); border: 1px solid rgba(232,104,12,.2); }
   .verdict.fight .big { color: var(--royal); }
   .verdict.lose { background: rgba(215,0,21,.05); border: 1px solid rgba(215,0,21,.22); color: #86000d; }
-  #again { display: none; background: rgba(232,104,12,.1); color: #c4560a; }
-  #again:hover { background: rgba(232,104,12,.16); }
-  :focus-visible { outline: 3px solid rgba(232,104,12,.6); outline-offset: 2px; }
+
+  .btn:active:not(:disabled), .pill:active, .ejes a:active, .nav-brand:active { transform: scale(.97); transition: transform 100ms ease-out; }
+  :focus-visible { outline: 3px solid rgba(232,104,12,.5); outline-offset: 2px; border-radius: 8px; }
   #answer:focus-visible { outline: none; }
-  .site-foot { text-align: center; color: var(--ink-3); font-size: 12px; letter-spacing: .01em; padding: 32px 20px 40px; }
+  footer { text-align: center; color: var(--ink-3); font-size: 12px; letter-spacing: 0.01em; padding: 32px 22px 48px; border-top: 1px solid var(--line); max-width: 980px; margin: 0 auto; }
   .version { font-variant-numeric: tabular-nums; }
 
-  @media (max-width: 480px) {
-    .topbar { margin-bottom: 36px; }
-    .subtitle { font-size: 17px; margin-bottom: 28px; }
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .layout .curso { position: static; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 28px 18px 80px; }
+    .nav-inner { padding: 0 16px; }
+    .nav-brand span { display: none; }
+    .hero { padding: 16px 0 28px; }
+    .hero p { font-size: 17px; }
+    .ejes a { padding: 7px 12px; font-size: 13px; }
     .dialog { padding: 26px 20px 22px; }
     .result { padding: 8px 18px 20px; }
-    .menu button { padding: 16px 18px; }
-    #enterBtn { padding: 12px 20px; }
+    .cursos { grid-template-columns: minmax(0, 1fr); }
+    .formula { white-space: normal; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .mosaic i, .cat-stage, #tail, .paw, .cursor::after, .heart, .zzz, .result { animation: none !important; }
-    .menu button, .menu .arrow, .paw, #enterBtn, #again { transition: none !important; }
-    .menu button:hover .arrow { transform: none; }
-    .menu button:active, #enterBtn:active, #again:active, .brand:active { transform: none; }
+    .cat-stage, #tail, .paw, .cursor::after, .heart, .result { animation: none !important; }
+    .curso, .paw, .btn { transition: none !important; }
+    .cursos .curso:hover { transform: none; }
+    .btn:active:not(:disabled), .pill:active, .ejes a:active, .nav-brand:active { transform: none; }
   }
   @media (prefers-reduced-transparency: reduce) {
-    .topbar { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+    nav { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
   }
   @media (prefers-contrast: more) {
     :root { --ink-2: #1d1d1f; --ink-3: #3a3a3c; --line: rgba(0,0,0,.4); }
-    .topbar { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: #1d1d1f; }
-    .dialog, .menu button, .result { border-color: #1d1d1f; }
+    nav { background: #fff; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: #1d1d1f; }
+    .dialog, .result, .curso { border-color: #1d1d1f; }
     #answer { border-color: #6e6e73; }
-    .mosaic { display: none; }
-    #again { background: #fff; border: 1px solid #c4560a; }
+    .ejes { outline: 1px solid rgba(0,0,0,.5); }
+    .hero h1 span { background: none; color: #b84f06; }
   }
 </style>
 <script src="version.js" defer></script>
 </head>
 <body>
-<div class="mosaic" aria-hidden="true">
-  <i style="left:6%;  top:18%; width:38px; height:38px; background:#ffe6cf; animation-delay:0s"></i>
-  <i style="left:13%; top:58%; width:26px; height:26px; background:#ffd7b3; animation-delay:-3s"></i>
-  <i style="left:22%; top:32%; width:18px; height:18px; background:#ffc48f; animation-delay:-6s"></i>
-  <i style="right:7%;  top:22%; width:44px; height:44px; background:#ffe2c9; animation-delay:-2s"></i>
-  <i style="right:16%; top:62%; width:24px; height:24px; background:#ffcf9e; animation-delay:-8s"></i>
-  <i style="right:26%; top:40%; width:16px; height:16px; background:#ffb877; animation-delay:-4s"></i>
-  <i style="left:38%;  top:12%; width:20px; height:20px; background:#ffdcbd; animation-delay:-5s"></i>
-  <i style="right:38%; top:78%; width:30px; height:30px; background:#ffe6cf; animation-delay:-7s"></i>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html"><img src="logo/fabimath_logo.png" alt=""><span>Fabi<b>math</b></span></a>
+    <div class="nav-right">
+      <a class="pill" href="#">🐱 Cursos</a>
+      <a class="pill" href="index.html">Inicio</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <!-- MENÚ: criterios de cada curso -->
+  <div id="v_menu">
+    <div class="hero">
+      <h1>Gatito de <span>eximición</span></h1>
+      <p>Revisa cuánto pesa cada nota y con qué promedio te eximes del examen. Elige tu curso y el gatito calcula tu nota de presentación y lo que necesitas en el examen.</p>
+    </div>
+    <div class="unit-lbl">Criterios de eximición por curso · UDLA</div>
+    <div class="cursos" id="cursos"></div>
+    <p class="nota-pie">Notas de 1,0 a 7,0. Se aprueba con nota final 3,95 o más (se redondea a 4,0), y la nota de presentación se redondea a una décima antes de comparar con el mínimo para eximirse.</p>
+  </div>
+
+  <!-- CURSO: gatito + criterios -->
+  <div id="v_curso" class="hidden">
+    <div class="vista-head">
+      <div><h2 id="cTitle"></h2><div class="sub" id="cSub"></div></div>
+      <div class="ejes" id="tabs"></div>
+    </div>
+    <div class="layout">
+      <div class="game">
+        <div class="paws" id="paws" aria-hidden="true"></div>
+        <div class="cat-stage" id="catStage">
+          <div id="cat" aria-label="Gatito pixelado de Fabimath" role="img"></div>
+          <div id="tail"></div>
+          <div class="shadow"></div>
+          <div class="heart" id="heart">🧡</div>
+        </div>
+        <div class="dialog">
+          <div class="speaker">Gatito</div>
+          <div id="text" class="cursor"></div>
+        </div>
+        <div class="input-row" id="inputRow">
+          <input id="answer" autocomplete="off" inputmode="decimal" placeholder="escribe tu nota aquí..." aria-label="Tu respuesta" />
+          <button class="btn btn-primary" id="enterBtn">Enviar</button>
+        </div>
+        <div class="hint" id="hint">Notas de 1,0 a 7,0 — sirve coma o punto</div>
+        <div class="result hidden" id="result"></div>
+        <button class="btn btn-ghost hidden" id="again">↻ Calcular de nuevo</button>
+      </div>
+      <div id="reglas"></div>
+    </div>
+  </div>
 </div>
 
-<div class="topbar">
-  <a class="brand" href="index.html"><img src="logo/fabimath_logo.png" alt="">Fabimath</a>
-</div>
-
-<h1>Gatito <span class="grad">AES</span></h1>
-<div class="subtitle">Calculadora de eximición · <b>AES519</b></div>
-
-<div class="game">
-  <div class="paws" id="paws" aria-hidden="true"></div>
-
-  <div class="cat-stage" id="catStage">
-    <div id="cat" aria-label="Gatito pixelado de Fabimath" role="img"></div>
-    <div id="tail"></div>
-    <div class="shadow"></div>
-    <div class="zzz" id="zzz">Z z z</div>
-    <div class="heart" id="heart">🧡</div>
-  </div>
-
-  <div class="dialog">
-    <div class="speaker">Gatito</div>
-    <div id="text" class="cursor"></div>
-  </div>
-
-  <div class="menu" id="menu">
-    <button data-mode="normal">
-      <span><span class="t">AES519</span><span class="d">Semestre normal · 3 ejercicios, 2 cátedras y recuperativa</span></span>
-      <span class="arrow">▶</span>
-    </button>
-    <button data-mode="invierno">
-      <span><span class="t">AES519 Invierno</span><span class="d">Sin recuperativa · 2 ejercicios y 2 cátedras</span></span>
-      <span class="arrow">▶</span>
-    </button>
-  </div>
-
-  <div class="input-row" id="inputRow">
-    <input id="answer" autocomplete="off" placeholder="escribe tu nota aquí..." aria-label="Tu respuesta" />
-    <button id="enterBtn">Enviar</button>
-  </div>
-  <div class="hint" id="hint">Notas de 1,0 a 7,0 — sirve coma o punto</div>
-
-  <div class="result" id="result"></div>
-  <button id="again">▶ Jugar de nuevo</button>
-</div>
+<footer>Fabimath · Calculadora de eximición · <span class="version"></span></footer>
 
 <script>
+/* ---------- cursos: ponderaciones y reglas ---------- */
+/* wE, wC, wX = peso de ejercicios, cátedras y examen; exime = nota de presentación mínima */
+const CURSOS = {
+  aes500: { sigla: 'AES500', nombre: 'Probabilidad y Estadística', ic: '📊', nE: 3, nC: 2, rec: true,
+            wE: .2, wC: .5, wX: .3, exime: 5.5,
+            extra: ['La cátedra diagnóstico vale 0%: no entra en el cálculo.', 'El examen es nacional, en horario de cátedra.'] },
+  aes519: { sigla: 'AES519', nombre: 'Bioestadística', ic: '🧬', nE: 3, nC: 2, rec: true,
+            wE: .2, wC: .5, wX: .3, exime: 5.5, extra: [] },
+  invierno: { sigla: 'AES519 Invierno', nombre: 'Bioestadística · semestre de invierno', ic: '❄️', nE: 2, nC: 2, rec: false,
+            wE: .2, wC: .5, wX: .3, exime: 5.5, extra: [] },
+  fis401: { sigla: 'FIS401', nombre: 'Biofísica', ic: '⚡', nE: 4, nC: 3, rec: true,
+            wE: .3, wC: .45, wX: .25, exime: 5.0,
+            extra: ['Los ejercicios no se recuperan.', 'Cátedras y examen incluyen preguntas del laboratorio.'] }
+};
+
+const fmt = n => n.toFixed(2).replace('.', ',');
+const fmt1 = n => n.toFixed(1).replace('.', ',');
+const coma = w => String(+w.toFixed(2)).replace('.', ',');
+const pct = w => Math.round(w * 100) + '%';
+const plural = (n, s) => n + ' ' + s + (n > 1 ? 's' : '');
+
+function cardHTML(id, conBoton) {
+  const c = CURSOS[id], wP = c.wE + c.wC;
+  const reglas = [
+    ['🎓', `<b>Te eximes</b> con nota de presentación ${fmt1(c.exime)} o más (desde ${fmt(c.exime - .05)}).`],
+    ['🧮', `Presentación <span class="formula">= (${coma(c.wE)}·PE + ${coma(c.wC)}·PC) / ${coma(wP)}</span>, con PE y PC los promedios de ejercicios y cátedras.`],
+    c.rec ? ['🛟', '<b>Recuperativa:</b> reemplaza tu cátedra más baja solo si la supera. Se cuenta antes de calcular la eximición.']
+          : ['🚫', '<b>Sin recuperativa</b> en este curso.'],
+    ['✅', `Si das examen: final <span class="formula">= ${coma(c.wE)}·PE + ${coma(c.wC)}·PC + ${coma(c.wX)}·Ex</span>, y apruebas con 3,95.`],
+    ...c.extra.map(t => ['📌', t])
+  ];
+  return `<article class="curso">
+    <div class="c-top"><span class="ic">${c.ic}</span><span class="badge">Exime con ${fmt1(c.exime)}</span></div>
+    <h3>${c.sigla}</h3><div class="nom">${c.nombre}</div>
+    <div class="pesos" aria-hidden="true"><i class="pc" style="flex:${c.wC}"></i><i class="pe" style="flex:${c.wE}"></i><i class="px" style="flex:${c.wX}"></i></div>
+    <div class="ley"><span class="pc">Cátedras <b>${pct(c.wC)}</b></span><span class="pe">Ejercicios <b>${pct(c.wE)}</b></span><span class="px">Examen <b>${pct(c.wX)}</b></span></div>
+    <div class="ley" style="color:var(--ink-3)">${plural(c.nC, 'cátedra')} y ${plural(c.nE, 'ejercicio')}, cada uno con el mismo peso</div>
+    <ul class="reglas">${reglas.map(([i, t]) => `<li data-i="${i}">${t}</li>`).join('')}</ul>
+    ${conBoton ? `<div class="btn-wrap"><a class="btn btn-primary" href="#${id}">🐱 Calcular mi eximición</a></div>` : ''}
+  </article>`;
+}
+
+document.getElementById('cursos').innerHTML = Object.keys(CURSOS).map(id => cardHTML(id, true)).join('');
+
 /* ---------- palette ---------- */
 const P = {
   '.': null,
@@ -407,17 +375,18 @@ setInterval(() => {
 /* ---------- typewriter ---------- */
 const textEl = document.getElementById('text');
 const stage = document.getElementById('catStage');
-let typing = false;
+let typing = false, sayT = null;
 function say(msg) {
+  clearInterval(sayT);  /* al cambiar de curso, corta el mensaje anterior */
   return new Promise(res => {
     typing = true;
     stage.classList.add('talking');
     textEl.textContent = '';
     let i = 0;
-    const t = setInterval(() => {
+    sayT = setInterval(() => {
       textEl.textContent += msg[i++];
       if (i >= msg.length) {
-        clearInterval(t);
+        clearInterval(sayT);
         typing = false;
         stage.classList.remove('talking');
         res();
@@ -426,83 +395,53 @@ function say(msg) {
   });
 }
 
-/* ---------- game ---------- */
-const input = document.getElementById('answer');
-const inputRow = document.getElementById('inputRow');
-const hint = document.getElementById('hint');
-const menu = document.getElementById('menu');
-const btn = document.getElementById('enterBtn');
-const resultEl = document.getElementById('result');
-const heart = document.getElementById('heart');
-const againBtn = document.getElementById('again');
-const pawsEl = document.getElementById('paws');
+/* ---------- juego ---------- */
+const $ = id => document.getElementById(id);
+const input = $('answer'), btn = $('enterBtn'), inputRow = $('inputRow'), hint = $('hint');
+const resultEl = $('result'), heart = $('heart'), againBtn = $('again'), pawsEl = $('paws');
 
-const fmt = n => n.toFixed(2).replace('.', ',');
-const fmt1 = n => n.toFixed(1).replace('.', ',');
 function parseNota(s) {
   const v = parseFloat(s.trim().replace(',', '.'));
   if (isNaN(v) || v < 1.0 || v > 7.0) return null;
   return v;
 }
 
-/* preguntas por curso — mismo cálculo, distinta cantidad de notas */
-const FLOWS = {
-  normal: {
-    label: 'AES519',
-    steps: [
-      { k: 'e', q: "¿Qué nota sacaste en el EJERCICIO 1?" },
-      { k: 'e', q: "¿Y en el EJERCICIO 2?" },
-      { k: 'e', q: "¿Y en el EJERCICIO 3?" },
-      { k: 'c', q: "¿Qué nota sacaste en la CÁTEDRA 1?" },
-      { k: 'c', q: "¿Y en la CÁTEDRA 2?" },
-      { k: 'rec', q: "¿Diste la RECUPERATIVA?\nEscribe la nota, o \"no\" si no la diste.", opt: true }
-    ]
-  },
-  invierno: {
-    label: 'AES519 Invierno',
-    steps: [
-      { k: 'e', q: "¿Qué nota sacaste en el EJERCICIO 1?" },
-      { k: 'e', q: "¿Y en el EJERCICIO 2?" },
-      { k: 'c', q: "¿Qué nota sacaste en la CÁTEDRA 1?" },
-      { k: 'c', q: "¿Y en la CÁTEDRA 2?" }
-    ]
-  }
-};
+/* preguntas: ejercicios, cátedras y la recuperativa si el curso la tiene */
+function pasos(c) {
+  const s = [];
+  for (let i = 1; i <= c.nE; i++) s.push({ k: 'e', q: i === 1 ? '¿Qué nota sacaste en el EJERCICIO 1?' : `¿Y en el EJERCICIO ${i}?` });
+  for (let i = 1; i <= c.nC; i++) s.push({ k: 'c', q: i === 1 ? '¿Qué nota sacaste en la CÁTEDRA 1?' : `¿Y en la CÁTEDRA ${i}?` });
+  if (c.rec) s.push({ k: 'rec', q: "¿Diste la RECUPERATIVA?\nEscribe la nota, o \"no\" si no la diste.", opt: true });
+  return s;
+}
 
-let flow = null, idx = 0;
-const notas = { e: [], c: [], rec: null };
+let curso = null, steps = [], idx = 0, notas;
 
 function paint() {
-  pawsEl.innerHTML = '';
-  flow.steps.forEach((_, i) => {
-    const s = document.createElement('span');
-    s.className = 'paw' + (i < idx ? ' on' : '');
-    s.textContent = '🐾';
-    pawsEl.appendChild(s);
-  });
+  pawsEl.innerHTML = steps.map((_, i) => `<span class="paw${i < idx ? ' on' : ''}">🐾</span>`).join('');
 }
 
-async function start() {
-  await say("miau~ hola! soy el gatito de Fabimath (◕ᴥ◕)\n\n¿Qué curso estás dando?");
-  menu.style.display = 'flex';
-}
-
-menu.addEventListener('click', async e => {
-  const b = e.target.closest('button[data-mode]');
-  if (!b || typing) return;
-  flow = FLOWS[b.dataset.mode];
-  menu.style.display = 'none';
-  inputRow.style.display = 'flex';
-  hint.style.display = 'block';
-  paint();
+async function abrir(id) {
+  curso = CURSOS[id];
+  steps = pasos(curso); idx = 0;
+  notas = { e: [], c: [], rec: null };
+  $('cTitle').textContent = curso.ic + ' ' + curso.sigla;
+  $('cSub').textContent = curso.nombre + ' · exime con ' + fmt1(curso.exime);
+  $('tabs').innerHTML = Object.keys(CURSOS).map(k => `<a href="#${k}"${k === id ? ' class="on"' : ''}>${CURSOS[k].sigla}</a>`).join('');
+  $('reglas').innerHTML = cardHTML(id, false);
+  document.title = 'Gatito ' + curso.sigla + ' — Fabimath';
+  input.disabled = false; btn.disabled = false; input.value = '';
+  inputRow.classList.remove('hidden'); hint.classList.remove('hidden');
+  resultEl.classList.add('hidden'); againBtn.classList.add('hidden');
   heart.style.display = 'block'; setTimeout(() => heart.style.display = 'none', 1800);
-  await say("purrfecto, " + flow.label + "! te ayudo con tus notas (=^･ω･^=)\n\n" + flow.steps[0].q);
-  input.focus();
-});
+  paint();
+  await say("miau~ hola! soy el gatito de Fabimath (◕ᴥ◕)\nte ayudo con " + curso.sigla + " (=^･ω･^=)\n\n" + steps[0].q);
+  if (curso && CURSOS[id] === curso) input.focus({ preventScroll: true });
+}
 
 async function handle(raw) {
-  if (!flow || idx >= flow.steps.length) return;
-  const cur = flow.steps[idx];
+  if (!curso || idx >= steps.length) return;
+  const cur = steps[idx];
   const val = raw.trim().toLowerCase();
 
   if (cur.opt && ['no', 'n', ''].includes(val)) {
@@ -519,40 +458,43 @@ async function handle(raw) {
   }
 
   idx++; paint();
-  if (idx < flow.steps.length) {
+  if (idx < steps.length) {
     const pre = cur.k === 'rec' ? '' : "anotado ✓\n\n";
-    await say(pre + flow.steps[idx].q);
+    await say(pre + steps[idx].q);
   } else {
     await finish();
   }
 }
 
 async function finish() {
+  const c = curso;
   input.disabled = true; btn.disabled = true;
-  inputRow.style.display = 'none'; hint.style.display = 'none';
+  inputRow.classList.add('hidden'); hint.classList.add('hidden');
 
-  let [c1, c2] = notas.c;
+  const C = notas.c.slice();
   let recMsg = '';
   if (notas.rec !== null) {
-    const worst = Math.min(c1, c2);
+    const worst = Math.min(...C), i = C.indexOf(worst);
     if (notas.rec > worst) {
-      if (c1 <= c2) c1 = notas.rec; else c2 = notas.rec;
-      recMsg = 'Reemplazó tu peor cátedra (' + fmt(worst) + ')';
+      C[i] = notas.rec;
+      recMsg = 'Reemplazó tu Cátedra ' + (i + 1) + ' (' + fmt(worst) + ')';
     } else {
       recMsg = 'No supera tu peor cátedra (' + fmt(worst) + ') — sin cambios';
     }
   }
 
-  const PE = notas.e.reduce((a, b) => a + b, 0) / notas.e.length;
-  const PC = (c1 + c2) / 2;
-  const present = (0.2 * PE + 0.5 * PC) / 0.7;
-  const exime = present >= 5.45;
+  const avg = a => a.reduce((s, x) => s + x, 0) / a.length;
+  const PE = avg(notas.e), PC = avg(C);
+  const base = c.wE * PE + c.wC * PC;
+  const present = base / (c.wE + c.wC);
+  /* la presentación se redondea a una décima: 5,45 ya cuenta como 5,5 */
+  const exime = present >= c.exime - 0.05 - 1e-9;
 
-  let html = '<div class="row"><span>Curso</span><span>' + flow.label + '</span></div>';
+  let html = '<div class="row"><span>Curso</span><span>' + c.sigla + '</span></div>';
   if (recMsg) html += '<div class="row"><span class="gold">Recuperativa (' + fmt(notas.rec) + ')</span><span>' + recMsg + '</span></div>';
   html += '<div class="row"><span>Promedio ejercicios (PE)</span><b>' + fmt(PE) + '</b></div>';
   html += '<div class="row"><span>Promedio cátedras (PC)</span><b>' + fmt(PC) + '</b></div>';
-  html += '<div class="row"><span>Nota de presentación (≥ 5,45 exime)</span><b>' + fmt(present) + '</b></div>';
+  html += '<div class="row"><span>Nota de presentación (≥ ' + fmt(c.exime - .05) + ' exime)</span><b>' + fmt(present) + '</b></div>';
 
   if (exime) {
     html += '<div class="verdict win">★ Te eximes del examen ★<span class="big">' + fmt(present) + '</span>miau felicidades!! ᕕ(=^･ω･^=)ᕗ</div>';
@@ -560,13 +502,13 @@ async function finish() {
     await say("miré tus notas con mis ojitos de gato...\n\nMIAAAU!! TE EXIMES!! ★\n\nnota final: " + fmt(present) + "\nfelicidades!! (=^･ω･^=)ノ彡☆");
   } else {
     /* las notas van de décima en décima: se sube al siguiente décimo alcanzable */
-    const need = Math.ceil((3.95 - 0.2 * PE - 0.5 * PC) / 0.3 * 10 - 1e-9) / 10;
+    const need = Math.ceil((3.95 - base) / c.wX * 10 - 1e-9) / 10;
     if (need <= 1.0) {
       /* ausente al examen se califica 1,0: igual aprueba, pero le baja el promedio */
-      const sinExamen = 0.2 * PE + 0.5 * PC + 0.3;
+      const sinExamen = base + c.wX;
       html += '<div class="verdict fight">No te eximes, pero apruebas pase lo que pase: incluso con un <span class="ok">1,0</span> en el examen quedas sobre 3,95 miau!'
             + '<br><br>Si no te presentas al examen apruebas igual, con nota<span class="big">' + fmt(sinExamen) + '</span>'
-            + 'pero te baja el promedio: presentándote bien puedes llegar hasta <span class="ok">' + fmt(0.2 * PE + 0.5 * PC + 0.3 * 7) + '</span>.</div>';
+            + 'pero te baja el promedio: presentándote bien puedes llegar hasta <span class="ok">' + fmt(base + c.wX * 7) + '</span>.</div>';
       await say("no te eximes miau... PERO tranqui:\nincluso con un 1,0 en el examen apruebas!\n\nsi no te presentas quedas con " + fmt(sinExamen) + ",\nasí que te bajaría el promedio.\n\n(=^-ω-^=) tú decides");
     } else if (need > 7.0) {
       html += '<div class="verdict lose">No te eximes, y necesitarías un <span class="bad">' + fmt1(need) + '</span> en el examen (más que 7,0).<br>No es posible aprobar (╥﹏╥)</div>';
@@ -577,22 +519,32 @@ async function finish() {
     }
   }
   resultEl.innerHTML = html;
-  resultEl.style.display = 'block';
-  againBtn.style.display = 'block';
+  resultEl.classList.remove('hidden');
+  againBtn.classList.remove('hidden');
 }
 
 async function submit() {
   if (typing || input.disabled) return;
   const v = input.value; input.value = '';
   await handle(v);
-  input.focus();
+  input.focus({ preventScroll: true });
 }
 btn.addEventListener('click', submit);
 input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
-againBtn.addEventListener('click', () => location.reload());
+againBtn.addEventListener('click', () => abrir(location.hash.slice(1)));
 
-start();
+/* ---------- vistas por hash: # menú · #aes500 · #aes519 · #invierno · #fis401 ---------- */
+function ruta() {
+  const id = location.hash.slice(1);
+  const enCurso = Object.hasOwn(CURSOS, id);
+  $('v_menu').classList.toggle('hidden', enCurso);
+  $('v_curso').classList.toggle('hidden', !enCurso);
+  window.scrollTo(0, 0);
+  if (enCurso) abrir(id);
+  else { clearInterval(sayT); typing = false; curso = null; document.title = 'Gatito de eximición — Fabimath'; }
+}
+addEventListener('hashchange', ruta);
+ruta();
 </script>
-<footer class="site-foot">Fabimath · <span class="version"></span></footer>
 </body>
 </html>
