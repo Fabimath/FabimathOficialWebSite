@@ -9,6 +9,7 @@ Uso: node dump_temas.js && python html2tex.py
 """
 import html, json, pathlib, re
 from html.parser import HTMLParser
+from motivaciones import MOTIV
 
 AQUI = pathlib.Path(__file__).resolve().parent
 ELECTIVO = {'qui_e_moleculas', 'qui_e_isomeros', 'qui_e_estequiometria', 'qui_e_soluciones'}  # igual que en paes.html
@@ -253,6 +254,7 @@ def tema(cv, t):
         out.append(r'\subsection{' + cv.html(s['t']) + '}')
         out.append(cv.html(s['b']))
     out.append(cv.ejemplo(t['example']))
+    out.append(r'\motivacion{' + MOTIV[t['id']] + '}')
     return '\n'.join(out) + '\n'
 
 
@@ -285,6 +287,8 @@ def area(clave, temas, archivo):
 
 if __name__ == '__main__':
     d = json.loads((AQUI / 'temas.json').read_text(encoding='utf8'))
+    ids = {t['id'] for v in d.values() for t in v}
+    assert ids == set(MOTIV), f'temas sin mensaje: {ids - set(MOTIV)}; mensajes sin tema: {set(MOTIV) - ids}'
     for clave, archivo in (('qui', 'cap_quimica.tex'), ('fis', 'cap_fisica.tex'), ('bio', 'cap_biologia.tex')):
         tex = area(clave, d[clave], archivo)
         assert not re.search('[\ue000\ue001]', tex)

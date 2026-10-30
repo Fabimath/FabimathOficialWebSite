@@ -16,7 +16,7 @@
 \usetikzlibrary{calc}
 \usepackage[most]{tcolorbox}
 \usepackage[explicit]{titlesec}
-\usepackage{fancyhdr,enumitem,array,booktabs,tabularx,microtype,pifont}
+\usepackage{fancyhdr,enumitem,array,booktabs,tabularx,microtype,pifont,needspace}
 \usepackage[hidelinks]{hyperref}
 \graphicspath{{fig/}{../../../logo/}}
 \raggedbottom
@@ -95,9 +95,10 @@
 \titleformat{name=\chapter,numberless}[display]{\normalfont}{}{0pt}{\capbanda{}{#1}}
 \titlespacing*{\chapter}{0pt}{0pt}{12pt}
 %% sección = tema de la página (con su marca de módulo); subsección = diapositiva de la clase
-\titleformat{\section}{\normalfont\Large\bfseries\color{tinta}}{\tikz[baseline=(n.base)]\node[fill=ciencia,text=white,rounded corners=3pt,inner sep=3pt,font=\normalsize\bfseries](n){\thesection};}{8pt}{#1}
+%% los recuadros no se cortan entre páginas: needspace evita que un título quede solo al pie y su recuadro en la página siguiente
+\titleformat{\section}{\needspace{9\baselineskip}\normalfont\Large\bfseries\color{tinta}}{\tikz[baseline=(n.base)]\node[fill=ciencia,text=white,rounded corners=3pt,inner sep=3pt,font=\normalsize\bfseries](n){\thesection};}{8pt}{#1}
 \titlespacing*{\section}{0pt}{16pt}{6pt}
-\titleformat{\subsection}{\normalfont\large\bfseries\color{cienciaD}}{}{0pt}{{\color{ciencia}\rule[-2pt]{3pt}{13pt}}\hspace{6pt}#1}
+\titleformat{\subsection}{\needspace{7\baselineskip}\normalfont\large\bfseries\color{cienciaD}}{}{0pt}{{\color{ciencia}\rule[-2pt]{3pt}{13pt}}\hspace{6pt}#1}
 \titlespacing*{\subsection}{0pt}{10pt}{3pt}
 \setcounter{secnumdepth}{1}
 \setcounter{tocdepth}{1}
@@ -109,11 +110,11 @@
 %% \gatotip[gato]{texto} = trucos y atajos · elejemplo = EL ejemplo tipo PAES del tema, resuelto
 \ifbn\tcbset{ojobn/.style={borderline={0.7pt}{0pt}{black,dash pattern=on 3pt off 2pt}},ejbn/.style={boxrule=0.4pt,borderline={0.4pt}{1.6pt}{black}}}
 \else\tcbset{ojobn/.style={},ejbn/.style={}}\fi
-\newtcolorbox{clave}[1][]{enhanced,breakable,colback=cienciaT,colframe=ciencia,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+\newtcolorbox{clave}[1][]{enhanced,colback=cienciaT,colframe=ciencia,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
   fonttitle=\bfseries,coltitle=cienciaD,title={#1},attach title to upper={\ \ }}
-\newtcolorbox{ojo}[1][Ojo]{enhanced,breakable,colback=coralT,colframe=coral,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+\newtcolorbox{ojo}[1][Ojo]{enhanced,colback=coralT,colframe=coral,boxrule=0pt,leftrule=3pt,arc=2pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
   title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=coral,ojobn}
-\newtcolorbox{ejemplo}[1][Ejemplo]{enhanced,breakable,colback=white,colframe=gris,boxrule=0.6pt,arc=3pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
+\newtcolorbox{ejemplo}[1][Ejemplo]{enhanced,colback=white,colframe=gris,boxrule=0.6pt,arc=3pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt,
   title={#1},attach title to upper={\ \ },fonttitle=\bfseries,coltitle=tinta,ejbn}
 \newcommand{\gatotip}[2][\gatonaranjo]{%
   \begin{tcolorbox}[enhanced,colback=white,colframe=white,boxrule=0pt,left=0pt,right=0pt,top=2pt,bottom=2pt,before skip=6pt,after skip=6pt,
@@ -126,9 +127,24 @@
   \end{tcolorbox}
   \end{tcolorbox}}
 \newenvironment{elejemplo}[1]{%
-  \begin{tcolorbox}[enhanced,breakable,colback=white,colframe=ciencia,boxrule=0.8pt,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=10pt,
-    title={\gatociencia[0.035]\ \ El ejemplo tipo PAES\hfill{\normalfont\small #1}},fonttitle=\bfseries,colbacktitle=ciencia,coltitle=white]}
+  \begin{tcolorbox}[enhanced,colback=white,colframe=ciencia,boxrule=0.8pt,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt,before skip=10pt,
+    title={\gatociencia[0.035]\ \ El ejemplo tipo PAES\hfill{\normalfont\small #1}},fonttitle=\bfseries,colbacktitle=ciencia,coltitle=white]%
+  %% la solución va en su propio recuadro: así un ejemplo largo pasa entero a la página siguiente en dos piezas, sin cortarse ni salirse
+  \renewcommand{\solucion}[2]{\end{tcolorbox}\begin{tcolorbox}[enhanced,colback=white,colframe=ciencia,boxrule=0.8pt,arc=4pt,left=10pt,right=10pt,top=6pt,bottom=6pt,
+    before skip=4pt,title={Solución},fonttitle=\bfseries,colbacktitle=cienciaT,coltitle=cienciaD]##1\par\smallskip\textbf{\color{cienciaD}Clave:} ##2}}
   {\end{tcolorbox}}
+%% \motivacion{texto}: cierra cada tema con un grupito de tres gatos (cambian de color en cada tema) y un mensaje de ánimo
+\newcounter{motiv}
+\newcommand{\gatonum}[2]{\ifcase#1 \gatonaranjo[#2]\or\gatogris[#2]\or\gatoblanco[#2]\or\gatonegro[#2]\or\gatoatigrado[#2]\or\gatolila[#2]\fi}
+\newcommand{\motivtitulo}[1]{\ifcase#1 ¡Tú puedes!\or ¡Un tema menos!\or ¡Sigue así!\or Miau de ánimo\or ¡Bien hecho!\or ¡Vamos que se puede!\fi}
+\newcommand{\motivacion}[1]{\stepcounter{motiv}%
+  \pgfmathtruncatemacro\mga{mod(\value{motiv},6)}\pgfmathtruncatemacro\mgb{mod(\value{motiv}+2,6)}\pgfmathtruncatemacro\mgc{mod(\value{motiv}+4,6)}%
+  \begin{tcolorbox}[enhanced,colback=cienciaT,colframe=cienciaL,boxrule=0.8pt,arc=6pt,left=8pt,right=10pt,top=6pt,bottom=6pt,before skip=14pt,after skip=6pt,
+    sidebyside,lefthand width=3.5cm,sidebyside gap=12pt,segmentation hidden,sidebyside align=center,ojobn]
+  \centering\gatonum{\mga}{0.045}\hspace{1pt}\gatonum{\mgb}{0.06}\hspace{1pt}\gatonum{\mgc}{0.045}
+  \tcblower
+  {\bfseries\color{cienciaD}\motivtitulo{\mga}}\par\smallskip #1
+  \end{tcolorbox}}
 %% alternativas cortas en dos columnas (\alts) o largas una por línea (\altslargas); solución: \solucion{...}{clave}
 \newcommand{\alts}[4]{\par\smallskip
   \begin{tabular}{@{}p{0.47\linewidth}p{0.47\linewidth}@{}}

@@ -10,3 +10,8 @@ paes/ciencias/libro/*.aux
 paes/ciencias/libro/*.log
 paes/ciencias/libro/*.toc
 paes/ciencias/libro/*.out
+paes/ciencias/libro/__pycache__/
+paes/m1/libro/*.aux
+paes/m1/libro/*.log
+paes/m1/libro/*.toc
+paes/m1/libro/*.out
