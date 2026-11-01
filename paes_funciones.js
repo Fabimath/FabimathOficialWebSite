@@ -199,7 +199,7 @@ const TOPICS_FUN = [
       <p><b>Paso 4.</b> Resto: $3 - 1 = 2$. Estuvo detenido 2 horas.</p>
       </div><div>
       <div class="qfig">${''}</div>
-      <div class="box"><b>Cómo leer la forma</b> Tramo que sube: avanza. Tramo plano: quieto. Tramo que baja: vuelve hacia el inicio.</div>
+      <div class="box"><b>Cómo leer la forma</b> Tramo que sube: recorre más distancia. Tramo plano: está detenido. La distancia recorrida no disminuye, aunque el bus vuelva hacia el inicio.</div>
       </div></div>` },
     { t: 'Resumen', b: r`
       <table><thead><tr><th>Me piden</th><th>Hago</th></tr></thead><tbody>
@@ -464,7 +464,7 @@ const TOPICS_FUN = [
       <p><b>Paso 3.</b> Divide por $-3$: $x = \dfrac{-6}{-3} = 2$.</p>
       <p><b>Paso 4.</b> El punto es $(2, 0)$: la $x$ que encontraste y altura $0$.</p>
       <p><b>Comprobación:</b> $f(2) = -3\cdot 2 + 6 = -6 + 6 = 0$. ✔</p>
-      <p>Si haces lo mismo con letras, $mx + n = 0$ da $x = -\dfrac{n}{m}$. Aquí: $x = -\dfrac{6}{-3} = 2$.</p>
+      <p>Si haces lo mismo con letras (con $m \ne 0$), $mx + n = 0$ da $x = -\dfrac{n}{m}$. Aquí: $x = -\dfrac{6}{-3} = 2$.</p>
       </div><div>
       <div class="qfig">${''}</div>
       <div class="box alert"><b>No los inviertas</b> Corte con el eje $Y$: $(0, n)$, la $x$ es 0. Corte con el eje $X$: $(x, 0)$, la altura es 0.</div>
@@ -495,10 +495,10 @@ const TOPICS_FUN = [
       <tr><td>Pendiente con dos puntos</td><td>lo que sube dividido por lo que avanza: $\dfrac{y_2 - y_1}{x_2 - x_1}$</td></tr>
       <tr><td>Signo de $m$</td><td>positivo sube, negativo baja, cero queda plana</td></tr>
       <tr><td>Corte con el eje $Y$</td><td>reemplazo $x = 0$: punto $(0, n)$</td></tr>
-      <tr><td>Corte con el eje $X$</td><td>igualo a $0$ y despejo: punto $\left(-\dfrac{n}{m}, 0\right)$</td></tr>
+      <tr><td>Corte con el eje $X$</td><td>igualo a $0$ y despejo (si $m \ne 0$): punto $\left(-\dfrac{n}{m}, 0\right)$</td></tr>
       <tr><td>Fórmula desde tabla o gráfico</td><td>primero $m$, después $n$ con un punto, y compruebo con otro</td></tr>
       <tr><td>Paralelas</td><td>misma $m$</td></tr></tbody></table>
-      <div class="box" style="margin-top:14px"><b>Método PAES</b> Con una tabla, primero divide cada $y$ por su $x$: si siempre da lo mismo, es lineal y basta una regla de tres. Si no, es afín: saca la pendiente, después el valor de partida, y comprueba con un punto que no usaste.</div>` }
+      <div class="box" style="margin-top:14px"><b>Método PAES</b> Con una tabla de una función afín, saca la pendiente con dos filas y luego el valor de partida. Si el valor de partida es 0, es lineal. Comprueba la fórmula con una fila que no usaste.</div>` }
   ],
   example: {
     src: 'PAES Invierno 2026',
@@ -852,7 +852,7 @@ const TOPICS_FUN = [
       <p><b>Paso 3.</b> Nos preguntamos: ¿qué número multiplicado por sí mismo da 25? Hay <b>dos</b>: $5\cdot 5 = 25$ y $(-5)\cdot(-5) = 25$.</p>
       <p><b>Paso 4.</b> Respuesta: $x = 5$ o $x = -5$. Se escribe corto $x = \pm 5$, y el $\pm$ se lee "más o menos".</p>
       </div><div>
-      <div class="box alert"><b>El error más común</b> Quedarse solo con el $5$ positivo. Al sacar raíz en una ecuación siempre aparecen el $+$ y el $-$.</div>
+      <div class="box alert"><b>El error más común</b> Quedarse solo con el $5$ positivo. Al sacar raíz de un número positivo en una ecuación aparecen el $+$ y el $-$.</div>
       <div class="box"><b>Comprueba</b> Con $x = -5$: $2\cdot(-5)^2 = 2\cdot 25 = 50$. ✔</div>
       <div class="box"><b>Casos especiales</b><br>· $x^2 = 0$: una sola solución, $x = 0$.<br>· $x^2 = -9$: ninguna solución, porque ningún número multiplicado por sí mismo da negativo: $3\cdot 3 = 9$ y $(-3)\cdot(-3) = 9$.</div>
       </div></div>` },
@@ -989,7 +989,7 @@ const TOPICS_FUN = [
       </div></div>` },
     { t: 'Resumen', b: r`
       <table><thead><tr><th>Si la ecuación se ve así</th><th>Haz esto</th></tr></thead><tbody>
-      <tr><td>$ax^2 = k$ (no hay término con $x$)</td><td>deja $x^2$ solo y saca raíz: salen dos, con $+$ y con $-$</td></tr>
+      <tr><td>$ax^2 = k$ (no hay término con $x$)</td><td>deja $x^2$ solo y saca raíz: si el número es positivo salen dos, con $+$ y con $-$</td></tr>
       <tr><td>$ax^2 + bx = 0$ (no hay número solo)</td><td>saca la $x$ afuera: una solución siempre es $0$</td></tr>
       <tr><td>$x^2 + bx + c = 0$ (sin número delante de $x^2$)</td><td>busca dos números: multiplicados dan el número solo, sumados dan el número que acompaña a $x$</td></tr>
       <tr><td>Cualquier otra</td><td>fórmula general</td></tr>
@@ -1009,7 +1009,7 @@ const TOPICS_FUN = [
       sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Los valores de $x$ que hacen que la cuenta dé 0. La ecuación ya tiene un 0 a un lado y no hay número delante de $x^2$, así que usamos el truco de los dos números.</p><p><b>Paso 2. Anota los números.</b> El que acompaña a $x$ es $-7$ y el número solo es $12$. Buscamos dos números que sumados den $-7$ y multiplicados den $12$.</p><p><b>Paso 3. Mira los signos.</b> El número solo, 12, es positivo: los dos números tienen el mismo signo. El que acompaña a $x$ es negativo: los dos son negativos.</p><p><b>Paso 4. Busca la pareja.</b> Parejas negativas que multiplicadas dan 12: $-1$ y $-12$ suman $-13$; $-2$ y $-6$ suman $-8$; $-3$ y $-4$ suman $-7$. ✔</p><p><b>Paso 5. Factoriza.</b> $(x - 3)(x - 4) = 0$.</p><p><b>Paso 6. Regla del cero.</b> $x - 3 = 0$, así que $x = 3$; o bien $x - 4 = 0$, así que $x = 4$.</p><p><b>Respuesta:</b> las soluciones son 3 y 4 (primera alternativa).</p><p><b>Comprobación:</b> con $x = 3$: $3^2 - 7\cdot 3 + 12 = 9 - 21 + 12 = 0$. ✔ Con $x = 4$: $4^2 - 7\cdot 4 + 12 = 16 - 28 + 12 = 0$. ✔</p><p><b>¿Por qué no las otras?</b> $-3$ y $-4$ son los números que encontramos, pero no se les dio vuelta el signo al despejar: con $x = -3$ queda $9 + 21 + 12 = 42$, no 0. $2$ y $6$ multiplican 12 pero suman 8, no 7. $1$ y $12$ multiplican 12 pero suman 13.</p>`, conc: 'Busca dos números que multipliquen el número solo y sumen el que acompaña a x; después dales vuelta el signo.' },
     { enun: r`<p>¿Cuáles son las soluciones de $2x^2 = 50$?</p>`,
       alts: [r`$5$ y $-5$`, r`Solo $5$`, r`$25$ y $-25$`, r`$10$ y $-10$`], ok: 0,
-      sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Los valores de $x$ que cumplen la igualdad. La ecuación solo tiene $x^2$ y números, sin término con $x$, así que despejamos: dejamos $x^2$ solo y después sacamos raíz.</p><p><b>Paso 2. Deja x² solo.</b> El 2 está multiplicando a $x^2$, así que pasa al otro lado dividiendo: $x^2 = \dfrac{50}{2}$.</p><p><b>Paso 3. Divide.</b> $\dfrac{50}{2} = 25$, así que $x^2 = 25$.</p><p><b>Paso 4. Saca raíz.</b> ¿Qué número multiplicado por sí mismo da 25? Hay dos: $5\cdot 5 = 25$ y $(-5)\cdot(-5) = 25$. Entonces $x = 5$ o $x = -5$.</p><p><b>Respuesta:</b> las soluciones son 5 y $-5$ (primera alternativa).</p><p><b>Comprobación:</b> con $x = 5$: $2\cdot 5^2 = 2\cdot 25 = 50$. ✔ Con $x = -5$: $2\cdot(-5)^2 = 2\cdot 25 = 50$. ✔</p><p><b>¿Por qué no las otras?</b> "Solo 5" olvida que el $-5$ al cuadrado también da 25. $25$ y $-25$ se quedan en $x^2 = 25$ sin sacar la raíz: $2\cdot 25^2 = 2\cdot 625 = 1250$, no 50. $10$ y $-10$ pasan el 2 multiplicando en vez de dividiendo ($x^2 = 100$): $2\cdot 10^2 = 2\cdot 100 = 200$, no 50.</p>`, conc: 'Deja x² solo y saca raíz: siempre salen dos, una positiva y una negativa.' },
+      sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Los valores de $x$ que cumplen la igualdad. La ecuación solo tiene $x^2$ y números, sin término con $x$, así que despejamos: dejamos $x^2$ solo y después sacamos raíz.</p><p><b>Paso 2. Deja x² solo.</b> El 2 está multiplicando a $x^2$, así que pasa al otro lado dividiendo: $x^2 = \dfrac{50}{2}$.</p><p><b>Paso 3. Divide.</b> $\dfrac{50}{2} = 25$, así que $x^2 = 25$.</p><p><b>Paso 4. Saca raíz.</b> ¿Qué número multiplicado por sí mismo da 25? Hay dos: $5\cdot 5 = 25$ y $(-5)\cdot(-5) = 25$. Entonces $x = 5$ o $x = -5$.</p><p><b>Respuesta:</b> las soluciones son 5 y $-5$ (primera alternativa).</p><p><b>Comprobación:</b> con $x = 5$: $2\cdot 5^2 = 2\cdot 25 = 50$. ✔ Con $x = -5$: $2\cdot(-5)^2 = 2\cdot 25 = 50$. ✔</p><p><b>¿Por qué no las otras?</b> "Solo 5" olvida que el $-5$ al cuadrado también da 25. $25$ y $-25$ se quedan en $x^2 = 25$ sin sacar la raíz: $2\cdot 25^2 = 2\cdot 625 = 1250$, no 50. $10$ y $-10$ pasan el 2 multiplicando en vez de dividiendo ($x^2 = 100$): $2\cdot 10^2 = 2\cdot 100 = 200$, no 50.</p>`, conc: 'Deja x² solo y saca raíz: como aquí x² = 25, las soluciones son 5 y −5.' },
     { enun: r`<p>¿Cuáles son todas las soluciones de $x^2 = 3x$?</p>`,
       alts: [r`$0$ y $3$`, r`Solo $3$`, r`$0$ y $-3$`, r`$3$ y $-3$`], ok: 0,
       sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Todas las soluciones. Los dos términos tienen $x$ y no hay número solo, así que dejamos un 0 a un lado y sacamos la $x$ afuera. No dividimos por $x$, porque así se pierde una solución.</p><p><b>Paso 2. Deja un 0 a un lado.</b> El $3x$ pasa restando: $x^2 - 3x = 0$.</p><p><b>Paso 3. Saca la x afuera.</b> $x^2 = x\cdot x$ y $3x = 3\cdot x$: los dos tienen una $x$. Queda $x(x - 3) = 0$.</p><p><b>Paso 4. Revisa multiplicando.</b> $x\cdot x - x\cdot 3 = x^2 - 3x$. ✔</p><p><b>Paso 5. Regla del cero.</b> Una multiplicación da 0 solo si uno de sus factores es 0: $x = 0$ o $x - 3 = 0$.</p><p><b>Paso 6. Despeja.</b> En $x - 3 = 0$ sumamos 3 a los dos lados: $x = 3$.</p><p><b>Respuesta:</b> las soluciones son 0 y 3 (primera alternativa).</p><p><b>Comprobación:</b> con $x = 0$: $0^2 = 0$ y $3\cdot 0 = 0$, así que $0 = 0$. ✔ Con $x = 3$: $3^2 = 9$ y $3\cdot 3 = 9$, así que $9 = 9$. ✔</p><p><b>¿Por qué no las otras?</b> "Solo 3" sale de dividir los dos lados por $x$, y así se pierde el 0. "$0$ y $-3$" se equivoca de signo al despejar $x - 3 = 0$: con $x = -3$ queda $(-3)^2 = 9$ y $3\cdot(-3) = -9$, y $9$ no es $-9$. "$3$ y $-3$" trata la ecuación como si fuera $x^2 = 9$; el $-3$ falla igual que antes.</p>`, conc: 'No dividas por x: saca la x afuera y una solución será 0.' },
@@ -1232,7 +1232,7 @@ const TOPICS_FUN = [
     enun: r`<p>Considera la función cuadrática $f$, con dominio el conjunto de los números reales. En la figura se representa su gráfica, con su eje de simetría $x = -1$, y el punto $(2, 7)$.</p><p>¿Para cuál de los siguientes valores de $x$ se tiene que $f(x) = 7$?</p>`,
     fig: { type: 'plot', x: [-6, 4], y: [-3, 9], fns: [{ f: x => x * x + 2 * x - 1, lab: 'f', at: [2.6, 8.6] }], vline: -1, marks: [[2, 7, '(2, 7)']] },
     alts: [r`$4$`, r`$-3$`, r`$-4$`, r`$-5$`], ok: 2,
-    sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Nos dan el eje de simetría, $x = -1$, y un punto, $(2, 7)$: en $x = 2$ la altura es $7$. Buscamos otra $x$ con la misma altura $7$. Usamos el truco del espejo: la parábola es igual a ambos lados del eje, así que el punto $(2, 7)$ tiene un gemelo al otro lado, a la misma distancia del eje.</p><p><b>Paso 2.</b> Mira el gráfico: la línea punteada vertical es el eje $x = -1$, y el punto $(2, 7)$ está a su derecha.</p><p><b>Paso 3.</b> Calcula la distancia del punto al eje: $2 - (-1) = 2 + 1 = 3$. El punto está $3$ unidades a la derecha del eje.</p><p><b>Paso 4.</b> El gemelo está $3$ unidades a la izquierda del eje: $-1 - 3 = -4$.</p><p><b>Paso 5.</b> Como el gemelo tiene la misma altura, $f(-4) = 7$.</p><p><b>Respuesta:</b> $x = -4$.</p><p><b>Comprobación:</b> el punto medio entre $-4$ y $2$ debe ser el eje: $\dfrac{-4 + 2}{2} = \dfrac{-2}{2} = -1$. ✔</p><p><b>¿Por qué no las otras?</b> $4$ sale de reflejar el $2$ respecto del eje $Y$ (cambiarle el signo) en vez de respecto del eje $x = -1$. $-3$ sale de contar solo $2$ unidades desde el eje: $-1 - 2 = -3$. $-5$ sale de contar $4$ unidades: $-1 - 4 = -5$.</p>`,
+    sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Nos dan el eje de simetría, $x = -1$, y un punto, $(2, 7)$: en $x = 2$ la altura es $7$. Buscamos otra $x$ con la misma altura $7$. Usamos el truco del espejo: la parábola es igual a ambos lados del eje, así que el punto $(2, 7)$ tiene un gemelo al otro lado, a la misma distancia del eje.</p><p><b>Paso 2.</b> Mira el gráfico: la línea punteada vertical es el eje $x = -1$, y el punto $(2, 7)$ está a su derecha.</p><p><b>Paso 3.</b> Calcula la distancia del punto al eje: $2 - (-1) = 2 + 1 = 3$. El punto está $3$ unidades a la derecha del eje.</p><p><b>Paso 4.</b> El gemelo está $3$ unidades a la izquierda del eje: $-1 - 3 = -4$.</p><p><b>Paso 5.</b> Como el gemelo tiene la misma altura, $f(-4) = 7$.</p><p><b>Respuesta:</b> $x = -4$.</p><p><b>Comprobación:</b> el punto medio entre $-4$ y $2$ debe ser el eje: $\dfrac{-4 + 2}{2} = \dfrac{-2}{2} = -1$. ✔</p><p><b>¿Por qué no las otras?</b> $4$ sale de cambiarle el signo a la respuesta correcta, $-4$. $-3$ sale de contar solo $2$ unidades desde el eje: $-1 - 2 = -3$. $-5$ sale de contar $4$ unidades: $-1 - 4 = -5$.</p>`,
     conc: 'Dos puntos con la misma altura están a la misma distancia del eje de simetría, uno a cada lado.'
   },
   bank: [

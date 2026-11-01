@@ -178,7 +178,7 @@ const TOPICS_NUM = [
     src: 'PAES Invierno 2027, adaptada',
     enun: r`<p>Una botella de agua tiene una capacidad de $2\tfrac{1}{4}$ L y otra de $1\tfrac{1}{8}$ L.</p><p>¿Cuál de las siguientes expresiones representa la diferencia de capacidad entre ambas botellas, en litros?</p>`,
     alts: [r`$(2 - 1) - \left(\dfrac{1}{4} + \dfrac{1}{8}\right)$`, r`$(2 - 1) + \left(\dfrac{1}{4} - \dfrac{1}{8}\right)$`, r`$(2 - 1) + \left(\dfrac{1}{8} - \dfrac{1}{4}\right)$`, r`$(2 + 1) - \left(\dfrac{1}{4} + \dfrac{1}{8}\right)$`], ok: 1,
-    sol: r`<p>$2\tfrac{1}{4} - 1\tfrac{1}{8} = \left(2 + \tfrac{1}{4}\right) - \left(1 + \tfrac{1}{8}\right) = (2 - 1) + \left(\tfrac{1}{4} - \tfrac{1}{8}\right) = 1 + \tfrac{1}{8} = 1\tfrac{1}{8}$ L.</p><p>La primera alternativa resta mal el paréntesis: $-\left(1 + \tfrac{1}{8}\right)$ solo le cambia el signo a $\tfrac{1}{8}$, no a $\tfrac{1}{4}$. La tercera invierte la resta de las fracciones y la cuarta suma las partes enteras.</p>`,
+    sol: r`<p>$2\tfrac{1}{4} - 1\tfrac{1}{8} = \left(2 + \tfrac{1}{4}\right) - \left(1 + \tfrac{1}{8}\right) = (2 - 1) + \left(\tfrac{1}{4} - \tfrac{1}{8}\right) = 1 + \tfrac{1}{8} = 1\tfrac{1}{8}$ L.</p><p>La primera alternativa cambia indebidamente el signo de $\tfrac{1}{4}$: corresponde $(2 - 1) + \left(\tfrac{1}{4} - \tfrac{1}{8}\right)$, no $(2 - 1) - \left(\tfrac{1}{4} + \tfrac{1}{8}\right)$. La tercera invierte la resta de las fracciones y la cuarta suma las partes enteras.</p>`,
     conc: 'Un número mixto es una suma: entero + fracción. Al restarlo, el signo afecta a ambas partes.'
   },
   bank: [
@@ -205,7 +205,7 @@ const TOPICS_NUM = [
       sol: r`<p>Pasos 1 y 2 están bien: $\dfrac{1}{2}\cdot\dfrac{4}{3} = \dfrac{4}{6} = \dfrac{2}{3}$.</p><p>En el Paso 3 no se pueden restar los denominadores: hay que igualarlos, $\dfrac{5}{6} - \dfrac{4}{6} = \dfrac{1}{6}$. El Paso 4 simplifica correctamente lo que recibió.</p>`, conc: 'Para sumar o restar fracciones: denominador común, nunca restar denominadores.' },
     { enun: r`<p>¿Cuál de las siguientes fracciones es la <b>mayor</b>?</p>`,
       alts: [r`$\dfrac{5}{8}$`, r`$\dfrac{3}{5}$`, r`$\dfrac{7}{12}$`, r`$\dfrac{2}{3}$`], ok: 3,
-      sol: r`<p>En decimal: $\dfrac{5}{8} = 0{,}625$; $\dfrac{3}{5} = 0{,}6$; $\dfrac{7}{12} = 0{,}58\overline{3}$; $\dfrac{2}{3} = 0{,}\overline{6}$.</p><p>La mayor es $\dfrac{2}{3}$. También con denominador común 120: $75$, $72$, $70$ y $80$ ciento-veinteavos.</p><p>Tener numerador o denominador más grande no hace mayor a una fracción: $\dfrac{7}{12}$ es la menor.</p>`, conc: 'Para comparar: pasar a decimal o a denominador común.' },
+      sol: r`<p>En decimal: $\dfrac{5}{8} = 0{,}625$; $\dfrac{3}{5} = 0{,}6$; $\dfrac{7}{12} = 0{,}58\overline{3}$; $\dfrac{2}{3} = 0{,}\overline{6}$.</p><p>La mayor es $\dfrac{2}{3}$. También con denominador común 120: $75$, $72$, $70$ y $80$ cientoveinteavos.</p><p>Tener numerador o denominador más grande no hace mayor a una fracción: $\dfrac{7}{12}$ es la menor.</p>`, conc: 'Para comparar: pasar a decimal o a denominador común.' },
     { enun: r`<p>Para preparar 12 galletas se usan $2\tfrac{1}{2}$ tazas de harina.</p><p>Manteniendo las proporciones, ¿cuántas tazas de harina se necesitan para preparar 30 galletas?</p>`,
       alts: [r`$1$`, r`$5$`, r`$6\tfrac{1}{4}$`, r`$7\tfrac{1}{2}$`], ok: 2,
       sol: r`<p>El factor de escala es $\dfrac{30}{12} = \dfrac{5}{2}$. Harina: $\dfrac{5}{2}\cdot\dfrac{5}{2} = \dfrac{25}{4} = 6\tfrac{1}{4}$ tazas.</p><p>$1 = \dfrac{12}{30}\cdot\dfrac{5}{2}$ invierte la proporción (con más galletas debe haber más harina); $5$ redondea el factor a 2; $7\tfrac{1}{2}$ lo redondea a 3.</p>`, conc: 'Multiplica por el factor exacto nuevo/original, sin redondear.' },
@@ -700,7 +700,7 @@ const TOPICS_NUM = [
   slides: [
     { t: '¿Qué es una raíz enésima?', b: r`
       <div class="cols"><div>
-      $$\sqrt[n]{a} = b \iff b^n = a$$
+      <p>Para $n$ impar: $\sqrt[n]{a}=b \iff b^n=a$. Para $n$ par y $a\geq0$: $\sqrt[n]{a}=b \iff (b^n=a\text{ y }b\geq0)$.</p>
       <p>$\sqrt{49} = 7$ porque $7^2 = 49$; $\sqrt[3]{-8} = -2$ porque $(-2)^3 = -8$.</p>
       <p>En los reales, la raíz de <b>índice par</b> de un número negativo no existe: $\sqrt{-4} \notin \mathbb{R}$.</p>
       <p>Como potencia: $\sqrt[n]{a^m} = a^{\frac{m}{n}}$, por ejemplo $\sqrt{x} = x^{\frac{1}{2}}$.</p>
@@ -766,7 +766,7 @@ const TOPICS_NUM = [
       sol: r`<p>$\sqrt{72} = \sqrt{36\cdot 2} = 6\sqrt{2}$ y $\sqrt{8} = \sqrt{4\cdot 2} = 2\sqrt{2}$. Son semejantes: $6\sqrt{2} + 2\sqrt{2} = 8\sqrt{2}$.</p><p>$\sqrt{80}$ suma los radicandos, lo que no está permitido; $6\sqrt{2}$ olvida el segundo término; $8\sqrt{4}$ suma también los radicandos $2 + 2$.</p>`, conc: 'Primero simplificar; luego sumar solo raíces semejantes.' },
     { enun: r`<p>¿Cuál de las siguientes expresiones es igual a $\dfrac{10}{\sqrt{5}}$?</p>`,
       alts: [r`$2\sqrt{5}$`, r`$10\sqrt{5}$`, r`$\dfrac{\sqrt{5}}{2}$`, r`$\sqrt{2}$`], ok: 0,
-      sol: r`<p>$\dfrac{10}{\sqrt{5}}\cdot\dfrac{\sqrt{5}}{\sqrt{5}} = \dfrac{10\sqrt{5}}{5} = 2\sqrt{5}$.</p><p>$10\sqrt{5}$ olvida dividir por 5; $\dfrac{\sqrt{5}}{2}$ invierte la fracción; $\sqrt{2} = \sqrt{\tfrac{10}{5}}$ mete el 10 dentro de la raíz.</p>`, conc: 'Racionalizar: amplificar por la raíz del denominador.' },
+      sol: r`<p>$\dfrac{10}{\sqrt{5}}\cdot\dfrac{\sqrt{5}}{\sqrt{5}} = \dfrac{10\sqrt{5}}{5} = 2\sqrt{5}$.</p><p>$10\sqrt{5}$ olvida dividir por 5; $\dfrac{\sqrt{5}}{2}$ invierte el coeficiente (deja el 2 abajo); $\sqrt{2} = \sqrt{\tfrac{10}{5}}$ mete el 10 dentro de la raíz.</p>`, conc: 'Racionalizar: amplificar por la raíz del denominador.' },
     { enun: r`<p>Si $x > 0$, ¿cuál de las siguientes expresiones es igual a $\sqrt[3]{x^2}\cdot\sqrt{x}$?</p>`,
       alts: [r`$x^{\frac{1}{3}}$`, r`$x^{\frac{1}{6}}$`, r`$x^{\frac{7}{6}}$`, r`$x^{\frac{3}{5}}$`], ok: 2,
       sol: r`<p>$\sqrt[3]{x^2} = x^{\frac{2}{3}}$ y $\sqrt{x} = x^{\frac{1}{2}}$. Al multiplicar se suman los exponentes: $\dfrac{2}{3} + \dfrac{1}{2} = \dfrac{4}{6} + \dfrac{3}{6} = \dfrac{7}{6}$.</p><p>$x^{\frac{1}{3}}$ multiplica los exponentes; $x^{\frac{1}{6}}$ los resta; $x^{\frac{3}{5}}$ suma numeradores y denominadores.</p>`, conc: 'Raíces de distinto índice: pásalas a potencias y suma exponentes.' },

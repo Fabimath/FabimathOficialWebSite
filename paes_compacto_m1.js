@@ -87,7 +87,7 @@ Object.assign(COMPACTO, {
 
   raices: [
     { t: 'Definición y propiedades', b: r`
-      <p>$\sqrt[n]{a} = b \iff b^n = a$; $\sqrt[n]{a^m} = a^{\frac{m}{n}}$. Índice par de negativo: no existe en $\mathbb{R}$; $\sqrt[3]{-8} = -2$. $\sqrt{a^2} = |a|$.</p>
+      <p>$\sqrt[n]{a} = b \iff b^n = a$, con $b \ge 0$ si $n$ es par; $\sqrt[n]{a^m} = a^{\frac{m}{n}}$. Índice par de negativo: no existe en $\mathbb{R}$; $\sqrt[3]{-8} = -2$. $\sqrt{a^2} = |a|$.</p>
       <table><tbody>
       <tr><td>$\sqrt[n]{ab} = \sqrt[n]{a}\sqrt[n]{b}$, $\sqrt[n]{\tfrac{a}{b}} = \tfrac{\sqrt[n]{a}}{\sqrt[n]{b}}$</td><td>$\sqrt{a}\cdot\sqrt{a} = a$</td></tr>
       <tr><td>$\sqrt[m]{\sqrt[n]{a}} = \sqrt[mn]{a}$</td><td>distinto índice: a potencias, $x^{\frac{2}{3}}x^{\frac{1}{2}} = x^{\frac{7}{6}}$</td></tr></tbody></table>
@@ -351,7 +351,7 @@ Object.assign(COMPACTO, {
     { t: '¿Es función? Tablas y pares', b: r`
       <p><b>Pares</b> $(x, y)$: es función si ninguna $x$ se repite con salidas distintas. $\{(1, 4),\ (2, 5),\ (1, 6)\}$ <b>no</b> es función; $\{(1, 2),\ (2, 2),\ (3, 2)\}$ sí (repetir la $y$ está permitido).</p>
       <p><b>Gráfico</b>: si una recta vertical corta la curva dos veces, no es función. Una horizontal sí puede cortarla varias veces.</p>
-      <p><b>Tabla</b>: la fórmula correcta debe calzar en <b>todas</b> las filas. Si $x$ sube de 1 en 1 y $f(x)$ sube siempre $m$, prueba $mx + f(0)$: la tabla $5, 8, 11, 14$ da $3x + 5$.</p>
+      <p><b>Tabla</b>: la fórmula correcta debe calzar en <b>todas</b> las filas. Si $x$ sube de 1 en 1 y $f(x)$ sube siempre $m$, prueba $mx + f(0)$: la tabla de pares $(0,5), (1,8), (2,11), (3,14)$ corresponde a $3x + 5$.</p>
       <div class="box alert"><b>Trampa</b> Una fórmula que calza en una sola fila no sirve: revisa al menos dos.</div>` },
     { t: 'Leer un gráfico', f: 12, b: r`
       <p><b>$f(a)$</b>: desde $x = a$ sube (o baja) hasta la curva y lee la altura en el eje $Y$.</p>
@@ -380,7 +380,7 @@ Object.assign(COMPACTO, {
       <div class="box alert"><b>Trampas</b> · No inviertas: corte con $Y$ es $(0, n)$; con $X$ es $(x, 0)$.<br>· $-6 \div (-2) = +3$.<br>· Varias fórmulas calzan con un solo punto: comprueba con dos.</div>` },
     { t: 'Paralelas y cambios de m y n', b: r`
       <p><b>Paralelas</b>: misma pendiente. Paralela a $y = 3x - 1$ por $(0, 5)$: $y = 3x + 5$. Si el punto no está en el eje $Y$, reemplázalo para hallar $n$.</p>
-      <p>Si cambia $m$ (con $n$ fijo), la recta <b>gira</b> en torno a $(0, n)$: más $m$, más inclinada. Si cambia $n$, se <b>traslada</b> arriba o abajo, paralela.</p>
+      <p>Si cambia $m$ (con $n$ fijo), la recta <b>gira</b> en torno a $(0, n)$: mayor $|m|$, más inclinada. Si cambia $n$, se <b>traslada</b> arriba o abajo, paralela.</p>
       <p>Del dibujo a los signos: «decreciente y corta al eje $Y$ sobre el origen» es $m < 0$ y $n > 0$.</p>
       <div class="graf" data-a="0" data-b="2" data-c="1"></div>` }
   ],
@@ -508,7 +508,7 @@ Object.assign(COMPACTO, {
       <li>Caja: $D = \sqrt{a^2 + b^2 + c^2}$. Si te dan $D$, eleva al cuadrado y despeja.</li>
       <li>Razón $9 : 16$: alto $9x$, ancho $16x$ ($x$: factor de proporcionalidad).</li>
       <li>Isósceles: la altura cae al medio de la base (cateto $\tfrac{\text{base}}{2}$). Rombo: diagonales se cortan por la mitad en ángulo recto.</li>
-      <li>Trapecio rectángulo: cateto vertical = diferencia de los lados paralelos.</li></ul>
+      <li>Trapecio rectángulo: al trazar una altura desde un extremo de la base menor, el triángulo rectángulo restante tiene catetos iguales a la altura y a la diferencia de las bases.</li></ul>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/m1/fig/geo_pit_diagonales.svg" alt="A la izquierda un rectángulo de lados a y b con su diagonal d; a la derecha una caja de aristas a, b y c con la diagonal del piso y la diagonal interior D"></div>
       </div></div>` },
@@ -529,7 +529,7 @@ Object.assign(COMPACTO, {
       <tr><td>Trapecio</td><td>suma de los 4 lados</td><td>$\dfrac{(B + b)\, h}{2}$, $h = \dfrac{2A}{B + b}$</td></tr></tbody></table>` },
     { t: 'La altura', b: r`
       <div class="cols"><div>
-      <p>La altura es <b>perpendicular</b> a la base, nunca el lado inclinado. En el obtusángulo cae fuera; en el rectángulo son los catetos. Base sobre un eje: la altura es la otra coordenada del vértice opuesto.</p>
+      <p>La altura es <b>perpendicular</b> a la base, nunca el lado inclinado. En el obtusángulo cae fuera; en el rectángulo son los catetos. Base sobre un eje: la altura es el valor absoluto de la otra coordenada del vértice opuesto.</p>
       <p>Trapecio isósceles sin altura: cada esquina mide $\tfrac{B - b}{2}$ y $h$ sale con Pitágoras. Trapecio rectángulo: el lado perpendicular es la altura.</p>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/m1/fig/geo_ar_alturas.svg" alt="Tres triángulos con su base b y su altura h: en el acutángulo la altura cae dentro, en el rectángulo es un cateto y en el obtusángulo cae fuera, sobre la prolongación de la base"></div>
@@ -582,9 +582,9 @@ Object.assign(COMPACTO, {
     { t: 'Qué caras se cuentan', b: r`
       <ul><li>Sin tapa / sin base: total − una cara ($5a^2$; lateral + 1 base). Pieza: paredes + techo, sin piso.</li>
       <li>Cuerpos pegados: se pierden <b>las dos</b> caras que se tocan.</li>
-      <li>Objetos que caben justo: pelotas de radio 3 → tubo de $r = 3$, $h = 3 \cdot 6$.</li>
+      <li>Tres pelotas de radio 3, apiladas y que caben justo en un tubo: $r = 3$, $h = 3 \cdot 6 = 18$.</li>
       <li>Aristas $\times k$: área $\times k^2$.</li></ul>
-      <div class="box alert">Cada cara va <b>dos veces</b> (falta el "por 2"). No confundas $6a^2$ (cm$^2$) con $a^3$ (cm$^3$). Diámetro no es radio.</div>` }
+      <div class="box alert">En un paralelepípedo cerrado hay <b>dos caras</b> de cada tipo: $A_T = 2ab + 2ac + 2bc$ (no olvides el "por 2"). No confundas $6a^2$ (cm$^2$) con $a^3$ (cm$^3$). Diámetro no es radio.</div>` }
   ],
 
   geo_volumen: [
@@ -655,7 +655,7 @@ Object.assign(COMPACTO, {
       <li>Regla dada, como $(x - 3, 4 - y)$: reemplaza con cuidado; $4 - (-5) = 9$.</li>
       <li>Mismo eje dos veces: vuelve. Eje X y luego eje Y: origen. Dos rectas paralelas a distancia $d$: traslación de $2d$.</li>
       <li>Doblar papel o asientos simétricos = reflejar respecto del doblez (misma fila, misma distancia).</li>
-      <li>Flechas: aplica la regla a la dirección, NE $= (1, 1)$.</li></ul>` }
+      <li>Flechas: transforma sus dos extremos y resta imagen del extremo final menos imagen del inicial; NE corresponde al vector $(1, 1)$.</li></ul>` }
   ],
 
   geo_rotacion: [
@@ -705,7 +705,7 @@ Object.assign(COMPACTO, {
       <table><tbody>
       <tr><td>$f_i$</td><td>cuántos datos tienen ese valor</td></tr>
       <tr><td>$n$</td><td>$\sum f_i$ (suma de frecuencias, nunca de valores)</td></tr>
-      <tr><td>$h_i$</td><td>$\dfrac{f_i}{n}$ o $\dfrac{f_i}{n}\cdot 100\%$; suman $1$. Al revés: $f_i = h_i\cdot n$</td></tr>
+      <tr><td>$h_i$</td><td>$\dfrac{f_i}{n}$; las $h_i$ suman $1$. En porcentaje: $\dfrac{f_i}{n}\cdot 100\%$, y suman $100\%$. Al revés: $f_i = h_i\cdot n$</td></tr>
       <tr><td>$F_i$, $H_i$</td><td>acumuladas: $f_1 + \dots + f_i$ y $F_i/n$. $f_i = F_i - F_{i-1}$</td></tr></tbody></table>
       <div class="box alert"><b>Grupos de distinto tamaño</b> se comparan con $h_i\%$ (cada uno sobre su propio total), no con cantidades.</div>` },
     { t: '"Al menos", "a lo más" e intervalos', b: r`
@@ -771,6 +771,7 @@ Object.assign(COMPACTO, {
       <div class="box alert"><b>No mezclar</b> valor (65) y porcentaje (80 %). Supera a 30 de 40 $\Rightarrow$ percentil 75.</div>
       </div></div>` },
     { t: 'Desde una tabla', b: r`
+      <p>Ejemplo: puntajes 1 a 7 con frecuencias 2, 4, 4, 5, 7, 3 y 5.</p>
       <p>Posición $k$: primera fila con $F_i \ge k$. $n = 30$: posiciones 15 y 16 caen en 4 y 5 $\Rightarrow Me = 4{,}5$.</p>` }
   ],
 
@@ -795,6 +796,7 @@ Object.assign(COMPACTO, {
   laplace: [
     { t: 'Regla de Laplace', b: r`
       <div class="cols"><div>
+      <p>Si todos los resultados del espacio muestral son igualmente probables:</p>
       $$\mathbb{P}(A) = \frac{\#A}{\#\Omega}, \qquad 0 \le \mathbb{P}(A) \le 1, \qquad \mathbb{P}(A^c) = 1 - \mathbb{P}(A)$$
       <p>Dos dados: $36$ casos; suma 7 en 6 (la más probable), 6 en 5, 10 en 3, 12 en 1. $k$ monedas: $2^k$.</p>
       </div><div>

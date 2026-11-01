@@ -651,14 +651,14 @@ const QUI_ORGANICA = [
       conc: 'La cadena principal es el camino más largo, aunque doble por una ramificación.' },
     { src: 'PAES Invierno 2026, adaptada',
       enun: r`<p>Se muestra la estructura de un hidrocarburo usado como combustible:</p><p>¿Cuántos átomos de carbono tiene su cadena principal?</p>`,
-      fig: { type: 'img', src: 'paes/quimica/fig/org_cad_b.svg', alt: 'Fórmula topológica de un alcano muy ramificado de 13 carbonos' },
-      alts: ['8', '10', '9', '13'], ok: 2,
+      fig: { type: 'img', src: 'paes/quimica/fig/org_cad_b.svg', alt: 'Fórmula topológica de un alcano muy ramificado de 14 carbonos' },
+      alts: ['8', '10', '9', '14'], ok: 2,
       sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> El camino continuo más largo.</p>
         <p><b>Paso 2. Identifica las ramas.</b> En la fila horizontal hay 8 C. De ella salen: un metilo arriba a la izquierda (1 C), un etilo hacia abajo (2 C) y una rama de 3 C hacia arriba a la derecha.</p>
         <p><b>Paso 3. Combina los extremos más largos.</b> Empieza en el extremo del etilo de abajo (2 C), pasa por los 4 C centrales de la fila (desde el vértice del etilo hasta el vértice de la rama de 3) y termina en la rama de 3 C: $2 + 4 + 3 = 9$ C.</p>
         <p><b>Paso 4. Revisa.</b> Usando la parte izquierda en vez del etilo: $2 + 4 + 3 = 9$ también. Usando la parte derecha (2 C) en vez de la rama de 3: solo 8.</p>
         <p><b>Respuesta:</b> 9.</p>
-        <p><b>¿Por qué no las otras?</b> 8 es la fila horizontal. 13 es el total de C. 10 suma un carbono que no está en el mismo camino.</p>`,
+        <p><b>¿Por qué no las otras?</b> 8 es la fila horizontal. 14 es el total de C. 10 suma un carbono que no está en el mismo camino.</p>`,
       conc: 'Prueba cada par de extremos y quédate con el camino más largo.' },
     { src: 'PAES Invierno 2026, adaptada',
       enun: r`<p>Observa la siguiente fórmula topológica:</p><p>¿Cuál es el número de átomos de carbono de la cadena principal?</p>`,

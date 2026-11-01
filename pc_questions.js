@@ -1433,7 +1433,7 @@ const PC_QUESTIONS = [
 "pautaSteps": [
 "P(B\\mid A)=\\dfrac{n(A\\cap B)}{n(A)}=\\dfrac{18}{180}=0{,}1000",
 "\\text{El denominador es el subtotal de la condición }(n=180),\\ \\text{no el total }N.",
-"\text{Coincide con }P(B)=dfrac{30}{300}=0{,}1000: \text{los eventos son independientes.}"
+"\\text{Coincide con }P(B)=\\dfrac{30}{300}=0{,}1000:\\ \\text{los eventos son independientes.}"
 ],
 "conc": "Sabiendo que nació por parto vaginal, la probabilidad de que un recién nacido tenga bajo peso al nacer es 0,1000 (10,00%)."
 },
@@ -1473,7 +1473,7 @@ const PC_QUESTIONS = [
 "pautaSteps": [
 "P(A\\mid B)=\\dfrac{n(A\\cap B)}{n(B)}=\\dfrac{18}{30}=0{,}6000",
 "\\text{El denominador es el subtotal de la condición }(n=30).",
-"\text{Coincide con }P(A)=dfrac{180}{300}=0{,}6000: \text{los eventos son independientes.}"
+"\\text{Coincide con }P(A)=\\dfrac{180}{300}=0{,}6000:\\ \\text{los eventos son independientes.}"
 ],
 "conc": "Sabiendo que tiene bajo peso al nacer, la probabilidad de que un recién nacido haya nacido por parto vaginal es 0,6000 (60,00%)."
 },
