@@ -17,7 +17,7 @@ const FIS_TIERRA = [
     { t: 'Wegener y la deriva continental', b: r`
       <div class="cols"><div>
       <p>En 1912, el meteorólogo alemán <b>Alfred Wegener</b> propuso la <b>teoría de la deriva continental</b>: los continentes no han estado siempre en el mismo lugar. Hace unos 300 a 200 millones de años formaban un solo supercontinente, <b>Pangea</b>, rodeado por un único océano, <b>Pantalasa</b>. Pangea se fragmentó y los continentes se fueron desplazando lentamente hasta sus posiciones actuales.</p>
-      <p>Wegener reunió evidencias de áreas muy distintas: geografía, paleontología, geología y climatología. Las verás en la diapositiva siguiente.</p>
+      <p>Wegener reunió evidencias de áreas muy distintas: geografía, paleontología, geología y climatología. Las verás a continuación.</p>
       <div class="box"><b>Por qué no se aceptó al principio</b> Wegener no pudo explicar de forma convincente <b>qué fuerza</b> movía los continentes. Pensaba que los continentes «surcaban» el fondo oceánico, y los geólogos de la época mostraron que eso era imposible. La idea fue rechazada durante décadas.</div>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/fisica/fig/tie_wegener.svg" alt="Esquema de América del Sur y África juntas, como habrían estado hace unos 250 millones de años: la costa este de América del Sur calza con la costa oeste de África. Tres franjas cruzan ambos continentes de forma continua: fósiles de Mesosaurus, un reptil de agua dulce, en el sur; fósiles de Glossopteris, un helecho con semillas, en el centro; y rocas del mismo tipo y la misma edad en el norte"></div>
@@ -152,7 +152,7 @@ const FIS_TIERRA = [
       <div class="cols"><div>
       <p>El interior de la Tierra se describe con dos modelos que se complementan:</p>
       <p><b>Modelo estático</b> (según la <b>composición química</b>):</p>
-      <ul><li><b>Corteza:</b> continental (5 a 70 km de espesor, rocas como el granito) u oceánica (5 a 10 km, basalto).</li>
+      <ul><li><b>Corteza:</b> continental (30 a 70 km de espesor, rocas como el granito) u oceánica (5 a 10 km, basalto).</li>
       <li><b>Manto:</b> hasta unos 2900 km; rocas de silicatos de hierro y magnesio.</li>
       <li><b>Núcleo:</b> hasta el centro, a 6371 km; principalmente hierro y níquel.</li></ul>
       <p><b>Modelo dinámico</b> (según el <b>comportamiento físico</b>: rígido, plástico o líquido):</p>

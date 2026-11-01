@@ -426,12 +426,12 @@ const QUI_ELECTIVO = [
     { t: 'Limitante cuando el dato es el producto', b: r`
       <div class="cols"><div>
       <p>A veces el enunciado da las cantidades iniciales <b>y</b> la cantidad de producto obtenida, y pregunta cuánto se consumió de un reactivo.</p>
-      <p><b>Ejemplo.</b> 2 Fe + 6 HCl → 2 FeCl<sub>3</sub> + 3 H<sub>2</sub>. Se usan 0,1 mol de HCl y 0,1 mol de Fe, y se obtienen 0,05 mol de H<sub>2</sub>. ¿Cuánto Fe se consumió?</p>
-      <p><b>Paso 1. Limitante.</b> Fe: $\dfrac{0{,}1}{2} = 0{,}05$. HCl: $\dfrac{0{,}1}{6} \approx 0{,}017$. Limita el HCl.</p>
-      <p><b>Paso 2. Confirma con el producto.</b> $0{,}1\cdot\dfrac{3}{6} = 0{,}05$ mol de H<sub>2</sub>. ✔ Coincide con el dato.</p>
-      <p><b>Paso 3. Fe consumido.</b> $0{,}1\cdot\dfrac{2}{6} \approx 0{,}03$ mol. Sobran unos 0,07 mol de Fe.</p>
+      <p><b>Ejemplo.</b> Fe + 2 HCl → FeCl<sub>2</sub> + H<sub>2</sub>. Se usan 0,1 mol de HCl y 0,1 mol de Fe, y se obtienen 0,05 mol de H<sub>2</sub>. ¿Cuánto Fe se consumió?</p>
+      <p><b>Paso 1. Limitante.</b> Fe: $\dfrac{0{,}1}{1} = 0{,}1$. HCl: $\dfrac{0{,}1}{2} = 0{,}05$. Limita el HCl.</p>
+      <p><b>Paso 2. Confirma con el producto.</b> $0{,}1\cdot\dfrac{1}{2} = 0{,}05$ mol de H<sub>2</sub>. ✔ Coincide con el dato.</p>
+      <p><b>Paso 3. Fe consumido.</b> $0{,}1\cdot\dfrac{1}{2} = 0{,}05$ mol. Sobran 0,05 mol de Fe.</p>
       </div><div>
-      <div class="box"><b>Atajo</b> Si conoces el producto formado, úsalo directamente: $0{,}05$ mol de H<sub>2</sub> $\cdot\dfrac{2}{3} \approx 0{,}03$ mol de Fe. Lo que reaccionó siempre está en proporción con lo que se formó.</div>
+      <div class="box"><b>Atajo</b> Si conoces el producto formado, úsalo directamente: $0{,}05$ mol de H<sub>2</sub> $\cdot\dfrac{1}{1} = 0{,}05$ mol de Fe. Lo que reaccionó siempre está en proporción con lo que se formó.</div>
       <div class="box alert"><b>Error típico</b> Responder 0,1 mol de Fe, «porque se usaron 0,1 mol». Se <b>pusieron</b> 0,1 mol; se <b>consumió</b> solo lo que alcanzó a reaccionar con el HCl.</div>
       </div></div>` },
     { t: 'Fórmula empírica por combustión', b: r`
@@ -648,7 +648,7 @@ const QUI_ELECTIVO = [
     enun: r`<p>Algunos productos de limpieza contienen KOH (masa molar = 56 g/mol), cuya concentración no debe superar los 0,4 mol/L. Considerando volúmenes aditivos, ¿qué volumen de agua se debe agregar a 100 mL de una solución de KOH al 5,6 % m/v para obtener una solución con la concentración máxima permitida?</p>`,
     alts: ['40 mL', '150 mL', '250 mL', '1.300 mL'],
     ok: 1,
-    sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> El agua que hay que agregar. La concentración inicial viene en % m/v y la final en mol/L: hay que convertir primero.</p><p><b>Paso 2. Convierte.</b> 5,6 % m/v = 5,6 g en 100 mL = 56 g en 1 L. $\dfrac{56}{56} = 1$ mol/L.</p><p><b>Paso 3. Volumen final.</b> $V_2 = \dfrac{C_1 V_1}{C_2} = \dfrac{1\cdot 100}{0{,}4} = 250$ mL.</p><p><b>Paso 4. Agua.</b> $250 - 100 = 150$ mL.</p><p><b>Respuesta:</b> 150 mL.</p><p><b>Comprobación:</b> mol de KOH: $1\cdot 0{,}1 = 0{,}1$ mol; en 0,25 L: $\dfrac{0{,}1}{0{,}25} = 0{,}4$ mol/L. ✔</p><p><b>¿Por qué no las otras?</b> 250 mL es el volumen final, no el agua agregada. 40 mL invierte la fórmula ($\dfrac{0{,}4\cdot 100}{1}$): concentraría en vez de diluir. 1.300 mL usa 5,6 como si fueran mol/L, sin convertir.</p>`,
+    sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> El agua que hay que agregar. La concentración inicial viene en % m/v y la final en mol/L: hay que convertir primero.</p><p><b>Paso 2. Convierte.</b> 5,6 % m/v = 5,6 g en 100 mL = 56 g en 1 L. $\dfrac{56}{56} = 1$ mol/L.</p><p><b>Paso 3. Volumen final.</b> $V_2 = \dfrac{C_1 V_1}{C_2} = \dfrac{1\cdot 100}{0{,}4} = 250$ mL.</p><p><b>Paso 4. Agua.</b> $250 - 100 = 150$ mL.</p><p><b>Respuesta:</b> 150 mL.</p><p><b>Comprobación:</b> mol de KOH: $1\cdot 0{,}1 = 0{,}1$ mol; en 0,25 L: $\dfrac{0{,}1}{0{,}25} = 0{,}4$ mol/L. ✔</p><p><b>¿Por qué no las otras?</b> 250 mL es el volumen final, no el agua agregada. 40 mL invierte la fórmula ($\dfrac{0{,}4\cdot 100}{1}$): daría aproximadamente 0,714 mol/L, una dilución insuficiente para alcanzar 0,4 mol/L. 1.300 mL usa 5,6 como si fueran mol/L, sin convertir.</p>`,
     conc: 'Convierte a la misma unidad antes de usar C₁·V₁ = C₂·V₂, y fíjate si piden agua o volumen final.'
   },
   bank: [

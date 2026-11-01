@@ -434,7 +434,7 @@ const TOPICS = [
     src: 'PAES Invierno 2027, adaptada',
     enun: r`<p>En el siguiente diagrama de cajón se presenta el tiempo, en minutos, que tardó un grupo de personas en completar un circuito deportivo.</p><p>¿Qué representa el 16 en el diagrama de cajón?</p>`,
     fig: { type: 'box', scale: [6, 24], ticks: 6, series: [{ min: 8, q1: 12, me: 14, q3: 16, max: 22 }] },
-    alts: ['Que al menos un 75 % de las personas terminó el circuito en 16 minutos o menos.', 'Que un 16 % de las personas terminó el circuito en a lo más 16 minutos.', 'Que la dieciseisava persona que terminó el circuito demoró 16 minutos.', 'Que la cuarta persona que terminó el circuito demoró 16 minutos.'], ok: 0,
+    alts: ['Que al menos un 75 % de las personas terminó el circuito en 16 minutos o menos.', 'Que un 16 % de las personas terminó el circuito en a lo más 16 minutos.', 'Que la decimosexta persona que terminó el circuito demoró 16 minutos.', 'Que la cuarta persona que terminó el circuito demoró 16 minutos.'], ok: 0,
     sol: r`<p>El 16 es el borde derecho de la caja: es $Q_3$, el tercer cuartil.</p><p>$Q_3$ deja al menos el 75 % de los datos en 16 o menos: eso es exactamente la alternativa correcta.</p><p>Las otras confunden el valor 16 con un porcentaje o con una posición en el orden de llegada, cosas que el cajón no informa.</p>`,
     conc: 'Borde derecho de la caja = Q3 = al menos 75 % de los datos hasta ahí.'
   },

@@ -51,8 +51,8 @@ const FIS_MOVIMIENTO = [
       <div class="cols"><div>
       <p>La <b>velocidad instantánea</b> es la velocidad en un instante determinado. Su magnitud, la <b>rapidez instantánea</b>, es lo que marca el velocímetro de un auto.</p>
       <p>La <b>aceleración</b> mide qué tan rápido cambia la velocidad:</p>
-      <p style="text-align:center">$a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{\Delta t}$</p>
-      <p>Su unidad es m/s². Si un auto pasa de 5 m/s a 25 m/s en 4 s, su aceleración es $a = \dfrac{25 - 5}{4} = 5$ m/s²: cada segundo su velocidad aumenta 5 m/s.</p>
+      <p style="text-align:center">$a_m = \dfrac{\Delta v}{\Delta t} = \dfrac{v_f - v_i}{\Delta t}$</p>
+      <p>Su unidad es m/s². Si un auto pasa de 5 m/s a 25 m/s en 4 s, su aceleración media es $a_m = \dfrac{25 - 5}{4} = 5$ m/s²: si la aceleración es constante, cada segundo su velocidad aumenta 5 m/s.</p>
       <p>En una recta, si la aceleración y la velocidad tienen el <b>mismo signo</b>, la rapidez aumenta; si tienen <b>signos opuestos</b>, la rapidez disminuye (el cuerpo frena).</p>
       </div><div>
       <div class="box"><b>Hay aceleración siempre que cambie la velocidad</b><br>· si aumenta la rapidez;<br>· si disminuye la rapidez (frenar también es acelerar);<br>· si cambia la dirección, aunque la rapidez sea constante, como un auto que toma una curva con el velocímetro fijo.</div>

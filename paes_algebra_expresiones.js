@@ -77,7 +77,7 @@ const ALG_EXPRESIONES = [
       </div></div>` },
     { t: 'Del lenguaje natural al algebraico', b: r`
       <div class="cols"><div>
-      <p>Muchas preguntas PAES piden la expresión que representa una frase. Lee la frase <b>de afuera hacia adentro</b>: la última operación que se nombra es la que manda.</p>
+      <p>Muchas preguntas PAES piden la expresión que representa una frase. Lee la frase <b>de afuera hacia adentro</b>: identifica primero la operación principal y después la expresión sobre la que actúa.</p>
       <p>Ejemplo (PAES Invierno 2026): si la edad actual de Pedro es $m$ años, "la edad de Pedro hace $n$ años disminuida en 3 años".</p>
       <p><b>Paso 1.</b> La edad de Pedro hace $n$ años: $m - n$.</p>
       <p><b>Paso 2.</b> Esa edad disminuida en 3: $m - n - 3$.</p>

@@ -23,7 +23,7 @@ const FIS_ELECTRICIDAD = [
       <p>Para que circule corriente se necesita un <b>circuito cerrado</b>: un camino conductor continuo que sale de la fuente (pila, batería, enchufe) y vuelve a ella. Si el circuito se abre en algún punto (un interruptor apagado, un cable cortado), la corriente se detiene en todo ese camino.</p>
       </div><div>
       <div class="box"><b>Sentido de la corriente</b> En un cable metálico, los electrones se mueven por el circuito externo desde el polo negativo hacia el polo positivo de la pila. Por una convención histórica, el <b>sentido convencional</b> de la corriente es el contrario: sale del polo <b>positivo</b>, recorre el circuito y vuelve por el polo <b>negativo</b>. Las flechas de corriente de los diagramas usan el sentido convencional.</div>
-      <div class="box"><b>Recuerda</b><br>· La corriente no se «gasta» al pasar por una ampolleta: la misma carga que entra por un extremo sale por el otro. Lo que la ampolleta transforma es <b>energía</b>.<br>· Las pilas y baterías entregan <b>corriente continua</b> (siempre en el mismo sentido). La red domiciliaria entrega <b>corriente alterna</b>, que en Chile cambia de sentido 50 veces por segundo.</div>
+      <div class="box"><b>Recuerda</b><br>· La corriente no se «gasta» al pasar por una ampolleta: la misma carga que entra por un extremo sale por el otro. Lo que la ampolleta transforma es <b>energía</b>.<br>· Las pilas y baterías entregan <b>corriente continua</b> (siempre en el mismo sentido). La red domiciliaria entrega <b>corriente alterna</b>, que en Chile completa 50 ciclos por segundo (50 Hz) y cambia de sentido 100 veces por segundo.</div>
       </div></div>` },
     { t: 'Voltaje y resistencia', b: r`
       <div class="cols"><div>

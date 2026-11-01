@@ -316,7 +316,7 @@ const QUI_ORGANICA = [
       <p><b>Modelo compacto</b> (o de espacio lleno): las esferas se tocan y se superponen, a escala de su tamaño real. Muestra el <b>volumen</b> y la <b>forma externa</b> de la molécula, pero los enlaces y ángulos se ven poco.</p>
       </div><div>
       <div class="box"><b>Colores habituales</b> C: gris o negro · H: blanco · O: rojo · N: azul · Cl: verde.</div>
-      <div class="box alert"><b>Clave PAES</b> Si dos formas de una molécula se diferencian solo en cómo se ordenan sus átomos <b>en el espacio</b>, ninguna fórmula escrita en el plano (molecular, empírica, condensada) las distingue: se necesita un modelo 3D, como el de esferas y varillas.</div>
+      <div class="box alert"><b>Clave PAES</b> Si dos formas de una molécula se diferencian solo en cómo se ordenan sus átomos <b>en el espacio</b>, ninguna fórmula molecular o empírica las distingue: se necesita un modelo 3D (esferas y varillas) o una fórmula que muestre la disposición espacial, como un dibujo cis/trans o con cuñas y trazos.</div>
       </div></div>` },
     { t: 'Comparar representaciones y moléculas', b: r`
       <table><thead><tr><th>Representación</th><th>¿Cuántos átomos de cada tipo?</th><th>¿Cómo se unen?</th><th>¿Forma 3D?</th></tr></thead><tbody>
@@ -340,7 +340,7 @@ const QUI_ORGANICA = [
       <tr><td>Topológica</td><td>zig-zag de 4 vértices</td><td>vértices y extremos = C; H implícitos</td></tr>
       <tr><td>Esferas y varillas / compacto</td><td>modelo 3D</td><td>ángulos / volumen</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box"><b>Recuerda</b><br>· En la fórmula topológica, cada extremo es un CH<sub>3</sub> (si no hay otro átomo escrito).<br>· C<sub>8</sub>H<sub>8</sub>O<sub>3</sub> ya es empírica: el MCD de 8, 8 y 3 es 1.<br>· Isómeros = misma fórmula molecular.</div>
+      <div class="box"><b>Recuerda</b><br>· En la fórmula topológica, cada extremo sin símbolo es un carbono; sus H completan cuatro enlaces (el doble cuenta 2 y el triple 3).<br>· C<sub>8</sub>H<sub>8</sub>O<sub>3</sub> ya es empírica: el MCD de 8, 8 y 3 es 1.<br>· Isómeros = misma fórmula molecular.</div>
       </div><div>
       <div class="box"><b>Método PAES para contar</b> 1. Marca cada vértice y extremo (C). 2. Para cada C: H = 4 − enlaces dibujados (doble cuenta 2, triple cuenta 3). 3. Suma los H de OH, NH<sub>2</sub>, CHO escritos. 4. Escribe C, H y luego los demás átomos. 5. Si piden la empírica, divide por el MCD.</div>
       </div></div>` }
@@ -358,7 +358,7 @@ const QUI_ORGANICA = [
       <p><b>Paso 5. Revisa cada estudiante.</b> 1: X e Y son ambos C<sub>4</sub>H<sub>10</sub>O. ✔ 2: Z tiene 3 C y X tiene 4. ✘ 3: X (C<sub>4</sub>H<sub>10</sub>O) y Z (C<sub>3</sub>H<sub>6</sub>O<sub>2</sub>) son fórmulas distintas. ✘ 4: Y tiene 10 H y Z tiene 6; el doble de 6 sería 12. ✘</p>
       <p><b>Respuesta:</b> el estudiante 1.</p>
       <p><b>Comprobación:</b> masas molares: X = $4 \cdot 12 + 10 + 16 = 74$ g/mol; Z = $3 \cdot 12 + 6 + 2 \cdot 16 = 74$ g/mol. Tienen igual masa molar, pero distinta fórmula: por eso el estudiante 3 se equivoca, aunque su dato de masa sea cierto.</p>
-      <p><b>¿Por qué no las otras?</b> El estudiante 2 no cuenta el carbono del extremo izquierdo de X o cuenta uno de más en Z. El estudiante 3 confunde "misma masa molar" con "misma fórmula". El estudiante 4 olvida que el doble de 6 es 12, no 10.</p>`,
+      <p><b>¿Por qué no las otras?</b> El estudiante 2 se equivoca: Z tiene 3 carbonos y X tiene 4. El estudiante 3 confunde "misma masa molar" con "misma fórmula". El estudiante 4 olvida que el doble de 6 es 12, no 10.</p>`,
     conc: 'Para comparar moléculas dibujadas, primero escribe la fórmula molecular de cada una: igual masa molar no significa igual fórmula.'
   },
   bank: [
@@ -569,8 +569,8 @@ const QUI_ORGANICA = [
       <tr><td>CH<sub>3</sub>–C≡C–CH<sub>2</sub>–CH<sub>3</sub></td><td>pent-2-ino</td></tr>
       <tr><td>CH<sub>2</sub>=CH–CH=CH<sub>2</sub></td><td>buta-1,3-dieno</td></tr></tbody></table>
       </div><div>
-      <div class="box alert"><b>Nombres antiguos</b> En libros más antiguos verás "2-buteno", "1-butino" o "2-pentino": son los <b>mismos compuestos</b> que but-2-eno, but-1-ino y pent-2-ino. Solo cambia dónde se escribe el número. En la PAES aparece la forma nueva ("penta-2-ino", "butan-2-ona").</div>
-      <div class="box"><b>Detalles de escritura</b> Con dos dobles se agrega una "a" al prefijo: <b>buta</b>-1,3-dieno. Si hay doble y triple, el "-eno" va antes: pent-1-en-3-ino. Con 1 o 2 carbonos no hace falta localizador: eteno, etino, propeno.</div>
+      <div class="box alert"><b>Nombres antiguos</b> En libros más antiguos verás "2-buteno", "1-butino" o "2-pentino": son los <b>mismos compuestos</b> que but-2-eno, but-1-ino y pent-2-ino. Solo cambia dónde se escribe el número. En la PAES aparece la forma nueva ("pent-2-ino", "butan-2-ona").</div>
+      <div class="box"><b>Detalles de escritura</b> Con dos dobles se agrega una "a" al prefijo: <b>buta</b>-1,3-dieno. Si hay doble y triple, el "-eno" va antes: pent-1-en-3-ino. Con 2 o 3 carbonos no hace falta localizador: eteno, etino, propeno, propino.</div>
       <div class="box"><b>Grupos alquilo (ramificaciones)</b> –CH<sub>3</sub> metil · –CH<sub>2</sub>CH<sub>3</sub> etil · –CH<sub>2</sub>CH<sub>2</sub>CH<sub>3</sub> propil · –CH(CH<sub>3</sub>)<sub>2</sub> isopropil.</div>
       </div></div>` },
     { t: 'Nombrar con ramificaciones, paso a paso', b: r`
@@ -823,7 +823,7 @@ const QUI_ORGANICA = [
       <p><b>Cetona, R–CO–R'.</b> El C=O está <b>entre dos carbonos</b>. Sufijo <b>-ona</b>, con localizador: pentan-2-ona, pentan-3-ona. La propanona (acetona) es el solvente del quitaesmalte; la butan-2-ona se usa en pinturas.</p>
       </div><div>
       <div class="box"><b>Ejemplo resuelto</b> CH<sub>3</sub>–CH<sub>2</sub>–CH(CH<sub>3</sub>)–CH<sub>2</sub>–CHO. <b>Paso 1.</b> Cadena más larga con el CHO: 5 C → pentanal. <b>Paso 2.</b> El CHO es C1, así que el metilo queda en C3. <b>Nombre:</b> 3-metilpentanal. <b>Fórmula:</b> C<sub>6</sub>H<sub>12</sub>O.</div>
-      <div class="box alert"><b>Error típico</b> Llamar cetona a todo C=O. Mira los vecinos del carbono del C=O: si uno es H, es aldehído; si son dos C, es cetona; si uno es O o N, es ácido, éster o amida (siguiente sección).</div>
+      <div class="box alert"><b>Error típico</b> Llamar cetona a todo C=O. Mira los vecinos del carbono del C=O: si uno es O o N, es ácido, éster o amida (siguiente sección); si no, un H indica aldehído y dos C, cetona.</div>
       <div class="box"><b>Oxidación</b> Alcohol primario → aldehído → ácido carboxílico. Alcohol secundario → cetona.</div>
       </div></div>` },
     { t: 'Ácidos carboxílicos y sus derivados: ésteres, anhídridos y amidas', b: r`
@@ -880,7 +880,7 @@ const QUI_ORGANICA = [
       <tr><td>Amina</td><td>R–NH<sub>2</sub></td><td>metanamina (metilamina)</td><td>básicas, olor a pescado, alcaloides</td></tr>
       <tr><td>Nitrilo</td><td>R–C≡N</td><td>etanonitrilo (acetonitrilo)</td><td>solventes, fibras acrílicas</td></tr></tbody></table>
       <div class="cols"><div>
-      <div class="box"><b>Recuerda</b><br>· En un C=O mira los vecinos: H (aldehído), 2 C (cetona), OH (ácido), O–C (éster), N (amida).<br>· N–C=O es una amida.<br>· Etanoato de propilo y propanoato de etilo son distintos: "-ato" es la parte del ácido (con el C=O) y "-ilo" la del alcohol.</div>
+      <div class="box"><b>Recuerda</b><br>· En un C=O mira los vecinos: OH (ácido), O–C (éster), N (amida); si no hay ninguno, H (aldehído) o 2 C (cetona).<br>· N–C=O es una amida.<br>· Etanoato de propilo y propanoato de etilo son distintos: "-ato" es la parte del ácido (con el C=O) y "-ilo" la del alcohol.</div>
       </div><div>
       <div class="box"><b>Método PAES</b> 1. Encierra cada heteroátomo. 2. Mira sus vecinos y usa la tabla de la sección anterior. 3. Si te piden el nombre, busca el grupo de mayor prioridad: da el sufijo y fija la numeración (C1 en el CHO o el COOH). 4. Si te piden un uso, asocia: éster–aroma, amida–proteínas, cetona–acetona, ácido–vinagre, amina–olor a pescado.</div>
       </div></div>` }

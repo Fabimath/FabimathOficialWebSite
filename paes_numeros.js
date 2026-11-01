@@ -269,7 +269,7 @@ const TOPICS_NUM = [
       <div class="cols"><div>
       <p><b>Decimales</b>: completar con ceros y comparar cifra a cifra. $0{,}5 = 0{,}50 > 0{,}45$.</p>
       <p><b>Negativos</b>: el orden se invierte, $-0{,}5 < -0{,}45$.</p>
-      <p><b>Fracciones y decimales mezclados</b>: pasar todo a decimal (con 3 o 4 cifras basta) o todo a fracción con denominador común.</p>
+      <p><b>Fracciones y decimales mezclados</b>: pasar todo a decimal, con cifras suficientes para distinguir los números o todo a fracción con denominador común.</p>
       </div><div>
       <div class="box"><b>Entre dos racionales siempre hay otro</b> Por ejemplo, el promedio: entre $\dfrac{1}{3}$ y $\dfrac{1}{2}$ está $\dfrac{1}{2}\left(\dfrac{1}{3} + \dfrac{1}{2}\right) = \dfrac{5}{12}$.</div>
       <div class="box alert"><b>Trampa</b> $12{,}08$ es menor que $12{,}1$: la cantidad de cifras no dice cuál es mayor.</div>

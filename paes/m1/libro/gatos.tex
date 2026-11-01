@@ -125,3 +125,26 @@
 \newcommand{\gatonegro}[1][0.07]{\gato[#1]{gNeg}{gNegS}}
 \newcommand{\gatoatigrado}[1][0.07]{\gato[#1]{gAti}{gAtiS}}
 \newcommand{\gatolila}[1][0.07]{\gato[#1]{gLil}{gLilS}}
+
+%% \paginagatos{color}{colorsuave}: última página del libro, los seis gatos con un globo «¡Tú puedes!» cada uno.
+%% #1 color principal del libro (nar o ciencia), #2 su fondo suave (hielo o cienciaT). En blanco y negro sale en grises sola.
+%% \globogato{color}{coordenada}{gato}: un gato centrado en la coordenada y su globo arriba a la derecha, con la colita apuntando al gato.
+\newcommand{\globogato}[3]{%
+  \node (g) at (#2) {#3[0.16]};
+  \node[draw=#1,line width=1pt,fill=white,rounded corners=10pt,inner xsep=12pt,inner ysep=8pt,font=\Large\bfseries,text=#1,anchor=south west](b) at ([xshift=1.4cm,yshift=1.1cm]g.center) {¡Tú puedes!};
+  \fill[white] ([xshift=14pt,yshift=0.6pt]b.south west) -- ++(-8pt,-9pt) -- ++(16pt,0) -- cycle;
+  \draw[#1,line width=1pt] ([xshift=14pt]b.south west) -- ++(-8pt,-9pt) -- ++(16pt,9pt);}
+\newcommand{\paginagatos}[2]{\clearpage\thispagestyle{empty}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[#2] (current page.north west) rectangle (current page.south east);
+    \ifbn\draw[black,line width=2pt] ([xshift=1.5cm,yshift=-1.5cm]current page.north west) rectangle ([xshift=-1.5cm,yshift=1.5cm]current page.south east);\fi
+    \node[anchor=north,text=#1,font=\fontsize{34}{38}\selectfont\bfseries] at ([yshift=-2.6cm]current page.north) {Un mensaje de los gatitos};
+    \node[anchor=north,text=tinta,font=\Large,text width=15cm,align=center] at ([yshift=-4.4cm]current page.north) {Llegaste hasta el final del libro. Ellos no tienen dudas de lo que viene:};
+    \globogato{#1}{[xshift=3.4cm,yshift=-8.6cm]current page.north west}{\gatonaranjo}
+    \globogato{#1}{[xshift=12.2cm,yshift=-8.6cm]current page.north west}{\gatogris}
+    \globogato{#1}{[xshift=3.4cm,yshift=-14.6cm]current page.north west}{\gatoblanco}
+    \globogato{#1}{[xshift=12.2cm,yshift=-14.6cm]current page.north west}{\gatonegro}
+    \globogato{#1}{[xshift=3.4cm,yshift=-20.6cm]current page.north west}{\gatoatigrado}
+    \globogato{#1}{[xshift=12.2cm,yshift=-20.6cm]current page.north west}{\gatolila}
+    \node[anchor=south,text=gris,font=\small] at ([yshift=1.8cm]current page.south) {Fabián Ramírez · Fabimath · fabimath.github.io/FabimathOficialWebSite/paes.html};
+  \end{tikzpicture}\null\clearpage}

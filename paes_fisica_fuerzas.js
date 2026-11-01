@@ -46,7 +46,7 @@ const FIS_FUERZAS = [
       <p>La aceleración tiene la <b>misma dirección y sentido que la fuerza neta</b>, no necesariamente que la velocidad. Si la fuerza neta apunta en contra del movimiento, el cuerpo frena.</p>
       <ul><li>Con la misma masa, el doble de fuerza neta produce el doble de aceleración (proporcionalidad directa).</li>
       <li>Con la misma fuerza neta, el doble de masa produce la mitad de aceleración (proporcionalidad inversa).</li>
-      <li>Fuerza neta constante produce aceleración constante (MRUA).</li></ul>
+      <li>Fuerza neta constante produce aceleración constante (MRUA si la trayectoria es rectilínea).</li></ul>
       <div class="box"><b>Ejemplo resuelto</b> Sobre un carro de 4 kg, en un piso sin roce, actúan 30 N hacia la derecha y 10 N hacia la izquierda.<br><b>Paso 1.</b> $F_{\text{neta}} = 30 - 10 = 20$ N hacia la derecha.<br><b>Paso 2.</b> $a = \dfrac{F_{\text{neta}}}{m} = \dfrac{20}{4} = 5\ \text{m/s}^2$ hacia la derecha.</div>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/fisica/fig/fza_vt_newton.svg" alt="Gráfico de rapidez en función del tiempo de un carro: en el tramo I, de 0 a 2 s, la rapidez sube de 0 a 6 m/s; en el tramo II, de 2 a 5 s, se mantiene en 6 m/s; en el tramo III, de 5 a 8 s, baja de 6 m/s a 0"></div>
@@ -184,7 +184,7 @@ const FIS_FUERZAS = [
       <tr><td>lo empujas hacia abajo con una fuerza $F$</td><td>$N = P + F$</td></tr>
       <tr><td>tiras de él hacia arriba con $F$, sin levantarlo</td><td>$N = P - F$</td></tr>
       <tr><td>tiene encima otro cuerpo de peso $P_2$</td><td>$N = P + P_2$</td></tr></tbody></table>
-      <p>En un plano inclinado, la normal es menor que el peso.</p>
+      <p>En un plano inclinado fijo, si solo actúan el peso, la normal y el roce, $N = P\cos\theta$, menor que el peso ($\theta$: inclinación respecto de la horizontal).</p>
       </div><div>
       <div class="box"><b>Ejemplo resuelto</b> Una caja de 5 kg está en el piso y tiras de ella hacia arriba con 20 N, sin levantarla.<br><b>Paso 1.</b> $P = 5\cdot 10 = 50$ N hacia abajo.<br><b>Paso 2.</b> Hacia arriba actúan tu fuerza y la normal. En reposo: $N + 20 = 50$.<br><b>Paso 3.</b> $N = 30$ N.</div>
       <div class="box"><b>Recuerda</b> El peso y la normal no son un par de acción y reacción: actúan sobre el mismo cuerpo. La reacción de la normal es la fuerza con que el cuerpo empuja a la superficie.</div>
@@ -204,7 +204,7 @@ const FIS_FUERZAS = [
       <div class="cols"><div>
       <p>Un resorte estirado o comprimido ejerce una <b>fuerza elástica</b> que tiende a devolverlo a su longitud natural. La <b>ley de Hooke</b> dice que la magnitud de esa fuerza es proporcional a la <b>deformación</b>:</p>
       $$F = k\,\Delta x$$
-      <ul><li>$\Delta x = L - L_0$: cuánto cambió la longitud respecto de la longitud natural $L_0$. No es la longitud total.</li>
+      <ul><li>$\Delta x = |L - L_0|$: cuánto cambió la longitud respecto de la longitud natural $L_0$. No es la longitud total.</li>
       <li>$k$: constante elástica, en N/m o N/cm. Un $k$ mayor indica un resorte más rígido, que cuesta más deformar.</li>
       <li>El gráfico de $F$ en función de $\Delta x$ es una recta que pasa por el origen, y su <b>pendiente es $k$</b>.</li>
       <li>La ley vale hasta el <b>límite elástico</b>. Más allá, el resorte queda deformado y el gráfico deja de ser una recta.</li></ul>

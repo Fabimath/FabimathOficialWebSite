@@ -17,7 +17,7 @@
 \subsection{Qué es una ecuación}
 Una \textbf{ecuación} es una igualdad con un número escondido, la \textbf{incógnita} (casi siempre $x$). El número que hace verdadera la igualdad es la \textbf{solución}: en $2x + 3 = 11$, la solución es $x = 4$, porque $2\cdot 4 + 3 = 11$. \textbf{Resolver} es encontrarla sin adivinar.
 
-Es \textbf{de primer grado} (o lineal) porque la $x$ no tiene exponente: $5x - 1 = 9$ y $\dfrac{x}{3} + 2 = 7$ lo son; $x^2 = 9$ no lo es, y $3 + 4 = 7$ ni siquiera es ecuación, porque no tiene incógnita.
+Es \textbf{de primer grado} (o lineal) porque el mayor exponente de la incógnita, una vez simplificada la ecuación, es 1: $5x - 1 = 9$ y $\dfrac{x}{3} + 2 = 7$ lo son; $x^2 = 9$ no lo es, y $3 + 4 = 7$ ni siquiera es ecuación, porque no tiene incógnita.
 
 \subsection{La balanza: lo mismo a ambos lados}
 \begin{minipage}[c]{0.56\linewidth}
@@ -37,7 +37,7 @@ Una ecuación es una balanza en equilibrio. En $2x + 3 = 11$ hay dos cajas de $x
 \end{tikzpicture}
 \end{minipage}
 
-\begin{clave}[La regla de oro] Puedes sumar, restar, multiplicar o dividir por un mismo número \textbf{a los dos lados} (sin dividir por 0). El atajo «pasar al otro lado» es lo mismo: lo que está \textbf{sumando} pasa \textbf{restando}, y lo que está \textbf{multiplicando} pasa \textbf{dividiendo}, y al revés.\end{clave}
+\begin{clave}[La regla de oro] Puedes sumar, restar, multiplicar o dividir por un mismo número \textbf{a los dos lados} (al multiplicar o dividir, el número debe ser distinto de 0). El atajo «pasar al otro lado» es lo mismo: lo que está \textbf{sumando} pasa \textbf{restando}, y lo que está \textbf{multiplicando} pasa \textbf{dividiendo}, y al revés.\end{clave}
 
 \subsection{Despejar paso a paso}
 \begin{clave}[Orden recomendado] 1. Quita los paréntesis. 2. Quita las fracciones. 3. Junta las $x$ en un lado y los números en el otro. 4. Divide por el número que acompaña a la $x$. 5. Comprueba en la ecuación del comienzo.\end{clave}
@@ -184,7 +184,7 @@ Valorizar es reemplazar cada letra por su número y calcular, en este orden: par
 \begin{ojo}[Signos] $(+)(+) = +$, $(-)(-) = +$, $(+)(-) = -$. Así, $-2x(x - 4) = -2x^2 + 8x$. Y al multiplicar se suman exponentes: $x^2\cdot x^3 = x^5$, no $x^6$.\end{ojo}
 
 \subsection{Del lenguaje natural al algebraico}
-Lee la frase de afuera hacia adentro: la última operación que se nombra es la que manda. Si la edad de Pedro es $m$, «su edad hace $n$ años disminuida en 3» es $m - n - 3$; «el doble de la suma de un número y 5» es $2(x + 5)$, pero «el doble de un número, más 5» es $2x + 5$.
+Lee la frase de afuera hacia adentro: identifica primero la operación principal y después la expresión sobre la que actúa. Si la edad de Pedro es $m$, «su edad hace $n$ años disminuida en 3» es $m - n - 3$; «el doble de la suma de un número y 5» es $2(x + 5)$, pero «el doble de un número, más 5» es $2x + 5$.
 \begin{center}
 \begin{tabular}{@{}ll@{\qquad}ll@{}}
 \toprule
@@ -207,7 +207,7 @@ Una pista de baile de forma rectangular tiene dimensiones de $(3x + 4)$ metros d
 \alts{$(10x + 30)$ metros}{$(10x + 10)$ metros}{$(15x + 15)$ metros}{$(15x + 25)$ metros}
 \solucion{Demarcar el borde es recorrer el perímetro: $2(3x + 4) + 2(2x - 9) = 6x + 8 + 4x - 18 = 10x - 10$. Lo que sobra es la cinta menos todo el perímetro:
 \[ (20x + 20) - (10x - 10) = 20x + 20 - 10x + 10 = 10x + 30. \]
-Comprobación con $x = 10$: la pista mide 34 m por 11 m, su perímetro es 90 m, la cinta mide 220 m y sobran 130 m $= 10\cdot 10 + 30$. $(10x + 10)$ cambia solo el primer signo del paréntesis; $(15x + 25)$ y $(15x + 15)$ restan medio perímetro.}{A}
+Comprobación con $x = 10$: la pista mide 34 m por 11 m, su perímetro es 90 m, la cinta mide 220 m y sobran 130 m $= 10\cdot 10 + 30$. $(10x + 10)$ cambia solo el primer signo del paréntesis; $(15x + 25)$ resta medio perímetro; $(15x + 15)$, además, no cambia el signo del término constante al restar.}{A}
 \end{elejemplo}
 \motivacion{Las letras son números disfrazados. Ya aprendiste a operarlas sin miedo, y eso se nota en cada ejercicio.}
 
@@ -232,13 +232,13 @@ En la resta, el término del medio es negativo y el último \textbf{siempre es p
 \includegraphics[width=0.85\linewidth]{expr_cuadrado_binomio}
 \end{minipage}
 \begin{ojo}[El error más común de la PAES] $(a + b)^2 \ne a^2 + b^2$: faltan los dos rectángulos. Con números, $(3 + 4)^2 = 49$, pero $3^2 + 4^2 = 25$. Revisa los tres términos: $(x - 4)^2$ no es $x^2 - 16$, ni $x^2 - 8x - 16$, ni $x^2 - 4x + 16$.\end{ojo}
-\gatotip[\gatoatigrado]{Cálculo mental: $21^2 = (20 + 1)^2 = 400 + 40 + 1 = 441$ y $99^2 = (100 - 1)^2 = 10.000 - 200 + 1 = 9801$.}
+\gatotip[\gatoatigrado]{Cálculo mental: $21^2 = (20 + 1)^2 = 400 + 40 + 1 = 441$ y $99^2 = (100 - 1)^2 = 10.000 - 200 + 1 = 9.801$.}
 
 \subsection{Suma por diferencia}
 \begin{minipage}[c]{0.5\linewidth}
 Al multiplicar, los términos del medio se cancelan: $(a + b)(a - b) = a^2 - ab + ab - b^2 = a^2 - b^2$. En el dibujo, a un cuadrado de lado $a$ se le quita uno de lado $b$ y lo que queda se reordena en un rectángulo de lados $a + b$ y $a - b$.
 
-$(x + 7)(x - 7) = x^2 - 49$, \quad $(3x + 2y)(3x - 2y) = 9x^2 - 4y^2$ \quad y \quad $103\cdot 97 = 100^2 - 3^2 = 9991$.
+$(x + 7)(x - 7) = x^2 - 49$, \quad $(3x + 2y)(3x - 2y) = 9x^2 - 4y^2$ \quad y \quad $103\cdot 97 = 100^2 - 3^2 = 9.991$.
 \end{minipage}\hfill
 \begin{minipage}[c]{0.46\linewidth}\centering
 \includegraphics[width=\linewidth]{expr_suma_diferencia}
@@ -281,7 +281,7 @@ Comprobación con $x = 1$: $1 - (-5) = 6$ y $-12 + 18 = 6$. El 18 olvida el tér
 \subsection{Factor común}
 \begin{clave}[Cómo encontrarlo] Números: su MCD. Letras: cada letra que está en \textbf{todos} los términos, con su \textbf{menor} exponente. Después divide cada término por el factor común.\end{clave}
 \begin{ejemplo} $12x^3 - 18x^2$: MCD 6 y letra $x^2$, así que $12x^3 - 18x^2 = 6x^2(2x - 3)$. Si un término «desaparece» queda 1: $5x + 5 = 5(x + 1)$. El factor común puede ser un paréntesis: $x(a + b) + 3(a + b) = (a + b)(x + 3)$.\end{ejemplo}
-\gatotip[\gatonegro]{Cálculo mental: $37\cdot 13 + 37\cdot 87 = 37(13 + 87) = 3700$. El 37 sale una sola vez.}
+\gatotip[\gatonegro]{Cálculo mental: $37\cdot 13 + 37\cdot 87 = 37(13 + 87) = 3.700$. El 37 sale una sola vez.}
 
 \subsection{Diferencia de cuadrados}
 \begin{clave} \[ a^2 - b^2 = (a + b)(a - b) \] Dos cuadrados separados por un menos. Se usan sus \textbf{raíces}.\end{clave}
@@ -362,23 +362,23 @@ En cambio, $y = 3x + 2$ también es una recta, pero corta el eje $Y$ en 2: no es
 \end{minipage}
 
 \subsection{La regla de tres directa}
-\begin{ejemplo} 4 kg de paltas cuestan \peso 7200; ¿cuánto cuestan 6 kg? \textbf{Valor unitario:} 1 kg cuesta $\frac{7200}{4} = 1800$, y 6 kg, $6\cdot 1800 = 10.800$. \textbf{Proporción:} $\frac{4}{7200} = \frac{6}{x}$, así que $4x = 43.200$ y $x = 10.800$.\end{ejemplo}
+\begin{ejemplo} 4 kg de paltas cuestan \peso 7.200; ¿cuánto cuestan 6 kg? \textbf{Valor unitario:} 1 kg cuesta $\frac{7.200}{4} = 1.800$, y 6 kg, $6\cdot 1.800 = 10.800$. \textbf{Proporción:} $\frac{4}{7.200} = \frac{6}{x}$, así que $4x = 43.200$ y $x = 10.800$.\end{ejemplo}
 \begin{ojo}[Revisa el sentido] Kilos arriba y pesos abajo en las dos razones. Si te da que 6 kg cuestan menos que 4 kg, armaste mal la proporción. Y si una cantidad aumenta en 100, la otra no aumenta en 100: aumenta en la misma \textbf{proporción}.\end{ojo}
 \gatotip[\gatoblanco]{Las escalas de mapas son proporción directa: si 1 cm equivale a 50 m, 7 cm son $7\cdot 50 = 350$ m. Calcula primero lo que vale 1 cm.}
 
 \subsection{Repartos proporcionales}
 \begin{clave}[Repartir en la razón $a : b$] Cuenta las partes, $a + b$; divide el total por ese número para obtener una parte, y multiplica por las partes de cada uno.\end{clave}
-\begin{ejemplo} \peso 60.000 en la razón $2 : 3$: son 5 partes de 12.000; Ana recibe 24.000 y Beto 36.000. Si se reparte según lo que aportó cada uno (\peso 3000 y \peso 2000), la razón es $3 : 2$.\end{ejemplo}
+\begin{ejemplo} \peso 60.000 en la razón $2 : 3$: son 5 partes de 12.000; Ana recibe 24.000 y Beto 36.000. Si se reparte según lo que aportó cada uno (\peso 3.000 y \peso 2.000), la razón es $3 : 2$.\end{ejemplo}
 \begin{ojo}[No dividas por 2] Repartir en la razón $2 : 3$ no es repartir por mitades, ni dividir por 2 y por 3: se divide por el total de partes, 5.\end{ojo}
 
 \begin{elejemplo}{PAES Invierno 2026, adaptada}
-Javier y David compraron una bolsa de 24 dulces a un precio total de \peso 2100, tal que Javier aportó \peso 1400 y David aportó el resto del dinero.
+Javier y David compraron una bolsa de 24 dulces a un precio total de \peso 2.100, tal que Javier aportó \peso 1.400 y David aportó el resto del dinero.
 
 Ellos deciden vender cada dulce a \peso 200 y repartirse el dinero obtenido de forma proporcional a lo que aportó cada uno en la compra.
 
 ¿Cuánto dinero recibirá Javier luego de vender todos los dulces?
-\alts{\peso 1600}{\peso 2400}{\peso 2700}{\peso 3200}
-\solucion{La venta da $24\cdot 200 = 4800$ pesos. David aportó $2100 - 1400 = 700$, así que los aportes están en la razón $1400 : 700 = 2 : 1$. Son $2 + 1 = 3$ partes de $\frac{4800}{3} = 1600$, y Javier recibe 2 partes: $3200$ pesos. Comprobación: David recibe 1600 y $3200 + 1600 = 4800$. \peso 1600 es lo de David, \peso 2400 reparte por mitades y \peso 2700 es la ganancia total.}{D}
+\alts{\peso 1.600}{\peso 2.400}{\peso 2.700}{\peso 3.200}
+\solucion{La venta da $24\cdot 200 = 4.800$ pesos. David aportó $2.100 - 1.400 = 700$, así que los aportes están en la razón $1.400 : 700 = 2 : 1$. Son $2 + 1 = 3$ partes de $\frac{4.800}{3} = 1.600$, y Javier recibe 2 partes: $3.200$ pesos. Comprobación: David recibe 1.600 y $3.200 + 1.600 = 4.800$. \peso 1.600 es lo de David, \peso 2.400 reparte por mitades y \peso 2.700 es la ganancia total.}{D}
 \end{elejemplo}
 \motivacion{Más práctica, más puntaje: esa también es una proporción directa. ¡Mantén la constante!}
 
@@ -421,7 +421,7 @@ Desde el origen hasta cada punto se forma un rectángulo de área $x\cdot y = 24
 \begin{ojo}[El error más común] Hacer regla de tres directa: $\frac{6}{10} = \frac{4}{x}$ da 6,7 días, como si con menos obreros se terminara antes. Todo esto supone el mismo ritmo, que la PAES indica con frases como «en las mismas condiciones».\end{ojo}
 
 \subsection{Dos proporciones a la vez}
-Si cambian tres cantidades, ve al \textbf{valor de una unidad}. 4 trabajadores llenan 2000 cajas en 20 días: los 4 llenan $\frac{2000}{20} = 100$ cajas diarias y uno solo, $\frac{100}{4} = 25$. Para 32.000 cajas en 10 días se necesitan 3200 diarias, o sea $\frac{3200}{25} = 128$ trabajadores.
+Si cambian tres cantidades, ve al \textbf{valor de una unidad}. 4 trabajadores llenan 2.000 cajas en 20 días: los 4 llenan $\frac{2.000}{20} = 100$ cajas diarias y uno solo, $\frac{100}{4} = 25$. Para 32.000 cajas en 10 días se necesitan 3.200 diarias, o sea $\frac{3.200}{25} = 128$ trabajadores.
 \gatotip[\gatonaranjo]{Lo que hace \emph{uno} se obtiene \emph{dividiendo} lo que hacen todos. Un solo trabajador no puede llenar más cajas que los cuatro juntos.}
 
 \subsection{Directa, inversa o ninguna}
@@ -439,18 +439,18 @@ edad y estatura & no hay regla fija & ninguna\\ \bottomrule
 \gatotip[\gatogris]{$k$ no es la respuesta: si $x\cdot y = 60$ y $x = 5$, la respuesta es $y = 12$, no 60.}
 
 \begin{elejemplo}{PAES Invierno 2027, adaptada}
-En una empresa hay 4 trabajadores para cosechar uvas y estos logran llenar 2000 cajas en 20 días de trabajo, todos trabajando todos los días, al mismo ritmo y la misma cantidad de horas.
+En una empresa hay 4 trabajadores para cosechar uvas y estos logran llenar 2.000 cajas en 20 días de trabajo, todos trabajando todos los días, al mismo ritmo y la misma cantidad de horas.
 
 En la empresa se realiza el siguiente procedimiento para calcular la cantidad de trabajadores necesarios para llenar 32.000 cajas en 10 días, bajo las mismas condiciones, cometiéndose un error.
 
-Paso 1: se calcula la cantidad de cajas que llenan diariamente los 4 trabajadores en conjunto como $\frac{2000}{20}$, obteniéndose que llenan 100 cajas diarias.\\
+Paso 1: se calcula la cantidad de cajas que llenan diariamente los 4 trabajadores en conjunto como $\frac{2.000}{20}$, obteniéndose que llenan 100 cajas diarias.\\
 Paso 2: se calcula la cantidad de cajas que cada trabajador llena diariamente como $100\cdot 4$, obteniéndose 400 cajas diarias por trabajador.\\
-Paso 3: se calcula la cantidad de cajas que se deben llenar diariamente para la nueva producción como $\frac{32.000}{10}$, obteniéndose 3200 cajas diarias.\\
-Paso 4: se divide la cantidad de cajas diarias que se deben llenar por la cantidad que cada trabajador llena diariamente como $\frac{3200}{400}$, obteniéndose que se necesitan 8 trabajadores.
+Paso 3: se calcula la cantidad de cajas que se deben llenar diariamente para la nueva producción como $\frac{32.000}{10}$, obteniéndose 3.200 cajas diarias.\\
+Paso 4: se divide la cantidad de cajas diarias que se deben llenar por la cantidad que cada trabajador llena diariamente como $\frac{3.200}{400}$, obteniéndose que se necesitan 8 trabajadores.
 
 ¿En cuál de los pasos se cometió el error?
 \alts{En el Paso 1}{En el Paso 2}{En el Paso 3}{En el Paso 4}
-\solucion{El Paso 1 está bien: $\frac{2000}{20} = 100$ cajas diarias entre los 4. En el Paso 2 está el error: lo que llena \textbf{uno} es $\frac{100}{4} = 25$ cajas diarias; se multiplicó por 4 en vez de dividir. El Paso 3 está bien ($\frac{32.000}{10} = 3200$) y el Paso 4 tiene la idea correcta, pero arrastra el 400. Lo correcto: $\frac{3200}{25} = 128$ trabajadores, que llenan $128\cdot 25 = 3200$ cajas diarias.}{B}
+\solucion{El Paso 1 está bien: $\frac{2.000}{20} = 100$ cajas diarias entre los 4. En el Paso 2 está el error: lo que llena \textbf{uno} es $\frac{100}{4} = 25$ cajas diarias; se multiplicó por 4 en vez de dividir. El Paso 3 está bien ($\frac{32.000}{10} = 3.200$) y el Paso 4 tiene la idea correcta, pero arrastra el 400. Lo correcto: $\frac{3.200}{25} = 128$ trabajadores, que llenan $128\cdot 25 = 3.200$ cajas diarias.}{B}
 \end{elejemplo}
 \motivacion{Mientras más practicas, menos tiempo te toma cada pregunta. Esa es una proporcionalidad inversa a tu favor.}
 
@@ -500,47 +500,47 @@ coincidentes & todo igual & infinitas & $0 = 0$\\ \bottomrule
 
 \subsection{Del enunciado al sistema en 4 pasos}
 \begin{clave}[Los 4 pasos] 1. Nombra las dos incógnitas, con su unidad. 2. Escribe una ecuación por cada dato total: casi siempre uno de \textbf{cantidades} y otro de \textbf{valor}. 3. Resuelve. 4. Responde y comprueba en el enunciado.\end{clave}
-\begin{ejemplo}[Entradas] Adulto \peso 5000, niño \peso 3000; 80 entradas y \peso 300.000: $x + y = 80$ y $5000x + 3000y = 300.000$. Con $y = 80 - x$ se llega a $2000x = 60.000$: 30 de adulto y 50 de niño.\end{ejemplo}
+\begin{ejemplo}[Entradas] Adulto \peso 5.000, niño \peso 3.000; 80 entradas y \peso 300.000: $x + y = 80$ y $5.000x + 3.000y = 300.000$. Con $y = 80 - x$ se llega a $2.000x = 60.000$: 30 de adulto y 50 de niño.\end{ejemplo}
 \begin{ojo}[No mezcles] En la ecuación de cantidades no van precios, y en la de dinero cada cantidad va con \textbf{su} precio. $x + y = 300.000$ no tiene sentido: suma entradas y da pesos.\end{ojo}
 
 \subsection{Monedas, edades y mezclas}
-\begin{ejemplo}[Monedas] 30 monedas de \peso 100 y \peso 500 suman \peso 7400: $x + y = 30$ y $100x + 500y = 7400$. Dividiendo la segunda por 100, $x + 5y = 74$; restando la primera, $4y = 44$: 11 de 500 y 19 de 100.\end{ejemplo}
+\begin{ejemplo}[Monedas] 30 monedas de \peso 100 y \peso 500 suman \peso 7.400: $x + y = 30$ y $100x + 500y = 7.400$. Dividiendo la segunda por 100, $x + 5y = 74$; restando la primera, $4y = 44$: 11 de 500 y 19 de 100.\end{ejemplo}
 \begin{ejemplo}[Edades] Padre e hijo suman 50; hace 5 años el padre tenía 4 veces la edad del hijo: $p + h = 50$ y $p - 5 = 4(h - 5)$. Resulta $h = 13$ y $p = 37$.\end{ejemplo}
 \begin{ojo}[Paréntesis en las edades] «4 veces la edad del hijo hace 5 años» es $4(h - 5)$, no $4h - 5$. Y el tiempo pasa para todos: en 4 años, $a + 4 = 3(h + 4)$.\end{ojo}
-\begin{ejemplo}[Mezclas] Café de \peso 8000 y de \peso 12.000 el kilo para 20 kg a \peso 9000: $x + y = 20$ y $8000x + 12.000y = 20\cdot 9000$. Resulta 15 kg del barato y 5 kg del caro: el precio de la mezcla está más cerca del café barato.\end{ejemplo}
+\begin{ejemplo}[Mezclas] Café de \peso 8.000 y de \peso 12.000 el kilo para 20 kg a \peso 9.000: $x + y = 20$ y $8.000x + 12.000y = 20\cdot 9.000$. Resulta 15 kg del barato y 5 kg del caro: el precio de la mezcla está más cerca del café barato.\end{ejemplo}
 \gatotip[\gatolila]{Si el precio es «por kilogramo», la incógnita son \emph{kilogramos}, no frutas ni paquetes. La PAES pregunta justo eso.}
 
 \subsection{Planes: ¿cuándo cuestan lo mismo?}
 \begin{minipage}[c]{0.5\linewidth}
-Plan A: \peso 8000 más \peso 50 por minuto; plan B: \peso 12.000 más \peso 30. Igualando, $8000 + 50m = 12.000 + 30m$: $m = 200$ minutos, con un costo de \peso 18.000 en ambos.
+Plan A: \peso 8.000 más \peso 50 por minuto; plan B: \peso 12.000 más \peso 30. Igualando, $8.000 + 50m = 12.000 + 30m$: $m = 200$ minutos, con un costo de \peso 18.000 en ambos.
 
 El punto donde se cortan las rectas es donde las dos cantidades valen lo mismo. Antes de 200 minutos conviene A; después, B.
 \end{minipage}\hfill
 \begin{minipage}[c]{0.46\linewidth}\centering
 \includegraphics[width=\linewidth]{sis_planes}
 \end{minipage}
-\begin{ejemplo}[Tarifa fija] Con \peso 2300 por 40 minutos y \peso 3800 por 70: $f + 40v = 2300$ y $f + 70v = 3800$. Restando, $30v = 1500$: $v = 50$ y la tarifa fija es $f = 300$.\end{ejemplo}
+\begin{ejemplo}[Tarifa fija] Con \peso 2.300 por 40 minutos y \peso 3.800 por 70: $f + 40v = 2.300$ y $f + 70v = 3.800$. Restando, $30v = 1.500$: $v = 50$ y la tarifa fija es $f = 300$.\end{ejemplo}
 
 \subsection{Qué representa cada parte del sistema}
-En una obra de teatro la entrada de niño cuesta \peso 2000 y la de adulto \peso 3500; una familia pagó \peso 40.000 por 14 entradas:
-\[ \begin{cases} x + y = 14 \\ 2000x + 3500y = 40.000 \end{cases} \]
-\begin{clave}[Cantidad, precio o dinero] $x$ va con 2000: es la \textbf{cantidad} de entradas de niño. 2000 es un \textbf{precio}. $2000x$ es \textbf{dinero}: lo pagado por las entradas de niño. 40.000 es el total pagado y 14 el total de entradas.\end{clave}
+En una obra de teatro la entrada de niño cuesta \peso 2.000 y la de adulto \peso 3.500; una familia pagó \peso 40.000 por 14 entradas:
+\[ \begin{cases} x + y = 14 \\ 2.000x + 3.500y = 40.000 \end{cases} \]
+\begin{clave}[Cantidad, precio o dinero] $x$ va con 2.000: es la \textbf{cantidad} de entradas de niño. 2.000 es un \textbf{precio}. $2.000x$ es \textbf{dinero}: lo pagado por las entradas de niño. 40.000 es el total pagado y 14 el total de entradas.\end{clave}
 \begin{ojo}[Porcentajes] Si aparece $\frac{80}{100}\cdot B$ como lo pagado con un 20~\% de descuento, $B$ es el precio \textbf{original}. Y no sumes lo que el enunciado excluye: «se recaudó solo por las poleras» deja fuera los envíos.\end{ojo}
 \gatotip[\gatonegro]{Al final, relee qué representa cada letra: si piden las entradas de niño y respondes $y$, marcaste la otra.}
 
 \begin{elejemplo}{PAES Invierno 2026, adaptada}
-Una empresa dedicada a la venta de poleras ofrece a sus clientes dos opciones de diseño: personalizado o de catálogo. El precio por polera con diseño personalizado es \peso 8500 y con diseño de catálogo es \peso 7500. Adicionalmente, se hace un cobro por envío a domicilio de \peso 2500.
+Una empresa dedicada a la venta de poleras ofrece a sus clientes dos opciones de diseño: personalizado o de catálogo. El precio por polera con diseño personalizado es \peso 8.500 y con diseño de catálogo es \peso 7.500. Adicionalmente, se hace un cobro por envío a domicilio de \peso 2.500.
 
 En un día de trabajo se vendió un total de 18 poleras en diez envíos y se recaudó \peso 146.000 solo por las poleras. Para calcular la cantidad de poleras con diseño personalizado que se vendieron, una persona realiza el siguiente procedimiento, cometiendo un error.
 
-Paso 1: representa con $x$ la cantidad de poleras con diseño personalizado y con $y$ la cantidad de poleras con diseño de catálogo, y establece el sistema $\begin{cases} x + y = 18 \\ 8500x + 7500y = 146.000 + 25.000 \end{cases}$\\[2pt]
+Paso 1: representa con $x$ la cantidad de poleras con diseño personalizado y con $y$ la cantidad de poleras con diseño de catálogo, y establece el sistema $\begin{cases} x + y = 18 \\ 8.500x + 7.500y = 146.000 + 25.000 \end{cases}$\\[2pt]
 Paso 2: despeja $y$ de la primera ecuación, obteniendo $y = 18 - x$.\\
-Paso 3: reemplaza $y$ en la segunda ecuación, obteniendo $8500x - 7500x = 146.000 + 25.000 - 7500\cdot 18$.\\
+Paso 3: reemplaza $y$ en la segunda ecuación, obteniendo $8.500x - 7.500x = 146.000 + 25.000 - 7.500\cdot 18$.\\
 Paso 4: resuelve la igualdad anterior y determina que la cantidad de poleras con diseño personalizado es 36.
 
 ¿En cuál de los pasos la persona cometió el error?
 \alts{En el Paso 1}{En el Paso 2}{En el Paso 3}{En el Paso 4}
-\solucion{La primera ecuación está bien, pero en la segunda $8500x + 7500y$ es el dinero de las poleras, y el enunciado dice que se recaudaron 146.000 \textbf{solo por las poleras}: los $10\cdot 2500 = 25.000$ de los envíos no van ahí. El error está en el Paso 1. Los Pasos 2, 3 y 4 operan bien con lo que reciben. Lo correcto: $1000x = 146.000 - 135.000 = 11.000$, o sea 11 personalizadas y 7 de catálogo; $8500\cdot 11 + 7500\cdot 7 = 146.000$. Además, 36 poleras personalizadas es imposible si en total se vendieron 18.}{A}
+\solucion{La primera ecuación está bien, pero en la segunda $8.500x + 7.500y$ es el dinero de las poleras, y el enunciado dice que se recaudaron 146.000 \textbf{solo por las poleras}: los $10\cdot 2.500 = 25.000$ de los envíos no van ahí. El error está en el Paso 1. Los Pasos 2, 3 y 4 operan bien con lo que reciben. Lo correcto: $1.000x = 146.000 - 135.000 = 11.000$, o sea 11 personalizadas y 7 de catálogo; $8.500\cdot 11 + 7.500\cdot 7 = 146.000$. Además, 36 poleras personalizadas es imposible si en total se vendieron 18.}{A}
 \end{elejemplo}
 \motivacion{Traducir un problema a ecuaciones es lo más fino del álgebra, y ya lo estás haciendo. Cerraste Álgebra: ¡orgullo gatuno!}
 

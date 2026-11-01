@@ -173,10 +173,10 @@ const FIS_ONDAS = [
       <p style="text-align:center"><b>radio → microondas → infrarrojo → luz visible → ultravioleta → rayos X → rayos gamma</b></p>
       <ul><li>Todas viajan en el vacío a la misma rapidez, $c = 3{,}0\times10^{8}$ m/s.</li>
       <li>Como $c = \lambda f$, si la frecuencia aumenta, la longitud de onda disminuye.</li>
-      <li>La <b>energía</b> que transporta la radiación aumenta con la frecuencia. Por eso el ultravioleta, los rayos X y los rayos gamma pueden dañar las células.</li></ul>
+      <li>La <b>energía de cada fotón</b> aumenta con la frecuencia. Por eso el ultravioleta, los rayos X y los rayos gamma pueden dañar las células.</li></ul>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/fisica/fig/ond_espectro.svg" alt="Barra del espectro electromagnético con, de izquierda a derecha, radio (longitudes de onda de km a cm), microondas (cm a mm), infrarrojo (cerca de 10 micrómetros), luz visible (700 a 400 nm), ultravioleta (cerca de 100 nm), rayos X (cerca de 1 nm) y rayos gamma (menos de 0,01 nm). Una flecha hacia la derecha indica que la frecuencia y la energía aumentan; otra hacia la izquierda, que la longitud de onda aumenta"></div>
-      <div class="box"><b>Truco para recordar el orden</b> Piensa en el daño: radio y microondas atraviesan tu cuerpo sin dañarlo; el ultravioleta quema la piel; los rayos X y gamma son peligrosos. El daño crece con la frecuencia.</div>
+      <div class="box"><b>Truco para recordar el orden</b> Radio, microondas, infrarrojo, visible, ultravioleta, rayos X y gamma: aumentan la frecuencia y la energía por fotón. El daño depende también de la intensidad y del tiempo de exposición.</div>
       </div></div>` },
     { t: 'Usos tecnológicos de cada rango', b: r`
       <table><thead><tr><th>Rango</th><th>Longitud de onda típica</th><th>Usos y ejemplos</th></tr></thead><tbody>
@@ -202,7 +202,7 @@ const FIS_ONDAS = [
       </div></div>` },
     { t: 'Interferencia y difracción', b: r`
       <div class="cols"><div>
-      <p><b>Interferencia.</b> Cuando dos ondas coinciden en un mismo lugar, se superponen. Si llegan cresta con cresta se refuerzan (<b>interferencia constructiva</b>); si llega cresta con valle se anulan (<b>interferencia destructiva</b>).</p>
+      <p><b>Interferencia.</b> Cuando dos ondas coinciden en un mismo lugar, se superponen. Si llegan cresta con cresta se refuerzan (<b>interferencia constructiva</b>); si llega cresta con valle se contrarrestan (<b>interferencia destructiva</b>; la anulación es completa si las amplitudes son iguales).</p>
       <p>En el <b>experimento de la doble rendija de Young</b>, luz de una sola fuente pasa por dos rendijas muy finas y muy juntas. En la pantalla aparecen <b>franjas</b> claras (interferencia constructiva) y oscuras (destructiva). Para que se vea el patrón, las rendijas deben ser de un tamaño comparable a la longitud de onda y la luz debe ser de una sola frecuencia, como la de un láser.</p>
       <p><b>Difracción.</b> Es la capacidad de una onda de <b>rodear obstáculos y abrirse al pasar por una abertura</b>. Se nota cuando la abertura o el obstáculo tiene un tamaño parecido a la longitud de onda.</p>
       </div><div>
@@ -211,7 +211,7 @@ const FIS_ONDAS = [
       </div></div>` },
     { t: 'Lo clave del tema', b: r`
       <table><thead><tr><th>Idea</th><th>Lo que debes saber</th></tr></thead><tbody>
-      <tr><td>Orden del espectro</td><td>radio, microondas, infrarrojo, visible, ultravioleta, rayos X, gamma: la frecuencia y la energía aumentan, la longitud de onda disminuye</td></tr>
+      <tr><td>Orden del espectro</td><td>radio, microondas, infrarrojo, visible, ultravioleta, rayos X, gamma: la frecuencia y la energía por fotón aumentan, la longitud de onda disminuye</td></tr>
       <tr><td>Rapidez</td><td>todas viajan a $3{,}0\times10^{8}$ m/s en el vacío</td></tr>
       <tr><td>Luz visible</td><td>entre el infrarrojo y el ultravioleta; rojo (700 nm, menor $f$) a violeta (400 nm, mayor $f$)</td></tr>
       <tr><td>Interferencia</td><td>superposición de ondas: franjas claras y oscuras (Young)</td></tr>
@@ -221,7 +221,6 @@ const FIS_ONDAS = [
   example: {
     src: 'Estilo PAES',
     enun: r`<p>¿Cuál de las siguientes opciones ordena estas radiaciones de <b>menor a mayor frecuencia</b>: rayos X, ondas de radio, luz visible y microondas?</p>`,
-    fig: { type: 'img', src: 'paes/fisica/fig/ond_espectro.svg', alt: 'Barra del espectro electromagnético con, de izquierda a derecha, radio, microondas, infrarrojo, luz visible, ultravioleta, rayos X y rayos gamma. La frecuencia aumenta hacia la derecha y la longitud de onda hacia la izquierda' },
     alts: ['rayos X, luz visible, microondas, ondas de radio', 'ondas de radio, microondas, luz visible, rayos X', 'microondas, ondas de radio, rayos X, luz visible', 'luz visible, microondas, ondas de radio, rayos X'], ok: 1,
     sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Ordenar cuatro radiaciones según su frecuencia, de menor a mayor.</p><p><b>Paso 2. Ubícalas en el espectro.</b> De izquierda a derecha (frecuencia creciente): radio, microondas, infrarrojo, visible, ultravioleta, rayos X, gamma.</p><p><b>Paso 3. Extrae las cuatro.</b> Ondas de radio, microondas, luz visible, rayos X.</p><p><b>Respuesta:</b> ondas de radio, microondas, luz visible, rayos X.</p><p><b>¿Por qué no las otras?</b> «Rayos X, luz visible, microondas, ondas de radio» es el orden inverso, de mayor a menor frecuencia (que coincide con el orden de menor a mayor longitud de onda). Las otras dos mezclan el orden: las microondas tienen mayor frecuencia que las ondas de radio, y la luz visible menor que los rayos X.</p>`,
     conc: 'Radio, microondas, infrarrojo, visible, ultravioleta, X, gamma: la frecuencia sube.'
@@ -310,7 +309,7 @@ const FIS_ONDAS = [
       <li>Si pasa a un medio <b>más rápido</b> (menor $n$), <b>se aleja de la normal</b>.</li>
       <li>Si incide <b>perpendicularmente</b>, no cambia de dirección, aunque sí de rapidez.</li></ul>
       </div><div>
-      <div class="box"><b>Qué cambia y qué no</b> Al refractarse, cambian la <b>rapidez</b>, la <b>longitud de onda</b> y la <b>dirección</b>. La <b>frecuencia</b> (y por lo tanto el color) <b>no cambia</b>.</div>
+      <div class="box"><b>Qué cambia y qué no</b> Al refractarse, cambian la <b>rapidez</b>, la <b>longitud de onda</b> y, con incidencia oblicua, la <b>dirección</b>. La <b>frecuencia</b> (y por lo tanto el color) <b>no cambia</b>.</div>
       <div class="box"><b>Ejemplos</b><br>· Una cuchara se ve quebrada en un vaso con agua.<br>· El fondo de una piscina parece menos profundo de lo que es: la luz que sale del agua se aleja de la normal y el ojo la prolonga en línea recta desde un punto más alto.</div>
       <div class="box"><b>Reflexión total interna</b> Si la luz va de un medio más lento a uno más rápido (del vidrio al aire) con un ángulo mayor que un cierto <b>ángulo límite</b>, no sale: se refleja por completo. Es la base de la fibra óptica.</div>
       </div></div>` },
@@ -333,7 +332,7 @@ const FIS_ONDAS = [
       <tr><td>Absorción</td><td>el material retiene la energía</td><td>la intensidad que sigue</td><td>ropa negra al sol</td></tr>
       <tr><td>Reflexión</td><td>la luz rebota; ángulo de incidencia = ángulo de reflexión</td><td>la dirección</td><td>espejo</td></tr>
       <tr><td>Transmisión</td><td>la luz atraviesa el material</td><td>depende del material</td><td>vidrio de una ventana</td></tr>
-      <tr><td>Refracción</td><td>cambio de dirección al cambiar de medio</td><td>rapidez, $\lambda$ y dirección; no la frecuencia</td><td>cuchara quebrada</td></tr></tbody></table>
+      <tr><td>Refracción</td><td>cambio de dirección al cambiar de medio</td><td>rapidez y $\lambda$; dirección solo con incidencia oblicua; no la frecuencia</td><td>cuchara quebrada</td></tr></tbody></table>
       <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· Los ángulos se miden desde la normal.<br>· Hacia un medio más lento, el rayo se acerca a la normal; hacia uno más rápido, se aleja.<br>· El color depende de la frecuencia, que no cambia al refractarse.<br>· Un objeto se ve del color que refleja; sin ese color en la luz, se ve negro.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Identifica si la luz rebota (reflexión), cambia de medio (refracción) o es absorbida. 2. Dibuja la normal y mide los ángulos desde ella. 3. Compara las rapideces de los medios para saber hacia dónde se desvía el rayo. 4. En preguntas de investigación, fíjate en qué variable se cambia y cuál se mide.</div>` }
   ],
@@ -564,7 +563,7 @@ const FIS_ONDAS = [
       <p>La información se «monta» sobre la onda variando su amplitud (<b>AM</b>, amplitud modulada) o su frecuencia (<b>FM</b>, frecuencia modulada). Cada emisora tiene su propia frecuencia, para que las señales no se mezclen.</p>
       </div><div>
       <div class="box"><b>Teléfono móvil</b> El celular se comunica por microondas con la antena más cercana. El territorio se divide en zonas llamadas <b>celdas</b>, cada una con su antena; al moverte, la llamada pasa de una antena a otra. Las antenas se conectan entre sí por cables, fibra óptica o enlaces de microondas.</div>
-      <div class="box"><b>Satélites</b> Los satélites de comunicaciones reciben microondas desde la Tierra y las reenvían a otro punto. Permiten la televisión satelital, el GPS y las llamadas a lugares remotos.</div>
+      <div class="box"><b>Satélites</b> Los satélites de comunicaciones reciben microondas desde la Tierra y las reenvían a otro punto. Permiten la televisión satelital y las llamadas a lugares remotos. Los satélites GPS emiten señales de tiempo y posición con las que el receptor calcula su ubicación.</div>
       </div></div>` },
     { t: 'Radar y radiotelescopios', b: r`
       <div class="cols"><div>
@@ -578,7 +577,7 @@ const FIS_ONDAS = [
       </div></div>` },
     { t: 'Telescopios y prismáticos', b: r`
       <div class="cols"><div>
-      <p><b>Telescopio refractor.</b> Usa <b>lentes</b>. Una lente convergente grande (el <b>objetivo</b>) forma una imagen real del objeto lejano, y una segunda lente (el <b>ocular</b>) la amplía como una lupa. Así funcionaba el telescopio de Galileo.</p>
+      <p><b>Telescopio refractor.</b> Usa <b>lentes</b>. Una lente convergente grande (el <b>objetivo</b>) forma una imagen real del objeto lejano, y una segunda lente (el <b>ocular</b>) la amplía como una lupa. Esta disposición corresponde al telescopio de Kepler; el de Galileo usaba un ocular divergente.</p>
       <p><b>Telescopio reflector.</b> Usa un <b>espejo cóncavo</b> (el espejo primario) para reunir la luz y formar la imagen; un espejo secundario la dirige al ocular o a la cámara. Lo diseñó Newton.</p>
       <p>Los grandes telescopios actuales, como los de Paranal o el ELT en el norte de Chile, son <b>reflectores</b>: un espejo se puede fabricar mucho más grande que una lente y sostenerse por detrás, sin deformarse.</p>
       </div><div>

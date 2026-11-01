@@ -205,7 +205,7 @@ Object.assign(COMPACTO, {
 
   bio_ingenieria: [
     { t: 'Conceptos y aplicaciones', b: r`
-      <p><b>Manipulación genética</b>: modificar el ADN (cortar, copiar, trasladar genes). <b>ADN recombinante</b>: ADN de dos orígenes unido. <b>Transgénico</b>: lleva y expresa un gen de <b>otra especie</b> (cabra con gen humano). Un clon (Dolly) o un cruzamiento no son transgénicos. Funciona porque el <b>código genético es universal</b>: la bacteria fabrica la misma proteína humana.</p>
+      <p><b>Manipulación genética</b>: modificar el ADN (cortar, copiar, trasladar genes). <b>ADN recombinante</b>: ADN de dos orígenes unido. <b>Transgénico</b>: lleva y expresa un gen de <b>otra especie</b> (cabra con gen humano). Un clon (Dolly) o un cruzamiento no introducen por sí mismos genes de otra especie. Funciona porque el <b>código genético es universal</b>: la bacteria fabrica la misma proteína humana.</p>
       <table><tbody>
       <tr><td>Alimentos</td><td>maíz Bt (gen de la toxina de <i>Bacillus thuringiensis</i>, más producción); arroz dorado (genes de betacaroteno insertados en el ADN del arroz)</td></tr>
       <tr><td>Detergentes</td><td>proteasas (sangre, proteínas), lipasas (grasa), amilasas (almidón)</td></tr>

@@ -38,7 +38,7 @@ const QUI_SOLUCIONES = [
       <li><b>El soluto no sedimenta</b>: aunque la dejes reposar días, no se va al fondo.</li>
       <li><b>No se separa por filtración</b>: el soluto atraviesa el papel filtro. Sí se separa con métodos que cambian de estado, como la <b>evaporación</b> (queda el sólido) o la <b>destilación</b>.</li>
       <li><b>Composición variable</b>: puedes poner más o menos soluto (hasta un límite) y sigue siendo solución. Un compuesto, en cambio, tiene composición fija.</li>
-      <li><b>Conduce la corriente</b> solo si el soluto es un <b>electrolito</b> (sales como NaCl, ácidos, bases), que libera iones. Si el soluto es molecular, como el azúcar o el etanol, no conduce.</li></ul>
+      <li><b>Conduce la corriente</b> solo si el soluto es un <b>electrolito</b> (sales como NaCl, ácidos, bases), que libera iones. Los solutos que no generan iones, como el azúcar o el etanol, no conducen.</li></ul>
       </div><div>
       <div class="box"><b>Ejemplo: agua con sal y agua con arena</b><table><thead><tr><th>Propiedad</th><th>Agua con sal</th><th>Agua con arena</th></tr></thead><tbody>
       <tr><td>Fases</td><td>1</td><td>2</td></tr>
@@ -73,7 +73,7 @@ const QUI_SOLUCIONES = [
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/sol_gas.svg" alt="Gráfico: la masa de gas disuelto en un litro de agua baja al subir la temperatura y es el doble a 2 atm que a 1 atm"></div>
       <p>Datos inventados para un gas cualquiera, con la forma real: al calentar baja la solubilidad, y al duplicar la presión se duplica.</p>
       <div class="box alert"><b>Solubilidad no es rapidez</b> Agitar o moler el soluto hace que se disuelva <b>más rápido</b>, pero no cambia <b>cuánto</b> se disuelve como máximo. De los factores de la vida diaria, solo la temperatura (y, en gases, la presión) cambia la solubilidad.</div>
-      <div class="box"><b>Pistas en un ensayo de solubilidad</b> Dos líquidos que se mezclan en una sola fase son del mismo tipo (los dos polares o los dos apolares). Si forman dos fases, son de distinto tipo; arriba queda el menos denso.</div>
+      <div class="box"><b>Pistas en un ensayo de solubilidad</b> Dos líquidos que se mezclan en una sola fase suelen ser del mismo tipo (los dos polares o los dos apolares). Si forman dos fases, suelen ser de distinto tipo; arriba queda el menos denso.</div>
       </div></div>` },
     { t: 'Curvas de solubilidad', b: r`
       <div class="cols"><div>
@@ -218,7 +218,7 @@ const QUI_SOLUCIONES = [
       conc: 'Un buen control cambia una sola variable; las demás se dejan fijas.' },
     { src: 'PAES Invierno 2027, adaptada',
       enun: r`El carbonato de litio (Li<sub>2</sub>CO<sub>3</sub>) se obtiene precipitándolo desde una solución acuosa. Un grupo de investigadores estudia qué parámetros afectan su solubilidad en cuatro ensayos, con las condiciones de la tabla.<br>¿Cuál de las siguientes relaciones permite analizar correctamente el efecto de uno de los parámetros?`,
-      fig: { type: 'table', head: ['Ensayo', 'Temperatura (°C)', 'Agitación (rpm)', 'Concentración inicial de Li<sub>2</sub>CO<sub>3</sub> (mol/L)'], rows: [['1', '25', '150', '2'], ['2', '25', '300', '2'], ['3', '45', '300', '2'], ['4', '45', '150', '1']] },
+      fig: { type: 'table', head: ['Ensayo', 'Temperatura (°C)', 'Agitación (rpm)', 'Concentración inicial de Li<sub>2</sub>CO<sub>3</sub> (mol/L)'], rows: [['1', '25', '150', '0,02'], ['2', '25', '300', '0,02'], ['3', '45', '300', '0,02'], ['4', '45', '150', '0,01']] },
       alts: ['Relacionar los ensayos 2 y 3 permite analizar el efecto de la temperatura.', 'Relacionar los ensayos 1 y 3 permite analizar el efecto de la temperatura.', 'Relacionar los ensayos 1 y 2 permite analizar el efecto de la concentración inicial.', 'Relacionar los ensayos 3 y 4 permite analizar el efecto de la concentración inicial.'], ok: 0,
       sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> El par de ensayos en que cambia un solo parámetro.</p>
       <p><b>Paso 2. Compara cada par.</b></p>
@@ -371,7 +371,7 @@ const QUI_SOLUCIONES = [
       <p><b>Ejemplo 2.</b> La norma de agua potable permite hasta 0,01 mg/L de arsénico, es decir, 0,01 ppm. En 5 L de esa agua puede haber como máximo $0{,}01 \cdot 5 = 0{,}05$ mg.</p>
       </div><div>
       <div class="box"><b>Para comparar</b> 1 % m/m = 1 g en 100 g = 10.000 mg en 1 kg = <b>10.000 ppm</b>.</div>
-      <div class="box alert"><b>Cuida las unidades</b> ppm es mg por <b>litro</b> (no por mL) y por <b>miligramo</b> (no gramo). Si te dan mL, pásalos a L: 500 mL = 0,5 L. Si te dan gramos, pásalos a mg: 0,02 g = 20 mg.</div>
+      <div class="box alert"><b>Cuida las unidades</b> ppm es mg por <b>litro</b> (no por mL) y el soluto va en <b>miligramos</b> (no gramos). Si te dan mL, pásalos a L: 500 mL = 0,5 L. Si te dan gramos, pásalos a mg: 0,02 g = 20 mg.</div>
       </div></div>` },
     { t: 'La densidad: de volumen a masa', b: r`
       <div class="cols"><div>
@@ -401,7 +401,7 @@ const QUI_SOLUCIONES = [
   ],
   example: {
     src: 'PAES Invierno 2027, adaptada',
-    enun: r`Para preparar 0,5 L de una solución acuosa al 15 % m/m de un compuesto soluble en agua (densidad de la solución = 1,0 g/mL), se deben mezclar`,
+    enun: r`Para preparar 0,5 L de una solución acuosa al 15 % m/m de un compuesto soluble en agua (densidad de la solución = 1,0 g/mL), ¿qué masas de compuesto y de agua se deben mezclar?`,
     alts: ['15 g del compuesto y 485 g de agua.', '75 g del compuesto y 500 g de agua.', '75 g del compuesto y 425 g de agua.', '15 g del compuesto y 85 g de agua.'],
     ok: 2,
     sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Las masas de compuesto (soluto) y de agua (solvente) que forman 0,5 L de solución al 15 % m/m.</p>
@@ -602,7 +602,7 @@ const QUI_SOLUCIONES = [
       $$C = \dfrac{n_{\text{soluto}}\ (\text{mol})}{V_{\text{solución}}\ (\text{L})}$$
       <p><b>Ejemplo 1.</b> Se disuelven 20 g de NaOH ($M$ = 40 g/mol) en agua hasta completar 500 mL. Moles: $\dfrac{20}{40} = 0{,}5$ mol. Volumen: 500 mL = 0,5 L. $C = \dfrac{0{,}5}{0{,}5} = 1$ mol/L.</p>
       <p><b>Ejemplo 2 (al revés).</b> ¿Cuántos gramos de glucosa ($M$ = 180 g/mol) se necesitan para 250 mL de solución 0,2 mol/L? Moles: $n = C\cdot V = 0{,}2 \cdot 0{,}25 = 0{,}05$ mol. Masa: $0{,}05 \cdot 180 = 9$ g.</p>
-      <div class="box"><b>Así se prepara</b> 1. Masa el soluto. 2. Disuélvelo en un poco de agua dentro de un <b>matraz aforado</b>. 3. Agrega agua hasta la marca (el aforo). 4. Tapa y agita. Así el volumen final de solución es exacto.</div>
+      <div class="box"><b>Así se prepara</b> 1. Masa el soluto. 2. Disuélvelo en un poco de agua (si libera calor, como el NaOH, déjalo enfriar) y pásalo a un <b>matraz aforado</b>. 3. Agrega agua hasta la marca (el aforo). 4. Tapa y agita. Así el volumen final de solución es exacto.</div>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/sol_molar_molal.svg" alt="A la izquierda, 1 mol de soluto en un matraz aforado completado hasta 1 L de solución: 1 mol/L. A la derecha, 1 mol de soluto en 1 kg de agua: 1 mol/kg"></div>
       <div class="box alert"><b>Dos errores clásicos</b> 1. Dejar el volumen en mL: $\dfrac{0{,}5}{500} = 0{,}001$ está mal; pasa 500 mL a 0,5 L. 2. Disolver el soluto en 250 mL de agua: la solución queda con más de 250 mL. Se completa <b>hasta</b> 250 mL.</div>
@@ -663,13 +663,13 @@ const QUI_SOLUCIONES = [
   example: {
     src: 'PAES Invierno 2027, adaptada',
     enun: r`En una clase de química, la profesora pide preparar 250 mL de una solución acuosa de hidróxido de sodio (NaOH) de concentración 0,4 mol/L (masa molar del NaOH = 40 g/mol). ¿Cuál de los siguientes procedimientos es el adecuado?`,
-    alts: ['Masar 4 g de NaOH y disolverlos en 250 mL de agua.', 'Masar 4 g de NaOH, disolverlos en un poco de agua dentro de un matraz aforado de 250 mL y luego agregar agua hasta el aforo.', 'Masar 16 g de NaOH, disolverlos en un poco de agua dentro de un matraz aforado de 250 mL y luego agregar agua hasta el aforo.', 'Masar 4 g de NaOH, disolverlos en agua y completar con agua hasta 1 L de solución.'],
+    alts: ['Masar 4 g de NaOH y disolverlos en 250 mL de agua.', 'Masar 4 g de NaOH, disolverlos en un poco de agua, dejar enfriar, pasarlos a un matraz aforado de 250 mL y luego agregar agua hasta el aforo.', 'Masar 16 g de NaOH, disolverlos en un poco de agua, dejar enfriar, pasarlos a un matraz aforado de 250 mL y luego agregar agua hasta el aforo.', 'Masar 4 g de NaOH, disolverlos en agua y completar con agua hasta 1 L de solución.'],
     ok: 1,
     sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Dos cosas: la masa correcta de NaOH y la forma correcta de lograr 250 mL <b>de solución</b>.</p>
       <p><b>Paso 2. Moles necesarios.</b> $n = C\cdot V = 0{,}4\ \text{mol/L} \cdot 0{,}25\ \text{L} = 0{,}1$ mol.</p>
       <p><b>Paso 3. Masa.</b> $m = n\cdot M = 0{,}1 \cdot 40 = 4$ g de NaOH.</p>
-      <p><b>Paso 4. Procedimiento.</b> El volumen de la fórmula es el de la <b>solución</b>. Por eso se disuelven los 4 g en un poco de agua dentro de un matraz aforado de 250 mL y se completa con agua hasta la marca: el volumen final es exactamente 250 mL.</p>
-      <p><b>Respuesta:</b> masar 4 g de NaOH, disolverlos en un poco de agua dentro de un matraz aforado de 250 mL y agregar agua hasta el aforo.</p>
+      <p><b>Paso 4. Procedimiento.</b> El volumen de la fórmula es el de la <b>solución</b>. Por eso se disuelven los 4 g en un poco de agua, se deja enfriar (el NaOH libera calor), se pasa a un matraz aforado de 250 mL y se completa con agua hasta la marca: el volumen final es exactamente 250 mL.</p>
+      <p><b>Respuesta:</b> masar 4 g de NaOH, disolverlos en un poco de agua, dejar enfriar, pasarlos a un matraz aforado de 250 mL y agregar agua hasta el aforo.</p>
       <p><b>Comprobación:</b> $C = \dfrac{4/40}{0{,}25} = \dfrac{0{,}1}{0{,}25} = 0{,}4$ mol/L. ✔</p>
       <p><b>¿Por qué no las otras?</b> «4 g en 250 mL de agua»: la masa está bien, pero el soluto agrega volumen y la solución queda con más de 250 mL, así que la concentración queda bajo 0,4 mol/L. «16 g hasta el aforo»: 16 g son 0,4 mol; en 0,25 L dan $\dfrac{0{,}4}{0{,}25} = 1{,}6$ mol/L (confunde 0,4 mol/L con 0,4 mol). «4 g hasta 1 L»: da $\dfrac{0{,}1}{1} = 0{,}1$ mol/L.</p>`,
     conc: 'Para preparar una solución: n = C · V, m = n · M, y se completa HASTA el volumen pedido en un matraz aforado.'
@@ -859,7 +859,7 @@ const QUI_SOLUCIONES = [
       <ul><li>Los <b>moles (y gramos) de soluto no cambian</b>: no agregaste soluto ni lo sacaste.</li>
       <li>El <b>volumen aumenta</b>.</li>
       <li>La <b>concentración baja</b>: el mismo soluto queda repartido en más volumen.</li></ul>
-      <p>El <b>factor de dilución</b> dice cuántas veces creció el volumen: $\dfrac{V_2}{V_1}$. La concentración baja esas mismas veces. Si llevas 5 mL de una solución a 25 mL en un matraz aforado, el volumen crece 5 veces y la concentración queda en <b>un quinto</b> de la original, sea cual sea la unidad (% m/m, mol/L…).</p>
+      <p>El <b>factor de dilución</b> dice cuántas veces creció el volumen: $\dfrac{V_2}{V_1}$. La concentración baja esas mismas veces. Si llevas 5 mL de una solución a 25 mL en un matraz aforado, el volumen crece 5 veces y la concentración queda en <b>un quinto</b> de la original, si la concentración se expresa por volumen de solución, como mol/L o % m/v.</p>
       <p>Lo contrario, <b>evaporar solvente</b>, sube la concentración: los moles siguen iguales en menos volumen.</p>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/sol_dilucion.svg" alt="100 mL de HCl 6 mol/L con 0,6 mol más 300 mL de agua dan 400 mL de HCl 1,5 mol/L con los mismos 0,6 mol"></div>

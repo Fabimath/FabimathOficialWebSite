@@ -34,7 +34,7 @@ const BIO_AMBIENTE = [
       <li><b>Concentración de CO<sub>2</sub>:</b> igual que la luz, sube y se satura.</li>
       <li><b>Temperatura:</b> las enzimas de la fotosíntesis tienen una temperatura <b>óptima</b>. Bajo ella trabajan lento; muy por sobre ella se desnaturalizan y la tasa cae a cero.</li></ul>
       </div><div>
-      <div class="box"><b>Factor limitante</b> Es el factor que está en menor cantidad respecto de lo que se necesita: él fija la tasa, aunque los demás sobren. En la parte que sube de la curva de luz, el limitante es la luz. En la meseta, el limitante es otro factor (CO<sub>2</sub> o temperatura): si se aumenta ese otro factor, la meseta sube.</div>
+      <div class="box"><b>Factor limitante</b> Es el factor que está en menor cantidad respecto de lo que se necesita: él fija la tasa, aunque los demás sobren. En la parte que sube de la curva de luz, el limitante es la luz. En la meseta, el limitante es otro factor (CO<sub>2</sub> o temperatura): si se aumenta el CO<sub>2</sub> cuando este limita, o la temperatura se acerca a su óptimo cuando esta limita, la meseta puede subir.</div>
       </div></div>` },
     { t: 'Experimentos clásicos', b: r`
       <div class="cols"><div>
@@ -105,7 +105,7 @@ const BIO_AMBIENTE = [
   slides: [
     { t: 'Nutrición autótrofa y heterótrofa', b: r`
       <div class="cols"><div>
-      <p>Todo ser vivo necesita materia orgánica: como fuente de <b>energía</b> y como material para <b>construir</b> su cuerpo. Según cómo la obtiene, su nutrición es de dos tipos.</p>
+      <p>Todo ser vivo necesita materia orgánica para <b>construir</b> su cuerpo; su <b>energía</b> puede venir de la luz o de reacciones químicas. Según cómo obtiene la materia orgánica, su nutrición es de dos tipos.</p>
       <ul><li><b>Autótrofa:</b> el organismo fabrica su propia materia orgánica a partir de materia inorgánica (CO<sub>2</sub>, agua, sales).<br>· <b>Fotosintéticos:</b> usan la energía de la luz (plantas, algas, cianobacterias).<br>· <b>Quimiosintéticos:</b> usan la energía de reacciones químicas con sustancias inorgánicas (algunas bacterias de fuentes hidrotermales o del suelo).</li>
       <li><b>Heterótrofa:</b> el organismo obtiene la materia orgánica de otros seres vivos o de sus restos: animales, hongos, la mayoría de las bacterias y muchos protozoos.</li></ul>
       </div><div>
@@ -131,10 +131,10 @@ const BIO_AMBIENTE = [
       <div class="cols"><div>
       <table><thead><tr><th>Etapa</th><th>Lugar</th><th>Qué pasa</th></tr></thead><tbody>
       <tr><td>Glucólisis</td><td>citoplasma</td><td>la glucosa se divide en dos moléculas de piruvato; se forman 2 ATP</td></tr>
-      <tr><td>Ciclo de Krebs</td><td>matriz mitocondrial</td><td>el piruvato se oxida por completo; se libera <b>CO<sub>2</sub></b></td></tr>
+      <tr><td>Ciclo de Krebs</td><td>matriz mitocondrial</td><td>el acetil-CoA, formado a partir del piruvato, se oxida; se libera <b>CO<sub>2</sub></b></td></tr>
       <tr><td>Cadena transportadora y síntesis de ATP</td><td>membrana interna (crestas)</td><td>el <b>O<sub>2</sub></b> recibe los electrones y forma <b>H<sub>2</sub>O</b>; se produce la mayor parte del ATP</td></tr></tbody></table>
       </div><div>
-      <div class="box"><b>¿De dónde viene y a dónde va cada cosa?</b><br>· El CO<sub>2</sub> que exhalas se forma en la <b>matriz</b> (ciclo de Krebs).<br>· El O<sub>2</sub> que inhalas se usa al final, en las <b>crestas</b>, y termina formando agua.</div>
+      <div class="box"><b>¿De dónde viene y a dónde va cada cosa?</b><br>· El CO<sub>2</sub> que exhalas se forma en la <b>matriz</b>, al oxidarse el piruvato y en el ciclo de Krebs.<br>· El O<sub>2</sub> que inhalas se usa al final, en las <b>crestas</b>, y termina formando agua.</div>
       <div class="box"><b>Sin oxígeno</b> Algunas células, como las levaduras o las musculares en ejercicio intenso, pueden obtener energía sin O<sub>2</sub> por <b>fermentación</b>. Rinde solo 2 ATP por glucosa, mucho menos que la respiración aeróbica.</div>
       </div></div>` },
     { t: 'Fotosíntesis y respiración: procesos complementarios', b: r`

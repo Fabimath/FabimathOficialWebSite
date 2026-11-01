@@ -29,7 +29,7 @@ const QUI_ATOMO = [
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/atomo_particulas.svg" alt="Cuatro recuadros con partículas: un elemento formado por átomos sueltos, un elemento formado por moléculas de dos átomos iguales, un compuesto con moléculas iguales de dos átomos distintos y una mezcla con partículas de dos tipos"></div>` },
     { t: 'Elementos y compuestos', b: r`
       <div class="cols"><div>
-      <p>Un <b>elemento</b> no se puede descomponer en sustancias más simples, ni siquiera con una reacción química. Hay cerca de 118, todos en la tabla periódica. Algunos están como átomos sueltos (He, Ne, Fe) y otros como moléculas de átomos iguales (O<sub>2</sub>, N<sub>2</sub>, Cl<sub>2</sub>, O<sub>3</sub>).</p>
+      <p>Un <b>elemento</b> no se puede descomponer en sustancias más simples, ni siquiera con una reacción química. Hay cerca de 118, todos en la tabla periódica. Algunos están como átomos sueltos (He, Ne) y otros como moléculas de átomos iguales (O<sub>2</sub>, N<sub>2</sub>, Cl<sub>2</sub>, O<sub>3</sub>).</p>
       <p>Un <b>compuesto</b> sí se puede descomponer, pero solo con una <b>reacción química</b>. Por ejemplo, al pasar corriente eléctrica por agua (electrólisis) se obtienen dos gases: hidrógeno y oxígeno.</p>
       <p>Dos ideas importantes de los compuestos:</p>
       <ul><li><b>Proporción fija:</b> el agua siempre tiene 1 g de hidrógeno por cada 8 g de oxígeno, venga de un río o de un glaciar.</li>
@@ -43,7 +43,7 @@ const QUI_ATOMO = [
       <p>Una <b>fase</b> es una parte de la mezcla con el mismo aspecto y las mismas propiedades en todos sus puntos.</p>
       <ul><li><b>Mezcla homogénea</b> (o solución): una sola fase. No distingues sus componentes ni con lupa: agua con azúcar, aire, vinagre, acero, bronce.</li>
       <li><b>Mezcla heterogénea</b>: dos o más fases. Agua con aceite, arena con agua, granito, ensalada. La leche y la niebla (coloides) también se clasifican como heterogéneas: al microscopio se ven gotitas o partículas separadas.</li></ul>
-      <p><b>¿Por qué el agua y el aceite no se mezclan?</b> Por la regla «<b>lo semejante disuelve a lo semejante</b>»: las sustancias <b>polares</b> (agua, etanol, acetona) se mezclan entre sí y disuelven sales como el NaCl; las <b>apolares</b> (aceite, hexano, bencina) se mezclan entre sí. Un líquido polar con uno apolar forma dos fases: es una mezcla heterogénea.</p>
+      <p><b>¿Por qué el agua y el aceite no se mezclan?</b> Por la regla «<b>lo semejante disuelve a lo semejante</b>»: las sustancias <b>polares</b> (agua, etanol, acetona) se mezclan entre sí y, en general, disuelven sales como el NaCl (el agua lo hace muy bien); las <b>apolares</b> (aceite, hexano, bencina) se mezclan entre sí. Un líquido polar con uno apolar forma dos fases: es una mezcla heterogénea.</p>
       </div><div>
       <div class="box"><b>Esquema para clasificar</b><br>1. ¿Es uniforme en todos sus puntos? <b>No</b> → mezcla heterogénea.<br>2. Si es uniforme: ¿se separa por procesos físicos (evaporar, destilar)? <b>Sí</b> → mezcla homogénea.<br>3. Si no se separa por procesos físicos: ¿se descompone por procesos químicos? <b>Sí</b> → compuesto. <b>No</b> → elemento.</div>
       <div class="box"><b>Ejemplo resuelto</b> Al agregar sal a dos líquidos, se disuelve en el líquido T y queda en el fondo del líquido M. Entonces T se comporta como polar y M como apolar. Si se mezclan T y M, se formarán <b>dos fases</b>: una mezcla heterogénea.</div>
@@ -89,7 +89,7 @@ const QUI_ATOMO = [
   ],
   example: {
     src: 'PAES Invierno 2027, adaptada',
-    enun: r`<p>Un grupo de estudiantes recibe en el laboratorio una muestra de un material desconocido. Para clasificarlo, siguen una secuencia de preguntas y anotan las respuestas en el siguiente esquema:</p>`,
+    enun: r`<p>Un grupo de estudiantes recibe en el laboratorio una muestra de un material desconocido. Para clasificarlo, siguen una secuencia de preguntas y anotan las respuestas en el siguiente esquema.</p><p>De acuerdo con el esquema, ¿a qué tipo de material corresponde la muestra?</p>`,
     fig: { type: 'img', src: 'paes/quimica/fig/atomo_esquema.svg', alt: 'Esquema: la muestra es uniforme en todos sus puntos (Sí); no puede separarse por procesos físicos (No); no puede descomponerse en sustancias más simples por procesos químicos (No)' },
     alts: ['A un elemento.', 'A un compuesto.', 'A una mezcla homogénea.', 'A una mezcla heterogénea.'], ok: 0,
     sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Clasificar el material siguiendo las respuestas del esquema, una por una.</p><p><b>Paso 2. ¿Es uniforme? Sí.</b> Tiene una sola fase. Queda descartada la mezcla heterogénea. Todavía puede ser mezcla homogénea, compuesto o elemento.</p><p><b>Paso 3. ¿Se separa por procesos físicos? No.</b> Una mezcla homogénea, como el agua con sal, sí se separa por procesos físicos (evaporando el agua queda la sal). Como este material no se separa, no es mezcla: es una <b>sustancia pura</b>.</p><p><b>Paso 4. ¿Se descompone por procesos químicos? No.</b> Un compuesto, como el agua, sí se descompone por una reacción química (la electrólisis la separa en hidrógeno y oxígeno). Como este material no se descompone en sustancias más simples, está formado por un solo tipo de átomo.</p><p><b>Respuesta:</b> es un elemento.</p><p><b>Comprobación:</b> un trozo de cobre cumple las tres respuestas: es uniforme, no se separa por filtración, destilación ni evaporación, y ninguna reacción lo convierte en sustancias más simples.</p><p><b>¿Por qué no las otras?</b> «Compuesto» habría tenido «Sí» en la última pregunta: los compuestos se descomponen por procesos químicos. «Mezcla homogénea» habría tenido «Sí» en la segunda pregunta: las mezclas se separan por procesos físicos. «Mezcla heterogénea» habría tenido «No» en la primera: no es uniforme.</p>`,
@@ -235,7 +235,7 @@ const QUI_ATOMO = [
       <p>Si se calienta una sustancia y se anota la temperatura cada minuto, se obtiene una <b>curva de calentamiento</b>.</p>
       <ul><li>En los tramos inclinados, la sustancia está en un solo estado y su temperatura sube.</li>
       <li>En los tramos horizontales (<b>mesetas</b>) ocurre un cambio de estado: la sustancia sigue recibiendo calor, pero esa energía se usa en separar las partículas y la temperatura no sube. La primera meseta es la <b>fusión</b> (sólido y líquido juntos) y la segunda, la <b>ebullición</b> (líquido y gas juntos).</li></ul>
-      <p><b>Sustancia pura o mezcla.</b> Una sustancia pura tiene mesetas planas: funde y hierve a una temperatura fija. Una mezcla funde y hierve en un <b>rango</b> de temperaturas: la «meseta» queda inclinada, porque la composición del líquido va cambiando mientras hierve.</p>
+      <p><b>Sustancia pura o mezcla.</b> Una sustancia pura tiene mesetas planas: funde y hierve a una temperatura fija. La mayoría de las mezclas funden y hierven en un <b>rango</b> de temperaturas: la «meseta» queda inclinada, porque la composición del líquido va cambiando mientras hierve.</p>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/atomo_calentamiento.svg" alt="Curva de calentamiento del agua desde −20 °C: meseta de fusión a 0 °C entre los minutos 2 y 6 y meseta de ebullición a 100 °C entre los minutos 9 y 15"></div>
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/atomo_pura_mezcla.svg" alt="Dos curvas: el agua pura tiene una meseta a 100 °C; el agua con sal empieza a hervir a unos 102 °C y su temperatura sigue subiendo mientras hierve"></div>
@@ -380,7 +380,7 @@ const QUI_ATOMO = [
       <tr><td>Muy pocas (1 de cada 10.000 a 100.000) rebotan</td><td>esa zona es muy <b>pequeña</b> y muy <b>densa</b>: concentra casi toda la masa</td></tr></tbody></table>
       <p><b>Modelo nuclear</b> (o planetario): un <b>núcleo</b> diminuto, positivo, con casi toda la masa del átomo, y los electrones girando alrededor, lejos de él. Si el átomo fuera un estadio, el núcleo sería una bolita en el centro de la cancha.</p>
       </div><div>
-      <div class="box alert"><b>Limitación</b> Según la física de la época, un electrón que gira debería emitir energía, perder velocidad y caer en espiral al núcleo: el átomo no sería estable. Tampoco explicaba por qué cada elemento emite luz solo de ciertos colores.</div>
+      <div class="box alert"><b>Limitación</b> Según la física de la época, un electrón que gira debería emitir energía, perder energía mecánica y caer en espiral al núcleo: el átomo no sería estable. Tampoco explicaba por qué cada elemento emite luz solo de ciertos colores.</div>
       </div></div>
       <div class="qfig"><img class="tikz" src="paes/quimica/fig/atomo_rutherford.svg" alt="Experimento de Rutherford: una fuente lanza partículas alfa contra una lámina de oro; la mayoría pasa derecho, algunas se desvían y muy pocas rebotan. La ampliación muestra núcleos muy pequeños separados por mucho espacio vacío"></div>` },
     { t: 'Bohr: los niveles de energía', b: r`
@@ -484,7 +484,7 @@ const QUI_ATOMO = [
   slides: [
     { t: 'Las tres partículas del átomo', b: r`
       <div class="cols"><div>
-      <p>Todo átomo tiene un <b>núcleo</b> muy pequeño, con protones y neutrones, y alrededor, los <b>electrones</b>.</p>
+      <p>Todo átomo tiene un <b>núcleo</b> muy pequeño, con protones y (salvo en el protio) neutrones, y alrededor, los <b>electrones</b>.</p>
       <table><thead><tr><th>Partícula</th><th>Carga</th><th>Masa relativa</th><th>Ubicación</th></tr></thead><tbody>
       <tr><td>Protón (p<sup>+</sup>)</td><td>+1</td><td>1 u</td><td>núcleo</td></tr>
       <tr><td>Neutrón (n<sup>0</sup>)</td><td>0</td><td>1 u</td><td>núcleo</td></tr>

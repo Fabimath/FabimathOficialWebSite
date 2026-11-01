@@ -27,7 +27,7 @@ const TOPICS_ALG = [
       <p>El número que hace verdadera la igualdad se llama <b>solución</b>. Aquí la solución es $x = 4$. <b>Resolver</b> una ecuación es encontrar ese número sin tener que adivinar.</p>
       </div><div>
       <div class="box"><b>¿Por qué "de primer grado"?</b> Porque la $x$ aparece sin exponente: no hay $x^2$ ni $x^3$. También se les llama <b>ecuaciones lineales</b>.</div>
-      <div class="box"><b>¿Es o no es?</b><br>· $5x - 1 = 9$: sí.<br>· $\dfrac{x}{3} + 2 = 7$: sí; la $x$ está dividida, pero no tiene exponente.<br>· $x^2 = 9$: no, es de segundo grado.<br>· $3 + 4 = 7$: no es ecuación, no tiene incógnita.</div>
+      <div class="box"><b>¿Es o no es?</b><br>· $5x - 1 = 9$: sí.<br>· $\dfrac{x}{3} + 2 = 7$: sí; la $x$ está dividida, pero su exponente es 1.<br>· $x^2 = 9$: no, es de segundo grado.<br>· $3 + 4 = 7$: no es ecuación, no tiene incógnita.</div>
       <div class="box alert"><b>Los dos lados</b> Lo que está a la izquierda del signo $=$ es el <b>lado izquierdo</b> y lo que está a la derecha, el <b>lado derecho</b>. Con la solución, los dos lados valen lo mismo.</div>
       </div></div>` },
     { t: 'La balanza: lo mismo a ambos lados', b: r`

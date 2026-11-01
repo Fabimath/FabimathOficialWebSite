@@ -31,7 +31,7 @@ MOTIV = {
     'fis_espectro': r'De las ondas de radio a los rayos gamma, ya conoces todo el espectro. Que tu energía esté siempre en la parte alta.',
     'fis_luz': r'La luz se desvía al cambiar de medio, pero nunca deja de avanzar. Haz lo mismo cuando algo te cueste.',
     'fis_espejos_lentes': r'Rayos principales, imágenes reales y virtuales: ahora ves con claridad lo que antes se veía borroso.',
-    'fis_dispositivos': r'Celulares, fibra óptica, ecografías: ya sabes qué ondas hay detrás. La física está en todas partes y tú ya la reconoces.',
+    'fis_dispositivos': r'Celulares, fibra óptica, radar: ya sabes qué ondas hay detrás. La física está en todas partes y tú ya la reconoces.',
     'fis_cinematica': r'Posición, distancia y desplazamiento: ya sabes dónde estás y hacia dónde vas. Eso sirve en física y en la vida.',
     'fis_mru': r'Velocidad constante y sin frenar: ese es el ritmo de estudio que te va a llevar lejos.',
     'fis_mrua': r'Cada tema que terminas te acelera un poco más. Tu rapidez para aprender va en aumento.',

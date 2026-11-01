@@ -337,7 +337,7 @@ Object.assign(COMPACTO, {
 Object.assign(COMPACTO, {
   funcion_concepto: [
     { t: 'Función, imagen y preimagen', b: r`
-      <p>Una <b>función</b> asigna a cada $x$ (variable independiente) <b>un solo</b> valor $y = f(x)$ (variable dependiente). Si no se dice nada, el dominio son todos los reales.</p>
+      <p>Una <b>función</b> asigna a cada $x$ (variable independiente) <b>un solo</b> valor $y = f(x)$ (variable dependiente). Si solo se da la fórmula, el dominio son los reales para los que está definida.</p>
       <table><thead><tr><th>Me dan</th><th>Hago</th></tr></thead><tbody>
       <tr><td>la $x$: piden $f(a)$, la <b>imagen</b> de $a$</td><td><b>evalúo</b>: cambio cada $x$ por $(a)$</td></tr>
       <tr><td>el resultado: $f(x) = b$, la <b>preimagen</b> de $b$</td><td><b>igualo</b> la fórmula a $b$ y despejo</td></tr></tbody></table>
@@ -778,7 +778,7 @@ Object.assign(COMPACTO, {
     { t: 'Cinco números', b: r`
       <div class="cols"><div>
       <p>Bigote izquierdo = mínimo · caja de $Q_1$ a $Q_3$ · línea interior = $Me$ · bigote derecho = máximo. Ancho de la caja $= RIC$.</p>
-      <div class="box"><b>Cada tramo tiene al menos 25 %</b> de los datos. Hasta $Q_3$: al menos 75 %; desde $Q_3$: al menos 25 %.</div>
+      <div class="box"><b>Cada tramo reúne aproximadamente 25 %</b> de los datos. Hasta $Q_3$: aprox. 75 %; desde $Q_3$: aprox. 25 %.</div>
       </div><div>
       <div class="qfig"></div>
       </div></div>`, f: 0 },

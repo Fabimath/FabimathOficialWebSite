@@ -56,7 +56,7 @@ const BIO_REPRODUCCION = [
       <li>Se une a la <b>zona pelúcida</b> y ocurre la <b>reacción acrosómica</b>: el acrosoma libera sus enzimas, que abren un camino a través de la zona pelúcida.</li>
       <li>Las <b>membranas</b> de ambos gametos se fusionan y el núcleo del espermatozoide entra al ovocito.</li>
       <li><b>Reacción cortical:</b> los gránulos corticales liberan su contenido y la zona pelúcida cambia, de modo que no entran más espermatozoides (se evita la <b>polispermia</b>).</li></ol>
-      <p>El ovocito termina su meiosis, los dos núcleos (pronúcleos) se unen y se forma el <b>cigoto</b>, con 46 cromosomas: 23 de cada progenitor.</p>
+      <p>El ovocito termina su meiosis, en el <b>cigoto</b> hay 46 cromosomas, 23 de cada progenitor; los pronúcleos se aproximan y sus envolturas se desorganizan antes de la primera división.</p>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/biologia/fig/rep_fecundacion.svg" alt="Cuatro pasos de la fecundación: el espermatozoide atraviesa la corona radiada, libera las enzimas del acrosoma sobre la zona pelúcida, su membrana se fusiona con la del ovocito y entra el núcleo, y finalmente la zona pelúcida cambia y ya no entran más espermatozoides"></div>
       </div></div>` },
@@ -345,7 +345,7 @@ const BIO_REPRODUCCION = [
       <div class="cols"><div>
       <p>Contienen hormonas sintéticas parecidas al estrógeno y a la progesterona (progestinas): <b>píldora</b>, <b>inyección</b>, <b>implante subdérmico</b>, <b>anillo vaginal</b>, <b>parche</b> y <b>DIU hormonal</b>.</p>
       <p><b>Cómo actúan:</b></p>
-      <ol><li>Mantienen altas estas hormonas y, por <b>retroalimentación negativa</b>, frenan la FSH y la LH: no madura un folículo y no hay pico de LH, así que <b>no hay ovulación</b>.</li>
+      <ol><li>En muchos de estos métodos, las hormonas se mantienen altas y, por <b>retroalimentación negativa</b>, frenan la FSH y la LH: no madura un folículo y no hay pico de LH, así que <b>no hay ovulación</b>. El DIU hormonal actúa sobre todo espesando el moco cervical y no siempre impide la ovulación.</li>
       <li>Espesan el <b>moco cervical</b>, lo que dificulta el paso de los espermatozoides.</li>
       <li>Modifican el endometrio.</li></ol>
       <p>Son muy eficaces y reversibles: al dejarlos, la fertilidad vuelve. Requieren indicación y control de salud.</p>
@@ -392,7 +392,7 @@ const BIO_REPRODUCCION = [
   example: {
     src: 'Estilo PAES',
     enun: r`<p>Una persona registra cada mañana, al despertar, su temperatura basal durante un ciclo de 28 días. Obtiene el siguiente gráfico:</p><p>¿Qué indica el alza sostenida de la temperatura desde el día 15?</p>`,
-    fig: { type: 'img', src: 'paes/biologia/fig/rep_temp_basal.svg', alt: 'Temperatura basal durante 28 días: cerca de 36,35 °C en la fase folicular, una pequeña baja el día 14 (ovulación) y luego un alza sostenida a cerca de 36,75 °C en la fase lútea' },
+    fig: { type: 'img', src: 'paes/biologia/fig/rep_temp_basal_q.svg', alt: 'Temperatura basal durante los 28 días de un ciclo: cerca de 36,35 °C hasta el día 13, una pequeña baja el día 14 y luego se mantiene cerca de 36,75 °C hasta el día 27' },
     alts: ['Que la ovulación ocurrirá en los próximos días.', 'Que comenzó la menstruación.', 'Que la persona tiene una infección.', 'Que la ovulación ya ocurrió y el cuerpo lúteo está secretando progesterona.'], ok: 3,
     sol: r`<p><b>Paso 1. ¿Qué nos piden?</b> Interpretar el cambio de temperatura en la segunda mitad del ciclo.</p><p><b>Paso 2. Recuerda la causa.</b> Después de la ovulación se forma el cuerpo lúteo, que secreta progesterona. La progesterona sube la temperatura basal entre 0,3 y 0,5 °C, y se mantiene alta mientras el cuerpo lúteo funciona.</p><p><b>Paso 3. Lee el gráfico.</b> La temperatura se mantiene baja hasta el día 14 y sube desde el día 15 hasta casi el final: la ovulación ocurrió cerca del día 14.</p><p><b>Respuesta:</b> que la ovulación ya ocurrió y el cuerpo lúteo está secretando progesterona.</p><p><b>¿Por qué no las otras?</b> El alza aparece <b>después</b> de la ovulación, no antes: por eso este método confirma la ovulación, pero no la anticipa. La menstruación ocurre cuando la progesterona baja, y en el gráfico corresponde a la caída del día 28. Una fiebre por infección no forma este patrón de dos niveles que se repite en cada ciclo.</p>`,
     conc: 'El alza de la temperatura basal confirma que la ovulación ya ocurrió (efecto de la progesterona).'

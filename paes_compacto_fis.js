@@ -36,7 +36,7 @@ Object.assign(COMPACTO, {
       <tr><td>Gamma</td><td>radioterapia, esterilizar alimentos</td></tr></tbody></table>
       <div class="box alert">Comparar fuera y dentro de la atmósfera dice cuánto retiene en cada rango: retiene la mayor parte del UV.</div>` },
     { t: 'Interferencia y difracción', b: r`
-      <p><b>Interferencia:</b> ondas superpuestas se refuerzan (cresta con cresta) o se anulan (cresta con valle). <b>Young:</b> luz de una frecuencia (láser) por dos rendijas finas, de tamaño comparable a $\lambda$: franjas claras y oscuras.</p>
+      <p><b>Interferencia:</b> ondas superpuestas se refuerzan (cresta con cresta) o se contrarrestan (cresta con valle; se anulan si las amplitudes son iguales). <b>Young:</b> luz de una frecuencia (láser) por dos rendijas finas, de tamaño comparable a $\lambda$: franjas claras y oscuras.</p>
       <p><b>Difracción:</b> la onda rodea obstáculos o se abre en aberturas de tamaño comparable a $\lambda$. Radio AM ($\lambda$ de cientos de metros) rodea cerros; la luz se difracta en una ranura del grosor de un cabello, no en una ventana. Para mostrarla: un frente de ondas pasando por una abertura pequeña.</p>` }
   ],
 
@@ -50,7 +50,7 @@ Object.assign(COMPACTO, {
       <p>Cambio de dirección al pasar de medio, causado por el <b>cambio de rapidez</b>. $n = c/v$: aire 1,00, agua 1,33, vidrio 1,5.</p>
       <ul><li>Hacia un medio más lento (mayor $n$): se <b>acerca</b> a la normal. Hacia uno más rápido: se aleja.</li>
       <li>Incidencia perpendicular: no se desvía, pero cambia su rapidez.</li>
-      <li>Cambian $v$, $\lambda$ y dirección; la <b>frecuencia (el color) no</b>. Medir la frecuencia de los rayos es comparar su color.</li>
+      <li>Cambian $v$ y $\lambda$ (y la dirección, si la incidencia es oblicua); la <b>frecuencia (el color) no</b>. Medir la frecuencia de los rayos es comparar su color.</li>
       <li>Cuchara quebrada; piscina menos profunda. Del medio lento al rápido, sobre el ángulo límite: reflexión total interna.</li></ul>
       <div class="box alert">Ordena los medios por rapidez: aire→agua se acerca y vidrio→agua se aleja, entonces el vidrio es el más lento y aire→vidrio se acerca a la normal.</div>` },
     { t: 'El color de los objetos', b: r`
@@ -176,7 +176,7 @@ Object.assign(COMPACTO, {
       <div class="box alert">¿La tensión depende del lugar? Mide con el dinamómetro en dos puntos de la <b>misma</b> cuerda.</div>` },
     { t: 'Ley de Hooke', b: r`
       <div class="cols"><div>
-      <p>$F = k\,\Delta x$, con $\Delta x = L - L_0$. $k$ = pendiente de $F$–$\Delta x$; mayor $k$, más rígido. Proporcional: 30 N estiran 20 cm, para 45 cm hacen falta 67,5 N.</p>
+      <p>$F = k\,\Delta x$, con $\Delta x = |L - L_0|$. $k$ = pendiente de $F$–$\Delta x$; mayor $k$, más rígido. Proporcional: 30 N estiran 20 cm, para 45 cm hacen falta 67,5 N.</p>
       <p>Cumple Hooke si a iguales aumentos de $F$ hay iguales aumentos de $\Delta x$. Vale hasta el límite elástico: si todos los datos están en una recta, no se sabe dónde está.</p>
       </div><div><div class="qfig"><img class="tikz" src="paes/fisica/fig/fza_hooke_grafico.svg" alt="Gráfico de fuerza en newton en función de la deformación en centímetros para dos resortes. La recta del resorte A pasa por 20 N con 4 cm y llega a 30 N con 6 cm. La recta del resorte B pasa por 20 N con 10 cm y llega a 24 N con 12 cm"></div></div></div>
       <div class="box alert">Usa la deformación, no la longitud total.</div>` }

@@ -20,7 +20,7 @@ Puntajes de una prueba en un curso:\par\smallskip
 Puntaje $x_i$ & 1 & 2 & 3 & 4 & 5 & 6 & 7 & Total\\\midrule
 Frecuencia $f_i$ & 2 & 4 & 4 & 5 & 7 & 3 & 5 & $n = 30$\\\bottomrule
 \end{tabular}\par\smallskip
-\raggedright El curso tiene $2+4+4+5+7+3+5 = 30$ estudiantes; 7 es solo la cantidad de filas.
+\raggedright El curso tiene $2+4+4+5+7+3+5 = 30$ estudiantes; hay siete puntajes distintos, que van en las columnas.
 \end{ejemplo}
 
 \subsection{Frecuencia relativa}
@@ -67,7 +67,7 @@ Cantidad de personas & 2 & 4 & 5 & 4 & 2 & 6 & 2 & 5 & 3 & 2\\\bottomrule
 \end{center}
 El colegio entregará un bono a quienes hayan trabajado \textbf{como mínimo 6 años}. ¿Cuántas personas recibirán el bono?
 \alts{12}{17}{18}{23}
-\solucion{``Como mínimo 6 años'' significa 6 o más: se suman las filas 6, 7, 8, 9 y 10, es decir $6+2+5+3+2 = 18$ personas. Los distractores: 12 es sumar desde 7 (dejar fuera el 6); 17 es sumar de 1 a 5 (los que \textbf{no} reciben bono); 23 es sumar desde 5.}{C}
+\solucion{``Como mínimo 6 años'' significa 6 o más: se suman las filas 6, 7, 8, 9 y 10, es decir $6+2+5+3+2 = 18$ personas. Los distractores: 12 es sumar desde 7 (dejar fuera el 6); 17 es sumar de 1 a 5 (los que \textbf{no} reciben bono); 23 es sumar de 1 a 6, o sea, confundir ``como mínimo 6'' con ``a lo más 6''.}{C}
 \end{elejemplo}
 \motivacion{Ordenar datos es poner orden en la cabeza. Ya lees una tabla de frecuencias como experto.}
 
@@ -167,7 +167,8 @@ Mascotas $x_i$ & $f_i$ & $f_i\,x_i$\\\midrule
 0 & 12 & 0\\ 1 & 10 & 10\\ 2 & 15 & 30\\ 3 & 6 & 18\\ 4 & 5 & 20\\\midrule
 Total & 48 & 78\\\bottomrule
 \end{tabular}\par\smallskip
-$\bar{x} = \dfrac{78}{48} = 1{,}625$ mascotas por familia.
+$\bar{x} = \dfrac{78}{48} = 1{,}625$ mascotas por familia.\par\smallskip
+{\footnotesize\color{gris}Es la tabla de mascotas sin la fila ``5 o más'': de esas 2 familias no se conoce el valor exacto.}
 \end{minipage}
 
 \subsection{Cómo cambia el promedio}
@@ -205,12 +206,12 @@ En 2, 4, 4, 6, 9, 10, 12, 15 ($n = 8$): $Q_3 = \frac{10+12}{2} = 11$, que no es 
 \begin{ojo}[Error frecuente] $Q_1$ no es el punto medio entre el mínimo y la mediana: es la mediana de los \textbf{datos} de la mitad inferior.\end{ojo}
 
 \subsection{Percentiles: cien partes}
-El percentil $P_k$ es el valor que deja \textbf{al menos el $k\%$} de los datos en $P_k$ o por debajo. Así, $P_{25} = Q_1$, $P_{50} = Me$ y $P_{75} = Q_3$.
-\begin{clave}[Interpretar] ``$P_{80} = 65$ puntos'': al menos el $80\%$ obtuvo 65 puntos o menos (y a lo más el $20\%$ obtuvo más). El valor (65) y el porcentaje (80) no son intercambiables.\end{clave}
-\begin{ejemplo} En un grupo de 40, quien supera a 30 está sobre el $\frac{30}{40} = 75\%$: su puntaje está en el percentil 75.\end{ejemplo}
+El percentil $P_k$ es el valor que deja \textbf{aproximadamente el $k\%$} de los datos en $P_k$ o por debajo (el cálculo exacto depende de la convención). Así, $P_{25} = Q_1$, $P_{50} = Me$ y $P_{75} = Q_3$.
+\begin{clave}[Interpretar] ``$P_{80} = 65$ puntos'': aproximadamente el $80\%$ obtuvo 65 puntos o menos (y alrededor del $20\%$ obtuvo más). El valor (65) y el porcentaje (80) no son intercambiables.\end{clave}
+\begin{ejemplo} En un grupo de 40, quien supera a 30 personas tiene un puntaje mayor que el de $\frac{30}{40} = 75\%$ del grupo: queda cerca del percentil 75.\end{ejemplo}
 
 \subsection{Cuartiles desde una tabla de frecuencias}
-Se calcula la acumulada $F_i$ y se busca la posición que interesa ($\frac{n}{4}$, $\frac{n}{2}$ o $\frac{3n}{4}$): el valor es el de la primera fila donde $F_i$ la alcanza.
+Se calcula la acumulada $F_i$ y con ella se ubica cada dato por su posición: el dato de la posición $j$ está en la primera fila con $F_i \ge j$. Luego la mediana y los cuartiles se obtienen con el mismo método de antes (medianas de las mitades). Si $n$ es par, la mediana promedia los datos de las posiciones $\frac{n}{2}$ y $\frac{n}{2}+1$.
 
 \begin{minipage}[t]{0.36\linewidth}\vspace{0pt}\centering\small
 \begin{tabular}{@{}ccc@{}}\toprule
@@ -249,12 +250,12 @@ El diagrama de cajón resume los datos con cinco números: \textbf{mínimo, $Q_1
 \foreach \v/\lab in {4/mín,12/$Q_1$,18/$Me$,26/$Q_3$,36/máx} \node[above,font=\scriptsize] at (\v,0.38) {\lab};
 \end{tikzpicture}
 \end{center}
-\begin{clave}[Cada tramo, al menos un $25\%$] mín a $Q_1$, $Q_1$ a $Me$, $Me$ a $Q_3$ y $Q_3$ a máx reúnen cada uno al menos el $25\%$ de los datos. Hasta $Q_3$ hay al menos un $75\%$; desde $Q_3$ hacia arriba, al menos un $25\%$.\end{clave}
+\begin{clave}[Cuatro tramos] mín a $Q_1$, $Q_1$ a $Me$, $Me$ a $Q_3$ y $Q_3$ a máx reúnen cada uno aproximadamente el $25\%$ de los datos. Hasta $Q_3$ hay aproximadamente un $75\%$; desde $Q_3$ hacia arriba, aproximadamente un $25\%$.\end{clave}
 
 \subsection{Lo que el cajón dice y lo que no}
-Sí se puede afirmar que al menos el $25\%$ de los datos es menor o igual que $Q_1$, al menos el $50\%$ es menor o igual que $Me$ y al menos el $75\%$ es menor o igual que $Q_3$, y que ningún dato queda fuera de los bigotes.
+Sí se puede afirmar que aproximadamente el $25\%$ de los datos es menor o igual que $Q_1$, el $50\%$ es menor o igual que $Me$ y el $75\%$ es menor o igual que $Q_3$, y que ningún dato queda fuera de los bigotes.
 \begin{ojo}[No se puede afirmar] El \textbf{promedio} (el cajón no lo muestra), \textbf{cuántos} datos hay, ni que ``la mitad tiene exactamente $Me$''. Un valor del cajón tampoco es un porcentaje ni una posición en el orden.\end{ojo}
-\begin{ejemplo} Seguidores: mín 80, $Q_1 = 140$, $Me = 270$, $Q_3 = 400$, máx 600. Es correcto decir que al menos un $25\%$ tiene entre 140 y 270 seguidores; no lo es decir que el promedio es 270.\end{ejemplo}
+\begin{ejemplo} Seguidores: mín 80, $Q_1 = 140$, $Me = 270$, $Q_3 = 400$, máx 600. Es correcto decir que aproximadamente un $25\%$ tiene entre 140 y 270 seguidores; no lo es decir que el promedio es 270.\end{ejemplo}
 
 \subsection{Construir el cajón desde los datos}
 Con 18, 19, 20, 21, 21, 27, 30, 30, 31, 34, 35 ($n = 11$): mínimo 18 y máximo 35; $Me = 27$ (posición 6); $Q_1$ es la mediana de 18, 19, 20, 21, 21, o sea 20; $Q_3$ es la mediana de 30, 30, 31, 34, 35, o sea 31.
@@ -296,8 +297,8 @@ En el siguiente diagrama de cajón se presenta el tiempo, en minutos, que tardó
 \end{tikzpicture}
 \end{center}
 ¿Qué representa el 16 en el diagrama de cajón?
-\alts{Que al menos un $75\%$ de las personas terminó el circuito en 16 minutos o menos.}{Que un $16\%$ de las personas terminó el circuito en a lo más 16 minutos.}{Que la dieciseisava persona que terminó el circuito demoró 16 minutos.}{Que la cuarta persona que terminó el circuito demoró 16 minutos.}
-\solucion{El 16 es el borde derecho de la caja: es $Q_3$, el tercer cuartil, que deja al menos el $75\%$ de los datos en 16 o menos. Eso es exactamente la alternativa A. Las otras confunden el valor 16 con un porcentaje o con una posición en el orden de llegada, cosas que el cajón no informa.}{A}
+\alts{Que aproximadamente un $75\%$ de las personas terminó el circuito en 16 minutos o menos.}{Que un $16\%$ de las personas terminó el circuito en a lo más 16 minutos.}{Que la decimosexta persona que terminó el circuito demoró 16 minutos.}{Que la cuarta persona que terminó el circuito demoró 16 minutos.}
+\solucion{El 16 es el borde derecho de la caja: es $Q_3$, el tercer cuartil, que deja aproximadamente el $75\%$ de los datos en 16 o menos. Eso es exactamente la alternativa A. Las otras confunden el valor 16 con un porcentaje o con una posición en el orden de llegada, cosas que el cajón no informa.}{A}
 \end{elejemplo}
 \motivacion{Mediana, cuartiles y bigotes (de gato, obvio): el diagrama de cajón ya no tiene secretos para ti.}
 
@@ -404,7 +405,7 @@ Al leer una expresión, cada factor es una etapa del experimento, en orden. En u
 ``Al menos uno'' es lo contrario de ``ninguno'', así que conviene calcular el complemento.
 \begin{clave}[Al menos uno] \[ \mathbb{P}(\text{al menos uno}) = 1 - \mathbb{P}(\text{ninguno}) \]
 Dos monedas, al menos una cara: $\mathbb{P}(SS) = \frac14$, así que $1 - \frac14 = \frac34$.\end{clave}
-\gatotip[\gatonaranjo]{``Y'' multiplica, ``o'' suma (restando lo común si se solapan), ``al menos uno'' es 1 menos ninguno y ``no'' es 1 menos la probabilidad. Con eso sale casi todo.}
+\gatotip[\gatonaranjo]{``Y'' multiplica (si son independientes), ``o'' suma (restando lo común si se solapan), ``al menos uno'' es 1 menos ninguno y ``no'' es 1 menos la probabilidad. Con eso sale casi todo.}
 \gatotip[\gatogris]{Dibuja el árbol aunque sea chiquitito: anotar la probabilidad en cada rama evita multiplicar donde había que sumar.}
 
 \begin{elejemplo}{PAES Invierno 2027, adaptada}

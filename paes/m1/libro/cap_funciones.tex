@@ -15,7 +15,7 @@ Una \textbf{función} es una regla que a cada número que entra le asigna \textb
 \begin{itemize}
   \item \textbf{Variable independiente}: la $x$, lo que tú eliges.
   \item \textbf{Variable dependiente}: $y = f(x)$, lo que sale; depende de la $x$.
-  \item \textbf{Dominio}: los valores que puede tomar la $x$. Si no se dice nada, son todos los números reales.
+  \item \textbf{Dominio}: los valores que puede tomar la $x$. Si solo se da la fórmula, son los reales para los que ella está definida.
 \end{itemize}
 \begin{ejemplo} El kilo de pan cuesta \peso 2.000. Si compro $x$ kilos, pago $f(x) = 2.000\cdot x$. Con 2 kilos: $f(2) = 2.000\cdot 2 = 4.000$ pesos.\end{ejemplo}
 \begin{ojo}[Ojo con la escritura] $f(2)$ no es «f por 2»: es lo que sale cuando entra el 2.\end{ojo}
@@ -85,14 +85,14 @@ Considera la función $g$ definida por $g(x) = 8x - 5$, con dominio el conjunto 
 \subsection{Función afín y función lineal}
 Una planta mide 3 cm y crece 2 cm por semana: después de $x$ semanas mide $f(x) = 2x + 3$.
 \begin{clave}[Función afín] $f(x) = mx + n$. Su gráfico es una recta. $n = f(0)$ es el \textbf{valor de partida} y $m$ es lo que \textbf{cambia por cada paso} de 1 en $x$.\end{clave}
-\begin{clave}[Función lineal] $f(x) = mx$: una afín con $n = 0$. Pasa por el origen y es \textbf{proporcional}: si $x$ se duplica, $y$ se duplica, y $\dfrac{y}{x}$ da siempre $m$.\end{clave}
+\begin{clave}[Función lineal] $f(x) = mx$: una afín con $n = 0$. Pasa por el origen y es \textbf{proporcional}: si $x$ se duplica, $y$ se duplica, y $\dfrac{y}{x} = m$ para $x \neq 0$.\end{clave}
 \begin{ejemplo} Tabla A: $\frac{6}{2} = \frac{12}{4} = \frac{18}{6} = 3$, siempre igual: es lineal, $f(x) = 3x$. Tabla B con los pares $(1, 5)$ y $(2, 7)$: $\frac{5}{1} = 5$ y $\frac{7}{2} = 3{,}5$, distintos: es afín ($2x + 3$).\end{ejemplo}
 \begin{ojo}[Afín no es proporcional] En $f(x) = 2x + 3$: $f(1) = 5$ y $f(2) = 7$. La $x$ se duplicó, pero $7$ no es el doble de $5$. Con una afín no sirve la regla de tres. Atajo: si la tabla trae $x = 0$ y su $y$ no es $0$, no es lineal.\end{ojo}
 Tampoco son lineales $x^2$ (su gráfico no es recta) ni una constante como $k(x) = 7$ (recta plana a altura 7). Una pendiente negativa o fraccionaria no importa: $g(x) = -\frac{2}{5}x$ sí es lineal.
 
 \subsection{La pendiente}
 La \textbf{pendiente} $m$ es cuánto sube (o baja) la recta por cada paso de 1 a la derecha. Con dos puntos es «lo que sube dividido por lo que avanza»:
-\begin{clave}[Pendiente con dos puntos] $$m = \frac{y_2 - y_1}{x_2 - x_1}$$\end{clave}
+\begin{clave}[Pendiente con dos puntos] $$m = \frac{y_2 - y_1}{x_2 - x_1}, \qquad x_2 \neq x_1$$\end{clave}
 \begin{ejemplo} Por $(1, 4)$ y $(3, 10)$: $m = \dfrac{10 - 4}{3 - 1} = \dfrac{6}{2} = 3$. Por $(-1, 5)$ y $(2, -1)$: $m = \dfrac{-1 - 5}{2 - (-1)} = \dfrac{-6}{3} = -2$.\end{ejemplo}
 \begin{ojo}[Las y van arriba] Al revés da $\frac{2}{6}$, que está mal. Y usa el mismo orden arriba y abajo: si los mezclas, el signo sale cambiado.\end{ojo}
 \begin{center}
@@ -112,7 +112,7 @@ La \textbf{pendiente} $m$ es cuánto sube (o baja) la recta por cada paso de 1 a
 Mientras más grande es $m$ sin su signo, más inclinada es la recta: $y = 3x$ es más empinada que $y = x$.
 
 \subsection{Cortes con los ejes}
-\begin{clave}[Cortes] \textbf{Eje $Y$}: se reemplaza $x = 0$ y queda el punto $(0, n)$. \textbf{Eje $X$}: se iguala a $0$ y se despeja: $mx + n = 0$ da $x = -\dfrac{n}{m}$.\end{clave}
+\begin{clave}[Cortes] \textbf{Eje $Y$}: se reemplaza $x = 0$ y queda el punto $(0, n)$. \textbf{Eje $X$}: se iguala a $0$ y se despeja: $mx + n = 0$ da $x = -\dfrac{n}{m}$ si $m \neq 0$. Si $m = 0$ y $n \neq 0$, no hay corte; si ambos son $0$, la recta es el eje $X$.\end{clave}
 \par\noindent\begin{minipage}{0.55\linewidth}
 \begin{ejemplo} Con $f(x) = -3x + 6$: $f(0) = 6$, así que corta al eje $Y$ en $(0, 6)$. Para el eje $X$: $-3x + 6 = 0$, $-3x = -6$, $x = 2$; el punto es $(2, 0)$.\end{ejemplo}
 El signo de $n$ dice dónde corta al eje $Y$: $n > 0$ arriba del origen, $n < 0$ abajo, $n = 0$ en el origen (lineal).
@@ -140,7 +140,7 @@ Dos rectas \textbf{paralelas} tienen la \textbf{misma pendiente}.
 \begin{ejemplo} La paralela a $y = -x + 2$ que pasa por $(2, 5)$ tiene $m = -1$. Reemplazando el punto: $5 = -2 + n$, así que $n = 7$ y la recta es $y = -x + 7$.\end{ejemplo}
 Si cambias $m$ y dejas $n$ fijo, la recta \textbf{gira} en torno a $(0, n)$; si cambias $n$ y dejas $m$, la recta se \textbf{traslada} hacia arriba o hacia abajo, paralela a la anterior.
 \gatotip[\gatonegro]{Para leer $m$ y $n$ de un dibujo: ¿sube o baja? Eso es el signo de $m$. ¿Corta al eje $Y$ arriba o abajo del origen? Eso es el signo de $n$.}
-\gatotip[\gatolila]{Con una tabla, divide cada $y$ por su $x$. Si siempre da lo mismo, es lineal y basta una regla de tres. Si no, es afín: pendiente, valor de partida y comprobación.}
+\gatotip[\gatolila]{Con una tabla, calcula la pendiente entre pares de puntos: si siempre coincide, es afín. Si además pasa por $(0, 0)$, es lineal y basta una regla de tres (no dividas por $x$ cuando $x = 0$).}
 
 \begin{elejemplo}{PAES Invierno 2026}
 La distancia de reacción es la distancia recorrida por un vehículo desde que el conductor se percata de un obstáculo hasta que comienza a pisar el pedal de freno. La distancia de reacción $f$ y la rapidez del vehículo se relacionan mediante una función de la forma $f(x) = ax$, con $a$ constante. En la siguiente tabla se presentan algunos ejemplos.
@@ -166,7 +166,7 @@ Rapidez del vehículo & Distancia de reacción\\\midrule
 Muchas cuentas tienen dos partes: un \textbf{cargo fijo}, que se paga una sola vez, y un \textbf{cargo por unidad}, que se paga por cada página, minuto, kilómetro o video.
 \begin{ejemplo} Una imprenta cobra \peso 27.000 por preparar el trabajo y \peso 115 por página. Con 0, 1 y 2 páginas: $27.000$; $27.000 + 1\cdot 115$; $27.000 + 2\cdot 115$. Con $x$ páginas: $f(x) = 115x + 27.000$.\end{ejemplo}
 \begin{clave}[La forma general] $$f(x) = (\text{precio por unidad})\cdot x + \text{cargo fijo}$$ El precio por unidad es la pendiente; el cargo fijo es el valor con 0 unidades, donde la recta corta al eje $Y$.\end{clave}
-\begin{ojo}[Cuidado con la unidad del cobro] Si cobran \peso 400 «por cada media hora», 2 horas son 4 medias horas: $1.500 + 4\cdot 400 = 3.100$. Completa la frase «cobran por cada \underline{\hspace{1cm}}» y cuenta cuántos hay antes de multiplicar.\end{ojo}
+\begin{ojo}[Cuidado con la unidad del cobro] Si cobran \peso 1.500 fijos más \peso 400 «por cada media hora», 2 horas son 4 medias horas: $1.500 + 4\cdot 400 = 3.100$. Completa la frase «cobran por cada \underline{\hspace{1cm}}» y cuenta cuántos hay antes de multiplicar.\end{ojo}
 
 \subsection{Usar el modelo: calcular y despejar}
 Si te dan la cantidad, reemplaza: $f(100) = 115\cdot 100 + 27.000 = 38.500$. Si te dan el total, iguala, \textbf{resta lo fijo} y divide:
@@ -355,7 +355,7 @@ $f(x)$ & $1 + 2 - 3 = 0$ & $-3$ & $1 - 2 - 3 = -4$ & $-3$ & $9 - 6 - 3 = 0$\\\bo
 Las alturas se repiten como en un espejo: $0, -3, -4, -3, 0$. Eso es la simetría de la parábola.
 
 \subsection{Ceros: cortes con el eje X}
-Los \textbf{ceros} son las $x$ donde la parábola cruza el eje $X$; ahí la altura es 0, así que se iguala la función a 0.
+Los \textbf{ceros} son las $x$ donde la parábola corta (cruza o toca) el eje $X$; ahí la altura es 0, así que se iguala la función a 0.
 \begin{ejemplo} $x^2 - 6x + 8 = 0$: $(x - 2)(x - 4) = 0$, así que corta en $(2, 0)$ y $(4, 0)$.\end{ejemplo}
 \begin{clave}[¿Cuántas veces corta?] Con $\Delta = b^2 - 4ac$: positivo, dos cortes; cero, la toca en un punto (su vértice); negativo, no la toca.\end{clave}
 \begin{ejemplo} Con $a = 1$ y $b = -4$: $x^2 - 4x + 3$ tiene $\Delta = 4$ (dos cortes), $x^2 - 4x + 4$ tiene $\Delta = 0$ (un punto) y $x^2 - 4x + 6$ tiene $\Delta = -8$ (ninguno).\end{ejemplo}
@@ -365,7 +365,7 @@ El \textbf{vértice} es la punta de la parábola. El \textbf{eje de simetría} e
 \begin{clave}[Vértice] $$x_v = -\frac{b}{2a},\qquad y_v = f(x_v)$$ El eje de simetría es la recta $x = x_v$.\end{clave}
 \par\noindent\begin{minipage}{0.55\linewidth}
 \begin{ejemplo} $f(x) = x^2 + 2x - 1$: $x_v = -\frac{2}{2} = -1$ e $y_v = 1 - 2 - 1 = -2$. El vértice es $(-1, -2)$; como $a > 0$, el valor mínimo es $-2$ y el eje es $x = -1$.\end{ejemplo}
-\begin{clave}[El truco del espejo] Si $f(p) = f(q)$, el eje está en el punto medio: $x = \dfrac{p + q}{2}$. En el dibujo, $f(1) = f(-3) = 2$ y $\frac{1 + (-3)}{2} = -1$.\end{clave}
+\begin{clave}[El truco del espejo] Si $f(p) = f(q)$ con $p \neq q$, el eje está en el punto medio: $x = \dfrac{p + q}{2}$. En el dibujo, $f(1) = f(-3) = 2$ y $\frac{1 + (-3)}{2} = -1$.\end{clave}
 \end{minipage}\hfill
 \begin{minipage}{0.4\linewidth}\centering
 \begin{tikzpicture}
@@ -410,7 +410,7 @@ Considera la función cuadrática $f$, con dominio el conjunto de los números r
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[capfun,width=6cm,xmin=-6,xmax=4,ymin=-3,ymax=9,xtick={-6,-4,...,4},ytick={-2,0,...,8}]
-  \addplot[nar,domain=-6:4] {x^2+2*x-1} node[pos=0.97,anchor=east,font=\scriptsize] {$f$};
+  \addplot[nar,domain=-6:4] {x^2+2*x-1} node[pos=0.82,anchor=east,font=\scriptsize] {$f$};
   \draw[azul,dashed,line width=0.8pt] (axis cs:-1,-3) -- (axis cs:-1,9);
   \addplot[only marks,mark=*,mark size=2pt,nard] coordinates {(2,7)};
   \node[font=\scriptsize,anchor=west] at (axis cs:2.1,6.6) {$(2, 7)$};
@@ -421,7 +421,7 @@ Considera la función cuadrática $f$, con dominio el conjunto de los números r
 \alts{$4$}{$-3$}{$-4$}{$-5$}
 \solucion{Buscamos el gemelo de $(2, 7)$ al otro lado del eje. Distancia del punto al eje: $2 - (-1) = 3$. El gemelo está 3 unidades a la izquierda: $-1 - 3 = -4$. Entonces $f(-4) = 7$. Comprobación: $\frac{-4 + 2}{2} = -1$ \checkmark.
 
-¿Por qué no las otras? $4$ refleja respecto del eje $Y$ y no de $x = -1$. $-3$ cuenta solo 2 unidades desde el eje; $-5$ cuenta 4.}{C}
+¿Por qué no las otras? $4$ duplica la coordenada $x = 2$ en vez de buscar su simétrico respecto de $x = -1$. $-3$ cuenta solo 2 unidades desde el eje; $-5$ cuenta 4.}{C}
 \end{elejemplo}
 \motivacion{Vértice, ceros y concavidad: ya lees una parábola de un vistazo. Que tu ánimo sea cóncavo hacia arriba.}
 

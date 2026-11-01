@@ -218,7 +218,7 @@ const GEO_TRANSFORMACIONES = [
       <p>Mira la letra F del dibujo: sus reflejos quedan "al revés", como en un espejo.</p>
       </div><div>
       <div class="qfig"><img class="tikz" src="paes/m1/fig/tra_refl_ejes.svg" alt="Una figura con forma de letra F en el primer cuadrante, su reflejo respecto del eje Y en el segundo cuadrante y su reflejo respecto del eje X en el cuarto cuadrante"></div>
-      <div class="box alert"><b>Para no confundirte</b> Respecto del eje X cambia la $y$; respecto del eje Y cambia la $x$. La coordenada que cambia es la que <b>no</b> lleva el nombre del eje. Comprueba con el dibujo: reflejar respecto del eje X manda la figura hacia abajo.</div>
+      <div class="box alert"><b>Para no confundirte</b> Respecto del eje X cambia la $y$; respecto del eje Y cambia la $x$. La coordenada que cambia es la que <b>no</b> lleva el nombre del eje. Comprueba con el dibujo: reflejar respecto del eje X cambia arriba por abajo.</div>
       </div></div>` },
     { t: 'Reflexión respecto de las rectas x = a e y = b', b: r`
       <div class="cols"><div>

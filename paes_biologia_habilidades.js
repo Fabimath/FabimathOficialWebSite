@@ -209,7 +209,7 @@ const BIO_HABILIDADES = [
       <p><b>Paso 1. Encabezados y unidades.</b> ¿Qué mide cada columna? ¿En qué unidad?</p>
       <p><b>Paso 2. ¿Qué cambia y qué se mide?</b> Identifica la variable independiente y la dependiente.</p>
       <p><b>Paso 3. Recorre en orden.</b> Sigue la columna que crece y mira qué hace la otra: ¿sube, baja o queda igual?</p>
-      <p><b>Paso 4. Revisa todas las filas.</b> Una tendencia vale solo si se cumple en todas.</p>
+      <p><b>Paso 4. Revisa todas las filas.</b> Distingue una tendencia general de una relación que se cumple sin excepciones en todas las filas.</p>
       <table><thead><tr><th>Temperatura del agua (°C)</th><th>Oxígeno disuelto (mg/L)</th><th>Movimientos del opérculo de un pez (por min)</th></tr></thead><tbody>
       <tr><td>5</td><td>12,8</td><td>40</td></tr>
       <tr><td>10</td><td>11,3</td><td>55</td></tr>
@@ -255,7 +255,7 @@ const BIO_HABILIDADES = [
       <div class="box"><b>Ejemplo resuelto</b> Distintas cantidades de una enzima digieren un trozo igual de gelatina, a la misma temperatura:<table><thead><tr><th>Enzima (u.a.)</th><th>Tiempo (min)</th><th>Enzima × tiempo</th></tr></thead><tbody>
       <tr><td>1</td><td>60</td><td>60</td></tr><tr><td>2</td><td>30</td><td>60</td></tr><tr><td>3</td><td>20</td><td>60</td></tr></tbody></table>
       El producto es siempre 60: el tiempo de digestión es <b>inversamente proporcional</b> a la cantidad de enzima.</div>
-      <div class="box"><b>Recuerda</b> Una relación es proporcional solo si el cociente (directa) o el producto (inversa) es constante. La altura de una planta sube con los días, pero si la semilla ya medía 2 cm el primer día, la recta no pasa por el origen: es directa, no proporcional.</div>
+      <div class="box"><b>Recuerda</b> Una relación es proporcional solo si el cociente (directa) o el producto (inversa) es constante. La altura de una planta sube con los días, pero si la planta medía 2 cm en el instante inicial (día 0), la recta no pasa por el origen: es directa, no proporcional.</div>
       </div></div>` },
     { t: 'Tendencias: interpolar y predecir', b: r`
       <div class="cols"><div>
@@ -290,7 +290,7 @@ const BIO_HABILIDADES = [
       <tr><td>Leer un gráfico</td><td>Ejes, unidades y escala antes de leer un punto.</td></tr>
       <tr><td>Un óptimo</td><td>Busca el valor del eje horizontal donde la curva es más alta.</td></tr>
       <tr><td>Una predicción</td><td>Sigue la tendencia, sin extrapolar lejos del rango medido.</td></tr>
-      <tr><td>Una conclusión o inferencia</td><td>Que salga de los datos, hable solo de lo medido y no agregue nada.</td></tr>
+      <tr><td>Una conclusión o inferencia</td><td>Que esté respaldada por los datos: la conclusión responde la pregunta y la inferencia puede proponer una explicación aún no medida.</td></tr>
       <tr><td>Un promedio, una variación o una eficiencia</td><td>Calcula para cada grupo y después compara.</td></tr></tbody></table>
       <div class="box" style="margin-top:14px"><b>Recuerda</b><br>· En una relación inversa, cuando una variable disminuye, la otra aumenta.<br>· Cada enzima tiene un óptimo de temperatura y de pH; lejos del óptimo, su actividad baja.<br>· Que dos variables cambien juntas no prueba que una cause la otra.<br>· La conclusión se limita a lo estudiado: «en el rango estudiado, la germinación fue máxima a 30 °C».<br>· La variación porcentual se calcula sobre el valor inicial.</div>
       <div class="box" style="margin-top:14px"><b>Método PAES</b> 1. Lee encabezados, ejes y unidades. 2. Identifica qué cambió y qué se midió. 3. Describe en tu cabeza la tendencia antes de leer las alternativas. 4. Si hay números, calcula el promedio, la diferencia, el cociente o el producto que corresponda. 5. Descarta lo que no sale de los datos, lo que generaliza y lo que habla de variables que no se midieron.</div>` }
