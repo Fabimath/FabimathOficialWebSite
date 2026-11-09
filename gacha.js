@@ -3,7 +3,7 @@
    Colección guardada en el mismo objeto del avance: col = { "idGato:variante": veces }.
    Se carga antes del script principal; usa $, store, CAT_PX y updPts solo al ejecutarse. */
 
-const G_COST = 10;
+const G_COST = 10, G_OSC = 500;   // G_OSC: Garritas oscuras (garritas() en oscuros.js)
 // w = peso. Cada rareza, cada gato dentro de su rareza y cada variante es menos probable que la anterior.
 const RAR = [
   { id: 'comun',      name: 'Común',      w: 55, color: '#8e8e93' },
@@ -21,7 +21,7 @@ const VAR = [
   { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' },
   { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' },   // estilo en tamagotchi.js
   { id: 'estelar',  name: 'Estelar',  w: 0.1, dot: 'linear-gradient(135deg,#fffbe6,#ffd75e 35%,#c8920a 65%,#fff)' },   // dorado metálico con brillo blanco
-  { id: 'oscuro',   name: 'Oscuro',   w: 0,   dot: 'linear-gradient(135deg,#050208,#2a0f45 55%,#6a2fa0)' }   // solo del Portal oscuro (oscuros.js); estilo en tamagotchi.js
+  { id: 'oscuro',   name: 'Oscuro',   w: 0,   dot: 'linear-gradient(135deg,#050208,#2a0f45 55%,#6a2fa0)' }   // solo del Portal oscuro y las Garritas oscuras (oscuros.js); estilo en tamagotchi.js
 ];
 // VAR_TOP = estelar: tope de fusiones, tickets y evoluciones. VAR_GACHA = variantes que pueden salir de sorteos: oscuro nunca entra.
 const VAR_TOP = VAR.findIndex(v => v.id === 'estelar'), VAR_GACHA = VAR.slice(0, VAR_TOP + 1);
@@ -465,12 +465,14 @@ function renderGacha(prog) {
   const nGatos = [...GATOS, ...GATOS_OSC].filter(g => tiene(g).length).length, nVar = Object.keys(col).filter(pieza).length;
   const totVar = GATOS.length * VAR_GACHA.length + GATOS.filter(g => g.rar !== RAR[0]).length + GATOS_OSC.length;   // sorteos + oscuros del portal (raro o más) + los 16 exclusivos
   const pctR = r => (r.w / RAR.reduce((s, x) => s + x.w, 0) * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });
+  const pctO = r => (r.w / RAR.slice(1).reduce((s, x) => s + x.w, 0) * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });   // Garritas oscuras: solo raro a mítico
   const f = fusion(fus);
   const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
   el.innerHTML = `<h3>🎰 Gachapón de gatitos</h3>
     ${eventoActivo() ? `<div class="sub" style="color:#7c5cf0;font-weight:600">🎉 Evento activo: ${evTxt()}.</div>` : ''}<div class="sub">Canjea ⭐ ${G_COST} por un gato al azar de la máquina de garras. Clic en un gato de tu colección para que te acompañe (hasta ${ACOMP_MAX}), venderlo o fusionarlo. Cada respuesta correcta da ⭐ 1 (multiplicada por los gatos que te acompañan); bonos: 5 de 5 en un cuestionario da ⭐ 50, y en el ensayo 20, 19 y 18 correctas dan ⭐ 200, 150 y 100. Pueden salir repetidos, y los repetidos se venden o se fusionan.</div>
     <div class="top"><button class="btn btn-primary" id="gPlay" ${pts < G_COST ? 'disabled' : ''}>Jugar ⭐ ${G_COST}</button>
       ${GACHA_VAR.map(([d, c]) => `<button class="btn btn-primary ${d >= 3 ? 'g-btn-arco' : ''}" data-gvar="${d}" ${pts < c ? 'disabled' : ''}>${d >= 3 ? '🌈' : '🎰'} Gacha ${VAR[d].name.toLowerCase()} o más ⭐ ${c}</button>`).join('')}
+      <button class="btn g-btn-osc" id="gOsc" ${pts < G_OSC ? 'disabled' : ''}>🌑 Garritas oscuras ⭐ ${G_OSC}</button>
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gOps">${gatoSVG(GATOS[0], 20)} Michi operaciones</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
@@ -478,7 +480,8 @@ function renderGacha(prog) {
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
       Tope: si tienes más de ${TOPE} de un gato en una variante, ese gato deja de salir en esa variante.<br>
-      Variante: ${VAR_GACHA.map(v => `${v.name} ${v.w} %`).join(' · ')}. La variante 🌑 Oscuro no sale aquí: solo del Portal oscuro del casino.<br>
+      Variante: ${VAR_GACHA.map(v => `${v.name} ${v.w} %`).join(' · ')}. La variante 🌑 Oscuro no sale aquí: solo del Portal oscuro del casino y de las Garritas oscuras.<br>
+      Garritas oscuras (⭐ ${G_OSC}): aseguran uno de los 16 gatos de la Oscuridad en variante oscuro; rareza ${RAR.slice(1).map(r => `${r.name} ${pctO(r)} %`).join(' · ')}, y dentro de cada rareza todos salen igual.<br>
       Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(', ')} (este último es interactivo); entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
       Fusión: tres iguales dan el mismo gato con la variante siguiente (${VAR_GACHA.map(v => v.name.toLowerCase()).join(' → ')}). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
@@ -496,7 +499,7 @@ function renderGacha(prog) {
           <span class="g-dots">${VAR.map(x => col[g.id + ':' + x.id] ? `<button class="${x === v ? 'on' : ''}" style="background:${x.dot}" data-ver="${g.id}:${x.id}" title="${x.name} ×${col[g.id + ':' + x.id]}" aria-label="Ver ${x.name}"></button>` : x.id === 'oscuro' ? '' : `<i title="${x.name} (falta)"></i>`).join('')}</span>
           ${acompanantes(prog).includes(k) ? '<span class="g-acbadge">🐾 te acompaña</span>' : ''}</div>`;
       }).join('') + '</div>').join('') +
-    `<div class="g-rar" style="color:#6a2fa0">🌑 Gatos de la Oscuridad</div><div class="sub">Solo salen del Portal oscuro del casino: no se fusionan ni suben de variante.</div><div class="g-grid">` +
+    `<div class="g-rar" style="color:#6a2fa0">🌑 Gatos de la Oscuridad</div><div class="sub">Salen del Portal oscuro del casino y de las Garritas oscuras (⭐ ${G_OSC}, aseguran uno de estos 16): no se fusionan ni suben de variante.</div><div class="g-grid">` +
       GATOS_OSC.map(g => {
         const k = g.id + ':oscuro';
         if (!col[k]) return `<div class="g-card">${gatoSVG(g, 72, true)}<b>???</b><small>${g.rar.name} · sin descubrir</small></div>`;
@@ -506,6 +509,7 @@ function renderGacha(prog) {
       }).join('') + '</div>';
   $('gPlay').addEventListener('click', jugar);
   el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => { const r = GACHA_VAR.find(x => x[0] === +b.dataset.gvar); (r[0] >= 3 ? gachaEpico : gachaPrem)(r); }));
+  $('gOsc').addEventListener('click', () => garritas());   // oscuros.js, se carga después
   $('gFarm').addEventListener('click', () => granja());   // tamagotchi.js la reemplaza después del primer dibujo
   $('gOps').addEventListener('click', () => operaciones());
   $('gFus').addEventListener('click', fusionar);
