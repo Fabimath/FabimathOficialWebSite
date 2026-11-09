@@ -38,8 +38,8 @@ const PESCA = [{ vel: 2.2, zona: 22 }, { vel: 3.5, zona: 15 }];
 async function superRuleta() {
   const p = store.get(); if (pez(p) < SUPER_COST) return;
   const vs = VAR.slice(VAR.findIndex(v => v.id === 'platino'));
-  const rar = sortear(RAR.slice(evRar())), g = sortear(GATOS.filter(c => c.rar === rar));
   p.col = p.col || {};
+  const { g } = sortearGato(p.col, RAR.slice(evRar()), GATOS, [vs[0]]);
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   let nv = 0, k = g.id + ':' + vs[0].id;
   p.col[k] = (p.col[k] || 0) + 1; sumaPez(p, -SUPER_COST); store.set(p); updPez();   // platino guardado antes de pescar
@@ -86,8 +86,8 @@ function lance(m, g, v, sig, { vel, zona }, nv) {
 /* ---------- gacha de gatos nuevos ---------- */
 async function gachaNuevos() {
   const p = store.get(); if (pez(p) < NUEVOS_COST) return;
-  const rar = sortear(RAR.slice(evRar())), g = sortear(GATOS.filter(c => c.acc && c.rar === rar)), v = sortear(VAR.slice(evVar())), k = g.id + ':' + v.id;
   p.col = p.col || {};
+  const { g, v } = sortearGato(p.col, RAR.slice(evRar()), GATOS.filter(c => c.acc), VAR.slice(evVar())), rar = g.rar, k = g.id + ':' + v.id;
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = (p.col[k] || 0) + 1; sumaPez(p, -NUEVOS_COST); store.set(p); updPez();   // guardado antes de la animación
   const r = RAR.indexOf(rar), nuevos = GATOS.filter(c => c.acc);

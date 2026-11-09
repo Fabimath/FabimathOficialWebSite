@@ -147,6 +147,18 @@ function gatoSVG(g, size, oculto) {
 
 /* ---------- sorteo y guardado ---------- */
 const sortear = list => { let x = Math.random() * list.reduce((s, o) => s + o.w, 0); return list.find(o => (x -= o.w) < 0) || list[list.length - 1]; };
+/* Tope de repetidos: con más de TOPE copias de un gato en una variante, ese par deja de salir.
+   La rareza sale como siempre (entre las que aún tienen pares libres); dentro de ella se sortea el par gato + variante
+   con peso gato × variante, así los demás pares guardan sus proporciones. Si todo está topado, se sortea sin tope. */
+const TOPE = 10;
+function sortearGato(col, rars, gatos, vs) {
+  col = col || {};
+  const pares = r => gatos.filter(g => g.rar === r).flatMap(g => vs.filter(v => (col[g.id + ':' + v.id] || 0) <= TOPE).map(v => ({ g, v, w: g.w * v.w })));
+  let rs = rars.filter(r => pares(r).length);
+  if (!rs.length) { col = {}; rs = rars; }
+  const { g, v } = sortear(pares(sortear(rs)));
+  return { g, v };
+}
 // mínimos de rareza y variante que asegura el evento (EVENTO en paes.html)
 const evRar = () => eventoActivo() ? EVENTO.rar || 0 : 0, evVar = () => eventoActivo() ? EVENTO.vari || 0 : 0;
 const evTxt = () => `el gachapón y las ruletas solo entregan gatos ${RAR.slice(evRar()).map(r => r.name.toLowerCase()).join(', ')}` +
@@ -156,8 +168,8 @@ function tirar(cost = G_COST, desde = 0) {
   const p = store.get();
   if ((p.pts || 0) < cost) return null;
   const vs = VAR.slice(Math.max(desde, evVar()));
-  const rar = sortear(RAR.slice(evRar())), g = sortear(GATOS.filter(c => c.rar === rar)), v = sortear(vs), k = g.id + ':' + v.id;
   p.col = p.col || {};
+  const { g, v } = sortearGato(p.col, RAR.slice(evRar()), GATOS, vs), k = g.id + ':' + v.id;
   const antes = p.col[k] || 0, gatoNuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = antes + 1; p.pts -= cost; store.set(p); updPts();   // se guarda antes de la animación: recargar no pierde el gato
   return { g, v, vs, veces: antes + 1, gatoNuevo };
@@ -458,6 +470,7 @@ function renderGacha(prog) {
       <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
+      Tope: si tienes más de ${TOPE} de un gato en una variante, ese gato deja de salir en esa variante.<br>
       Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
       Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(', ')} (este último es interactivo); entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
@@ -726,7 +739,7 @@ async function gachaEpico([desde, cost]) {
 async function fusionar() {
   const f = fusion(fus), p = store.get();
   if (f.err || (p.pts || 0) < f.cost) return;
-  const g = f.tipo === 'var' ? f.g : sortear(GATOS.filter(c => c.rar === RAR[f.r])), v = VAR[f.v], k = g.id + ':' + v.id;
+  const v = VAR[f.v], g = f.tipo === 'var' ? f.g : sortearGato(p.col, [RAR[f.r]], GATOS, [v]).g, k = g.id + ':' + v.id;
   const entran = fus.map(pieza);
   fus.forEach(x => quitar(p, x));
   const nuevo = !p.col[k];
