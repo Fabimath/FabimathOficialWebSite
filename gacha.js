@@ -411,11 +411,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .g-fx > div:nth-child(1) { --dx: 90px; } .g-fx > div:nth-child(3) { --dx: -90px; }
   @keyframes g-junta { 0% { transform: none; } 60% { transform: translateX(var(--dx, 0)) rotate(360deg) scale(.8); opacity: 1; } 100% { transform: translateX(var(--dx, 0)) scale(0); opacity: 0; } }
   .g-farm { width: min(960px, 100%); padding: 16px; }
-  .g-park { position: relative; height: min(70vh, 560px); border-radius: 18px; overflow: hidden; cursor: pointer; background: radial-gradient(circle at 30% 20%, #b9ef8f, #7fcf5a 60%, #5fb547); }
-  .g-park .deco { position: absolute; font-size: 34px; pointer-events: none; user-select: none; }
-  .g-park .gt { position: absolute; transition-property: left, top; transition-timing-function: linear; pointer-events: none; }
-  .g-park .gt > div { transition: transform .2s; }
-  .g-park .gt.izq > div { transform: scaleX(-1); }
+  .g-park { position: relative; height: min(60vh, 500px); border-radius: 18px; overflow: hidden; cursor: pointer; background: radial-gradient(circle at 30% 20%, #b9ef8f, #7fcf5a 60%, #5fb547); }
   .g-park .gt .cor { position: absolute; left: 50%; top: -10px; font-size: 18px; animation: g-cor 1.2s ease-out forwards; }
   @keyframes g-cor { from { transform: translate(-50%, 0); opacity: 1; } to { transform: translate(-50%, -34px); opacity: 0; } }
   .g-park .pez { position: absolute; font-size: 22px; transform: translate(-50%, -50%); pointer-events: none; }
@@ -811,46 +807,334 @@ async function rueda(titulo, sub, tajadas, i) {
   return m;
 }
 
-/* ---------- granja: los gatos que tiene pasean por un parque; clic en el pasto deja un pescado ---------- */
+/* ---------- granja: una por cada par (rareza, variante) que tenga, con fondo animado según la rareza y efecto según la variante ----------
+   Los gatos pasean, juegan en parejas (ovillo), se persiguen, duermen y saltan; clic en el pasto deja un pescado, clic en un gato
+   muestra un mensaje de ánimo debajo del parque, y frotarlo con el mouse o el dedo lo acaricia: ⭐ 1 por clave gato:variante cada
+   GF_CARINO_MS (p.cari). Las estrellas caen en un frasco recolector. Contrato con tamagotchi.js: un solo #gPark durante toda la vida
+   del modal, y los .gt son hijos directos suyos, con left/top en px inline (al cambiar de pestaña se vacía y se reconstruye). */
+document.head.insertAdjacentHTML('beforeend', `<style>
+  .gf-box { max-height: 94vh; overflow: auto; }
+  .gf-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+  .gf-tab { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); color: var(--ink-2); cursor: pointer; }
+  .gf-tab small { color: var(--ink-3); font-weight: 600; }
+  .gf-tab.on { background: var(--ink); border-color: var(--ink); color: #fff; } .gf-tab.on small { color: #ddd; }
+  .gf-pt { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
+  /* capas del parque: fondo (0) < efecto de variante (1) < gatos (2) < pescados (5) < frasco (9) */
+  .gf-fondo, .gf-fx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .gf-fondo { z-index: 0; } .gf-fx { z-index: 1; }
+  .gf-fondo > *, .gf-fx > * { position: absolute; pointer-events: none; user-select: none; }
+  .gf-deco { font-size: 34px; }
+  .g-park[data-v=oscuro] .gf-fondo { filter: brightness(.5) saturate(.7); }
+  .gf-bg-comun { background: linear-gradient(#8fd3ff, #d4f0ff 21%, transparent 21.2%), radial-gradient(circle at 30% 45%, #b9ef8f, #7fcf5a 60%, #5fb547); }
+  .gf-bg-raro { background: linear-gradient(#7ec8ff, #cdeeff 16%, #1f93c9 16%, #4fc7e3 40%, #f7e4b2 40.2%, #e9cd8c); }
+  .gf-bg-epico { background: linear-gradient(#120a2e, #2b1565 34%, #3a2080 34.2%, #25124f); }
+  .gf-bg-legendario { background: linear-gradient(#ff8a5c, #ffc977 26%, #f3cf7a 26.2%, #e0b04a 62%, #c9962f); }
+  .gf-bg-mitico { background: radial-gradient(ellipse at 50% 100%, rgba(255,110,20,.55), transparent 60%), linear-gradient(#2a0707, #8a2214 32%, #52150e 32.2%, #2b0b08); }
+  .gf-olas { left: 0; right: 0; top: 16%; height: 24%; background: radial-gradient(circle at 50% 0, transparent 9px, rgba(255,255,255,.4) 10px 12px, transparent 13px) 0 0 / 40px 20px, radial-gradient(circle at 50% 0, transparent 9px, rgba(255,255,255,.3) 10px 12px, transparent 13px) 20px 10px / 40px 20px; animation: gf-ola 4s linear infinite; }
+  @keyframes gf-ola { from { background-position: 0 0, 20px 10px; } to { background-position: 40px 0, 60px 10px; } }
+  .gf-sol { left: 50%; top: -40px; width: 110px; height: 110px; margin-left: -55px; border-radius: 50%; background: radial-gradient(circle, #fff6c8, #ffd75e 50%, #ffb02e 75%); box-shadow: 0 0 50px 20px rgba(255,200,80,.6); }
+  .gf-rayos { left: 50%; top: 15px; width: 1000px; height: 1000px; margin: -500px 0 0 -500px; background: repeating-conic-gradient(rgba(255,240,170,.38) 0 7deg, transparent 7deg 18deg); -webkit-mask: radial-gradient(circle, #000 10%, transparent 62%); mask: radial-gradient(circle, #000 10%, transparent 62%); animation: gf-gira 70s linear infinite; }
+  @keyframes gf-gira { to { transform: rotate(360deg); } }
+  .gf-nube { font-size: 38px; opacity: .92; animation: gf-deriva 30s ease-in-out infinite alternate; }
+  @keyframes gf-deriva { from { transform: translateX(-50px); } to { transform: translateX(90px); } }
+  .gf-mari { font-size: 18px; animation: gf-aletea 9s ease-in-out infinite alternate; }
+  @keyframes gf-aletea { 0% { transform: translate(0,0) rotate(-8deg) scaleX(1); } 25% { transform: translate(40px,-24px) rotate(10deg) scaleX(.5); } 50% { transform: translate(70px,8px) rotate(-6deg) scaleX(1); } 75% { transform: translate(30px,26px) rotate(8deg) scaleX(.5); } 100% { transform: translate(-20px,-10px) rotate(-8deg) scaleX(1); } }
+  .gf-bur { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85); background: rgba(255,255,255,.25); animation: gf-burbuja 6s ease-in infinite; }
+  @keyframes gf-burbuja { 0% { transform: translateY(0) scale(.6); opacity: 0; } 12% { opacity: .9; } 100% { transform: translateY(-110px) scale(1.2); opacity: 0; } }
+  .gf-luci { width: 6px; height: 6px; border-radius: 50%; background: #fff7a0; box-shadow: 0 0 8px 3px rgba(255,235,90,.8); animation: gf-luz 8s ease-in-out infinite alternate; }
+  @keyframes gf-luz { 0% { transform: translate(0,0); opacity: .2; } 50% { transform: translate(30px,-20px); opacity: 1; } 100% { transform: translate(-20px,-40px); opacity: .3; } }
+  .gf-brillo, .gf-dia { font-size: 16px; animation: gf-titila 2.4s ease-in-out infinite; }
+  @keyframes gf-titila { 0%, 100% { transform: scale(.4); opacity: .15; } 50% { transform: scale(1.2); opacity: 1; } }
+  .gf-asc { width: 5px; height: 5px; border-radius: 50%; background: #ffb347; box-shadow: 0 0 6px 2px #ff6a1a; animation: gf-brasa 5s linear infinite; }
+  @keyframes gf-brasa { 0% { transform: translate(0,0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(22px,-170px); opacity: 0; } }
+  .fv-oro { background: linear-gradient(rgba(255,200,70,.2), rgba(255,160,20,.14)); }
+  .gf-glit { width: 4px; height: 6px; background: #ffd84a; box-shadow: 0 0 4px #fff3b0; animation: gf-cae 4.5s linear infinite; }
+  @keyframes gf-cae { from { transform: translateY(0) rotate(0); } to { transform: translateY(540px) rotate(540deg); } }
+  .fv-diamante { background: linear-gradient(rgba(170,235,255,.2), rgba(120,200,255,.12)), radial-gradient(circle at 70% 20%, rgba(255,255,255,.25), transparent 50%); }
+  .gf-dia { color: #c5f6ff; text-shadow: 0 0 6px #7fe0ff; } .gf-rosa { color: #ffc2f0; text-shadow: 0 0 6px #ff7ae0; }
+  .fv-arcoiris::before { content: ''; position: absolute; left: 12%; width: 76%; top: 1%; height: 48%; opacity: .85; background: radial-gradient(ellipse 50% 100% at 50% 100%, transparent 50%, #b57be0 51% 55%, #4fa8ff 55% 59%, #5fd97a 59% 63%, #ffe45c 63% 67%, #ff9a3c 67% 71%, #ff5e5e 71% 75%, transparent 76%); animation: gf-pulso 4s ease-in-out infinite; }
+  @keyframes gf-pulso { 50% { opacity: .5; transform: scale(1.03); } }
+  .fv-platino { background: rgba(225,230,245,.14); }
+  .fv-platino::before { content: ''; position: absolute; top: -10%; bottom: -10%; left: 0; width: 30%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-150%) skewX(-18deg); animation: gf-barre 5s ease-in-out infinite; }
+  @keyframes gf-barre { 0% { transform: translateX(-150%) skewX(-18deg); } 60%, 100% { transform: translateX(450%) skewX(-18deg); } }
+  .fv-galactico { background: radial-gradient(ellipse at 25% 30%, rgba(150,70,230,.5), transparent 60%), radial-gradient(ellipse at 75% 70%, rgba(255,90,200,.4), transparent 60%), rgba(20,5,50,.3); }
+  .fv-galactico::before { content: ''; position: absolute; inset: 0; background: radial-gradient(1.5px 1.5px at 12% 20%, #fff, transparent), radial-gradient(1.5px 1.5px at 32% 62%, #fff, transparent), radial-gradient(2px 2px at 55% 15%, #fff, transparent), radial-gradient(1.5px 1.5px at 72% 48%, #fff, transparent), radial-gradient(2px 2px at 88% 82%, #fff, transparent), radial-gradient(1.5px 1.5px at 45% 90%, #fff, transparent), radial-gradient(1.5px 1.5px at 92% 18%, #fff, transparent), radial-gradient(1.5px 1.5px at 6% 75%, #fff, transparent); animation: gf-op 3s ease-in-out infinite alternate; }
+  @keyframes gf-op { from { opacity: .35; } to { opacity: 1; } }
+  .fv-estelar { background: radial-gradient(circle at 50% 35%, rgba(255,225,110,.38), transparent 65%); }
+  .gf-fugaz { width: 90px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #fff, rgba(255,235,150,0)); opacity: 0; animation: gf-estrella 7s linear infinite; }
+  @keyframes gf-estrella { 0% { opacity: 0; transform: translate(0,0) rotate(-27deg); } 3% { opacity: 1; } 13% { opacity: 0; transform: translate(-300px,150px) rotate(-27deg); } 100% { opacity: 0; transform: translate(-300px,150px) rotate(-27deg); } }
+  .fv-oscuro { background: radial-gradient(circle at 50% 50%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.7)); }
+  .gf-bruma { width: 60%; height: 70px; border-radius: 50%; background: radial-gradient(ellipse, rgba(200,190,230,.35), transparent 70%); filter: blur(8px); animation: gf-deriva 16s ease-in-out infinite alternate; }
+  .gf-bat { font-size: 22px; animation: gf-murci 9s linear infinite; }
+  @keyframes gf-murci { 0% { transform: translate(0,0) scaleX(1); } 20% { transform: translate(220px,-16px) scaleX(.6); } 40% { transform: translate(440px,10px) scaleX(1); } 60% { transform: translate(660px,-14px) scaleX(.6); } 80% { transform: translate(880px,8px) scaleX(1); } 100% { transform: translate(1100px,-6px) scaleX(.6); } }
+  /* gatos: .gt (posición) > .gf-cu (rebote, salto, sueño) > .gf-dir (espejo) > .v-variante */
+  .g-park .gt { position: absolute; z-index: 2; width: 52px; height: 52px; transition-property: left, top; transition-timing-function: linear; pointer-events: auto; touch-action: none; cursor: grab; }
+  .gf-cu { position: relative; isolation: isolate; width: 52px; height: 52px; transform-origin: 50% 100%; }
+  .gf-cu svg { display: block; }
+  .gf-cu::after { content: ''; position: absolute; left: 8px; right: 8px; bottom: -2px; height: 7px; border-radius: 50%; background: rgba(0,0,0,.22); z-index: -1; }
+  .g-park.gf-osc .gf-cu::before { content: ''; position: absolute; inset: -5px; border-radius: 50%; z-index: -1; background: radial-gradient(circle, rgba(255,255,255,.4), rgba(255,255,255,.12) 55%, transparent 72%); }
+  .gf-dir { transition: transform .2s; } .gf-dir.gf-izq { transform: scaleX(-1); }
+  .gt.gf-anda .gf-cu { animation: gf-hop .34s ease-in-out infinite; }
+  @keyframes gf-hop { 50% { transform: translateY(-7px) rotate(-3deg); } }
+  .gf-cu.gf-salta { animation: gf-brinca .6s ease-out; }
+  @keyframes gf-brinca { 35% { transform: translateY(-26px) scale(.95,1.08); } 60% { transform: none; } 75% { transform: scale(1.1,.88); } 100% { transform: none; } }
+  .gf-cu.gf-duerme { animation: gf-resp 2.2s ease-in-out infinite; }
+  @keyframes gf-resp { 50% { transform: scale(1.05,.9); } }
+  .gf-cu.gf-feliz { animation: gf-feliz 1s ease-in-out; }
+  @keyframes gf-feliz { 20% { transform: scale(1.15,.8); } 40% { transform: scale(.92,1.12); } 60% { transform: scale(1.1,.88); } 80% { transform: scale(.97,1.04); } }
+  .gf-zz { position: absolute; left: 30px; top: -12px; font-size: 16px; pointer-events: none; animation: gf-zz 2s ease-in-out infinite; }
+  @keyframes gf-zz { 0% { transform: translate(0,6px) scale(.6); opacity: 0; } 30% { opacity: 1; } 100% { transform: translate(12px,-26px) scale(1.1); opacity: 0; } }
+  .gf-mano { position: absolute; left: 50%; top: -30px; margin-left: -14px; font-size: 28px; pointer-events: none; z-index: 6; animation: gf-pat 1.1s ease-in-out forwards; }
+  @keyframes gf-pat { 0% { opacity: 0; transform: translate(-30px,-8px) rotate(-14deg); } 12% { opacity: 1; } 25% { transform: translate(-14px,2px) rotate(-8deg); } 50% { transform: translate(14px,2px) rotate(8deg); } 75% { transform: translate(-14px,2px) rotate(-8deg); } 90% { opacity: 1; } 100% { opacity: 0; transform: translate(14px,-6px) rotate(8deg); } }
+  .gf-flot { position: absolute; z-index: 6; font-size: 18px; white-space: nowrap; pointer-events: none; animation: gf-sube 1.4s ease-out forwards; }
+  @keyframes gf-sube { from { transform: translate(-50%,0); opacity: 1; } to { transform: translate(calc(-50% + var(--dx, 0px)), -38px); opacity: 0; } }
+  .gf-reposo { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: #fff; color: #444; box-shadow: 0 2px 8px rgba(0,0,0,.25); animation-duration: 2.3s; }
+  .gf-bola { position: absolute; z-index: 3; font-size: 20px; pointer-events: none; animation: gf-bola .5s ease-in-out infinite alternate; }
+  @keyframes gf-bola { from { transform: translate(-50%,-50%) translateY(6px) rotate(0); } to { transform: translate(-50%,-50%) translateY(-28px) rotate(180deg); } }
+  .gf-vuela { position: absolute; z-index: 8; font-size: 22px; pointer-events: none; transform: translate(-50%,-50%); }
+  /* recolector de estrellas */
+  .gf-jarro { position: absolute; right: 12px; bottom: 10px; width: 58px; z-index: 9; pointer-events: none; text-align: center; transform-origin: 50% 100%; }
+  .gf-tapa { display: block; position: relative; z-index: 1; width: 40px; height: 9px; margin: 0 auto -1px; border-radius: 4px 4px 2px 2px; background: linear-gradient(#e0a000, #b57a00); }
+  .gf-vidrio { position: relative; width: 50px; height: 62px; margin: 0 auto; display: flex; align-items: flex-end; overflow: hidden; border-radius: 8px 8px 14px 14px; border: 2px solid rgba(255,255,255,.85); background: rgba(255,255,255,.28); box-shadow: inset 0 0 8px rgba(255,255,255,.6), 0 2px 8px rgba(0,0,0,.3); }
+  .gf-nivel { width: 100%; display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; overflow: hidden; font-size: 11px; line-height: 1; background: linear-gradient(rgba(255,215,90,.55), rgba(255,170,30,.75)); }
+  .gf-cont { display: inline-block; margin-top: 3px; padding: 1px 8px; border-radius: 999px; font-size: 12px; background: rgba(0,0,0,.55); color: #fff; }
+  .gf-bota { animation: gf-bota .5s ease-out; }
+  @keyframes gf-bota { 30% { transform: translateY(-10px) scale(.95,1.08); } 60% { transform: scale(1.1,.9); } 100% { transform: none; } }
+  /* mensaje del gato */
+  .gf-msg { margin-top: 12px; padding: 12px 16px; border-radius: 18px; background: var(--bg); border: 1px solid var(--line); text-align: left; }
+  .gf-msg[hidden] { display: none; }
+  .gf-msg .tag { display: inline-block; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .05em; padding: 3px 9px; border-radius: 99px; margin-left: 3px; vertical-align: 2px; }
+  .gf-pop { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; animation: gf-pop .45s cubic-bezier(.2,1.4,.4,1); }
+  @keyframes gf-pop { from { transform: scale(.85); opacity: 0; } to { transform: none; opacity: 1; } }
+  .gf-cara { flex: none; width: 110px; height: 110px; }
+  .gf-info { flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 6px; }
+  .gf-tema { color: var(--ink-3); font-style: italic; }
+  .gf-dice { position: relative; margin-top: 6px; padding: 10px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--line); font-size: 16px; font-weight: 600; line-height: 1.35; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .gf-dice::before { content: ''; position: absolute; left: 22px; top: -7px; width: 12px; height: 12px; background: #fff; border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
+  @media (prefers-reduced-motion: reduce) {
+    .gf-olas, .gf-rayos, .gf-fondo > *, .gf-fx > *, .gf-fx::before, .gt.gf-anda .gf-cu, .gf-cu.gf-salta, .gf-cu.gf-duerme, .gf-cu.gf-feliz, .gf-zz, .gf-mano, .gf-flot, .gf-bola, .gf-bota, .gf-pop { animation: none; }
+    .gf-fx > .gf-fugaz { display: none; }
+  }
+</style>`);
+
+let gfTab = '';   // última granja elegida ("rareza:variante")
+const GF_CARINO_MS = 10 * 60e3, GF_RUB = 220, GF_TOPE = 60;   // GF_RUB: px de frote para una caricia; GF_TOPE: copias por granja
+const GF_MSG = [
+  'Cada ejercicio que resuelves hoy es un punto más que sumas mañana.', 'Equivocarse también es practicar: mira dónde fallaste y sigue.',
+  'Un ejercicio más y te ganas un churu.', 'No necesitas ser perfecto, solo constante.',
+  'Los gatos caen de pie, y tú también te vas a levantar después de un mal ensayo.', 'Respira hondo, lee el enunciado dos veces y parte por lo que sabes.',
+  'Un problema difícil es solo uno fácil que todavía no entiendes del todo.', 'Tomar agua y estirar un poco también es parte de estudiar.',
+  'La PAES mide lo que has practicado, y tú has practicado harto.', 'Hoy no tienes que entender todo: con avanzar un poquito basta.',
+  'Si el ejercicio te enreda, dibújalo. Un esquema desenreda mucho.', 'Descansar también cuenta: un cerebro cansado no aprende bien.',
+  'Paso a pasito, como gato en el techo: se llega igual.', 'Revisa tus errores como un detective: cada uno trae una pista.',
+  'En matemática, la paciencia vale más que la velocidad.', 'Ya resolviste cosas que antes te parecían imposibles. Esta también se puede.',
+  'Anota las fórmulas con tus propias palabras: así se quedan en la cabeza.', 'Con un ensayo a la vez, el puntaje va subiendo.',
+  'Ronronea tranquilo: el estrés no resuelve ecuaciones.', 'Estudia un rato, descansa un rato y vuelve con energía.',
+  'Si hoy te costó, mañana te va a costar menos. Así funciona la práctica.', 'Tus ganas de aprender valen más que cualquier puntaje.',
+  'Pide ayuda cuando la necesites: preguntar es de valientes.', 'Ciencias también es curiosidad: pregúntate el porqué de cada cosa.',
+  'Un buen resumen de hoy te ahorra una noche de pánico mañana.', 'Duerme bien antes de la prueba: tu cerebro ordena lo aprendido mientras descansas.',
+  'Celebra los avances chiquitos, que son los que suman.', 'Una siestecita corta y vuelves a resolver con ojos nuevos.',
+  'Mira hasta dónde llegaste desde el primer día: eso es progreso.', 'Confía en tu preparación. ¡Tú puedes con esto!',
+  'Las fracciones muerden menos de lo que parece.'
+];
+// fondo por rareza: dy = franja vertical (%) de la decoración, extra = capas fijas, p = partículas { c: clase, t: texto, n: cantidad, y: franja %, x: franja %, d: segundos }
+const GF_FONDOS = {
+  comun: { dy: [24, 88], deco: ['🌳', '🌷', '🌼', '🌻', '⛲', '🪨', '🌳', '🌷'], p: [{ c: 'gf-nube', t: '☁️', n: 5, y: [1, 16], d: 30 }, { c: 'gf-mari', t: '🦋', n: 5, y: [28, 85], d: 9 }] },
+  raro: { dy: [46, 88], deco: ['🌴', '🐚', '⛱️', '🦀', '🪸', '🌴'], extra: '<i class="gf-olas"></i>', p: [{ c: 'gf-bur', n: 12, y: [20, 55], d: 6 }] },
+  epico: { dy: [34, 88], deco: ['🍄', '🔮', '🌲', '🪻', '🌙', '🍄', '🌲'], p: [{ c: 'gf-luci', n: 14, y: [10, 95], d: 8 }] },
+  legendario: { dy: [28, 88], deco: ['🏰', '👑', '🏆', '🌻', '⛲'], extra: '<i class="gf-sol"></i><i class="gf-rayos"></i>', p: [{ c: 'gf-brillo', t: '✨', n: 12, y: [4, 95], d: 2.4 }] },
+  mitico: { dy: [30, 88], deco: ['🌋', '🔥', '🐉', '⛩️', '🔥'], p: [{ c: 'gf-asc', n: 14, y: [45, 100], d: 5 }] }
+};
+// efecto por variante (partículas; el resto va en CSS .fv-*)
+const GF_FX = {
+  oro: [{ c: 'gf-glit', n: 26, y: [-6, -1], d: 4.5 }],
+  diamante: [{ c: 'gf-dia', t: '✦', n: 16, y: [4, 96], d: 3 }],
+  galactico: [{ c: 'gf-dia gf-rosa', t: '✦', n: 14, y: [4, 96], d: 3 }],
+  estelar: [{ c: 'gf-fugaz', n: 4, y: [2, 40], x: [45, 100], d: 7 }],
+  oscuro: [{ c: 'gf-bruma', n: 4, y: [35, 90], x: [-10, 40], d: 18 }, { c: 'gf-bat', t: '🦇', n: 5, y: [6, 55], x: [-8, -8], d: 9 }]
+};
+const gfRnd = (a, b) => a + Math.random() * (b - a);
+const gfPart = ps => ps.map(({ c, t = '', n, y, x = [0, 96], d }) => Array.from({ length: n }, () =>
+  `<span class="${c}" style="left:${gfRnd(...x)}%;top:${gfRnd(...y)}%;animation-delay:${-gfRnd(0, d)}s;animation-duration:${gfRnd(d * .7, d * 1.3)}s">${t}</span>`).join('')).join('');
+
 function granja() {
-  const col = store.get().col || {};
-  // ponytail: tope de 60 gatos en pantalla; con más, el parque se vuelve una masa ilegible
-  const copias = Object.entries(col).filter(([k]) => pieza(k)).flatMap(([k, n]) => Array(n).fill(k)).slice(0, 60);
-  const deco = ['🌳', '🌳', '🌲', '🌷', '🌼', '🌻', '⛲', '🌳', '🌷', '🪨'].map((e, i) => `<span class="deco" style="left:${(i * 37 + 5) % 92}%;top:${(i * 53 + 8) % 85}%">${e}</span>`).join('');
-  const total = Object.values(col).reduce((s, n) => s + n, 0);
-  const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">${copias.length < total ? `${copias.length} de tus ${total}` : copias.length} gatos paseando · clic en el pasto para dejar un pescado.</div></div>
-    <div style="display:flex;gap:8px"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gOpsF">${gatoSVG(GATOS[0], 20)} Michi operaciones</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
-    <div class="g-park" id="gPark">${deco}</div>`, 'g-farm');
-  const park = m.querySelector('#gPark'), W = () => park.clientWidth - 56, H = () => park.clientHeight - 56;
-  const gatos = copias.map(k => {
-    const pz = pieza(k), el = document.createElement('div');
-    el.className = 'gt'; el.title = pz.g.name; el.innerHTML = `<div class="v-${VAR[pz.v].id}">${gatoSVG(pz.g, 52)}</div>`;
-    const c = { el, x: Math.random() * W(), y: Math.random() * H(), ocupado: false };
-    el.style.left = c.x + 'px'; el.style.top = c.y + 'px'; park.appendChild(el);
-    return c;
+  const col = store.get().col || {}, fs = {};   // granjas: "rareza:variante" -> { r, v, n, ks (copias, hasta GF_TOPE) }
+  Object.entries(col).forEach(([k, n]) => {
+    const pz = pieza(k); if (!pz || !(n > 0) || pz.r < 0) return;
+    const f = fs[pz.r + ':' + pz.v] = fs[pz.r + ':' + pz.v] || { r: pz.r, v: pz.v, n: 0, ks: [] };
+    f.n += n; f.ks.push(...Array(Math.max(0, Math.min(n, GF_TOPE - f.ks.length))).fill(k));
   });
-  const ir = (c, x, y) => {   // camina a (x, y) y devuelve los ms que tarda
-    const ms = Math.max(300, Math.hypot(x - c.x, y - c.y) / 70 * 1000);
-    c.el.classList.toggle('izq', x < c.x);
+  const lista = Object.values(fs).sort((a, b) => a.r - b.r || a.v - b.v);
+  const tabs = lista.map(f => `<button class="gf-tab" role="tab" data-f="${f.r}:${f.v}"><i class="gf-pt" style="background:${VAR[f.v].dot}"></i>${RAR[f.r].name} · ${VAR[f.v].name} <small>×${f.n}</small></button>`).join('');
+  const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">Frota un gato con el mouse o el dedo para acariciarlo (⭐ 1, y luego ese gato descansa) · clic en un gato para escucharlo · clic en el pasto para dejar un pescado.</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn-primary" id="gFeed">🐟 Dar comida a todos</button><button class="btn btn-ghost" id="gOpsF">${gatoSVG(GATOS[0], 20)} Michi operaciones</button><button class="btn btn-ghost" id="gClose">Cerrar</button></div></div>
+    <div class="gf-tabs" role="tablist">${tabs}</div><div class="g-park" id="gPark"></div><div class="gf-msg" id="gfMsg" hidden></div>`, 'g-farm gf-box');
+  const park = m.querySelector('#gPark'), panel = m.querySelector('#gfMsg'), W = () => Math.max(0, park.clientWidth - 56), H = () => Math.max(0, park.clientHeight - 56);
+  let y0 = 0;   // fracción de alto donde empieza el suelo (cielo y mar quedan arriba, sin gatos)
+  const Y = () => gfRnd(y0 * park.clientHeight, H());
+  let gatos = [], tm = new Set(), ses = 0, gan = 0, sw = false, ult = -1;   // tm: temporizadores de la pestaña actual; ses: estrellas del frasco; gan: ganadas en total; sw: tragar el clic del pasto
+  const gl = [];   // temporizadores de las estrellas en vuelo (sobreviven al cambio de pestaña para contar en el frasco)
+  const at = (fn, ms) => { const id = setTimeout(() => { tm.delete(id); fn(); }, ms); tm.add(id); return id; };   // se borra al cumplirse: el Set no crece
+  const esp = ms => new Promise(r => at(r, ms));   // si se cambia de pestaña el temporizador muere y el guion queda colgado sin efecto
+  const flot = (par, txt, x, y, cls = '') => {
+    const s = document.createElement('span'); s.className = 'gf-flot ' + cls; s.textContent = txt; s.style.left = x + 'px'; s.style.top = y + 'px';
+    s.style.setProperty('--dx', cls ? '0px' : gfRnd(-16, 16) + 'px'); par.appendChild(s); at(() => s.remove(), cls ? 2400 : 1500);
+  };
+  const jarHTML = bota => `<div class="gf-jarro ${bota ? 'gf-bota' : ''}"><i class="gf-tapa"></i><div class="gf-vidrio"><div class="gf-nivel" style="height:${Math.min(88, ses * 9)}%">${'⭐'.repeat(Math.min(ses, 15))}</div></div><b class="gf-cont">⭐ ${ses}</b></div>`;
+
+  /* ---- movimiento: un guion por actividad; c.tok cambia si algo lo interrumpe (caricia), c.oc = ocupado ---- */
+  const ir = (c, x, y, v = 70) => {   // camina a (x, y), sin salir del suelo, y devuelve los ms que tarda
+    x = Math.min(Math.max(x, 0), W()); y = Math.min(Math.max(y, y0 * park.clientHeight), H());
+    const ms = Math.max(300, Math.hypot(x - c.x, y - c.y) / v * 1000);
+    c.dir.classList.toggle('gf-izq', x < c.x); c.el.classList.add('gf-anda');
     c.el.style.transitionDuration = ms + 'ms'; c.x = x; c.y = y; c.el.style.left = x + 'px'; c.el.style.top = y + 'px';
     return ms;
   };
-  const comer = (c, x, y) => {
-    const pez = document.createElement('span'); pez.className = 'pez'; pez.textContent = '🐟'; pez.style.left = x + 'px'; pez.style.top = y + 'px'; park.appendChild(pez);
-    c.ocupado = true;
-    setTimeout(() => { pez.remove(); const cor = document.createElement('span'); cor.className = 'cor'; cor.textContent = '❤'; c.el.appendChild(cor); setTimeout(() => cor.remove(), 1200); c.ocupado = false; }, ir(c, x - 26, y - 26));
+  const ini = c => { c.oc = true; return ++c.tok; };
+  const fin = (c, t) => { if (c.tok !== t) return; c.oc = false; c.el.classList.remove('gf-anda'); };
+  const parar = c => {   // se queda donde está a la vista (c.x/y guardan el destino mientras dura la transición)
+    const s = getComputedStyle(c.el), x = parseFloat(s.left) || 0, y = parseFloat(s.top) || 0;   // leer antes de cortar la transición
+    c.el.style.transitionDuration = '0ms'; c.x = x; c.y = y;
+    c.el.style.left = c.x + 'px'; c.el.style.top = c.y + 'px';
+    c.tok++; c.oc = true; c.el.classList.remove('gf-anda'); c.cu.classList.remove('gf-salta', 'gf-duerme');
+    c.el.querySelectorAll('.gf-zz').forEach(z => z.remove());
   };
-  const paseo = rapido() ? 0 : setInterval(() => gatos.forEach(c => { if (!c.ocupado && Math.random() < 0.35) ir(c, Math.random() * W(), Math.random() * H()); }), 1500);
+  const brinca = async (c, t) => { c.cu.classList.remove('gf-salta'); void c.cu.offsetWidth; c.cu.classList.add('gf-salta'); await esp(650); if (c.tok === t) c.cu.classList.remove('gf-salta'); };
+  const camina = async c => { const t = ini(c); await esp(ir(c, gfRnd(0, W()), Y())); fin(c, t); };
+  const salta = async c => { const t = ini(c); await brinca(c, t); fin(c, t); };
+  const duerme = async c => {
+    const t = ini(c), z = document.createElement('span'); z.className = 'gf-zz'; z.textContent = '💤';
+    c.cu.classList.add('gf-duerme'); c.el.appendChild(z);
+    await esp(gfRnd(5000, 8000));
+    if (c.tok === t) { z.remove(); c.cu.classList.remove('gf-duerme'); fin(c, t); }
+  };
+  const juegan = async (a, b) => {   // se encuentran cara a cara y saltan por turnos con un ovillo
+    const ta = ini(a), tb = ini(b), cx = gfRnd(60, Math.max(61, W() - 110)), cy = Y();
+    await esp(Math.max(ir(a, cx - 50, cy), ir(b, cx + 50, cy)));
+    const ok = () => a.tok === ta && b.tok === tb;
+    if (ok()) {
+      a.dir.classList.remove('gf-izq'); b.dir.classList.add('gf-izq'); a.el.classList.remove('gf-anda'); b.el.classList.remove('gf-anda');
+      const bola = document.createElement('span'); bola.className = 'gf-bola'; bola.textContent = '🧶'; bola.style.left = cx + 26 + 'px'; bola.style.top = cy + 22 + 'px'; park.appendChild(bola);
+      for (let i = 0; i < 6 && ok(); i++) {
+        const q = i % 2 ? b : a; brinca(q, q === a ? ta : tb);
+        flot(park, i % 2 ? '✨' : '💕', cx + 26 + gfRnd(-18, 18), cy + gfRnd(-10, 14));
+        await esp(500);
+      }
+      bola.remove();
+    }
+    fin(a, ta); fin(b, tb);
+  };
+  const persigue = async (a, b) => {   // a corre y b la sigue un poco atrás y más rápido
+    const ta = ini(a), tb = ini(b), ok = () => a.tok === ta && b.tok === tb;
+    for (let i = 0; i < 2 && ok(); i++) {
+      const x = gfRnd(0, W()), y = Y(), atras = x > a.x ? -46 : 46, m1 = ir(a, x, y, 130);
+      await esp(350); if (!ok()) break;
+      const m2 = ir(b, Math.min(Math.max(x + atras, 0), W()), y, 170);
+      await esp(Math.max(m1 - 350, m2) + 150);
+    }
+    fin(a, ta); fin(b, tb);
+  };
+  const come = async (c, x, y) => {
+    const t = ini(c), pez = document.createElement('span'); pez.className = 'pez'; pez.textContent = '🐟'; pez.style.left = x + 'px'; pez.style.top = y + 'px'; park.appendChild(pez);
+    await esp(ir(c, x - 26, y - 26)); pez.remove();
+    if (c.tok !== t) return;
+    flot(c.el, '❤', 26, -10); fin(c, t);
+  };
+  const tick = () => {
+    const pick = l => l[Math.random() * l.length | 0];
+    gatos.filter(c => !c.oc).forEach(c => {
+      if (c.oc) return;
+      const o = gatos.filter(x => x !== c && !x.oc), r = Math.random();
+      if (r < .22) camina(c); else if (r < .29 && o.length) juegan(c, pick(o)); else if (r < .35 && o.length) persigue(c, pick(o));
+      else if (r < .41) duerme(c); else if (r < .48) salta(c);
+    });
+  };
+
+  /* ---- caricia, estrellas y mensaje ---- */
+  const estrella = c => {
+    const s = document.createElement('span'), x = c.x + 26, y = c.y + 8; s.className = 'gf-vuela'; s.textContent = '⭐'; s.style.left = x + 'px'; s.style.top = y + 'px'; park.appendChild(s);
+    const jr = park.querySelector('.gf-jarro').getBoundingClientRect(), pr = park.getBoundingClientRect();
+    const dx = jr.left + jr.width / 2 - pr.left - x, dy = jr.top + jr.height / 2 - pr.top - y, T = (a, b, e = '') => `translate(calc(-50% + ${a}px), calc(-50% + ${b}px)) ${e}`;
+    s.animate([{ transform: T(0, 0, 'scale(1)') }, { transform: T(dx / 2, dy / 2 - 50, 'scale(1.5) rotate(180deg)'), offset: .5 }, { transform: T(dx, dy, 'scale(.7) rotate(360deg)') }], { duration: 800, easing: 'ease-in-out', fill: 'forwards' });
+    gl.push(setTimeout(() => { s.remove(); ses++; const j = park.querySelector('.gf-jarro'); if (j) j.outerHTML = jarHTML(true); }, 800));
+  };
+  const acaricia = c => {
+    c.pet = true; c.d = 0;
+    const p = store.get(); p.cari = p.cari || {};
+    const falta = GF_CARINO_MS - (Date.now() - (p.cari[c.k] || 0)), da = falta <= 0;
+    if (da) { p.pts = (p.pts || 0) + 1; p.cari[c.k] = Date.now(); store.set(p); updPts(); gan++; }   // antes de cualquier animación: recargar no pierde la estrella
+    const mano = document.createElement('span'); mano.className = 'gf-mano'; mano.textContent = '🫳'; c.el.appendChild(mano);
+    c.cu.classList.remove('gf-feliz'); void c.cu.offsetWidth; c.cu.classList.add('gf-feliz');
+    for (let i = 0; i < 3; i++) at(() => flot(c.el, '💖', 12 + i * 14, -6), i * 250);
+    if (da) estrella(c);
+    else { const s = Math.ceil(falta / 1000); flot(c.el, `😽 descansando · ${s / 60 | 0}:${String(s % 60).padStart(2, '0')}`, 26, -30, 'gf-reposo'); }
+    at(() => { mano.remove(); c.cu.classList.remove('gf-feliz'); c.pet = false; if (!c.sobre) c.oc = false; }, 1200);
+  };
+  const mensaje = c => {
+    let i; do i = Math.random() * GF_MSG.length | 0; while (i === ult);
+    ult = i; const g = c.g, v = VAR[c.v];
+    flot(c.el, 'miau', 26, -8);
+    panel.hidden = false;
+    panel.innerHTML = `<div class="gf-pop"><div class="gf-cara v-${v.id}">${gatoSVG(g, 110)}</div><div class="gf-info"><div><b style="font-size:18px">${g.name}</b> <span class="tag" style="background:${g.rar.color};color:#fff">${g.rar.name}</span> ${tagVar(v)}</div>${g.tema ? `<small class="gf-tema">${g.tema}</small>` : ''}<div class="gf-dice">${GF_MSG[i]}</div></div></div>`;
+  };
+  const toca = c => {   // eventos de puntero de un gato: frotar = caricia, toque corto = mensaje
+    const el = c.el; let tot = 0, bajo = false, lx = null, ly = 0;
+    el.addEventListener('pointerenter', e => { c.sobre = true; clearTimeout(c.lib); parar(c); lx = e.clientX; ly = e.clientY; c.d = 0; });
+    el.addEventListener('pointerdown', e => { e.stopPropagation(); sw = true; bajo = true; tot = 0; c.sobre = true; clearTimeout(c.lib); parar(c); lx = e.clientX; ly = e.clientY; });
+    el.addEventListener('pointermove', e => {
+      if (lx === null) { lx = e.clientX; ly = e.clientY; return; }
+      const d = Math.hypot(e.clientX - lx, e.clientY - ly); lx = e.clientX; ly = e.clientY;
+      if (bajo) tot += d;
+      if (c.pet) return;
+      const b = el.getBoundingClientRect();   // con el dedo el gato captura el puntero: solo cuenta el frote encima de él
+      if (e.clientX < b.left || e.clientX > b.right || e.clientY < b.top || e.clientY > b.bottom) return;
+      c.d += d; if (c.d >= GF_RUB) acaricia(c);
+    });
+    el.addEventListener('pointerup', e => { e.stopPropagation(); if (bajo && tot < 8) mensaje(c); bajo = false; });
+    const suelta = () => { c.sobre = false; bajo = false; lx = null; c.d = 0; clearTimeout(c.lib); c.lib = at(() => { if (!c.sobre && !c.pet) c.oc = false; }, 500); };
+    el.addEventListener('pointerleave', suelta); el.addEventListener('pointercancel', suelta);
+    el.addEventListener('click', e => { sw = false; e.stopPropagation(); });   // el clic sintético tras pointerup no cuenta como pescado
+  };
+
+  /* ---- pestañas: un solo #gPark, se vacía y se reconstruye ---- */
+  const arma = key => {
+    gfTab = key; tm.forEach(clearTimeout); tm.clear(); gatos = []; panel.hidden = true; panel.innerHTML = '';
+    m.querySelectorAll('.gf-tab').forEach(b => { const on = b.dataset.f === key; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+    const f = fs[key], r = RAR[f.r], v = VAR[f.v], fd = GF_FONDOS[r.id];
+    y0 = Math.max(0, fd.dy[0] - 8) / 100;
+    park.replaceChildren(...park.querySelectorAll('.t-pez'));   // los pescados por recoger (tamagotchi.js) sobreviven al cambio
+    park.dataset.r = r.id; park.dataset.v = v.id;
+    park.classList.toggle('gf-osc', ['epico', 'mitico'].includes(r.id) || ['oscuro', 'galactico'].includes(v.id));
+    const deco = fd.deco.map((e, i) => `<span class="gf-deco" style="left:${(i * 37 + 5) % 90}%;top:${fd.dy[0] + (i * 53 % 100) / 100 * (fd.dy[1] - fd.dy[0])}%">${e}</span>`).join('');
+    park.insertAdjacentHTML('beforeend', `<div class="gf-fondo gf-bg-${r.id}">${fd.extra || ''}${deco}${gfPart(fd.p)}</div><div class="gf-fx fv-${v.id}">${gfPart(GF_FX[v.id] || [])}</div>${jarHTML()}`);
+    gatos = f.ks.map(k => {
+      const pz = pieza(k), el = document.createElement('div');
+      el.className = 'gt'; el.title = pz.g.name;
+      el.innerHTML = `<div class="gf-cu"><div class="gf-dir"><div class="v-${VAR[pz.v].id}">${gatoSVG(pz.g, 52)}</div></div></div>`;
+      const c = { el, cu: el.firstChild, dir: el.firstChild.firstChild, k, g: pz.g, v: pz.v, x: Math.random() * W(), y: Y(), oc: false, tok: 0, d: 0, pet: false, sobre: false };
+      el.style.left = c.x + 'px'; el.style.top = c.y + 'px'; park.appendChild(el); toca(c);
+      return c;
+    });
+    if (!rapido()) tm.add(setInterval(tick, 1500));
+  };
+  m.querySelector('.gf-tabs').addEventListener('click', e => { const b = e.target.closest('.gf-tab'); if (b && b.dataset.f !== gfTab) arma(b.dataset.f); });
+  park.addEventListener('pointerdown', () => { sw = false; });
   park.addEventListener('click', e => {
+    if (sw) { sw = false; return; }   // soltó sobre el pasto tras empezar en un gato
     const r = park.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
-    const c = gatos.filter(c => !c.ocupado).sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0];
-    if (c) comer(c, x, y);
+    const c = gatos.filter(c => !c.oc).sort((a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y))[0];
+    if (c) come(c, x, y);
   });
-  m.querySelector('#gFeed').addEventListener('click', () => gatos.forEach(c => { if (!c.ocupado) comer(c, 26 + Math.random() * W(), 26 + Math.random() * H()); }));
-  const cerrar = () => { clearInterval(paseo); m.remove(); document.removeEventListener('keydown', esc); };
+  m.querySelector('#gFeed').addEventListener('click', () => gatos.forEach(c => { if (!c.oc) come(c, 26 + Math.random() * W(), 26 + Y()); }));
+  const cerrar = () => {
+    tm.forEach(clearTimeout); gl.forEach(clearTimeout); tm.clear();
+    m.remove(); document.removeEventListener('keydown', esc);
+    if (gan) renderGacha(store.get());   // para que los botones del gachapón vean las estrellas nuevas
+  };
   const esc = e => { if (e.key === 'Escape') cerrar(); };
   document.addEventListener('keydown', esc);
   m.querySelector('#gClose').addEventListener('click', cerrar);
   m.querySelector('#gOpsF').addEventListener('click', () => { cerrar(); operaciones(); });
+  if (lista.length) arma(fs[gfTab] ? gfTab : lista[0].r + ':' + lista[0].v);
   m.querySelector('#gClose').focus();
 }

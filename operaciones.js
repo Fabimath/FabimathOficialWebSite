@@ -1,6 +1,7 @@
-/* Michi operaciones: los gatos de la colección trabajan en tres escenarios de pixel art y producen pescados cada minuto.
+/* Michi operaciones: los gatos de la colección trabajan en cuatro escenarios de pixel art y producen pescados cada minuto.
    Colegio (michis estudiantes, abierto desde el inicio, con el Michi Profesor), Fábrica (obreros) y Oficina (oficinistas):
-   estos dos se desbloquean para siempre con pescados, igual que cada puesto extra. El oficio de cada gato está en OFICIO (gacha.js).
+   estos dos se desbloquean para siempre con pescados, igual que cada puesto extra. Cementerio: solo michis de variante oscura
+   (Portal oscuro y Garritas oscuras), con los 6 puestos abiertos desde el primer día; también se abre con pescados. El oficio de cada gato está en OFICIO (gacha.js).
    Producción por minuto = la mitad del multiplicador del gato (multGato: sube con la rareza y la variante), de 1 a 50 (mítico galáctico) y 77 (mítico estelar).
    Cada puesto guarda { k: "gato:variante", t: última cosecha }: lo producido se calcula con la hora, así que sigue sumando
    con la página cerrada, hasta OPS_TOPE minutos sin recoger. Estado en p.ops = { colegio: { n: puestos, s: [puesto | null] }, … }.
@@ -22,6 +23,10 @@ const S_BANCO = ["...KKK..........RK......", "..KRRRK..........K......", "..KRRR
 const S_ESCRITORIO = ["........................KKKKKKKK", "........................KCCCCCCK", "........................KCWCCCCK", "........................KCCCCCCK", "........................KKKKKKKK", "...........................KK...",
   "..........KKKKKKKKKK.......KK...", "..........KWGWGWGWGK.....KKKKKK.", "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK", "KLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLK", "KMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK", "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK",
   ".KDDDDDDDDDDDDDDDDDDDDDDDDDDDDK.", ".KDDDDDDDDDDDDDDDDDDDDDDDDDDDDK.", ".KKKKKKKKKKKKKKKKKKKKKKKKKKKKKK.", ".KGK........................KGK."];
+const S_LAPIDA = ["...KKKKKKKKKKKK...", "..KHHHGGGGGGGGGK..", ".KHHGGGGGGGGGGGGK.", ".KHGGGGGDDGGGGGGK.", ".KHGGGDDDDDDGGGGK.", ".KHGGGDDDDDDGGGGK.", ".KHGGGGGDDGGGGGGK.", ".KHGGGGGDDGGGGGGK.", ".KHGGGGGDDGGGGGGK.", ".KHGGGGGGGGGGGMGK.", ".KMMGGGGGGGGGGMMK.", ".KMMMGGGGGGGGMMMK.",
+  "KEEEEEEEEEEEEEEEEK", "KEFEEEEFEEEEEFEEFK", "KKKKKKKKKKKKKKKKKK"];
+const S_MURCI = ["KK..K.K..KK", "KKKKKKKKKKK", ".KKKKKKKKK.", "..K.KKK.K..", "....K.K...."];
+const C_LAPIDA = { K: '#15121c', G: '#9a9aa8', H: '#bdbdca', D: '#5f5f72', M: '#5f9a4a', E: '#3a2a22', F: '#241913' };
 const C_PEZ = { K: '#1a1008', B: '#4fa8ff' }, C_CANDADO = { K: '#3a1a05', Y: '#f5c542' };
 const C_PUPITRE = { K: '#3a1a05', R: '#e8342a', W: '#fff', L: '#e8b57a', M: '#c98f55', D: '#a86f3c', G: '#8e8e96' };
 const C_BANCO = { K: '#22252b', R: '#e8342a', L: '#c9d0d8', M: '#8a94a0', Y: '#f5c542', N: '#2b2b2f', G: '#5a6270' };
@@ -84,6 +89,30 @@ function fondoOficina() {
   [['#4fa8ff', 6], ['#5fd97a', 10], ['#e8680c', 14], ['#e8342a', 19]].forEach(([c, h], i) => s += R(83 + i * 7, 31 - h, 5, h, c));
   return s + spr(S_PLANTA, { K: '#1f3d1a', G: '#5fb547', g: '#3f8f2f', P: '#c8935a' }, 65, 42) + spr(S_PLANTA, { K: '#1f3d1a', G: '#5fb547', g: '#3f8f2f', P: '#c8935a' }, 119, 42);
 }
+function fondoCementerio() {
+  let s = `<defs><pattern id="oCemPasto" width="16" height="16" patternUnits="userSpaceOnUse">${R(0, 0, 16, 16, '#1d3a24') + R(2, 3, 5, 1, '#16301d') + R(10, 11, 4, 1, '#16301d') + R(4, 6, 1, 2, '#2f5a38') + R(5, 7, 1, 1, '#2f5a38') + R(12, 2, 1, 2, '#2f5a38') + R(11, 3, 1, 1, '#2f5a38') + R(8, 13, 1, 2, '#2f5a38')}</pattern></defs>`;
+  ['#120a2a', '#190e38', '#211244', '#2b1850', '#371f5e'].forEach((c, i) => s += R(0, i * 11.2, 192, 11.2, c));
+  // estrellas que titilan (dos grupos desfasados)
+  const est = [[8, 6], [22, 14], [40, 4], [55, 20], [70, 9], [88, 3], [100, 16], [118, 7], [128, 26], [172, 5], [184, 22], [12, 28], [64, 30], [96, 28], [178, 36], [36, 22], [110, 30]];
+  [0, 1].forEach(g => s += `<g class="o-est${g ? '2' : ''}">${est.filter((_, i) => i % 2 === g).map(([x, y], i) => R(x, y, 1, 1, '#fff7d6') + (i % 3 === 0 ? R(x - 1, y, 3, 1, '#fff7d6') + R(x, y - 1, 1, 3, '#fff7d6') : '')).join('')}</g>`);
+  // luna grande con cráteres
+  const disco = (cx, cy, r, c) => { let d = ''; for (let dy = -r; dy <= r; dy++) { const hw = Math.floor(Math.sqrt(r * r - dy * dy + r * .4)); d += R(cx - hw, cy + dy, 2 * hw + 1, 1, c); } return d; };
+  s += disco(150, 20, 15, '#3d2468') + disco(150, 20, 12, '#f1e9c8') + R(144, 14, 4, 3, '#d9cea6') + R(154, 22, 5, 4, '#d9cea6') + R(146, 25, 3, 2, '#d9cea6') + R(155, 14, 2, 2, '#d9cea6') + R(141, 20, 2, 1, '#fff9e0');
+  // colinas lejanas
+  for (let x = 0; x < 192; x += 4) s += R(x, 38 - Math.round(4 + 3 * Math.sin(x / 23) + 2 * Math.sin(x / 9)), 4, 30, '#1b1238');
+  // árbol seco
+  s += R(20, 30, 4, 26, '#0d0816') + R(21, 12, 2, 18, '#0d0816') + R(13, 27, 8, 1, '#0d0816') + R(10, 25, 4, 1, '#0d0816') + R(8, 22, 1, 4, '#0d0816') + R(14, 21, 1, 7, '#0d0816') + R(16, 20, 5, 1, '#0d0816') + R(23, 23, 6, 1, '#0d0816') + R(28, 20, 1, 4, '#0d0816') + R(30, 20, 3, 1, '#0d0816') + R(24, 17, 1, 6, '#0d0816') + R(25, 17, 3, 1, '#0d0816') + R(18, 15, 3, 1, '#0d0816');
+  // cruces lejanas
+  [[72, 33], [118, 31], [168, 34]].forEach(([x, y]) => s += R(x, y, 1, 9, '#0d0816') + R(x - 2, y + 2, 5, 1, '#0d0816'));
+  // reja de hierro con lanzas
+  s += R(0, 46, 192, 1, '#0a0710') + R(0, 52, 192, 1, '#0a0710') + R(0, 56, 192, 2, '#14291a');
+  for (let x = 2; x < 192; x += 8) s += R(x, 41, 3, 15, '#14101c') + R(x + 1, 38, 1, 3, '#14101c') + R(x, 41, 1, 15, '#2a2238');
+  for (let x = 0; x < 192; x += 48) s += R(x, 34, 5, 22, '#14101c') + R(x + 1, 32, 3, 2, '#14101c') + R(x + 2, 30, 1, 2, '#14101c') + R(x, 34, 1, 22, '#2a2238');
+  s += `<rect y="58" width="192" height="62" fill="url(#oCemPasto)"/>`;
+  // niebla a ras de suelo y un murciélago
+  const bruma = (y, k) => `<g class="${k}" opacity=".22">${[-192, 0].map(o => [0, 70, 130].map(x => R(o + x, y, 30, 2, '#cbb8ff') + R(o + x + 5, y - 1, 20, 1, '#cbb8ff') + R(o + x + 8, y + 2, 16, 1, '#cbb8ff')).join('')).join('')}</g>`;
+  return s + bruma(60, 'o-niebla') + bruma(96, 'o-niebla2') + `<g class="o-murci">${spr(S_MURCI, { K: '#07040d' }, 60, 16)}</g>`;
+}
 
 // xy: dónde queda la base de cada puesto, en % del escenario; top: fila del mueble donde está la cubierta (el gato asoma tras ella)
 const OPS = [
@@ -92,6 +121,9 @@ const OPS = [
   { id: 'fabrica', of: 'obrero', quien: 'michis obreros', name: 'Fábrica', abre: 100, mueble: S_BANCO, col: C_BANCO, top: 3, fondo: fondoFabrica,
     xy: [[20, 58], [50, 58], [80, 58], [20, 87], [50, 87], [80, 87]] },
   { id: 'oficina', of: 'oficinista', quien: 'michis oficinistas', name: 'Oficina', abre: 250, mueble: S_ESCRITORIO, col: C_ESCRITORIO, top: 8, fondo: fondoOficina,
+    xy: [[20, 58], [50, 58], [80, 58], [20, 87], [50, 87], [80, 87]] },
+  // abre con los 6 puestos (ini) y admite cualquier gato de variante oscura; top negativo: el michi se sienta ENCIMA de la lápida
+  { id: 'cementerio', quien: 'michis oscuros', name: 'Cementerio', abre: 500, ini: 6,admite: pz => VAR[pz.v].id === 'oscuro', mueble: S_LAPIDA, col: C_LAPIDA, top: -4.4, fondo: fondoCementerio,
     xy: [[20, 58], [50, 58], [80, 58], [20, 87], [50, 87], [80, 87]] }
 ];
 const MU = .42;   // cqw por píxel de mueble (el gato mide 8.5 cqw: 20 px de 0.425)
@@ -149,10 +181,16 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .o-cerrada .btn { margin-top: 1.2cqw; font-family: inherit; }
   .o-cinta { animation: o-cinta 3s linear infinite; }
   @keyframes o-cinta { to { transform: translateX(48px); } }
+  .o-niebla { animation: o-niebla 40s linear infinite; } .o-niebla2 { animation: o-niebla 28s linear infinite reverse; }
+  @keyframes o-niebla { to { transform: translateX(192px); } }
+  .o-murci { animation: o-murci 16s linear infinite; }
+  @keyframes o-murci { 0% { transform: translate(-80px, 8px); } 25% { transform: translate(-10px, -4px); } 50% { transform: translate(50px, 6px); } 75% { transform: translate(110px, -5px); } 100% { transform: translate(190px, 4px); } }
+  .o-est { animation: o-est 3s ease-in-out infinite alternate; } .o-est2 { animation: o-est 2.3s ease-in-out -1.2s infinite alternate; }
+  @keyframes o-est { from { opacity: 1; } to { opacity: .25; } }
   .o-pie { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 12px; font-size: 14px; color: var(--ink-3); }
   .o-rate { display: inline-block; margin: 3px 0; padding: 2px 8px; border-radius: 99px; background: var(--tint); color: #c4540a; font-size: 12px; font-weight: 800; }
   .g-box.o-pick { width: min(640px, 100%); max-height: 90vh; overflow: auto; }
-  @media (prefers-reduced-motion: reduce) { .o-cinta { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .o-cinta, .o-niebla, .o-niebla2, .o-murci, .o-est, .o-est2 { animation: none; } }
 </style>`);
 
 // modal cuyo Esc o clic afuera cierra solo el de más arriba (el selector se abre sobre las operaciones)
@@ -201,7 +239,7 @@ function operaciones(sel = 'colegio') {
     if (d.tab) { sel = d.tab; return dibuja(); }
     if (d.pon) return elegirMichi(sel, +d.pon, dibuja);
     let n = 0;
-    if ('abre' in d) { if (o[sel] || pez(p) < e.abre) return; sumaPez(p, -e.abre); o[sel] = { n: OPS_INI, s: [] }; }
+    if ('abre' in d) { if (o[sel] || pez(p) < e.abre) return; sumaPez(p, -e.abre); o[sel] = { n: e.ini ?? OPS_INI, s: [] }; }
     else if ('puesto' in d) { const c = costoPuesto(ab.n); if (ab.n >= OPS_MAX || pez(p) < c) return; sumaPez(p, -c); ab.n++; }
     else if (d.saca) { n = cobrar(ab.s[+d.saca]); ab.s[+d.saca] = null; }   // al sacarlo cobra lo que llevaba
     else if ('recoge' in d) n = ab.s.reduce((s, x) => s + (x ? cobrar(x) : 0), 0);
@@ -219,20 +257,23 @@ function operaciones(sel = 'colegio') {
   box.querySelector('[data-x]').focus();
 }
 
+// ¿el escenario admite a este gato? por oficio, o por la regla propia del escenario (el cementerio: variante oscura)
+const admite = (e, pz) => e.admite ? e.admite(pz) : pz.g.of === e.of;
+
 // selector de gatos libres con el oficio del escenario; listo() redibuja las operaciones
 function elegirMichi(sel, i, listo) {
   const p = store.get(), e = OPS.find(x => x.id === sel), col = p.col || {}, libre = k => col[k] - trabajando(p, k);
-  const ks = Object.keys(col).filter(k => pieza(k) && pieza(k).g.of === e.of && libre(k) > 0).sort((a, b) => pezMin(b) - pezMin(a));
+  const ks = Object.keys(col).filter(k => pieza(k) && admite(e, pieza(k)) && libre(k) > 0).sort((a, b) => pezMin(b) - pezMin(a));
   const { m, cerrar } = ventana('Elegir michi', `<h3 style="font-size:22px;display:flex;gap:8px;align-items:center;justify-content:center">${ico(e.mueble, e.col)} ¿Quién trabaja aquí?</h3>
     <div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">Solo ${e.quien}. Producen más según su rareza y su variante.</div>
     ${ks.length ? `<div class="g-grid">${ks.map(k => { const pz = pieza(k);
       return `<button class="g-card si v-${VAR[pz.v].id}" style="--rc:${pz.g.rar.color}" data-k="${k}">${gatoSVG(pz.g, 56)}<b>${pz.g.name}</b><small>${VAR[pz.v].name} · libres ${libre(k)}</small><span class="o-rate">+${pezMin(k)} ${PEZ_ICO}/min</span></button>`; }).join('')}</div>`
-      : `<p style="color:var(--ink-2)">No tienes ${e.quien} libres. Consíguelos en el gachapón o en los huevos.</p>`}
+      : `<p style="color:var(--ink-2)">No tienes ${e.quien} libres. ${e.admite ? 'Consíguelos en el Portal oscuro del casino o en las Garritas oscuras.' : 'Consíguelos en el gachapón o en los huevos.'}</p>`}
     <div class="qnav" style="justify-content:center;margin-top:14px"><button class="btn btn-ghost">Cerrar</button></div>`, 'o-pick');
   m.querySelector('.g-box').addEventListener('click', ev => {
     const b = ev.target.closest('button'); if (!b) return;
     const k = b.dataset.k, q = store.get(), ab = ops(q)[sel];
-    if (k && ab && !ab.s[i] && (q.col[k] || 0) - trabajando(q, k) > 0) { ab.s[i] = { k, t: Date.now() }; store.set(q); }
+    if (k && ab && !ab.s[i] && pieza(k) && admite(e, pieza(k)) && (q.col[k] || 0) - trabajando(q, k) > 0) { ab.s[i] = { k, t: Date.now() }; store.set(q); }
     cerrar(); listo();
   });
   (m.querySelector('[data-k]') || m.querySelector('.btn')).focus();
