@@ -45,6 +45,23 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .v-galactico::before { inset: -12%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,224,.75), rgba(255,94,196,.35) 40%, transparent 68%); animation: t-aura 2.2s ease-in-out infinite; }
   .v-galactico::after { inset: -8%; z-index: 1; background: url("data:image/svg+xml,${ESTRELLAS}") center / 100% 100% no-repeat; animation: t-titila 1.4s ease-in-out infinite alternate; }
   @keyframes t-aura { 50% { transform: scale(1.12); opacity: .7; } }
+  /* oscuro: gato apagado con borde negro-violeta; miasma = humo negro que pulsa (::before) y volutas que suben (::after) */
+  .v-oscuro svg { filter: brightness(.7) saturate(.85) contrast(1.1) drop-shadow(0 0 2px #000) drop-shadow(0 0 8px #2a0a4a) drop-shadow(0 2px 14px #000); }
+  .v-oscuro:not(.g-gato) { position: relative; }
+  .v-oscuro { isolation: isolate; }
+  .v-oscuro::before, .v-oscuro::after { content: ''; position: absolute; pointer-events: none; }
+  .v-oscuro { --m0: 6,2,12; --m1: 30,8,52; --m2: 52,16,86; }
+  .v-oscuro::before { inset: -26%; z-index: -1; border-radius: 50%; filter: blur(7px);
+    background: radial-gradient(circle, rgba(var(--m0),.95) 12%, rgba(var(--m1),.8) 38%, rgba(var(--m2),.35) 58%, transparent 72%); animation: t-miasma 3.2s ease-in-out infinite; }
+  .v-oscuro::after { inset: -22% -14% -8%; z-index: 1; filter: blur(4px); opacity: .8;
+    background: radial-gradient(ellipse 14% 22% at 18% 92%, rgba(var(--m0),.9), transparent 70%), radial-gradient(ellipse 16% 24% at 46% 98%, rgba(var(--m1),.9), transparent 70%),
+      radial-gradient(ellipse 13% 20% at 74% 94%, rgba(var(--m0),.9), transparent 70%), radial-gradient(ellipse 11% 18% at 90% 86%, rgba(var(--m2),.8), transparent 70%);
+    animation: t-voluta 3.6s ease-in infinite; }
+  @keyframes t-miasma { 0%, 100% { transform: scale(.94); opacity: .8; } 50% { transform: scale(1.1); opacity: 1; } }
+  @keyframes t-voluta { from { transform: translateY(14%) scale(.9); opacity: 0; } 25% { opacity: .85; } to { transform: translateY(-34%) scale(1.15); opacity: 0; } }
+  .g-card.v-oscuro { background: linear-gradient(160deg, #2c2238, #0d0814); color: #efe6fb; box-shadow: inset 0 0 0 1px var(--rc), 0 0 14px rgba(40,10,70,.8); }
+  .g-card.v-oscuro { --m0: 120,60,190; --m1: 84,34,140; --m2: 60,20,110; }   /* sobre la tarjeta oscura el humo se ve violeta */
+  .g-card.v-oscuro small { color: #b9a8d6; } .g-card.v-oscuro::before { inset: -6%; } .g-card.v-oscuro::after { inset: -10% -4% 2%; } .g-card.v-oscuro .g-dots button { border-color: #b46cff; }
   @keyframes t-titila { from { opacity: .3; transform: rotate(-4deg) scale(.95); } to { opacity: 1; transform: rotate(4deg) scale(1.05); } }
   .g-card.v-galactico { background: linear-gradient(160deg, #fff, #f6ecff); box-shadow: inset 0 0 0 1px var(--rc), 0 0 16px rgba(255,122,224,.6); }
 
@@ -102,7 +119,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .t-pez { position: absolute; z-index: 5; font-size: 24px; background: none; border: none; cursor: pointer; padding: 0; animation: t-cae .5s var(--ease); }
   @keyframes t-cae { from { translate: 0 -24px; opacity: 0; } }
   .huevos .g-card .btn { padding: 6px 14px; font-size: 14px; margin-top: 8px; }
-  @media (prefers-reduced-motion: reduce) { .v-galactico::before, .v-galactico::after { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .v-galactico::before, .v-galactico::after, .v-oscuro::before, .v-oscuro::after { animation: none; } .v-oscuro::after { opacity: .5; } }
 </style>`);
 
 /* ---------- consola ---------- */
@@ -174,21 +191,22 @@ function pinta() {
     const falta = t.nace - Date.now(), tot = T_HUEVO(t.huevo), gr = falta < tot / 3 ? 2 : falta < tot * 2 / 3 ? 1 : 0;
     f = 'huevo' + t.huevo + gr; html = `<div class="bicho" id="tBicho">${huevoSVG(t.huevo, gr, 64)}</div>`;
     info.innerHTML = `Huevo ${RAR[t.huevo].name.toLowerCase()} · ${mmss(falta)}<br>clic para que nazca antes`;
-  } else {
+  } else if (!pieza(t.gato)) { f = 'raro'; html = '<div class="vacio">GATO DESCONOCIDO<br>recarga la página</div>'; info.textContent = ''; }   // clave de una versión más nueva o borrada
+  else {
     const pz = pieza(t.gato), v = VAR[pz.v], h = hambre(t), triste = !h || t.popo >= 2;
     f = [t.gato, h, t.popo].join();
     html = `<div class="vida">${[0, 1, 2, 3].map(i => pxSVG(CORAZON, i < h ? C_CORAZON : C_VACIO, 2)).join('')}</div>` +
       (triste ? `<div class="dice t-borde"><span class="pxc">${!h ? '¡TENGO HAMBRE!' : '¡LIMPIA AQUÍ!'}</span></div>` : '') +
       `<div class="bicho pasea ${triste ? 'triste' : ''}" id="tBicho"><div class="v-${v.id}" style="position:relative">${gatoSVG(pz.g, 64)}</div></div>` +
       Array.from({ length: t.popo }, (_, i) => `<span class="popo" style="left:${6 + i * 40}px">${pxSVG(POPO, C_POPO, 2)}</span>`).join('');
-    const sig = VAR[pz.v + 1];
+    const sig = pz.v < VAR_TOP ? VAR[pz.v + 1] : null;
     info.innerHTML = `${pz.g.name}<br>${pz.g.rar.name} · ${v.name}<br>🔥 racha ${t.racha || 0}/${RACHA} · ` +
       (sig ? `⬆ ${t.evo || 0}/${evoMeta(pz.v)} a ${sig.name.toLowerCase()}` : 'nivel máximo');
   }
   if (f !== firma) { firma = f; lcd.innerHTML = html + '<div class="fx" id="tFx"></div>'; }
 }
 function nacer() {
-  const p = store.get(), t = p.tama, g = sortear(GATOS.filter(c => c.rar === RAR[t.huevo])), v = sortear(VAR);
+  const p = store.get(), t = p.tama, g = sortear(GATOS.filter(c => c.rar === RAR[t.huevo])), v = sortear(VAR_GACHA);
   p.tama = { gato: g.id + ':' + v.id, comio: Date.now(), ritmo: azarMs(), popo: 0, proxPopo: Date.now() + azarMs(), racha: 0, evo: 0 }; store.set(p);
   firma = ''; pinta(); destello();
   if (window.musicaPremio) musicaPremio(RAR.indexOf(g.rar));
@@ -255,7 +273,7 @@ function tamaRespuesta(bien) {
   const v = pieza(t.gato).v;
   let msg = azar(bien ? MSG_BIEN : MSG_MAL), evo = null;
   t.racha = bien ? (t.racha || 0) + 1 : 0;
-  if (t.racha >= RACHA && v < VAR.length - 1) {
+  if (t.racha >= RACHA && v < VAR_TOP) {
     t.racha = 0; t.evo = (t.evo || 0) + 1;
     msg = `¡${RACHA} seguidas! Contador ${t.evo}/${evoMeta(v)} para ${VAR[v + 1].name.toLowerCase()}`;
     if (t.evo >= evoMeta(v)) { t.evo = 0; evo = VAR[v + 1]; t.gato = t.gato.split(':')[0] + ':' + evo.id; sumaPez(p, PEZ_EVO); msg = `¡EVOLUCIONÉ A ${evo.name.toUpperCase()}! ✨ +${PEZ_EVO} 🐟`; }

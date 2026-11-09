@@ -22,7 +22,7 @@ function comprarTicket() {
 }
 async function usarTicket(k) {
   const p = store.get(), pz = pieza(k);
-  if (!(p.tickets > 0) || !(p.col || {})[k] || pz.v >= VAR.length - 1) return;
+  if (!(p.tickets > 0) || !(p.col || {})[k] || pz.v >= VAR_TOP) return;
   const v = VAR[pz.v + 1], k2 = pz.g.id + ':' + v.id, nuevo = !p.col[k2];
   quitar(p, k); p.col[k2] = (p.col[k2] || 0) + 1; p.tickets--;
   if (!p.col[k] && p.acomp) p.acomp = p.acomp.map(x => x === k ? k2 : x);   // si te acompañaba, sigue haciéndolo mejorado
@@ -37,7 +37,7 @@ async function usarTicket(k) {
 const PESCA = [{ vel: 2.2, zona: 22 }, { vel: 3.5, zona: 15 }];
 async function superRuleta() {
   const p = store.get(); if (pez(p) < SUPER_COST) return;
-  const vs = VAR.slice(VAR.findIndex(v => v.id === 'platino'));
+  const vs = VAR_GACHA.slice(VAR.findIndex(v => v.id === 'platino'));
   p.col = p.col || {};
   const { g } = sortearGato(p.col, RAR.slice(evRar()), GATOS, [vs[0]]);
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
@@ -87,7 +87,7 @@ function lance(m, g, v, sig, { vel, zona }, nv) {
 async function gachaNuevos() {
   const p = store.get(); if (pez(p) < NUEVOS_COST) return;
   p.col = p.col || {};
-  const { g, v } = sortearGato(p.col, RAR.slice(evRar()), GATOS.filter(c => c.acc), VAR.slice(evVar())), rar = g.rar, k = g.id + ':' + v.id;
+  const { g, v } = sortearGato(p.col, RAR.slice(evRar()), GATOS.filter(c => c.acc), VAR_GACHA.slice(evVar())), rar = g.rar, k = g.id + ':' + v.id;
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = (p.col[k] || 0) + 1; sumaPez(p, -NUEVOS_COST); store.set(p); updPez();   // guardado antes de la animación
   const r = RAR.indexOf(rar), nuevos = GATOS.filter(c => c.acc);
@@ -384,7 +384,7 @@ function renderCasino() {
         <p>Tú contra la casa, y la casa es un gato superior al azar: Don Bigotes, Lady Mishi, Kamikaze o Profe Espejo. Apuesta desde 🐟 ${BJ_MIN}; ganar paga el doble y blackjack el triple.</p>
         <button class="btn btn-white" data-c="bj" ${f < BJ_MIN ? 'disabled' : ''}>Sentarse a la mesa</button></div>
       <div class="c-card c-tk"><h4>🎫 Ticket de mejora</h4>
-        <p>Sube un gato de tu colección a la variante siguiente: ${VAR.slice(1).map(v => v.name.toLowerCase()).join(' → ')}. El tope es <b>estelar</b>, el dorado metálico más brillante. Se usa desde el gachapón: clic en un gato y «Usar ticket».</p>
+        <p>Sube un gato de tu colección a la variante siguiente: ${VAR_GACHA.slice(1).map(v => v.name.toLowerCase()).join(' → ')}. El tope es <b>estelar</b>, el dorado metálico más brillante. Se usa desde el gachapón: clic en un gato y «Usar ticket».</p>
         <button class="btn btn-primary g-btn-est" data-c="tk" ${f < TICKET_COST ? 'disabled' : ''}>Comprar 🐟 ${miles(TICKET_COST)}</button></div>
       <div class="c-card c-sr"><h4>🌟 Súper duper ruleta</h4><div class="c-gatos"><span class="v-platino">${gatoSVG(fabi, 40)}</span><span class="v-galactico">${gatoSVG(fabi, 40)}</span><span class="v-estelar">${gatoSVG(fabi, 40)}</span></div>
         <p>🎣 Minijuego de pesca: el platino es seguro. Aprieta justo cuando el pez pase por la zona dorada y sube a galáctico; acierta otra vez, más rápido, y es estelar.</p>

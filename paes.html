@@ -45,6 +45,7 @@
 <script src="paes_compacto_fis.js"></script>
 <script src="paes_compacto_bio.js"></script>
 <script src="gacha.js"></script>
+<script src="gatos_oscuros.js"></script>
 <style>
   :root {
     --royal: #c2530a; --azure: #f5822a; --sky: #ffb35c; --ice: #fff3e8;
@@ -1067,6 +1068,7 @@ window.addEventListener('load', () => renderMath(document.body));
 <script src="tamagotchi.js"></script>
 <script src="operaciones.js"></script>
 <script src="casino.js"></script>
+<script src="oscuros.js"></script>
 
 <script type="module">
 /* Inicio de sesión con Google (Firebase) y avance en la nube.
@@ -1129,6 +1131,7 @@ window.cloudSave = d => {
   const u = auth.currentUser; if (!u || !window.cloudReady) return;
   pendiente = [u, d]; clearTimeout(timer); timer = setTimeout(subir, 1000);
 };
+window.cloudSaveYa = () => subir();   // sube ya lo pendiente (Portal oscuro: cobro, respuestas y premio); sin sesión no hace nada
 document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') subir(); });
 
 $('loginBtn').addEventListener('click', async () => {

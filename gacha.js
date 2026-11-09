@@ -20,8 +20,11 @@ const VAR = [
   { id: 'arcoiris', name: 'Arcoíris', w: 5,  dot: 'linear-gradient(90deg,#ff5e5e,#ffe45c,#5fd97a,#4fa8ff,#b57be0)' },
   { id: 'platino',  name: 'Platino',  w: 1,  dot: '#e8e8ec' },
   { id: 'galactico', name: 'Galáctico', w: 0.3, dot: 'linear-gradient(135deg,#3b0a6b,#9b5de5,#ff7ae0)' },   // estilo en tamagotchi.js
-  { id: 'estelar',  name: 'Estelar',  w: 0.1, dot: 'linear-gradient(135deg,#fffbe6,#ffd75e 35%,#c8920a 65%,#fff)' }   // dorado metálico con brillo blanco
+  { id: 'estelar',  name: 'Estelar',  w: 0.1, dot: 'linear-gradient(135deg,#fffbe6,#ffd75e 35%,#c8920a 65%,#fff)' },   // dorado metálico con brillo blanco
+  { id: 'oscuro',   name: 'Oscuro',   w: 0,   dot: 'linear-gradient(135deg,#050208,#2a0f45 55%,#6a2fa0)' }   // solo del Portal oscuro (oscuros.js); estilo en tamagotchi.js
 ];
+// VAR_TOP = estelar: tope de fusiones, tickets y evoluciones. VAR_GACHA = variantes que pueden salir de sorteos: oscuro nunca entra.
+const VAR_TOP = VAR.findIndex(v => v.id === 'estelar'), VAR_GACHA = VAR.slice(0, VAR_TOP + 1);
 // oficio de cada gato: en qué escenario de Michi operaciones (operaciones.js) puede trabajar
 const OFICIO = {
   estudiante: ['naranjo', 'pelusa', 'calico', 'mate', 'sakura', 'lunar', 'galaxia', 'cristal', 'fabimath', 'lector', 'gamer', 'jardin', 'heroe', 'medalla', 'sabio', 'angel', 'cometa'],
@@ -160,14 +163,14 @@ function sortearGato(col, rars, gatos, vs) {
   return { g, v };
 }
 // mínimos de rareza y variante que asegura el evento (EVENTO en paes.html)
-const evRar = () => eventoActivo() ? EVENTO.rar || 0 : 0, evVar = () => eventoActivo() ? EVENTO.vari || 0 : 0;
+const evRar = () => eventoActivo() ? EVENTO.rar || 0 : 0, evVar = () => eventoActivo() ? Math.min(EVENTO.vari || 0, VAR_TOP) : 0;
 const evTxt = () => `el gachapón y las ruletas solo entregan gatos ${RAR.slice(evRar()).map(r => r.name.toLowerCase()).join(', ')}` +
-  (evVar() ? ` en variante ${VAR.slice(evVar()).map(v => v.name.toLowerCase()).join(', ')}` : '');
+  (evVar() ? ` en variante ${VAR_GACHA.slice(evVar()).map(v => v.name.toLowerCase()).join(', ')}` : '');
 // desde = índice de la variante mínima asegurada (las ruletas de variante); el evento puede subir rareza y variante mínimas
 function tirar(cost = G_COST, desde = 0) {
   const p = store.get();
   if ((p.pts || 0) < cost) return null;
-  const vs = VAR.slice(Math.max(desde, evVar()));
+  const vs = VAR_GACHA.slice(Math.min(Math.max(desde, evVar()), VAR_TOP));
   p.col = p.col || {};
   const { g, v } = sortearGato(p.col, RAR.slice(evRar()), GATOS, vs), k = g.id + ':' + v.id;
   const antes = p.col[k] || 0, gatoNuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
@@ -182,10 +185,12 @@ const GACHA_VAR = [[1, 50], [2, 100], [3, 1000]];   // desde arcoíris (3) es el
    Valor = rareza × variante × posición del gato en su rareza (el más difícil vale más).
    Un diamante de una rareza ≈ un normal de la siguiente. Valor esperado de una tirada ≈ ⭐ 7, bajo el costo de 10:
    vender lo que sale nunca da más estrellas de las que se gastaron. */
-const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16, 32], CAT_F = [1, 1.05, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8];
+const RAR_VAL = [1.5, 3, 7.5, 18, 45], VAR_VAL = [1, 1.6, 2.5, 4, 8, 16, 32, 32], CAT_F = [1, 1.05, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8];
 const FUS_COST = [5, 15, 40, 100, 250];   // por rareza de los tres gatos, × VAR_VAL de la variante más baja
-const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c); return { g, v: VAR.findIndex(x => x.id === v), r: RAR.indexOf(g.rar) }; };
-const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[p.v] * CAT_F[p.g.pos])); };
+// null si la clave no existe (dato viejo o ajeno): quien recorre la colección lo filtra
+const pieza = k => { const [c, v] = k.split(':'); const g = GATOS.find(x => x.id === c) || GATOS_OSC.find(x => x.id === c), vi = VAR.findIndex(x => x.id === v); return g && vi >= 0 ? { g, v: vi, r: RAR.indexOf(g.rar) } : null; };
+const esOscuro = k => { const pz = pieza(k); return !!pz && (pz.v > VAR_TOP || !!pz.g.oscuro); };
+const valor = k => { const p = pieza(k); return Math.max(1, Math.round(RAR_VAL[p.r] * VAR_VAL[Math.min(p.v, VAR_TOP)] * CAT_F[p.g.pos])); };
 function quitar(p, k, n = 1) { p.col[k] -= n; if (p.col[k] <= 0) delete p.col[k]; }
 function vender(k) {
   const p = store.get();
@@ -197,10 +202,11 @@ function vender(k) {
 // Tres de la misma rareza (sin ser iguales): un gato al azar de la rareza siguiente, con la variante más baja de los tres.
 function fusion(keys) {
   if (keys.length < 3) return { err: `Pon ${3 - keys.length} gato${keys.length === 2 ? '' : 's'} más.` };
+  if (keys.some(esOscuro)) return { err: 'Los gatos oscuros no se fusionan ni suben de variante.' };
   const ps = keys.map(pieza), r = ps[0].r, v = Math.min(...ps.map(p => p.v));
   if (ps.some(p => p.r !== r)) return { err: 'Los tres gatos deben ser de la misma rareza.' };
   const cost = Math.round(FUS_COST[r] * VAR_VAL[v]);
-  if (keys.every(k => k === keys[0])) return v === VAR.length - 1 ? { err: `${VAR[VAR.length - 1].name} es la variante más alta: no puede subir más.` } : { tipo: 'var', g: ps[0].g, v: v + 1, cost };
+  if (keys.every(k => k === keys[0])) return v >= VAR_TOP ? { err: `${VAR[VAR_TOP].name} es la variante más alta: no puede subir más.` } : { tipo: 'var', g: ps[0].g, v: v + 1, cost };
   if (r === RAR.length - 1) return { err: 'Mítico es la rareza más alta: aquí solo sirven tres iguales para subir la variante.' };
   return { tipo: 'linea', r: r + 1, v, cost };
 }
@@ -211,9 +217,9 @@ const libres = (col, k) => (col[k] || 0) - fus.filter(x => x === k).length;
    Cada uno tiene ACOMP_P de probabilidad de multiplicar un acierto por multGato: crece con rareza + variante
    (r + v de 0 a 10), de ×2 (común normal) a ×100 (mítico galáctico) y ×154 (mítico estelar), 2 · 50^((r + v) / 9).
    Si salen los dos, se multiplican entre sí, con tope ×MULT_MAX: lo que vale solo el mejor gato posible. */
-const ACOMP_MAX = 2, ACOMP_P = 0.5, MULT_MAX = Math.round(2 * 50 ** ((RAR.length + VAR.length - 2) / 9));
-const multGato = k => { const p = pieza(k); return Math.round(2 * 50 ** ((p.r + p.v) / 9)); };
-const acompanantes = p => (p.acomp || []).filter(k => p.col && p.col[k]);   // vendido o fusionado ya no acompaña
+const ACOMP_MAX = 2, ACOMP_P = 0.5, MULT_MAX = Math.round(2 * 50 ** ((RAR.length + VAR_TOP + 1 - 2) / 9));
+const multGato = k => { const p = pieza(k); return Math.round(2 * 50 ** ((p.r + Math.min(p.v, VAR_TOP)) / 9)); };   // oscuro multiplica como estelar
+const acompanantes = p => (p.acomp || []).filter(k => p.col && p.col[k] && pieza(k));   // vendido o fusionado ya no acompaña
 // estrellas de un acierto (antes del ×evento); anima a los gatos que multiplicaron
 function estrellasAcierto() {
   const sale = acompanantes(store.get()).filter(() => Math.random() < ACOMP_P);
@@ -245,14 +251,14 @@ function renderAcomp() {
 }
 // clic en un gato de la colección: acompañar, vender o llevar a la fusión
 function menuGato(k) {
-  const p = store.get(), pz = pieza(k), v = VAR[pz.v], ac = acompanantes(p), esta = ac.includes(k);
+  const p = store.get(), pz = pieza(k), v = VAR[pz.v], ac = acompanantes(p), esta = ac.includes(k), oc = esOscuro(k);
   const m = modal(pz.g.name, `<div class="g-rev"><div class="pop v-${v.id}">${gatoSVG(pz.g, 130)}</div><h3>${pz.g.name}</h3>
-    <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}<span class="tag" style="background:#6e6e73">${OF_TXT[pz.g.of]}</span>
-    <p>Tienes ${p.col[k]}. Si te acompaña, cada acierto tiene ${ACOMP_P * 100} % de probabilidad de valer <b>×${multGato(k)}</b>.</p>
+    <span class="tag" style="background:${pz.g.rar.color}">${pz.g.rar.name}</span>${tagVar(v)}${pz.g.of ? `<span class="tag" style="background:#6e6e73">${OF_TXT[pz.g.of]}</span>` : ''}
+    <p>${pz.g.tema ? pz.g.tema + '<br>' : ''}Tienes ${p.col[k]}. Si te acompaña, cada acierto tiene ${ACOMP_P * 100} % de probabilidad de valer <b>×${multGato(k)}</b>.</p>${oc ? '<p style="color:#6a2fa0;font-weight:600">🌑 Los gatos oscuros no se fusionan ni suben de variante.</p>' : ''}
     <div class="g-menu"><button class="btn btn-primary" data-a="acomp">${esta ? '🐾 Dejar de acompañar' : ac.length >= ACOMP_MAX ? `🐾 Acompañar (sale ${pieza(ac[0]).g.name})` : '🐾 Acompañar'}</button>
-      ${(p.tickets || 0) > 0 && pz.v < VAR.length - 1 ? `<button class="btn btn-primary g-btn-est" data-a="ticket">🎫 Usar ticket: ${VAR[pz.v + 1].name.toLowerCase()}</button>` : ''}
+      ${(p.tickets || 0) > 0 && pz.v < VAR_TOP ? `<button class="btn btn-primary g-btn-est" data-a="ticket">🎫 Usar ticket: ${VAR[pz.v + 1].name.toLowerCase()}</button>` : ''}
       <button class="btn btn-ghost" data-a="vende">Vender ⭐ ${valor(k)}</button>
-      <button class="btn btn-ghost" data-a="fus" ${fus.length >= 3 || libres(p.col, k) < 1 ? 'disabled' : ''}>⚗️ Fusionar</button>
+      ${oc ? '' : `<button class="btn btn-ghost" data-a="fus" ${fus.length >= 3 || libres(p.col, k) < 1 ? 'disabled' : ''}>⚗️ Fusionar</button>`}
       <button class="btn btn-ghost" data-a="x">Cerrar</button></div></div>`);
   const cerrar = () => { m.remove(); document.removeEventListener('keydown', esc); };
   const esc = e => { if (e.key === 'Escape') cerrar(); };
@@ -456,7 +462,8 @@ function renderGacha(prog) {
   const col = prog.col || {}, pts = prog.pts || 0;
   fus = fus.filter((k, i) => fus.slice(0, i + 1).filter(x => x === k).length <= (col[k] || 0));   // por si vendió lo que estaba en la máquina
   const tiene = g => VAR.filter(v => col[g.id + ':' + v.id]);
-  const nGatos = GATOS.filter(g => tiene(g).length).length, nVar = Object.keys(col).length;
+  const nGatos = [...GATOS, ...GATOS_OSC].filter(g => tiene(g).length).length, nVar = Object.keys(col).filter(pieza).length;
+  const totVar = GATOS.length * VAR_GACHA.length + GATOS.filter(g => g.rar !== RAR[0]).length + GATOS_OSC.length;   // sorteos + oscuros del portal (raro o más) + los 16 exclusivos
   const pctR = r => (r.w / RAR.reduce((s, x) => s + x.w, 0) * 100).toLocaleString('es-CL', { maximumFractionDigits: 1 });
   const f = fusion(fus);
   const resTxt = f.err ? f.err : f.tipo === 'var' ? `Resultado: <b>${f.g.name} ${VAR[f.v].name.toLowerCase()}</b>.` : `Resultado: <b>un gato ${RAR[f.r].name.toLowerCase()} al azar, ${VAR[f.v].name.toLowerCase()}</b>.`;
@@ -467,14 +474,14 @@ function renderGacha(prog) {
       <button class="btn btn-ghost" id="gFarm" ${nVar ? '' : 'disabled'}>🌳 Granja de gatos</button>
       <button class="btn btn-ghost" id="gOps">${gatoSVG(GATOS[0], 20)} Michi operaciones</button>
       <button class="btn btn-ghost" id="gMute" aria-label="Sonido">${mudo() ? '🔇' : '🔊'}</button>
-      <span class="prog">${nGatos}/${GATOS.length} gatos · ${nVar}/${GATOS.length * VAR.length} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
+      <span class="prog">${nGatos}/${GATOS.length + GATOS_OSC.length} gatos · ${nVar}/${totVar} con variantes${pts < G_COST ? ` · te faltan ⭐ ${G_COST - pts}` : ''}</span></div>
     <details><summary>Probabilidades, precios y fusiones</summary><p>Rareza: ${RAR.map(r => `${r.name} ${pctR(r)} %`).join(' · ')}.<br>
       Dentro de cada rareza, cada gato sale menos que el anterior (${CAT_W.join(', ')} %).<br>
       Tope: si tienes más de ${TOPE} de un gato en una variante, ese gato deja de salir en esa variante.<br>
-      Variante: ${VAR.map(v => `${v.name} ${v.w} %`).join(' · ')}.<br>
+      Variante: ${VAR_GACHA.map(v => `${v.name} ${v.w} %`).join(' · ')}. La variante 🌑 Oscuro no sale aquí: solo del Portal oscuro del casino.<br>
       Gachapones especiales: ${GACHA_VAR.map(([d, c]) => `⭐ ${c} asegura ${VAR[d].name.toLowerCase()} o más`).join(', ')} (este último es interactivo); entre esas variantes se mantienen las mismas proporciones y la rareza sale igual que en la máquina normal.<br>
       Venta: un común normal vale ⭐ 2 y sube con la rareza, la variante y lo difícil que es el gato; un diamante vale más o menos lo que un normal de la rareza siguiente.<br>
-      Fusión: tres iguales dan el mismo gato con la variante siguiente (${VAR.map(v => v.name.toLowerCase()).join(' → ')}). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
+      Fusión: tres iguales dan el mismo gato con la variante siguiente (${VAR_GACHA.map(v => v.name.toLowerCase()).join(' → ')}). Tres de la misma rareza dan un gato al azar de la rareza siguiente con la variante más baja de los tres. Cuesta ⭐ ${FUS_COST.map((c, i) => `${c} ${RAR[i].name.toLowerCase()}`).join(', ')}, multiplicado por la variante.</p></details>
     <div class="g-fus"><h4>⚗️ Máquina de fusión</h4><div class="sub">Clic en un gato de la galería y «Fusionar» para agregarlo; clic en una casilla para sacarlo.</div>
       <div class="g-slots">${[0, 1, 2].map(i => { const k = fus[i]; if (!k) return `<div class="g-slot">+</div>`; const pz = pieza(k);
         return `<button class="g-slot lleno v-${VAR[pz.v].id}" style="--rc:${pz.g.rar.color}" data-quita="${i}" title="Sacar ${pz.g.name} ${VAR[pz.v].name.toLowerCase()}">${gatoSVG(pz.g, 60)}</button>`; }).join('')}
@@ -486,9 +493,17 @@ function renderGacha(prog) {
         if (!vs.length) return `<div class="g-card">${gatoSVG(g, 72, true)}<b>???</b><small>sin descubrir</small></div>`;
         const v = vs.find(x => x.id === vista[g.id]) || vs[0], k = g.id + ':' + v.id;
         return `<div class="g-card si v-${v.id} ${acompanantes(prog).includes(k) ? 'ac' : ''}" style="--rc:${r.color}" data-card="${k}" role="button" tabindex="0" aria-label="${g.name} ${v.name}: opciones">${gatoSVG(g, 72)}<b>${g.name}</b><small>${v.name} · tienes ${col[k]} · ×${multGato(k)}</small>
-          <span class="g-dots">${VAR.map(x => col[g.id + ':' + x.id] ? `<button class="${x === v ? 'on' : ''}" style="background:${x.dot}" data-ver="${g.id}:${x.id}" title="${x.name} ×${col[g.id + ':' + x.id]}" aria-label="Ver ${x.name}"></button>` : `<i title="${x.name} (falta)"></i>`).join('')}</span>
+          <span class="g-dots">${VAR.map(x => col[g.id + ':' + x.id] ? `<button class="${x === v ? 'on' : ''}" style="background:${x.dot}" data-ver="${g.id}:${x.id}" title="${x.name} ×${col[g.id + ':' + x.id]}" aria-label="Ver ${x.name}"></button>` : x.id === 'oscuro' ? '' : `<i title="${x.name} (falta)"></i>`).join('')}</span>
           ${acompanantes(prog).includes(k) ? '<span class="g-acbadge">🐾 te acompaña</span>' : ''}</div>`;
-      }).join('') + '</div>').join('');
+      }).join('') + '</div>').join('') +
+    `<div class="g-rar" style="color:#6a2fa0">🌑 Gatos de la Oscuridad</div><div class="sub">Solo salen del Portal oscuro del casino: no se fusionan ni suben de variante.</div><div class="g-grid">` +
+      GATOS_OSC.map(g => {
+        const k = g.id + ':oscuro';
+        if (!col[k]) return `<div class="g-card">${gatoSVG(g, 72, true)}<b>???</b><small>${g.rar.name} · sin descubrir</small></div>`;
+        return `<div class="g-card si v-oscuro ${acompanantes(prog).includes(k) ? 'ac' : ''}" style="--rc:${g.rar.color}" data-card="${k}" role="button" tabindex="0" aria-label="${g.name} oscuro: opciones" title="${g.tema}">${gatoSVG(g, 72)}<b>${g.name}</b><small>${g.rar.name} · tienes ${col[k]} · ×${multGato(k)}</small>
+          <span class="g-dots"><button class="on" style="background:${VAR[VAR.length - 1].dot}" title="Oscuro ×${col[k]}" aria-label="Oscuro"></button></span>
+          ${acompanantes(prog).includes(k) ? '<span class="g-acbadge">🐾 te acompaña</span>' : ''}</div>`;
+      }).join('') + '</div>';
   $('gPlay').addEventListener('click', jugar);
   el.querySelectorAll('[data-gvar]').forEach(b => b.addEventListener('click', () => { const r = GACHA_VAR.find(x => x[0] === +b.dataset.gvar); (r[0] >= 3 ? gachaEpico : gachaPrem)(r); }));
   $('gFarm').addEventListener('click', () => granja());   // tamagotchi.js la reemplaza después del primer dibujo
@@ -764,7 +779,7 @@ const RULETAS = [
 const ruletaDe = n => RULETAS.find((r, i) => n >= r.min || 4 - i <= evRar());
 // correctas = null: giro de regalo del evento; vi = variante con que sale el gato
 async function girarRuleta(correctas, vi = 0) {
-  const R = ruletaDe(correctas), sale = sortear(R.gs), g = sale.g, v = VAR[Math.max(vi, evVar())], k = g.id + ':' + v.id;
+  const R = ruletaDe(correctas), sale = sortear(R.gs), g = sale.g, v = VAR[Math.min(Math.max(vi, evVar()), VAR_TOP)], k = g.id + ':' + v.id;
   const p = store.get(); p.col = p.col || {};
   const nuevo = !VAR.some(x => p.col[g.id + ':' + x.id]);
   p.col[k] = (p.col[k] || 0) + 1; store.set(p);   // guardado antes de girar: recargar no pierde el gato
@@ -796,7 +811,7 @@ async function rueda(titulo, sub, tajadas, i) {
 function granja() {
   const col = store.get().col || {};
   // ponytail: tope de 60 gatos en pantalla; con más, el parque se vuelve una masa ilegible
-  const copias = Object.entries(col).flatMap(([k, n]) => Array(n).fill(k)).slice(0, 60);
+  const copias = Object.entries(col).filter(([k]) => pieza(k)).flatMap(([k, n]) => Array(n).fill(k)).slice(0, 60);
   const deco = ['🌳', '🌳', '🌲', '🌷', '🌼', '🌻', '⛲', '🌳', '🌷', '🪨'].map((e, i) => `<span class="deco" style="left:${(i * 37 + 5) % 92}%;top:${(i * 53 + 8) % 85}%">${e}</span>`).join('');
   const total = Object.values(col).reduce((s, n) => s + n, 0);
   const m = modal('Granja de gatos', `<div class="top"><div><h3 style="font-size:24px">🌳 Granja de gatos</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">${copias.length < total ? `${copias.length} de tus ${total}` : copias.length} gatos paseando · clic en el pasto para dejar un pescado.</div></div>

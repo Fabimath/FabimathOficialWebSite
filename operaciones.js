@@ -171,7 +171,7 @@ function puestoHTML(e, ab, i, p) {
   const mueble = `<div class="o-mueble" style="margin-top:calc(-1cqw * (1.87 + ${e.top * MU}))">${pxSVG(e.mueble, e.col, 1).replace('<svg', `<svg style="width:${e.mueble[0].length * MU}cqw"`)}</div>`;
   const cartel = (html, cls = 'pxc') => `<div class="o-cartel t-borde"><div class="${cls}">${html}</div></div>`;
   if (i >= ab.n) return `<button class="o-pos compra" data-puesto ${pos} ${pez(p) < costoPuesto(ab.n) ? 'disabled' : ''}><div class="o-gato">${ico(S_CANDADO, C_CANDADO, '')}</div>${mueble}${cartel(`Nuevo puesto<span>${costoPuesto(ab.n)} ${PEZ_ICO}</span>`)}</button>`;
-  if (!x0) return `<button class="o-pos libre" data-pon="${i}" ${pos}><div class="o-gato">${gatoSVG(GATOS[0], 56, true)}</div>${mueble}${cartel('+ Poner michi')}</button>`;
+  if (!x0 || !pieza(x0.k)) return `<button class="o-pos libre" data-pon="${i}" ${pos}><div class="o-gato">${gatoSVG(GATOS[0], 56, true)}</div>${mueble}${cartel('+ Poner michi')}</button>`;
   const pz = pieza(x0.k);
   return `<div class="o-pos" ${pos} title="${pz.g.name} ${VAR[pz.v].name.toLowerCase()} · ×${multGato(x0.k)}"><div class="o-gato v-${VAR[pz.v].id}">${gatoSVG(pz.g, 56)}</div>${mueble}
     ${cartel(`<span class="rate">+${pezMin(x0.k)} ${PEZ_ICO}/min</span><span><span data-acum="${i}">${txtAcum(x0)}</span><button class="o-saca pxc" data-saca="${i}">SACAR</button></span>`)}</div>`;
@@ -188,7 +188,7 @@ function operaciones(sel = 'colegio') {
     else encima = (sel === 'colegio' ? `<div class="o-pos o-prof" style="left:88%;top:47%"><div class="o-gato" style="position:relative">${gatoSVG(PROFE, 56)}${ico(S_BIRRETE, { K: '#111', N: '#2b2b33', Y: '#f5c542' }, 'birrete')}</div>
         <div class="o-cartel t-borde"><div class="pxc">Michi Profesor</div></div></div>` : '') +
       Array.from({ length: Math.min(ab.n + 1, OPS_MAX) }, (_, i) => puestoHTML(e, ab, i, p)).join('');
-    box.innerHTML = `<div class="top"><div style="flex:1;min-width:260px"><h3 style="font-size:24px;display:flex;gap:8px;align-items:center">${gatoSVG(GATOS[0], 34)} Michi operaciones</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">Pon a trabajar a tus gatos: cada minuto producen la mitad de su multiplicador en pescados (de 1 a ${pezMin(GATOS[GATOS.length - 1].id + ":" + VAR[VAR.length - 1].id)}, según rareza y variante), aunque cierres la página, hasta ${OPS_TOPE} minutos sin recoger.</div></div>
+    box.innerHTML = `<div class="top"><div style="flex:1;min-width:260px"><h3 style="font-size:24px;display:flex;gap:8px;align-items:center">${gatoSVG(GATOS[0], 34)} Michi operaciones</h3><div class="sub" style="margin:0;color:var(--ink-3);font-size:14px">Pon a trabajar a tus gatos: cada minuto producen la mitad de su multiplicador en pescados (de 1 a ${pezMin(GATOS[GATOS.length - 1].id + ":" + VAR[VAR_TOP].id)}, según rareza y variante), aunque cierres la página, hasta ${OPS_TOPE} minutos sin recoger.</div></div>
       <div style="display:flex;gap:8px;align-items:center"><span class="pill">${window.esAdmin ? '∞' : p.pez || 0} ${PEZ_ICO}</span><button class="btn btn-ghost" data-x>Cerrar</button></div></div>
       <div class="o-tabs">${OPS.map(x => `<button class="o-tab ${x.id === sel ? 'on' : ''}" data-tab="${x.id}">${ico(x.mueble, x.col)}${x.name}${o[x.id] ? '' : ico(S_CANDADO, C_CANDADO, 'o-lk')}</button>`).join('')}</div>
       <div class="o-marco"><div class="o-escena ${ab ? '' : 'cerrada'}"><svg viewBox="0 0 192 120" shape-rendering="crispEdges" aria-hidden="true">${e.fondo()}</svg>${encima}</div></div>
@@ -222,7 +222,7 @@ function operaciones(sel = 'colegio') {
 // selector de gatos libres con el oficio del escenario; listo() redibuja las operaciones
 function elegirMichi(sel, i, listo) {
   const p = store.get(), e = OPS.find(x => x.id === sel), col = p.col || {}, libre = k => col[k] - trabajando(p, k);
-  const ks = Object.keys(col).filter(k => pieza(k).g.of === e.of && libre(k) > 0).sort((a, b) => pezMin(b) - pezMin(a));
+  const ks = Object.keys(col).filter(k => pieza(k) && pieza(k).g.of === e.of && libre(k) > 0).sort((a, b) => pezMin(b) - pezMin(a));
   const { m, cerrar } = ventana('Elegir michi', `<h3 style="font-size:22px;display:flex;gap:8px;align-items:center;justify-content:center">${ico(e.mueble, e.col)} ¿Quién trabaja aquí?</h3>
     <div class="sub" style="color:var(--ink-3);font-size:14px;margin:4px 0 12px">Solo ${e.quien}. Producen más según su rareza y su variante.</div>
     ${ks.length ? `<div class="g-grid">${ks.map(k => { const pz = pieza(k);
