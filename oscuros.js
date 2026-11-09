@@ -1,12 +1,12 @@
 /* Portal oscuro (PAES Fabimath): minijuego del casino; con las Garritas oscuras del gachapón (abajo) son las únicas fuentes de la variante Oscuro y de los 16 gatos de gatos_oscuros.js.
    Cada intento cuesta OSC_COST 🐟 y son OSC_N tarjetas al azar de Biología (FLASH, paes_flash_bio.js): se escribe la palabra, un solo intento por tarjeta.
-   Aciertos: 0–2 raro, 3 épico, 4 legendario, 5 mítico. Siempre sale un gato oscuro de esa rareza: de los de GATOS (w 1) o de GATOS_OSC (w 2.5 c/u, la mitad de las veces).
+   Aciertos: 0 común, 1 raro, 2 épico, 3 legendario, 4–5 mítico. Siempre sale un gato oscuro de esa rareza: de los de GATOS (w 1) o de GATOS_OSC (w 2.5 c/u; no hay oscuros exclusivos comunes, así que con 0 aciertos sale un común de GATOS en variante Oscuro).
    El intento se guarda en p.oscPend = { c: [[tema, índice] ×5], i, ok } apenas se paga y avanza al responder: recargar no pierde lo pagado ni deja repetir una tarjeta.
    No da estrellas. Se carga después de casino.js: usa pez, sumaPez, updPez, renderCasino (casino.js), modal, revelar, sortear (gacha.js), normal, dist (paes.html). */
 
-const OSC_COST = 2000, OSC_N = 5, OSC_RAR = [1, 1, 1, 2, 3, 4];   // aciertos → índice en RAR
+const OSC_COST = 2000, OSC_N = 5, OSC_RAR = [0, 1, 2, 3, 4, 4];   // aciertos → índice en RAR
 const OSC_V = VAR.find(v => v.id === 'oscuro');
-const oscEsc = ok => `<div class="o-esc" aria-label="Rareza alcanzada: ${RAR[OSC_RAR[ok]].name}">${RAR.slice(1).map((r, j) => `<i class="${j + 1 <= OSC_RAR[ok] ? 'on' : ''}" style="--c:${r.color}">${r.name}</i>`).join('')}</div>`;
+const oscEsc = ok => `<div class="o-esc" aria-label="Rareza alcanzada: ${RAR[OSC_RAR[ok]].name}">${RAR.map((r, j) => `<i class="${j <= OSC_RAR[ok] ? 'on' : ''}" style="--c:${r.color}">${r.name}</i>`).join('')}</div>`;
 const oscYa = () => window.cloudSaveYa && cloudSaveYa();   // sin esperar el segundo de cloudSave: recargar no deja repetir tarjeta ni volver a sortear el premio
 const oscTarjetas = () => Object.entries(typeof FLASH === 'undefined' ? {} : FLASH).flatMap(([t, a]) => a.map((_, i) => [t, i]));
 
@@ -174,7 +174,7 @@ renderCasino = function () {
   const p = store.get(), pend = !!p.oscPend, puede = pend || (pez(p) >= OSC_COST && oscTarjetas().length >= OSC_N);
   grid.insertAdjacentHTML('beforeend', `<div class="c-card c-os"><h4>🌑 Portal oscuro</h4>
     <div class="c-gatos">${RAR.slice(1).map(r => { const g = GATOS_OSC.find(x => x.rar === r); return `<span class="v-oscuro" title="${g.name}">${gatoSVG(g, 40)}</span>`; }).join('')}</div>
-    <p>Responde 5 tarjetas de Biología escribiendo la palabra que falta. Cada acierto sube la rareza y siempre sale un gato oscuro: 16 gatos exclusivos, y la variante Oscuro solo se consigue aquí y en las Garritas oscuras del gachapón.</p>
+    <p>Responde 5 tarjetas de Biología escribiendo la palabra que falta. Cada acierto sube un nivel de rareza (0 común, 1 raro, 2 épico, 3 legendario, 4 o 5 mítico) y siempre sale un gato oscuro: 16 gatos exclusivos, y la variante Oscuro solo se consigue aquí y en las Garritas oscuras del gachapón.</p>
     ${oscEsc(0).replace(/ aria-label="[^"]*"/, '')}
     <button class="btn btn-white" data-c="os" ${puede ? '' : 'disabled'}>${pend ? 'Continuar intento' : '🐟 ' + miles(OSC_COST)}</button></div>`);
   grid.querySelector('[data-c="os"]').addEventListener('click', portalOsc);
