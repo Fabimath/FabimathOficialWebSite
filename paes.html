@@ -33,6 +33,7 @@
 <script src="paes_biologia_evolucion.js"></script>
 <script src="paes_biologia_ambiente.js"></script>
 <script src="paes_biologia_habilidades.js"></script>
+<script src="paes_flash_bio.js"></script>
 <script src="paes_fisica_ondas.js"></script>
 <script src="paes_fisica_movimiento.js"></script>
 <script src="paes_fisica_fuerzas.js"></script>
@@ -176,6 +177,16 @@
   .step.on .n { background: var(--royal); color: #fff; }
   .step.ok { color: var(--ok-ink); }
   .step.ok .n { background: var(--mint); color: #fff; }
+  /* Memoriza: tarjetas para completar con una palabra, sin alternativas */
+  .flash .fp { font-size: 21px; line-height: 1.5; margin: 6px 0 20px; }
+  .flash .fp .hueco { display: inline-block; min-width: 90px; border-bottom: 2px solid var(--royal); margin: 0 3px; }
+  .flash .fin { display: flex; gap: 10px; flex-wrap: wrap; }
+  .flash input { flex: 1; min-width: 200px; font: inherit; font-size: 18px; padding: 11px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); }
+  .flash input:focus { outline: none; border-color: var(--royal); }
+  .flash input.good { border-color: var(--mint); } .flash input.bad { border-color: var(--ko-ink); }
+  .flash .fres { margin-top: 16px; font-size: 16px; line-height: 1.5; min-height: 24px; }
+  .flash .fres.good { color: var(--ok-ink); } .flash .fres.bad { color: var(--ko-ink); }
+  .flash .fres b { color: var(--ink); }
   .hist { margin-top: 24px; background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); padding: 28px 28px; overflow-x: auto; }
   .hist h3 { font-size: 24px; margin-bottom: 6px; }
   .hist .sub { font-size: 14px; color: var(--ink-3); margin-bottom: 14px; line-height: 1.45; }
@@ -428,11 +439,13 @@
       <button class="step" id="st0" title="Ir a la clase"><span class="n">1</span>Clase</button>
       <button class="step" id="st1" title="Ir a la pregunta PAES resuelta"><span class="n">2</span>Pregunta PAES</button>
       <button class="step" id="st2" title="Saltar directo al cuestionario"><span class="n">3</span>Cuestionario</button>
+      <button class="step hidden" id="st3" title="Repasar con tarjetas para completar"><span class="n">4</span>Memoriza</button>
     </div>
 
     <div id="deck" class="deck">
       <div class="slide" id="slide"></div>
       <div class="deck-nav">
+        <button class="btn btn-ghost hidden" id="toFlash">🧠 Memorizar con tarjetas</button>
         <button class="btn btn-primary" id="nextSlide">Ir a la pregunta PAES ▶</button>
       </div>
     </div>
@@ -456,6 +469,18 @@
         <div class="qnav">
           <button class="btn btn-ghost" id="qQuit">◀ Salir</button>
           <button class="btn btn-primary hidden" id="qNext">Siguiente ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="fwrap" class="hidden">
+      <div class="qcard flash">
+        <div class="qtop"><span class="qtag">Memoriza · completa la frase</span><span id="fCount"></span></div>
+        <div class="pbar"><div id="fBar" style="width:0%"></div></div>
+        <div id="fBody"></div>
+        <div class="qnav">
+          <button class="btn btn-ghost" id="fQuit">◀ Salir</button>
+          <button class="btn btn-primary hidden" id="fNext">Siguiente ▶</button>
         </div>
       </div>
     </div>
@@ -837,14 +862,17 @@ function openTopic(id) {
   cur = ALL_TOPICS.find(t => t.id === id); mode = 'topic';
   $('tIcon').textContent = cur.icon; $('tTitle').textContent = cur.title; $('tUnit').textContent = cur.unit;
   document.querySelector('.topic-head').classList.remove('hidden'); document.querySelector('.steps').classList.remove('hidden');
+  const hay = !!flashDe(cur.id); $('st3').classList.toggle('hidden', !hay); $('toFlash').classList.toggle('hidden', !hay);
   stage = 0; renderSlide(); show('topic');
 }
+// etapas: 0 clase, 1 pregunta PAES, 2 cuestionario, 3 resultado, 4 memoriza (paso st3)
 function setStage(n) {
   stage = n;
-  [0, 1, 2].forEach(i => { const el = $('st' + i); el.classList.toggle('on', i === n); el.classList.toggle('ok', i < n); });
+  [0, 1, 2, 3].forEach(i => { const el = $('st' + i); el.classList.toggle('on', n === 4 ? i === 3 : i === n && i < 3); el.classList.toggle('ok', n !== 4 && i < n && i < 3); });
   $('deck').classList.toggle('hidden', n !== 0);
-  $('qwrap').classList.toggle('hidden', n === 0 || n === 3);
+  $('qwrap').classList.toggle('hidden', n === 0 || n === 3 || n === 4);
   $('rwrap').classList.toggle('hidden', n !== 3);
+  $('fwrap').classList.toggle('hidden', n !== 4);
   $('qIntro').classList.add('hidden'); $('qCard').classList.remove('hidden'); $('qClock').classList.toggle('hidden', n !== 2);
 }
 // la clase completa en una sola página, sección tras sección hacia abajo
@@ -973,6 +1001,62 @@ $('rSpin').addEventListener('click', () => { $('rSpin').disabled = true; girarRu
 $('st0').addEventListener('click', () => renderSlide());
 $('st1').addEventListener('click', startExample);
 $('st2').addEventListener('click', startQuiz);
+$('st3').addEventListener('click', startFlash);
+$('toFlash').addEventListener('click', startFlash);
+
+/* ---------------- memoriza: tarjetas para completar con una palabra (FLASH en paes_flash_bio.js) ----------------
+   Cada tarjeta es { p: 'frase con ___', r: ['respuesta', 'otra forma aceptada'] }. No hay alternativas: se escribe.
+   Se aceptan sin tildes, sin mayúsculas, sin artículo inicial y con un error de tipeo en palabras de 6 letras o más,
+   salvo que lo escrito sea la respuesta de otra tarjeta del tema (fenotipo / genotipo). Las tarjetas falladas vuelven
+   al final del mazo hasta acertarlas todas. No dan estrellas: son solo para memorizar. */
+const flashDe = id => typeof FLASH !== 'undefined' && FLASH[id];
+const normal = s => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim().replace(/^(el|la|los|las|un|una|unos|unas) /, '');
+const dist = (a, b) => { let p = [...Array(b.length + 1).keys()];
+  for (let i = 1; i <= a.length; i++) { const q = [i]; for (let j = 1; j <= b.length; j++) q[j] = Math.min(p[j] + 1, q[j - 1] + 1, p[j - 1] + (a[i - 1] !== b[j - 1])); p = q; }
+  return p[b.length]; };
+let mazo = [], fTot = 0, fFallo = new Set(), fHecho = false;
+function startFlash() {
+  stopClock(); mazo = shuffle([...flashDe(cur.id)]); fTot = mazo.length; fFallo = new Set(); setStage(4); flashCard();
+}
+function flashCard() {
+  const c = mazo[0]; fHecho = false;
+  $('fCount').textContent = `${fTot - mazo.length} de ${fTot} memorizadas`;
+  $('fBar').style.width = ((fTot - mazo.length) / fTot * 100) + '%';
+  $('fBody').innerHTML = `<div class="fp">${c.p.replace('___', '<span class="hueco"></span>')}</div>
+    <div class="fin"><input id="fIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Escribe lo que falta" aria-label="Respuesta">
+    <button class="btn btn-primary" id="fChk">Comprobar</button><button class="btn btn-ghost" id="fVer">Ver respuesta</button></div><div class="fres" id="fRes"></div>`;
+  $('fNext').classList.add('hidden');
+  $('fChk').addEventListener('click', () => flashCheck(false));
+  $('fVer').addEventListener('click', () => flashCheck(true));
+  $('fIn').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); flashCheck(false); } });
+  $('fIn').focus();
+}
+function flashCheck(ver) {
+  if (fHecho) return;
+  const c = mazo[0], inp = $('fIn'), v = normal(inp.value);
+  if (!ver && !v) return inp.focus();
+  const rs = c.r.map(normal), otras = new Set(flashDe(cur.id).filter(k => k !== c).flatMap(k => k.r.map(normal)));
+  const exacta = rs.includes(v), casi = !exacta && v.length >= 6 && !otras.has(v) && rs.some(r => dist(v, r) <= 1), ok = !ver && (exacta || casi);
+  fHecho = true; inp.disabled = true; inp.classList.add(ok ? 'good' : 'bad'); $('fChk').disabled = $('fVer').disabled = true;
+  mazo.shift(); if (!ok) { mazo.push(c); fFallo.add(c); }
+  const frase = c.p.replace('___', `<b>${c.r[0]}</b>`);
+  $('fRes').className = 'fres ' + (ok ? 'good' : 'bad');
+  $('fRes').innerHTML = (ok ? (casi ? `✔ Casi perfecto, se escribe <b>${c.r[0]}</b>.` : '✔ ¡Correcto!') : (ver ? '👀 Era así:' : '✘ No era eso. Era así:')) +
+    `<br>${frase}` + (ok ? '' : '<br><small>Esta tarjeta vuelve al final del mazo.</small>');
+  $('fCount').textContent = `${fTot - mazo.length} de ${fTot} memorizadas`;
+  $('fBar').style.width = ((fTot - mazo.length) / fTot * 100) + '%';
+  $('fNext').textContent = mazo.length ? 'Siguiente ▶' : 'Terminar ▶'; $('fNext').classList.remove('hidden'); $('fNext').focus();
+}
+function flashFin() {
+  const n = fFallo.size;
+  $('fCount').textContent = `${fTot} de ${fTot} memorizadas`; $('fNext').classList.add('hidden');
+  $('fBody').innerHTML = `<div class="fp">🧠 ¡Listo! Memorizaste las ${fTot} tarjetas de <b>${cur.title}</b>.</div>
+    <p>${n ? `A la primera te costaron ${n}; dale otra vuelta en un rato para fijarlas.` : 'Todas a la primera. ¡Bien ahí!'}</p>
+    <div class="qnav" style="justify-content:center; margin-top:22px;"><button class="btn btn-ghost" id="fOtra">↻ Otra vuelta</button><button class="btn btn-primary" id="fQuiz">Ir al cuestionario ▶</button></div>`;
+  $('fOtra').addEventListener('click', startFlash); $('fQuiz').addEventListener('click', startQuiz);
+}
+$('fNext').addEventListener('click', () => { if (mazo.length) { flashCard(); window.scrollTo({ top: 0, behavior: 'smooth' }); } else flashFin(); });
+$('fQuit').addEventListener('click', renderSlide);
 $('rHome').addEventListener('click', renderHome);
 $('rRetry').addEventListener('click', () => mode === 'ensayo' ? startEnsayo() : startQuiz());
 $('homeBtn').addEventListener('click', () => location.hash ? location.hash = '' : renderHome());
