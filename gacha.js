@@ -807,7 +807,7 @@ async function rueda(titulo, sub, tajadas, i) {
   return m;
 }
 
-/* ---------- granja: una por cada par (rareza, variante) que tenga, con fondo animado según la rareza y efecto según la variante ----------
+/* ---------- granja: una por cada par (rareza, variante) que tenga, con un escenario pixel art de granja_fondos.js (gfEscena) ----------
    Los gatos pasean, juegan en parejas (ovillo), se persiguen, duermen y saltan; clic en el pasto deja un pescado, clic en un gato
    muestra un mensaje de ánimo debajo del parque, y frotarlo con el mouse o el dedo lo acaricia: ⭐ 1 por clave gato:variante cada
    GF_CARINO_MS (p.cari). Las estrellas caen en un frasco recolector. Contrato con tamagotchi.js: un solo #gPark durante toda la vida
@@ -820,53 +820,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .gf-tab.on { background: var(--ink); border-color: var(--ink); color: #fff; } .gf-tab.on small { color: #ddd; }
   .gf-pt { width: 11px; height: 11px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.25); }
   /* capas del parque: fondo (0) < efecto de variante (1) < gatos (2) < pescados (5) < frasco (9) */
-  .gf-fondo, .gf-fx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-  .gf-fondo { z-index: 0; } .gf-fx { z-index: 1; }
-  .gf-fondo > *, .gf-fx > * { position: absolute; pointer-events: none; user-select: none; }
-  .gf-deco { font-size: 34px; }
-  .g-park[data-v=oscuro] .gf-fondo { filter: brightness(.5) saturate(.7); }
-  .gf-bg-comun { background: linear-gradient(#8fd3ff, #d4f0ff 21%, transparent 21.2%), radial-gradient(circle at 30% 45%, #b9ef8f, #7fcf5a 60%, #5fb547); }
-  .gf-bg-raro { background: linear-gradient(#7ec8ff, #cdeeff 16%, #1f93c9 16%, #4fc7e3 40%, #f7e4b2 40.2%, #e9cd8c); }
-  .gf-bg-epico { background: linear-gradient(#120a2e, #2b1565 34%, #3a2080 34.2%, #25124f); }
-  .gf-bg-legendario { background: linear-gradient(#ff8a5c, #ffc977 26%, #f3cf7a 26.2%, #e0b04a 62%, #c9962f); }
-  .gf-bg-mitico { background: radial-gradient(ellipse at 50% 100%, rgba(255,110,20,.55), transparent 60%), linear-gradient(#2a0707, #8a2214 32%, #52150e 32.2%, #2b0b08); }
-  .gf-olas { left: 0; right: 0; top: 16%; height: 24%; background: radial-gradient(circle at 50% 0, transparent 9px, rgba(255,255,255,.4) 10px 12px, transparent 13px) 0 0 / 40px 20px, radial-gradient(circle at 50% 0, transparent 9px, rgba(255,255,255,.3) 10px 12px, transparent 13px) 20px 10px / 40px 20px; animation: gf-ola 4s linear infinite; }
-  @keyframes gf-ola { from { background-position: 0 0, 20px 10px; } to { background-position: 40px 0, 60px 10px; } }
-  .gf-sol { left: 50%; top: -40px; width: 110px; height: 110px; margin-left: -55px; border-radius: 50%; background: radial-gradient(circle, #fff6c8, #ffd75e 50%, #ffb02e 75%); box-shadow: 0 0 50px 20px rgba(255,200,80,.6); }
-  .gf-rayos { left: 50%; top: 15px; width: 1000px; height: 1000px; margin: -500px 0 0 -500px; background: repeating-conic-gradient(rgba(255,240,170,.38) 0 7deg, transparent 7deg 18deg); -webkit-mask: radial-gradient(circle, #000 10%, transparent 62%); mask: radial-gradient(circle, #000 10%, transparent 62%); animation: gf-gira 70s linear infinite; }
-  @keyframes gf-gira { to { transform: rotate(360deg); } }
-  .gf-nube { font-size: 38px; opacity: .92; animation: gf-deriva 30s ease-in-out infinite alternate; }
-  @keyframes gf-deriva { from { transform: translateX(-50px); } to { transform: translateX(90px); } }
-  .gf-mari { font-size: 18px; animation: gf-aletea 9s ease-in-out infinite alternate; }
-  @keyframes gf-aletea { 0% { transform: translate(0,0) rotate(-8deg) scaleX(1); } 25% { transform: translate(40px,-24px) rotate(10deg) scaleX(.5); } 50% { transform: translate(70px,8px) rotate(-6deg) scaleX(1); } 75% { transform: translate(30px,26px) rotate(8deg) scaleX(.5); } 100% { transform: translate(-20px,-10px) rotate(-8deg) scaleX(1); } }
-  .gf-bur { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.85); background: rgba(255,255,255,.25); animation: gf-burbuja 6s ease-in infinite; }
-  @keyframes gf-burbuja { 0% { transform: translateY(0) scale(.6); opacity: 0; } 12% { opacity: .9; } 100% { transform: translateY(-110px) scale(1.2); opacity: 0; } }
-  .gf-luci { width: 6px; height: 6px; border-radius: 50%; background: #fff7a0; box-shadow: 0 0 8px 3px rgba(255,235,90,.8); animation: gf-luz 8s ease-in-out infinite alternate; }
-  @keyframes gf-luz { 0% { transform: translate(0,0); opacity: .2; } 50% { transform: translate(30px,-20px); opacity: 1; } 100% { transform: translate(-20px,-40px); opacity: .3; } }
-  .gf-brillo, .gf-dia { font-size: 16px; animation: gf-titila 2.4s ease-in-out infinite; }
-  @keyframes gf-titila { 0%, 100% { transform: scale(.4); opacity: .15; } 50% { transform: scale(1.2); opacity: 1; } }
-  .gf-asc { width: 5px; height: 5px; border-radius: 50%; background: #ffb347; box-shadow: 0 0 6px 2px #ff6a1a; animation: gf-brasa 5s linear infinite; }
-  @keyframes gf-brasa { 0% { transform: translate(0,0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(22px,-170px); opacity: 0; } }
-  .fv-oro { background: linear-gradient(rgba(255,200,70,.2), rgba(255,160,20,.14)); }
-  .gf-glit { width: 4px; height: 6px; background: #ffd84a; box-shadow: 0 0 4px #fff3b0; animation: gf-cae 4.5s linear infinite; }
-  @keyframes gf-cae { from { transform: translateY(0) rotate(0); } to { transform: translateY(540px) rotate(540deg); } }
-  .fv-diamante { background: linear-gradient(rgba(170,235,255,.2), rgba(120,200,255,.12)), radial-gradient(circle at 70% 20%, rgba(255,255,255,.25), transparent 50%); }
-  .gf-dia { color: #c5f6ff; text-shadow: 0 0 6px #7fe0ff; } .gf-rosa { color: #ffc2f0; text-shadow: 0 0 6px #ff7ae0; }
-  .fv-arcoiris::before { content: ''; position: absolute; left: 12%; width: 76%; top: 1%; height: 48%; opacity: .85; background: radial-gradient(ellipse 50% 100% at 50% 100%, transparent 50%, #b57be0 51% 55%, #4fa8ff 55% 59%, #5fd97a 59% 63%, #ffe45c 63% 67%, #ff9a3c 67% 71%, #ff5e5e 71% 75%, transparent 76%); animation: gf-pulso 4s ease-in-out infinite; }
-  @keyframes gf-pulso { 50% { opacity: .5; transform: scale(1.03); } }
-  .fv-platino { background: rgba(225,230,245,.14); }
-  .fv-platino::before { content: ''; position: absolute; top: -10%; bottom: -10%; left: 0; width: 30%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: translateX(-150%) skewX(-18deg); animation: gf-barre 5s ease-in-out infinite; }
-  @keyframes gf-barre { 0% { transform: translateX(-150%) skewX(-18deg); } 60%, 100% { transform: translateX(450%) skewX(-18deg); } }
-  .fv-galactico { background: radial-gradient(ellipse at 25% 30%, rgba(150,70,230,.5), transparent 60%), radial-gradient(ellipse at 75% 70%, rgba(255,90,200,.4), transparent 60%), rgba(20,5,50,.3); }
-  .fv-galactico::before { content: ''; position: absolute; inset: 0; background: radial-gradient(1.5px 1.5px at 12% 20%, #fff, transparent), radial-gradient(1.5px 1.5px at 32% 62%, #fff, transparent), radial-gradient(2px 2px at 55% 15%, #fff, transparent), radial-gradient(1.5px 1.5px at 72% 48%, #fff, transparent), radial-gradient(2px 2px at 88% 82%, #fff, transparent), radial-gradient(1.5px 1.5px at 45% 90%, #fff, transparent), radial-gradient(1.5px 1.5px at 92% 18%, #fff, transparent), radial-gradient(1.5px 1.5px at 6% 75%, #fff, transparent); animation: gf-op 3s ease-in-out infinite alternate; }
-  @keyframes gf-op { from { opacity: .35; } to { opacity: 1; } }
-  .fv-estelar { background: radial-gradient(circle at 50% 35%, rgba(255,225,110,.38), transparent 65%); }
-  .gf-fugaz { width: 90px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #fff, rgba(255,235,150,0)); opacity: 0; animation: gf-estrella 7s linear infinite; }
-  @keyframes gf-estrella { 0% { opacity: 0; transform: translate(0,0) rotate(-27deg); } 3% { opacity: 1; } 13% { opacity: 0; transform: translate(-300px,150px) rotate(-27deg); } 100% { opacity: 0; transform: translate(-300px,150px) rotate(-27deg); } }
-  .fv-oscuro { background: radial-gradient(circle at 50% 50%, rgba(0,0,0,.05) 30%, rgba(0,0,0,.7)); }
-  .gf-bruma { width: 60%; height: 70px; border-radius: 50%; background: radial-gradient(ellipse, rgba(200,190,230,.35), transparent 70%); filter: blur(8px); animation: gf-deriva 16s ease-in-out infinite alternate; }
-  .gf-bat { font-size: 22px; animation: gf-murci 9s linear infinite; }
-  @keyframes gf-murci { 0% { transform: translate(0,0) scaleX(1); } 20% { transform: translate(220px,-16px) scaleX(.6); } 40% { transform: translate(440px,10px) scaleX(1); } 60% { transform: translate(660px,-14px) scaleX(.6); } 80% { transform: translate(880px,8px) scaleX(1); } 100% { transform: translate(1100px,-6px) scaleX(.6); } }
+  .gf-fondo { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }   /* escenario de granja_fondos.js */
   /* gatos: .gt (posición) > .gf-cu (rebote, salto, sueño) > .gf-dir (espejo) > .v-variante */
   .g-park .gt { position: absolute; z-index: 2; width: 52px; height: 52px; transition-property: left, top; transition-timing-function: linear; pointer-events: auto; touch-action: none; cursor: grab; }
   .gf-cu { position: relative; isolation: isolate; width: 52px; height: 52px; transform-origin: 50% 100%; }
@@ -912,8 +866,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>
   .gf-dice { position: relative; margin-top: 6px; padding: 10px 14px; border-radius: 16px; background: #fff; border: 1px solid var(--line); font-size: 16px; font-weight: 600; line-height: 1.35; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
   .gf-dice::before { content: ''; position: absolute; left: 22px; top: -7px; width: 12px; height: 12px; background: #fff; border-left: 1px solid var(--line); border-top: 1px solid var(--line); transform: rotate(45deg); }
   @media (prefers-reduced-motion: reduce) {
-    .gf-olas, .gf-rayos, .gf-fondo > *, .gf-fx > *, .gf-fx::before, .gt.gf-anda .gf-cu, .gf-cu.gf-salta, .gf-cu.gf-duerme, .gf-cu.gf-feliz, .gf-zz, .gf-mano, .gf-flot, .gf-bola, .gf-bota, .gf-pop { animation: none; }
-    .gf-fx > .gf-fugaz { display: none; }
+    .gt.gf-anda .gf-cu, .gf-cu.gf-salta, .gf-cu.gf-duerme, .gf-cu.gf-feliz, .gf-zz, .gf-mano, .gf-flot, .gf-bola, .gf-bota, .gf-pop { animation: none; }
   }
 </style>`);
 
@@ -937,25 +890,7 @@ const GF_MSG = [
   'Mira hasta dónde llegaste desde el primer día: eso es progreso.', 'Confía en tu preparación. ¡Tú puedes con esto!',
   'Las fracciones muerden menos de lo que parece.'
 ];
-// fondo por rareza: dy = franja vertical (%) de la decoración, extra = capas fijas, p = partículas { c: clase, t: texto, n: cantidad, y: franja %, x: franja %, d: segundos }
-const GF_FONDOS = {
-  comun: { dy: [24, 88], deco: ['🌳', '🌷', '🌼', '🌻', '⛲', '🪨', '🌳', '🌷'], p: [{ c: 'gf-nube', t: '☁️', n: 5, y: [1, 16], d: 30 }, { c: 'gf-mari', t: '🦋', n: 5, y: [28, 85], d: 9 }] },
-  raro: { dy: [46, 88], deco: ['🌴', '🐚', '⛱️', '🦀', '🪸', '🌴'], extra: '<i class="gf-olas"></i>', p: [{ c: 'gf-bur', n: 12, y: [20, 55], d: 6 }] },
-  epico: { dy: [34, 88], deco: ['🍄', '🔮', '🌲', '🪻', '🌙', '🍄', '🌲'], p: [{ c: 'gf-luci', n: 14, y: [10, 95], d: 8 }] },
-  legendario: { dy: [28, 88], deco: ['🏰', '👑', '🏆', '🌻', '⛲'], extra: '<i class="gf-sol"></i><i class="gf-rayos"></i>', p: [{ c: 'gf-brillo', t: '✨', n: 12, y: [4, 95], d: 2.4 }] },
-  mitico: { dy: [30, 88], deco: ['🌋', '🔥', '🐉', '⛩️', '🔥'], p: [{ c: 'gf-asc', n: 14, y: [45, 100], d: 5 }] }
-};
-// efecto por variante (partículas; el resto va en CSS .fv-*)
-const GF_FX = {
-  oro: [{ c: 'gf-glit', n: 26, y: [-6, -1], d: 4.5 }],
-  diamante: [{ c: 'gf-dia', t: '✦', n: 16, y: [4, 96], d: 3 }],
-  galactico: [{ c: 'gf-dia gf-rosa', t: '✦', n: 14, y: [4, 96], d: 3 }],
-  estelar: [{ c: 'gf-fugaz', n: 4, y: [2, 40], x: [45, 100], d: 7 }],
-  oscuro: [{ c: 'gf-bruma', n: 4, y: [35, 90], x: [-10, 40], d: 18 }, { c: 'gf-bat', t: '🦇', n: 5, y: [6, 55], x: [-8, -8], d: 9 }]
-};
 const gfRnd = (a, b) => a + Math.random() * (b - a);
-const gfPart = ps => ps.map(({ c, t = '', n, y, x = [0, 96], d }) => Array.from({ length: n }, () =>
-  `<span class="${c}" style="left:${gfRnd(...x)}%;top:${gfRnd(...y)}%;animation-delay:${-gfRnd(0, d)}s;animation-duration:${gfRnd(d * .7, d * 1.3)}s">${t}</span>`).join('')).join('');
 
 function granja() {
   const col = store.get().col || {}, fs = {};   // granjas: "rareza:variante" -> { r, v, n, ks (copias, hasta GF_TOPE) }
@@ -1100,13 +1035,12 @@ function granja() {
   const arma = key => {
     gfTab = key; tm.forEach(clearTimeout); tm.clear(); gatos = []; panel.hidden = true; panel.innerHTML = '';
     m.querySelectorAll('.gf-tab').forEach(b => { const on = b.dataset.f === key; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
-    const f = fs[key], r = RAR[f.r], v = VAR[f.v], fd = GF_FONDOS[r.id];
-    y0 = Math.max(0, fd.dy[0] - 8) / 100;
+    const f = fs[key], r = RAR[f.r], v = VAR[f.v], esc = gfEscena(r.id, v.id);
+    y0 = Math.max(0, esc.suelo - .08);   // el gato mide ~10 % del alto: así pisa justo bajo el horizonte
     park.replaceChildren(...park.querySelectorAll('.t-pez'));   // los pescados por recoger (tamagotchi.js) sobreviven al cambio
     park.dataset.r = r.id; park.dataset.v = v.id;
-    park.classList.toggle('gf-osc', ['epico', 'mitico'].includes(r.id) || ['oscuro', 'galactico'].includes(v.id));
-    const deco = fd.deco.map((e, i) => `<span class="gf-deco" style="left:${(i * 37 + 5) % 90}%;top:${fd.dy[0] + (i * 53 % 100) / 100 * (fd.dy[1] - fd.dy[0])}%">${e}</span>`).join('');
-    park.insertAdjacentHTML('beforeend', `<div class="gf-fondo gf-bg-${r.id}">${fd.extra || ''}${deco}${gfPart(fd.p)}</div><div class="gf-fx fv-${v.id}">${gfPart(GF_FX[v.id] || [])}</div>${jarHTML()}`);
+    park.classList.toggle('gf-osc', esc.oscura);
+    park.insertAdjacentHTML('beforeend', `<div class="gf-fondo">${esc.svg}</div>${jarHTML()}`);
     gatos = f.ks.map(k => {
       const pz = pieza(k), el = document.createElement('div');
       el.className = 'gt'; el.title = pz.g.name;
