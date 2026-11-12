@@ -11,6 +11,7 @@ Caso largo: {tipo, ctx, enun, parts:[{ask, alts, correct, pautaSteps, conc}], mi
 """
 import json
 import math
+import re
 from pathlib import Path
 
 from scipy import stats
@@ -143,16 +144,39 @@ def alts_txt(correcta, otras):
 
 
 # ---------------------------------------------------------------- constructores
-def limpia(x):
-    """Arreglos de concordancia que dejan las plantillas (de el → del, a el → al)."""
+_PEV = re.compile(r'(?<![A-Z\\_])(P(?=\s*(?:\(|\[|=|\\left))|[EV](?=\s*(?:\(|\[|\\left)))')
+_MATH = re.compile(r'\$\$[\s\S]+?\$\$|\$[^$]+?\$')
+
+
+def pizarra_tex(m):
+    """Dentro de una fórmula: P( → \\mathbb{P}(, E( → \\mathbb{E}(, V( → \\mathbb{V}( (notación del formulario)."""
+    return _PEV.sub(lambda g: '\\mathbb{' + g.group(1) + '}', m)
+
+
+def pizarra(s):
+    """Aplica pizarra_tex solo a los segmentos $…$ de un texto mixto."""
+    return _MATH.sub(lambda g: pizarra_tex(g.group(0)), s)
+
+
+def pizarra_txt(s):
+    """Para textos sin KaTeX (nombres de tipo): ℙ(, 𝔼(, 𝕍(."""
+    return re.sub(r'(?<![A-Za-z])([PEV])(?=\()', lambda g: {'P': 'ℙ', 'E': '𝔼', 'V': '𝕍'}[g.group(1)], s)
+
+
+def limpia(x, clave=None):
+    """Concordancia de las plantillas (de el → del, a el → al) y notación ℙ, 𝔼, 𝕍."""
     if isinstance(x, str):
+        if clave == 'tipo':
+            return pizarra_txt(x)
         for a, b in ((' de el ', ' del '), (' a el ', ' al '), ('De el ', 'Del ')):
             x = x.replace(a, b)
-        return x
+        return pizarra(x)
     if isinstance(x, list):
-        return [limpia(v) for v in x]
+        return [limpia(v, clave) for v in x]
     if isinstance(x, dict):
-        return {k: (limpia(v) if k not in ('table', 'chart', 'rout') else v) for k, v in x.items()}
+        if clave == 'table':
+            return {k: limpia(v) for k, v in x.items()}
+        return {k: (limpia(v, k) if k not in ('chart', 'rout') else v) for k, v in x.items()}
     return x
 
 
@@ -191,7 +215,7 @@ def variantes(rng, fn, n, intentos=60):
             continue
         if q is None:
             continue
-        clave = q['enun'] + '|' + q.get('ask', '') + '|' + q.get('rout', '') + '|' + json.dumps(q.get('table'))
+        clave = q['enun'] + '|' + q.get('ask', '') + '|' + q.get('rout', '') + '|' + json.dumps(q.get('table')) + json.dumps(q.get('chart'))
         if clave in vistos:
             continue
         vistos.add(clave)

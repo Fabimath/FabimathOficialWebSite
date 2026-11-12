@@ -19,6 +19,7 @@ BANCOS = {  # id: (módulo, variable JS, archivo, título)
     'ep': ('tema_ep', 'EP_QUESTIONS', 'ep_questions.js', 'Gato Estimador'),
     'ic': ('tema_ic', 'IC_EXTRA', 'ic_extra_questions.js', 'Gato de Intervalos: ejercicios y casos agregados'),
     'th': ('tema_th', 'TH_EXTRA', 'th_extra_questions.js', 'Gato de Test: ejercicios y casos agregados'),
+    'bd': ('tema_bd', 'BD_QUESTIONS', 'bd_questions.js', 'Gato Bivariado Descriptivo'),
     'rl': ('tema_rl', 'RL_QUESTIONS', 'rl_questions.js', 'Gato Lineal'),
     're': ('tema_re', 'RE_QUESTIONS', 're_questions.js', 'Gato Exponencial'),
     'rm': ('tema_rm', 'RM_QUESTIONS', 'rm_questions.js', 'Gato Múltiple'),

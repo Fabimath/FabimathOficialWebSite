@@ -238,12 +238,12 @@ def caso(rng):
     x0 = round(sum(d['rango']) / 2)
     p5 = P(f"Predicción para $x={x0}$.", alts(b0 + b1 * x0, [b1 + b0 * x0, b1 * x0, b0 + b1 * (x0 + 1)]), [f"$\\hat y={t(b0)}+({t(b1)})\\cdot{x0}={t(b0 + b1 * x0)}$"],
            f"$\\hat y={t(b0 + b1 * x0)}$ (dentro del rango de los datos).")
-    return CASO('Caso: regresión lineal completa', d['ctx'], enun, [p1, p2, p3, p4, p5], table=tb, sub='Recta y predicción')
+    return CASO('Caso: regresión lineal completa', d['ctx'], enun, [p2, p3, p4, p5], table=tb, sub='Recta y predicción')
 
 
 def generar(rng):
     qs = []
-    for fn, n in [(correlacion, 12), (recta, 12), (interpretar, 10), (r2, 8), (prediccion, 10), (inferencia, 14), (salida_r, 12)]:
+    for fn, n in [(recta, 12), (interpretar, 10), (r2, 8), (prediccion, 10), (inferencia, 14), (salida_r, 12)]:
         qs += variantes(rng, fn, n)
     qs += variantes(rng, caso, 5)
     return qs

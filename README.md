@@ -11,7 +11,7 @@ Sitio web oficial de **Fabián Ramírez** — profesor de matemáticas y estadí
 | [Inicio](index.html) | Perfil, material de clases y guías |
 | [PAES Estadística y Probabilidad](paes.html) | Curso interactivo del eje: 7 temas con diapositivas, pregunta PAES resuelta, cuestionario y ensayo final de 20 preguntas |
 | [PAES Números](paes.html?eje=numeros) | Mismo formato para el eje Números: enteros y racionales, porcentaje, potencias y raíces |
-| [Gatos de Estadística](quiz.html) | 22 gatos en 6 unidades (descriptiva, probabilidad, variables aleatorias, modelos, inferencia, regresión y ANOVA). Cada gato tiene materia, práctica por tipo, casos largos con incisos y simulacro con nota; hay simulacros globales y formulario. Rutas: `quiz.html#ic`, `#ic/materia`, `#ic/casos`, `#ic/simulacro`, `#sim/final`, `#formulario` |
+| [Gatos de Estadística](quiz.html) | 23 gatos en 6 unidades (descriptiva, probabilidad, variables aleatorias, modelos, inferencia, y bivariada, regresión y ANOVA). Cada gato tiene materia, práctica por tipo, casos largos con incisos y simulacro con nota; hay simulacros globales y formulario. Rutas: `quiz.html#ic`, `#ic/materia`, `#ic/casos`, `#ic/simulacro`, `#sim/final`, `#formulario` |
 | [Gatito de eximición](aes.html) | Criterios de eximición y calculadora de AES500, AES519 (normal e invierno) y FIS401; `aes.html#fis401` abre directo un curso |
 
 ## Estructura

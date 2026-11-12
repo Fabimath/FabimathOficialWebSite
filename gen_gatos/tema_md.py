@@ -294,7 +294,7 @@ def caso_poisson(rng):
            [f"$Poi({t(L2)})$: $1-e^{{-{t(L2)}}}={t(1 - exp(-L2))}$"], f"<b>{s(1 - exp(-L2))}</b>.")
     p3 = P(f"Probabilidad de exactamente 2 en {t2} {us}.", alts(ppmf(L2, 2), [ppmf(L1, 2), ppmf(L2, 1), exp(-L2)]),
            [f"$\\dfrac{{e^{{-{t(L2)}}}{t(L2)}^2}}{{2!}}={t(ppmf(L2, 2))}$"], f"<b>{s(ppmf(L2, 2))}</b>.")
-    p4 = P(f"Número esperado en {t2} {us} y su varianza.", alts_txt(f"$E=V={t(L2)}$", [f"$E={t(L2)}$, $V={t(L2 ** 0.5)}$", f"$E=V={t(lam)}$", f"$E={t(L2)}$, $V={t(L2 * L2)}$"]),
+    p4 = P(f"Número esperado en {t2} {us} y su varianza.", alts_txt(f"$E(X)=V(X)={t(L2)}$", [f"$E(X)={t(L2)}$, $V(X)={t(L2 ** 0.5)}$", f"$E(X)=V(X)={t(lam)}$", f"$E(X)={t(L2)}$, $V(X)={t(L2 * L2)}$"]),
            [f"$E(X)=V(X)=\\lambda t={t(L2)}$"], f"Se esperan {s(L2)} {ev}.")
     return CASO('Caso: proceso de Poisson', ctx, enun, [p1, p2, p3, p4], sub='Poisson')
 

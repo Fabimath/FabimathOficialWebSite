@@ -248,12 +248,24 @@ M['th'] = r"""
 """ + tabla(['', '$H_0$ verdadera', '$H_0$ falsa'], [['Rechazar $H_0$', 'Error tipo I ($\\alpha$)', 'Correcto (potencia $1-\\beta$)'],
                                                    ['No rechazar $H_0$', 'Correcto', 'Error tipo II ($\\beta$)']]) + warn("Escribir las hipótesis con $\\bar x$ en vez de $\\mu$. Decir «se acepta $H_0$» como si se hubiera probado: se dice «no se rechaza». En el test de proporción, usar $\\hat p$ en el error estándar (va $p_0$).")
 
+M['bd'] = r"""
+<h3>Tablas de doble entrada</h3>
+<p>Cuando en cada unidad se registran dos variables cualitativas o discretas, los datos se ordenan en una tabla de doble entrada (tabla de contingencia). Cada celda trae la <b>frecuencia conjunta</b> $f_{ij}$: cuántas unidades tienen a la vez la categoría $i$ de la primera variable y la $j$ de la segunda.</p>
+""" + box(r"""$$f_{i\cdot}=\sum_j f_{ij}\ \text{(total de la fila)},\qquad f_{\cdot j}=\sum_i f_{ij}\ \text{(total de la columna)},\qquad n=\sum_i\sum_j f_{ij}$$
+$$h_{ij}=\frac{f_{ij}}{n}\ \text{(relativa conjunta)},\qquad h_{j|i}=\frac{f_{ij}}{f_{i\cdot}}\ \text{(condicional por fila)},\qquad h_{i|j}=\frac{f_{ij}}{f_{\cdot j}}\ \text{(condicional por columna)}$$""") + r"""
+<p>Los totales de fila y de columna forman las <b>distribuciones marginales</b>: describen cada variable por separado. Las <b>distribuciones condicionales</b> describen una variable dentro de un grupo de la otra y son las que permiten comparar grupos de distinto tamaño. Si las distribuciones condicionales son iguales en todas las filas (o, lo que es lo mismo, $f_{ij}=\frac{f_{i\cdot}\,f_{\cdot j}}{n}$ en cada celda), las variables <b>no están asociadas</b>.</p>
+""" + ej("De 200 estudiantes, 120 son de primer año y 70 de ellos trabajan.", r"Frecuencia conjunta $f_{11}=70$; marginal $f_{1\cdot}=120$; $h_{11}=\frac{70}{200}=0{,}35$; condicional: el $\frac{70}{120}=58{,}33\ \%$ de los de primer año trabaja.") + r"""
+<h3>Covarianza y correlación</h3>
+<p>Con dos variables cuantitativas se empieza por el <b>gráfico de dispersión</b>: si la nube sube, la relación es directa; si baja, inversa; si no tiene forma, no hay relación lineal.</p>
+""" + box(r"""$$Cov(x,y)=\frac{1}{n-1}\sum (x_i-\bar x)(y_i-\bar y)=\frac{1}{n-1}\left(\sum x_iy_i-n\bar x\bar y\right)$$
+$$s_x^2=\frac{1}{n-1}\left(\sum x_i^2-n\bar x^2\right),\qquad r=\frac{Cov(x,y)}{s_x\,s_y}\in[-1,1]$$""") + tabla(['$|r|$', 'Relación lineal'], [['$\\lt 0{,}3$', 'Débil'], ['$0{,}3$ a $0{,}7$', 'Moderada'],
+                                                                                                                  ['$0{,}7$ a $1$', 'Fuerte'], ['$1$', 'Perfecta']]) + r"""
+<p>El signo indica la dirección: $r\gt 0$ directa, $r\lt 0$ inversa. La covarianza depende de las unidades (si $Y$ se expresa en miles, la covarianza se divide por mil); $r$ no cambia con cambios de escala positivos. Correlación no implica causalidad: dos variables pueden moverse juntas por una tercera.</p>
+""" + warn("Usar la suma de la fila como denominador cuando se pide un porcentaje por columna. Dividir la covarianza por $n$ en vez de $n-1$. Decir que $r=0{,}2$ indica «relación fuerte» o que una correlación alta prueba causa y efecto.")
+
 M['rl'] = r"""
-<h3>Correlación</h3>
-""" + box(r"""$$Cov(x,y)=\frac{1}{n-1}\left(\sum x_iy_i-n\bar x\bar y\right),\qquad s_x^2=\frac{1}{n-1}\left(\sum x_i^2-n\bar x^2\right),\qquad r=\frac{Cov(x,y)}{s_x\,s_y}\in[-1,1]$$""") + tabla(['$|r|$', 'Asociación lineal'], [['$\\ge 0{,}9$', 'Muy fuerte'], ['$0{,}7$ a $0{,}9$', 'Fuerte'],
-                                                                                                                  ['$0{,}4$ a $0{,}7$', 'Moderada'], ['$0{,}2$ a $0{,}4$', 'Débil'], ['$\\lt 0{,}2$', 'Muy débil o nula']]) + r"""
-<p>El signo indica la dirección: $r\gt 0$ directa, $r\lt 0$ inversa. Correlación no implica causalidad.</p>
 <h3>Regresión lineal simple</h3>
+<p>Si el gráfico de dispersión y la correlación (gato Bivariado Descriptivo) muestran una relación lineal, se ajusta la recta de mínimos cuadrados para predecir $Y$ a partir de $X$.</p>
 """ + box(r"""$$\hat y=\hat\beta_0+\hat\beta_1x,\qquad \hat\beta_1=\frac{Cov(x,y)}{s_x^2},\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x,\qquad R^2=r^2$$
 $$\hat\sigma^2_\varepsilon=s_y^2(1-r^2)\frac{n-1}{n-2},\qquad EE(\hat\beta_1)=\sqrt{\frac{\hat\sigma^2_\varepsilon}{(n-1)s_x^2}},\qquad t^*=\frac{\hat\beta_1}{EE(\hat\beta_1)}\sim t^{(n-2)}$$
 $$IC(\beta_1)=\hat\beta_1\mp t^{(n-2)}_{1-\alpha/2}\,EE(\hat\beta_1)$$""") + r"""
@@ -296,23 +308,31 @@ $$CM_E=\frac{SC_E}{k-1},\qquad CM_D=\frac{SC_D}{N-k},\qquad F=\frac{CM_E}{CM_D}\
 # ---------------------------------------------------------------- formulario
 F = []
 F.append(['Descriptiva', box(r"""$$\bar x=\frac1n\sum x_i=\frac1n\sum f_ix_i=\frac1n\sum f_im_i,\qquad s^2=\frac{1}{n-1}\left[\sum x_i^2-n\bar x^2\right],\qquad CV=\frac{s}{\bar x}$$
+Datos sueltos ordenados: $Me=x_{\left(\frac{n+1}{2}\right)}$, $P_k=x_{\left(\frac{k}{100}(n+1)\right)}$. Variación modal: $V_{Mo}=1-h_{Mo}$.
 $$Me=L_i+\frac{\frac n2-F_{i-1}}{f_i}\,a,\qquad Mo=L_i+\frac{f_i-f_{i-1}}{(f_i-f_{i-1})+(f_i-f_{i+1})}\,a,\qquad P_k=L_i+\frac{\frac{nk}{100}-F_{i-1}}{f_i}\,a$$
-$$RIQ=Q_3-Q_1,\quad BI=\max\{x_{(1)},\,Q_1-1{,}5\,RIQ\},\quad BS=\min\{x_{(n)},\,Q_3+1{,}5\,RIQ\},\quad \gamma_1=\frac{m_3}{s^3},\quad \gamma_2=\frac{m_4}{s^4}-3$$""")])
-F.append(['Probabilidad', box(r"""$$P(A^c)=1-P(A),\quad P(A\cup B)=P(A)+P(B)-P(A\cap B),\quad P(A)=\frac{\#A}{\#\Omega},\quad P(A|B)=\frac{P(A\cap B)}{P(B)}$$
+$$RIQ=Q_3-Q_1,\quad BI=\max\{x_{(1)},\,Q_1-1{,}5\,RIQ\},\quad BS=\min\{x_{(n)},\,Q_3+1{,}5\,RIQ\},\quad m_r=\frac1n\sum(x_i-\bar x)^r,\quad \gamma_1=\frac{m_3}{s^3},\quad \gamma_2=\frac{m_4}{s^4}-3$$""")])
+F.append(['Estadística bivariada', box(r"""$$f_{i\cdot}=\sum_j f_{ij},\quad f_{\cdot j}=\sum_i f_{ij},\quad h_{ij}=\frac{f_{ij}}{n},\quad h_{j|i}=\frac{f_{ij}}{f_{i\cdot}}$$
+$$Cov(x,y)=\frac{1}{n-1}\left(\sum x_iy_i-n\bar x\bar y\right),\qquad r=\frac{Cov(x,y)}{s_x\,s_y}$$""")])
+F.append(['Probabilidad', box(r"""$$P(A^c)=1-P(A),\quad P(A\cup B)=P(A)+P(B)-P(A\cap B),\quad P(A|B)=\frac{P(A\cap B)}{P(B)},\quad P(A\cap B)=P(A|B)P(B)$$
+Clásica: $P(A)=\dfrac{\#A}{\#\Omega}$; geométrica: $P(A)=\dfrac{m(A)}{m(\Omega)}$ con $m$ = largo, área o volumen; frecuentista: $P(A)=\lim\limits_{n\to\infty}\dfrac{n(A)}{n}$.
 $$P(B)=\sum P(B|A_i)P(A_i),\qquad P(A_j|B)=\frac{P(B|A_j)P(A_j)}{\sum P(B|A_i)P(A_i)},\qquad A\perp B\iff P(A\cap B)=P(A)P(B)$$""")])
-F.append(['Variables aleatorias', box(r"""$$F_X(x)=P(X\le x),\quad E(X)=\sum xf_X(x)\ \text{ó}\int xf_X(x)dx,\quad V(X)=E(X^2)-E(X)^2,\quad E(aX+b)=aE(X)+b,\quad V(aX+b)=a^2V(X)$$
+F.append(['Variables aleatorias', box(r"""$$F_X(x)=P(X\le x),\quad E(X)=\sum xf_X(x)\ \text{ó}\int xf_X(x)dx,\quad E(g(X))=\sum g(x)f_X(x)\ \text{ó}\int g(x)f_X(x)dx$$
+$$V(X)=E(X^2)-E(X)^2,\quad E(aX+b)=aE(X)+b,\quad V(aX+b)=a^2V(X),\quad CV(X)=\frac{d.e.(X)}{E(X)}$$
+Percentil $x_p$: $P(X\le x_p)\ge\frac{p}{100}$ y $P(X\ge x_p)\ge 1-\frac{p}{100}$ (en continuas, $F_X(x_p)=\frac{p}{100}$).
 $$Cov(X,Y)=E(XY)-E(X)E(Y),\quad \rho=\frac{Cov(X,Y)}{\sqrt{V(X)V(Y)}},\quad V(aX+bY)=a^2V(X)+b^2V(Y)+2ab\,Cov(X,Y)$$""")])
-F.append(['Modelos', M['md'].split('<h4>')[0].split('</h3>')[1] + box(r"""$$Unif(a,b):\ F=\frac{x-a}{b-a},\ E=\frac{a+b}2,\ V=\frac{(b-a)^2}{12}\qquad Exp(\lambda):\ F=1-e^{-\lambda x},\ E=\frac1\lambda,\ V=\frac1{\lambda^2}$$
-$$N(\mu,\sigma^2):\ Z=\frac{X-\mu}{\sigma},\ \Phi(-z)=1-\Phi(z)$$""")])
+F.append(['Modelos', M['md'].split('<h4>')[0].split('</h3>')[1] + box(r"""Geométrica: $F_X(x)=1-(1-p)^x$ y $P(X\gt a+b\,|\,X\gt a)=P(X\gt b)$.
+$$Unif(a,b):\ F=\frac{x-a}{b-a},\ \mathbb{E}=\frac{a+b}2,\ \mathbb{V}=\frac{(b-a)^2}{12}\qquad Exp(\lambda):\ F=1-e^{-\lambda x},\ \mathbb{E}=\frac1\lambda,\ \mathbb{V}=\frac1{\lambda^2},\ P(X\gt s+t\,|\,X\gt s)=P(X\gt t)$$
+$$N(\mu,\sigma^2):\ Z=\frac{X-\mu}{\sigma},\quad F_X(x)=\Phi\left(\frac{x-\mu}{\sigma}\right),\quad \Phi(-z)=1-\Phi(z)$$""")])
 F.append(['Distribuciones muestrales', box(r"""$$\bar X\sim N\!\left(\mu,\frac{\sigma^2}{n}\right),\quad \hat p\approx N\!\left(p,\frac{p(1-p)}n\right),\quad \frac{\bar X-\mu}{S/\sqrt n}\sim t^{(n-1)},\quad \frac{(n-1)S^2}{\sigma^2}\sim\chi^2_{(n-1)}$$""")])
-F.append(['Estimación', box(r"""Momentos: $E(X)=\bar X$. Máxima verosimilitud: $L(\theta)=\prod f(x_i;\theta)$, $\ell=\ln L$, $\ell'(\theta)=0$. $ECM=V+\text{sesgo}^2$.""")])
+F.append(['Estimación', box(r"""Momentos: $E(X)=\bar X$. Máxima verosimilitud: $L(\theta)=\prod f(x_i;\theta)$, $\ell=\ln L$, $\ell'(\theta)=0$. $ECM(\hat\theta)=V(\hat\theta)+\text{sesgo}^2$.""")])
 F.append(['Intervalos y tests', M['ic'].split('<p>Con')[0].split('</p>', 1)[1] + M['th'].split('<p>Región')[0].split('</ol>')[1]])
-F.append(['Regresión y ANOVA', box(r"""$$\hat\beta_1=\frac{Cov(x,y)}{s_x^2},\quad \hat\beta_0=\bar y-\hat\beta_1\bar x,\quad r=\frac{Cov}{s_xs_y},\quad \hat\sigma^2_\varepsilon=s_y^2(1-r^2)\frac{n-1}{n-2},\quad V(\hat\beta_1)=\frac{\hat\sigma^2_\varepsilon}{(n-1)s_x^2}$$
+F.append(['Regresión y ANOVA', box(r"""$$\hat\beta_1=\frac{Cov(x,y)}{s_x^2},\quad \hat\beta_0=\bar y-\hat\beta_1\bar x,\quad R^2=r^2,\quad \hat\sigma^2_\varepsilon=s_y^2(1-r^2)\frac{n-1}{n-2},\quad V(\hat\beta_1)=\frac{\hat\sigma^2_\varepsilon}{(n-1)s_x^2}$$
 $$\text{Exponencial: } w=\ln y,\ \hat\alpha=e^{\hat\beta_0}.\qquad R^2_{aj}=1-(1-R^2)\frac{n-1}{n-k-1}.\qquad F=\frac{SC_E/(k-1)}{SC_D/(N-k)}$$""")])
-F.append(['Formulario MAT033 (USM)', r"""<p>Formularios F1 a F4 de MAT033 (UTFSM), de Esteban Henríquez Castro y colaboradores. Usan otra notación de frecuencias: allí $n_j$ es la frecuencia absoluta y $f_j$ la relativa (en nuestros cursos son $f_i$ y $h_i$), y la condicional se escribe $\mathbb P[A/B]$.</p>""" + box(r"""<b>F1 Descriptiva.</b> $Me=X_{(\frac12(n+1))}$, $P_k=X_{(\frac{k}{100}(n+1))}$; datos tabulados: $\bar X=\sum f_jm_j$, $S^2=\sum f_j(m_j-\bar x)^2$, $V_{Mo}=1-f_{CMo}$, sesgo $\gamma_1=m_3/s^3$, curtosis $\gamma_2=m_4/s^4-3$.<br>
-<b>F2 Probabilidades.</b> $\mathbb P[A]=\frac{m(A)}{m(\Omega)}$ (cardinal, largo, área o volumen); $\mathbb P[A/B]=\frac{\mathbb P[A\cap B]}{\mathbb P[B]}$; probabilidad total y Bayes sobre una partición $D_1,\dots,D_n$.<br>
-<b>F3 Variables aleatorias.</b> Percentil $x_p$: $\mathbb P[X\le x_p]\ge\frac p{100}$ y $\mathbb P[X\ge x_p]\ge 1-\frac p{100}$; $\mathbb E[g(X)]=\sum g(x)f_X(x)$ ó $\int g(x)f_X(x)dx$; $CV[X]=\frac{d.e.[X]}{\mathbb E[X]}$.<br>
-<b>F4 Modelos.</b> $Geo(p)$: $F_X(x)=1-(1-p)^x$, $\mathbb P[X\gt a+b/X\gt a]=\mathbb P[X\gt b]$. $\exp(\theta)$: $\theta e^{-\theta x}$, $F_X(x)=1-e^{-\theta x}$, $\mathbb E=1/\theta$. $N(\mu,\sigma^2)$: $F_X(x)=\Phi\left(\frac{x-\mu}\sigma\right)$, $\Phi(a)=1-\Phi(-a)$.""")])
+
+# notación del formulario: ℙ, 𝔼 y 𝕍 en letra de pizarra
+from comun import pizarra
+M = {k: pizarra(v) for k, v in M.items()}
+F = [[a, pizarra(b)] for a, b in F]
 
 out = 'window.MATERIA = ' + json.dumps(M, ensure_ascii=False, indent=0) + ';\nwindow.FORMULARIO = ' + json.dumps(F, ensure_ascii=False, indent=0) + ';\n'
 (RAIZ / 'materia_gatos.js').write_text('// Materia y formulario de los Gatos de Estadística. Generado por gen_gatos/materia.py.\n' + out, encoding='utf-8')

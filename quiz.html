@@ -36,6 +36,7 @@
 <script src="ep_questions.js"></script>
 <script src="ic_extra_questions.js"></script>
 <script src="th_extra_questions.js"></script>
+<script src="bd_questions.js"></script>
 <script src="rl_questions.js"></script>
 <script src="re_questions.js"></script>
 <script src="rm_questions.js"></script>
@@ -375,7 +376,7 @@
   <!-- FORMULARIO -->
   <div id="v_formu" class="hidden">
     <div class="crumbs"><a href="#">Gatos</a> / Formulario</div>
-    <div class="vista-head"><div class="t-txt"><h2>Formulario</h2><div class="sub">El formulario de nuestros cursos (AES) y el de MAT033 (USM), ordenados por tema.</div></div></div>
+    <div class="vista-head"><div class="t-txt"><h2>Formulario</h2><div class="sub">Las fórmulas del curso, ordenadas por tema.</div></div></div>
     <div class="formu-nav" id="formuNav"></div>
     <div class="qcard materia" id="formuBox"></div>
   </div>
@@ -461,15 +462,16 @@ const UNIDADES = [
     { id:'ic', title:'Gato de Intervalos', name:'Intervalos de Confianza', desc:'Media (z y t), proporción, varianza y desviación estándar (χ²), diferencia de medias y tamaño de muestra.', bank: OLD.ic.concat(W('IC_EXTRA')), body:'#ff9a3c', shade:'#e07a1f' },
     { id:'th', title:'Gato de Test', name:'Test de Hipótesis', desc:'Media, proporción, varianza y dos medias; valor p, errores tipo I y II, decisión en contexto.', bank: OLD.th.concat(W('TH_EXTRA')), body:'#f0883e', shade:'#d96f22' }
   ]],
-  ['Regresión y ANOVA', 'Relaciones entre variables y comparación de grupos.', [
-    { id:'rl', title:'Gato Lineal', name:'Correlación y Regresión Lineal', desc:'Covarianza, r, recta de mínimos cuadrados, R², predicción e inferencia sobre la pendiente.', bank: W('RL_QUESTIONS'), body:'#818cf8', shade:'#5b5fe0' },
+  ['Bivariada, regresión y ANOVA', 'Relaciones entre variables y comparación de grupos.', [
+    { id:'bd', title:'Gato Bivariado Descriptivo', name:'Estadística Bivariada', desc:'Tablas de doble entrada con marginales y condicionales, asociación, gráfico de dispersión, covarianza y correlación.', bank: W('BD_QUESTIONS'), body:'#fbbf24', shade:'#c98a06' },
+    { id:'rl', title:'Gato Lineal', name:'Regresión Lineal Simple', desc:'Recta de mínimos cuadrados, interpretación de coeficientes, R², predicción, inferencia sobre la pendiente y salida de R.', bank: W('RL_QUESTIONS'), body:'#818cf8', shade:'#5b5fe0' },
     { id:'re', title:'Gato Exponencial', name:'Regresión Exponencial', desc:'Linealiza con ln y, ajusta y = αe^{βx}, predice e interpreta el factor e^β.', bank: W('RE_QUESTIONS'), body:'#f97316', shade:'#c2560c' },
     { id:'rm', title:'Gato Múltiple', name:'Regresión Lineal Múltiple', desc:'Lee la salida de R: coeficientes ceteris paribus, t y valor p, R² ajustado, test F y predicción.', bank: W('RM_QUESTIONS'), body:'#14b8a6', shade:'#0f8c80' },
     { id:'an', title:'Gato ANOVA', name:'Análisis de Varianza', desc:'Tabla ANOVA de un factor: sumas de cuadrados, F, decisión, η² y supuestos.', bank: W('AN_QUESTIONS'), body:'#c084fc', shade:'#9333ea' }
   ]]
 ];
 const TOPICS = Object.fromEntries(UNIDADES.flatMap(([, , ts]) => ts).map(t => [t.id, t]));
-const NUEVOS = new Set(['pb','vd','vx','bv','md','mc','tc','ep','rl','re','rm','an']);
+const NUEVOS = new Set(['pb','vd','vx','bv','md','mc','tc','ep','bd','rl','re','rm','an']);
 
 /* simulacros globales: [tema, preguntas simples, casos] */
 const SIMULACROS = [
@@ -477,8 +479,8 @@ const SIMULACROS = [
   { key:'prob', title:'Cátedra de Probabilidad', desc:'Probabilidad clásica, condicional, total y Bayes, con un caso largo.', min:50, plan:[['pb',3,1],['pc',3,0],['bt',2,1]] },
   { key:'va', title:'Cátedra de Variables Aleatorias y Modelos', desc:'V.a. discreta y continua, bivariada, modelos discretos y continuos, Normal.', min:70, plan:[['vd',2,0],['vx',2,1],['bv',1,0],['md',3,0],['mc',2,0],['nm',2,0]] },
   { key:'inf', title:'Cátedra de Inferencia', desc:'TCL, estimación puntual, intervalos de confianza y test de hipótesis.', min:70, plan:[['tc',2,0],['ep',2,1],['ic',3,0],['th',3,1]] },
-  { key:'reg', title:'Cátedra de Regresión y ANOVA', desc:'Correlación, regresión lineal, exponencial y múltiple, y ANOVA.', min:60, plan:[['rl',3,1],['re',2,0],['rm',2,0],['an',2,1]] },
-  { key:'final', title:'Examen final', desc:'Todo el curso de probabilidad e inferencia en una sola prueba.', min:100, plan:[['pb',1,0],['pc',1,0],['bt',1,0],['vd',1,0],['vx',1,0],['bv',1,0],['md',2,0],['mc',1,0],['nm',1,0],['tc',1,0],['ep',1,0],['ic',2,0],['th',2,0],['rl',1,0],['re',1,0],['rm',1,0],['an',1,0]] }
+  { key:'reg', title:'Cátedra de Bivariada, Regresión y ANOVA', desc:'Tablas de doble entrada, correlación, regresión lineal, exponencial y múltiple, y ANOVA.', min:70, plan:[['bd',3,1],['rl',2,1],['re',2,0],['rm',2,0],['an',2,0]] },
+  { key:'final', title:'Examen final', desc:'Todo el curso de probabilidad e inferencia en una sola prueba.', min:100, plan:[['pb',1,0],['pc',1,0],['bt',1,0],['vd',1,0],['vx',1,0],['bv',1,0],['md',2,0],['mc',1,0],['nm',1,0],['tc',1,0],['ep',1,0],['ic',2,0],['th',2,0],['bd',1,0],['rl',1,0],['re',1,0],['rm',1,0],['an',1,0]] }
 ];
 
 const $ = id => document.getElementById(id);
@@ -562,6 +564,23 @@ function renderChart(chart) {
     const legend = chart.labels.map((lbl, i) =>
       `<div class="pl-row"><span class="pl-sw" style="background:${color(i)}"></span>${lbl}<span class="pl-pct">${chart.pct[i]}%</span></div>`).join('');
     return `<div class="pie-wrap"><div class="pie-circle" style="background:conic-gradient(${stops})"></div><div class="pie-legend">${legend}</div></div><div class="qn">Total N = ${chart.N}</div>`;
+  }
+  /* dispersión: chart = {type:'scatter', pts:[[x,y],…], xlab, ylab} */
+  if (chart.type === 'scatter') {
+    const xs = chart.pts.map(p => p[0]), ys = chart.pts.map(p => p[1]);
+    const pad = (a, b) => (b - a) * 0.08 || 1;
+    const x0 = Math.min(...xs) - pad(Math.min(...xs), Math.max(...xs)), x1 = Math.max(...xs) + pad(Math.min(...xs), Math.max(...xs));
+    const y0 = Math.min(...ys) - pad(Math.min(...ys), Math.max(...ys)), y1 = Math.max(...ys) + pad(Math.min(...ys), Math.max(...ys));
+    const Wd = 420, Hd = 240, L = 46, B = 30, R = 14, T = 12;
+    const px = x => L + (x - x0) / (x1 - x0) * (Wd - L - R), py = y => Hd - B - (y - y0) / (y1 - y0) * (Hd - B - T);
+    const fmt = v => (Math.abs(v) >= 100 ? Math.round(v) : Math.round(v * 10) / 10).toString().replace('.', ',');
+    const ticks = (a, b) => [0, 1, 2, 3, 4].map(k => a + (b - a) * (k + 0.5) / 5);
+    const xt = ticks(x0, x1).map(v => `<text x="${px(v)}" y="${Hd - B + 16}" text-anchor="middle">${fmt(v)}</text><line x1="${px(v)}" x2="${px(v)}" y1="${T}" y2="${Hd - B}" stroke="rgba(0,0,0,.06)"/>`).join('');
+    const yt = ticks(y0, y1).map(v => `<text x="${L - 6}" y="${py(v) + 4}" text-anchor="end">${fmt(v)}</text><line x1="${L}" x2="${Wd - R}" y1="${py(v)}" y2="${py(v)}" stroke="rgba(0,0,0,.06)"/>`).join('');
+    const dots = chart.pts.map(p => `<circle cx="${px(p[0]).toFixed(1)}" cy="${py(p[1]).toFixed(1)}" r="4.5" fill="#f5822a" stroke="#c2530a" stroke-width="1.2"/>`).join('');
+    return `<svg class="dens" viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Gráfico de dispersión" font-size="11" fill="#424245">
+      ${xt}${yt}<line x1="${L}" x2="${Wd - R}" y1="${Hd - B}" y2="${Hd - B}" stroke="#1d1d1f"/><line x1="${L}" x2="${L}" y1="${T}" y2="${Hd - B}" stroke="#1d1d1f"/>${dots}
+      <text x="${Wd - R}" y="${Hd - 2}" text-anchor="end" font-style="italic">${chart.xlab || 'x'}</text><text x="4" y="${T + 4}" font-style="italic">${chart.ylab || 'y'}</text></svg>`;
   }
   /* densidad poligonal: chart = {type:'dens', pts:[[x,y],…], xlab, ylab, xt:[…], yt:[…]} */
   if (chart.type === 'dens') {
