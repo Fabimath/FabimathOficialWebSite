@@ -23,6 +23,7 @@
 <script src="mv_questions.js"></script>
 <script src="cc_questions.js"></script>
 <!-- bancos generados por gen_gatos/ (window.XX_QUESTIONS) -->
+<script src="mp_questions.js"></script>
 <script src="pb_questions.js"></script>
 <script src="pc_extra_questions.js"></script>
 <script src="bt_extra_questions.js"></script>
@@ -439,7 +440,8 @@ const UNIDADES = [
     { id:'cn', title:'Gato Nominal', name:'Datos Cualitativos Nominales', desc:'Tablas de frecuencia (fᵢ, hᵢ, hᵢ%): constrúyelas desde datos crudos, léelas o interprétalas desde un gráfico.', bank: OLD.cn, body:'#38bdf8', shade:'#0ea5c7' },
     { id:'cd', title:'Gato Discreto', name:'Datos Cuantitativos Discretos', desc:'Tablas con acumuladas (Fᵢ, Hᵢ), lectura «a lo más / más de», y media, mediana y moda.', bank: OLD.cd, body:'#a3e635', shade:'#7bb418' },
     { id:'mv', title:'Gato Variable', name:'Medidas de Variabilidad', desc:'Rango, varianza s², desviación estándar y coeficiente de variación; compara homogeneidad con el CV.', bank: OLD.mv, body:'#fb923c', shade:'#d9701c' },
-    { id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos', desc:'Tablas con clases [Lᵢ, Lₛ): promedio, mediana y moda interpoladas, varianza y CV.', bank: OLD.cc, body:'#2dd4bf', shade:'#0d9488' }
+    { id:'cc', title:'Gato Continuo', name:'Datos Cuantitativos Continuos', desc:'Tablas con clases [Lᵢ, Lₛ): promedio, mediana y moda interpoladas, varianza y CV.', bank: OLD.cc, body:'#2dd4bf', shade:'#0d9488' },
+    { id:'mp', title:'Gato de Posición', name:'Medidas de Posición', desc:'Cuartiles, deciles y percentiles con datos sueltos, con tabla de frecuencias y con datos agrupados; RIQ, bigotes, atípicos y percentil inverso.', bank: W('MP_QUESTIONS'), body:'#0ea5e9', shade:'#0369a1' }
   ]],
   ['Probabilidad', 'Eventos, conteo, condicional, probabilidad total y Bayes.', [
     { id:'pb', title:'Gato Clásico', name:'Probabilidad Clásica y Eventos', desc:'Laplace, conteo, diagramas de Venn de dos y tres eventos, De Morgan, e independencia frente a incompatibilidad.', bank: W('PB_QUESTIONS'), body:'#60a5fa', shade:'#2b7bd9' },
@@ -471,11 +473,11 @@ const UNIDADES = [
   ]]
 ];
 const TOPICS = Object.fromEntries(UNIDADES.flatMap(([, , ts]) => ts).map(t => [t.id, t]));
-const NUEVOS = new Set(['pb','vd','vx','bv','md','mc','tc','ep','bd','rl','re','rm','an']);
+const NUEVOS = new Set(['mp','pb','vd','vx','bv','md','mc','tc','ep','bd','rl','re','rm','an']);
 
 /* simulacros globales: [tema, preguntas simples, casos] */
 const SIMULACROS = [
-  { key:'desc', title:'Cátedra de Estadística Descriptiva', desc:'Tablas de frecuencia, medidas de tendencia central y de variabilidad.', min:45, plan:[['vc',1,0],['cn',2,0],['cd',2,0],['mv',2,0],['cc',3,0]] },
+  { key:'desc', title:'Cátedra de Estadística Descriptiva', desc:'Tablas de frecuencia, medidas de tendencia central, de variabilidad y de posición.', min:55, plan:[['vc',1,0],['cn',2,0],['cd',2,0],['mv',2,0],['cc',2,0],['mp',2,1]] },
   { key:'prob', title:'Cátedra de Probabilidad', desc:'Probabilidad clásica, condicional, total y Bayes, con un caso largo.', min:50, plan:[['pb',3,1],['pc',3,0],['bt',2,1]] },
   { key:'va', title:'Cátedra de Variables Aleatorias y Modelos', desc:'V.a. discreta y continua, bivariada, modelos discretos y continuos, Normal.', min:70, plan:[['vd',2,0],['vx',2,1],['bv',1,0],['md',3,0],['mc',2,0],['nm',2,0]] },
   { key:'inf', title:'Cátedra de Inferencia', desc:'TCL, estimación puntual, intervalos de confianza y test de hipótesis.', min:70, plan:[['tc',2,0],['ep',2,1],['ic',3,0],['th',3,1]] },

@@ -62,6 +62,19 @@ $$P_k=L_i+\frac{\frac{nk}{100}-F_{i-1}}{f_i}\,a,\qquad s^2=\frac{1}{n-1}\left[\s
 <p>La clase mediana es la primera con $F_i\ge n/2$; la clase modal, la de mayor $f_i$. Si $\bar x>Me$ la distribución es asimétrica a la derecha.</p>
 """ + warn("Usar el límite superior en vez del inferior en la interpolación. Usar $F_i$ de la propia clase en vez de la anterior ($F_{i-1}$). Olvidar la amplitud $a$.")
 
+M['mp'] = r"""
+<h3>Medidas de posición</h3>
+<p>Una medida de posición indica el valor bajo el cual queda una proporción dada de los datos ordenados. Todas son percentiles: el percentil $P_k$ deja aproximadamente el $k\,\%$ de los datos en o bajo su valor. Los cuartiles son $Q_1=P_{25}$, $Q_2=Me=P_{50}$ y $Q_3=P_{75}$; los deciles, $D_j=P_{10j}$.</p>
+""" + tabla(['Caso', 'Cómo se calcula $P_k$'], [
+    ['Datos sueltos (ordenados)', 'Posición $\\dfrac{k(n+1)}{100}$. Si es entera, $P_k$ es ese dato; si no, se interpola entre los dos datos vecinos: $x_{(a)}+d\\,(x_{(a+1)}-x_{(a)})$, con $a$ la parte entera y $d$ la decimal.'],
+    ['Tabla de frecuencias (no agrupada)', '$P_k$ es el primer valor $x_i$ cuya frecuencia acumulada cumple $F_i\\ge \\dfrac{kn}{100}$.'],
+    ['Datos agrupados en clases', 'Clase del percentil: la primera con $F_i\\ge\\frac{kn}{100}$. Luego $P_k=L_i+\\left(\\dfrac{\\frac{kn}{100}-F_{i-1}}{f_i}\\right)A$.']]) + r"""
+<h4>Rango intercuartílico, bigotes y atípicos</h4>
+""" + box(r"$$RIQ=Q_3-Q_1,\qquad BI=\max\{x_{(1)},\ Q_1-1{,}5\,RIQ\},\qquad BS=\min\{x_{(n)},\ Q_3+1{,}5\,RIQ\}$$Un dato fuera de $[Q_1-1{,}5\,RIQ;\ Q_3+1{,}5\,RIQ]$ es atípico y se marca aparte en el diagrama de caja.") + r"""
+<h4>Percentil inverso</h4>
+<p>A veces se conoce el valor y se pide el porcentaje: con datos sueltos se cuentan los datos menores o iguales; con datos agrupados se despeja $k$ de la fórmula del percentil. El porcentaje entre dos valores es la diferencia de sus $k$.</p>
+""" + ej("Ayuda de un fondo regional: clase $[250;\\ 450)$ con $f_i=33$, $F_{i-1}=34$, $n=85$.", r"$Me$: $\frac{85}{2}=42{,}5$, cae en esa clase: $Me=250+\frac{42{,}5-34}{33}\cdot 200=301{,}5151$. El 50 % de los montos es a lo más 301,5151 mil pesos.") + warn("Usar $F_i$ de la propia clase en vez de la anterior. Con datos sueltos, olvidar ordenar o usar $\\frac{kn}{100}$ en vez de $\\frac{k(n+1)}{100}$. Interpretar $P_{80}$ como «el 80 % del valor» en vez de «el 80 % de los datos».")
+
 M['pb'] = r"""
 <h3>Experimento, espacio muestral y eventos</h3>
 <p>Un experimento aleatorio tiene resultados que no se pueden predecir con certeza. El <b>espacio muestral</b> $\Omega$ reúne todos los resultados posibles y un <b>evento</b> es un subconjunto de $\Omega$. Las operaciones con eventos se leen así: $A\cup B$ «ocurre $A$ o $B$ (al menos uno)», $A\cap B$ «ocurren ambos», $A^c$ «no ocurre $A$», $A\cap B^c$ «ocurre $A$ pero no $B$».</p>
@@ -308,7 +321,7 @@ $$CM_E=\frac{SC_E}{k-1},\qquad CM_D=\frac{SC_D}{N-k},\qquad F=\frac{CM_E}{CM_D}\
 # ---------------------------------------------------------------- formulario
 F = []
 F.append(['Descriptiva', box(r"""$$\bar x=\frac1n\sum x_i=\frac1n\sum f_ix_i=\frac1n\sum f_im_i,\qquad s^2=\frac{1}{n-1}\left[\sum x_i^2-n\bar x^2\right],\qquad CV=\frac{s}{\bar x}$$
-Datos sueltos ordenados: $Me=x_{\left(\frac{n+1}{2}\right)}$, $P_k=x_{\left(\frac{k}{100}(n+1)\right)}$. Variación modal: $V_{Mo}=1-h_{Mo}$.
+Datos sueltos ordenados: $Me=x_{\left(\frac{n+1}{2}\right)}$, $P_k=x_{\left(\frac{k}{100}(n+1)\right)}$ (interpolando si la posición no es entera). Tabla no agrupada: $P_k$ es el primer $x_i$ con $F_i\ge\frac{kn}{100}$. Variación modal: $V_{Mo}=1-h_{Mo}$.
 $$Me=L_i+\frac{\frac n2-F_{i-1}}{f_i}\,a,\qquad Mo=L_i+\frac{f_i-f_{i-1}}{(f_i-f_{i-1})+(f_i-f_{i+1})}\,a,\qquad P_k=L_i+\frac{\frac{nk}{100}-F_{i-1}}{f_i}\,a$$
 $$RIQ=Q_3-Q_1,\quad BI=\max\{x_{(1)},\,Q_1-1{,}5\,RIQ\},\quad BS=\min\{x_{(n)},\,Q_3+1{,}5\,RIQ\},\quad m_r=\frac1n\sum(x_i-\bar x)^r,\quad \gamma_1=\frac{m_3}{s^3},\quad \gamma_2=\frac{m_4}{s^4}-3$$""")])
 F.append(['Estadística bivariada', box(r"""$$f_{i\cdot}=\sum_j f_{ij},\quad f_{\cdot j}=\sum_i f_{ij},\quad h_{ij}=\frac{f_{ij}}{n},\quad h_{j|i}=\frac{f_{ij}}{f_{i\cdot}}$$

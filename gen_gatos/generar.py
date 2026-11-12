@@ -6,6 +6,7 @@ import sys
 from comun import escribir
 
 BANCOS = {  # id: (módulo, variable JS, archivo, título)
+    'mp': ('tema_mp', 'MP_QUESTIONS', 'mp_questions.js', 'Gato de Posición'),
     'pb': ('tema_pb', 'PB_QUESTIONS', 'pb_questions.js', 'Gato Clásico: probabilidad clásica y eventos'),
     'pc': ('tema_pc', 'PC_EXTRA', 'pc_extra_questions.js', 'Gato Condicional: ejercicios y casos agregados'),
     'bt': ('tema_bt', 'BT_EXTRA', 'bt_extra_questions.js', 'Gato de Bayes: ejercicios y casos agregados'),
