@@ -15,3 +15,6 @@ paes/m1/libro/*.aux
 paes/m1/libro/*.log
 paes/m1/libro/*.toc
 paes/m1/libro/*.out
+gen_gatos/node_modules/
+gen_gatos/package-lock.json
+gen_gatos/__pycache__/
